@@ -1,4 +1,26 @@
 
+function saveStatuses() {
+  saveUserCache('status', statuses);
+  scheduleCloudSave('status', statuses);
+}
+
+function saveQBad() {
+  saveUserCache('questionBad', qBad);
+  scheduleCloudSave('questionBad', qBad);
+}
+
+function saveSBad() {
+  saveUserCache('solutionBad', sBad);
+  scheduleCloudSave('solutionBad', sBad);
+}
+
+function saveNotes() {
+  saveUserCache('notes', notesData);
+  scheduleCloudSave('notes', notesData);
+}
+
+
+
 function initAnnotationEngine() {
   const canvas = document.getElementById('annotationCanvas');
   const sizeSlider = document.getElementById('annoSizeSlider');
@@ -409,33 +431,6 @@ function restoreQuestionAnnotation() {
 
     function getChapter() { return CHAPTERS.find(c => c.id === currentChapterId); }
 
-    // Returns a path without an extension. Math chapters use their labels; major
-    // course chapters provide an explicit file-name mapping.
-    function getImgPath(idx) {
-      const chapter = getChapter();
-      if (!chapter) {
-        throw new Error(`Unknown chapter: ${currentChapterId}`);
-      }
-
-      const rootDir = chapter.category === 'zhuanye' ? '专业题库' : '数一题库';
-      const chapterDir = `${rootDir}/${chapter.relPath}`;
-
-      if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
-        return `${chapterDir}/${chapter.fileBases[idx]}`;
-      }
-
-      const label = String(chapter.labels?.[idx] ?? '');
-      if (!label) {
-        throw new Error(`Missing image label for question ${idx + 1}`);
-      }
-
-      const fileBase = label.startsWith('例')
-        ? `ex_${label.slice(1)}`
-        : `pb_${label}`;
-
-      return `${chapterDir}/${fileBase}`;
-    }
-
     // ===== 题组（父题/子题）解析 =====
     // 去掉 label 末尾括号及内容（支持 (1)、(a)、(I)、全角括号），得到父题号
     function stripSubSuffix(label) { return String(label).replace(/\s*[\(（][^\)）]*[\)）]\s*$/, ''); }
@@ -521,6 +516,7 @@ function restoreQuestionAnnotation() {
 
     // ===== localStorage 持久化 =====
     
+
 
 function renderStats() {
   const ch = getChapter();
@@ -1184,25 +1180,217 @@ function renderStats() {
     }
 
     function setStatus(status) {
-  const chapter = getChapter();
-  const label = chapter?.labels?.[current] || null;
-  const oldStatus = getStatus(current);
+      const ch = getChapter();
+      const label = ch && ch.labels ? ch.labels[current] : null;
+      const cur = getStatus(current);
+      if (cur === status) {
+        delete statuses[current];
+        if (label) delete statuses[label];
+      } else {
+        statuses[current] = status;
+        if (label) statuses[label] = status;
+      }
+      saveStatuses(); updateStatusBtns(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'status', statuses); renderStats(); renderNav(); updateFilterCounts(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'lastPosition', current);
+    }
 
-  if (oldStatus === status) {
-    delete statuses[current];
-    if (label) delete statuses[label];
-  } else {
-    statuses[current] = status;
-    if (label) statuses[label] = status;
-  }
+    function toggleSolution() {
+      showSolution = !showSolution;
+      updateSolutionUI();
+    }
 
-  saveStatuses();
-  updateStatusBtns();
-  renderStats();
-  renderNav();
-  updateFilterCounts();
+    function toggleDefaultSolution() {
+      defaultShowSolution = !defaultShowSolution;
+      showSolution = defaultShowSolution;
+      renderSolDefaultBtn();
+      updateSolutionUI();
+    }
 
-  scheduleCloudSave('lastPosition', current);
+    function renderSolDefaultBtn() {
+      const btn = document.getElementById('btnSolDefault');
+      if (defaultShowSolution) {
+        btn.innerHTML = '解析默认：显示<span class="sol-key">Shift+Space</span>';
+      } else {
+        btn.innerHTML = '解析默认：隐藏<span class="sol-key">Shift+Space</span>';
+      }
+    }
+
+    // ===== 筛选栏数字统计 =====
+    function updateFilterCounts() {
+      const ch = getChapter();
+      const total = ch.total;
+      let proficient = 0, vague = 0, wrong = 0;
+      Object.values(statuses).forEach(s => {
+        if (s === 'proficient') proficient++;
+        else if (s === 'vague') vague++;
+        else if (s === 'wrong') wrong++;
+      });
+      const unmarked = total - proficient - vague - wrong;
+      const setCount = (filter, val) => {
+        const el = document.querySelector('.filter-btn[data-filter="' + filter + '"] .filter-count');
+        if (el) el.textContent = val;
+      };
+      setCount('all', total);
+      setCount('proficient', proficient);
+      setCount('vague', vague);
+      setCount('wrong', wrong);
+      setCount('unmarked', unmarked);
+    }
+
+    // ===== 灯箱（方案A：图片点击全屏） =====
+    let lbScale = 1, lbTranslateX = 0, lbTranslateY = 0, lbDragging = false, lbLastX = 0, lbLastY = 0;
+
+    function openLightbox(src) {
+      const overlay = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      lbScale = 1; lbTranslateX = 0; lbTranslateY = 0;
+      img.style.transform = '';
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const overlay = document.getElementById('lightbox');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function lbApplyTransform() {
+      const img = document.getElementById('lightboxImg');
+      img.style.transform = 'translate(' + lbTranslateX + 'px,' + lbTranslateY + 'px) scale(' + lbScale + ')';
+    }
+
+
+    
+    // ===== 暗黑/夜色护眼模式 =====
+    
+    // ===== 悬浮草稿纸 (Canvas Scratchpad) =====
+    let scratchIsDrawing = false;
+    let scratchTool = 'pen';
+    let scratchColor = '#FF3B30';
+    let scratchSize = 4;
+
+    function initScratchpad() {
+      const canvas = document.getElementById('scratchCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      canvas.addEventListener('pointerdown', function(e) {
+        scratchIsDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      });
+
+      canvas.addEventListener('pointermove', function(e) {
+        if (!scratchIsDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineWidth = scratchTool === 'eraser' ? scratchSize * 4 : scratchSize;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        if (scratchTool === 'eraser') {
+          ctx.globalCompositeOperation = 'destination-out';
+        } else {
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.strokeStyle = scratchColor;
+        }
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+      });
+
+      window.addEventListener('pointerup', function() {
+        scratchIsDrawing = false;
+      });
+
+      document.getElementById('scratchToolPen').onclick = function() {
+        scratchTool = 'pen';
+        this.classList.add('active');
+        document.getElementById('scratchToolEraser').classList.remove('active');
+      };
+
+      document.getElementById('scratchToolEraser').onclick = function() {
+        scratchTool = 'eraser';
+        this.classList.add('active');
+        document.getElementById('scratchToolPen').classList.remove('active');
+      };
+
+      document.getElementById('scratchColorPicker').onchange = function(e) {
+        scratchColor = e.target.value;
+      };
+
+      document.getElementById('scratchSizeSelect').onchange = function(e) {
+        scratchSize = parseInt(e.target.value);
+      };
+
+      document.getElementById('scratchClear').onclick = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      };
+
+      document.getElementById('scratchClose').onclick = function() {
+        toggleScratchpad(false);
+      };
+    }
+
+    function toggleScratchpad(show) {
+      const container = document.getElementById('scratchContainer');
+      const btn = document.getElementById('btnToggleAnnotation');
+      if (show === undefined) show = container.style.display === 'none';
+      container.style.display = show ? 'block' : 'none';
+      if (btn) btn.classList.toggle('active', show);
+      if (show) {
+        const canvas = document.getElementById('scratchCanvas');
+        const rect = canvas.getBoundingClientRect();
+        if (canvas.width !== rect.width) {
+          canvas.width = rect.width;
+          canvas.height = 320;
+        }
+      }
+    }
+
+
+    
+    // ===== Supabase 云端账号与同步逻辑 =====
+    
+    
+
+    
+    
+
+    
+
+
+
+    function toggleAnnotation(show) {
+      const canvas = document.getElementById('annotationCanvas');
+      const toolbar = document.getElementById('annoToolbar');
+      const btn = document.getElementById('btnToggleAnnotation');
+      const qImg = document.getElementById('questionImg');
+      
+      if (show === undefined) show = !annoActive;
+      annoActive = show;
+      
+      if (canvas) canvas.style.display = show ? 'block' : 'none';
+      if (toolbar) toolbar.style.display = show ? 'flex' : 'none';
+      if (btn) {
+        btn.classList.toggle('active', show);
+        btn.querySelector('.func-name').textContent = show ? '✏️ 关闭标注' : '✏️ 开启标注';
+      }
+      
+      if (show && qImg) {
+        canvas.width = qImg.clientWidth || qImg.naturalWidth || 800;
+        canvas.height = qImg.clientHeight || qImg.naturalHeight || 600;
+        restoreQuestionAnnotation();
+      }
+    }
+
+
+    
+    // ===== 私有云端 Auth 事件联动 =====
+    
+function getSignedInUserId() {
+  const user = window.PrivateStudy?.getCurrentUser();
+  if (!user) throw new Error('未登录，不能读写用户学习数据');
+  return user.id;
 }
 
 function userCacheKey(dataType, chapterId = currentChapterId) {
@@ -1263,99 +1451,6 @@ async function restoreChapterState(chapterId) {
     : 0;
 }
 
-
-
-
-document.addEventListener('private-study:signed-in', async function (event) {
-      const user = event.detail.user;
-      resetAllUserState();
-      renderNav();
-
-      const chapterId = currentChapterId || 'ch1';
-      await restoreChapterState(chapterId);
-      switchTo(current || 0);
-
-      console.info('题库已为当前用户初始化:', );
-    });
-
-    document.addEventListener('private-study:signed-out', function () {
-      resetAllUserState();
-      const qImg = document.getElementById('questionImg');
-      const sImg = document.getElementById('solutionImg');
-      if (qImg) qImg.src = '';
-      if (sImg) sImg.src = '';
-    });
-
-    
-
-document.addEventListener('keydown', function (e) {
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
-
-  const key = e.key.toLowerCase();
-  const isShift = e.shiftKey;
-
-  if (isShift) {
-    switch (key) {
-      case 'a': e.preventDefault(); applyFilter('all'); return;
-      case 'z': e.preventDefault(); applyFilter('proficient'); return;
-      case 'x': e.preventDefault(); applyFilter('vague'); return;
-      case 'c': e.preventDefault(); applyFilter('wrong'); return;
-      case 'n': e.preventDefault(); applyFilter('unmarked'); return;
-      case ' ': e.preventDefault(); toggleDefaultSolution(); return;
-    }
-  }
-
-  switch (key) {
-    case 'a':
-    case 'arrowleft': prevQuestion(); break;
-    case 'd':
-    case 'arrowright': nextQuestion(); break;
-    case 'f': toggleSubMode(); break;
-    case 'p': toggleAnnotation(); break;
-    case 'z': setStatus('proficient'); break;
-    case 'x': setStatus('vague'); break;
-    case 'c': setStatus('wrong'); break;
-    case ' ': e.preventDefault(); toggleSolution(); break;
-    case 'q': gotoPrevChapter(); break;
-    case 'e': gotoNextChapter(); break;
-    case 'r': toggleQBad(); break;
-    case 't': toggleSBad(); break;
-    case 'n': focusNotes(); break;
-    case 'h': toggleShortcutHelp(); break;
-    case 'escape':
-      if (document.getElementById('lightbox').classList.contains('show')) {
-        closeLightbox();
-        return;
-      }
-      if (shortcutHelpOpen) {
-        toggleShortcutHelp();
-        return;
-      }
-      break;
-  }
-});
-
-
-function saveStatuses() {
-  saveUserCache('status', statuses);
-  scheduleCloudSave('status', statuses);
-}
-
-function saveQBad() {
-  saveUserCache('questionBad', qBad);
-  scheduleCloudSave('questionBad', qBad);
-}
-
-function saveSBad() {
-  saveUserCache('solutionBad', sBad);
-  scheduleCloudSave('solutionBad', sBad);
-}
-
-function saveNotes() {
-  saveUserCache('notes', notesData);
-  scheduleCloudSave('notes', notesData);
-}
-
 async function switchChapter(chapterId) {
   const chapter = CHAPTERS.find((item) => item.id === chapterId);
   if (!chapter || chapter.total === 0) {
@@ -1388,13 +1483,80 @@ async function switchChapter(chapterId) {
 }
 
 
+document.addEventListener('private-study:signed-in', async function (event) {
+      const user = event.detail.user;
+      resetAllUserState();
+      renderNav();
 
-function getImgPath(idx) {
-  const ch = getChapter();
-  if (!ch || !ch.labels || !ch.labels[idx]) return '';
-  const catFolder = ch.category === 'zhuanye' ? '专业课题库' : '数一题库';
-  return catFolder + '/' + ch.relPath + '/' + ch.labels[idx];
+      const chapterId = currentChapterId || 'ch1';
+      await restoreChapterState(chapterId);
+      switchTo(current || 0);
+
+      
+    });
+
+    document.addEventListener('private-study:signed-out', function () {
+      resetAllUserState();
+      const qImg = document.getElementById('questionImg');
+      const sImg = document.getElementById('solutionImg');
+      if (qImg) qImg.src = '';
+      if (sImg) sImg.src = '';
+    });
+
+    
+
+
+let appUiBound = false;
+
+function bindAppUiOnce() {
+  if (appUiBound) return;
+  appUiBound = true;
+
+  initTheme();
+  initAnnotationEngine();
+
+  document.getElementById('catBtnShu1')?.addEventListener('click', function () {
+    switchCategory('shu1');
+  });
+
+  document.getElementById('catBtnZhuanye')?.addEventListener('click', function () {
+    switchCategory('zhuanye');
+  });
+
+  document.getElementById('catBtnTheme')?.addEventListener('click', toggleTheme);
+  document.getElementById('btnBackupData')?.addEventListener('click', backupData);
+
+  const restoreButton = document.getElementById('btnRestoreData');
+  const restoreInput = document.getElementById('fileRestoreInput');
+  if (restoreButton && restoreInput) {
+    restoreButton.addEventListener('click', function () {
+      restoreInput.click();
+    });
+    restoreInput.addEventListener('change', function (event) {
+      restoreData(event.target.files?.[0]);
+    });
+  }
+
+  document
+    .getElementById('btnStartWrongPractice')
+    ?.addEventListener('click', startWrongPractice);
+
+  document
+    .getElementById('btnToggleAnnotation')
+    ?.addEventListener('click', function () {
+      toggleAnnotation();
+    });
+
+  bindLightboxEvents();
 }
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindAppUiOnce, { once: true });
+} else {
+  bindAppUiOnce();
+}
+
+
 
 let _titleUpdating = false;
 function renderTitle() {
@@ -1434,15 +1596,13 @@ function initTheme() {
     const btn = document.getElementById('btnTheme');
     if (btn) btn.innerHTML = '☀️ 日光模式';
   }
-  const btn = document.getElementById('btnTheme');
-  if (btn && !btn.dataset.themeBound) {
-    btn.dataset.themeBound = '1';
-    btn.addEventListener('click', function () {
-      const isDark = document.body.classList.toggle('dark-mode');
-      localStorage.setItem('kaoyan_theme_mode', isDark ? 'dark' : 'light');
-      btn.innerHTML = isDark ? '☀️ 日光模式' : '🌙 护眼模式';
-    });
-  }
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('kaoyan_theme_mode', isDark ? 'dark' : 'light');
+  const btn = document.getElementById('catBtnTheme');
+  if (btn) btn.innerHTML = isDark ? '☀️ 日光模式' : '🌙 护眼模式';
 }
 
 async function restoreCurrentUserProgress() {
