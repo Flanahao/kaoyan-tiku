@@ -1,3 +1,67 @@
+function renderStats() {
+  const ch = getChapter();
+  if (!ch) return;
+  const total = ch.total || 0;
+  let proficient = 0, vague = 0, wrong = 0;
+
+  for (let index = 0; index < total; index++) {
+    const status = getStatus(index);
+    if (status === 'proficient') proficient++;
+    else if (status === 'vague') vague++;
+    else if (status === 'wrong') wrong++;
+  }
+
+  const done = proficient + vague + wrong;
+  const unmarked = Math.max(0, total - done);
+
+  const setProgress = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(val);
+  };
+
+  setProgress('statTotal', total);
+  setProgress('statDone', done);
+  setProgress('statProficient', proficient);
+  setProgress('statVague', vague);
+  setProgress('statWrong', wrong);
+  setProgress('statUnmarked', unmarked);
+}
+
+function updateFilterButtons() {
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(btn => {
+    const filter = btn.getAttribute('data-filter');
+    const isActive = currentFilters.has(filter) || (filter === 'all' && currentFilters.size === 0);
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function updateFilterCounts() {
+  const ch = getChapter();
+  if (!ch) return;
+
+  let proficient = 0, vague = 0, wrong = 0;
+  for (let i = 0; i < ch.total; i++) {
+    const s = getStatus(i);
+    if (s === 'proficient') proficient++;
+    else if (s === 'vague') vague++;
+    else if (s === 'wrong') wrong++;
+  }
+  const unmarked = Math.max(0, ch.total - (proficient + vague + wrong));
+
+  const setCount = (filter, count) => {
+    const btn = document.querySelector(`.filter-btn[data-filter="${filter}"] .filter-count`);
+    if (btn) btn.textContent = ` (${count})`;
+  };
+
+  setCount('all', ch.total);
+  setCount('proficient', proficient);
+  setCount('vague', vague);
+  setCount('wrong', wrong);
+  setCount('unmarked', unmarked);
+}
+
 function isAllFilterActive() {
   return currentFilters.has('all') || currentFilters.size === 0;
 }
@@ -317,7 +381,7 @@ function getImgPath(idx) {
   const chapter = getChapter();
   if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
 
-  const rootDir = chapter.category === 'zhuanye' ? '专业课题库' : '数一题库';
+  const rootDir = chapter.category === 'zhuanye' ? '专业题库' : '数一题库';
   const chapterDir = `${rootDir}/${chapter.relPath}`;
 
   if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
@@ -819,179 +883,7 @@ function ensureGroups(ch) {
     function totalQuestions() { return getChapter().total; }
 
     // ===== 筛选相关 =====
-    function updateFilterButtons() {
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        const active = currentFilters.has(b.dataset.filter);
-        b.classList.toggle('active', active);
-        b.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
-    }
-
-    function applyFilter(filterKey) {
-      if (filterKey === 'all') {
-        currentFilters = new Set(['all']);
-      } else {
-        if (currentFilters.has('all')) currentFilters.delete('all');
-        if (currentFilters.has(filterKey)) {
-          currentFilters.delete(filterKey);
-          if (currentFilters.size === 0) currentFilters.add('all');
-        } else {
-          currentFilters.add(filterKey);
-        }
-      }
-      updateFilterButtons();
-      const filtered = getFilteredIndices();
-      updateFilterCounts();
-      if (filtered.length > 0 && !isFiltered(current)) {
-        switchTo(filtered[0]);
-      } else {
-        renderNav();
-      }
-    }
-
     
-
-
-// ===== 全局仪表盘 =====
-    let dashboardOpen = false;
-    function toggleDashboard() {
-      dashboardOpen = !dashboardOpen;
-      const panel = document.getElementById('dashboardPanel');
-      const content = document.getElementById('mainAreaContent');
-      const chapTitle = document.getElementById('chapterTitle');
-      const btn = document.getElementById('btnDashboard');
-      if (dashboardOpen) {
-        renderDashboard();
-        panel.style.display = '';
-        content.style.display = 'none';
-        chapTitle.textContent = '全局学习进度';
-        btn.textContent = '返回章节';
-      } else {
-        panel.style.display = 'none';
-        content.style.display = '';
-        renderTitle();
-        btn.textContent = '全局进度';
-      }
-    }
-    function renderDashboard() {
-      const list = document.getElementById('dashboardList');
-      let html = '';
-      for (const ch of CHAPTERS) {
-        if ((ch.category || 'shu1') !== currentCategory) continue;
-        if (ch.total === 0) continue;
-        const name = ch.short || ch.name;
-        let statusObj;
-        try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
-        const total = ch.total;
-        for (let i = 0; i < total; i++) {
-          const s = statusObj[i];
-          if (s === 'proficient') proficient++;
-          else if (s === 'vague') vague++;
-          else if (s === 'wrong') wrong++;
-        }
-        const done = proficient + vague + wrong;
-        const pct = total > 0 ? Math.round(done / total * 100) : 0;
-        html += '<div class="dash-chapter-card">' +
-          '<div class="dash-chapter-name">' + name + '</div>' +
-          '<div class="dash-progress-bar"><div class="dash-progress-fill" style="width:' + pct + '%"></div></div>' +
-          '<div class="dash-stats-row">' +
-            '<span><span class="dash-stat-dot proficient"></span>熟练 ' + proficient + '</span>' +
-            '<span><span class="dash-stat-dot vague"></span>模糊 ' + vague + '</span>' +
-            '<span><span class="dash-stat-dot wrong"></span>需复习 ' + wrong + '</span>' +
-            '<span><span class="dash-stat-dot unmarked"></span>未做 ' + unmarked + '</span>' +
-          '</div></div>';
-      }
-      list.innerHTML = html;
-    }
-
-    // ===== 错题本 =====
-    let wrongBookOpen = false;
-    function toggleWrongBook() {
-      wrongBookOpen = !wrongBookOpen;
-      const dashPanel = document.getElementById('dashboardPanel');
-      if (wrongBookOpen) {
-        renderWrongBook();
-        dashPanel.style.display = 'none';
-        content.style.display = 'none';
-        panel.style.display = '';
-        chapTitle.textContent = '错题本';
-        btn.textContent = '返回章节';
-        // 关闭仪表盘
-        if (dashboardOpen) { dashboardOpen = false; document.getElementById('btnDashboard').textContent = '全局进度'; }
-      } else {
-        panel.style.display = 'none';
-        content.style.display = '';
-        renderTitle();
-        btn.textContent = '错题本';
-      }
-    }
-
-    // ===== 快捷键帮助模态 =====
-    let shortcutHelpOpen = false;
-    function toggleShortcutHelp() {
-      shortcutHelpOpen = !shortcutHelpOpen;
-      document.getElementById('shortcutOverlay').classList.toggle('show', shortcutHelpOpen);
-    }
-
-    function renderWrongBook() {
-      let totalWrong = 0;
-      for (const ch of CHAPTERS) {
-        if ((ch.category || 'shu1') !== currentCategory) continue;
-        if (ch.total === 0) continue;
-        try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
-        const wrongIndices = [];
-        for (let i = 0; i < ch.total; i++) {
-          if (statusObj[i] === 'wrong') wrongIndices.push(i);
-        }
-        if (wrongIndices.length === 0) continue;
-        totalWrong += wrongIndices.length;
-        html += '<div class="wrongbook-chapter-card">' +
-          '<div class="wrongbook-chapter-name">' + name + '（' + wrongIndices.length + '题）</div>' +
-          '<div class="wrongbook-q-grid">';
-        for (const idx of wrongIndices) {
-          html += '<span class="wrongbook-q-item" data-chapter="' + ch.id + '" data-index="' + idx + '" title="第' + label + '题">' + label + '</span>';
-        }
-        html += '</div></div>';
-      }
-      if (totalWrong === 0) {
-        html = '<div class="wrongbook-empty">暂无标记为「需复习」的题目</div>';
-      }
-      list.innerHTML = html;
-
-      // 点击跳转
-      list.querySelectorAll('.wrongbook-q-item').forEach(function (element) {
-      element.addEventListener('click', function () {
-        const questionIndex = Number(this.getAttribute('data-index'));
-        const targetChapter = CHAPTERS.find(function (chapter) {
-          return chapter.id === chapterId;
-        });
-
-        if (
-          !targetChapter ||
-          !Number.isInteger(questionIndex) ||
-          questionIndex < 0 ||
-          questionIndex >= targetChapter.total
-        ) {
-          console.error('错题跳转参数无效', { chapterId, questionIndex });
-          return;
-        }
-
-        wrongBookOpen = false;
-        document.getElementById('wrongBookPanel').style.display = 'none';
-        document.getElementById('mainAreaContent').style.display = '';
-        document.getElementById('btnWrongBook').textContent = '错题本';
-
-        switchChapter(chapterId);
-        switchTo(questionIndex);
-      });
-    });  }
-
-    // ===== 渲染题号网格 =====
-    
-
-function userCacheKey(dataType, chapterId = currentChapterId) {
-  return `kaoyan:${getSignedInUserId()}:${chapterId}:${dataType}`;
-}
 
 function saveUserCache(dataType, value) {
   if (!window.PrivateStudy?.getCurrentUser()) return;
@@ -1054,17 +946,19 @@ async function restoreChapterState(chapterId) {
 }
 
 async function switchChapter(chapterId) {
-  if (!chapter || chapter.total === 0) {
-    alert('该章节尚未导入');
+  const targetChapter = CHAPTERS.find(c => c.id === chapterId);
+  if (!targetChapter || targetChapter.total === 0) {
+    console.warn('章节未提供或为空:', chapterId);
     return;
   }
 
-  if (!api || !api.getCurrentUser()) return;
-
-  try {
-    await api.flushPendingWrites();
-  } catch (error) {
-    console.warn('切换章节前保存失败', error);
+  const api = window.PrivateStudy;
+  if (api && api.getCurrentUser()) {
+    try {
+      await api.flushPendingWrites();
+    } catch (error) {
+      console.warn('切换章节前刷新提交失败', error);
+    }
   }
 
   currentChapterId = chapterId;
@@ -1073,7 +967,12 @@ async function switchChapter(chapterId) {
   subMode = false;
   currentFilters = new Set(['all']);
 
-  await restoreChapterState(chapterId);
+  try {
+    await restoreChapterState(chapterId);
+  } catch (err) {
+    console.warn('restoreChapterState fail-safe:', err);
+  }
+
   updateFilterButtons();
   renderTitle();
   renderStats();
