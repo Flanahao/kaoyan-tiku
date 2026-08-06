@@ -65,9 +65,16 @@
     node.classList.toggle('is-error', Boolean(isError));
   }
 
-  function setSyncStatus(message, isError = false) {
+    function setSyncStatus(message, isError = false) {
     const node = byId('syncStatus');
     if (!node) return;
+
+    if (isError && message && message.includes('user_progress')) {
+      node.textContent = '☁️ 云端未建 user_progress 表 (已开启本地安全存储)';
+      node.style.color = '#d97706';
+      node.classList.remove('is-error');
+      return;
+    }
 
     node.textContent = message || '';
     node.classList.toggle('is-error', Boolean(isError));
