@@ -1,4 +1,175 @@
 
+let annoActive = false;
+let currentCategory = 'shu1';
+
+const PART_ORDER = ['例题', '习题'];
+
+function classifyLabel(label) {
+  return String(label || '').startsWith('例') ? '例题' : '习题';
+}
+
+function getStatus(index) {
+  const chapter = getChapter();
+  const label = chapter?.labels?.[index];
+
+  if (label && statuses[label] !== undefined) {
+    return statuses[label];
+  }
+
+  return statuses[index] || '';
+}
+
+function getStatusClass(index) {
+  const status = getStatus(index);
+  if (status === 'proficient') return 'proficient';
+  if (status === 'vague') return 'vague';
+  if (status === 'wrong') return 'wrong';
+  return '';
+}
+
+
+function renderTitle() {
+  const chapter = getChapter();
+  if (!chapter) return;
+
+  const workbookText = document.getElementById('txtWb');
+  const subjectText = document.getElementById('txtSubj');
+  const chapterText = document.getElementById('txtChapter');
+
+  if (workbookText) workbookText.textContent = chapter.wb || '';
+  if (subjectText) subjectText.textContent = chapter.subj || '';
+  if (chapterText) {
+    chapterText.textContent = chapter.short || chapter.name || '';
+  }
+}
+
+
+async function switchCategory(category) {
+  currentCategory = category;
+
+  document
+    .getElementById('catBtnShu1')
+    ?.classList.toggle('active', category === 'shu1');
+
+  document
+    .getElementById('catBtnZhuanye')
+    ?.classList.toggle('active', category === 'zhuanye');
+
+  const firstChapter = CHAPTERS.find(function (chapter) {
+    return (
+      (chapter.category || 'shu1') === category &&
+      chapter.total > 0
+    );
+  });
+
+  if (firstChapter) {
+    await switchChapter(firstChapter.id);
+  }
+}
+
+
+let lightboxEventsBound = false;
+
+function bindLightboxEvents() {
+  if (lightboxEventsBound) return;
+  lightboxEventsBound = true;
+
+  const overlay = document.getElementById('lightbox');
+  const closeButton = document.getElementById('lightboxClose');
+  const questionImage = document.getElementById('questionImg');
+  const solutionImage = document.getElementById('solutionImg');
+
+  questionImage?.addEventListener('click', function () {
+    const src = questionImage.getAttribute('src');
+    if (src) openLightbox(src);
+  });
+
+  solutionImage?.addEventListener('click', function () {
+    const src = solutionImage.getAttribute('src');
+    if (src) openLightbox(src);
+  });
+
+  closeButton?.addEventListener('click', closeLightbox);
+
+  overlay?.addEventListener('click', function (event) {
+    if (event.target === overlay) closeLightbox();
+  });
+}
+
+
+let appUiBound = false;
+
+function bindAppUiOnce() {
+  if (appUiBound) return;
+  appUiBound = true;
+
+  [
+    'btnBackupData',
+    'btnRestoreData',
+    'btnStartWrongPractice'
+  ].forEach(function (id) {
+    const element = document.getElementById(id);
+    if (element) element.hidden = true;
+  });
+
+  initTheme();
+  initAnnotationEngine();
+
+  document.getElementById('catBtnShu1')?.addEventListener('click', function () {
+    switchCategory('shu1').catch(console.error);
+  });
+
+  document.getElementById('catBtnZhuanye')?.addEventListener('click', function () {
+    switchCategory('zhuanye').catch(console.error);
+  });
+
+  document.getElementById('catBtnTheme')?.addEventListener('click', toggleTheme);
+
+  document
+    .getElementById('btnToggleAnnotation')
+    ?.addEventListener('click', function () {
+      toggleAnnotation();
+    });
+
+  bindLightboxEvents();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindAppUiOnce, { once: true });
+} else {
+  bindAppUiOnce();
+}
+
+
+document.addEventListener('private-study:signed-in', async function (event) {
+  const user = event.detail?.user;
+  if (!user) return;
+
+  try {
+    resetAllUserState();
+
+    const chapterId = currentChapterId || CHAPTERS[0]?.id || 'ch1';
+    currentChapterId = chapterId;
+
+    await restoreChapterState(chapterId);
+
+    renderTitle();
+    renderStats();
+    renderNav();
+    switchTo(current);
+    updateFilterCounts();
+  } catch (error) {
+    console.error('初始化当前用户题库失败', error);
+  }
+});
+
+document.addEventListener('private-study:signed-out', function () {
+  resetAllUserState();
+  document.getElementById('questionImg')?.removeAttribute('src');
+  document.getElementById('solutionImg')?.removeAttribute('src');
+});
+
+
 function getChapter() {
   return CHAPTERS.find(function(c) { return c.id === currentChapterId; }) || CHAPTERS[0];
 }
@@ -45,141 +216,26 @@ let initializedUserId = null;
 
 
 
-const WB_ORDER = [
-  { wb: '基础30讲', label: '基础30讲' },
-  { wb: '张宇强化36讲', label: '强化30讲' },
-  { wb: '数一1000题', label: '1000题' },
-  { wb: '李范全书', label: '李范全书' },
-  { wb: '何子述课后刷题本', label: '何子述课后刷题本' },
-  { wb: '吴大正课后刷题本', label: '吴大正课后刷题本' },
-  { wb: '奥本海姆课后刷题本', label: '奥本海姆课后刷题本' },
-  { wb: '杨晓非课后刷题本', label: '杨晓非课后刷题本' },
-  { wb: '管致中课后刷题本', label: '管致中课后刷题本' },
-  { wb: '郑君里课后刷题本', label: '郑君里课后刷题本' }
-];
 
-function getUniqueWbs() {
-  var wbs = [];
-  CHAPTERS.forEach(function(c) {
-    if (c.category === currentCategory && c.wb && wbs.indexOf(c.wb) === -1) {
-      wbs.push(c.wb);
-    }
-  });
-  return wbs;
-}
 
-function getSortedWbs() {
-  var existing = getUniqueWbs();
-  var result = [];
-  WB_ORDER.forEach(function(entry) {
-    if (existing.indexOf(entry.wb) !== -1) result.push(entry);
-  });
-  existing.forEach(function(wb) {
-    var found = result.some(function(r) { return r.wb === wb; });
-    if (!found) result.push({ wb: wb, label: wb });
-  });
-  return result;
-}
 
-function fillPanel(panelId, items, valKey, labelKey, activeVal, onSelect) {
-  var panel = document.getElementById(panelId);
-  if (!panel) return;
-  panel.innerHTML = '';
-  items.forEach(function(item) {
-    var val = valKey ? item[valKey] : item;
-    var label = labelKey ? item[labelKey] : item;
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'title-option' + (val === activeVal ? ' active' : '');
-    btn.textContent = label;
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      closeAllTitlePanels();
-      onSelect(item);
-    });
-    panel.appendChild(btn);
-  });
-}
 
-function closeAllTitlePanels() {
-  document.querySelectorAll('.title-panel.open').forEach(function(p) { p.classList.remove('open'); });
-  document.querySelectorAll('.title-trigger.open').forEach(function(t) { t.classList.remove('open'); });
-}
 
-function fillWbPanel(activeWb) {
-  var entries = getSortedWbs();
-  fillPanel('panelWb', entries, 'wb', 'label', activeWb, function(entry) {
-    document.getElementById('txtWb').textContent = entry.label;
-    var subjs = getSortedSubjs(entry.wb);
-    if (subjs.length > 0) {
-      var firstSubj = subjs[0];
-      document.getElementById('txtSubj').textContent = firstSubj;
-      fillSubjPanel(entry.wb, firstSubj);
-      var firstCh = CHAPTERS.find(function(c) { return c.wb === entry.wb && c.subj === firstSubj && c.category === currentCategory; });
-      if (firstCh) {
-        document.getElementById('txtChapter').textContent = firstCh.short;
-        fillChapterPanel(entry.wb, firstSubj, firstCh.id);
-        switchChapter(firstCh.id);
-      }
-    }
-  });
-}
+
+
+
+
+
 
 var SUBJ_ORDER = ['高数', '线代', '概率论'];
-function getSortedSubjs(wb) {
-  var subjs = [];
-  CHAPTERS.forEach(function(c) { if (c.category === currentCategory && c.wb === wb && c.subj && subjs.indexOf(c.subj) === -1) subjs.push(c.subj); });
-  var sorted = [];
-  SUBJ_ORDER.forEach(function(s) { if (subjs.indexOf(s) !== -1) sorted.push(s); });
-  subjs.forEach(function(s) { if (sorted.indexOf(s) === -1) sorted.push(s); });
-  return sorted;
-}
 
-function fillSubjPanel(wb, activeSubj) {
-  var subjs = getSortedSubjs(wb);
-  fillPanel('panelSubj', subjs, null, null, activeSubj, function(subj) {
-    document.getElementById('txtSubj').textContent = subj;
-    var firstCh = CHAPTERS.find(function(c) { return c.wb === wb && c.subj === subj && c.category === currentCategory; });
-    if (firstCh) {
-      document.getElementById('txtChapter').textContent = firstCh.short;
-      fillChapterPanel(wb, subj, firstCh.id);
-      switchChapter(firstCh.id);
-    }
-  });
-}
 
-function fillChapterPanel(wb, subj, activeId) {
-  var chs = CHAPTERS.filter(function(c) { return c.category === currentCategory && c.wb === wb && c.subj === subj; });
-  fillPanel('panelChapter', chs, 'id', 'short', activeId, function(ch) {
-    document.getElementById('txtChapter').textContent = ch.short;
-    switchChapter(ch.id);
-  });
-}
+
+
+
 
 let _titleUpdating = false;
-function renderTitle() {
-  _titleUpdating = true;
-  var ch = getChapter();
-  if (!ch) return;
-  var wb = ch.wb || '';
-  var subj = ch.subj || '';
 
-  var wbLabel = wb;
-  for (var i = 0; i < WB_ORDER.length; i++) {
-    if (WB_ORDER[i].wb === wb) { wbLabel = WB_ORDER[i].label; break; }
-  }
-  var txtWb = document.getElementById('txtWb');
-  if (txtWb) txtWb.textContent = wbLabel;
-  var txtSubj = document.getElementById('txtSubj');
-  if (txtSubj) txtSubj.textContent = subj;
-  var txtChapter = document.getElementById('txtChapter');
-  if (txtChapter) txtChapter.textContent = ch.short;
-
-  fillWbPanel(wb);
-  fillSubjPanel(wb, subj);
-  fillChapterPanel(wb, subj, ch.id);
-  _titleUpdating = false;
-}
 
 
 
@@ -1641,72 +1697,12 @@ async function switchChapter(chapterId) {
 }
 
 
-document.addEventListener('private-study:signed-in', async function (event) {
-      const user = event.detail.user;
-      resetAllUserState();
-      renderNav();
 
-      const chapterId = currentChapterId || 'ch1';
-      await restoreChapterState(chapterId);
-      switchTo(current || 0);
-
-      
-    });
-
-    document.addEventListener('private-study:signed-out', function () {
-      resetAllUserState();
-      const qImg = document.getElementById('questionImg');
-      const sImg = document.getElementById('solutionImg');
-      if (qImg) qImg.src = '';
-      if (sImg) sImg.src = '';
-    });
-
+    
     
 
 
-let appUiBound = false;
 
-function bindAppUiOnce() {
-  if (appUiBound) return;
-  appUiBound = true;
-
-  initTheme();
-  initAnnotationEngine();
-
-  document.getElementById('catBtnShu1')?.addEventListener('click', function () {
-    switchCategory('shu1');
-  });
-
-  document.getElementById('catBtnZhuanye')?.addEventListener('click', function () {
-    switchCategory('zhuanye');
-  });
-
-  document.getElementById('catBtnTheme')?.addEventListener('click', toggleTheme);
-  document.getElementById('btnBackupData')?.addEventListener('click', backupData);
-
-  const restoreButton = document.getElementById('btnRestoreData');
-  const restoreInput = document.getElementById('fileRestoreInput');
-  if (restoreButton && restoreInput) {
-    restoreButton.addEventListener('click', function () {
-      restoreInput.click();
-    });
-    restoreInput.addEventListener('change', function (event) {
-      restoreData(event.target.files?.[0]);
-    });
-  }
-
-  document
-    .getElementById('btnStartWrongPractice')
-    ?.addEventListener('click', startWrongPractice);
-
-  document
-    .getElementById('btnToggleAnnotation')
-    ?.addEventListener('click', function () {
-      toggleAnnotation();
-    });
-
-  bindLightboxEvents();
-}
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', bindAppUiOnce, { once: true });
