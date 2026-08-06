@@ -2517,8 +2517,8 @@
           </button>
 
           <div class="notes-body" id="notesBody">
-            <textarea class="notes-textarea" id="notesTextarea" placeholder="输入笔记内容..."></textarea>
-            <div class="notes-render" id="notesRender" style="display:none"></div>
+            <textarea class="notes-textarea" id="notesTextarea" placeholder="输入笔记内容..." style="display:none"></textarea>
+            <div class="notes-render" id="notesRender"></div>
             <div class="notes-actions">
               <button id="btnNoteEdit">编辑</button>
               <button id="btnNoteSave" class="btn-save" style="display:none">保存</button>
@@ -2546,7 +2546,19 @@
     <div class="sidebar-right">
       <div class="chapter-selector" id="statsBlock">
         <div class="chapter-label">进度</div>
-        <div class="stats-panel" id="statsPanel"></div>
+        <div class="stats-panel" id="statsPanel">
+          <div class="stats-bar-wrap">
+            <div class="stats-bar-fill" id="statBarFill" style="width:0%"></div>
+          </div>
+          <div class="stats-counts">
+            <span>总题 <strong id="statTotal">0</strong></span>
+            <span>已标记 <strong id="statDone">0</strong></span>
+            <span><i class="sc-dot" style="background:var(--mastered)"></i>熟练 <strong id="statProficient">0</strong></span>
+            <span><i class="sc-dot" style="background:var(--uncertain)"></i>模糊 <strong id="statVague">0</strong></span>
+            <span><i class="sc-dot" style="background:var(--unfamiliar)"></i>需复习 <strong id="statWrong">0</strong></span>
+            <span>未标记 <strong id="statUnmarked">0</strong></span>
+          </div>
+        </div>
       </div>
       <div id="qnavContainer" style="background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.45);margin-top:12px">
         <div class="qnav-label">题号</div>

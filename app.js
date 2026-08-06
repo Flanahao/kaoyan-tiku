@@ -210,8 +210,30 @@ const CHAPTERS = [
 ];
 
 // ===== 全局配置与状态 =====
-const SUBJ_ORDER = ['高数', '线代', '概率论', '专业课'];
-const WB_ORDER = ['基础30讲', '强化36讲', '李范全书', '何子述课后刷题本', '郑晓伟刷题本'];
+const SUBJ_ORDER = [
+  '高数',
+  '基础篇-高数',
+  '强化篇-高数',
+  '线代',
+  '基础篇-线代',
+  '强化篇-线代',
+  '概率论',
+  '基础篇-概率论',
+  '强化篇-概率论',
+  '专业课'
+];
+const WB_ORDER = [
+  '基础30讲',
+  '张宇强化36讲',
+  '数一1000题',
+  '李范全书',
+  '何子述课后刷题本',
+  '吴大正课后刷题本',
+  '奥本海姆课后刷题本',
+  '杨晓非课后刷题本',
+  '管致中课后刷题本',
+  '郑君里课后刷题本'
+];
 
 let currentCategory = 'shu1';
 let currentChapterId = 'ch1';
@@ -302,8 +324,7 @@ function getStatus(index) {
 }
 
 function getStatusClass(index) {
-  const s = getStatus(index);
-  return s ? 'st-' + s : 'st-unmarked';
+  return getStatus(index) || 'unmarked';
 }
 
 function clearRecord(record) {
@@ -381,6 +402,13 @@ function resetAllUserState() {
   if (toolbar) toolbar.style.display = 'none';
 }
 
+function replaceRecord(target, source) {
+  clearRecord(target);
+  if (source && typeof source === 'object' && !Array.isArray(source)) {
+    Object.assign(target, source);
+  }
+}
+
 async function restoreChapterState(chapterId = currentChapterId) {
   clearRecord(statuses);
   clearRecord(qBad);
@@ -402,10 +430,10 @@ async function restoreChapterState(chapterId = currentChapterId) {
   try {
     const bundle = await api.loadBundle(chapterId);
     if (bundle) {
-      if (bundle.status) Object.assign(statuses, bundle.status);
-      if (bundle.questionBad) Object.assign(qBad, bundle.questionBad);
-      if (bundle.solutionBad) Object.assign(sBad, bundle.solutionBad);
-      if (bundle.notes) Object.assign(notesData, bundle.notes);
+      replaceRecord(statuses, bundle.status);
+      replaceRecord(qBad, bundle.questionBad);
+      replaceRecord(sBad, bundle.solutionBad);
+      replaceRecord(notesData, bundle.notes);
 
       saveUserCache('status', statuses, chapterId);
       saveUserCache('questionBad', qBad, chapterId);
@@ -612,13 +640,17 @@ function initAnnotationEngine() {
     toolEraser.classList.toggle('active', currentTool === 'eraser');
   });
 
-  document.querySelectorAll('.anno-color-dot').forEach(function (dot) {
-    dot.addEventListener('click', function () {
-      currentColor = dot.dataset.color || currentColor;
+  document.querySelectorAll('.anno-color-btn').forEach(function (button) {
+    button.addEventListener('click', function () {
+      currentColor = button.dataset.color || currentColor;
       currentTool = 'pen';
       toolEraser?.classList.remove('active');
-      document.querySelectorAll('.anno-color-dot').forEach(d => d.classList.remove('active'));
-      dot.classList.add('active');
+      
+      document.querySelectorAll('.anno-color-btn').forEach(item => {
+        const selected = item === button;
+        item.classList.toggle('active', selected);
+        item.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
     });
   });
 
@@ -714,14 +746,23 @@ function setQuestionStatus(statusType) {
 }
 
 function updateStatusButtons() {
-  const cur = getStatus(current);
-  const btnP = document.getElementById('btnProficient');
-  const btnV = document.getElementById('btnVague');
-  const btnW = document.getElementById('btnWrong');
+  const currentStatus = getStatus(current);
+  const entries = [
+    ['btnProficient', 'proficient'],
+    ['btnVague', 'vague'],
+    ['btnWrong', 'wrong']
+  ];
 
-  if (btnP) btnP.classList.toggle('active', cur === 'proficient');
-  if (btnV) btnV.classList.toggle('active', cur === 'vague');
-  if (btnW) btnW.classList.toggle('active', cur === 'wrong');
+  entries.forEach(([id, status]) => {
+    const button = document.getElementById(id);
+    if (!button) return;
+
+    ['proficient', 'vague', 'wrong'].forEach(className => {
+      button.classList.toggle(className, currentStatus === className);
+    });
+    button.classList.toggle('active', currentStatus === status);
+    button.setAttribute('aria-pressed', currentStatus === status ? 'true' : 'false');
+  });
 }
 
 function toggleQBad() {
@@ -744,10 +785,30 @@ function toggleSBad() {
 }
 
 function updateQualityBadges() {
-  const qBtn = document.getElementById('btnQBad');
-  const sBtn = document.getElementById('btnSBad');
-  if (qBtn) qBtn.classList.toggle('active', !!qBad[current]);
-  if (sBtn) sBtn.classList.toggle('active', !!sBad[current]);
+  const chapter = getChapter();
+  const hasSolutionImage = chapter?.category !== 'zhuanye';
+  const questionMarked = Boolean(qBad[current]);
+  const solutionMarked = hasSolutionImage && Boolean(sBad[current]);
+
+  const qButton = document.getElementById('btnQBad');
+  const sButton = document.getElementById('btnSBad');
+  const qWarning = document.getElementById('qBadWarning');
+  const sWarning = document.getElementById('sBadWarning');
+
+  qButton?.classList.toggle('marked', questionMarked);
+  sButton?.classList.toggle('marked', solutionMarked);
+  qButton?.classList.remove('active');
+  sButton?.classList.remove('active');
+
+  qWarning?.classList.toggle('show', questionMarked);
+  sWarning?.classList.toggle('show', solutionMarked);
+
+  if (qButton) qButton.setAttribute('aria-pressed', questionMarked ? 'true' : 'false');
+  if (sButton) {
+    sButton.disabled = !hasSolutionImage;
+    sButton.title = hasSolutionImage ? '' : '专业课暂无解析图片';
+    sButton.setAttribute('aria-pressed', solutionMarked ? 'true' : 'false');
+  }
 }
 
 // ===== 解析显示控制 =====
@@ -787,6 +848,28 @@ function renderNotesForCurrentQuestion() {
   if (textarea) textarea.value = noteText;
   if (renderArea) renderArea.textContent = noteText || '暂无笔记内容';
   if (preview) preview.textContent = noteText ? `笔记: ${noteText.slice(0, 30)}...` : '暂无笔记';
+  const notesToggle = document.getElementById('notesToggle');
+  if (notesToggle) {
+    notesToggle.classList.toggle('has-content', Boolean(noteText));
+  }
+}
+
+function setNotesEditing(editing) {
+  const textarea = document.getElementById('notesTextarea');
+  const renderArea = document.getElementById('notesRender');
+  const editButton = document.getElementById('btnNoteEdit');
+  const saveButton = document.getElementById('btnNoteSave');
+  const cancelButton = document.getElementById('btnNoteCancel');
+  const deleteButton = document.getElementById('btnNoteDelete');
+
+  if (textarea) textarea.style.display = editing ? 'block' : 'none';
+  if (renderArea) renderArea.style.display = editing ? 'none' : 'block';
+  if (editButton) editButton.style.display = editing ? 'none' : 'inline-flex';
+  if (saveButton) saveButton.style.display = editing ? 'inline-flex' : 'none';
+  if (cancelButton) cancelButton.style.display = editing ? 'inline-flex' : 'none';
+  if (deleteButton) deleteButton.style.display = editing ? 'none' : 'inline-flex';
+
+  if (editing) textarea?.focus();
 }
 
 function setupNotesEvents() {
@@ -799,16 +882,15 @@ function setupNotesEvents() {
 
   notesToggle?.addEventListener('click', function () {
     if (notesBody) {
-      const isExpanded = notesBody.style.display === 'block';
-      notesBody.style.display = isExpanded ? 'none' : 'block';
+      notesBody.classList.toggle('open');
     }
   });
 
   btnEdit?.addEventListener('click', function () {
-    const textarea = document.getElementById('notesTextarea');
-    const renderArea = document.getElementById('notesRender');
-    if (textarea) textarea.style.display = 'block';
-    if (renderArea) renderArea.style.display = 'none';
+    if (notesBody && !notesBody.classList.contains('open')) {
+      notesBody.classList.add('open');
+    }
+    setNotesEditing(true);
   });
 
   btnSave?.addEventListener('click', function () {
@@ -829,18 +911,12 @@ function setupNotesEvents() {
     saveNotes();
     renderNotesForCurrentQuestion();
     renderNav();
-
-    const renderArea = document.getElementById('notesRender');
-    if (textarea) textarea.style.display = 'none';
-    if (renderArea) renderArea.style.display = 'block';
+    setNotesEditing(false);
   });
 
   btnCancel?.addEventListener('click', function () {
     renderNotesForCurrentQuestion();
-    const textarea = document.getElementById('notesTextarea');
-    const renderArea = document.getElementById('notesRender');
-    if (textarea) textarea.style.display = 'none';
-    if (renderArea) renderArea.style.display = 'block';
+    setNotesEditing(false);
   });
 
   btnDelete?.addEventListener('click', function () {
@@ -854,6 +930,7 @@ function setupNotesEvents() {
     saveNotes();
     renderNotesForCurrentQuestion();
     renderNav();
+    setNotesEditing(false);
   });
 }
 
@@ -992,6 +1069,12 @@ function renderStats() {
   setProgress('statVague', vague);
   setProgress('statWrong', wrong);
   setProgress('statUnmarked', unmarked);
+
+  const bar = document.getElementById('statBarFill');
+  if (bar) {
+    const percent = total > 0 ? (done / total) * 100 : 0;
+    bar.style.width = `${percent}%`;
+  }
 }
 
 function renderNav() {
@@ -1009,33 +1092,40 @@ function renderNav() {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'q-item ' + getStatusClass(i) + (i === current ? ' active' : '');
-    if (!filteredSet.has(i)) btn.classList.add('dimmed');
+    
+    if (!filteredSet.has(i)) {
+      btn.classList.add('filtered-out');
+      btn.disabled = true;
+    }
+    
     btn.textContent = labels[i] || (i + 1);
     btn.addEventListener('click', function () {
       switchTo(i);
     });
 
-    if (qBad[i] || sBad[i] || notesData[labels[i]]) {
-      const badges = document.createElement('span');
-      badges.className = 'q-badges';
-      if (qBad[i]) {
-        const qb = document.createElement('span');
-        qb.className = 'bad-badge';
-        qb.textContent = 'Q';
-        badges.appendChild(qb);
-      }
-      if (sBad[i]) {
-        const sb = document.createElement('span');
-        sb.className = 'bad-badge';
-        sb.textContent = 'S';
-        badges.appendChild(sb);
-      }
-      if (notesData[labels[i]]) {
-        const nb = document.createElement('span');
-        nb.className = 'note-badge';
-        nb.textContent = 'N';
-        badges.appendChild(nb);
-      }
+    const badges = document.createElement('span');
+    badges.className = 'img-badges';
+
+    if (qBad[i]) {
+      const qb = document.createElement('span');
+      qb.className = 'qbad-dot';
+      qb.textContent = 'Q';
+      badges.appendChild(qb);
+    }
+    if (sBad[i]) {
+      const sb = document.createElement('span');
+      sb.className = 'sbad-dot';
+      sb.textContent = 'S';
+      badges.appendChild(sb);
+    }
+    if (notesData[labels[i]]) {
+      const nb = document.createElement('span');
+      nb.className = 'note-dot';
+      nb.textContent = 'N';
+      badges.appendChild(nb);
+    }
+
+    if (badges.hasChildNodes()) {
       btn.appendChild(badges);
     }
 
@@ -1100,8 +1190,8 @@ function switchTo(idx) {
   }
 
   const api = window.PrivateStudy;
-  if (api && api.getCurrentUser()) {
-    api.saveProgress(currentChapterId, 'lastPosition', current).catch(console.warn);
+  if (api?.getCurrentUser?.()) {
+    api.scheduleSave(currentChapterId, 'lastPosition', current);
   }
 }
 
@@ -1166,6 +1256,33 @@ async function switchCategory(category) {
 }
 
 // ===== 三级标题下拉菜单 =====
+function sortByPreferredOrder(values, preferredOrder) {
+  return [...values].sort((a, b) => {
+    const aIndex = preferredOrder.indexOf(a);
+    const bIndex = preferredOrder.indexOf(b);
+    const safeA = aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex;
+    const safeB = bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex;
+    return safeA - safeB || a.localeCompare(b, 'zh-CN');
+  });
+}
+
+function createTitleOption(text, active, onSelect) {
+  const option = document.createElement('button');
+  option.type = 'button';
+  option.className = `title-option${active ? ' active' : ''}`;
+  option.textContent = text;
+  option.setAttribute('role', 'option');
+  option.setAttribute('aria-selected', active ? 'true' : 'false');
+
+  option.addEventListener('click', async function (event) {
+    event.stopPropagation();
+    closeAllTitlePanels();
+    await onSelect();
+  });
+
+  return option;
+}
+
 function fillWbPanel() {
   const panel = document.getElementById('panelWb');
   if (!panel) return;
@@ -1177,17 +1294,11 @@ function fillWbPanel() {
     if (!wbs.includes(ch.wb)) wbs.push(ch.wb);
   });
 
-  wbs.sort((a, b) => WB_ORDER.indexOf(a) - WB_ORDER.indexOf(b));
-
+  const sortedWbs = sortByPreferredOrder(wbs, WB_ORDER);
   const curCh = getChapter();
 
-  wbs.forEach(function (wb) {
-    const item = document.createElement('button');
-    item.className = 'title-option' + (curCh && curCh.wb === wb ? ' active' : '');
-    item.textContent = wb;
-    item.addEventListener('click', function (e) {
-      e.stopPropagation();
-      closeAllTitlePanels();
+  sortedWbs.forEach(function (wb) {
+    const item = createTitleOption(wb, curCh && curCh.wb === wb, async () => {
       const first = CHAPTERS.find(c => (c.category || 'shu1') === currentCategory && c.wb === wb && c.total > 0);
       if (first) switchChapter(first.id);
     });
@@ -1210,15 +1321,10 @@ function fillSubjPanel() {
     if (!subjs.includes(ch.subj)) subjs.push(ch.subj);
   });
 
-  subjs.sort((a, b) => SUBJ_ORDER.indexOf(a) - SUBJ_ORDER.indexOf(b));
+  const sortedSubjs = sortByPreferredOrder(subjs, SUBJ_ORDER);
 
-  subjs.forEach(function (subj) {
-    const item = document.createElement('button');
-    item.className = 'title-option' + (curCh.subj === subj ? ' active' : '');
-    item.textContent = subj;
-    item.addEventListener('click', function (e) {
-      e.stopPropagation();
-      closeAllTitlePanels();
+  sortedSubjs.forEach(function (subj) {
+    const item = createTitleOption(subj, curCh.subj === subj, async () => {
       const first = CHAPTERS.find(c => (c.category || 'shu1') === currentCategory && c.wb === curCh.wb && c.subj === subj && c.total > 0);
       if (first) switchChapter(first.id);
     });
@@ -1239,23 +1345,43 @@ function fillChapterPanel() {
   });
 
   chs.forEach(function (ch) {
-    const item = document.createElement('button');
-    item.className = 'title-option' + (ch.id === currentChapterId ? ' active' : '');
-    item.textContent = ch.short || ch.name;
-    item.addEventListener('click', function (e) {
-      e.stopPropagation();
-      closeAllTitlePanels();
+    const item = createTitleOption(ch.short || ch.name, ch.id === currentChapterId, async () => {
       switchChapter(ch.id);
     });
     panel.appendChild(item);
   });
 }
 
+const TITLE_DROPDOWNS = [
+  ['trigWb', 'panelWb'],
+  ['trigSubj', 'panelSubj'],
+  ['trigChapter', 'panelChapter']
+];
+
 function closeAllTitlePanels() {
-  ['panelWb', 'panelSubj', 'panelChapter'].forEach(id => {
-    const p = document.getElementById(id);
-    if (p) p.classList.remove('open');
+  TITLE_DROPDOWNS.forEach(([triggerId, panelId]) => {
+    const trigger = document.getElementById(triggerId);
+    const panel = document.getElementById(panelId);
+    trigger?.classList.remove('open');
+    panel?.classList.remove('open');
+    trigger?.setAttribute('aria-expanded', 'false');
   });
+}
+
+function toggleTitlePanel(triggerId, panelId, fillPanel) {
+  const trigger = document.getElementById(triggerId);
+  const panel = document.getElementById(panelId);
+  if (!trigger || !panel) return;
+
+  const shouldOpen = !panel.classList.contains('open');
+  closeAllTitlePanels();
+
+  if (shouldOpen) {
+    fillPanel();
+    trigger.classList.add('open');
+    panel.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
 }
 
 function setupTitleDropdownEvents() {
@@ -1263,37 +1389,19 @@ function setupTitleDropdownEvents() {
   const trigSubj = document.getElementById('trigSubj');
   const trigChapter = document.getElementById('trigChapter');
 
-  trigWb?.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const p = document.getElementById('panelWb');
-    const visible = p?.classList.contains('open');
-    closeAllTitlePanels();
-    if (!visible && p) {
-      fillWbPanel();
-      p.classList.add('open');
-    }
+  trigWb?.addEventListener('click', event => {
+    event.stopPropagation();
+    toggleTitlePanel('trigWb', 'panelWb', fillWbPanel);
   });
 
-  trigSubj?.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const p = document.getElementById('panelSubj');
-    const visible = p?.classList.contains('open');
-    closeAllTitlePanels();
-    if (!visible && p) {
-      fillSubjPanel();
-      p.classList.add('open');
-    }
+  trigSubj?.addEventListener('click', event => {
+    event.stopPropagation();
+    toggleTitlePanel('trigSubj', 'panelSubj', fillSubjPanel);
   });
 
-  trigChapter?.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const p = document.getElementById('panelChapter');
-    const visible = p?.classList.contains('open');
-    closeAllTitlePanels();
-    if (!visible && p) {
-      fillChapterPanel();
-      p.classList.add('open');
-    }
+  trigChapter?.addEventListener('click', event => {
+    event.stopPropagation();
+    toggleTitlePanel('trigChapter', 'panelChapter', fillChapterPanel);
   });
 
   document.addEventListener('click', closeAllTitlePanels);
