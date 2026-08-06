@@ -2547,142 +2547,26 @@
           </div>
           <div class="wrongbook-list" id="wrongBookList"></div>
         </div>
-      </div>
-
-    </div><!-- .main-content -->
-
-    <div class="sidebar-right">
-      <div class="chapter-selector" id="statsBlock">
-        <div class="chapter-label">进度</div>
-        <div class="stats-panel" id="statsPanel"></div>
-      </div>
-      <div id="qnavContainer" style="background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.45);margin-top:12px">
-        <div class="qnav-label">题号</div>
-        <div class="qnav" id="qnav"></div>
-      </div>
-    </div>
-
-  </div><!-- .app-layout -->
-
-  
-  
-  
-</head>
-<body>
-  <h1>${escapeHtml(chapter.name)}</h1>
-  <div class="subtitle">${statusLabel}题 · 共 ${items.length} 题</div>
-  ${cardsHtml}
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./config.js"></script>
-  <script src="./app.js"></script>
-  <script src="./auth-progress.js"></script>
-</body>
-</html>`);
-  popup.document.close();
-}
-
-function (e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      const key = e.key.toLowerCase();
-      const isShift = e.shiftKey;
-
-      // Shift 筛选快捷键
-      if (isShift) {
-        switch (key) {
-          case 'a': e.preventDefault(); applyFilter('all'); return;
-          case 'z': e.preventDefault(); applyFilter('proficient'); return;
-          case 'x': e.preventDefault(); applyFilter('vague'); return;
-          case 'c': e.preventDefault(); applyFilter('wrong'); return;
-          case 'n': e.preventDefault(); applyFilter('unmarked'); return;
-          case ' ': e.preventDefault(); toggleDefaultSolution(); return;
-        }
-      }
-
-      switch (key) {
-        // 上一题 / 下一题（题组级 / 子题级，见 navPrev / navNext）
-        case 'a': case 'arrowleft': navPrev(); break;
-        case 'd': case 'arrowright': navNext(); break;
-        // 小题选择模式
-        case 'f': toggleSubMode(); break;
-        case 'p': toggleAnnotation(); break;
-        // 上一行 / 下一行（视觉网格行导航）
-        case 'w': case 'arrowup': navUp(); break;
-        case 's': case 'arrowdown': navDown(); break;
-        // 掌握度
-        case 'z': setStatus('proficient'); break;
-        case 'x': setStatus('vague'); break;
-        case 'c': setStatus('wrong'); break;
-        // 解析
-        case ' ': e.preventDefault(); toggleSolution(); break;
-        // 章节切换
-        case 'q': gotoPrevChapter(); break;
-        case 'e': gotoNextChapter(); break;
-        // 图片质量标记
-        case 'r': toggleQBad(); break;
-        case 't': toggleSBad(); break;
-        // 笔记与帮助
-        case 'n': focusNotes(); break;
-        case 'h': toggleShortcutHelp(); break;
-        // 灯箱快捷键
-        case 'escape': if (document.getElementById('lightbox').classList.contains('show')) { closeLightbox(); return; } if (shortcutHelpOpen) { toggleShortcutHelp(); return; } break;
-        case '=':
-        case '+': if (document.getElementById('lightbox').classList.contains('show')) { lbScale = Math.min(lbScale * 1.2, 5); lbApplyTransform(); return; } break;
-        case '-': if (document.getElementById('lightbox').classList.contains('show')) { lbScale = Math.max(lbScale / 1.2, 0.5); lbApplyTransform(); return; } break;
-        case '0': if (document.getElementById('lightbox').classList.contains('show')) { lbScale = 1; lbTranslateX = 0; lbTranslateY = 0; lbApplyTransform(); return; } break;
-      }
-    });
-
-    // ===== 初始化 =====
-    loadStatuses(); loadQBad(); loadSBad(); loadNotes();
-    renderTitle();
-    renderStats();
-    renderNav(); switchTo(0); updateFilterCounts();
-  
-
   <div class="shortcut-overlay" id="shortcutOverlay">
     <div class="shortcut-modal" id="shortcutModal">
       <h2>快捷键帮助</h2>
-      <div class="shortcut-group">
-        <div class="shortcut-group-title">导航</div>
-        <div class="shortcut-row"><span class="key"><kbd>A</kbd> / <kbd>&larr;</kbd></span><span class="desc">上一题</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>D</kbd> / <kbd>&rarr;</kbd></span><span class="desc">下一题</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>W</kbd> / <kbd>&uarr;</kbd></span><span class="desc">上一行</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>S</kbd> / <kbd>&darr;</kbd></span><span class="desc">下一行</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>Q</kbd></span><span class="desc">上一章</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>E</kbd></span><span class="desc">下一章</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>F</kbd></span><span class="desc">进入/退出小题选择模式</span></div>
+      <div class="shortcut-grid">
+        <div><span class="sc-key">A / ←</span><span>上一题</span></div>
+        <div><span class="sc-key">D / →</span><span>下一题</span></div>
+        <div><span class="sc-key">W / ↑</span><span>行首 / 题号 -10</span></div>
+        <div><span class="sc-key">S / ↓</span><span>行尾 / 题号 +10</span></div>
+        <div><span class="sc-key">1 / Z</span><span>熟练</span></div>
+        <div><span class="sc-key">2 / X</span><span>模糊</span></div>
+        <div><span class="sc-key">3 / C</span><span>需复习</span></div>
+        <div><span class="sc-key">Space</span><span>显示/隐藏解析</span></div>
+        <div><span class="sc-key">P</span><span>开启/关闭标注</span></div>
+        <div><span class="sc-key">R</span><span>标记题目质量不达标</span></div>
+        <div><span class="sc-key">T</span><span>标记解析质量不达标</span></div>
+        <div><span class="sc-key">N</span><span>编辑笔记</span></div>
+        <div><span class="sc-key">H</span><span>快捷键帮助</span></div>
+        <div><span class="sc-key">Esc</span><span>关闭弹窗/灯箱</span></div>
       </div>
-      <div class="shortcut-group">
-        <div class="shortcut-group-title">掌握度</div>
-        <div class="shortcut-row"><span class="key"><kbd>Z</kbd></span><span class="desc">熟练</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>X</kbd></span><span class="desc">模糊</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>C</kbd></span><span class="desc">需复习</span></div>
-      </div>
-      <div class="shortcut-group">
-        <div class="shortcut-group-title">解析</div>
-        <div class="shortcut-row"><span class="key"><kbd>Space</kbd></span><span class="desc">显示/隐藏解析</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>Space</kbd></span><span class="desc">切换默认解析显示状态</span></div>
-      </div>
-      <div class="shortcut-group">
-        <div class="shortcut-group-title">图片质量</div>
-        <div class="shortcut-row"><span class="key"><kbd>R</kbd></span><span class="desc">标记/取消题目图不达标</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>T</kbd></span><span class="desc">标记/取消解析图不达标</span></div>
-      </div>
-      <div class="shortcut-group">
-        <div class="shortcut-group-title">筛选（Shift 组合键）</div>
-        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>A</kbd></span><span class="desc">全部</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>Z</kbd></span><span class="desc">熟练</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>X</kbd></span><span class="desc">模糊</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>C</kbd></span><span class="desc">需复习</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>N</kbd></span><span class="desc">未标记</span></div>
-      </div>
-      <div class="shortcut-group">
-        <div class="shortcut-group-title">其他</div>
-        <div class="shortcut-row"><span class="key"><kbd>N</kbd></span><span class="desc">编辑笔记</span></div>
-        <div class="shortcut-row"><span class="key"><kbd>H</kbd></span><span class="desc">打开/关闭此帮助</span></div>
-      </div>
-      <div class="shortcut-close-hint">按 Esc 或点击背景关闭</div>
+      <button class="shortcut-close-btn" id="btnShortcutClose">知道了</button>
     </div>
   </div>
 
@@ -2691,42 +2575,11 @@ function (e) {
     <img class="lightbox-img" id="lightboxImg" src="" alt="">
     <div class="lightbox-hint">滚轮缩放 / 拖拽移动 / 双击或点击背景关闭</div>
   </div>
-
-
-  <div class="shortcut-overlay" id="authModalOverlay">
-    <div class="shortcut-modal" style="max-width:420px; text-align:center;">
-      <h2 style="margin-bottom:8px;">🎓 考研题库 - 云端账号登录</h2>
-      <p style="font-size:13px; color:#666; margin-bottom:20px;">登录后答题进度、错题本与笔记将自动云端同步，双人数据独立隔离</p>
-      
-      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px; text-align:left;">
-        <div>
-          <label style="font-size:12px; font-weight:600; color:#555;">邮箱账号</label>
-          <input type="email" id="authEmailInput" placeholder="your_email@kaoyan.com" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
-        </div>
-        <div>
-          <label style="font-size:12px; font-weight:600; color:#555;">密码（至少6位）</label>
-          <input type="password" id="authPasswordInput" placeholder="******" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
-        </div>
-      </div>
-      
-      <div id="authMsg" style="font-size:13px; margin-bottom:12px; min-height:18px; color:#FF3B30;"></div>
-      
-      <div style="display:flex; gap:10px;">
-        
-        
-      </div>
-      
-      
-    </div>
-  </div>
-
-
-  </script>
 </div><!-- #appShell -->
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./config.js"></script>
-  <script src="./app.js"></script>
-  <script src="./auth-progress.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+<script src="./auth-progress.js"></script>
 </body>
 </html>

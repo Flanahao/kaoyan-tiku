@@ -1,7 +1,7 @@
 function getAnnotationStorageKey(chapterId, questionId) {
-  const user = window.PrivateStudy ? window.PrivateStudy.getCurrentUser() : null;
-  const userId = user ? user.id : 'guest';
-  return 'annotation:' + userId + ':' + chapterId + ':' + questionId;
+  const user = window.PrivateStudy?.getCurrentUser();
+  if (!user) throw new Error('未登录，不能保存题目标注');
+  return `annotation:${user.id}:${chapterId}:${questionId}`;
 }
 
 function saveQuestionAnnotation() {
@@ -29,6 +29,8 @@ function restoreQuestionAnnotation() {
   };
   image.src = dataUrl;
 }
+
+
 
 
 
@@ -360,7 +362,7 @@ function restoreQuestionAnnotation() {
         saveQBad();
       } catch (e) { qBad = {}; }
     }
-    function saveQBad() { localStorage.setItem(qBadStorageKey(), JSON.stringify(qBad)); pushCloudChapterData(currentChapterId, 'qbad', qBad); }
+    function saveQBad() { localStorage.setItem(qBadStorageKey(), JSON.stringify(qBad)); pushCloudChapterData(currentChapterId, 'questionBad', qBad); }
     function loadSBad() {
       try {
         let raw = JSON.parse(localStorage.getItem(sBadStorageKey())) || {};
@@ -368,7 +370,7 @@ function restoreQuestionAnnotation() {
         saveSBad();
       } catch (e) { sBad = {}; }
     }
-    function saveSBad() { localStorage.setItem(sBadStorageKey(), JSON.stringify(sBad)); pushCloudChapterData(currentChapterId, 'sbad', sBad); }
+    function saveSBad() { localStorage.setItem(sBadStorageKey(), JSON.stringify(sBad)); pushCloudChapterData(currentChapterId, 'solutionBad', sBad); }
 
     // ===== 笔记数据 =====
     let notesData = {};
@@ -1459,34 +1461,7 @@ function renderStats() {
 
     
 
-function saveQuestionAnnotation() {
-  const canvas = document.getElementById('annotationCanvas');
-  if (!canvas) return;
-  const key = getAnnotationStorageKey(currentChapterId, current);
-  try {
-    localStorage.setItem(key, canvas.toDataURL('image/png'));
-  } catch (error) {
-    console.warn('标注保存失败，可能已达到浏览器存储上限', error);
-  }
-}
 
-function restoreQuestionAnnotation() {
-  const canvas = document.getElementById('annotationCanvas');
-  if (!canvas) return;
-
-  const context = canvas.getContext('2d');
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  const key = getAnnotationStorageKey(currentChapterId, current);
-  const dataUrl = localStorage.getItem(key);
-  if (!dataUrl) return;
-
-  const image = new Image();
-  image.onload = function () {
-    context.drawImage(image, 0, 0, canvas.width, canvas.height);
-  };
-  image.src = dataUrl;
-}
 
     function toggleAnnotation(show) {
       const canvas = document.getElementById('annotationCanvas');
@@ -1514,7 +1489,120 @@ function restoreQuestionAnnotation() {
 
     
     // ===== 私有云端 Auth 事件联动 =====
-    document.addEventListener('private-study:signed-in', async function (event) {
+    
+function getSignedInUserId() {
+  const user = window.PrivateStudy?.getCurrentUser();
+  if (!user) throw new Error('未登录，不能读写用户学习数据');
+  return user.id;
+}
+
+function userCacheKey(dataType, chapterId = currentChapterId) {
+  return `kaoyan:${getSignedInUserId()}:${chapterId}:${dataType}`;
+}
+
+function saveUserCache(dataType, value) {
+  if (!window.PrivateStudy?.getCurrentUser()) return;
+  localStorage.setItem(userCacheKey(dataType), JSON.stringify(value));
+}
+
+function getAnnotationStorageKey(chapterId, questionId) {
+  const user = window.PrivateStudy?.getCurrentUser();
+  if (!user) throw new Error('未登录，不能保存题目标注');
+  return `annotation:${user.id}:${chapterId}:${questionId}`;
+}
+
+function scheduleCloudSave(dataType, value) {
+  const api = window.PrivateStudy;
+  if (!api || !api.getCurrentUser()) return;
+  api.scheduleSave(currentChapterId, dataType, value);
+}
+
+function saveStatuses() {
+  saveUserCache('status', statuses);
+  scheduleCloudSave('status', statuses);
+}
+
+function saveQBad() {
+  saveUserCache('questionBad', qBad);
+  scheduleCloudSave('questionBad', qBad);
+}
+
+function saveSBad() {
+  saveUserCache('solutionBad', sBad);
+  scheduleCloudSave('solutionBad', sBad);
+}
+
+function saveNotes() {
+  saveUserCache('notes', notesData);
+  scheduleCloudSave('notes', notesData);
+}
+
+function clearRecord(record) {
+  for (const key of Object.keys(record)) delete record[key];
+}
+
+function resetAllUserState() {
+  clearRecord(statuses);
+  clearRecord(qBad);
+  clearRecord(sBad);
+  clearRecord(notesData);
+  current = 0;
+}
+
+async function restoreChapterState(chapterId) {
+  const api = window.PrivateStudy;
+  if (!api || !api.getCurrentUser()) return;
+
+  clearRecord(statuses);
+  clearRecord(qBad);
+  clearRecord(sBad);
+  clearRecord(notesData);
+
+  const bundle = await api.loadBundle(chapterId);
+  Object.assign(statuses, bundle.status || {});
+  Object.assign(qBad, bundle.questionBad || {});
+  Object.assign(sBad, bundle.solutionBad || {});
+  Object.assign(notesData, bundle.notes || {});
+
+  const restoredPosition = Number(bundle.lastPosition);
+  current = Number.isInteger(restoredPosition) && restoredPosition >= 0
+    ? Math.min(restoredPosition, getChapter().total - 1)
+    : 0;
+}
+
+async function switchChapter(chapterId) {
+  const chapter = CHAPTERS.find((item) => item.id === chapterId);
+  if (!chapter || chapter.total === 0) {
+    alert('该章节尚未导入');
+    return;
+  }
+
+  const api = window.PrivateStudy;
+  if (!api || !api.getCurrentUser()) return;
+
+  try {
+    await api.flushPendingWrites();
+  } catch (error) {
+    console.warn('切换章节前保存失败', error);
+  }
+
+  currentChapterId = chapterId;
+  current = 0;
+  showSolution = defaultShowSolution;
+  subMode = false;
+  currentFilters = new Set(['all']);
+
+  await restoreChapterState(chapterId);
+  updateFilterButtons();
+  renderTitle();
+  renderStats();
+  renderNav();
+  switchTo(current);
+  updateFilterCounts();
+}
+
+
+document.addEventListener('private-study:signed-in', async function (event) {
       const user = event.detail.user;
       resetAllUserState();
       renderNav();
@@ -1922,135 +2010,60 @@ function restoreQuestionAnnotation() {
         border-radius: 0;
       }
     }
-  
-    /* ===== 双人私有云端登录门禁 (Auth Gate & Account Bar) ===== */
-    [hidden] {
-      display: none !important;
-    }
+  </style>
+</head>
+<body>
+  <h1>${escapeHtml(chapter.name)}</h1>
+  <div class="subtitle">${statusLabel}题 · 共 ${items.length} 题</div>
+  ${cardsHtml}
+</body>
+<\/html>`);
+  popup.document.close();
+}
 
-    .auth-gate {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background: linear-gradient(135deg, #1e1b4b 0%, #311042 50%, #0f172a 100%);
-    }
+document.addEventListener('keydown', function (e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
 
-    .auth-card {
-      width: min(100%, 380px);
-      display: grid;
-      gap: 12px;
-      padding: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+  const key = e.key.toLowerCase();
+  const isShift = e.shiftKey;
 
-    .auth-card h1 {
-      margin: 0;
-      font-size: 20px;
-      color: var(--primary-dark);
-      text-align: center;
+  if (isShift) {
+    switch (key) {
+      case 'a': e.preventDefault(); applyFilter('all'); return;
+      case 'z': e.preventDefault(); applyFilter('proficient'); return;
+      case 'x': e.preventDefault(); applyFilter('vague'); return;
+      case 'c': e.preventDefault(); applyFilter('wrong'); return;
+      case 'n': e.preventDefault(); applyFilter('unmarked'); return;
+      case ' ': e.preventDefault(); toggleDefaultSolution(); return;
     }
+  }
 
-    .auth-card p {
-      margin: 0;
-      font-size: 13px;
-      color: #666;
-      text-align: center;
-    }
-
-    .auth-card label {
-      font-size: 12px;
-      font-weight: 600;
-      color: #444;
-      margin-top: 4px;
-    }
-
-    .auth-card input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-
-    .auth-card button {
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.2s;
-    }
-
-    .auth-card button:hover {
-      background: var(--primary-dark);
-    }
-
-    .auth-card button:disabled {
-      opacity: 0.6;
-      cursor: wait;
-    }
-
-    .auth-message, #syncStatus {
-      min-height: 1.4em;
-      font-size: 13px;
-      color: #64748b;
-      text-align: center;
-    }
-
-    .auth-message.is-error, #syncStatus.is-error {
-      color: #b91c1c;
-      font-weight: 600;
-    }
-
-    .account-bar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 14px;
-      padding: 8px 24px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-
-    body.dark-mode .account-bar {
-      background: rgba(26, 26, 38, 0.85);
-      border-bottom-color: rgba(255, 255, 255, 0.1);
-      color: #eee;
-    }
-
-    .account-bar button {
-      border: none;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(255, 59, 48, 0.1);
-      color: #FF3B30;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .account-bar button:hover {
-      background: #FF3B30;
-      color: #fff;
-    }
-
-</style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+  switch (key) {
+    case 'a':
+    case 'arrowleft': prevQuestion(); break;
+    case 'd':
+    case 'arrowright': nextQuestion(); break;
+    case 'f': toggleSubMode(); break;
+    case 'p': toggleAnnotation(); break;
+    case 'z': setStatus('proficient'); break;
+    case 'x': setStatus('vague'); break;
+    case 'c': setStatus('wrong'); break;
+    case ' ': e.preventDefault(); toggleSolution(); break;
+    case 'q': gotoPrevChapter(); break;
+    case 'e': gotoNextChapter(); break;
+    case 'r': toggleQBad(); break;
+    case 't': toggleSBad(); break;
+    case 'n': focusNotes(); break;
+    case 'h': toggleShortcutHelp(); break;
+    case 'escape':
+      if (document.getElementById('lightbox').classList.contains('show')) {
+        closeLightbox();
+        return;
+      }
+      if (shortcutHelpOpen) {
+        toggleShortcutHelp();
+        return;
+      }
+      break;
+  }
+});
