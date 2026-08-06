@@ -1,644 +1,4 @@
-function renderStats() {
-  const ch = getChapter();
-  if (!ch) return;
-  const total = ch.total || 0;
-  let proficient = 0, vague = 0, wrong = 0;
-
-  for (let index = 0; index < total; index++) {
-    const status = getStatus(index);
-    if (status === 'proficient') proficient++;
-    else if (status === 'vague') vague++;
-    else if (status === 'wrong') wrong++;
-  }
-
-  const done = proficient + vague + wrong;
-  const unmarked = Math.max(0, total - done);
-
-  const setProgress = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = String(val);
-  };
-
-  setProgress('statTotal', total);
-  setProgress('statDone', done);
-  setProgress('statProficient', proficient);
-  setProgress('statVague', vague);
-  setProgress('statWrong', wrong);
-  setProgress('statUnmarked', unmarked);
-}
-
-function updateFilterButtons() {
-  const btns = document.querySelectorAll('.filter-btn');
-  btns.forEach(btn => {
-    const filter = btn.getAttribute('data-filter');
-    const isActive = currentFilters.has(filter) || (filter === 'all' && currentFilters.size === 0);
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-  });
-}
-
-function updateFilterCounts() {
-  const ch = getChapter();
-  if (!ch) return;
-
-  let proficient = 0, vague = 0, wrong = 0;
-  for (let i = 0; i < ch.total; i++) {
-    const s = getStatus(i);
-    if (s === 'proficient') proficient++;
-    else if (s === 'vague') vague++;
-    else if (s === 'wrong') wrong++;
-  }
-  const unmarked = Math.max(0, ch.total - (proficient + vague + wrong));
-
-  const setCount = (filter, count) => {
-    const btn = document.querySelector(`.filter-btn[data-filter="${filter}"] .filter-count`);
-    if (btn) btn.textContent = ` (${count})`;
-  };
-
-  setCount('all', ch.total);
-  setCount('proficient', proficient);
-  setCount('vague', vague);
-  setCount('wrong', wrong);
-  setCount('unmarked', unmarked);
-}
-
-function isAllFilterActive() {
-  return currentFilters.has('all') || currentFilters.size === 0;
-}
-
-function getFilteredIndices() {
-  const ch = getChapter();
-  if (!ch) return [];
-  if (isAllFilterActive()) {
-    return Array.from({ length: ch.total }, (_, i) => i);
-  }
-
-  const indices = [];
-  for (let i = 0; i < ch.total; i++) {
-    const s = getStatus(i);
-    const isUnmarked = !s;
-    if (
-      (currentFilters.has('proficient') && s === 'proficient') ||
-      (currentFilters.has('vague') && s === 'vague') ||
-      (currentFilters.has('wrong') && s === 'wrong') ||
-      (currentFilters.has('unmarked') && isUnmarked)
-    ) {
-      indices.push(i);
-    }
-  }
-  return indices;
-}
-
-function stripSubSuffix(label) {
-  return String(label || '').replace(/\s*[\(（][^\)）]*[\)）]\s*$/, '');
-}
-
-function subSuffix(label) {
-  const m = String(label || '').match(/[\(（][^\)）]*[\)）]\s*$/);
-  return m ? m[0].trim() : String(label || '');
-}
-
-function renderNav() {
-  const ch = getChapter();
-  if (!ch) return;
-  const nav = document.getElementById('qnav');
-  if (!nav) return;
-  nav.innerHTML = '';
-  ensureGroups(ch);
-
-  const labels = ch.labels || [];
-  const filteredSet = new Set(getFilteredIndices());
-
-  for (let i = 0; i < ch.total; i++) {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'q-item ' + getStatusClass(i) + (i === current ? ' active' : '');
-    if (!filteredSet.has(i)) btn.classList.add('dimmed');
-    btn.textContent = labels[i] || (i + 1);
-    btn.addEventListener('click', function () {
-      switchTo(i);
-    });
-
-    if (qBad[i] || sBad[i] || notesData[labels[i]]) {
-      const badges = document.createElement('span');
-      badges.className = 'q-badges';
-      if (qBad[i]) {
-        const qb = document.createElement('span');
-        qb.className = 'bad-badge';
-        qb.textContent = 'Q';
-        badges.appendChild(qb);
-      }
-      if (sBad[i]) {
-        const sb = document.createElement('span');
-        sb.className = 'bad-badge';
-        sb.textContent = 'S';
-        badges.appendChild(sb);
-      }
-      if (notesData[labels[i]]) {
-        const nb = document.createElement('span');
-        nb.className = 'note-badge';
-        nb.textContent = 'N';
-        badges.appendChild(nb);
-      }
-      btn.appendChild(badges);
-    }
-
-    nav.appendChild(btn);
-  }
-}
-
-function switchTo(idx) {
-  current = idx;
-  showSolution = defaultShowSolution;
-  const ch = getChapter();
-  if (!ch) return;
-
-  const base = getImgPath(idx);
-  const qImg = document.getElementById('questionImg');
-  const sImg = document.getElementById('solutionImg');
-  const sArea = document.getElementById('solutionArea');
-  let sNotice = document.getElementById('solutionNotice');
-
-  if (qImg) {
-    if (ch.category === 'zhuanye' && base.includes('_question')) {
-      qImg.src = base + '.png';
-    } else {
-      qImg.src = base + '_question.png';
-    }
-  }
-
-  if (sImg) {
-    if (ch.category === 'zhuanye' && base.includes('_question')) {
-      sImg.src = base.replace('_question', '_solution') + '.png';
-    } else {
-      sImg.src = base + '_solution.png';
-    }
-  }
-
-  if (sArea) sArea.style.display = showSolution ? 'block' : 'none';
-  if (sNotice) sNotice.style.display = showSolution ? 'none' : 'block';
-
-  renderNav();
-}
-
-function openLightbox(src) {
-  const overlay = document.getElementById('lightbox');
-  const img = document.getElementById('lightboxImg');
-  if (overlay && img) {
-    img.src = src;
-    overlay.style.display = 'flex';
-  }
-}
-
-function closeLightbox() {
-  const overlay = document.getElementById('lightbox');
-  if (overlay) {
-    overlay.style.display = 'none';
-  }
-}
-
-
-let annoActive = false;
-let currentCategory = 'shu1';
-
-const PART_ORDER = ['例题', '习题'];
-
-function classifyLabel(label) {
-  return String(label || '').startsWith('例') ? '例题' : '习题';
-}
-
-function getStatus(index) {
-  const chapter = getChapter();
-  const label = chapter?.labels?.[index];
-
-  if (label && statuses[label] !== undefined) {
-    return statuses[label];
-  }
-
-  return statuses[index] || '';
-}
-
-function getStatusClass(index) {
-  const status = getStatus(index);
-  if (status === 'proficient') return 'proficient';
-  if (status === 'vague') return 'vague';
-  if (status === 'wrong') return 'wrong';
-  return '';
-}
-
-
-function renderTitle() {
-  const chapter = getChapter();
-  if (!chapter) return;
-
-  const workbookText = document.getElementById('txtWb');
-  const subjectText = document.getElementById('txtSubj');
-  const chapterText = document.getElementById('txtChapter');
-
-  if (workbookText) workbookText.textContent = chapter.wb || '';
-  if (subjectText) subjectText.textContent = chapter.subj || '';
-  if (chapterText) {
-    chapterText.textContent = chapter.short || chapter.name || '';
-  }
-}
-
-
-async function switchCategory(category) {
-  currentCategory = category;
-
-  document
-    .getElementById('catBtnShu1')
-    ?.classList.toggle('active', category === 'shu1');
-
-  document
-    .getElementById('catBtnZhuanye')
-    ?.classList.toggle('active', category === 'zhuanye');
-
-  const firstChapter = CHAPTERS.find(function (chapter) {
-    return (
-      (chapter.category || 'shu1') === category &&
-      chapter.total > 0
-    );
-  });
-
-  if (firstChapter) {
-    await switchChapter(firstChapter.id);
-  }
-}
-
-
-let lightboxEventsBound = false;
-
-function bindLightboxEvents() {
-  if (lightboxEventsBound) return;
-  lightboxEventsBound = true;
-
-  const overlay = document.getElementById('lightbox');
-  const closeBtn = document.getElementById('lightboxClose');
-  const questionImage = document.getElementById('questionImg');
-  const solutionImage = document.getElementById('solutionImg');
-
-  questionImage?.addEventListener('click', function () {
-    const src = questionImage.getAttribute('src');
-    if (src) openLightbox(src);
-  });
-
-  solutionImage?.addEventListener('click', function () {
-    const src = solutionImage.getAttribute('src');
-    if (src) openLightbox(src);
-  });
-
-  closeBtn?.addEventListener('click', closeLightbox);
-
-  overlay?.addEventListener('click', function (event) {
-    if (event.target === overlay) closeLightbox();
-  });
-}
-
-
-let appUiBound = false;
-
-function bindAppUiOnce() {
-  if (appUiBound) return;
-  appUiBound = true;
-
-  [
-    'btnBackupData',
-    'btnRestoreData',
-    'btnStartWrongPractice'
-  ].forEach(function (id) {
-    const element = document.getElementById(id);
-    if (element) element.hidden = true;
-  });
-
-  initTheme();
-  initAnnotationEngine();
-
-  document.getElementById('catBtnShu1')?.addEventListener('click', function () {
-    switchCategory('shu1').catch(console.error);
-  });
-
-  document.getElementById('catBtnZhuanye')?.addEventListener('click', function () {
-    switchCategory('zhuanye').catch(console.error);
-  });
-
-  document.getElementById('catBtnTheme')?.addEventListener('click', toggleTheme);
-
-  document
-    .getElementById('btnToggleAnnotation')
-    ?.addEventListener('click', function () {
-      toggleAnnotation();
-    });
-
-  bindLightboxEvents();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', bindAppUiOnce, { once: true });
-} else {
-  bindAppUiOnce();
-}
-
-
-document.addEventListener('private-study:signed-in', async function (event) {
-  const user = event.detail?.user;
-  if (!user) return;
-
-  try {
-    resetAllUserState();
-
-    const chapterId = currentChapterId || CHAPTERS[0]?.id || 'ch1';
-    currentChapterId = chapterId;
-
-    try {
-      await restoreChapterState(chapterId);
-    } catch (err) {
-      console.warn('restoreChapterState fail-safe:', err);
-    }
-
-    renderTitle();
-    renderStats();
-    renderNav();
-    switchTo(current);
-    updateFilterCounts();
-  } catch (error) {
-    console.error('初始化当前用户题库失败', error);
-  }
-});
-
-document.addEventListener('private-study:signed-out', function () {
-  resetAllUserState();
-  document.getElementById('questionImg')?.removeAttribute('src');
-  document.getElementById('solutionImg')?.removeAttribute('src');
-});
-
-
-function getChapter() {
-  return CHAPTERS.find(function(c) { return c.id === currentChapterId; }) || CHAPTERS[0];
-}
-
-function getImgPath(idx) {
-  const chapter = getChapter();
-  if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
-
-  const rootDir = chapter.category === 'zhuanye' ? '专业题库' : '数一题库';
-  const chapterDir = `${rootDir}/${chapter.relPath}`;
-
-  if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
-    return `${chapterDir}/${chapter.fileBases[idx]}`;
-  }
-
-  const label = String(chapter.labels?.[idx] ?? '');
-  if (!label) throw new Error(`Missing image label for question ${idx + 1}`);
-
-  const fileBase = label.startsWith('例')
-    ? `ex_${label.slice(1)}`
-    : `pb_${label}`;
-
-  return `${chapterDir}/${fileBase}`;
-}
-
-
-
-// ===== 全局状态变量声明 =====
-let currentChapterId = 'ch1';
-let current = 0;
-let showSolution = true;
-let defaultShowSolution = true;
-let subMode = false;
-let currentFilters = new Set(['all']);
-
-let statuses = {};
-let qBad = {};
-let sBad = {};
-let notesData = {};
-
-let initializedUserId = null;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var SUBJ_ORDER = ['高数', '线代', '概率论'];
-
-
-
-
-
-
-let _titleUpdating = false;
-
-
-
-
-function saveStatuses() {
-  saveUserCache('status', statuses);
-  scheduleCloudSave('status', statuses);
-}
-
-function saveQBad() {
-  saveUserCache('questionBad', qBad);
-  scheduleCloudSave('questionBad', qBad);
-}
-
-function saveSBad() {
-  saveUserCache('solutionBad', sBad);
-  scheduleCloudSave('solutionBad', sBad);
-}
-
-function saveNotes() {
-  saveUserCache('notes', notesData);
-  scheduleCloudSave('notes', notesData);
-}
-
-
-
-function initAnnotationEngine() {
-  const canvas = document.getElementById('annotationCanvas');
-  const sizeSlider = document.getElementById('annoSizeSlider');
-  const sizeValue = document.getElementById('annoSizeVal');
-  const eraserButton = document.getElementById('annoToolEraser');
-  const clearButton = document.getElementById('annoClear');
-  const colorButtons = Array.from(
-    document.querySelectorAll('.anno-color-btn')
-  );
-
-  if (!canvas || canvas.dataset.annotationEngineReady === '1') return;
-  canvas.dataset.annotationEngineReady = '1';
-
-  const context = canvas.getContext('2d');
-  let drawing = false;
-  let activePointerId = null;
-  let activeColor =
-    colorButtons.find((button) => button.classList.contains('active'))
-      ?.dataset.color || '#EF4444';
-  let erasing = false;
-  let brushSize = Number(sizeSlider?.value || 4);
-
-  function canvasPoint(event) {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width > 0 ? canvas.width / rect.width : 1;
-    const scaleY = rect.height > 0 ? canvas.height / rect.height : 1;
-
-    return {
-      x: (event.clientX - rect.left) * scaleX,
-      y: (event.clientY - rect.top) * scaleY
-    };
-  }
-
-  function configureContext() {
-    context.lineCap = 'round';
-    context.lineJoin = 'round';
-    context.lineWidth = brushSize;
-    context.strokeStyle = activeColor;
-    context.globalCompositeOperation = erasing
-      ? 'destination-out'
-      : 'source-over';
-  }
-
-  function finishStroke(event) {
-    if (!drawing) return;
-    if (
-      activePointerId !== null &&
-      event.pointerId !== undefined &&
-      event.pointerId !== activePointerId
-    ) {
-      return;
-    }
-
-    drawing = false;
-    context.closePath();
-
-    if (
-      activePointerId !== null &&
-      canvas.hasPointerCapture?.(activePointerId)
-    ) {
-      canvas.releasePointerCapture(activePointerId);
-    }
-
-    activePointerId = null;
-    saveQuestionAnnotation();
-  }
-
-  canvas.addEventListener('pointerdown', function (event) {
-    if (!annoActive) return;
-
-    event.preventDefault();
-    drawing = true;
-    activePointerId = event.pointerId;
-    canvas.setPointerCapture?.(event.pointerId);
-
-    configureContext();
-    const point = canvasPoint(event);
-    context.beginPath();
-    context.moveTo(point.x, point.y);
-  });
-
-  canvas.addEventListener('pointermove', function (event) {
-    if (!drawing || event.pointerId !== activePointerId) return;
-
-    event.preventDefault();
-    configureContext();
-    context.lineTo(point.x, point.y);
-    context.stroke();
-  });
-
-  canvas.addEventListener('pointerup', finishStroke);
-  canvas.addEventListener('pointercancel', finishStroke);
-  canvas.addEventListener('lostpointercapture', function () {
-    if (!drawing) return;
-    drawing = false;
-    activePointerId = null;
-    context.closePath();
-    saveQuestionAnnotation();
-  });
-
-  colorButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      activeColor = button.dataset.color || '#EF4444';
-      erasing = false;
-
-      colorButtons.forEach(function (item) {
-        item.classList.toggle('active', item === button);
-      });
-      eraserButton?.classList.remove('active');
-    });
-  });
-
-  sizeSlider?.addEventListener('input', function () {
-    brushSize = Math.max(1, Number(sizeSlider.value) || 4);
-    if (sizeValue) sizeValue.textContent = String(brushSize);
-  });
-
-  eraserButton?.addEventListener('click', function () {
-    erasing = !erasing;
-    eraserButton.classList.toggle('active', erasing);
-  });
-
-  clearButton?.addEventListener('click', function () {
-    if (!window.confirm('确定清空当前题目的全部标注吗？')) return;
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    try {
-      localStorage.removeItem(
-        getAnnotationStorageKey(currentChapterId, current)
-      );
-    } catch (error) {
-      console.warn('清空标注缓存失败', error);
-    }
-  });
-
-  const closeBtnAnno = document.getElementById('annoClose');
-  closeBtnAnno?.addEventListener('click', function () {
-    toggleAnnotation(false);
-  });
-
-  if (sizeValue) sizeValue.textContent = String(brushSize);
-}
-
-
-function getAnnotationStorageKey(chapterId, questionId) {
-  if (!user) throw new Error('未登录，不能保存题目标注');
-  return `annotation:${user.id}:${chapterId}:${questionId}`;
-}
-
-function saveQuestionAnnotation() {
-  if (!canvas) return;
-  const key = getAnnotationStorageKey(currentChapterId, current);
-  try {
-    localStorage.setItem(key, canvas.toDataURL('image/png'));
-  } catch (error) {
-    console.warn('标注保存失败，可能已达到浏览器存储上限', error);
-  }
-}
-
-function restoreQuestionAnnotation() {
-  if (!canvas) return;
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  const dataUrl = localStorage.getItem(key);
-  if (!dataUrl) return;
-  const image = new Image();
-  image.onload = function () {
-    context.drawImage(image, 0, 0, canvas.width, canvas.height);
-  };
-  image.src = dataUrl;
-}
-
-
-
-
-
-    // ===== 章节数据 =====
-    const CHAPTERS = [
+const CHAPTERS = [
 {id:"ch1",category:"shu1",number:1,name:"基础30讲 - 高数 - 第1讲 函数极限与连续",short:"第1讲 函数极限与连续",total:54,cols:5,wb:"基础30讲",subj:"高数",relPath:"基础30讲/高数/第1讲 函数极限与连续",labels:["例1-1", "例1-2", "例1-3", "例1-4", "例1-5", "例1-6", "例1-7", "例1-8", "例1-9", "例1-10", "例1-11", "例1-12", "例1-13", "例1-14", "例1-15", "例1-16", "例1-17", "例1-18", "例1-19", "例1-20", "例1-21", "例1-22", "例1-23", "例1-24", "例1-25", "例1-26", "例1-27", "例1-28", "例1-29", "例1-30", "例1-31", "例1-32", "例1-33", "例1-34", "例1-35", "例1-36", "例1-37", "例1-38", "1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7", "1-8", "1-9", "1-10", "1-11", "1-12", "1-13", "1-14", "1-15", "1-16"]},
 {id:"ch2",category:"shu1",number:2,name:"基础30讲 - 高数 - 第2讲 数列极限",short:"第2讲 数列极限",total:26,cols:5,wb:"基础30讲",subj:"高数",relPath:"基础30讲/高数/第2讲 数列极限",labels:["例2-1", "例2-2", "例2-3", "例2-4", "例2-5", "例2-6", "例2-7", "例2-8", "例2-9", "例2-10", "例2-11", "例2-12", "例2-13", "例2-14", "例2-15", "例2-16", "例2-17", "例2-18", "2-1", "2-2", "2-3", "2-4", "2-5", "2-6", "2-7", "2-8"]},
 {id:"ch3",category:"shu1",number:3,name:"基础30讲 - 高数 - 第3讲 一元函数微分学的概念",short:"第3讲 一元函数微分学的概念",total:21,cols:5,wb:"基础30讲",subj:"高数",relPath:"基础30讲/高数/第3讲 一元函数微分学的概念",labels:["例3-1", "例3-2", "例3-3", "例3-4", "例3-5", "例3-6", "例3-7", "例3-8", "例3-9", "例3-10", "例3-11", "例3-12", "3-1", "3-2", "3-3", "3-4", "3-5", "3-6", "3-7", "3-8", "3-9"]},
@@ -849,9 +209,67 @@ function restoreQuestionAnnotation() {
 {"id": "ch250", "number": 250, "name": "郑君里课后刷题本 - 第12章", "short": "第12章", "total": 26, "cols": 5, "wb": "郑君里课后刷题本", "subj": "专业课", "category": "zhuanye", "relPath": "郑君里课后刷题本/第12章", "labels": ["例12-1", "例12-2", "例12-3", "例12-4", "例12-5", "例12-6", "例12-6(2)", "例12-7", "例12-7(2)", "例12-7(3)", "例12-8", "例12-9", "例12-10", "例12-12", "例12-13", "例12-14", "例12-15", "例12-16", "例12-17", "例12-18", "例12-19", "例12-19(2)", "例12-19(3)", "例12-20", "例12-21", "例12-p246_c1"], "fileBases": ["ex_12-1_question", "ex_12-2_question", "ex_12-3_question", "ex_12-4_question", "ex_12-5_question", "ex_12-6_question", "ex_12-6_question_2", "ex_12-7_question", "ex_12-7_question_2", "ex_12-7_question_3", "ex_12-8_question", "ex_12-9_question", "ex_12-10_question", "ex_12-12_question", "ex_12-13_question", "ex_12-14_question", "ex_12-15_question", "ex_12-16_question", "ex_12-17_question", "ex_12-18_question", "ex_12-19_question", "ex_12-19_question_2", "ex_12-19_question_3", "ex_12-20_question", "ex_12-21_question", "ex_12-p246_c1_question"]}
 ];
 
+// ===== 全局配置与状态 =====
+const SUBJ_ORDER = ['高数', '线代', '概率论', '专业课'];
+const WB_ORDER = ['基础30讲', '强化36讲', '李范全书', '何子述课后刷题本', '郑晓伟刷题本'];
+
+let currentCategory = 'shu1';
+let currentChapterId = 'ch1';
+let current = 0;
+let showSolution = true;
+let defaultShowSolution = true;
+let subMode = false;
+let currentFilters = new Set(['all']);
+
+let statuses = {};
+let qBad = {};
+let sBad = {};
+let notesData = {};
+let annoActive = false;
+let initializedUserId = null;
+let appUiBound = false;
+
+// ===== 用户身份与存储键 =====
+function getSignedInUserId() {
+  const user = window.PrivateStudy?.getCurrentUser?.();
+  if (!user) {
+    throw new Error('未登录，不能读写用户学习数据');
+  }
+  return user.id;
+}
+
+function userCacheKey(dataType, chapterId = currentChapterId) {
+  return `kaoyan:${getSignedInUserId()}:${chapterId}:${dataType}`;
+}
+
+function getAnnotationStorageKey(chapterId, questionId) {
+  const user = window.PrivateStudy?.getCurrentUser?.();
+  if (!user) {
+    throw new Error('未登录，不能保存题目标注');
+  }
+  return `annotation:${user.id}:${chapterId}:${questionId}`;
+}
+
+// ===== 章节与数据检索 =====
+function getChapter(chapterId = currentChapterId) {
+  return CHAPTERS.find(function (c) {
+    return c.id === chapterId;
+  });
+}
+
+function stripSubSuffix(label) {
+  return String(label || '').replace(/\s*[\(（][^\)）]*[\)）]\s*$/, '');
+}
+
+function subSuffix(label) {
+  const m = String(label || '').match(/[\(（][^\)）]*[\)）]\s*$/);
+  return m ? m[0].trim() : String(label || '');
+}
+
 function ensureGroups(ch) {
   if (!ch) ch = getChapter();
   if (!ch || ch.subGroups) return;
+
   const labels = ch.labels || [];
   const groups = [];
   let i = 0;
@@ -867,62 +285,116 @@ function ensureGroups(ch) {
   }
   ch.subGroups = groups;
   ch.groupForIdx = new Array(labels.length);
-  groups.forEach(g => { for (let k = 0; k < g.count; k++) ch.groupForIdx[g.startIdx + k] = g; });
-}
-
-    // 题组内当前筛选下可见的索引列表
-    function groupVisibleIndices(g) {
-      const set = new Set(getFilteredIndices());
-      const out = [];
-      for (let k = 0; k < g.count; k++) { const idx = g.startIdx + k; if (set.has(idx)) out.push(idx); }
-      return out;
+  groups.forEach(function (g) {
+    for (let k = 0; k < g.count; k++) {
+      ch.groupForIdx[g.startIdx + k] = g;
     }
-    function storageKey() { return currentChapterId + '_s1_status'; }
-    function qBadStorageKey() { return currentChapterId + '_s1_qbad'; }
-    function sBadStorageKey() { return currentChapterId + '_s1_sbad'; }
-    function totalQuestions() { return getChapter().total; }
-
-    // ===== 筛选相关 =====
-    
-
-function saveUserCache(dataType, value) {
-  if (!window.PrivateStudy?.getCurrentUser()) return;
-  localStorage.setItem(userCacheKey(dataType), JSON.stringify(value));
+  });
 }
 
-
-
-function scheduleCloudSave(dataType, value) {
-  const api = window.PrivateStudy;
-  if (!api || !api.getCurrentUser()) return;
-  api.scheduleSave(currentChapterId, dataType, value);
+function effectiveCols() {
+  const ch = getChapter();
+  return ch?.cols || 5;
 }
 
+function getStatus(index) {
+  return statuses[index] || '';
+}
 
-
-
-
-
-
-
+function getStatusClass(index) {
+  const s = getStatus(index);
+  return s ? 'st-' + s : 'st-unmarked';
+}
 
 function clearRecord(record) {
-  for (const key of Object.keys(record)) delete record[key];
+  for (const key in record) {
+    delete record[key];
+  }
 }
+
+// ===== 图像路径解析 =====
+function getImgPath(idx) {
+  const chapter = getChapter();
+  if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
+
+  const rootDir = chapter.category === 'zhuanye' ? '专业题库' : '数一题库';
+  const chapterDir = `${rootDir}/${chapter.relPath}`;
+
+  if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
+    return `${chapterDir}/${chapter.fileBases[idx]}`;
+  }
+
+  const label = String(chapter.labels?.[idx] ?? '');
+  if (!label) throw new Error(`Missing image label for question ${idx + 1}`);
+
+  const fileBase = label.startsWith('例')
+    ? `ex_${label.slice(1)}`
+    : `pb_${label}`;
+
+  return `${chapterDir}/${fileBase}`;
+}
+
+// ===== 本地与云端持久化 =====
+function saveUserCache(dataType, data, chapterId = currentChapterId) {
+  try {
+    const key = userCacheKey(dataType, chapterId);
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch (error) {
+    console.warn(`保存 ${dataType} 本地缓存失败:`, error);
+  }
+}
+
+function loadUserCache(dataType, chapterId = currentChapterId) {
+  try {
+    const key = userCacheKey(dataType, chapterId);
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    console.warn(`读取 ${dataType} 本地缓存失败:`, error);
+    return null;
+  }
+}
+
+function scheduleSave(dataType, data, chapterId = currentChapterId) {
+  saveUserCache(dataType, data, chapterId);
+  const api = window.PrivateStudy;
+  if (api && api.getCurrentUser()) {
+    api.saveProgress(chapterId, dataType, data).catch(console.warn);
+  }
+}
+
+function saveStatuses() { scheduleSave('status', statuses); }
+function saveQBad() { scheduleSave('questionBad', qBad); }
+function saveSBad() { scheduleSave('solutionBad', sBad); }
+function saveNotes() { scheduleSave('notes', notesData); }
 
 function resetAllUserState() {
   clearRecord(statuses);
   clearRecord(qBad);
   clearRecord(sBad);
   clearRecord(notesData);
-  current = 0;
+  annoActive = false;
+  initializedUserId = null;
+  const canvas = document.getElementById('annotationCanvas');
+  if (canvas) canvas.style.display = 'none';
+  const toolbar = document.getElementById('annoToolbar');
+  if (toolbar) toolbar.style.display = 'none';
 }
 
-async function restoreChapterState(chapterId) {
+async function restoreChapterState(chapterId = currentChapterId) {
   clearRecord(statuses);
   clearRecord(qBad);
   clearRecord(sBad);
   clearRecord(notesData);
+
+  const localStatus = loadUserCache('status', chapterId);
+  if (localStatus) Object.assign(statuses, localStatus);
+  const localQBad = loadUserCache('questionBad', chapterId);
+  if (localQBad) Object.assign(qBad, localQBad);
+  const localSBad = loadUserCache('solutionBad', chapterId);
+  if (localSBad) Object.assign(sBad, localSBad);
+  const localNotes = loadUserCache('notes', chapterId);
+  if (localNotes) Object.assign(notesData, localNotes);
 
   const api = window.PrivateStudy;
   if (!api || !api.getCurrentUser()) return;
@@ -930,21 +402,710 @@ async function restoreChapterState(chapterId) {
   try {
     const bundle = await api.loadBundle(chapterId);
     if (bundle) {
-      Object.assign(statuses, bundle.status || {});
-      Object.assign(qBad, bundle.questionBad || {});
-      Object.assign(sBad, bundle.solutionBad || {});
-      Object.assign(notesData, bundle.notes || {});
+      if (bundle.status) Object.assign(statuses, bundle.status);
+      if (bundle.questionBad) Object.assign(qBad, bundle.questionBad);
+      if (bundle.solutionBad) Object.assign(sBad, bundle.solutionBad);
+      if (bundle.notes) Object.assign(notesData, bundle.notes);
+
+      saveUserCache('status', statuses, chapterId);
+      saveUserCache('questionBad', qBad, chapterId);
+      saveUserCache('solutionBad', sBad, chapterId);
+      saveUserCache('notes', notesData, chapterId);
 
       const restoredPosition = Number(bundle.lastPosition);
-      current = Number.isInteger(restoredPosition) && restoredPosition >= 0
-        ? Math.min(restoredPosition, getChapter().total - 1)
-        : 0;
+      const ch = getChapter(chapterId);
+      if (ch && Number.isInteger(restoredPosition) && restoredPosition >= 0) {
+        current = Math.min(restoredPosition, ch.total - 1);
+      }
     }
   } catch (error) {
-    console.warn('读取云端数据失败，已使用默认显示', error);
+    console.warn('读取云端数据失败，降级使用本地缓存状态:', error);
   }
 }
 
+async function restoreCurrentUserProgress(chapterId = currentChapterId) {
+  await restoreChapterState(chapterId);
+}
+
+// ===== 解析提示展示 =====
+function showSolutionNotice(message) {
+  const area = document.getElementById('solutionArea');
+  const image = document.getElementById('solutionImg');
+  if (!area || !image) return;
+
+  let notice = document.getElementById('solutionNotice');
+  if (!notice) {
+    notice = document.createElement('div');
+    notice.id = 'solutionNotice';
+    notice.className = 'solution-empty-notice';
+    notice.style.padding = '20px';
+    notice.style.textAlign = 'center';
+    notice.style.color = '#888';
+    notice.style.fontSize = '14px';
+    area.appendChild(notice);
+  }
+
+  image.style.display = 'none';
+  image.removeAttribute('src');
+  notice.textContent = message;
+  notice.style.display = 'block';
+}
+
+function hideSolutionNotice() {
+  const image = document.getElementById('solutionImg');
+  const notice = document.getElementById('solutionNotice');
+  if (image) image.style.display = 'block';
+  if (notice) notice.style.display = 'none';
+}
+
+// ===== 标注引擎与持久化 =====
+function saveQuestionAnnotation() {
+  const canvas = document.getElementById('annotationCanvas');
+  if (!canvas) return;
+  const key = getAnnotationStorageKey(currentChapterId, current);
+  try {
+    localStorage.setItem(key, canvas.toDataURL('image/png'));
+  } catch (error) {
+    console.warn('标注保存失败，可能已达到浏览器存储上限', error);
+  }
+}
+
+function restoreQuestionAnnotation() {
+  const canvas = document.getElementById('annotationCanvas');
+  if (!canvas) return;
+  const context = canvas.getContext('2d');
+  const key = getAnnotationStorageKey(currentChapterId, current);
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  const dataUrl = localStorage.getItem(key);
+  if (!dataUrl) return;
+
+  const image = new Image();
+  image.onload = function () {
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  };
+  image.src = dataUrl;
+}
+
+function toggleAnnotation(show) {
+  const canvas = document.getElementById('annotationCanvas');
+  const toolbar = document.getElementById('annoToolbar');
+  const button = document.getElementById('btnToggleAnnotation');
+  const questionImage = document.getElementById('questionImg');
+
+  if (!canvas) return;
+
+  if (typeof show !== 'boolean') {
+    show = !annoActive;
+  }
+
+  annoActive = show;
+  canvas.style.display = show ? 'block' : 'none';
+  if (toolbar) toolbar.style.display = show ? 'flex' : 'none';
+
+  if (button) {
+    button.classList.toggle('active', show);
+    const name = button.querySelector('.func-name');
+    if (name) {
+      name.textContent = show ? '✏️ 关闭标注' : '✏️ 开启标注';
+    }
+  }
+
+  if (!show || !questionImage) return;
+
+  const width = questionImage.clientWidth || questionImage.naturalWidth;
+  const height = questionImage.clientHeight || questionImage.naturalHeight;
+
+  if (width > 0 && height > 0) {
+    canvas.width = width;
+    canvas.height = height;
+    restoreQuestionAnnotation();
+  }
+}
+
+function initAnnotationEngine() {
+  const canvas = document.getElementById('annotationCanvas');
+  if (!canvas) return;
+
+  const context = canvas.getContext('2d');
+  let drawing = false;
+  let activePointerId = null;
+  let currentTool = 'pen';
+  let currentColor = '#ef4444';
+  let currentSize = 3;
+
+  function configureContext() {
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+
+    if (currentTool === 'eraser') {
+      context.globalCompositeOperation = 'destination-out';
+      context.lineWidth = currentSize * 4;
+    } else {
+      context.globalCompositeOperation = 'source-over';
+      context.strokeStyle = currentColor;
+      context.lineWidth = currentSize;
+    }
+  }
+
+  function canvasPoint(event) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / (rect.width || 1);
+    const scaleY = canvas.height / (rect.height || 1);
+
+    return {
+      x: (event.clientX - rect.left) * scaleX,
+      y: (event.clientY - rect.top) * scaleY
+    };
+  }
+
+  canvas.addEventListener('pointerdown', function (event) {
+    if (event.button !== 0 && event.pointerType === 'mouse') return;
+
+    drawing = true;
+    activePointerId = event.pointerId;
+
+    if (typeof canvas.setPointerCapture === 'function') {
+      try { canvas.setPointerCapture(event.pointerId); } catch (e) {}
+    }
+
+    configureContext();
+    const point = canvasPoint(event);
+    context.beginPath();
+    context.moveTo(point.x, point.y);
+  });
+
+  canvas.addEventListener('pointermove', function (event) {
+    if (!drawing || event.pointerId !== activePointerId) return;
+
+    event.preventDefault();
+    configureContext();
+    const point = canvasPoint(event);
+    context.lineTo(point.x, point.y);
+    context.stroke();
+  });
+
+  function stopDrawing(event) {
+    if (!drawing) return;
+    if (event && event.pointerId !== activePointerId) return;
+
+    drawing = false;
+    if (activePointerId !== null && typeof canvas.releasePointerCapture === 'function') {
+      try {
+        if (canvas.hasPointerCapture(activePointerId)) {
+          canvas.releasePointerCapture(activePointerId);
+        }
+      } catch (e) {}
+    }
+    activePointerId = null;
+    saveQuestionAnnotation();
+  }
+
+  canvas.addEventListener('pointerup', stopDrawing);
+  canvas.addEventListener('pointercancel', stopDrawing);
+  canvas.addEventListener('lostpointercapture', stopDrawing);
+
+  const toolEraser = document.getElementById('annoToolEraser');
+  toolEraser?.addEventListener('click', function () {
+    currentTool = currentTool === 'eraser' ? 'pen' : 'eraser';
+    toolEraser.classList.toggle('active', currentTool === 'eraser');
+  });
+
+  document.querySelectorAll('.anno-color-dot').forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      currentColor = dot.dataset.color || currentColor;
+      currentTool = 'pen';
+      toolEraser?.classList.remove('active');
+      document.querySelectorAll('.anno-color-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    });
+  });
+
+  const sizeSlider = document.getElementById('annoSizeSlider');
+  const sizeVal = document.getElementById('annoSizeVal');
+
+  sizeSlider?.addEventListener('input', function () {
+    currentSize = Number(sizeSlider.value) || 3;
+    if (sizeVal) sizeVal.textContent = String(currentSize);
+  });
+
+  const clearBtnAnno = document.getElementById('annoClear');
+  clearBtnAnno?.addEventListener('click', function () {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    saveQuestionAnnotation();
+  });
+
+  const closeBtnAnno = document.getElementById('annoClose');
+  closeBtnAnno?.addEventListener('click', function () {
+    toggleAnnotation(false);
+  });
+}
+
+// ===== 灯箱放大预览 =====
+function openLightbox(src) {
+  const overlay = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  if (overlay && img) {
+    img.src = src;
+    overlay.style.display = 'flex';
+  }
+}
+
+function closeLightbox() {
+  const overlay = document.getElementById('lightbox');
+  if (overlay) overlay.style.display = 'none';
+}
+
+function bindLightboxEvents() {
+  const overlay = document.getElementById('lightbox');
+  const closeBtn = document.getElementById('lightboxClose');
+  const questionImage = document.getElementById('questionImg');
+  const solutionImage = document.getElementById('solutionImg');
+
+  questionImage?.addEventListener('click', function () {
+    const src = questionImage.getAttribute('src');
+    if (src) openLightbox(src);
+  });
+
+  solutionImage?.addEventListener('click', function () {
+    const src = solutionImage.getAttribute('src');
+    if (src) openLightbox(src);
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+
+  overlay?.addEventListener('click', function (event) {
+    if (event.target === overlay) closeLightbox();
+  });
+}
+
+// ===== 主题切换 =====
+function updateThemeButton() {
+  const button = document.getElementById('catBtnTheme');
+  if (!button) return;
+
+  const isDark = document.body.classList.contains('dark-mode');
+  button.textContent = isDark ? '☀️ 日光模式' : '🌙 护眼模式';
+}
+
+function initTheme() {
+  const mode = localStorage.getItem('kaoyan_theme_mode') || 'light';
+  document.body.classList.toggle('dark-mode', mode === 'dark');
+  updateThemeButton();
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('kaoyan_theme_mode', isDark ? 'dark' : 'light');
+  updateThemeButton();
+}
+
+// ===== 学习状态与质量标记 =====
+function setQuestionStatus(statusType) {
+  const curStatus = getStatus(current);
+  const newStatus = curStatus === statusType ? '' : statusType;
+  statuses[current] = newStatus;
+  saveStatuses();
+  updateStatusButtons();
+  renderNav();
+  renderStats();
+  updateFilterCounts();
+}
+
+function updateStatusButtons() {
+  const cur = getStatus(current);
+  const btnP = document.getElementById('btnProficient');
+  const btnV = document.getElementById('btnVague');
+  const btnW = document.getElementById('btnWrong');
+
+  if (btnP) btnP.classList.toggle('active', cur === 'proficient');
+  if (btnV) btnV.classList.toggle('active', cur === 'vague');
+  if (btnW) btnW.classList.toggle('active', cur === 'wrong');
+}
+
+function toggleQBad() {
+  qBad[current] = !qBad[current];
+  saveQBad();
+  updateQualityBadges();
+  renderNav();
+}
+
+function toggleSBad() {
+  const ch = getChapter();
+  if (ch && ch.category === 'zhuanye') {
+    alert('专业课暂无解析图，无需标记');
+    return;
+  }
+  sBad[current] = !sBad[current];
+  saveSBad();
+  updateQualityBadges();
+  renderNav();
+}
+
+function updateQualityBadges() {
+  const qBtn = document.getElementById('btnQBad');
+  const sBtn = document.getElementById('btnSBad');
+  if (qBtn) qBtn.classList.toggle('active', !!qBad[current]);
+  if (sBtn) sBtn.classList.toggle('active', !!sBad[current]);
+}
+
+// ===== 解析显示控制 =====
+function toggleSolutionVisibility() {
+  showSolution = !showSolution;
+  const area = document.getElementById('solutionArea');
+  if (area) area.style.display = showSolution ? 'block' : 'none';
+  const btn = document.getElementById('btnToggle');
+  if (btn) {
+    const name = btn.querySelector('.func-name');
+    if (name) name.textContent = showSolution ? '👁️ 隐藏解析' : '👁️ 显示解析';
+  }
+}
+
+function toggleDefaultSolutionStrategy() {
+  defaultShowSolution = !defaultShowSolution;
+  showSolution = defaultShowSolution;
+  const btn = document.getElementById('btnSolDefault');
+  if (btn) {
+    btn.innerHTML = `解析默认：${defaultShowSolution ? '显示' : '隐藏'}<span class="sol-key">Shift+Space</span>`;
+  }
+  const area = document.getElementById('solutionArea');
+  if (area) area.style.display = showSolution ? 'block' : 'none';
+}
+
+// ===== 笔记功能 =====
+function renderNotesForCurrentQuestion() {
+  const ch = getChapter();
+  if (!ch) return;
+  const label = ch.labels?.[current];
+  const noteText = label ? (notesData[label] || '') : '';
+
+  const textarea = document.getElementById('notesTextarea');
+  const renderArea = document.getElementById('notesRender');
+  const preview = document.getElementById('notePreview');
+
+  if (textarea) textarea.value = noteText;
+  if (renderArea) renderArea.textContent = noteText || '暂无笔记内容';
+  if (preview) preview.textContent = noteText ? `笔记: ${noteText.slice(0, 30)}...` : '暂无笔记';
+}
+
+function setupNotesEvents() {
+  const btnEdit = document.getElementById('btnNoteEdit');
+  const btnSave = document.getElementById('btnNoteSave');
+  const btnCancel = document.getElementById('btnNoteCancel');
+  const btnDelete = document.getElementById('btnNoteDelete');
+  const notesBody = document.getElementById('notesBody');
+  const notesToggle = document.getElementById('notesToggle');
+
+  notesToggle?.addEventListener('click', function () {
+    if (notesBody) {
+      const isExpanded = notesBody.style.display === 'block';
+      notesBody.style.display = isExpanded ? 'none' : 'block';
+    }
+  });
+
+  btnEdit?.addEventListener('click', function () {
+    const textarea = document.getElementById('notesTextarea');
+    const renderArea = document.getElementById('notesRender');
+    if (textarea) textarea.style.display = 'block';
+    if (renderArea) renderArea.style.display = 'none';
+  });
+
+  btnSave?.addEventListener('click', function () {
+    const ch = getChapter();
+    if (!ch) return;
+    const label = ch.labels?.[current];
+    if (!label) return;
+
+    const textarea = document.getElementById('notesTextarea');
+    const noteText = textarea ? textarea.value.trim() : '';
+
+    if (noteText) {
+      notesData[label] = noteText;
+    } else {
+      delete notesData[label];
+    }
+
+    saveNotes();
+    renderNotesForCurrentQuestion();
+    renderNav();
+
+    const renderArea = document.getElementById('notesRender');
+    if (textarea) textarea.style.display = 'none';
+    if (renderArea) renderArea.style.display = 'block';
+  });
+
+  btnCancel?.addEventListener('click', function () {
+    renderNotesForCurrentQuestion();
+    const textarea = document.getElementById('notesTextarea');
+    const renderArea = document.getElementById('notesRender');
+    if (textarea) textarea.style.display = 'none';
+    if (renderArea) renderArea.style.display = 'block';
+  });
+
+  btnDelete?.addEventListener('click', function () {
+    if (!confirm('确定要删除当前题目笔记吗？')) return;
+    const ch = getChapter();
+    if (!ch) return;
+    const label = ch.labels?.[current];
+    if (!label) return;
+
+    delete notesData[label];
+    saveNotes();
+    renderNotesForCurrentQuestion();
+    renderNav();
+  });
+}
+
+// ===== 筛选逻辑 =====
+function isAllFilterActive() {
+  return currentFilters.has('all') || currentFilters.size === 0;
+}
+
+function getFilteredIndices() {
+  const ch = getChapter();
+  if (!ch) return [];
+  if (isAllFilterActive()) {
+    return Array.from({ length: ch.total }, (_, i) => i);
+  }
+
+  const indices = [];
+  for (let i = 0; i < ch.total; i++) {
+    const s = getStatus(i);
+    const isUnmarked = !s;
+    if (
+      (currentFilters.has('proficient') && s === 'proficient') ||
+      (currentFilters.has('vague') && s === 'vague') ||
+      (currentFilters.has('wrong') && s === 'wrong') ||
+      (currentFilters.has('unmarked') && isUnmarked)
+    ) {
+      indices.push(i);
+    }
+  }
+  return indices;
+}
+
+function updateFilterButtons() {
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(btn => {
+    const filter = btn.getAttribute('data-filter');
+    const isActive = currentFilters.has(filter) || (filter === 'all' && currentFilters.size === 0);
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
+function updateFilterCounts() {
+  const ch = getChapter();
+  if (!ch) return;
+
+  let proficient = 0, vague = 0, wrong = 0;
+  for (let i = 0; i < ch.total; i++) {
+    const s = getStatus(i);
+    if (s === 'proficient') proficient++;
+    else if (s === 'vague') vague++;
+    else if (s === 'wrong') wrong++;
+  }
+  const unmarked = Math.max(0, ch.total - (proficient + vague + wrong));
+
+  const setCount = (filter, count) => {
+    const btn = document.querySelector(`.filter-btn[data-filter="${filter}"] .filter-count`);
+    if (btn) btn.textContent = ` (${count})`;
+  };
+
+  setCount('all', ch.total);
+  setCount('proficient', proficient);
+  setCount('vague', vague);
+  setCount('wrong', wrong);
+  setCount('unmarked', unmarked);
+}
+
+function setupFilterEvents() {
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      const filter = btn.getAttribute('data-filter');
+      if (filter === 'all') {
+        currentFilters = new Set(['all']);
+      } else {
+        currentFilters.delete('all');
+        if (currentFilters.has(filter)) {
+          currentFilters.delete(filter);
+        } else {
+          currentFilters.add(filter);
+        }
+        if (currentFilters.size === 0) {
+          currentFilters.add('all');
+        }
+      }
+      updateFilterButtons();
+      renderNav();
+
+      const filtered = getFilteredIndices();
+      if (filtered.length > 0 && !filtered.includes(current)) {
+        switchTo(filtered[0]);
+      }
+    });
+  });
+}
+
+// ===== 视图渲染与题目切换 =====
+function renderTitle() {
+  const chapter = getChapter();
+  if (!chapter) return;
+
+  const workbookText = document.getElementById('txtWb');
+  const subjectText = document.getElementById('txtSubj');
+  const chapterText = document.getElementById('txtChapter');
+
+  if (workbookText) workbookText.textContent = chapter.wb || '';
+  if (subjectText) subjectText.textContent = chapter.subj || '';
+  if (chapterText) {
+    chapterText.textContent = chapter.short || chapter.name || '';
+  }
+}
+
+function renderStats() {
+  const ch = getChapter();
+  if (!ch) return;
+  const total = ch.total || 0;
+  let proficient = 0, vague = 0, wrong = 0;
+
+  for (let index = 0; index < total; index++) {
+    const status = getStatus(index);
+    if (status === 'proficient') proficient++;
+    else if (status === 'vague') vague++;
+    else if (status === 'wrong') wrong++;
+  }
+
+  const done = proficient + vague + wrong;
+  const unmarked = Math.max(0, total - done);
+
+  const setProgress = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(val);
+  };
+
+  setProgress('statTotal', total);
+  setProgress('statDone', done);
+  setProgress('statProficient', proficient);
+  setProgress('statVague', vague);
+  setProgress('statWrong', wrong);
+  setProgress('statUnmarked', unmarked);
+}
+
+function renderNav() {
+  const ch = getChapter();
+  if (!ch) return;
+  const nav = document.getElementById('qnav');
+  if (!nav) return;
+  nav.innerHTML = '';
+  ensureGroups(ch);
+
+  const labels = ch.labels || [];
+  const filteredSet = new Set(getFilteredIndices());
+
+  for (let i = 0; i < ch.total; i++) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'q-item ' + getStatusClass(i) + (i === current ? ' active' : '');
+    if (!filteredSet.has(i)) btn.classList.add('dimmed');
+    btn.textContent = labels[i] || (i + 1);
+    btn.addEventListener('click', function () {
+      switchTo(i);
+    });
+
+    if (qBad[i] || sBad[i] || notesData[labels[i]]) {
+      const badges = document.createElement('span');
+      badges.className = 'q-badges';
+      if (qBad[i]) {
+        const qb = document.createElement('span');
+        qb.className = 'bad-badge';
+        qb.textContent = 'Q';
+        badges.appendChild(qb);
+      }
+      if (sBad[i]) {
+        const sb = document.createElement('span');
+        sb.className = 'bad-badge';
+        sb.textContent = 'S';
+        badges.appendChild(sb);
+      }
+      if (notesData[labels[i]]) {
+        const nb = document.createElement('span');
+        nb.className = 'note-badge';
+        nb.textContent = 'N';
+        badges.appendChild(nb);
+      }
+      btn.appendChild(badges);
+    }
+
+    nav.appendChild(btn);
+  }
+}
+
+function switchTo(idx) {
+  const ch = getChapter();
+  if (!ch) return;
+
+  current = Math.max(0, Math.min(idx, ch.total - 1));
+  showSolution = defaultShowSolution;
+
+  const qImg = document.getElementById('questionImg');
+  const sImg = document.getElementById('solutionImg');
+  const sArea = document.getElementById('solutionArea');
+
+  const qLabel = document.getElementById('qLabel');
+  if (qLabel) {
+    const labelStr = ch.labels?.[current] || (current + 1);
+    qLabel.textContent = `第 ${current + 1} / ${ch.total} 题 (${labelStr})`;
+  }
+
+  const base = getImgPath(current);
+
+  if (qImg) {
+    qImg.onerror = function () {
+      console.warn('题目图片加载失败:', base);
+    };
+    if (ch.category === 'zhuanye' && base.includes('_question')) {
+      qImg.src = base + '.png';
+    } else {
+      qImg.src = base + '_question.png';
+    }
+  }
+
+  if (ch.category === 'zhuanye') {
+    showSolutionNotice('该题暂无解析图片');
+  } else {
+    if (sImg) {
+      sImg.onerror = function () {
+        showSolutionNotice('解析图片加载失败');
+      };
+      sImg.onload = function () {
+        hideSolutionNotice();
+      };
+      sImg.src = base + '_solution.png';
+    }
+  }
+
+  if (sArea) sArea.style.display = showSolution ? 'block' : 'none';
+
+  updateStatusButtons();
+  updateQualityBadges();
+  renderNotesForCurrentQuestion();
+  renderNav();
+  updateFilterCounts();
+
+  if (annoActive) {
+    restoreQuestionAnnotation();
+  }
+
+  const api = window.PrivateStudy;
+  if (api && api.getCurrentUser()) {
+    api.saveProgress(currentChapterId, 'lastPosition', current).catch(console.warn);
+  }
+}
+
+// ===== 章节与分类切换 =====
 async function switchChapter(chapterId) {
   const targetChapter = CHAPTERS.find(c => c.id === chapterId);
   if (!targetChapter || targetChapter.total === 0) {
@@ -981,38 +1142,358 @@ async function switchChapter(chapterId) {
   updateFilterCounts();
 }
 
+async function switchCategory(category) {
+  currentCategory = category;
 
+  document
+    .getElementById('catBtnShu1')
+    ?.classList.toggle('active', category === 'shu1');
 
-    
-    
+  document
+    .getElementById('catBtnZhuanye')
+    ?.classList.toggle('active', category === 'zhuanye');
 
+  const firstChapter = CHAPTERS.find(function (chapter) {
+    return (
+      (chapter.category || 'shu1') === category &&
+      chapter.total > 0
+    );
+  });
 
+  if (firstChapter) {
+    await switchChapter(firstChapter.id);
+  }
+}
 
+// ===== 三级标题下拉菜单 =====
+function fillWbPanel() {
+  const panel = document.getElementById('panelWb');
+  if (!panel) return;
+  panel.innerHTML = '';
+
+  const wbs = [];
+  CHAPTERS.forEach(function (ch) {
+    if ((ch.category || 'shu1') !== currentCategory) return;
+    if (!wbs.includes(ch.wb)) wbs.push(ch.wb);
+  });
+
+  wbs.sort((a, b) => WB_ORDER.indexOf(a) - WB_ORDER.indexOf(b));
+
+  const curCh = getChapter();
+
+  wbs.forEach(function (wb) {
+    const item = document.createElement('div');
+    item.className = 'title-panel-item' + (curCh && curCh.wb === wb ? ' active' : '');
+    item.textContent = wb;
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeAllTitlePanels();
+      const first = CHAPTERS.find(c => (c.category || 'shu1') === currentCategory && c.wb === wb && c.total > 0);
+      if (first) switchChapter(first.id);
+    });
+    panel.appendChild(item);
+  });
+}
+
+function fillSubjPanel() {
+  const panel = document.getElementById('panelSubj');
+  if (!panel) return;
+  panel.innerHTML = '';
+
+  const curCh = getChapter();
+  if (!curCh) return;
+
+  const subjs = [];
+  CHAPTERS.forEach(function (ch) {
+    if ((ch.category || 'shu1') !== currentCategory) return;
+    if (ch.wb !== curCh.wb) return;
+    if (!subjs.includes(ch.subj)) subjs.push(ch.subj);
+  });
+
+  subjs.sort((a, b) => SUBJ_ORDER.indexOf(a) - SUBJ_ORDER.indexOf(b));
+
+  subjs.forEach(function (subj) {
+    const item = document.createElement('div');
+    item.className = 'title-panel-item' + (curCh.subj === subj ? ' active' : '');
+    item.textContent = subj;
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeAllTitlePanels();
+      const first = CHAPTERS.find(c => (c.category || 'shu1') === currentCategory && c.wb === curCh.wb && c.subj === subj && c.total > 0);
+      if (first) switchChapter(first.id);
+    });
+    panel.appendChild(item);
+  });
+}
+
+function fillChapterPanel() {
+  const panel = document.getElementById('panelChapter');
+  if (!panel) return;
+  panel.innerHTML = '';
+
+  const curCh = getChapter();
+  if (!curCh) return;
+
+  const chs = CHAPTERS.filter(function (ch) {
+    return (ch.category || 'shu1') === currentCategory && ch.wb === curCh.wb && ch.subj === curCh.subj && ch.total > 0;
+  });
+
+  chs.forEach(function (ch) {
+    const item = document.createElement('div');
+    item.className = 'title-panel-item' + (ch.id === currentChapterId ? ' active' : '');
+    item.textContent = ch.short || ch.name;
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeAllTitlePanels();
+      switchChapter(ch.id);
+    });
+    panel.appendChild(item);
+  });
+}
+
+function closeAllTitlePanels() {
+  ['panelWb', 'panelSubj', 'panelChapter'].forEach(id => {
+    const p = document.getElementById(id);
+    if (p) p.style.display = 'none';
+  });
+}
+
+function setupTitleDropdownEvents() {
+  const trigWb = document.getElementById('trigWb');
+  const trigSubj = document.getElementById('trigSubj');
+  const trigChapter = document.getElementById('trigChapter');
+
+  trigWb?.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const p = document.getElementById('panelWb');
+    const visible = p?.style.display === 'block';
+    closeAllTitlePanels();
+    if (!visible && p) {
+      fillWbPanel();
+      p.style.display = 'block';
+    }
+  });
+
+  trigSubj?.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const p = document.getElementById('panelSubj');
+    const visible = p?.style.display === 'block';
+    closeAllTitlePanels();
+    if (!visible && p) {
+      fillSubjPanel();
+      p.style.display = 'block';
+    }
+  });
+
+  trigChapter?.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const p = document.getElementById('panelChapter');
+    const visible = p?.style.display === 'block';
+    closeAllTitlePanels();
+    if (!visible && p) {
+      fillChapterPanel();
+      p.style.display = 'block';
+    }
+  });
+
+  document.addEventListener('click', closeAllTitlePanels);
+}
+
+// ===== 键盘快捷键监听 =====
+function setupKeyboardShortcuts() {
+  document.addEventListener('keydown', function (event) {
+    if (!window.PrivateStudy?.getCurrentUser?.()) return;
+
+    const activeEl = document.activeElement;
+    if (
+      activeEl &&
+      (activeEl.tagName === 'INPUT' ||
+        activeEl.tagName === 'TEXTAREA' ||
+        activeEl.isContentEditable)
+    ) {
+      return;
+    }
+
+    const key = event.key.toUpperCase();
+    const ch = getChapter();
+
+    if (event.shiftKey && event.code === 'Space') {
+      event.preventDefault();
+      toggleDefaultSolutionStrategy();
+      return;
+    }
+
+    if (event.code === 'Space') {
+      event.preventDefault();
+      toggleSolutionVisibility();
+      return;
+    }
+
+    if (key === 'A') {
+      event.preventDefault();
+      if (ch && current > 0) switchTo(current - 1);
+      return;
+    }
+
+    if (key === 'D') {
+      event.preventDefault();
+      if (ch && current < ch.total - 1) switchTo(current + 1);
+      return;
+    }
+
+    if (key === 'W') {
+      event.preventDefault();
+      const cols = effectiveCols();
+      if (current >= cols) switchTo(current - cols);
+      return;
+    }
+
+    if (key === 'S') {
+      event.preventDefault();
+      const cols = effectiveCols();
+      if (ch && current + cols < ch.total) switchTo(current + cols);
+      return;
+    }
+
+    if (key === '1') {
+      event.preventDefault();
+      setQuestionStatus('proficient');
+      return;
+    }
+
+    if (key === '2') {
+      event.preventDefault();
+      setQuestionStatus('vague');
+      return;
+    }
+
+    if (key === '3') {
+      event.preventDefault();
+      setQuestionStatus('wrong');
+      return;
+    }
+
+    if (key === 'P') {
+      event.preventDefault();
+      toggleAnnotation();
+      return;
+    }
+
+    if (key === 'R') {
+      event.preventDefault();
+      toggleQBad();
+      return;
+    }
+
+    if (key === 'T') {
+      event.preventDefault();
+      toggleSBad();
+      return;
+    }
+
+    if (key === 'N') {
+      event.preventDefault();
+      const textarea = document.getElementById('notesTextarea');
+      const renderArea = document.getElementById('notesRender');
+      const notesBody = document.getElementById('notesBody');
+      if (notesBody) notesBody.style.display = 'block';
+      if (textarea) textarea.style.display = 'block';
+      if (renderArea) renderArea.style.display = 'none';
+      textarea?.focus();
+      return;
+    }
+
+    if (key === 'ESCAPE') {
+      event.preventDefault();
+      closeLightbox();
+      closeAllTitlePanels();
+      if (annoActive) toggleAnnotation(false);
+      return;
+    }
+  });
+}
+
+// ===== 单次绑定与初始化 =====
+function bindAppUiOnce() {
+  if (appUiBound) return;
+  appUiBound = true;
+
+  initTheme();
+  initAnnotationEngine();
+  bindLightboxEvents();
+  setupNotesEvents();
+  setupFilterEvents();
+  setupTitleDropdownEvents();
+  setupKeyboardShortcuts();
+
+  document.getElementById('catBtnShu1')?.addEventListener('click', function () {
+    switchCategory('shu1').catch(console.error);
+  });
+
+  document.getElementById('catBtnZhuanye')?.addEventListener('click', function () {
+    switchCategory('zhuanye').catch(console.error);
+  });
+
+  document.getElementById('catBtnTheme')?.addEventListener('click', toggleTheme);
+
+  document.getElementById('btnProficient')?.addEventListener('click', function () {
+    setQuestionStatus('proficient');
+  });
+
+  document.getElementById('btnVague')?.addEventListener('click', function () {
+    setQuestionStatus('vague');
+  });
+
+  document.getElementById('btnWrong')?.addEventListener('click', function () {
+    setQuestionStatus('wrong');
+  });
+
+  document.getElementById('btnToggleAnnotation')?.addEventListener('click', function () {
+    toggleAnnotation();
+  });
+
+  document.getElementById('btnQBad')?.addEventListener('click', toggleQBad);
+  document.getElementById('btnSBad')?.addEventListener('click', toggleSBad);
+
+  document.getElementById('btnToggle')?.addEventListener('click', toggleSolutionVisibility);
+  document.getElementById('btnSolDefault')?.addEventListener('click', toggleDefaultSolutionStrategy);
+}
+
+// ===== Supabase 事件集成 =====
+document.addEventListener('private-study:signed-in', async function (event) {
+  const user = event.detail?.user;
+  if (!user) return;
+
+  try {
+    bindAppUiOnce();
+    resetAllUserState();
+    initializedUserId = user.id;
+
+    const chapterId = currentChapterId || CHAPTERS[0]?.id || 'ch1';
+    currentChapterId = chapterId;
+
+    try {
+      await restoreChapterState(chapterId);
+    } catch (err) {
+      console.warn('restoreChapterState fail-safe:', err);
+    }
+
+    renderTitle();
+    renderStats();
+    renderNav();
+    switchTo(current);
+    updateFilterCounts();
+  } catch (error) {
+    console.error('初始化当前用户题库失败', error);
+  }
+});
+
+document.addEventListener('private-study:signed-out', function () {
+  resetAllUserState();
+});
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', bindAppUiOnce, { once: true });
 } else {
   bindAppUiOnce();
-}
-
-
-
-
-
-function initTheme() {
-  const mode = localStorage.getItem('kaoyan_theme_mode') || 'light';
-  if (mode === 'dark') {
-    document.body.classList.add('dark-mode');
-    if (btn) btn.innerHTML = '☀️ 日光模式';
-  }
-}
-
-function toggleTheme() {
-  const isDark = document.body.classList.toggle('dark-mode');
-  localStorage.setItem('kaoyan_theme_mode', isDark ? 'dark' : 'light');
-  if (btn) btn.innerHTML = isDark ? '☀️ 日光模式' : '🌙 护眼模式';
-}
-
-async function restoreCurrentUserProgress() {
-  await restoreChapterState(chapterId);
 }
