@@ -2320,11 +2320,70 @@
         <div class="img-bad-warning" id="qBadWarning">题目图质量不达标</div>
         <div class="q-label" id="qLabel"></div>
         <div class="sub-select-bar" id="subSelectBar" style="display:none"></div>
-        
-        
+
+        <div class="question-img-wrapper" id="questionImgWrapper">
+          <img id="questionImg" class="question-img" src="" alt="题目">
+          <canvas id="annotationCanvas" style="display:none" aria-label="题目标注画布"></canvas>
         </div>
-        </div><!-- #mainAreaContent -->
-        <div class="dashboard-panel" id="dashboardPanel" style="display:none">
+
+        <div class="anno-toolbar" id="annoToolbar" style="display:none">
+          <span class="anno-title">✏️ 题目标注</span>
+
+          <div class="anno-colors" aria-label="画笔颜色">
+            <button type="button" class="anno-color-btn active" data-color="#EF4444"
+              style="background:#EF4444" aria-label="红色"></button>
+            <button type="button" class="anno-color-btn" data-color="#2563EB"
+              style="background:#2563EB" aria-label="蓝色"></button>
+            <button type="button" class="anno-color-btn" data-color="#16A34A"
+              style="background:#16A34A" aria-label="绿色"></button>
+            <button type="button" class="anno-color-btn" data-color="#111827"
+              style="background:#111827" aria-label="黑色"></button>
+          </div>
+
+          <button type="button" class="anno-tool-btn" id="annoToolEraser">橡皮擦</button>
+
+          <label class="anno-slider-group" for="annoSizeSlider">
+            粗细
+            <input id="annoSizeSlider" type="range" min="1" max="20" value="4">
+            <span id="annoSizeVal">4</span>
+          </label>
+
+          <button type="button" class="anno-tool-btn" id="annoClear">清空</button>
+          <button type="button" class="anno-tool-btn" id="annoClose">关闭</button>
+        </div>
+
+        <div class="toggle-bar">
+          <button id="btnToggle" class="gel-btn btn-toggle">
+            <span class="func-name">隐藏解析</span><span class="key">Space</span>
+          </button>
+        </div>
+
+        <div class="solution-area show" id="solutionArea">
+          <div class="img-bad-warning solution-warn" id="sBadWarning">解析图质量不达标</div>
+          <img id="solutionImg" class="solution-img" src="" alt="解析">
+        </div>
+
+        <div class="notes-section" id="notesSection">
+          <button class="notes-toggle" id="notesToggle">
+            <span>笔记</span>
+            <span class="note-preview" id="notePreview"></span>
+          </button>
+
+          <div class="notes-body" id="notesBody">
+            <textarea class="notes-textarea" id="notesTextarea" placeholder="输入笔记内容..."></textarea>
+            <div class="notes-render" id="notesRender" style="display:none"></div>
+            <div class="notes-actions">
+              <button id="btnNoteEdit">编辑</button>
+              <button id="btnNoteSave" class="btn-save" style="display:none">保存</button>
+              <button id="btnNoteCancel" style="display:none">取消</button>
+              <button id="btnNoteDelete">删除</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- #mainAreaContent -->
+
+      <div class="dashboard-panel" id="dashboardPanel" style="display:none">
           <div class="dashboard-list" id="dashboardList"></div>
         </div>
         <div class="wrongbook-panel" id="wrongBookPanel" style="display:none">
@@ -2956,23 +3015,17 @@
 
     
 
-    async 
 
     
 
     
 
-    async 
 
-    async 
 
-    async 
 
     
 
-    async 
 
-    async 
 
 
     
@@ -3212,25 +3265,33 @@
       list.innerHTML = html;
 
       // 点击跳转
-      list.querySelectorAll('.wrongbook-q-item').forEach(function(el) {
-        el.addEventListener('click', function() {
-          const cid = parseInt(this.getAttribute('data-chapter'));
-          const idx = parseInt(this.getAttribute('data-index'));
-          // 关闭错题本
-          wrongBookOpen = false;
-          document.getElementById('wrongBookPanel').style.display = 'none';
-          document.getElementById('mainAreaContent').style.display = '';
-          document.getElementById('btnWrongBook').textContent = '错题本';
-          renderTitle();
-          // 切换章节并跳转
-          switchChapter(cid);
-          current = idx;
-          renderQuestion();
-          updateNavBadge();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+      list.querySelectorAll('.wrongbook-q-item').forEach(function (element) {
+      element.addEventListener('click', function () {
+        const chapterId = this.getAttribute('data-chapter');
+        const questionIndex = Number(this.getAttribute('data-index'));
+        const targetChapter = CHAPTERS.find(function (chapter) {
+          return chapter.id === chapterId;
         });
+
+        if (
+          !targetChapter ||
+          !Number.isInteger(questionIndex) ||
+          questionIndex < 0 ||
+          questionIndex >= targetChapter.total
+        ) {
+          console.error('错题跳转参数无效', { chapterId, questionIndex });
+          return;
+        }
+
+        wrongBookOpen = false;
+        document.getElementById('wrongBookPanel').style.display = 'none';
+        document.getElementById('mainAreaContent').style.display = '';
+        document.getElementById('btnWrongBook').textContent = '错题本';
+
+        switchChapter(chapterId);
+        switchTo(questionIndex);
       });
-    }
+    });  }
 
     // ===== 渲染题号网格 =====
     function renderNav() {
@@ -4129,25 +4190,37 @@
       };
     }
 
-    function saveQuestionAnnotation() {
-      const canvas = document.getElementById('annotationCanvas');
-      if (!canvas) return;
-      const key = currentChapterId + '_' + current;
-      annoStore[key] = canvas.toDataURL();
-    }
+    function annotationStorageKey() {
+  return 'kaoyan_annotation_v1:' + currentChapterId + ':' + current;
+}
 
-    function restoreQuestionAnnotation() {
-      const canvas = document.getElementById('annotationCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      const key = currentChapterId + '_' + current;
-      if (annoStore[key]) {
-        const img = new Image();
-        img.onload = function() {
-          ctx.drawImage(img, 0, 0);
-        };
+function saveQuestionAnnotation() {
+  const canvas = document.getElementById('annotationCanvas');
+  if (!canvas) return;
+
+  try {
+    localStorage.setItem(annotationStorageKey(), canvas.toDataURL('image/png'));
+  } catch (error) {
+    console.warn('标注保存失败，可能已达到浏览器存储上限', error);
+  }
+}
+
+function restoreQuestionAnnotation() {
+  const canvas = document.getElementById('annotationCanvas');
+  if (!canvas) return;
+
+  const context = canvas.getContext('2d');
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  const dataUrl = localStorage.getItem(annotationStorageKey());
+  if (!dataUrl) return;
+
+  const image = new Image();
+  image.onload = function () {
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  };
+  image.src = dataUrl;
+};
         img.src = annoStore[key];
       }
     }
@@ -4436,327 +4509,127 @@
 
     // ===== 错题导出 =====
     function exportQuestions(statusFilter) {
-      const ch = getChapter();
-      const items = [];
-      for (let i = 0; i < ch.total; i++) {
-        if (statuses[i] === statusFilter) {
-          items.push({ label: ch.labels[i], qImg: getImgPath(i) + '_question.png' });
-        }
-      }
-      if (items.length === 0) {
-        alert(statusFilter === 'vague' ? '当前章节没有标记为"模糊"的题目' : '当前章节没有标记为"需复习"的题目');
-        return;
-      }
-      const statusLabel = statusFilter === 'vague' ? '模糊' : '需复习';
-      const statusColor = statusFilter === 'vague' ? '#C45500' : '#BE160C';
-      const cardsHTML = items.map((item, idx) =>
-        `<div class="card"><h3>${idx + 1}. ${item.label}</h3><img src="${item.qImg}" alt="题目" onerror="this.style.display='none'"></div>`
-      ).join('');
+  const chapter = getChapter();
+  const items = [];
 
-      const w = window.open('', '_blank', 'width=900,height=700');
-      w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${ch.name} — ${statusLabel}题</title>
-<style>
-body{font-family:"Microsoft YaHei",sans-serif;background:#fff;padding:20px;color:#333}
-h1{font-size:20px;text-align:center;margin-bottom:4px}
-.subtitle{text-align:center;color:${statusColor};font-size:14px;margin-bottom:20px}
-.card{border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:20px;page-break-inside:avoid}
-.card h3{font-size:14px;color:${statusColor};margin:0 0 8px}
-.card img{max-width:100%;display:block;margin:8px 0}
-@media print{body{padding:0}.card{border:none;border-bottom:1px dashed #ccc;border-radius:0;margin-bottom:12px;padding:12px 0}}
-
-    /* ===== 大类切换栏 ===== */
-    .category-bar {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 8px 12px;
-      border-radius: var(--radius-pill);
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      width: fit-content;
+  for (let index = 0; index < chapter.total; index++) {
+    if (statuses[index] === statusFilter) {
+      items.push({
+        label: chapter.labels[index],
+        questionImage: getImgPath(index) + '_question.png'
+      });
     }
+  }
 
-    .category-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 22px;
-      border: 1px solid transparent;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 600;
-      color: #555;
-      background: transparent;
-      transition: all 0.25s ease;
-    }
+  if (items.length === 0) {
+    alert(
+      statusFilter === 'vague'
+        ? '当前章节没有标记为“模糊”的题目'
+        : '当前章节没有标记为“需复习”的题目'
+    );
+    return;
+  }
 
-    .category-btn:hover {
-      color: var(--primary);
-      background: rgba(102, 8, 116, 0.06);
-    }
+  const statusLabel = statusFilter === 'vague' ? '模糊' : '需复习';
+  const statusColor = statusFilter === 'vague' ? '#C45500' : '#BE160C';
 
-    .category-btn.active {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      color: #fff;
-      box-shadow: 0 3px 10px rgba(102, 8, 116, 0.35);
-      border-color: transparent;
-    }
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (character) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[character];
+    });
+  }
 
-    .solution-empty-notice {
-      padding: 24px 20px;
-      text-align: center;
-      color: #888;
-      font-size: 14px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius-sm);
-      border: 1px dashed #ccc;
-      margin-top: 10px;
-    }
+  const cardsHtml = items.map(function (item, index) {
+    return (
+      '<div class="card">' +
+        '<h3>' + (index + 1) + '. ' + escapeHtml(item.label) + '</h3>' +
+        '<img src="' + escapeHtml(item.questionImage) + '" alt="题目">' +
+      '</div>'
+    );
+  }).join('');
 
+  const popup = window.open('', '_blank', 'width=900,height=700');
+  if (!popup) {
+    alert('浏览器阻止了导出窗口，请允许本站打开弹窗后重试');
+    return;
+  }
 
-    /* ===== 暗黑 / 夜色护眼模式 ===== */
-    body.dark-mode {
-      background: linear-gradient(135deg, #12121a 0%, #1a1a26 50%, #151520 100%) !important;
-      color: #e0e0e8 !important;
-    }
+  popup.addEventListener('load', function () {
+    popup.focus();
+    popup.print();
+  }, { once: true });
 
-    body.dark-mode .category-bar,
-    body.dark-mode .title-trigger,
-    body.dark-mode .title-panel,
-    body.dark-mode #qnavContainer,
-    body.dark-mode .filter-toolbar,
-    body.dark-mode .notes-section,
-    body.dark-mode .shortcut-modal,
-    body.dark-mode .dash-chapter-card,
-    body.dark-mode .wrongbook-chapter-card,
-    body.dark-mode .export-section {
-      background: rgba(30, 30, 45, 0.85) !important;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-color: rgba(255, 255, 255, 0.12) !important;
-      color: #e0e0e8 !important;
-    }
-
-    body.dark-mode .category-btn {
-      color: #aaa;
-    }
-
-    body.dark-mode .category-btn:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    body.dark-mode .question-img,
-    body.dark-mode .solution-img {
-      background: #ffffff;
-      padding: 6px;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
-
-    body.dark-mode .title-trigger-text,
-    body.dark-mode .title-arrow,
-    body.dark-mode .filter-btn,
-    body.dark-mode .title-option,
-    body.dark-mode .qnav-label,
-    body.dark-mode .chapter-label,
-    body.dark-mode .filter-label,
-    body.dark-mode .export-label,
-    body.dark-mode .stats-counts {
-      color: #d0d0e0 !important;
-    }
-
-    body.dark-mode .filter-btn:hover,
-    body.dark-mode .title-option:hover {
-      background: rgba(255, 255, 255, 0.12) !important;
-      color: #fff !important;
-    }
-
-    body.dark-mode .notes-textarea {
-      background: #181824 !important;
-      color: #eee !important;
-      border-color: #33334d !important;
-    }
-
-    /* 错题消灭模式 Banner */
-    .wrong-practice-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(135deg, #FF9500 0%, #FF3B30 100%);
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 12px;
-      margin-bottom: 14px;
-      box-shadow: 0 4px 14px rgba(255, 59, 48, 0.3);
-      font-weight: 600;
-    }
-
-    .wrong-practice-banner .btn-exit-wrong {
-      background: rgba(255, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #fff;
-      padding: 4px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 13px;
-      transition: background 0.2s;
-    }
-
-    .wrong-practice-banner .btn-exit-wrong:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-
-    
-
-
-    /* ===== 题目原图直接标注/草稿 (Xiaoyivip 风格) ===== */
-    .question-img-wrapper {
-      position: relative;
-      display: inline-block;
-      max-width: 100%;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    #annotationCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      touch-action: none;
-      cursor: crosshair;
-    }
-
-    .anno-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 16px;
-      margin: 10px 0;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      flex-wrap: wrap;
-    }
-
-    body.dark-mode .anno-toolbar {
-      background: rgba(28, 28, 42, 0.95) !important;
-      border-color: rgba(255, 255, 255, 0.15) !important;
-    }
-
-    .anno-title {
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--primary);
-    }
-
-    .anno-colors {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .anno-color-btn {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: transform 0.15s, border-color 0.15s;
-    }
-
-    .anno-color-btn:hover {
-      transform: scale(1.15);
-    }
-
-    .anno-color-btn.active {
-      border-color: #333;
-      transform: scale(1.15);
-      box-shadow: 0 0 0 2px var(--primary);
-    }
-
-    body.dark-mode .anno-color-btn.active {
-      border-color: #fff;
-    }
-
-    .anno-tool-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid #ccc;
+  popup.document.open();
+  popup.document.write(`<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(chapter.name)} — ${statusLabel}题</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
       background: #fff;
-      font-size: 12px;
-      cursor: pointer;
       color: #333;
-      transition: all 0.2s;
+      font-family: "Microsoft YaHei", sans-serif;
     }
-
-    body.dark-mode .anno-tool-btn {
-      background: #2a2a3c;
-      color: #eee;
-      border-color: #444;
+    h1 {
+      margin: 0 0 4px;
+      text-align: center;
+      font-size: 20px;
     }
-
-    .anno-tool-btn.active, .anno-tool-btn:hover {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
+    .subtitle {
+      margin-bottom: 20px;
+      color: ${statusColor};
+      text-align: center;
+      font-size: 14px;
     }
-
-    .anno-slider-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #555;
+    .card {
+      margin-bottom: 20px;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      break-inside: avoid;
     }
-
-    body.dark-mode .anno-slider-group {
-      color: #ccc;
+    .card h3 {
+      margin: 0 0 8px;
+      color: ${statusColor};
+      font-size: 14px;
     }
-
-</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</head><body>
-<h1>${ch.name}</h1>
-<div class="subtitle">${statusLabel}题 · 共 ${items.length} 题</div>
-${cardsHTML}
-window.onload=function(){window.print()}<\\/script>
-
-  
-      
-      <div id="authMsg" style="font-size:13px; margin-bottom:12px; min-height:18px; color:#FF3B30;"></div>
-      
-      <div style="display:flex; gap:10px;">
-        <button id="btnAuthLogin" class="gel-btn" style="flex:1; justify-content:center; background:var(--primary); color:#fff;">登录账号</button>
-        <button id="btnAuthRegister" class="gel-btn" style="flex:1; justify-content:center; background:#34C759; color:#fff;">注册新账号</button>
-      </div>
-      
-      <div style="margin-top:16px; font-size:12px; color:#999; cursor:pointer;" id="btnCloseAuthModal">暂不登录（离线使用）</div>
-    </div>
-  </div>
-
-<\/body><\/html>`);
-      w.document.close();
+    .card img {
+      display: block;
+      max-width: 100%;
+      margin: 8px 0;
     }
+    @media print {
+      body { padding: 0; }
+      .card {
+        margin-bottom: 12px;
+        padding: 12px 0;
+        border: 0;
+        border-bottom: 1px dashed #ccc;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>${escapeHtml(chapter.name)}</h1>
+  <div class="subtitle">${statusLabel}题 · 共 ${items.length} 题</div>
+  ${cardsHtml}
+</body>
+</html>`);
+  popup.document.close();
+}
 
-    // ===== 键盘快捷键 =====
-    // A = 上一题, D = 下一题, W = 上一行(上 cols 题), S = 下一行(下 cols 题)
-    // F = 进入/退出小题选择模式（当前题含子题时生效）
-    // Q = 上一章, E = 下一章
-    // Z = 熟练, X = 模糊, C = 需复习, Space = 解析
-    // R = 题目图不达标, T = 解析图不达标
-    // Shift+A/Z/X/C/N = 筛选 全部/熟练/模糊/需复习/未标记
-    document.addEventListener('keydown', function (e) {
+function (e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       const key = e.key.toLowerCase();
       const isShift = e.shiftKey;
