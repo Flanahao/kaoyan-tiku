@@ -359,7 +359,7 @@ function scheduleSave(dataType, data, chapterId = currentChapterId) {
   saveUserCache(dataType, data, chapterId);
   const api = window.PrivateStudy;
   if (api && api.getCurrentUser()) {
-    api.saveProgress(chapterId, dataType, data).catch(console.warn);
+    api.scheduleSave(chapterId, dataType, data);
   }
 }
 
