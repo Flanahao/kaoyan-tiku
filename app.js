@@ -1644,7 +1644,7 @@ function resetAllUserState() {
   current = 0;
 }
 
-async function restoreChapterState(chapterId) {
+async async function restoreChapterState(chapterId) {
   const api = window.PrivateStudy;
   if (!api || !api.getCurrentUser()) return;
 
