@@ -421,6 +421,7 @@ function restoreQuestionAnnotation() {
     let statuses = {};
     let qBad = {};   // R键：题目图不达标  { idx: true }
     let sBad = {};   // T键：解析图不达标  { idx: true }
+    let notesData = {};
     let currentFilters = new Set(['all']);
     let subMode = false; // F键：小题选择模式（仅当前题组含子题时生效）
     let visualRows = []; // W/S 视觉行映射，每个元素是一个数组包含该行的 group.startIdx
@@ -430,6 +431,28 @@ function restoreQuestionAnnotation() {
     }
 
     function getChapter() { return CHAPTERS.find(c => c.id === currentChapterId); }
+
+    function getImgPath(idx) {
+      const chapter = getChapter();
+      if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
+
+      const rootDir = chapter.category === 'zhuanye'
+        ? '\u4e13\u4e1a\u9898\u5e93'
+        : '\u6570\u4e00\u9898\u5e93';
+      const chapterDir = `${rootDir}/${chapter.relPath}`;
+
+      if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
+        return `${chapterDir}/${chapter.fileBases[idx]}`;
+      }
+
+      const label = String(chapter.labels?.[idx] ?? '');
+      if (!label) throw new Error(`Missing image label for question ${idx + 1}`);
+
+      const fileBase = label.startsWith('\u4f8b')
+        ? `ex_${label.slice(1)}`
+        : `pb_${label}`;
+      return `${chapterDir}/${fileBase}`;
+    }
 
     // ===== 题组（父题/子题）解析 =====
     // 去掉 label 末尾括号及内容（支持 (1)、(a)、(I)、全角括号），得到父题号
@@ -1524,11 +1547,13 @@ function bindAppUiOnce() {
   });
 
   document.getElementById('catBtnTheme')?.addEventListener('click', toggleTheme);
-  document.getElementById('btnBackupData')?.addEventListener('click', backupData);
+  if (typeof backupData === 'function') {
+    document.getElementById('btnBackupData')?.addEventListener('click', backupData);
+  }
 
   const restoreButton = document.getElementById('btnRestoreData');
   const restoreInput = document.getElementById('fileRestoreInput');
-  if (restoreButton && restoreInput) {
+  if (restoreButton && restoreInput && typeof restoreData === 'function') {
     restoreButton.addEventListener('click', function () {
       restoreInput.click();
     });
@@ -1567,8 +1592,10 @@ function renderTitle() {
   var subj = ch.subj || '';
 
   var wbLabel = wb;
-  for (var i = 0; i < WORKBOOKS.length; i++) {
-    if (WORKBOOKS[i].key === wb) { wbLabel = WORKBOOKS[i].label; break; }
+  if (typeof WORKBOOKS !== 'undefined') {
+    for (var i = 0; i < WORKBOOKS.length; i++) {
+      if (WORKBOOKS[i].key === wb) { wbLabel = WORKBOOKS[i].label; break; }
+    }
   }
   var txtWb = document.getElementById('txtWb');
   if (txtWb) txtWb.textContent = wbLabel;
