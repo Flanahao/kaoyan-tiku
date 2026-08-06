@@ -1182,8 +1182,8 @@ function fillWbPanel() {
   const curCh = getChapter();
 
   wbs.forEach(function (wb) {
-    const item = document.createElement('div');
-    item.className = 'title-panel-item' + (curCh && curCh.wb === wb ? ' active' : '');
+    const item = document.createElement('button');
+    item.className = 'title-option' + (curCh && curCh.wb === wb ? ' active' : '');
     item.textContent = wb;
     item.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -1213,8 +1213,8 @@ function fillSubjPanel() {
   subjs.sort((a, b) => SUBJ_ORDER.indexOf(a) - SUBJ_ORDER.indexOf(b));
 
   subjs.forEach(function (subj) {
-    const item = document.createElement('div');
-    item.className = 'title-panel-item' + (curCh.subj === subj ? ' active' : '');
+    const item = document.createElement('button');
+    item.className = 'title-option' + (curCh.subj === subj ? ' active' : '');
     item.textContent = subj;
     item.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -1239,8 +1239,8 @@ function fillChapterPanel() {
   });
 
   chs.forEach(function (ch) {
-    const item = document.createElement('div');
-    item.className = 'title-panel-item' + (ch.id === currentChapterId ? ' active' : '');
+    const item = document.createElement('button');
+    item.className = 'title-option' + (ch.id === currentChapterId ? ' active' : '');
     item.textContent = ch.short || ch.name;
     item.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -1254,7 +1254,7 @@ function fillChapterPanel() {
 function closeAllTitlePanels() {
   ['panelWb', 'panelSubj', 'panelChapter'].forEach(id => {
     const p = document.getElementById(id);
-    if (p) p.style.display = 'none';
+    if (p) p.classList.remove('open');
   });
 }
 
@@ -1266,33 +1266,33 @@ function setupTitleDropdownEvents() {
   trigWb?.addEventListener('click', function (e) {
     e.stopPropagation();
     const p = document.getElementById('panelWb');
-    const visible = p?.style.display === 'block';
+    const visible = p?.classList.contains('open');
     closeAllTitlePanels();
     if (!visible && p) {
       fillWbPanel();
-      p.style.display = 'block';
+      p.classList.add('open');
     }
   });
 
   trigSubj?.addEventListener('click', function (e) {
     e.stopPropagation();
     const p = document.getElementById('panelSubj');
-    const visible = p?.style.display === 'block';
+    const visible = p?.classList.contains('open');
     closeAllTitlePanels();
     if (!visible && p) {
       fillSubjPanel();
-      p.style.display = 'block';
+      p.classList.add('open');
     }
   });
 
   trigChapter?.addEventListener('click', function (e) {
     e.stopPropagation();
     const p = document.getElementById('panelChapter');
-    const visible = p?.style.display === 'block';
+    const visible = p?.classList.contains('open');
     closeAllTitlePanels();
     if (!visible && p) {
       fillChapterPanel();
-      p.style.display = 'block';
+      p.classList.add('open');
     }
   });
 
