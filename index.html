@@ -2352,6 +2352,7 @@
   </div><!-- .app-layout -->
 
   <script>
+
     // ===== 章节数据 =====
     const CHAPTERS = [
 {id:"ch1",category:"shu1",number:1,name:"基础30讲 - 高数 - 第1讲 函数极限与连续",short:"第1讲 函数极限与连续",total:54,cols:5,wb:"基础30讲",subj:"高数",relPath:"基础30讲/高数/第1讲 函数极限与连续",labels:["例1-1", "例1-2", "例1-3", "例1-4", "例1-5", "例1-6", "例1-7", "例1-8", "例1-9", "例1-10", "例1-11", "例1-12", "例1-13", "例1-14", "例1-15", "例1-16", "例1-17", "例1-18", "例1-19", "例1-20", "例1-21", "例1-22", "例1-23", "例1-24", "例1-25", "例1-26", "例1-27", "例1-28", "例1-29", "例1-30", "例1-31", "例1-32", "例1-33", "例1-34", "例1-35", "例1-36", "例1-37", "例1-38", "1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7", "1-8", "1-9", "1-10", "1-11", "1-12", "1-13", "1-14", "1-15", "1-16"]},
@@ -3057,7 +3058,7 @@
           if (!inside) closeAllTitlePanels();
         });
       });
-    })();
+    
 
     // ===== 自动分区：从 label 推断所属类别 =====
     const PART_ORDER = ['例题', '习题'];
@@ -4724,12 +4725,12 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
       color: #ccc;
     }
 
-</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
 </head><body>
 <h1>${ch.name}</h1>
 <div class="subtitle">${statusLabel}题 · 共 ${items.length} 题</div>
 ${cardsHTML}
-<script>window.onload=function(){window.print()}<\\/script>
+window.onload=function(){window.print()}<\\/script>
 
   
       
@@ -4744,7 +4745,7 @@ ${cardsHTML}
     </div>
   </div>
 
-</body></html>`);
+<\/body><\/html>`);
       w.document.close();
     }
 
@@ -4811,7 +4812,7 @@ ${cardsHTML}
     renderTitle();
     renderStats();
     renderNav(); switchTo(0); updateFilterCounts();
-  </script>
+  
 
   <div class="shortcut-overlay" id="shortcutOverlay">
     <div class="shortcut-modal" id="shortcutModal">
@@ -4893,6 +4894,7 @@ ${cardsHTML}
     </div>
   </div>
 
-</body>
 
+  </script>
+</body>
 </html>
