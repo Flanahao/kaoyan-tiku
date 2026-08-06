@@ -2119,6 +2119,117 @@
       touch-action: none;
     }
 
+
+    /* ===== 题目原图直接标注/草稿 (Xiaoyivip 风格) ===== */
+    .question-img-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #annotationCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .anno-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 16px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
+    }
+
+    body.dark-mode .anno-toolbar {
+      background: rgba(28, 28, 42, 0.95) !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .anno-title {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--primary);
+    }
+
+    .anno-colors {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .anno-color-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+
+    .anno-color-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .anno-color-btn.active {
+      border-color: #333;
+      transform: scale(1.15);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    body.dark-mode .anno-color-btn.active {
+      border-color: #fff;
+    }
+
+    .anno-tool-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      color: #333;
+      transition: all 0.2s;
+    }
+
+    body.dark-mode .anno-tool-btn {
+      background: #2a2a3c;
+      color: #eee;
+      border-color: #444;
+    }
+
+    .anno-tool-btn.active, .anno-tool-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .anno-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    body.dark-mode .anno-slider-group {
+      color: #ccc;
+    }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -2199,7 +2310,7 @@
               class="key">X</span></button>
           <button id="btnWrong" class="gel-btn btn-status" data-status="wrong"><span class="func-name">需复习</span><span
               class="key">C</span></button>
-          <button id="btnToggleScratchpad" class="gel-btn"><span class="func-name">草稿纸</span><span class="key">P</span></button>
+          <button id="btnToggleAnnotation" class="gel-btn" style="background:rgba(255,149,0,0.12); color:#FF9500; border:1px solid rgba(255,149,0,0.3);"><span class="func-name">✏️ 开启标注</span><span class="key">P</span></button>
           <span class="nav-sep">|</span>
           <button id="btnQBad" class="gel-btn btn-qbad-toggle"><span class="func-name">题目图不达标</span><span
               class="key">R</span></button>
@@ -2210,48 +2321,7 @@
         <div class="q-label" id="qLabel"></div>
         <div class="sub-select-bar" id="subSelectBar" style="display:none"></div>
         
-        <div class="scratchpad-container" id="scratchContainer" style="display:none;">
-          <div class="scratchpad-toolbar" id="scratchToolbar">
-            <span class="scratch-title">✏️ 考研草稿纸</span>
-            <button class="scratch-btn active" id="scratchToolPen">✏️ 画笔</button>
-            <button class="scratch-btn" id="scratchToolEraser">🧹 橡皮擦</button>
-            <input type="color" id="scratchColorPicker" value="#FF3B30" title="画笔颜色" style="width:26px;height:26px;border:none;border-radius:50%;cursor:pointer;padding:0;background:transparent;">
-            <select id="scratchSizeSelect" class="scratch-select" title="粗细">
-              <option value="2">细</option>
-              <option value="4" selected>中</option>
-              <option value="8">粗</option>
-            </select>
-            <button class="scratch-btn" id="scratchClear">🗑️ 清屏</button>
-            <button class="scratch-btn" id="scratchClose" style="margin-left:auto;">❌ 关闭</button>
-          </div>
-          <canvas id="scratchCanvas"></canvas>
-        </div>
-
-        <img id="questionImg" class="question-img" src="" alt="题目">
-        <div class="toggle-bar">
-          <button id="btnToggle" class="gel-btn btn-toggle"><span class="func-name">隐藏解析</span><span
-              class="key">Space</span></button>
-        </div>
-        <div class="solution-area show" id="solutionArea">
-          <div class="img-bad-warning solution-warn" id="sBadWarning">解析图质量不达标</div>
-          <img id="solutionImg" class="solution-img" src="" alt="解析">
-        </div>
-
-        <div class="notes-section" id="notesSection">
-          <button class="notes-toggle" id="notesToggle">
-            <span>笔记</span>
-            <span class="note-preview" id="notePreview"></span>
-          </button>
-          <div class="notes-body" id="notesBody">
-            <textarea class="notes-textarea" id="notesTextarea" placeholder="输入笔记内容..."></textarea>
-            <div class="notes-render" id="notesRender" style="display:none"></div>
-            <div class="notes-actions">
-              <button id="btnNoteEdit">编辑</button>
-              <button id="btnNoteSave" class="btn-save" style="display:none">保存</button>
-              <button id="btnNoteCancel" style="display:none">取消</button>
-              <button id="btnNoteDelete">删除</button>
-            </div>
-          </div>
+        
         </div>
         </div><!-- #mainAreaContent -->
         <div class="dashboard-panel" id="dashboardPanel" style="display:none">
@@ -2945,9 +3015,9 @@
 
       const bStartWrong = document.getElementById('btnStartWrongPractice');
       if (bStartWrong) bStartWrong.addEventListener('click', startWrongPractice);
-      const bScratch = document.getElementById('btnToggleScratchpad');
-      if (bScratch) bScratch.addEventListener('click', function() { toggleScratchpad(); });
-      initScratchpad();
+      const bScratch = document.getElementById('btnToggleAnnotation');
+      if (bScratch) bScratch.addEventListener('click', function() { toggleAnnotation(); });
+      initAnnotationEngine();
       
       const bLoginModal = document.getElementById('btnLoginModal');
       if (bLoginModal) bLoginModal.addEventListener('click', function() { toggleAuthModal(true); });
@@ -3799,7 +3869,7 @@
 
     function toggleScratchpad(show) {
       const container = document.getElementById('scratchContainer');
-      const btn = document.getElementById('btnToggleScratchpad');
+      const btn = document.getElementById('btnToggleAnnotation');
       if (show === undefined) show = container.style.display === 'none';
       container.style.display = show ? 'block' : 'none';
       if (btn) btn.classList.toggle('active', show);
@@ -3963,6 +4033,148 @@
     }
 
 
+    
+    // ===== 题目原图直接标注/草稿 (Xiaoyivip 风格) =====
+    let annoActive = false;
+    let annoDrawing = false;
+    let annoTool = 'pen'; // 'pen' | 'eraser'
+    let annoColor = '#EF4444';
+    let annoSize = 4;
+    let annoStore = {}; // Memory cache for per-question canvas drawings
+
+    function initAnnotationEngine() {
+      const canvas = document.getElementById('annotationCanvas');
+      const qImg = document.getElementById('questionImg');
+      if (!canvas || !qImg) return;
+      const ctx = canvas.getContext('2d');
+
+      function syncCanvasSize() {
+        if (qImg.clientWidth > 0 && qImg.clientHeight > 0) {
+          canvas.width = qImg.clientWidth;
+          canvas.height = qImg.clientHeight;
+          restoreQuestionAnnotation();
+        }
+      }
+
+      qImg.onload = function() {
+        if (annoActive) syncCanvasSize();
+      };
+
+      canvas.addEventListener('pointerdown', function(e) {
+        if (!annoActive) return;
+        annoDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      });
+
+      canvas.addEventListener('pointermove', function(e) {
+        if (!annoDrawing || !annoActive) return;
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineWidth = annoTool === 'eraser' ? annoSize * 4 : annoSize;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        if (annoTool === 'eraser') {
+          ctx.globalCompositeOperation = 'destination-out';
+        } else {
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.strokeStyle = annoColor;
+        }
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+      });
+
+      window.addEventListener('pointerup', function() {
+        if (annoDrawing) {
+          annoDrawing = false;
+          saveQuestionAnnotation();
+        }
+      });
+
+      // Color selection
+      document.querySelectorAll('.anno-color-btn').forEach(btn => {
+        btn.onclick = function() {
+          document.querySelectorAll('.anno-color-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          annoColor = this.dataset.color;
+          annoTool = 'pen';
+          document.getElementById('annoToolEraser').classList.remove('active');
+        };
+      });
+
+      document.getElementById('annoToolEraser').onclick = function() {
+        if (annoTool === 'eraser') {
+          annoTool = 'pen';
+          this.classList.remove('active');
+        } else {
+          annoTool = 'eraser';
+          this.classList.add('active');
+        }
+      };
+
+      const slider = document.getElementById('annoSizeSlider');
+      slider.oninput = function() {
+        annoSize = parseInt(this.value);
+        document.getElementById('annoSizeVal').textContent = annoSize;
+      };
+
+      document.getElementById('annoClear').onclick = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        saveQuestionAnnotation();
+      };
+
+      document.getElementById('annoClose').onclick = function() {
+        toggleAnnotation(false);
+      };
+    }
+
+    function saveQuestionAnnotation() {
+      const canvas = document.getElementById('annotationCanvas');
+      if (!canvas) return;
+      const key = currentChapterId + '_' + current;
+      annoStore[key] = canvas.toDataURL();
+    }
+
+    function restoreQuestionAnnotation() {
+      const canvas = document.getElementById('annotationCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const key = currentChapterId + '_' + current;
+      if (annoStore[key]) {
+        const img = new Image();
+        img.onload = function() {
+          ctx.drawImage(img, 0, 0);
+        };
+        img.src = annoStore[key];
+      }
+    }
+
+    function toggleAnnotation(show) {
+      const canvas = document.getElementById('annotationCanvas');
+      const toolbar = document.getElementById('annoToolbar');
+      const btn = document.getElementById('btnToggleAnnotation');
+      const qImg = document.getElementById('questionImg');
+      
+      if (show === undefined) show = !annoActive;
+      annoActive = show;
+      
+      if (canvas) canvas.style.display = show ? 'block' : 'none';
+      if (toolbar) toolbar.style.display = show ? 'flex' : 'none';
+      if (btn) {
+        btn.classList.toggle('active', show);
+        btn.querySelector('.func-name').textContent = show ? '✏️ 关闭标注' : '✏️ 开启标注';
+      }
+      
+      if (show && qImg) {
+        canvas.width = qImg.clientWidth || qImg.naturalWidth || 800;
+        canvas.height = qImg.clientHeight || qImg.naturalHeight || 600;
+        restoreQuestionAnnotation();
+      }
+    }
+
+
     function initTheme() {
       const mode = localStorage.getItem('theme_mode') || 'light';
       if (mode === 'dark') {
@@ -4117,9 +4329,9 @@
 
       const bStartWrong = document.getElementById('btnStartWrongPractice');
       if (bStartWrong) bStartWrong.addEventListener('click', startWrongPractice);
-      const bScratch = document.getElementById('btnToggleScratchpad');
-      if (bScratch) bScratch.addEventListener('click', function() { toggleScratchpad(); });
-      initScratchpad();
+      const bScratch = document.getElementById('btnToggleAnnotation');
+      if (bScratch) bScratch.addEventListener('click', function() { toggleAnnotation(); });
+      initAnnotationEngine();
       
       const bLoginModal = document.getElementById('btnLoginModal');
       if (bLoginModal) bLoginModal.addEventListener('click', function() { toggleAuthModal(true); });
@@ -4401,6 +4613,117 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
 
     
 
+
+    /* ===== 题目原图直接标注/草稿 (Xiaoyivip 风格) ===== */
+    .question-img-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #annotationCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .anno-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 16px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
+    }
+
+    body.dark-mode .anno-toolbar {
+      background: rgba(28, 28, 42, 0.95) !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .anno-title {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--primary);
+    }
+
+    .anno-colors {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .anno-color-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+
+    .anno-color-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .anno-color-btn.active {
+      border-color: #333;
+      transform: scale(1.15);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    body.dark-mode .anno-color-btn.active {
+      border-color: #fff;
+    }
+
+    .anno-tool-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      color: #333;
+      transition: all 0.2s;
+    }
+
+    body.dark-mode .anno-tool-btn {
+      background: #2a2a3c;
+      color: #eee;
+      border-color: #444;
+    }
+
+    .anno-tool-btn.active, .anno-tool-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .anno-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    body.dark-mode .anno-slider-group {
+      color: #ccc;
+    }
+
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head><body>
 <h1>${ch.name}</h1>
@@ -4455,7 +4778,7 @@ ${cardsHTML}
         case 'd': case 'arrowright': navNext(); break;
         // 小题选择模式
         case 'f': toggleSubMode(); break;
-        case 'p': toggleScratchpad(); break;
+        case 'p': toggleAnnotation(); break;
         // 上一行 / 下一行（视觉网格行导航）
         case 'w': case 'arrowup': navUp(); break;
         case 's': case 'arrowdown': navDown(); break;
