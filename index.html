@@ -2120,6 +2120,7 @@
     }
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -2170,7 +2171,7 @@
       <div class="category-bar" id="categoryBar">
         <button class="category-btn active" data-category="shu1" id="catBtnShu1">📐 数一题库</button>
         <button class="category-btn" data-category="zhuanye" id="catBtnZhuanye">📚 专业课题库</button>
-        <button class="category-btn" id="catBtnTheme" style="margin-left:auto;">🌙 护眼模式</button>
+        <button class="category-btn" id="catBtnTheme">🌙 护眼模式</button>
       </div>
 
       <div class="chapter-title-bar" id="chapterTitleBar">
@@ -2601,7 +2602,7 @@
         saveStatuses();
       } catch (e) { statuses = {}; }
     }
-    function saveStatuses() { localStorage.setItem(storageKey(), JSON.stringify(statuses)); }
+    function saveStatuses() { localStorage.setItem(storageKey(), JSON.stringify(statuses)); pushCloudChapterData(currentChapterId, 'status', statuses); }
     function loadQBad() {
       try {
         let raw = JSON.parse(localStorage.getItem(qBadStorageKey())) || {};
@@ -2609,7 +2610,7 @@
         saveQBad();
       } catch (e) { qBad = {}; }
     }
-    function saveQBad() { localStorage.setItem(qBadStorageKey(), JSON.stringify(qBad)); }
+    function saveQBad() { localStorage.setItem(qBadStorageKey(), JSON.stringify(qBad)); pushCloudChapterData(currentChapterId, 'qbad', qBad); }
     function loadSBad() {
       try {
         let raw = JSON.parse(localStorage.getItem(sBadStorageKey())) || {};
@@ -2617,7 +2618,7 @@
         saveSBad();
       } catch (e) { sBad = {}; }
     }
-    function saveSBad() { localStorage.setItem(sBadStorageKey(), JSON.stringify(sBad)); }
+    function saveSBad() { localStorage.setItem(sBadStorageKey(), JSON.stringify(sBad)); pushCloudChapterData(currentChapterId, 'sbad', sBad); }
 
     // ===== 笔记数据 =====
     let notesData = {};
@@ -2625,7 +2626,7 @@
     function loadNotes() {
       try { notesData = JSON.parse(localStorage.getItem(notesStorageKey())) || {}; } catch (e) { notesData = {}; }
     }
-    function saveNotes() { localStorage.setItem(notesStorageKey(), JSON.stringify(notesData)); }
+    function saveNotes() { localStorage.setItem(notesStorageKey(), JSON.stringify(notesData)); pushCloudChapterData(currentChapterId, 'notes', notesData); }
 
     function getStatusClass(idx) {
       const s = statuses[idx];
@@ -2947,6 +2948,155 @@
     }
 
 
+    
+    // ===== Supabase 云端账号与同步逻辑 =====
+    let SUPABASE_URL = localStorage.getItem('supabase_url') || 'https://kaoyan-tiku.supabase.co';
+    let SUPABASE_ANON_KEY = localStorage.getItem('supabase_key') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
+
+    let supabaseClient = null;
+    let currentUser = null;
+
+    function initSupabase() {
+      if (window.supabase && SUPABASE_URL && SUPABASE_URL.startsWith('http')) {
+        try {
+          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          checkUserSession();
+        } catch(e) {
+          console.warn('Supabase init skipped:', e);
+        }
+      }
+    }
+
+    async function checkUserSession() {
+      if (!supabaseClient) return;
+      try {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (user) {
+          onUserLoggedIn(user);
+        } else {
+          onUserLoggedOut();
+        }
+      } catch(e) {}
+    }
+
+    function onUserLoggedIn(user) {
+      currentUser = user;
+      document.getElementById('userEmailSpan').textContent = '👤 ' + user.email.split('@')[0];
+      document.getElementById('userEmailSpan').title = user.email;
+      document.getElementById('userEmailSpan').style.display = 'inline';
+      document.getElementById('syncStatusSpan').style.display = 'inline';
+      document.getElementById('btnLoginModal').style.display = 'none';
+      document.getElementById('btnLogout').style.display = 'inline';
+      
+      pullCloudProgress();
+    }
+
+    function onUserLoggedOut() {
+      currentUser = null;
+      document.getElementById('userEmailSpan').style.display = 'none';
+      document.getElementById('syncStatusSpan').style.display = 'none';
+      document.getElementById('btnLoginModal').style.display = 'inline';
+      document.getElementById('btnLogout').style.display = 'none';
+    }
+
+    async function handleAuthLogin() {
+      const email = document.getElementById('authEmailInput').value.trim();
+      const password = document.getElementById('authPasswordInput').value.trim();
+      const msg = document.getElementById('authMsg');
+      if (!email || !password) { msg.textContent = '请输入邮箱与密码'; return; }
+      msg.textContent = '登录中...'; msg.style.color = '#333';
+      
+      if (!supabaseClient) {
+        msg.textContent = '请先配置 Supabase 云数据库参数'; msg.style.color = '#FF3B30';
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) {
+        msg.textContent = '登录失败: ' + error.message; msg.style.color = '#FF3B30';
+      } else {
+        msg.textContent = '登录成功！'; msg.style.color = '#34C759';
+        onUserLoggedIn(data.user);
+        setTimeout(() => { toggleAuthModal(false); }, 800);
+      }
+    }
+
+    async function handleAuthRegister() {
+      const email = document.getElementById('authEmailInput').value.trim();
+      const password = document.getElementById('authPasswordInput').value.trim();
+      const msg = document.getElementById('authMsg');
+      if (!email || !password) { msg.textContent = '请输入邮箱与密码'; return; }
+      if (password.length < 6) { msg.textContent = '密码至少需要6位'; return; }
+      msg.textContent = '注册中...'; msg.style.color = '#333';
+
+      if (!supabaseClient) {
+        msg.textContent = '请先配置 Supabase 云数据库参数'; msg.style.color = '#FF3B30';
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signUp({ email, password });
+      if (error) {
+        msg.textContent = '注册失败: ' + error.message; msg.style.color = '#FF3B30';
+      } else {
+        msg.textContent = '注册成功！现已自动登录'; msg.style.color = '#34C759';
+        if (data.user) onUserLoggedIn(data.user);
+        setTimeout(() => { toggleAuthModal(false); }, 1000);
+      }
+    }
+
+    async function handleAuthLogout() {
+      if (supabaseClient) await supabaseClient.auth.signOut();
+      onUserLoggedOut();
+      alert('已安全退出登录');
+    }
+
+    function toggleAuthModal(show) {
+      const overlay = document.getElementById('authModalOverlay');
+      if (show === undefined) show = !overlay.classList.contains('show');
+      overlay.classList.toggle('show', show);
+    }
+
+    async function pullCloudProgress() {
+      if (!supabaseClient || !currentUser) return;
+      document.getElementById('syncStatusSpan').textContent = '🔄 同步中...';
+      try {
+        const { data, error } = await supabaseClient
+          .from('user_progress')
+          .select('*')
+          .eq('user_id', currentUser.id);
+          
+        if (data && data.length > 0) {
+          data.forEach(row => {
+            const key = row.chapter_id + '_s1_' + row.data_type;
+            localStorage.setItem(key, JSON.stringify(row.data));
+          });
+          loadStatuses(); loadQBad(); loadSBad(); loadNotes();
+          renderStats(); renderNav(); updateFilterCounts();
+        }
+        document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
+      } catch(err) {
+        document.getElementById('syncStatusSpan').textContent = '☁️ 离线中';
+      }
+    }
+
+    async function pushCloudChapterData(chapterId, dataType, dataObj) {
+      if (!supabaseClient || !currentUser) return;
+      document.getElementById('syncStatusSpan').textContent = '🔄 保存中...';
+      try {
+        await supabaseClient.from('user_progress').upsert({
+          user_id: currentUser.id,
+          chapter_id: chapterId,
+          data_type: dataType,
+          data: dataObj,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id,chapter_id,data_type' });
+        document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
+      } catch(e) {
+        document.getElementById('syncStatusSpan').textContent = '☁️ 离线保存';
+      }
+    }
+
+
     function initTheme() {
       const mode = localStorage.getItem('theme_mode') || 'light';
       if (mode === 'dark') {
@@ -3105,6 +3255,19 @@
       const bScratch = document.getElementById('btnToggleScratchpad');
       if (bScratch) bScratch.addEventListener('click', function() { toggleScratchpad(); });
       initScratchpad();
+      
+      const bLoginModal = document.getElementById('btnLoginModal');
+      if (bLoginModal) bLoginModal.addEventListener('click', function() { toggleAuthModal(true); });
+      const bCloseModal = document.getElementById('btnCloseAuthModal');
+      if (bCloseModal) bCloseModal.addEventListener('click', function() { toggleAuthModal(false); });
+      const bLogin = document.getElementById('btnAuthLogin');
+      if (bLogin) bLogin.addEventListener('click', handleAuthLogin);
+      const bReg = document.getElementById('btnAuthRegister');
+      if (bReg) bReg.addEventListener('click', handleAuthRegister);
+      const bLogout = document.getElementById('btnLogout');
+      if (bLogout) bLogout.addEventListener('click', handleAuthLogout);
+      
+      initSupabase();
         function togglePanel(ddId, trigId) {
           var trig = document.getElementById(trigId);
           var panel = document.getElementById(ddId.replace('dd', 'panel'));
@@ -3958,6 +4121,155 @@
     }
 
 
+    
+    // ===== Supabase 云端账号与同步逻辑 =====
+    let SUPABASE_URL = localStorage.getItem('supabase_url') || 'https://kaoyan-tiku.supabase.co';
+    let SUPABASE_ANON_KEY = localStorage.getItem('supabase_key') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
+
+    let supabaseClient = null;
+    let currentUser = null;
+
+    function initSupabase() {
+      if (window.supabase && SUPABASE_URL && SUPABASE_URL.startsWith('http')) {
+        try {
+          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          checkUserSession();
+        } catch(e) {
+          console.warn('Supabase init skipped:', e);
+        }
+      }
+    }
+
+    async function checkUserSession() {
+      if (!supabaseClient) return;
+      try {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (user) {
+          onUserLoggedIn(user);
+        } else {
+          onUserLoggedOut();
+        }
+      } catch(e) {}
+    }
+
+    function onUserLoggedIn(user) {
+      currentUser = user;
+      document.getElementById('userEmailSpan').textContent = '👤 ' + user.email.split('@')[0];
+      document.getElementById('userEmailSpan').title = user.email;
+      document.getElementById('userEmailSpan').style.display = 'inline';
+      document.getElementById('syncStatusSpan').style.display = 'inline';
+      document.getElementById('btnLoginModal').style.display = 'none';
+      document.getElementById('btnLogout').style.display = 'inline';
+      
+      pullCloudProgress();
+    }
+
+    function onUserLoggedOut() {
+      currentUser = null;
+      document.getElementById('userEmailSpan').style.display = 'none';
+      document.getElementById('syncStatusSpan').style.display = 'none';
+      document.getElementById('btnLoginModal').style.display = 'inline';
+      document.getElementById('btnLogout').style.display = 'none';
+    }
+
+    async function handleAuthLogin() {
+      const email = document.getElementById('authEmailInput').value.trim();
+      const password = document.getElementById('authPasswordInput').value.trim();
+      const msg = document.getElementById('authMsg');
+      if (!email || !password) { msg.textContent = '请输入邮箱与密码'; return; }
+      msg.textContent = '登录中...'; msg.style.color = '#333';
+      
+      if (!supabaseClient) {
+        msg.textContent = '请先配置 Supabase 云数据库参数'; msg.style.color = '#FF3B30';
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) {
+        msg.textContent = '登录失败: ' + error.message; msg.style.color = '#FF3B30';
+      } else {
+        msg.textContent = '登录成功！'; msg.style.color = '#34C759';
+        onUserLoggedIn(data.user);
+        setTimeout(() => { toggleAuthModal(false); }, 800);
+      }
+    }
+
+    async function handleAuthRegister() {
+      const email = document.getElementById('authEmailInput').value.trim();
+      const password = document.getElementById('authPasswordInput').value.trim();
+      const msg = document.getElementById('authMsg');
+      if (!email || !password) { msg.textContent = '请输入邮箱与密码'; return; }
+      if (password.length < 6) { msg.textContent = '密码至少需要6位'; return; }
+      msg.textContent = '注册中...'; msg.style.color = '#333';
+
+      if (!supabaseClient) {
+        msg.textContent = '请先配置 Supabase 云数据库参数'; msg.style.color = '#FF3B30';
+        return;
+      }
+
+      const { data, error } = await supabaseClient.auth.signUp({ email, password });
+      if (error) {
+        msg.textContent = '注册失败: ' + error.message; msg.style.color = '#FF3B30';
+      } else {
+        msg.textContent = '注册成功！现已自动登录'; msg.style.color = '#34C759';
+        if (data.user) onUserLoggedIn(data.user);
+        setTimeout(() => { toggleAuthModal(false); }, 1000);
+      }
+    }
+
+    async function handleAuthLogout() {
+      if (supabaseClient) await supabaseClient.auth.signOut();
+      onUserLoggedOut();
+      alert('已安全退出登录');
+    }
+
+    function toggleAuthModal(show) {
+      const overlay = document.getElementById('authModalOverlay');
+      if (show === undefined) show = !overlay.classList.contains('show');
+      overlay.classList.toggle('show', show);
+    }
+
+    async function pullCloudProgress() {
+      if (!supabaseClient || !currentUser) return;
+      document.getElementById('syncStatusSpan').textContent = '🔄 同步中...';
+      try {
+        const { data, error } = await supabaseClient
+          .from('user_progress')
+          .select('*')
+          .eq('user_id', currentUser.id);
+          
+        if (data && data.length > 0) {
+          data.forEach(row => {
+            const key = row.chapter_id + '_s1_' + row.data_type;
+            localStorage.setItem(key, JSON.stringify(row.data));
+          });
+          loadStatuses(); loadQBad(); loadSBad(); loadNotes();
+          renderStats(); renderNav(); updateFilterCounts();
+        }
+        document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
+      } catch(err) {
+        document.getElementById('syncStatusSpan').textContent = '☁️ 离线中';
+      }
+    }
+
+    async function pushCloudChapterData(chapterId, dataType, dataObj) {
+      if (!supabaseClient || !currentUser) return;
+      document.getElementById('syncStatusSpan').textContent = '🔄 保存中...';
+      try {
+        await supabaseClient.from('user_progress').upsert({
+          user_id: currentUser.id,
+          chapter_id: chapterId,
+          data_type: dataType,
+          data: dataObj,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id,chapter_id,data_type' });
+        document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
+      } catch(e) {
+        document.getElementById('syncStatusSpan').textContent = '☁️ 离线保存';
+      }
+    }
+
+
     function initTheme() {
       const mode = localStorage.getItem('theme_mode') || 'light';
       if (mode === 'dark') {
@@ -4115,6 +4427,19 @@
       const bScratch = document.getElementById('btnToggleScratchpad');
       if (bScratch) bScratch.addEventListener('click', function() { toggleScratchpad(); });
       initScratchpad();
+      
+      const bLoginModal = document.getElementById('btnLoginModal');
+      if (bLoginModal) bLoginModal.addEventListener('click', function() { toggleAuthModal(true); });
+      const bCloseModal = document.getElementById('btnCloseAuthModal');
+      if (bCloseModal) bCloseModal.addEventListener('click', function() { toggleAuthModal(false); });
+      const bLogin = document.getElementById('btnAuthLogin');
+      if (bLogin) bLogin.addEventListener('click', handleAuthLogin);
+      const bReg = document.getElementById('btnAuthRegister');
+      if (bReg) bReg.addEventListener('click', handleAuthRegister);
+      const bLogout = document.getElementById('btnLogout');
+      if (bLogout) bLogout.addEventListener('click', handleAuthLogout);
+      
+      initSupabase();
       const overlay = document.getElementById('lightbox');
       const lbImg = document.getElementById('lightboxImg');
 
@@ -4468,11 +4793,40 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
       touch-action: none;
     }
 
-</style></head><body>
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head><body>
 <h1>${ch.name}</h1>
 <div class="subtitle">${statusLabel}题 · 共 ${items.length} 题</div>
 ${cardsHTML}
 <script>window.onload=function(){window.print()}<\\/script>
+
+  <div class="shortcut-overlay" id="authModalOverlay">
+    <div class="shortcut-modal" style="max-width:420px; text-align:center;">
+      <h2 style="margin-bottom:8px;">🎓 考研题库 - 云端账号登录</h2>
+      <p style="font-size:13px; color:#666; margin-bottom:20px;">登录后答题进度、错题本与笔记将自动云端同步，双人数据独立隔离</p>
+      
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px; text-align:left;">
+        <div>
+          <label style="font-size:12px; font-weight:600; color:#555;">邮箱账号</label>
+          <input type="email" id="authEmailInput" placeholder="your_email@kaoyan.com" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:600; color:#555;">密码（至少6位）</label>
+          <input type="password" id="authPasswordInput" placeholder="******" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
+        </div>
+      </div>
+      
+      <div id="authMsg" style="font-size:13px; margin-bottom:12px; min-height:18px; color:#FF3B30;"></div>
+      
+      <div style="display:flex; gap:10px;">
+        <button id="btnAuthLogin" class="gel-btn" style="flex:1; justify-content:center; background:var(--primary); color:#fff;">登录账号</button>
+        <button id="btnAuthRegister" class="gel-btn" style="flex:1; justify-content:center; background:#34C759; color:#fff;">注册新账号</button>
+      </div>
+      
+      <div style="margin-top:16px; font-size:12px; color:#999; cursor:pointer;" id="btnCloseAuthModal">暂不登录（离线使用）</div>
+    </div>
+  </div>
+
 </body></html>`);
       w.document.close();
     }
@@ -4592,6 +4946,34 @@ ${cardsHTML}
     <button class="lightbox-close" id="lightboxClose">&times;</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="">
     <div class="lightbox-hint">滚轮缩放 / 拖拽移动 / 双击或点击背景关闭</div>
+  </div>
+
+
+  <div class="shortcut-overlay" id="authModalOverlay">
+    <div class="shortcut-modal" style="max-width:420px; text-align:center;">
+      <h2 style="margin-bottom:8px;">🎓 考研题库 - 云端账号登录</h2>
+      <p style="font-size:13px; color:#666; margin-bottom:20px;">登录后答题进度、错题本与笔记将自动云端同步，双人数据独立隔离</p>
+      
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px; text-align:left;">
+        <div>
+          <label style="font-size:12px; font-weight:600; color:#555;">邮箱账号</label>
+          <input type="email" id="authEmailInput" placeholder="your_email@kaoyan.com" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:600; color:#555;">密码（至少6位）</label>
+          <input type="password" id="authPasswordInput" placeholder="******" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
+        </div>
+      </div>
+      
+      <div id="authMsg" style="font-size:13px; margin-bottom:12px; min-height:18px; color:#FF3B30;"></div>
+      
+      <div style="display:flex; gap:10px;">
+        <button id="btnAuthLogin" class="gel-btn" style="flex:1; justify-content:center; background:var(--primary); color:#fff;">登录账号</button>
+        <button id="btnAuthRegister" class="gel-btn" style="flex:1; justify-content:center; background:#34C759; color:#fff;">注册新账号</button>
+      </div>
+      
+      <div style="margin-top:16px; font-size:12px; color:#999; cursor:pointer;" id="btnCloseAuthModal">暂不登录（离线使用）</div>
+    </div>
   </div>
 
 </body>
