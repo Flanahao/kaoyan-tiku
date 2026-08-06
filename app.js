@@ -1,3 +1,138 @@
+function isAllFilterActive() {
+  return currentFilters.has('all') || currentFilters.size === 0;
+}
+
+function getFilteredIndices() {
+  const ch = getChapter();
+  if (!ch) return [];
+  if (isAllFilterActive()) {
+    return Array.from({ length: ch.total }, (_, i) => i);
+  }
+
+  const indices = [];
+  for (let i = 0; i < ch.total; i++) {
+    const s = getStatus(i);
+    const isUnmarked = !s;
+    if (
+      (currentFilters.has('proficient') && s === 'proficient') ||
+      (currentFilters.has('vague') && s === 'vague') ||
+      (currentFilters.has('wrong') && s === 'wrong') ||
+      (currentFilters.has('unmarked') && isUnmarked)
+    ) {
+      indices.push(i);
+    }
+  }
+  return indices;
+}
+
+function stripSubSuffix(label) {
+  return String(label || '').replace(/\s*[\(（][^\)）]*[\)）]\s*$/, '');
+}
+
+function subSuffix(label) {
+  const m = String(label || '').match(/[\(（][^\)）]*[\)）]\s*$/);
+  return m ? m[0].trim() : String(label || '');
+}
+
+function renderNav() {
+  const ch = getChapter();
+  if (!ch) return;
+  const nav = document.getElementById('qnav');
+  if (!nav) return;
+  nav.innerHTML = '';
+  ensureGroups(ch);
+
+  const labels = ch.labels || [];
+  const filteredSet = new Set(getFilteredIndices());
+
+  for (let i = 0; i < ch.total; i++) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'q-item ' + getStatusClass(i) + (i === current ? ' active' : '');
+    if (!filteredSet.has(i)) btn.classList.add('dimmed');
+    btn.textContent = labels[i] || (i + 1);
+    btn.addEventListener('click', function () {
+      switchTo(i);
+    });
+
+    if (qBad[i] || sBad[i] || notesData[labels[i]]) {
+      const badges = document.createElement('span');
+      badges.className = 'q-badges';
+      if (qBad[i]) {
+        const qb = document.createElement('span');
+        qb.className = 'bad-badge';
+        qb.textContent = 'Q';
+        badges.appendChild(qb);
+      }
+      if (sBad[i]) {
+        const sb = document.createElement('span');
+        sb.className = 'bad-badge';
+        sb.textContent = 'S';
+        badges.appendChild(sb);
+      }
+      if (notesData[labels[i]]) {
+        const nb = document.createElement('span');
+        nb.className = 'note-badge';
+        nb.textContent = 'N';
+        badges.appendChild(nb);
+      }
+      btn.appendChild(badges);
+    }
+
+    nav.appendChild(btn);
+  }
+}
+
+function switchTo(idx) {
+  current = idx;
+  showSolution = defaultShowSolution;
+  const ch = getChapter();
+  if (!ch) return;
+
+  const base = getImgPath(idx);
+  const qImg = document.getElementById('questionImg');
+  const sImg = document.getElementById('solutionImg');
+  const sArea = document.getElementById('solutionArea');
+  let sNotice = document.getElementById('solutionNotice');
+
+  if (qImg) {
+    if (ch.category === 'zhuanye' && base.includes('_question')) {
+      qImg.src = base + '.png';
+    } else {
+      qImg.src = base + '_question.png';
+    }
+  }
+
+  if (sImg) {
+    if (ch.category === 'zhuanye' && base.includes('_question')) {
+      sImg.src = base.replace('_question', '_solution') + '.png';
+    } else {
+      sImg.src = base + '_solution.png';
+    }
+  }
+
+  if (sArea) sArea.style.display = showSolution ? 'block' : 'none';
+  if (sNotice) sNotice.style.display = showSolution ? 'none' : 'block';
+
+  renderNav();
+}
+
+function openLightbox(src) {
+  const overlay = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  if (overlay && img) {
+    img.src = src;
+    overlay.style.display = 'flex';
+  }
+}
+
+function closeLightbox() {
+  const overlay = document.getElementById('lightbox');
+  if (overlay) {
+    overlay.style.display = 'none';
+  }
+}
+
 
 let annoActive = false;
 let currentCategory = 'shu1';
@@ -29,6 +164,7 @@ function getStatusClass(index) {
 
 
 function renderTitle() {
+  const chapter = getChapter();
   if (!chapter) return;
 
   const workbookText = document.getElementById('txtWb');
@@ -150,7 +286,11 @@ document.addEventListener('private-study:signed-in', async function (event) {
     const chapterId = currentChapterId || CHAPTERS[0]?.id || 'ch1';
     currentChapterId = chapterId;
 
-    await restoreChapterState(chapterId);
+    try {
+      await restoreChapterState(chapterId);
+    } catch (err) {
+      console.warn('restoreChapterState fail-safe:', err);
+    }
 
     renderTitle();
     renderStats();
@@ -174,6 +314,7 @@ function getChapter() {
 }
 
 function getImgPath(idx) {
+  const chapter = getChapter();
   if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
 
   const rootDir = chapter.category === 'zhuanye' ? '专业课题库' : '数一题库';
@@ -183,6 +324,7 @@ function getImgPath(idx) {
     return `${chapterDir}/${chapter.fileBases[idx]}`;
   }
 
+  const label = String(chapter.labels?.[idx] ?? '');
   if (!label) throw new Error(`Missing image label for question ${idx + 1}`);
 
   const fileBase = label.startsWith('例')
@@ -707,51 +849,7 @@ function ensureGroups(ch) {
       }
     }
 
-    function getFilteredIndices() {
-      const ch = getChapter();
-      const all = Array.from({ length: ch.total }, (_, i) => i);
-      if (isAllFilterActive()) return all;
-      return all.filter(i => {
-        if (!statuses[i]) return currentFilters.has('unmarked');
-        return currentFilters.has(statuses[i]);
-      });
-    }
-    function filteredTotal() { return getFilteredIndices().length; }
-    function filteredIndex(idx) { return getFilteredIndices().indexOf(idx); }
-    function isFiltered(idx) { return filteredIndex(idx) !== -1; }
-
-    // ===== localStorage 持久化 =====
     
-
-
-function renderStats() {
-  const ch = getChapter();
-  if (!ch) return;
-  const total = ch.total || 0;
-  let proficient = 0, vague = 0, wrong = 0;
-
-  for (let index = 0; index < total; index++) {
-    const status = getStatus(index);
-    if (status === 'proficient') proficient++;
-    else if (status === 'vague') vague++;
-    else if (status === 'wrong') wrong++;
-  }
-
-  const done = proficient + vague + wrong;
-  const unmarked = Math.max(0, total - done);
-
-  const setProgress = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = String(val);
-  };
-
-  setProgress('statTotal', total);
-  setProgress('statDone', done);
-  setProgress('statProficient', proficient);
-  setProgress('statVague', vague);
-  setProgress('statWrong', wrong);
-  setProgress('statUnmarked', unmarked);
-}
 
 
 // ===== 全局仪表盘 =====
@@ -889,641 +987,7 @@ function renderStats() {
     });  }
 
     // ===== 渲染题号网格 =====
-    function renderNav() {
-      const nav = document.getElementById('qnav');
-      nav.innerHTML = '';
-      ensureGroups(ch);
-      const cols = effectiveCols();
-      nav.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
-      const filteredSet = new Set(getFilteredIndices());
-      const curGroup = ch.groupForIdx[current];
-
-      function appendBadges(btn, i) {
-        if (qBad[i] || sBad[i] || notesData[labels[i]]) {
-          const badgeSpan = document.createElement('span');
-          badgeSpan.className = 'img-badges';
-          if (qBad[i]) { const d = document.createElement('span'); d.className = 'qbad-dot'; d.textContent = 'Q'; badgeSpan.appendChild(d); }
-          if (sBad[i]) { const d = document.createElement('span'); d.className = 'sbad-dot'; d.textContent = 'S'; badgeSpan.appendChild(d); }
-          if (notesData[labels[i]]) { const d = document.createElement('span'); d.className = 'note-dot'; d.textContent = '●'; badgeSpan.appendChild(d); }
-          btn.appendChild(badgeSpan);
-        }
-      }
-
-      // 自动从 labels 推断分区（连续同类别归为一个 partition）
-      var parts = []; // [{label, startIdx, endIdx}]
-      var curPart = null;
-      for (var i = 0; i < labels.length; i++) {
-        var cat = classifyLabel(labels[i]);
-        if (!curPart || curPart.label !== cat) {
-          if (curPart) curPart.endIdx = i;
-          curPart = { label: cat, startIdx: i, endIdx: -1 };
-          parts.push(curPart);
-        }
-      }
-      if (curPart) curPart.endIdx = labels.length;
-
-      // 按 PART_ORDER 排序渲染
-      parts.sort(function(a, b) {
-        return PART_ORDER.indexOf(a.label) - PART_ORDER.indexOf(b.label);
-      });
-      // 补全 PART_ORDER 中缺失的分区（如无例题则显示"无"）
-      PART_ORDER.forEach(function(po) {
-        if (!parts.some(function(p) { return p.label === po; })) {
-          parts.push({ label: po, startIdx: -1, endIdx: -1 });
-        }
-      });
-      parts.sort(function(a, b) {
-        return PART_ORDER.indexOf(a.label) - PART_ORDER.indexOf(b.label);
-      });
-
-      parts.forEach(function(part) {
-        // 收集该分区的 subGroups
-        var secGroups = [];
-        ch.subGroups.forEach(function(g) {
-          if (g.startIdx >= part.startIdx && g.startIdx < part.endIdx) {
-            secGroups.push(g);
-          }
-        });
-
-        // 分区标题
-        var secTitle = document.createElement('div');
-        secTitle.className = 'section-header';
-        secTitle.textContent = part.label;
-        nav.appendChild(secTitle);
-
-        if (secGroups.length === 0) {
-          var emptyDiv = document.createElement('div');
-          emptyDiv.className = 'section-empty';
-          emptyDiv.textContent = '无';
-          nav.appendChild(emptyDiv);
-          return;
-        }
-
-        secGroups.forEach(function(g) {
-          var btn = document.createElement('button');
-          btn.setAttribute('data-group-start', g.startIdx);
-          btn.title = g.parentLabel;
-          var inCurGroup = (curGroup === g);
-          var cls = '';
-
-          if (inCurGroup && (!g.isParent || !subMode)) { cls = 'active'; }
-
-          var visIdx = groupVisibleIndices(g);
-          var groupHasVisible = isAllFilterActive() || visIdx.length > 0;
-          if (!groupHasVisible) cls += ' filtered-out';
-
-          if (g.isParent) {
-            cls += ' has-subs';
-            var anyStatus = false;
-            for (var k = 0; k < g.count; k++) { if (getStatus(g.startIdx + k)) { anyStatus = true; break; } }
-            if (anyStatus) cls += ' has-color';
-            btn.className = cls.trim();
-
-            for (var k = 0; k < g.count; k++) {
-              var idx = g.startIdx + k;
-              var bar = document.createElement('span');
-              bar.className = 'sub-bar';
-              var st = statuses[idx];
-              if (st) bar.classList.add(st);
-              if (inCurGroup && subMode && idx === current) bar.classList.add('active-sub');
-              bar.style.width = (100 / g.count) + '%';
-              bar.style.left = (k * 100 / g.count) + '%';
-              btn.appendChild(bar);
-            }
-
-            var textSpan = document.createElement('span');
-            textSpan.className = 'btn-text';
-            textSpan.textContent = g.parentLabel;
-            btn.appendChild(textSpan);
-          } else {
-            cls += ' ' + getStatusClass(g.startIdx);
-            btn.className = cls.trim();
-            btn.textContent = g.parentLabel;
-          }
-
-          if (!groupHasVisible) { btn.style.visibility = 'hidden'; }
-          appendBadges(btn, g.startIdx);
-
-          btn.onclick = function() {
-            if (visIdx.length > 0) { subMode = false; switchTo(visIdx[0]); }
-          };
-          nav.appendChild(btn);
-        });
-      });
-
-      // 构建视觉行映射（W/S 导航用）
-      buildVisualRows(nav);
-
-      renderSubSelectBar(curGroup);
-    }
-
-    // ===== 根据 DOM 构建视觉行映射 =====
-    function buildVisualRows(nav) {
-      visualRows = [];
-      var btns = nav.querySelectorAll('button[data-group-start]');
-      var lastTop = -1;
-      btns.forEach(function(btn) {
-        var top = btn.offsetTop;
-        if (top !== lastTop) {
-          visualRows.push([]);
-          lastTop = top;
-        }
-        visualRows[visualRows.length - 1].push(parseInt(btn.getAttribute('data-group-start')));
-      });
-    }
-
-    // W/S：按视觉行偏移（基于 DOM 实际布局，跳过 section header 行）
-    function navByGroupOffset(offset) {
-      var groups = visibleGroups();
-      var g = currentGroup();
-      if (!g || visualRows.length === 0) return;
-
-      // 找到当前 group 在哪个视觉行、哪一列
-      var curRow = -1, curCol = -1;
-      for (var r = 0; r < visualRows.length; r++) {
-        var col = visualRows[r].indexOf(g.startIdx);
-        if (col !== -1) { curRow = r; curCol = col; break; }
-      }
-      if (curRow === -1) return;
-
-      var targetRow = curRow + offset;
-      if (targetRow < 0 || targetRow >= visualRows.length) return;
-
-      var targetRowSids = visualRows[targetRow];
-      // 从当前列向外扩展，找最近的可见 group
-      for (var d = 0; d < targetRowSids.length; d++) {
-        var left = curCol - d, right = curCol + d;
-        if (left >= 0) {
-          var tgL = groups.find(function(gr) { return gr.startIdx === targetRowSids[left]; });
-          if (tgL && groupVisibleIndices(tgL).length > 0) { switchTo(groupVisibleIndices(tgL)[0]); return; }
-        }
-        if (right < targetRowSids.length && d > 0) {
-          var tgR = groups.find(function(gr) { return gr.startIdx === targetRowSids[right]; });
-          if (tgR && groupVisibleIndices(tgR).length > 0) { switchTo(groupVisibleIndices(tgR)[0]); return; }
-        }
-      }
-    }
-
-    function navUp() { navByGroupOffset(-1); }
-    function navDown() { navByGroupOffset(1); }
-    function renderSubSelectBar(curGroup) {
-      const bar = document.getElementById('subSelectBar');
-      if (!bar) return;
-
-      if (!curGroup || !curGroup.isParent) {
-        bar.innerHTML = '';
-        bar.style.display = 'none';
-        return;
-      }
-
-      bar.style.display = 'block';
-      bar.innerHTML = '';
-
-      for (let k = 0; k < curGroup.count; k++) {
-        btn.className = 'sub-sel-btn';
-        btn.textContent = subSuffix(labels[i]);
-        btn.title = labels[i];
-
-        // 未按F时所有子题高亮，按F后仅当前子题高亮
-        if (!subMode || i === current) {
-          btn.classList.add('active');
-        }
-
-        const visible = isAllFilterActive() || filteredSet.has(i);
-        if (!visible) { btn.style.display = 'none'; }
-
-        btn.onclick = function () {
-          if (!isFiltered(i)) return;
-          subMode = true;
-          switchTo(i);
-        };
-        bar.appendChild(btn);
-      }
-    }
-
-    // ===== 题组级 / 子题级导航 =====
-    function visibleGroups() {
-      ensureGroups(ch);
-      if (isAllFilterActive()) return ch.subGroups.slice();
-      return ch.subGroups.filter(g => groupVisibleIndices(g).length > 0);
-    }
-
-    function currentGroup() {
-      ensureGroups(ch);
-      return ch.groupForIdx[current];
-    }
-
-    function effectiveCols() {
-      return 5;
-    }
-
-    // A：上一题（题组级：跳上一题组最后一个可见子题；子题级：组内-1，越界跳上一组末尾）
-    function navPrev() {
-      const g = currentGroup();
-      if (!g) return;
-      if (subMode) {
-        const vis = groupVisibleIndices(g);
-        const pos = vis.indexOf(current);
-        if (pos > 0) { switchTo(vis[pos - 1]); return; }
-      }
-      const gi = groups.indexOf(g);
-      if (gi <= 0) return;
-      const pv = groupVisibleIndices(groups[gi - 1]);
-      if (pv.length > 0) switchTo(pv[pv.length - 1]);
-    }
-
-    // D：下一题（题组级：跳下一题组第一个可见子题；子题级：组内+1，越界跳下一组开头）
-    function navNext() {
-      if (!g) return;
-      if (subMode) {
-        if (pos !== -1 && pos < vis.length - 1) { switchTo(vis[pos + 1]); return; }
-      }
-      if (gi === -1 || gi >= groups.length - 1) return;
-      const nv = groupVisibleIndices(groups[gi + 1]);
-      if (nv.length > 0) switchTo(nv[0]);
-    }
-
-    // F：切换小题选择模式（仅当前题组含子题时生效）
-    function toggleSubMode() {
-      if (!g || !g.isParent) return;
-      subMode = !subMode;
-      renderNav();
-      renderSubSelectBar(g);
-      // 同步更新题号标签
-      document.getElementById('qLabel').textContent = subMode ? labels[current] : g.parentLabel;
-    }
-
-    // ===== 切换题目 =====
-    function updateSolutionUI() {
-      const area = document.getElementById('solutionArea');
-      if (showSolution) {
-        area.classList.add('show');
-        btn.innerHTML = '<span class="func-name">隐藏解析</span><span class="key">Space</span>';
-        btn.classList.add('hide');
-      } else {
-        area.classList.remove('show');
-        btn.innerHTML = '<span class="func-name">显示解析</span><span class="key">Space</span>';
-        btn.classList.remove('hide');
-      }
-    }
-
-    function switchTo(idx) {
-      current = idx;
-      showSolution = defaultShowSolution;
-      const base = getImgPath(idx);
-      const qImg = document.getElementById('questionImg');
-      const sImg = document.getElementById('solutionImg');
-      const sArea = document.getElementById('solutionArea');
-      let sNotice = document.getElementById('solutionNotice');
-
-      if (ch.category === 'zhuanye' && base.includes('_question')) {
-        qImg.src = base + '.png';
-        const solPath = base.replace('_question', '_solution') + '.png';
-        sImg.src = solPath;
-      } else {
-        qImg.src = base + '_question.png';
-        sImg.src = base + '_solution.png';
-      }
-
-      sImg.style.display = '';
-      if (sNotice) sNotice.style.display = 'none';
-
-      sImg.onerror = function() {
-        sImg.style.display = 'none';
-        if (!sNotice) {
-          sNotice = document.createElement('div');
-          sNotice.id = 'solutionNotice';
-          sNotice.className = 'solution-empty-notice';
-          sNotice.textContent = '本题暂无解析图片';
-          sArea.appendChild(sNotice);
-        }
-        sNotice.style.display = 'block';
-      };
-      sImg.onload = function() {
-        sImg.style.display = '';
-        if (sNotice) sNotice.style.display = 'none';
-      };
-
-      updateSolutionUI();
-      // 更新题号标签
-      ensureGroups(ch);
-      let qLabelText;
-      if (subMode) {
-        qLabelText = labels[current];
-      } else if (g && g.isParent) {
-        qLabelText = g.parentLabel;
-      } else {
-        qLabelText = labels[current];
-      }
-      document.getElementById('qLabel').textContent = qLabelText;
-      updateStatusBtns(); updateQBadBtn(); updateSBadBtn(); updateImgBadWarnings();
-      renderNotes();
-      renderStats();
-      renderNav();
-      qImg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    // ===== 题目图/解析图不达标 =====
-    function updateQBadBtn() { document.getElementById('btnQBad').classList.toggle('marked', !!qBad[current]); }
-    function updateSBadBtn() { document.getElementById('btnSBad').classList.toggle('marked', !!sBad[current]); }
-
-    function updateImgBadWarnings() {
-      document.getElementById('qBadWarning').classList.toggle('show', !!qBad[current]);
-      document.getElementById('sBadWarning').classList.toggle('show', !!sBad[current]);
-      document.getElementById('questionImg').classList.toggle('qbad-border', !!qBad[current]);
-      document.getElementById('solutionImg').classList.toggle('sbad-border', !!sBad[current]);
-    }
-
-    // ===== 笔记渲染 =====
-    function renderNotes() {
-      const hasNote = notesData[label];
-      const toggle = document.getElementById('notesToggle');
-      const preview = document.getElementById('notePreview');
-      const body = document.getElementById('notesBody');
-      const textarea = document.getElementById('notesTextarea');
-      const render = document.getElementById('notesRender');
-      const btnEdit = document.getElementById('btnNoteEdit');
-      const btnSave = document.getElementById('btnNoteSave');
-      const btnCancel = document.getElementById('btnNoteCancel');
-      const btnDelete = document.getElementById('btnNoteDelete');
-
-      if (hasNote) {
-        toggle.classList.add('has-content');
-        preview.textContent = hasNote;
-      } else {
-        toggle.classList.remove('has-content');
-        preview.textContent = '';
-      }
-
-      // 进入查看模式
-      body.classList.remove('open');
-      textarea.style.display = 'none';
-      render.style.display = '';
-      render.textContent = hasNote || '';
-      btnEdit.style.display = '';
-      btnSave.style.display = 'none';
-      btnCancel.style.display = 'none';
-      btnDelete.style.display = hasNote ? '' : 'none';
-    }
-
-    function toggleNotes() {
-      const isOpen = body.classList.toggle('open');
-      if (isOpen && notesData[getChapter().labels[current]]) {
-        // 有内容：直接进编辑模式
-        enterEditMode();
-      }
-    }
-
-    function enterEditMode() {
-
-      body.classList.add('open');
-      textarea.value = notesData[label] || '';
-      textarea.style.display = '';
-      render.style.display = 'none';
-      btnEdit.style.display = 'none';
-      btnSave.style.display = '';
-      btnCancel.style.display = '';
-      btnDelete.style.display = 'none';
-      textarea.focus();
-
-      // 回车保存，Shift+回车换行
-      textarea.onkeydown = function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          saveNote();
-        }
-      };
-    }
-
-    function saveNote() {
-      const val = textarea.value.trim();
-      if (val) {
-        notesData[label] = val;
-      } else {
-        delete notesData[label];
-      }
-      saveNotes();
-      renderNotes();
-      renderNav();
-    }
-
-    function cancelNoteEdit() {
-      renderNotes();
-    }
-
-    function deleteNote() {
-      delete notesData[label];
-      saveNotes();
-      renderNotes();
-      renderNav();
-    }
-
-    function focusNotes() {
-      enterEditMode();
-    }
-
-    function toggleQBad() { qBad[current] = !qBad[current]; if (!qBad[current]) delete qBad[current]; saveQBad(); updateQBadBtn(); updateImgBadWarnings(); renderNav(); }
-    function toggleSBad() { sBad[current] = !sBad[current]; if (!sBad[current]) delete sBad[current]; saveSBad(); updateSBadBtn(); updateImgBadWarnings(); renderNav(); }
-
-    // ===== 掌握度 =====
-    function updateStatusBtns() {
-      const cur = getStatus(current);
-      ['proficient', 'vague', 'wrong'].forEach(s => {
-        btn.className = 'gel-btn btn-status' + (s === cur ? ' ' + s + ' active' : '');
-      });
-    }
-
-    function setStatus(status) {
-      if (cur === status) {
-        delete statuses[current];
-        if (label) delete statuses[label];
-      } else {
-        statuses[current] = status;
-        if (label) statuses[label] = status;
-      }
-      saveStatuses(); updateStatusBtns(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'status', statuses); renderStats(); renderNav(); updateFilterCounts(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'lastPosition', current);
-    }
-
-    function toggleSolution() {
-      showSolution = !showSolution;
-      updateSolutionUI();
-    }
-
-    function toggleDefaultSolution() {
-      defaultShowSolution = !defaultShowSolution;
-      showSolution = defaultShowSolution;
-      renderSolDefaultBtn();
-      updateSolutionUI();
-    }
-
-    function renderSolDefaultBtn() {
-      if (defaultShowSolution) {
-        btn.innerHTML = '解析默认：显示<span class="sol-key">Shift+Space</span>';
-      } else {
-        btn.innerHTML = '解析默认：隐藏<span class="sol-key">Shift+Space</span>';
-      }
-    }
-
-    // ===== 筛选栏数字统计 =====
-    function updateFilterCounts() {
-      Object.values(statuses).forEach(s => {
-        if (s === 'proficient') proficient++;
-        else if (s === 'vague') vague++;
-        else if (s === 'wrong') wrong++;
-      });
-      const setCount = (filter, val) => {
-        const el = document.querySelector('.filter-btn[data-filter="' + filter + '"] .filter-count');
-        if (el) el.textContent = val;
-      };
-      setCount('all', total);
-      setCount('proficient', proficient);
-      setCount('vague', vague);
-      setCount('wrong', wrong);
-      setCount('unmarked', unmarked);
-    }
-
-    // ===== 灯箱（方案A：图片点击全屏） =====
-    let lbScale = 1, lbTranslateX = 0, lbTranslateY = 0, lbDragging = false, lbLastX = 0, lbLastY = 0;
-
-    function openLightbox(src) {
-      const img = document.getElementById('lightboxImg');
-      img.src = src;
-      lbScale = 1; lbTranslateX = 0; lbTranslateY = 0;
-      img.style.transform = '';
-      overlay.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      overlay.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-
-    function lbApplyTransform() {
-      img.style.transform = 'translate(' + lbTranslateX + 'px,' + lbTranslateY + 'px) scale(' + lbScale + ')';
-    }
-
-
     
-    // ===== 暗黑/夜色护眼模式 =====
-    
-    // ===== 悬浮草稿纸 (Canvas Scratchpad) =====
-    let scratchIsDrawing = false;
-    let scratchTool = 'pen';
-    let scratchColor = '#FF3B30';
-    let scratchSize = 4;
-
-    function initScratchpad() {
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-
-      canvas.addEventListener('pointerdown', function(e) {
-        scratchIsDrawing = true;
-        ctx.beginPath();
-        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-      });
-
-      canvas.addEventListener('pointermove', function(e) {
-        if (!scratchIsDrawing) return;
-        ctx.lineWidth = scratchTool === 'eraser' ? scratchSize * 4 : scratchSize;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        if (scratchTool === 'eraser') {
-          ctx.globalCompositeOperation = 'destination-out';
-        } else {
-          ctx.globalCompositeOperation = 'source-over';
-          ctx.strokeStyle = scratchColor;
-        }
-        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-        ctx.stroke();
-      });
-
-      window.addEventListener('pointerup', function() {
-        scratchIsDrawing = false;
-      });
-
-      document.getElementById('scratchToolPen').onclick = function() {
-        scratchTool = 'pen';
-        this.classList.add('active');
-        document.getElementById('scratchToolEraser').classList.remove('active');
-      };
-
-      document.getElementById('scratchToolEraser').onclick = function() {
-        scratchTool = 'eraser';
-        this.classList.add('active');
-        document.getElementById('scratchToolPen').classList.remove('active');
-      };
-
-      document.getElementById('scratchColorPicker').onchange = function(e) {
-        scratchColor = e.target.value;
-      };
-
-      document.getElementById('scratchSizeSelect').onchange = function(e) {
-        scratchSize = parseInt(e.target.value);
-      };
-
-      document.getElementById('scratchClear').onclick = function() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      };
-
-      document.getElementById('scratchClose').onclick = function() {
-        toggleScratchpad(false);
-      };
-    }
-
-    function toggleScratchpad(show) {
-      if (show === undefined) show = container.style.display === 'none';
-      container.style.display = show ? 'block' : 'none';
-      if (btn) btn.classList.toggle('active', show);
-      if (show) {
-        if (canvas.width !== rect.width) {
-          canvas.width = rect.width;
-          canvas.height = 320;
-        }
-      }
-    }
-
-
-    
-    // ===== Supabase 云端账号与同步逻辑 =====
-    
-    
-
-    
-    
-
-    
-
-
-
-    function toggleAnnotation(show) {
-      const toolbar = document.getElementById('annoToolbar');
-      
-      if (show === undefined) show = !annoActive;
-      annoActive = show;
-      
-      if (canvas) canvas.style.display = show ? 'block' : 'none';
-      if (toolbar) toolbar.style.display = show ? 'flex' : 'none';
-      if (btn) {
-        btn.classList.toggle('active', show);
-        btn.querySelector('.func-name').textContent = show ? '✏️ 关闭标注' : '✏️ 开启标注';
-      }
-      
-      if (show && qImg) {
-        canvas.width = qImg.clientWidth || qImg.naturalWidth || 800;
-        canvas.height = qImg.clientHeight || qImg.naturalHeight || 600;
-        restoreQuestionAnnotation();
-      }
-    }
-
-
-    
-    // ===== 私有云端 Auth 事件联动 =====
-    
-function getSignedInUserId() {
-  if (!user) throw new Error('未登录，不能读写用户学习数据');
-  return user.id;
-}
 
 function userCacheKey(dataType, chapterId = currentChapterId) {
   return `kaoyan:${getSignedInUserId()}:${chapterId}:${dataType}`;
@@ -1563,23 +1027,30 @@ function resetAllUserState() {
 }
 
 async function restoreChapterState(chapterId) {
-  if (!api || !api.getCurrentUser()) return;
-
   clearRecord(statuses);
   clearRecord(qBad);
   clearRecord(sBad);
   clearRecord(notesData);
 
-  const bundle = await api.loadBundle(chapterId);
-  Object.assign(statuses, bundle.status || {});
-  Object.assign(qBad, bundle.questionBad || {});
-  Object.assign(sBad, bundle.solutionBad || {});
-  Object.assign(notesData, bundle.notes || {});
+  const api = window.PrivateStudy;
+  if (!api || !api.getCurrentUser()) return;
 
-  const restoredPosition = Number(bundle.lastPosition);
-  current = Number.isInteger(restoredPosition) && restoredPosition >= 0
-    ? Math.min(restoredPosition, getChapter().total - 1)
-    : 0;
+  try {
+    const bundle = await api.loadBundle(chapterId);
+    if (bundle) {
+      Object.assign(statuses, bundle.status || {});
+      Object.assign(qBad, bundle.questionBad || {});
+      Object.assign(sBad, bundle.solutionBad || {});
+      Object.assign(notesData, bundle.notes || {});
+
+      const restoredPosition = Number(bundle.lastPosition);
+      current = Number.isInteger(restoredPosition) && restoredPosition >= 0
+        ? Math.min(restoredPosition, getChapter().total - 1)
+        : 0;
+    }
+  } catch (error) {
+    console.warn('读取云端数据失败，已使用默认显示', error);
+  }
 }
 
 async function switchChapter(chapterId) {

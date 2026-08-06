@@ -11,25 +11,24 @@
 
   const config = window.APP_CONFIG;
 
-  if (!config?.supabaseUrl || !config?.supabasePublishableKey) {
-    throw new Error('缺少 APP_CONFIG 中的 Supabase 配置');
-  }
-
-  if (!window.supabase?.createClient) {
-    throw new Error('Supabase JavaScript SDK 未加载');
-  }
-
-  const client = window.supabase.createClient(
-    config.supabaseUrl,
-    config.supabasePublishableKey,
-    {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true
-      }
+  let client = null;
+  try {
+    if (window.supabase?.createClient && config?.supabaseUrl && config?.supabasePublishableKey) {
+      client = window.supabase.createClient(
+        config.supabaseUrl,
+        config.supabasePublishableKey,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
+      );
     }
-  );
+  } catch (e) {
+    console.warn('Supabase client init fallback:', e);
+  }
 
   let currentUser = null;
   const pendingWrites = new Map();
