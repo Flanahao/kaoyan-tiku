@@ -1386,3 +1386,66 @@ async function switchChapter(chapterId) {
   switchTo(current);
   updateFilterCounts();
 }
+
+
+
+function getImgPath(idx) {
+  const ch = getChapter();
+  if (!ch || !ch.labels || !ch.labels[idx]) return '';
+  const catFolder = ch.category === 'zhuanye' ? '专业课题库' : '数一题库';
+  return catFolder + '/' + ch.relPath + '/' + ch.labels[idx];
+}
+
+let _titleUpdating = false;
+function renderTitle() {
+  _titleUpdating = true;
+  var ch = getChapter();
+  if (!ch) return;
+  var wb = ch.wb || '';
+  var subj = ch.subj || '';
+
+  var wbLabel = wb;
+  for (var i = 0; i < WORKBOOKS.length; i++) {
+    if (WORKBOOKS[i].key === wb) { wbLabel = WORKBOOKS[i].label; break; }
+  }
+  var txtWb = document.getElementById('txtWb');
+  if (txtWb) txtWb.textContent = wbLabel;
+
+  var subjOpts = getSubjectsForWb(wb);
+  var subjObj = null;
+  for (var j = 0; j < subjOpts.length; j++) {
+    if (subjOpts[j].key === subj) { subjObj = subjOpts[j]; break; }
+  }
+  var subjLabel = subjObj ? subjObj.label : subj;
+  var txtSubj = document.getElementById('txtSubj');
+  if (txtSubj) txtSubj.textContent = subjLabel;
+
+  var txtChapter = document.getElementById('txtChapter');
+  if (txtChapter) txtChapter.textContent = ch.short;
+
+  buildTitlePanels();
+  _titleUpdating = false;
+}
+
+function initTheme() {
+  const mode = localStorage.getItem('kaoyan_theme_mode') || 'light';
+  if (mode === 'dark') {
+    document.body.classList.add('dark-mode');
+    const btn = document.getElementById('btnTheme');
+    if (btn) btn.innerHTML = '☀️ 日光模式';
+  }
+  const btn = document.getElementById('btnTheme');
+  if (btn && !btn.dataset.themeBound) {
+    btn.dataset.themeBound = '1';
+    btn.addEventListener('click', function () {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('kaoyan_theme_mode', isDark ? 'dark' : 'light');
+      btn.innerHTML = isDark ? '☀️ 日光模式' : '🌙 护眼模式';
+    });
+  }
+}
+
+async function restoreCurrentUserProgress() {
+  const chapterId = currentChapterId || (CHAPTERS[0] ? CHAPTERS[0].id : 'ch1');
+  await restoreChapterState(chapterId);
+}
