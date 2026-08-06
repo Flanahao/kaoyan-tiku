@@ -670,7 +670,6 @@ function restoreQuestionAnnotation() {
       ch.subGroups = groups;
       ch.groupForIdx = new Array(labels.length);
       groups.forEach(g => { for (let k = 0; k < g.count; k++) ch.groupForIdx[g.startIdx + k] = g; });
-    }
 
     // 题组内当前筛选下可见的索引列表
     function groupVisibleIndices(g) {
@@ -1644,7 +1643,7 @@ function resetAllUserState() {
   current = 0;
 }
 
-async async function restoreChapterState(chapterId) {
+async function restoreChapterState(chapterId) {
   const api = window.PrivateStudy;
   if (!api || !api.getCurrentUser()) return;
 
