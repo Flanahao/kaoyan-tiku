@@ -1,4 +1,188 @@
 
+function getChapter() {
+  return CHAPTERS.find(function(c) { return c.id === currentChapterId; }) || CHAPTERS[0];
+}
+
+function getImgPath(idx) {
+  const chapter = getChapter();
+  if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
+
+  const rootDir = chapter.category === 'zhuanye' ? '专业课题库' : '数一题库';
+  const chapterDir = `${rootDir}/${chapter.relPath}`;
+
+  if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
+    return `${chapterDir}/${chapter.fileBases[idx]}`;
+  }
+
+  const label = String(chapter.labels?.[idx] ?? '');
+  if (!label) throw new Error(`Missing image label for question ${idx + 1}`);
+
+  const fileBase = label.startsWith('例')
+    ? `ex_${label.slice(1)}`
+    : `pb_${label}`;
+
+  return `${chapterDir}/${fileBase}`;
+}
+
+
+
+// ===== 全局状态变量声明 =====
+let currentChapterId = 'ch1';
+let currentCategory = 'shu1';
+let current = 0;
+let showSolution = true;
+let defaultShowSolution = true;
+let subMode = false;
+let currentFilters = new Set(['all']);
+
+let statuses = {};
+let qBad = {};
+let sBad = {};
+let notesData = {};
+
+let annoActive = false;
+let initializedUserId = null;
+
+
+
+const WB_ORDER = [
+  { wb: '基础30讲', label: '基础30讲' },
+  { wb: '张宇强化36讲', label: '强化30讲' },
+  { wb: '数一1000题', label: '1000题' },
+  { wb: '李范全书', label: '李范全书' },
+  { wb: '何子述课后刷题本', label: '何子述课后刷题本' },
+  { wb: '吴大正课后刷题本', label: '吴大正课后刷题本' },
+  { wb: '奥本海姆课后刷题本', label: '奥本海姆课后刷题本' },
+  { wb: '杨晓非课后刷题本', label: '杨晓非课后刷题本' },
+  { wb: '管致中课后刷题本', label: '管致中课后刷题本' },
+  { wb: '郑君里课后刷题本', label: '郑君里课后刷题本' }
+];
+
+function getUniqueWbs() {
+  var wbs = [];
+  CHAPTERS.forEach(function(c) {
+    if (c.category === currentCategory && c.wb && wbs.indexOf(c.wb) === -1) {
+      wbs.push(c.wb);
+    }
+  });
+  return wbs;
+}
+
+function getSortedWbs() {
+  var existing = getUniqueWbs();
+  var result = [];
+  WB_ORDER.forEach(function(entry) {
+    if (existing.indexOf(entry.wb) !== -1) result.push(entry);
+  });
+  existing.forEach(function(wb) {
+    var found = result.some(function(r) { return r.wb === wb; });
+    if (!found) result.push({ wb: wb, label: wb });
+  });
+  return result;
+}
+
+function fillPanel(panelId, items, valKey, labelKey, activeVal, onSelect) {
+  var panel = document.getElementById(panelId);
+  if (!panel) return;
+  panel.innerHTML = '';
+  items.forEach(function(item) {
+    var val = valKey ? item[valKey] : item;
+    var label = labelKey ? item[labelKey] : item;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'title-option' + (val === activeVal ? ' active' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeAllTitlePanels();
+      onSelect(item);
+    });
+    panel.appendChild(btn);
+  });
+}
+
+function closeAllTitlePanels() {
+  document.querySelectorAll('.title-panel.open').forEach(function(p) { p.classList.remove('open'); });
+  document.querySelectorAll('.title-trigger.open').forEach(function(t) { t.classList.remove('open'); });
+}
+
+function fillWbPanel(activeWb) {
+  var entries = getSortedWbs();
+  fillPanel('panelWb', entries, 'wb', 'label', activeWb, function(entry) {
+    document.getElementById('txtWb').textContent = entry.label;
+    var subjs = getSortedSubjs(entry.wb);
+    if (subjs.length > 0) {
+      var firstSubj = subjs[0];
+      document.getElementById('txtSubj').textContent = firstSubj;
+      fillSubjPanel(entry.wb, firstSubj);
+      var firstCh = CHAPTERS.find(function(c) { return c.wb === entry.wb && c.subj === firstSubj && c.category === currentCategory; });
+      if (firstCh) {
+        document.getElementById('txtChapter').textContent = firstCh.short;
+        fillChapterPanel(entry.wb, firstSubj, firstCh.id);
+        switchChapter(firstCh.id);
+      }
+    }
+  });
+}
+
+var SUBJ_ORDER = ['高数', '线代', '概率论'];
+function getSortedSubjs(wb) {
+  var subjs = [];
+  CHAPTERS.forEach(function(c) { if (c.category === currentCategory && c.wb === wb && c.subj && subjs.indexOf(c.subj) === -1) subjs.push(c.subj); });
+  var sorted = [];
+  SUBJ_ORDER.forEach(function(s) { if (subjs.indexOf(s) !== -1) sorted.push(s); });
+  subjs.forEach(function(s) { if (sorted.indexOf(s) === -1) sorted.push(s); });
+  return sorted;
+}
+
+function fillSubjPanel(wb, activeSubj) {
+  var subjs = getSortedSubjs(wb);
+  fillPanel('panelSubj', subjs, null, null, activeSubj, function(subj) {
+    document.getElementById('txtSubj').textContent = subj;
+    var firstCh = CHAPTERS.find(function(c) { return c.wb === wb && c.subj === subj && c.category === currentCategory; });
+    if (firstCh) {
+      document.getElementById('txtChapter').textContent = firstCh.short;
+      fillChapterPanel(wb, subj, firstCh.id);
+      switchChapter(firstCh.id);
+    }
+  });
+}
+
+function fillChapterPanel(wb, subj, activeId) {
+  var chs = CHAPTERS.filter(function(c) { return c.category === currentCategory && c.wb === wb && c.subj === subj; });
+  fillPanel('panelChapter', chs, 'id', 'short', activeId, function(ch) {
+    document.getElementById('txtChapter').textContent = ch.short;
+    switchChapter(ch.id);
+  });
+}
+
+let _titleUpdating = false;
+function renderTitle() {
+  _titleUpdating = true;
+  var ch = getChapter();
+  if (!ch) return;
+  var wb = ch.wb || '';
+  var subj = ch.subj || '';
+
+  var wbLabel = wb;
+  for (var i = 0; i < WB_ORDER.length; i++) {
+    if (WB_ORDER[i].wb === wb) { wbLabel = WB_ORDER[i].label; break; }
+  }
+  var txtWb = document.getElementById('txtWb');
+  if (txtWb) txtWb.textContent = wbLabel;
+  var txtSubj = document.getElementById('txtSubj');
+  if (txtSubj) txtSubj.textContent = subj;
+  var txtChapter = document.getElementById('txtChapter');
+  if (txtChapter) txtChapter.textContent = ch.short;
+
+  fillWbPanel(wb);
+  fillSubjPanel(wb, subj);
+  fillChapterPanel(wb, subj, ch.id);
+  _titleUpdating = false;
+}
+
+
+
 function saveStatuses() {
   saveUserCache('status', statuses);
   scheduleCloudSave('status', statuses);
@@ -414,32 +598,6 @@ function restoreQuestionAnnotation() {
 {"id": "ch250", "number": 250, "name": "郑君里课后刷题本 - 第12章", "short": "第12章", "total": 26, "cols": 5, "wb": "郑君里课后刷题本", "subj": "专业课", "category": "zhuanye", "relPath": "郑君里课后刷题本/第12章", "labels": ["例12-1", "例12-2", "例12-3", "例12-4", "例12-5", "例12-6", "例12-6(2)", "例12-7", "例12-7(2)", "例12-7(3)", "例12-8", "例12-9", "例12-10", "例12-12", "例12-13", "例12-14", "例12-15", "例12-16", "例12-17", "例12-18", "例12-19", "例12-19(2)", "例12-19(3)", "例12-20", "例12-21", "例12-p246_c1"], "fileBases": ["ex_12-1_question", "ex_12-2_question", "ex_12-3_question", "ex_12-4_question", "ex_12-5_question", "ex_12-6_question", "ex_12-6_question_2", "ex_12-7_question", "ex_12-7_question_2", "ex_12-7_question_3", "ex_12-8_question", "ex_12-9_question", "ex_12-10_question", "ex_12-12_question", "ex_12-13_question", "ex_12-14_question", "ex_12-15_question", "ex_12-16_question", "ex_12-17_question", "ex_12-18_question", "ex_12-19_question", "ex_12-19_question_2", "ex_12-19_question_3", "ex_12-20_question", "ex_12-21_question", "ex_12-p246_c1_question"]}
 ];
 // ===== 状态变量 (0-based) =====
-    let currentChapterId = 'ch1';
-    let current = 0;
-    let showSolution = true;
-    let defaultShowSolution = true;
-    let statuses = {};
-    let qBad = {};   // R键：题目图不达标  { idx: true }
-    let sBad = {};   // T键：解析图不达标  { idx: true }
-    let currentFilters = new Set(['all']);
-    let subMode = false; // F键：小题选择模式（仅当前题组含子题时生效）
-    let visualRows = []; // W/S 视觉行映射，每个元素是一个数组包含该行的 group.startIdx
-
-    function isAllFilterActive() {
-      return currentFilters.has('all') || currentFilters.size === 0;
-    }
-
-    function getChapter() { return CHAPTERS.find(c => c.id === currentChapterId); }
-
-    // ===== 题组（父题/子题）解析 =====
-    // 去掉 label 末尾括号及内容（支持 (1)、(a)、(I)、全角括号），得到父题号
-    function stripSubSuffix(label) { return String(label).replace(/\s*[\(（][^\)）]*[\)）]\s*$/, ''); }
-    // 提取 label 末尾括号内容，如 '3-4(1)' -> '(1)'；无括号返回原 label
-    function subSuffix(label) { const m = String(label).match(/[\(（][^\)）]*[\)）]\s*$/); return m ? m[0].trim() : String(label); }
-
-    // 为章节计算 subGroups / groupForIdx（懒计算，缓存在章节对象上）
-    function ensureGroups(ch) {
-      if (ch.subGroups && ch.groupForIdx) return;
       const labels = ch.labels || [];
       const groups = [];
       let i = 0;
@@ -1558,36 +1716,7 @@ if (document.readyState === 'loading') {
 
 
 
-let _titleUpdating = false;
-function renderTitle() {
-  _titleUpdating = true;
-  var ch = getChapter();
-  if (!ch) return;
-  var wb = ch.wb || '';
-  var subj = ch.subj || '';
 
-  var wbLabel = wb;
-  for (var i = 0; i < WORKBOOKS.length; i++) {
-    if (WORKBOOKS[i].key === wb) { wbLabel = WORKBOOKS[i].label; break; }
-  }
-  var txtWb = document.getElementById('txtWb');
-  if (txtWb) txtWb.textContent = wbLabel;
-
-  var subjOpts = getSubjectsForWb(wb);
-  var subjObj = null;
-  for (var j = 0; j < subjOpts.length; j++) {
-    if (subjOpts[j].key === subj) { subjObj = subjOpts[j]; break; }
-  }
-  var subjLabel = subjObj ? subjObj.label : subj;
-  var txtSubj = document.getElementById('txtSubj');
-  if (txtSubj) txtSubj.textContent = subjLabel;
-
-  var txtChapter = document.getElementById('txtChapter');
-  if (txtChapter) txtChapter.textContent = ch.short;
-
-  buildTitlePanels();
-  _titleUpdating = false;
-}
 
 function initTheme() {
   const mode = localStorage.getItem('kaoyan_theme_mode') || 'light';
