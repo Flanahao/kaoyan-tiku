@@ -29,7 +29,6 @@ function getStatusClass(index) {
 
 
 function renderTitle() {
-  const chapter = getChapter();
   if (!chapter) return;
 
   const workbookText = document.getElementById('txtWb');
@@ -75,7 +74,7 @@ function bindLightboxEvents() {
   lightboxEventsBound = true;
 
   const overlay = document.getElementById('lightbox');
-  const closeButton = document.getElementById('lightboxClose');
+  const closeBtn = document.getElementById('lightboxClose');
   const questionImage = document.getElementById('questionImg');
   const solutionImage = document.getElementById('solutionImg');
 
@@ -89,7 +88,7 @@ function bindLightboxEvents() {
     if (src) openLightbox(src);
   });
 
-  closeButton?.addEventListener('click', closeLightbox);
+  closeBtn?.addEventListener('click', closeLightbox);
 
   overlay?.addEventListener('click', function (event) {
     if (event.target === overlay) closeLightbox();
@@ -175,7 +174,6 @@ function getChapter() {
 }
 
 function getImgPath(idx) {
-  const chapter = getChapter();
   if (!chapter) throw new Error(`Unknown chapter: ${currentChapterId}`);
 
   const rootDir = chapter.category === 'zhuanye' ? '专业课题库' : '数一题库';
@@ -185,7 +183,6 @@ function getImgPath(idx) {
     return `${chapterDir}/${chapter.fileBases[idx]}`;
   }
 
-  const label = String(chapter.labels?.[idx] ?? '');
   if (!label) throw new Error(`Missing image label for question ${idx + 1}`);
 
   const fileBase = label.startsWith('例')
@@ -199,7 +196,6 @@ function getImgPath(idx) {
 
 // ===== 全局状态变量声明 =====
 let currentChapterId = 'ch1';
-let currentCategory = 'shu1';
 let current = 0;
 let showSolution = true;
 let defaultShowSolution = true;
@@ -211,7 +207,6 @@ let qBad = {};
 let sBad = {};
 let notesData = {};
 
-let annoActive = false;
 let initializedUserId = null;
 
 
@@ -267,7 +262,6 @@ function initAnnotationEngine() {
   const sizeValue = document.getElementById('annoSizeVal');
   const eraserButton = document.getElementById('annoToolEraser');
   const clearButton = document.getElementById('annoClear');
-  const closeButton = document.getElementById('annoClose');
   const colorButtons = Array.from(
     document.querySelectorAll('.anno-color-btn')
   );
@@ -348,7 +342,6 @@ function initAnnotationEngine() {
 
     event.preventDefault();
     configureContext();
-    const point = canvasPoint(event);
     context.lineTo(point.x, point.y);
     context.stroke();
   });
@@ -398,7 +391,8 @@ function initAnnotationEngine() {
     }
   });
 
-  closeButton?.addEventListener('click', function () {
+  const closeBtnAnno = document.getElementById('annoClose');
+  closeBtnAnno?.addEventListener('click', function () {
     toggleAnnotation(false);
   });
 
@@ -407,13 +401,11 @@ function initAnnotationEngine() {
 
 
 function getAnnotationStorageKey(chapterId, questionId) {
-  const user = window.PrivateStudy?.getCurrentUser();
   if (!user) throw new Error('未登录，不能保存题目标注');
   return `annotation:${user.id}:${chapterId}:${questionId}`;
 }
 
 function saveQuestionAnnotation() {
-  const canvas = document.getElementById('annotationCanvas');
   if (!canvas) return;
   const key = getAnnotationStorageKey(currentChapterId, current);
   try {
@@ -424,11 +416,8 @@ function saveQuestionAnnotation() {
 }
 
 function restoreQuestionAnnotation() {
-  const canvas = document.getElementById('annotationCanvas');
   if (!canvas) return;
-  const context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
-  const key = getAnnotationStorageKey(currentChapterId, current);
   const dataUrl = localStorage.getItem(key);
   if (!dataUrl) return;
   const image = new Image();
@@ -653,23 +642,27 @@ function restoreQuestionAnnotation() {
 {"id": "ch249", "number": 249, "name": "郑君里课后刷题本 - 第11章", "short": "第11章", "total": 42, "cols": 5, "wb": "郑君里课后刷题本", "subj": "专业课", "category": "zhuanye", "relPath": "郑君里课后刷题本/第11章", "labels": ["例11-1", "例11-2", "例11-3", "例11-5", "例11-6", "例11-7", "例11-8", "例11-9", "例11-10", "例11-11", "例11-11(2)", "例11-11(3)", "例11-12", "例11-12(2)", "例11-12(3)", "例11-13", "例11-14", "例11-15", "例11-16", "例11-17", "例11-17(2)", "例11-18", "例11-19", "例11-20", "例11-20(2)", "例11-21", "例11-22", "例11-23", "例11-24", "例11-25", "例11-26", "例11-27", "例11-27(2)", "例11-28", "例11-28(2)", "例11-30", "例11-31", "例11-32", "例11-32(2)", "例11-p220_c1", "例11-p236_c2", "例11-p237_c1"], "fileBases": ["ex_11-1_question", "ex_11-2_question", "ex_11-3_question", "ex_11-5_question", "ex_11-6_question", "ex_11-7_question", "ex_11-8_question", "ex_11-9_question", "ex_11-10_question", "ex_11-11_question", "ex_11-11_question_2", "ex_11-11_question_3", "ex_11-12_question", "ex_11-12_question_2", "ex_11-12_question_3", "ex_11-13_question", "ex_11-14_question", "ex_11-15_question", "ex_11-16_question", "ex_11-17_question", "ex_11-17_question_2", "ex_11-18_question", "ex_11-19_question", "ex_11-20_question", "ex_11-20_question_2", "ex_11-21_question", "ex_11-22_question", "ex_11-23_question", "ex_11-24_question", "ex_11-25_question", "ex_11-26_question", "ex_11-27_question", "ex_11-27_question_2", "ex_11-28_question", "ex_11-28_question_2", "ex_11-30_question", "ex_11-31_question", "ex_11-32_question", "ex_11-32_question_2", "ex_11-p220_c1_question", "ex_11-p236_c2_question", "ex_11-p237_c1_question"]},
 {"id": "ch250", "number": 250, "name": "郑君里课后刷题本 - 第12章", "short": "第12章", "total": 26, "cols": 5, "wb": "郑君里课后刷题本", "subj": "专业课", "category": "zhuanye", "relPath": "郑君里课后刷题本/第12章", "labels": ["例12-1", "例12-2", "例12-3", "例12-4", "例12-5", "例12-6", "例12-6(2)", "例12-7", "例12-7(2)", "例12-7(3)", "例12-8", "例12-9", "例12-10", "例12-12", "例12-13", "例12-14", "例12-15", "例12-16", "例12-17", "例12-18", "例12-19", "例12-19(2)", "例12-19(3)", "例12-20", "例12-21", "例12-p246_c1"], "fileBases": ["ex_12-1_question", "ex_12-2_question", "ex_12-3_question", "ex_12-4_question", "ex_12-5_question", "ex_12-6_question", "ex_12-6_question_2", "ex_12-7_question", "ex_12-7_question_2", "ex_12-7_question_3", "ex_12-8_question", "ex_12-9_question", "ex_12-10_question", "ex_12-12_question", "ex_12-13_question", "ex_12-14_question", "ex_12-15_question", "ex_12-16_question", "ex_12-17_question", "ex_12-18_question", "ex_12-19_question", "ex_12-19_question_2", "ex_12-19_question_3", "ex_12-20_question", "ex_12-21_question", "ex_12-p246_c1_question"]}
 ];
-// ===== 状态变量 (0-based) =====
-      const labels = ch.labels || [];
-      const groups = [];
-      let i = 0;
-      while (i < labels.length) {
-        const parent = stripSubSuffix(labels[i]);
-        const hasParen = parent !== labels[i];
-        let j = i + 1;
-        if (hasParen) {
-          while (j < labels.length && stripSubSuffix(labels[j]) === parent && stripSubSuffix(labels[j]) !== labels[j]) j++;
-        }
-        groups.push({ parentLabel: parent, startIdx: i, count: j - i, isParent: hasParen && (j - i) > 1 });
-        i = j;
-      }
-      ch.subGroups = groups;
-      ch.groupForIdx = new Array(labels.length);
-      groups.forEach(g => { for (let k = 0; k < g.count; k++) ch.groupForIdx[g.startIdx + k] = g; });
+
+function ensureGroups(ch) {
+  if (!ch) ch = getChapter();
+  if (!ch || ch.subGroups) return;
+  const labels = ch.labels || [];
+  const groups = [];
+  let i = 0;
+  while (i < labels.length) {
+    const parent = stripSubSuffix(labels[i]);
+    const hasParen = parent !== labels[i];
+    let j = i + 1;
+    if (hasParen) {
+      while (j < labels.length && stripSubSuffix(labels[j]) === parent && stripSubSuffix(labels[j]) !== labels[j]) j++;
+    }
+    groups.push({ parentLabel: parent, startIdx: i, count: j - i, isParent: hasParen && (j - i) > 1 });
+    i = j;
+  }
+  ch.subGroups = groups;
+  ch.groupForIdx = new Array(labels.length);
+  groups.forEach(g => { for (let k = 0; k < g.count; k++) ch.groupForIdx[g.startIdx + k] = g; });
+}
 
     // 题组内当前筛选下可见的索引列表
     function groupVisibleIndices(g) {
@@ -733,29 +726,31 @@ function restoreQuestionAnnotation() {
 
 function renderStats() {
   const ch = getChapter();
+  if (!ch) return;
+  const total = ch.total || 0;
   let proficient = 0, vague = 0, wrong = 0;
 
-  for (let index = 0; index < ch.total; index++) {
-    const status = statuses[index];
+  for (let index = 0; index < total; index++) {
+    const status = getStatus(index);
     if (status === 'proficient') proficient++;
     else if (status === 'vague') vague++;
     else if (status === 'wrong') wrong++;
   }
 
-  const unmarked = ch.total - (proficient + vague + wrong);
-  const percent = Math.round((proficient / ch.total) * 100);
+  const done = proficient + vague + wrong;
+  const unmarked = Math.max(0, total - done);
 
-  const container = document.getElementById('statsDisplay');
-  if (!container) return;
+  const setProgress = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(val);
+  };
 
-  container.innerHTML =
-    '<div class="stats-bar"><div class="stats-fill" style="width:' + percent + '%"></div></div>' +
-    '<div class="stats-counts">' +
-      '<span><span class="sc-dot" style="background:#248A3D"></span>熟练 ' + proficient + '</span>' +
-      '<span><span class="sc-dot" style="background:#C45500"></span>模糊 ' + vague + '</span>' +
-      '<span><span class="sc-dot" style="background:#BE160C"></span>需复习 ' + wrong + '</span>' +
-      '<span><span class="sc-dot" style="background:#bbb"></span>未做 ' + unmarked + '</span>' +
-    '</div>';
+  setProgress('statTotal', total);
+  setProgress('statDone', done);
+  setProgress('statProficient', proficient);
+  setProgress('statVague', vague);
+  setProgress('statWrong', wrong);
+  setProgress('statUnmarked', unmarked);
 }
 
 
@@ -787,11 +782,9 @@ function renderStats() {
         if ((ch.category || 'shu1') !== currentCategory) continue;
         if (ch.total === 0) continue;
         const name = ch.short || ch.name;
-        const key = ch.id + '_s1_status';
         let statusObj;
         try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
         const total = ch.total;
-        let proficient = 0, vague = 0, wrong = 0;
         for (let i = 0; i < total; i++) {
           const s = statusObj[i];
           if (s === 'proficient') proficient++;
@@ -799,7 +792,6 @@ function renderStats() {
           else if (s === 'wrong') wrong++;
         }
         const done = proficient + vague + wrong;
-        const unmarked = total - done;
         const pct = total > 0 ? Math.round(done / total * 100) : 0;
         html += '<div class="dash-chapter-card">' +
           '<div class="dash-chapter-name">' + name + '</div>' +
@@ -818,11 +810,7 @@ function renderStats() {
     let wrongBookOpen = false;
     function toggleWrongBook() {
       wrongBookOpen = !wrongBookOpen;
-      const panel = document.getElementById('wrongBookPanel');
       const dashPanel = document.getElementById('dashboardPanel');
-      const content = document.getElementById('mainAreaContent');
-      const chapTitle = document.getElementById('chapterTitle');
-      const btn = document.getElementById('btnWrongBook');
       if (wrongBookOpen) {
         renderWrongBook();
         dashPanel.style.display = 'none';
@@ -848,14 +836,10 @@ function renderStats() {
     }
 
     function renderWrongBook() {
-      const list = document.getElementById('wrongBookList');
-      let html = '';
       let totalWrong = 0;
       for (const ch of CHAPTERS) {
         if ((ch.category || 'shu1') !== currentCategory) continue;
         if (ch.total === 0) continue;
-        const key = ch.id + '_s1_status';
-        let statusObj;
         try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
         const wrongIndices = [];
         for (let i = 0; i < ch.total; i++) {
@@ -863,13 +847,10 @@ function renderStats() {
         }
         if (wrongIndices.length === 0) continue;
         totalWrong += wrongIndices.length;
-        const name = ch.short || ch.name;
-        const labels = ch.labels || [];
         html += '<div class="wrongbook-chapter-card">' +
           '<div class="wrongbook-chapter-name">' + name + '（' + wrongIndices.length + '题）</div>' +
           '<div class="wrongbook-q-grid">';
         for (const idx of wrongIndices) {
-          const label = labels[idx] || (idx + 1);
           html += '<span class="wrongbook-q-item" data-chapter="' + ch.id + '" data-index="' + idx + '" title="第' + label + '题">' + label + '</span>';
         }
         html += '</div></div>';
@@ -882,7 +863,6 @@ function renderStats() {
       // 点击跳转
       list.querySelectorAll('.wrongbook-q-item').forEach(function (element) {
       element.addEventListener('click', function () {
-        const chapterId = this.getAttribute('data-chapter');
         const questionIndex = Number(this.getAttribute('data-index'));
         const targetChapter = CHAPTERS.find(function (chapter) {
           return chapter.id === chapterId;
@@ -912,16 +892,13 @@ function renderStats() {
     function renderNav() {
       const nav = document.getElementById('qnav');
       nav.innerHTML = '';
-      const ch = getChapter();
       ensureGroups(ch);
       const cols = effectiveCols();
       nav.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
-      const labels = ch.labels;
       const filteredSet = new Set(getFilteredIndices());
       const curGroup = ch.groupForIdx[current];
 
       function appendBadges(btn, i) {
-        const labels = ch.labels;
         if (qBad[i] || sBad[i] || notesData[labels[i]]) {
           const badgeSpan = document.createElement('span');
           badgeSpan.className = 'img-badges';
@@ -1101,13 +1078,8 @@ function renderStats() {
 
       bar.style.display = 'block';
       bar.innerHTML = '';
-      const ch = getChapter();
-      const labels = ch.labels;
-      const filteredSet = new Set(getFilteredIndices());
 
       for (let k = 0; k < curGroup.count; k++) {
-        const i = curGroup.startIdx + k;
-        const btn = document.createElement('button');
         btn.className = 'sub-sel-btn';
         btn.textContent = subSuffix(labels[i]);
         btn.title = labels[i];
@@ -1131,14 +1103,12 @@ function renderStats() {
 
     // ===== 题组级 / 子题级导航 =====
     function visibleGroups() {
-      const ch = getChapter();
       ensureGroups(ch);
       if (isAllFilterActive()) return ch.subGroups.slice();
       return ch.subGroups.filter(g => groupVisibleIndices(g).length > 0);
     }
 
     function currentGroup() {
-      const ch = getChapter();
       ensureGroups(ch);
       return ch.groupForIdx[current];
     }
@@ -1156,7 +1126,6 @@ function renderStats() {
         const pos = vis.indexOf(current);
         if (pos > 0) { switchTo(vis[pos - 1]); return; }
       }
-      const groups = visibleGroups();
       const gi = groups.indexOf(g);
       if (gi <= 0) return;
       const pv = groupVisibleIndices(groups[gi - 1]);
@@ -1165,15 +1134,10 @@ function renderStats() {
 
     // D：下一题（题组级：跳下一题组第一个可见子题；子题级：组内+1，越界跳下一组开头）
     function navNext() {
-      const g = currentGroup();
       if (!g) return;
       if (subMode) {
-        const vis = groupVisibleIndices(g);
-        const pos = vis.indexOf(current);
         if (pos !== -1 && pos < vis.length - 1) { switchTo(vis[pos + 1]); return; }
       }
-      const groups = visibleGroups();
-      const gi = groups.indexOf(g);
       if (gi === -1 || gi >= groups.length - 1) return;
       const nv = groupVisibleIndices(groups[gi + 1]);
       if (nv.length > 0) switchTo(nv[0]);
@@ -1181,21 +1145,17 @@ function renderStats() {
 
     // F：切换小题选择模式（仅当前题组含子题时生效）
     function toggleSubMode() {
-      const g = currentGroup();
       if (!g || !g.isParent) return;
       subMode = !subMode;
       renderNav();
       renderSubSelectBar(g);
       // 同步更新题号标签
-      const ch = getChapter();
-      const labels = ch.labels;
       document.getElementById('qLabel').textContent = subMode ? labels[current] : g.parentLabel;
     }
 
     // ===== 切换题目 =====
     function updateSolutionUI() {
       const area = document.getElementById('solutionArea');
-      const btn = document.getElementById('btnToggle');
       if (showSolution) {
         area.classList.add('show');
         btn.innerHTML = '<span class="func-name">隐藏解析</span><span class="key">Space</span>';
@@ -1210,7 +1170,6 @@ function renderStats() {
     function switchTo(idx) {
       current = idx;
       showSolution = defaultShowSolution;
-      const ch = getChapter();
       const base = getImgPath(idx);
       const qImg = document.getElementById('questionImg');
       const sImg = document.getElementById('solutionImg');
@@ -1248,8 +1207,6 @@ function renderStats() {
       updateSolutionUI();
       // 更新题号标签
       ensureGroups(ch);
-      const g = ch.groupForIdx[current];
-      const labels = ch.labels;
       let qLabelText;
       if (subMode) {
         qLabelText = labels[current];
@@ -1279,8 +1236,6 @@ function renderStats() {
 
     // ===== 笔记渲染 =====
     function renderNotes() {
-      const ch = getChapter();
-      const label = ch.labels[current];
       const hasNote = notesData[label];
       const toggle = document.getElementById('notesToggle');
       const preview = document.getElementById('notePreview');
@@ -1312,7 +1267,6 @@ function renderStats() {
     }
 
     function toggleNotes() {
-      const body = document.getElementById('notesBody');
       const isOpen = body.classList.toggle('open');
       if (isOpen && notesData[getChapter().labels[current]]) {
         // 有内容：直接进编辑模式
@@ -1321,16 +1275,8 @@ function renderStats() {
     }
 
     function enterEditMode() {
-      const body = document.getElementById('notesBody');
-      const textarea = document.getElementById('notesTextarea');
-      const render = document.getElementById('notesRender');
-      const btnEdit = document.getElementById('btnNoteEdit');
-      const btnSave = document.getElementById('btnNoteSave');
-      const btnCancel = document.getElementById('btnNoteCancel');
-      const btnDelete = document.getElementById('btnNoteDelete');
 
       body.classList.add('open');
-      const label = getChapter().labels[current];
       textarea.value = notesData[label] || '';
       textarea.style.display = '';
       render.style.display = 'none';
@@ -1350,8 +1296,6 @@ function renderStats() {
     }
 
     function saveNote() {
-      const label = getChapter().labels[current];
-      const textarea = document.getElementById('notesTextarea');
       const val = textarea.value.trim();
       if (val) {
         notesData[label] = val;
@@ -1368,7 +1312,6 @@ function renderStats() {
     }
 
     function deleteNote() {
-      const label = getChapter().labels[current];
       delete notesData[label];
       saveNotes();
       renderNotes();
@@ -1376,7 +1319,6 @@ function renderStats() {
     }
 
     function focusNotes() {
-      const toggle = document.getElementById('notesToggle');
       enterEditMode();
     }
 
@@ -1387,15 +1329,11 @@ function renderStats() {
     function updateStatusBtns() {
       const cur = getStatus(current);
       ['proficient', 'vague', 'wrong'].forEach(s => {
-        const btn = document.getElementById('btn' + s.charAt(0).toUpperCase() + s.slice(1));
         btn.className = 'gel-btn btn-status' + (s === cur ? ' ' + s + ' active' : '');
       });
     }
 
     function setStatus(status) {
-      const ch = getChapter();
-      const label = ch && ch.labels ? ch.labels[current] : null;
-      const cur = getStatus(current);
       if (cur === status) {
         delete statuses[current];
         if (label) delete statuses[label];
@@ -1419,7 +1357,6 @@ function renderStats() {
     }
 
     function renderSolDefaultBtn() {
-      const btn = document.getElementById('btnSolDefault');
       if (defaultShowSolution) {
         btn.innerHTML = '解析默认：显示<span class="sol-key">Shift+Space</span>';
       } else {
@@ -1429,15 +1366,11 @@ function renderStats() {
 
     // ===== 筛选栏数字统计 =====
     function updateFilterCounts() {
-      const ch = getChapter();
-      const total = ch.total;
-      let proficient = 0, vague = 0, wrong = 0;
       Object.values(statuses).forEach(s => {
         if (s === 'proficient') proficient++;
         else if (s === 'vague') vague++;
         else if (s === 'wrong') wrong++;
       });
-      const unmarked = total - proficient - vague - wrong;
       const setCount = (filter, val) => {
         const el = document.querySelector('.filter-btn[data-filter="' + filter + '"] .filter-count');
         if (el) el.textContent = val;
@@ -1453,7 +1386,6 @@ function renderStats() {
     let lbScale = 1, lbTranslateX = 0, lbTranslateY = 0, lbDragging = false, lbLastX = 0, lbLastY = 0;
 
     function openLightbox(src) {
-      const overlay = document.getElementById('lightbox');
       const img = document.getElementById('lightboxImg');
       img.src = src;
       lbScale = 1; lbTranslateX = 0; lbTranslateY = 0;
@@ -1463,13 +1395,11 @@ function renderStats() {
     }
 
     function closeLightbox() {
-      const overlay = document.getElementById('lightbox');
       overlay.classList.remove('show');
       document.body.style.overflow = '';
     }
 
     function lbApplyTransform() {
-      const img = document.getElementById('lightboxImg');
       img.style.transform = 'translate(' + lbTranslateX + 'px,' + lbTranslateY + 'px) scale(' + lbScale + ')';
     }
 
@@ -1484,20 +1414,17 @@ function renderStats() {
     let scratchSize = 4;
 
     function initScratchpad() {
-      const canvas = document.getElementById('scratchCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
 
       canvas.addEventListener('pointerdown', function(e) {
         scratchIsDrawing = true;
-        const rect = canvas.getBoundingClientRect();
         ctx.beginPath();
         ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
       });
 
       canvas.addEventListener('pointermove', function(e) {
         if (!scratchIsDrawing) return;
-        const rect = canvas.getBoundingClientRect();
         ctx.lineWidth = scratchTool === 'eraser' ? scratchSize * 4 : scratchSize;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
@@ -1545,14 +1472,10 @@ function renderStats() {
     }
 
     function toggleScratchpad(show) {
-      const container = document.getElementById('scratchContainer');
-      const btn = document.getElementById('btnToggleAnnotation');
       if (show === undefined) show = container.style.display === 'none';
       container.style.display = show ? 'block' : 'none';
       if (btn) btn.classList.toggle('active', show);
       if (show) {
-        const canvas = document.getElementById('scratchCanvas');
-        const rect = canvas.getBoundingClientRect();
         if (canvas.width !== rect.width) {
           canvas.width = rect.width;
           canvas.height = 320;
@@ -1574,10 +1497,7 @@ function renderStats() {
 
 
     function toggleAnnotation(show) {
-      const canvas = document.getElementById('annotationCanvas');
       const toolbar = document.getElementById('annoToolbar');
-      const btn = document.getElementById('btnToggleAnnotation');
-      const qImg = document.getElementById('questionImg');
       
       if (show === undefined) show = !annoActive;
       annoActive = show;
@@ -1601,7 +1521,6 @@ function renderStats() {
     // ===== 私有云端 Auth 事件联动 =====
     
 function getSignedInUserId() {
-  const user = window.PrivateStudy?.getCurrentUser();
   if (!user) throw new Error('未登录，不能读写用户学习数据');
   return user.id;
 }
@@ -1644,7 +1563,6 @@ function resetAllUserState() {
 }
 
 async function restoreChapterState(chapterId) {
-  const api = window.PrivateStudy;
   if (!api || !api.getCurrentUser()) return;
 
   clearRecord(statuses);
@@ -1665,13 +1583,11 @@ async function restoreChapterState(chapterId) {
 }
 
 async function switchChapter(chapterId) {
-  const chapter = CHAPTERS.find((item) => item.id === chapterId);
   if (!chapter || chapter.total === 0) {
     alert('该章节尚未导入');
     return;
   }
 
-  const api = window.PrivateStudy;
   if (!api || !api.getCurrentUser()) return;
 
   try {
@@ -1717,7 +1633,6 @@ function initTheme() {
   const mode = localStorage.getItem('kaoyan_theme_mode') || 'light';
   if (mode === 'dark') {
     document.body.classList.add('dark-mode');
-    const btn = document.getElementById('btnTheme');
     if (btn) btn.innerHTML = '☀️ 日光模式';
   }
 }
@@ -1725,11 +1640,9 @@ function initTheme() {
 function toggleTheme() {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('kaoyan_theme_mode', isDark ? 'dark' : 'light');
-  const btn = document.getElementById('catBtnTheme');
   if (btn) btn.innerHTML = isDark ? '☀️ 日光模式' : '🌙 护眼模式';
 }
 
 async function restoreCurrentUserProgress() {
-  const chapterId = currentChapterId || (CHAPTERS[0] ? CHAPTERS[0].id : 'ch1');
   await restoreChapterState(chapterId);
 }
