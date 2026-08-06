@@ -409,6 +409,33 @@ function restoreQuestionAnnotation() {
 
     function getChapter() { return CHAPTERS.find(c => c.id === currentChapterId); }
 
+    // Returns a path without an extension. Math chapters use their labels; major
+    // course chapters provide an explicit file-name mapping.
+    function getImgPath(idx) {
+      const chapter = getChapter();
+      if (!chapter) {
+        throw new Error(`Unknown chapter: ${currentChapterId}`);
+      }
+
+      const rootDir = chapter.category === 'zhuanye' ? '专业题库' : '数一题库';
+      const chapterDir = `${rootDir}/${chapter.relPath}`;
+
+      if (Array.isArray(chapter.fileBases) && chapter.fileBases[idx]) {
+        return `${chapterDir}/${chapter.fileBases[idx]}`;
+      }
+
+      const label = String(chapter.labels?.[idx] ?? '');
+      if (!label) {
+        throw new Error(`Missing image label for question ${idx + 1}`);
+      }
+
+      const fileBase = label.startsWith('例')
+        ? `ex_${label.slice(1)}`
+        : `pb_${label}`;
+
+      return `${chapterDir}/${fileBase}`;
+    }
+
     // ===== 题组（父题/子题）解析 =====
     // 去掉 label 末尾括号及内容（支持 (1)、(a)、(I)、全角括号），得到父题号
     function stripSubSuffix(label) { return String(label).replace(/\s*[\(（][^\)）]*[\)）]\s*$/, ''); }
