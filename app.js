@@ -1193,6 +1193,20 @@ function switchTo(idx) {
   if (api?.getCurrentUser?.()) {
     api.scheduleSave(currentChapterId, 'lastPosition', current);
   }
+
+  // Preload next and previous images for faster switching, especially for large zhuanye images
+  if (current < ch.total - 1) {
+    const nextBase = getImgPath(current + 1);
+    const nextImg = new Image();
+    nextImg.decoding = 'async';
+    nextImg.src = (ch.category === 'zhuanye' && nextBase.includes('_question')) ? nextBase + '.png' : nextBase + '_question.png';
+  }
+  if (current > 0) {
+    const prevBase = getImgPath(current - 1);
+    const prevImg = new Image();
+    prevImg.decoding = 'async';
+    prevImg.src = (ch.category === 'zhuanye' && prevBase.includes('_question')) ? prevBase + '.png' : prevBase + '_question.png';
+  }
 }
 
 // ===== 章节与分类切换 =====
