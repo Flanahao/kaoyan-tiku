@@ -2870,82 +2870,9 @@
     let scratchColor = '#FF3B30';
     let scratchSize = 4;
 
-    function initScratchpad() {
-      const canvas = document.getElementById('scratchCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
+    
 
-      canvas.addEventListener('pointerdown', function(e) {
-        scratchIsDrawing = true;
-        const rect = canvas.getBoundingClientRect();
-        ctx.beginPath();
-        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-      });
-
-      canvas.addEventListener('pointermove', function(e) {
-        if (!scratchIsDrawing) return;
-        const rect = canvas.getBoundingClientRect();
-        ctx.lineWidth = scratchTool === 'eraser' ? scratchSize * 4 : scratchSize;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        if (scratchTool === 'eraser') {
-          ctx.globalCompositeOperation = 'destination-out';
-        } else {
-          ctx.globalCompositeOperation = 'source-over';
-          ctx.strokeStyle = scratchColor;
-        }
-        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-        ctx.stroke();
-      });
-
-      window.addEventListener('pointerup', function() {
-        scratchIsDrawing = false;
-      });
-
-      document.getElementById('scratchToolPen').onclick = function() {
-        scratchTool = 'pen';
-        this.classList.add('active');
-        document.getElementById('scratchToolEraser').classList.remove('active');
-      };
-
-      document.getElementById('scratchToolEraser').onclick = function() {
-        scratchTool = 'eraser';
-        this.classList.add('active');
-        document.getElementById('scratchToolPen').classList.remove('active');
-      };
-
-      document.getElementById('scratchColorPicker').onchange = function(e) {
-        scratchColor = e.target.value;
-      };
-
-      document.getElementById('scratchSizeSelect').onchange = function(e) {
-        scratchSize = parseInt(e.target.value);
-      };
-
-      document.getElementById('scratchClear').onclick = function() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      };
-
-      document.getElementById('scratchClose').onclick = function() {
-        toggleScratchpad(false);
-      };
-    }
-
-    function toggleScratchpad(show) {
-      const container = document.getElementById('scratchContainer');
-      const btn = document.getElementById('btnToggleScratchpad');
-      if (show === undefined) show = container.style.display === 'none';
-      container.style.display = show ? 'block' : 'none';
-      if (btn) btn.classList.toggle('active', show);
-      if (show) {
-        const canvas = document.getElementById('scratchCanvas');
-        const rect = canvas.getBoundingClientRect();
-        if (canvas.width !== rect.width) {
-          canvas.width = rect.width;
-          canvas.height = 320;
-        }
-      }
-    }
+    
 
 
     
@@ -2956,286 +2883,52 @@
     let supabaseClient = null;
     let currentUser = null;
 
-    function initSupabase() {
-      if (window.supabase && SUPABASE_URL && SUPABASE_URL.startsWith('http')) {
-        try {
-          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-          checkUserSession();
-        } catch(e) {
-          console.warn('Supabase init skipped:', e);
-        }
-      }
-    }
+    
 
-    async function checkUserSession() {
-      if (!supabaseClient) return;
-      try {
-        const { data: { user } } = await supabaseClient.auth.getUser();
-        if (user) {
-          onUserLoggedIn(user);
-        } else {
-          onUserLoggedOut();
-        }
-      } catch(e) {}
-    }
+    async 
 
-    function onUserLoggedIn(user) {
-      currentUser = user;
-      document.getElementById('userEmailSpan').textContent = '👤 ' + user.email.split('@')[0];
-      document.getElementById('userEmailSpan').title = user.email;
-      document.getElementById('userEmailSpan').style.display = 'inline';
-      document.getElementById('syncStatusSpan').style.display = 'inline';
-      document.getElementById('btnLoginModal').style.display = 'none';
-      document.getElementById('btnLogout').style.display = 'inline';
-      
-      pullCloudProgress();
-    }
+    
 
-    function onUserLoggedOut() {
-      currentUser = null;
-      document.getElementById('userEmailSpan').style.display = 'none';
-      document.getElementById('syncStatusSpan').style.display = 'none';
-      document.getElementById('btnLoginModal').style.display = 'inline';
-      document.getElementById('btnLogout').style.display = 'none';
-    }
+    
 
-    async function handleAuthLogin() {
-      const email = document.getElementById('authEmailInput').value.trim();
-      const password = document.getElementById('authPasswordInput').value.trim();
-      const msg = document.getElementById('authMsg');
-      if (!email || !password) { msg.textContent = '请输入邮箱与密码'; return; }
-      msg.textContent = '登录中...'; msg.style.color = '#333';
-      
-      if (!supabaseClient) {
-        msg.textContent = '请先配置 Supabase 云数据库参数'; msg.style.color = '#FF3B30';
-        return;
-      }
+    async 
 
-      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-      if (error) {
-        msg.textContent = '登录失败: ' + error.message; msg.style.color = '#FF3B30';
-      } else {
-        msg.textContent = '登录成功！'; msg.style.color = '#34C759';
-        onUserLoggedIn(data.user);
-        setTimeout(() => { toggleAuthModal(false); }, 800);
-      }
-    }
+    async 
 
-    async function handleAuthRegister() {
-      const email = document.getElementById('authEmailInput').value.trim();
-      const password = document.getElementById('authPasswordInput').value.trim();
-      const msg = document.getElementById('authMsg');
-      if (!email || !password) { msg.textContent = '请输入邮箱与密码'; return; }
-      if (password.length < 6) { msg.textContent = '密码至少需要6位'; return; }
-      msg.textContent = '注册中...'; msg.style.color = '#333';
+    async 
 
-      if (!supabaseClient) {
-        msg.textContent = '请先配置 Supabase 云数据库参数'; msg.style.color = '#FF3B30';
-        return;
-      }
+    
 
-      const { data, error } = await supabaseClient.auth.signUp({ email, password });
-      if (error) {
-        msg.textContent = '注册失败: ' + error.message; msg.style.color = '#FF3B30';
-      } else {
-        msg.textContent = '注册成功！现已自动登录'; msg.style.color = '#34C759';
-        if (data.user) onUserLoggedIn(data.user);
-        setTimeout(() => { toggleAuthModal(false); }, 1000);
-      }
-    }
+    async 
 
-    async function handleAuthLogout() {
-      if (supabaseClient) await supabaseClient.auth.signOut();
-      onUserLoggedOut();
-      alert('已安全退出登录');
-    }
-
-    function toggleAuthModal(show) {
-      const overlay = document.getElementById('authModalOverlay');
-      if (show === undefined) show = !overlay.classList.contains('show');
-      overlay.classList.toggle('show', show);
-    }
-
-    async function pullCloudProgress() {
-      if (!supabaseClient || !currentUser) return;
-      document.getElementById('syncStatusSpan').textContent = '🔄 同步中...';
-      try {
-        const { data, error } = await supabaseClient
-          .from('user_progress')
-          .select('*')
-          .eq('user_id', currentUser.id);
-          
-        if (data && data.length > 0) {
-          data.forEach(row => {
-            const key = row.chapter_id + '_s1_' + row.data_type;
-            localStorage.setItem(key, JSON.stringify(row.data));
-          });
-          loadStatuses(); loadQBad(); loadSBad(); loadNotes();
-          renderStats(); renderNav(); updateFilterCounts();
-        }
-        document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
-      } catch(err) {
-        document.getElementById('syncStatusSpan').textContent = '☁️ 离线中';
-      }
-    }
-
-    async function pushCloudChapterData(chapterId, dataType, dataObj) {
-      if (!supabaseClient || !currentUser) return;
-      document.getElementById('syncStatusSpan').textContent = '🔄 保存中...';
-      try {
-        await supabaseClient.from('user_progress').upsert({
-          user_id: currentUser.id,
-          chapter_id: chapterId,
-          data_type: dataType,
-          data: dataObj,
-          updated_at: new Date().toISOString()
-        }, { onConflict: 'user_id,chapter_id,data_type' });
-        document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
-      } catch(e) {
-        document.getElementById('syncStatusSpan').textContent = '☁️ 离线保存';
-      }
-    }
+    async 
 
 
-    function initTheme() {
-      const mode = localStorage.getItem('theme_mode') || 'light';
-      if (mode === 'dark') {
-        document.body.classList.add('dark-mode');
-        const b = document.getElementById('catBtnTheme');
-        if (b) b.textContent = '☀️ 日光模式';
-      } else {
-        document.body.classList.remove('dark-mode');
-        const b = document.getElementById('catBtnTheme');
-        if (b) b.textContent = '🌙 护眼模式';
-      }
-    }
+    
     // 立即执行一次设置类名，防止初次加载闪烁
     initTheme();
 
 
     // ===== 数据备份与恢复 =====
-    function backupData() {
-      const backup = {
-        version: '1.0',
-        exportTime: new Date().toLocaleString(),
-        storage: {}
-      };
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (k.includes('_status') || k.includes('_qbad') || k.includes('_sbad') || k.includes('_notes') || k === 'theme_mode') {
-          backup.storage[k] = localStorage.getItem(k);
-        }
-      }
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backup, null, 2));
-      const downloadAnchor = document.createElement('a');
-      const dateStr = new Date().toISOString().slice(0, 10);
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `考研题库进度备份_${dateStr}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-    }
+    
 
-    function restoreData(file) {
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const data = JSON.parse(e.target.result);
-          if (!data.storage) {
-            alert('文件格式错误：未包含有效的备份数据');
-            return;
-          }
-          if (confirm(`确认恢复 ${data.exportTime || ''} 导出的备份数据？现有的做题进度将被覆盖。`)) {
-            Object.keys(data.storage).forEach(k => {
-              localStorage.setItem(k, data.storage[k]);
-            });
-            alert('数据恢复成功！即将为您刷新页面。');
-            location.reload();
-          }
-        } catch (err) {
-          alert('无法解析备份文件，请确认选择的是正确的 JSON 文件');
-        }
-      };
-      reader.readAsText(file);
-    }
+    
 
     // ===== 错题重刷消灭模式 =====
     let wrongPracticeMode = false;
     let wrongPracticeList = []; // [{ chapterId, index }]
     let wrongPracticeCurrent = 0;
 
-    function startWrongPractice() {
-      wrongPracticeList = [];
-      for (const ch of CHAPTERS) {
-        if ((ch.category || 'shu1') !== currentCategory || ch.total === 0) continue;
-        const key = ch.id + '_s1_status';
-        let statusObj;
-        try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
-        for (let i = 0; i < ch.total; i++) {
-          if (statusObj[i] === 'wrong') {
-            wrongPracticeList.push({ chapterId: ch.id, index: i });
-          }
-        }
-      }
-      if (wrongPracticeList.length === 0) {
-        alert('当前分类下暂无标记为「需复习」的错题！');
-        return;
-      }
-      wrongPracticeMode = true;
-      wrongPracticeCurrent = 0;
-      wrongBookOpen = false;
-      document.getElementById('wrongBookPanel').style.display = 'none';
-      document.getElementById('mainAreaContent').style.display = '';
-      document.getElementById('btnWrongBook').textContent = '错题本';
-      
-      loadWrongPracticeItem(0);
-    }
+    
 
-    function renderWrongBanner() {
-      let banner = document.getElementById('wrongPracticeBanner');
-      if (!wrongPracticeMode) {
-        if (banner) banner.style.display = 'none';
-        return;
-      }
-      if (!banner) {
-        banner = document.createElement('div');
-        banner.id = 'wrongPracticeBanner';
-        banner.className = 'wrong-practice-banner';
-        const mainArea = document.getElementById('mainArea');
-        mainArea.insertBefore(banner, mainArea.firstChild);
-      }
-      banner.style.display = 'flex';
-      banner.innerHTML = `<span>⚡ 错题消灭模式 (${wrongPracticeCurrent + 1} / ${wrongPracticeList.length})</span><button class="btn-exit-wrong" id="btnExitWrong">退出模式</button>`;
-      document.getElementById('btnExitWrong').onclick = exitWrongPractice;
-    }
+    
 
-    function exitWrongPractice() {
-      wrongPracticeMode = false;
-      renderWrongBanner();
-      renderTitle();
-      renderNav();
-    }
+    
 
-    function loadWrongPracticeItem(pos) {
-      if (pos < 0 || pos >= wrongPracticeList.length) return;
-      wrongPracticeCurrent = pos;
-      const item = wrongPracticeList[pos];
-      if (currentChapterId !== item.chapterId) {
-        switchChapter(item.chapterId);
-      }
-      current = item.index;
-      renderWrongBanner();
-      switchTo(current);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-      initTheme();
-      const b1 = document.getElementById('catBtnShu1');
-      const b2 = document.getElementById('catBtnZhuanye');
-      if (b1) b1.addEventListener('click', function() { switchCategory('shu1'); });
+    
       if (b2) b2.addEventListener('click', function() { switchCategory('zhuanye'); });
       const bTheme = document.getElementById('catBtnTheme');
       if (bTheme) bTheme.addEventListener('click', toggleTheme);
@@ -4706,92 +4399,7 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
     }
 
 
-    /* ===== 悬浮草稿纸 (Canvas Scratchpad) ===== */
-    .scratchpad-container {
-      position: relative;
-      width: 100%;
-      margin: 12px 0;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      touch-action: none;
-    }
-
-    body.dark-mode .scratchpad-container {
-      background: rgba(25, 25, 38, 0.95) !important;
-      border-color: rgba(255, 255, 255, 0.15) !important;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
-    }
-
-    .scratchpad-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      background: rgba(0, 0, 0, 0.04);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      flex-wrap: wrap;
-    }
-
-    body.dark-mode .scratchpad-toolbar {
-      background: rgba(255, 255, 255, 0.06) !important;
-      border-bottom-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
-    .scratch-title {
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--primary);
-    }
-
-    .scratch-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid #ccc;
-      background: #fff;
-      font-size: 13px;
-      cursor: pointer;
-      color: #333;
-      transition: all 0.2s;
-    }
-
-    body.dark-mode .scratch-btn {
-      background: #2a2a3c;
-      color: #eee;
-      border-color: #444;
-    }
-
-    .scratch-btn.active, .scratch-btn:hover {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-    }
-
-    .scratch-select {
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 13px;
-      background: #fff;
-    }
-
-    body.dark-mode .scratch-select {
-      background: #2a2a3c;
-      color: #eee;
-      border-color: #444;
-    }
-
-    #scratchCanvas {
-      display: block;
-      width: 100%;
-      height: 320px;
-      cursor: crosshair;
-      touch-action: none;
-    }
+    
 
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head><body>
@@ -4800,21 +4408,7 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
 ${cardsHTML}
 <script>window.onload=function(){window.print()}<\\/script>
 
-  <div class="shortcut-overlay" id="authModalOverlay">
-    <div class="shortcut-modal" style="max-width:420px; text-align:center;">
-      <h2 style="margin-bottom:8px;">🎓 考研题库 - 云端账号登录</h2>
-      <p style="font-size:13px; color:#666; margin-bottom:20px;">登录后答题进度、错题本与笔记将自动云端同步，双人数据独立隔离</p>
-      
-      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px; text-align:left;">
-        <div>
-          <label style="font-size:12px; font-weight:600; color:#555;">邮箱账号</label>
-          <input type="email" id="authEmailInput" placeholder="your_email@kaoyan.com" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
-        </div>
-        <div>
-          <label style="font-size:12px; font-weight:600; color:#555;">密码（至少6位）</label>
-          <input type="password" id="authPasswordInput" placeholder="******" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; margin-top:4px;" />
-        </div>
-      </div>
+  
       
       <div id="authMsg" style="font-size:13px; margin-bottom:12px; min-height:18px; color:#FF3B30;"></div>
       
