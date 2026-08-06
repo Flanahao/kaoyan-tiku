@@ -2230,13 +2230,167 @@
       color: #ccc;
     }
 
+
+    /* ===== 双人私有云端登录门禁 (Auth Gate & Account Bar) ===== */
+    [hidden] {
+      display: none !important;
+    }
+
+    .auth-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #1e1b4b 0%, #311042 50%, #0f172a 100%);
+    }
+
+    .auth-card {
+      width: min(100%, 380px);
+      display: grid;
+      gap: 12px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .auth-card h1 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--primary-dark);
+      text-align: center;
+    }
+
+    .auth-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+    }
+
+    .auth-card label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      margin-top: 4px;
+    }
+
+    .auth-card input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .auth-card button {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+
+    .auth-card button:hover {
+      background: var(--primary-dark);
+    }
+
+    .auth-card button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .auth-message, #syncStatus {
+      min-height: 1.4em;
+      font-size: 13px;
+      color: #64748b;
+      text-align: center;
+    }
+
+    .auth-message.is-error, #syncStatus.is-error {
+      color: #b91c1c;
+      font-weight: 600;
+    }
+
+    .account-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      padding: 8px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    body.dark-mode .account-bar {
+      background: rgba(26, 26, 38, 0.85);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: #eee;
+    }
+
+    .account-bar button {
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 59, 48, 0.1);
+      color: #FF3B30;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .account-bar button:hover {
+      background: #FF3B30;
+      color: #fff;
+    }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./auth-progress.js"></script>
 </head>
 
 <body>
+  <div id="authGate" class="auth-gate">
+    <form id="authForm" class="auth-card" autocomplete="on">
+      <h1>🎓 双人私有考研题库</h1>
+      <p>请使用已分配的账号登录</p>
 
-  <div class="app-layout">
+      <label for="authEmail">邮箱</label>
+      <input id="authEmail" name="email" type="email" autocomplete="username" required placeholder="your_email@kaoyan.com">
+
+      <label for="authPassword">密码</label>
+      <input id="authPassword" name="password" type="password" autocomplete="current-password" required placeholder="******">
+
+      <button id="authSubmit" type="submit">登录账号</button>
+      <p id="authMessage" class="auth-message" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <div id="appShell" hidden>
+    <header class="account-bar">
+      <span>当前账号：<strong id="currentUserEmail"></strong></span>
+      <span id="syncStatus" aria-live="polite">未同步</span>
+      <button id="btnLogout" type="button">退出登录</button>
+    </header>
+    <div class="app-layout">
 
     <div class="sidebar-left">
 
@@ -3788,7 +3942,7 @@
         statuses[current] = status;
         if (label) statuses[label] = status;
       }
-      saveStatuses(); updateStatusBtns(); renderStats(); renderNav(); updateFilterCounts();
+      saveStatuses(); updateStatusBtns(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'status', statuses); renderStats(); renderNav(); updateFilterCounts(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'lastPosition', current);
     }
 
     function toggleSolution() {
@@ -4069,7 +4223,7 @@
             localStorage.setItem(key, JSON.stringify(row.data));
           });
           loadStatuses(); loadQBad(); loadSBad(); loadNotes();
-          renderStats(); renderNav(); updateFilterCounts();
+          renderStats(); renderNav(); updateFilterCounts(); if (window.PrivateStudy && window.PrivateStudy.getCurrentUser()) window.PrivateStudy.scheduleSave(currentChapterId, 'lastPosition', current);
         }
         document.getElementById('syncStatusSpan').textContent = '☁️ 已云同步';
       } catch(err) {
@@ -4190,16 +4344,18 @@
       };
     }
 
-    function annotationStorageKey() {
-  return 'kaoyan_annotation_v1:' + currentChapterId + ':' + current;
+    function getAnnotationStorageKey(chapterId, questionId) {
+  const user = window.PrivateStudy ? window.PrivateStudy.getCurrentUser() : null;
+  const userId = user ? user.id : 'guest';
+  return `annotation:${userId}:${chapterId}:${questionId}`;
 }
 
 function saveQuestionAnnotation() {
   const canvas = document.getElementById('annotationCanvas');
   if (!canvas) return;
-
+  const key = getAnnotationStorageKey(currentChapterId, current);
   try {
-    localStorage.setItem(annotationStorageKey(), canvas.toDataURL('image/png'));
+    localStorage.setItem(key, canvas.toDataURL('image/png'));
   } catch (error) {
     console.warn('标注保存失败，可能已达到浏览器存储上限', error);
   }
@@ -4208,17 +4364,17 @@ function saveQuestionAnnotation() {
 function restoreQuestionAnnotation() {
   const canvas = document.getElementById('annotationCanvas');
   if (!canvas) return;
-
   const context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
-
-  const dataUrl = localStorage.getItem(annotationStorageKey());
+  const key = getAnnotationStorageKey(currentChapterId, current);
+  const dataUrl = localStorage.getItem(key);
   if (!dataUrl) return;
-
   const image = new Image();
   image.onload = function () {
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
   };
+  image.src = dataUrl;
+};
   image.src = dataUrl;
 };
         img.src = annoStore[key];
@@ -4245,6 +4401,52 @@ function restoreQuestionAnnotation() {
         canvas.width = qImg.clientWidth || qImg.naturalWidth || 800;
         canvas.height = qImg.clientHeight || qImg.naturalHeight || 600;
         restoreQuestionAnnotation();
+      }
+    }
+
+
+    
+    // ===== 私有云端 Auth 事件联动 =====
+    document.addEventListener('private-study:signed-in', async function (event) {
+      const user = event.detail.user;
+      resetAllUserState();
+      renderNav();
+
+      const chapterId = currentChapterId || 'ch1';
+      await restoreChapterState(chapterId);
+      switchTo(current || 0);
+
+      console.info('题库已为当前用户初始化:', user.email);
+    });
+
+    document.addEventListener('private-study:signed-out', function () {
+      resetAllUserState();
+      const qImg = document.getElementById('questionImg');
+      const sImg = document.getElementById('solutionImg');
+      if (qImg) qImg.src = '';
+      if (sImg) sImg.src = '';
+    });
+
+    function resetAllUserState() {
+      for (const k of Object.keys(statuses)) delete statuses[k];
+      for (const k of Object.keys(qBad)) delete qBad[k];
+      for (const k of Object.keys(sBad)) delete sBad[k];
+      for (const k of Object.keys(notesData)) delete notesData[k];
+    }
+
+    async function restoreChapterState(chapterId) {
+      if (!window.PrivateStudy || !window.PrivateStudy.getCurrentUser()) return;
+      try {
+        const bundle = await window.PrivateStudy.loadBundle(chapterId);
+        Object.assign(statuses, bundle.status || {});
+        Object.assign(qBad, bundle.questionBad || {});
+        Object.assign(sBad, bundle.solutionBad || {});
+        Object.assign(notesData, bundle.notes || {});
+        if (bundle.lastPosition !== undefined && typeof bundle.lastPosition === 'number') {
+          current = bundle.lastPosition;
+        }
+      } catch (e) {
+        console.warn('读取云端数据失败:', e);
       }
     }
 
@@ -4618,7 +4820,140 @@ function restoreQuestionAnnotation() {
         border-radius: 0;
       }
     }
-  </style>
+  
+    /* ===== 双人私有云端登录门禁 (Auth Gate & Account Bar) ===== */
+    [hidden] {
+      display: none !important;
+    }
+
+    .auth-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: linear-gradient(135deg, #1e1b4b 0%, #311042 50%, #0f172a 100%);
+    }
+
+    .auth-card {
+      width: min(100%, 380px);
+      display: grid;
+      gap: 12px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .auth-card h1 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--primary-dark);
+      text-align: center;
+    }
+
+    .auth-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+    }
+
+    .auth-card label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      margin-top: 4px;
+    }
+
+    .auth-card input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .auth-card button {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+
+    .auth-card button:hover {
+      background: var(--primary-dark);
+    }
+
+    .auth-card button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .auth-message, #syncStatus {
+      min-height: 1.4em;
+      font-size: 13px;
+      color: #64748b;
+      text-align: center;
+    }
+
+    .auth-message.is-error, #syncStatus.is-error {
+      color: #b91c1c;
+      font-weight: 600;
+    }
+
+    .account-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      padding: 8px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    body.dark-mode .account-bar {
+      background: rgba(26, 26, 38, 0.85);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: #eee;
+    }
+
+    .account-bar button {
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 59, 48, 0.1);
+      color: #FF3B30;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .account-bar button:hover {
+      background: #FF3B30;
+      color: #fff;
+    }
+
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./auth-progress.js"></script>
 </head>
 <body>
   <h1>${escapeHtml(chapter.name)}</h1>
@@ -4769,5 +5104,6 @@ function (e) {
 
 
   </script>
+</div><!-- #appShell -->
 </body>
 </html>
