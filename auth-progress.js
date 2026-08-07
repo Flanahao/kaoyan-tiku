@@ -195,7 +195,7 @@
     }
 
     setSyncStatus('已同步');
-    return data?.data ?? {};
+    return data ? data.data : null;
   }
 
   async function loadBundle(chapterId) {
@@ -268,16 +268,37 @@
     if (!job) return;
 
     window.clearTimeout(job.timerId);
-    pendingWrites.delete(key);
 
-    if (currentUser?.id !== job.userId) return;
+    if (currentUser?.id !== job.userId) {
+      pendingWrites.delete(key);
+      return;
+    }
 
-    await writeProgressForUser(
-      job.userId,
-      job.chapterId,
-      job.dataType,
-      job.value
-    );
+    try {
+      await writeProgressForUser(
+        job.userId,
+        job.chapterId,
+        job.dataType,
+        job.value
+      );
+      
+      // 仅成功后删除
+      pendingWrites.delete(key);
+    } catch (error) {
+      job.retryCount = (job.retryCount || 0) + 1;
+
+      if (job.retryCount <= 5) {
+        const delay = Math.min(30000, 1000 * (2 ** job.retryCount));
+        job.timerId = window.setTimeout(() => {
+          flushWrite(key).catch(console.error);
+        }, delay);
+      } else {
+        // 超过重试次数，放弃任务
+        pendingWrites.delete(key);
+      }
+      
+      throw error;
+    }
   }
 
   async function flushPendingWrites() {

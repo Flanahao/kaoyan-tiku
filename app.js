@@ -430,10 +430,10 @@ async function restoreChapterState(chapterId = currentChapterId) {
   try {
     const bundle = await api.loadBundle(chapterId);
     if (bundle) {
-      replaceRecord(statuses, bundle.status);
-      replaceRecord(qBad, bundle.questionBad);
-      replaceRecord(sBad, bundle.solutionBad);
-      replaceRecord(notesData, bundle.notes);
+      if (bundle.status !== null) replaceRecord(statuses, bundle.status);
+      if (bundle.questionBad !== null) replaceRecord(qBad, bundle.questionBad);
+      if (bundle.solutionBad !== null) replaceRecord(sBad, bundle.solutionBad);
+      if (bundle.notes !== null) replaceRecord(notesData, bundle.notes);
 
       saveUserCache('status', statuses, chapterId);
       saveUserCache('questionBad', qBad, chapterId);
@@ -680,13 +680,19 @@ function openLightbox(src) {
   const img = document.getElementById('lightboxImg');
   if (overlay && img) {
     img.src = src;
-    overlay.style.display = 'flex';
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
 }
 
 function closeLightbox() {
   const overlay = document.getElementById('lightbox');
-  if (overlay) overlay.style.display = 'none';
+  if (!overlay) return;
+
+  overlay.classList.remove('show');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }
 
 function bindLightboxEvents() {
@@ -1439,10 +1445,27 @@ function setupKeyboardShortcuts() {
     const key = event.key.toUpperCase();
     const ch = getChapter();
 
-    if (event.shiftKey && event.code === 'Space') {
-      event.preventDefault();
-      toggleDefaultSolutionStrategy();
-      return;
+    if (event.shiftKey) {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        toggleDefaultSolutionStrategy();
+        return;
+      }
+      
+      const filterMap = {
+        A: 'all',
+        Z: 'proficient',
+        X: 'vague',
+        C: 'wrong',
+        N: 'unmarked'
+      };
+      
+      if (filterMap[key]) {
+        event.preventDefault();
+        const btn = document.querySelector(`.filter-btn[data-filter="${filterMap[key]}"]`);
+        if (btn) btn.click();
+        return;
+      }
     }
 
     if (event.code === 'Space') {
@@ -1451,45 +1474,45 @@ function setupKeyboardShortcuts() {
       return;
     }
 
-    if (key === 'A') {
+    if (key === 'A' || key === 'ARROWLEFT') {
       event.preventDefault();
       if (ch && current > 0) switchTo(current - 1);
       return;
     }
 
-    if (key === 'D') {
+    if (key === 'D' || key === 'ARROWRIGHT') {
       event.preventDefault();
       if (ch && current < ch.total - 1) switchTo(current + 1);
       return;
     }
 
-    if (key === 'W') {
+    if (key === 'W' || key === 'ARROWUP') {
       event.preventDefault();
       const cols = effectiveCols();
       if (current >= cols) switchTo(current - cols);
       return;
     }
 
-    if (key === 'S') {
+    if (key === 'S' || key === 'ARROWDOWN') {
       event.preventDefault();
       const cols = effectiveCols();
       if (ch && current + cols < ch.total) switchTo(current + cols);
       return;
     }
 
-    if (key === '1') {
+    if (key === '1' || key === 'Z') {
       event.preventDefault();
       setQuestionStatus('proficient');
       return;
     }
 
-    if (key === '2') {
+    if (key === '2' || key === 'X') {
       event.preventDefault();
       setQuestionStatus('vague');
       return;
     }
 
-    if (key === '3') {
+    if (key === '3' || key === 'C') {
       event.preventDefault();
       setQuestionStatus('wrong');
       return;
@@ -1522,6 +1545,13 @@ function setupKeyboardShortcuts() {
       if (textarea) textarea.style.display = 'block';
       if (renderArea) renderArea.style.display = 'none';
       textarea?.focus();
+      return;
+    }
+
+    if (key === 'H') {
+      event.preventDefault();
+      const btn = document.getElementById('btnShortcutHelp');
+      if (btn) btn.click();
       return;
     }
 
