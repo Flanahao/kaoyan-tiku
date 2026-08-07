@@ -179,7 +179,7 @@
 
     const { data, error } = await client
       .from('user_progress')
-      .select('data')
+      .select('data, updated_at')
       .eq('user_id', user.id)
       .eq('chapter_id', chapterId)
       .eq('data_type', dataType)
@@ -195,7 +195,7 @@
     }
 
     setSyncStatus('已同步');
-    return data ? data.data : null;
+    return data ? { data: data.data, updatedAt: new Date(data.updated_at).getTime() } : null;
   }
 
   async function loadBundle(chapterId) {

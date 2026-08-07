@@ -356,10 +356,11 @@ function getImgPath(idx) {
 }
 
 // ===== 本地与云端持久化 =====
-function saveUserCache(dataType, data, chapterId = currentChapterId) {
+function saveUserCache(dataType, data, chapterId = currentChapterId, overrideTimestamp = null) {
   try {
     const key = userCacheKey(dataType, chapterId);
-    localStorage.setItem(key, JSON.stringify(data));
+    const envelope = { __data: data, __updatedAt: overrideTimestamp ?? Date.now() };
+    localStorage.setItem(key, JSON.stringify(envelope));
   } catch (error) {
     console.warn(`保存 ${dataType} 本地缓存失败:`, error);
   }
@@ -369,7 +370,13 @@ function loadUserCache(dataType, chapterId = currentChapterId) {
   try {
     const key = userCacheKey(dataType, chapterId);
     const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : null;
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === 'object' && '__data' in parsed && '__updatedAt' in parsed) {
+      return parsed; // Returns { __data, __updatedAt }
+    }
+    // Legacy format backward compatibility
+    return { __data: parsed, __updatedAt: 0 };
   } catch (error) {
     console.warn(`读取 ${dataType} 本地缓存失败:`, error);
     return null;
@@ -415,14 +422,14 @@ async function restoreChapterState(chapterId = currentChapterId) {
   clearRecord(sBad);
   clearRecord(notesData);
 
-  const localStatus = loadUserCache('status', chapterId);
-  if (localStatus) Object.assign(statuses, localStatus);
-  const localQBad = loadUserCache('questionBad', chapterId);
-  if (localQBad) Object.assign(qBad, localQBad);
-  const localSBad = loadUserCache('solutionBad', chapterId);
-  if (localSBad) Object.assign(sBad, localSBad);
-  const localNotes = loadUserCache('notes', chapterId);
-  if (localNotes) Object.assign(notesData, localNotes);
+  const localStatusEnv = loadUserCache('status', chapterId);
+  if (localStatusEnv?.__data) Object.assign(statuses, localStatusEnv.__data);
+  const localQBadEnv = loadUserCache('questionBad', chapterId);
+  if (localQBadEnv?.__data) Object.assign(qBad, localQBadEnv.__data);
+  const localSBadEnv = loadUserCache('solutionBad', chapterId);
+  if (localSBadEnv?.__data) Object.assign(sBad, localSBadEnv.__data);
+  const localNotesEnv = loadUserCache('notes', chapterId);
+  if (localNotesEnv?.__data) Object.assign(notesData, localNotesEnv.__data);
 
   const api = window.PrivateStudy;
   if (!api || !api.getCurrentUser()) return;
@@ -430,20 +437,30 @@ async function restoreChapterState(chapterId = currentChapterId) {
   try {
     const bundle = await api.loadBundle(chapterId);
     if (bundle) {
-      if (bundle.status !== null) replaceRecord(statuses, bundle.status);
-      if (bundle.questionBad !== null) replaceRecord(qBad, bundle.questionBad);
-      if (bundle.solutionBad !== null) replaceRecord(sBad, bundle.solutionBad);
-      if (bundle.notes !== null) replaceRecord(notesData, bundle.notes);
+      const syncDataType = (dataTypeStr, localEnv, bundleItem, globalTarget) => {
+        if (bundleItem !== null) {
+          if (!localEnv || bundleItem.updatedAt > localEnv.__updatedAt) {
+            replaceRecord(globalTarget, bundleItem.data);
+            saveUserCache(dataTypeStr, bundleItem.data, chapterId, bundleItem.updatedAt);
+          } else if (localEnv.__updatedAt > bundleItem.updatedAt) {
+            api.scheduleSave(chapterId, dataTypeStr, globalTarget);
+          }
+        } else if (localEnv?.__data) {
+          api.scheduleSave(chapterId, dataTypeStr, globalTarget);
+        }
+      };
 
-      saveUserCache('status', statuses, chapterId);
-      saveUserCache('questionBad', qBad, chapterId);
-      saveUserCache('solutionBad', sBad, chapterId);
-      saveUserCache('notes', notesData, chapterId);
+      syncDataType('status', localStatusEnv, bundle.status, statuses);
+      syncDataType('questionBad', localQBadEnv, bundle.questionBad, qBad);
+      syncDataType('solutionBad', localSBadEnv, bundle.solutionBad, sBad);
+      syncDataType('notes', localNotesEnv, bundle.notes, notesData);
 
-      const restoredPosition = Number(bundle.lastPosition);
-      const ch = getChapter(chapterId);
-      if (ch && Number.isInteger(restoredPosition) && restoredPosition >= 0) {
-        current = Math.min(restoredPosition, ch.total - 1);
+      if (bundle.lastPosition !== null) {
+        const restoredPosition = Number(bundle.lastPosition.data);
+        const ch = getChapter(chapterId);
+        if (ch && Number.isInteger(restoredPosition) && restoredPosition >= 0) {
+          current = Math.min(restoredPosition, ch.total - 1);
+        }
       }
     }
   } catch (error) {
