@@ -1199,9 +1199,17 @@ function switchTo(idx) {
 
   const base = getImgPath(current);
 
+  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/Flanahao/kaoyan-tiku/main';
+
   if (qImg) {
     qImg.onerror = function () {
-      console.warn('题目图片加载失败:', base);
+      if (!qImg.dataset.fallback) {
+        qImg.dataset.fallback = 'true';
+        const fallbackUrl = GITHUB_RAW_BASE + '/' + encodeURI(base) + (ch.category === 'zhuanye' && base.includes('_question') ? '.png' : '_question.png');
+        qImg.src = fallbackUrl;
+      } else {
+        console.warn('题目图片加载失败:', base);
+      }
     };
     if (ch.category === 'zhuanye' && base.includes('_question')) {
       qImg.src = base + '.png';
@@ -1215,7 +1223,13 @@ function switchTo(idx) {
   } else {
     if (sImg) {
       sImg.onerror = function () {
-        showSolutionNotice('解析图片加载失败');
+        if (!sImg.dataset.fallback) {
+          sImg.dataset.fallback = 'true';
+          const fallbackUrl = GITHUB_RAW_BASE + '/' + encodeURI(base) + '_solution.png';
+          sImg.src = fallbackUrl;
+        } else {
+          showSolutionNotice('解析图片加载失败');
+        }
       };
       sImg.onload = function () {
         hideSolutionNotice();
