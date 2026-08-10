@@ -1180,6 +1180,25 @@ function renderNav() {
   }
 }
 
+// ===== 图像加载及 GitHub Raw 智能 Fallback 挂载 =====
+function loadImageWithFallback(img, localUrl, fallbackUrl, onFinalError) {
+  if (!img) return;
+  delete img.dataset.fallback;
+
+  img.onerror = function () {
+    if (!img.dataset.fallback) {
+      img.dataset.fallback = 'true';
+      img.src = fallbackUrl;
+    } else {
+      if (typeof onFinalError === 'function') {
+        onFinalError();
+      }
+    }
+  };
+
+  img.src = localUrl;
+}
+
 function switchTo(idx) {
   const ch = getChapter();
   if (!ch) return;
@@ -1199,18 +1218,37 @@ function switchTo(idx) {
 
   const base = getImgPath(current);
 
+  if (qImg) delete qImg.dataset.fallback;
+  if (sImg) delete sImg.dataset.fallback;
+
+  const base = getImgPath(current);
   const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/Flanahao/kaoyan-tiku/main';
 
   if (qImg) {
-    qImg.onerror = function () {
-      if (!qImg.dataset.fallback) {
-        qImg.dataset.fallback = 'true';
-        const fallbackUrl = GITHUB_RAW_BASE + '/' + encodeURI(base) + (ch.category === 'zhuanye' && base.includes('_question') ? '.png' : '_question.png');
-        qImg.src = fallbackUrl;
-      } else {
-        console.warn('题目图片加载失败:', base);
-      }
-    };
+    const isZhuanye = ch.category === 'zhuanye' && base.includes('_question');
+    const localQUrl = isZhuanye ? base + '.png' : base + '_question.png';
+    const fallbackQUrl = GITHUB_RAW_BASE + '/' + encodeURI(base) + (isZhuanye ? '.png' : '_question.png');
+
+    loadImageWithFallback(qImg, localQUrl, fallbackQUrl, function () {
+      console.warn('题目图片加载失败:', base);
+    });
+  }
+
+  if (ch.category === 'zhuanye') {
+    showSolutionNotice('该题暂无解析图片');
+  } else {
+    if (sImg) {
+      sImg.onload = function () {
+        hideSolutionNotice();
+      };
+      const localSUrl = base + '_solution.png';
+      const fallbackSUrl = GITHUB_RAW_BASE + '/' + encodeURI(base) + '_solution.png';
+
+      loadImageWithFallback(sImg, localSUrl, fallbackSUrl, function () {
+        showSolutionNotice('解析图片加载失败');
+      });
+    }
+  };
     if (ch.category === 'zhuanye' && base.includes('_question')) {
       qImg.src = base + '.png';
     } else {
