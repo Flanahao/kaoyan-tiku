@@ -469,9 +469,8 @@
     }
 
     // 填充书籍面板
-    // 1000题已并入 30讲/36讲：标题栏书籍下拉不再单独列 1000题（进度统计仍按书分开）。
     function fillWbPanel(activeWb) {
-      var entries = getSortedWbs().filter(function(e) { return e.wb !== '1000题'; });
+      var entries = getSortedWbs();
       fillPanel('panelWb', entries, 'wb', 'label', activeWb, function(entry) {
         document.getElementById('txtWb').textContent = entry.label;
         // 切书先尝试恢复该书的停靠位置；无记录才落到第一学科第一章节
@@ -517,10 +516,8 @@
     }
 
     // 填充章节面板
-    // 只列「浏览章节」：排除 wb==='1000题' 的章节（1000题 已并入 30讲/36讲 题目区，
-    // 其章节仅作为数据源/统计单元；第0讲已改 wb='基础30讲' 会正常列出）。
     function fillChapterPanel(wb, subj, activeId) {
-      var chs = CHAPTERS.filter(function(c) { return c.wb === wb && c.subj === subj && c.wb !== '1000题'; });
+      var chs = CHAPTERS.filter(function(c) { return c.wb === wb && c.subj === subj; });
       fillPanel('panelChapter', chs, 'id', 'short', activeId, function(ch) {
         document.getElementById('txtChapter').textContent = ch.short;
         switchChapter(ch.id);

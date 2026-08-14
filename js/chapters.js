@@ -255,6 +255,19 @@
         }
       }
     })();
+    // 1000题保持独立，不再合并进 30讲/36讲。
+    SHU1_CHAPTERS.forEach(function (chapter) {
+      if (chapter.ownTotal) {
+        chapter.labels = chapter.labels.slice(0, chapter.ownTotal);
+        chapter.total = chapter.ownTotal;
+        delete chapter.ownTotal;
+        delete chapter.q1000Id;
+        delete chapter.q1000Total;
+      }
+    });
+    if (Array.isArray(window.LILIN880_CHAPTERS)) {
+      window.LILIN880_CHAPTERS.forEach(function (chapter) { SHU1_CHAPTERS.push(chapter); });
+    }
     // ===== 科目（subject）数据模型：数学 + 822 控制工程基础 =====
     const SUBJECTS = [
       {
@@ -264,11 +277,14 @@
           { wb: '基础30讲', label: '基础30讲' },
           { wb: '强化36讲', label: '强化36讲' },
           { wb: '1000题', label: '1000题' },
+          { wb: '李林880', label: '李林880' },
           { wb: '李范全书', label: '李范全书' }
         ],
         subjOrder: ['高数', '线代', '概率论'],
         classifyLabel: function (label) { return label.startsWith('例') ? '例题' : '习题'; },
         getImgPath: function (ch, label) {
+          var index = ch.labels.indexOf(label);
+          if (ch.fileBases && ch.fileBases[index]) return '数一题库/' + ch.relPath + '/' + ch.fileBases[index];
           let prefix, numPart;
           if (label.startsWith('例')) { prefix = 'ex'; numPart = label.substring(1); }
           else { prefix = 'pb'; numPart = label; }
