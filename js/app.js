@@ -1469,7 +1469,10 @@
         // 收集该分区的 subGroups
         var secGroups = [];
         ch.subGroups.forEach(function(g) {
-          if (g.startIdx >= part.startIdx && g.startIdx < part.endIdx) {
+          // 筛选时只渲染真正命中的题组；不要保留空白题号格，
+          // 否则右侧导航会看起来没有跟随左侧状态实时变化。
+          var matched = isAllFilterActive() || groupVisibleIndices(g, filteredSet).length > 0;
+          if (matched && g.startIdx >= part.startIdx && g.startIdx < part.endIdx) {
             secGroups.push(g);
           }
         });
@@ -1525,7 +1528,6 @@
             btn.textContent = g.parentLabel;
           }
 
-          if (!groupHasVisible) { btn.style.visibility = 'hidden'; }
           appendBadges(btn, g.startIdx);
 
           btn.onclick = function() {
