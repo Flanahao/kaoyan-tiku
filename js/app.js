@@ -8,8 +8,9 @@
 // ===== 状态变量 (0-based) =====
     let currentChapterId = 'ch1';
     let current = 0;
-    let showSolution = true;
-    let defaultShowSolution = true;
+    // 解析默认保持隐藏，避免切题时遮挡刷题区域。
+    let showSolution = false;
+    let defaultShowSolution = false;
     let statuses = {};
     let qBad = {};   // R键：题目图不达标  { idx: true }
     let sBad = {};   // T键：解析图不达标  { idx: true }
@@ -106,17 +107,8 @@
     }
 
     function applyFilter(filterKey) {
-      if (filterKey === 'all') {
-        currentFilters = new Set(['all']);
-      } else {
-        if (currentFilters.has('all')) currentFilters.delete('all');
-        if (currentFilters.has(filterKey)) {
-          currentFilters.delete(filterKey);
-          if (currentFilters.size === 0) currentFilters.add('all');
-        } else {
-          currentFilters.add(filterKey);
-        }
-      }
+      // 状态筛选为单选：点击任意项立即切换，不叠加多个条件。
+      currentFilters = new Set([filterKey]);
       updateFilterButtons();
       saveGlobalFilters(); // 筛选状态持久化（跨会话记忆）
       const filtered = getFilteredIndices();
@@ -188,6 +180,45 @@
     }
     function loadStatuses() {
       statuses = loadIndexedObj(function (ch) { return localStorage.getItem(chapterStatusKey(ch)); });
+    }
+
+    // 兼容今天下午旧版本的本地键名，并把已登录用户的云端状态回填到新版键名。
+    // 新版不能因为改了 UI/命名空间就让既有刷题记录“消失”。
+    function mergeStatus(targetKey, value) {
+      if (!value || typeof value !== 'object') return;
+      var current = {};
+      try { current = JSON.parse(localStorage.getItem(targetKey) || '{}'); } catch (e) {}
+      var changed = false;
+      Object.keys(value).forEach(function (key) {
+        if (current[key] === undefined && value[key]) { current[key] = value[key]; changed = true; }
+      });
+      if (changed) localStorage.setItem(targetKey, JSON.stringify(current));
+    }
+    function migrateLegacyLocalStatuses() {
+      var user = window.PrivateStudy?.getCurrentUser?.();
+      if (!user || !user.id) return;
+      SUBJECTS.forEach(function (subject) {
+        subject.chapters.forEach(function (ch) {
+          var target = userStoragePrefix() + ch.id + '_' + subject.storageSuffix + '_status';
+          [ch.id + '_status', ch.id + '_' + subject.storageSuffix + '_status', ch.id + '_shu1_status'].forEach(function (legacyKey) {
+            try { mergeStatus(target, JSON.parse(localStorage.getItem(legacyKey) || '{}')); } catch (e) {}
+          });
+        });
+      });
+    }
+    async function hydrateCloudStatuses() {
+      if (!window.PrivateStudy?.loadAllProgress || !window.PrivateStudy?.getCurrentUser?.()) return;
+      try {
+        var rows = await window.PrivateStudy.loadAllProgress();
+        rows.forEach(function (row) {
+          if (row.data_type !== 'status' || !row.data || typeof row.data !== 'object') return;
+          SUBJECTS.forEach(function (subject) {
+            if (subject.chapters.some(function (ch) { return ch.id === row.chapter_id; })) {
+              mergeStatus(userStoragePrefix() + row.chapter_id + '_' + subject.storageSuffix + '_status', row.data);
+            }
+          });
+        });
+      } catch (e) { console.warn('云端进度读取失败，将继续使用本地记录', e); }
     }
     function saveStatuses() {
       saveIndexedObj(statuses,
@@ -267,7 +298,7 @@
       var v = null;
       try { v = JSON.parse(localStorage.getItem(uiSolutionStorageKey())); } catch (e) { v = null; }
       if (v && typeof v.def === 'boolean') defaultShowSolution = v.def;
-      else defaultShowSolution = true;
+      else defaultShowSolution = false;
       if (v && typeof v.show === 'boolean') showSolution = v.show;
       else showSolution = defaultShowSolution;
     }
@@ -608,13 +639,13 @@
     // 全局进度处于详情视图时，用于「返回总览」按钮与鼠标后退键回总览
     var dashboardDetailReturn = false;
 
-    function getBookChapters(wb) {
+    function getBookChapters(wb, chapters) {
       // 第0讲（statsWb='1000题' 但 wb 已改 '基础30讲'）按 statsWb 归属统计书
-      return CHAPTERS.filter(function(c) { return (c.statsWb || c.wb) === wb && c.total > 0; });
+      return (chapters || CHAPTERS).filter(function(c) { return (c.statsWb || c.wb) === wb && c.total > 0; });
     }
 
-    function getChProgress(ch) {
-      var key = chapterStatusKey(ch);
+    function getChProgress(ch, subject) {
+      var key = subject ? userStoragePrefix() + ch.id + '_' + subject.storageSuffix + '_status' : chapterStatusKey(ch);
       var statusObj;
       try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
       var done = 0;
@@ -658,7 +689,7 @@
       ];
     }
 
-    function drawDonut(canvas, chapters, label) {
+    function drawDonut(canvas, chapters, label, subject) {
       var ctx = canvas.getContext('2d');
       var dpr = window.devicePixelRatio || 1;
       var size = 260;
@@ -691,7 +722,7 @@
       for (var i = 0; i < ringCount; i++) {
         var ri = innerR + i * ringWidth;
         var ro = innerR + (i + 1) * ringWidth;
-        var pr = getChProgress(chapters[i]);
+        var pr = getChProgress(chapters[i], subject);
         totalDone += pr.done;
         totalQ += pr.total;
         var p = pr.progress;
@@ -806,12 +837,35 @@
 
       var grid = document.getElementById('dbGrid');
       var html = '';
-      var books = getSortedWbs(); // 按当前科目返回 {wb,label} 列表
+      // 总进度必须跨科目展示，不能只显示当前正在刷的那本书。
+      var books = [];
+      SUBJECTS.forEach(function (subject) {
+        (subject.wbOrder || []).forEach(function (book) {
+          if (getBookChapters(book.wb, subject.chapters).length) {
+            books.push({ wb: book.wb, label: book.label, subject: subject });
+          }
+        });
+      });
+      // 英语不是题目章节，但同样纳入全局进度，避免学习记录被遗漏。
+      try {
+        var english = JSON.parse(localStorage.getItem('kaoyan_english_vocabulary_v2') || '{"items":[]}');
+        var words = Array.isArray(english.items) ? english.items : [];
+        var ec = { familiar: 0, vague: 0, wrong: 0 };
+        words.forEach(function (word) { if (ec[word.status] !== undefined) ec[word.status]++; });
+        var done = ec.familiar + ec.vague + ec.wrong;
+        var empty = Math.max(0, words.length - done);
+        var ring = 'conic-gradient(#22a06b 0 ' + (words.length ? ec.familiar / words.length * 100 : 0) + '%,#f59e0b 0 ' + (words.length ? (ec.familiar + ec.vague) / words.length * 100 : 0) + '%,#e05252 0 ' + (words.length ? (ec.familiar + ec.vague + ec.wrong) / words.length * 100 : 0) + '%,#d7dde5 0 100%)';
+        html += '<div class="db-donut-card" onclick="window.openEnglishVocabulary && window.openEnglishVocabulary()"><div style="width:150px;height:150px;margin:0 auto;border-radius:50%;background:' + ring + ';display:grid;place-items:center"><div style="width:108px;height:108px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center"><b>' + done + '/' + words.length + '</b><small>英语词汇</small></div></div><div style="text-align:center;margin-top:12px;font-weight:700">英语词汇</div><div class="db-chapter-stats"><span class="db-stat">熟悉 ' + ec.familiar + '</span><span class="db-stat">模糊 ' + ec.vague + '</span><span class="db-stat">不会 ' + ec.wrong + '</span><span class="db-stat">未标 ' + empty + '</span></div></div>';
+      } catch (e) {}
       for (var b = 0; b < books.length; b++) {
         var wb = books[b].wb;
         var label = books[b].label;
         var cid = 'dbCanvas' + b;
-        html += '<div class="db-donut-card" data-wb="' + wb + '" onclick="openDashboardDetail(\'' + wb + '\')">' +
+        '<canvas id="' + cid + '"></canvas>' +
+        '</div>';
+        html += '<div class="db-donut-card" data-wb="' + wb + '" onclick="openDashboardBook(\'' + books[b].subject.id + '\',\'' + wb + '\')">' +
+        '<canvas id="' + cid + '"></canvas>' +
+        '<div style="text-align:center;font-size:12px;color:#64748b">' + books[b].subject.name + '</div></div>';
           '<canvas id="' + cid + '"></canvas>' +
         '</div>';
       }
@@ -821,11 +875,23 @@
       setTimeout(function() {
         for (var b = 0; b < books.length; b++) {
           var wb = books[b].wb;
-          var chapters = getBookChapters(wb);
+          var chapters = getBookChapters(wb, books[b].subject.chapters);
           var canvas = document.getElementById('dbCanvas' + b);
-          if (canvas) drawDonut(canvas, chapters, books[b].label);
+          if (canvas) drawDonut(canvas, chapters, books[b].label, books[b].subject);
         }
       }, 20);
+    }
+
+    // 从总进度卡片进入对应书籍时，先切换数据源，再展示该书的章节明细。
+    function openDashboardBook(subjectId, wb) {
+      if (curSubjectId !== subjectId) {
+        switchSubject(subjectId);
+        dashboardOpen = true;
+        document.getElementById('dashboardPanel').style.display = '';
+        document.getElementById('mainAreaContent').style.display = 'none';
+        setPanelTitle('全局学习进度');
+      }
+      openDashboardDetail(wb);
     }
 
     function openDashboardDetail(wb) {
@@ -1790,10 +1856,15 @@
       const ch = getChapter();
       const base = getImgPath(idx);
       const qImg = document.getElementById('questionImg');
-      loadImageWithFallback(qImg, base + '_question.png', function() {
+      const isProfessional = curSubjectId === 'zhuanye';
+      loadImageWithFallback(qImg, base + (isProfessional ? '.png' : '_question.png'), function() {
         renderQuestionAnnotations();
       });
-      setSolutionImages(base);
+      if (isProfessional) {
+        document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
+      } else {
+        setSolutionImages(base);
+      }
       renderQuestionAnnotations(); // 叠加已保存的图片标注（切题即见）
       updateSolutionUI();
       // 更新题号标签
@@ -3958,7 +4029,7 @@ ${cardsHTML}
     }, { passive: false });
 
     // ===== 初始化流程 =====
-    function initAppSession() {
+    async function initAppSession() {
       var savedSubject = localStorage.getItem('kaoyan_subject');
       curSubjectId = (savedSubject && SUBJECTS.some(function (s) { return s.id === savedSubject; })) ? savedSubject : 'shu1';
       curSubject = SUBJECTS.find(function (s) { return s.id === curSubjectId; });
@@ -3976,6 +4047,8 @@ ${cardsHTML}
         current = 0; subMode = false;
       }
 
+      migrateLegacyLocalStatuses();
+      await hydrateCloudStatuses();
       loadGlobalFilters(); loadSolutionPref();
       loadStatuses(); loadQBad(); loadSBad(); loadNotes(); loadSm2();
 

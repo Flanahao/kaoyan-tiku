@@ -13,10 +13,22 @@ create table if not exists public.user_progress (
       'questionBad',
       'solutionBad',
       'notes',
-      'lastPosition'
+      'lastPosition',
+      'reviewPlan',
+      'englishVocabulary',
+      'sm2',
+      'annot'
     )
   )
 );
+
+-- 兼容已部署的旧表：更新允许同步的数据类型。
+alter table public.user_progress
+  drop constraint if exists user_progress_data_type_check;
+alter table public.user_progress
+  add constraint user_progress_data_type_check check (
+    data_type in ('status', 'questionBad', 'solutionBad', 'notes', 'lastPosition', 'reviewPlan', 'englishVocabulary', 'sm2', 'annot')
+  );
 
 alter table public.user_progress enable row level security;
 

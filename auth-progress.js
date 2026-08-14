@@ -6,29 +6,40 @@
     'questionBad',
     'solutionBad',
     'notes',
+    'reviewPlan',
+    'sm2',
+    'annot',
+    'englishVocabulary',
     'lastPosition'
   ]);
 
   const config = window.APP_CONFIG;
 
   let client = null;
-  try {
-    if (window.supabase?.createClient && config?.supabaseUrl && config?.supabasePublishableKey) {
-      client = window.supabase.createClient(
-        config.supabaseUrl,
-        config.supabasePublishableKey,
-        {
-          auth: {
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: true
+  function getClient() {
+    if (client) return client;
+    try {
+      if (window.supabase?.createClient && config?.supabaseUrl && config?.supabasePublishableKey) {
+        client = window.supabase.createClient(
+          config.supabaseUrl,
+          config.supabasePublishableKey,
+          {
+            auth: {
+              persistSession: true,
+              autoRefreshToken: true,
+              detectSessionInUrl: true
+            }
           }
-        }
-      );
+        );
+      }
+    } catch (e) {
+      console.warn('Supabase client init error:', e);
     }
-  } catch (e) {
-    console.warn('Supabase client init fallback:', e);
+    return client;
   }
+
+  // 立即尝试获取 client
+  getClient();
 
   let currentUser = null;
   const pendingWrites = new Map();
@@ -65,7 +76,7 @@
     node.classList.toggle('is-error', Boolean(isError));
   }
 
-    function setSyncStatus(message, isError = false) {
+  function setSyncStatus(message, isError = false) {
     const node = byId('syncStatus');
     if (!node) return;
 
@@ -88,8 +99,14 @@
     const appShell = byId('appShell');
     const currentUserEmail = byId('currentUserEmail');
 
-    if (authGate) authGate.hidden = Boolean(currentUser);
-    if (appShell) appShell.hidden = !currentUser;
+    if (authGate) {
+      authGate.hidden = Boolean(currentUser);
+      authGate.style.display = currentUser ? 'none' : 'flex';
+    }
+    if (appShell) {
+      appShell.hidden = !currentUser;
+      appShell.style.display = currentUser ? 'block' : 'none';
+    }
 
     if (currentUserEmail) {
       currentUserEmail.textContent = currentUser?.email || '';
@@ -115,7 +132,14 @@
   }
 
   async function initializeAuth() {
-    const { data, error } = await client.auth.getUser();
+    const c = getClient();
+    if (!c) {
+      console.warn('Supabase 未初始化或未连接');
+      showUser(null);
+      return;
+    }
+
+    const { data, error } = await c.auth.getUser();
 
     if (error || !data?.user) {
       showUser(null);
@@ -123,7 +147,7 @@
       showUser(data.user);
     }
 
-    client.auth.onAuthStateChange((event, session) => {
+    c.auth.onAuthStateChange((event, session) => {
       window.setTimeout(() => {
         if (event === 'SIGNED_OUT' || !session?.user) {
           showUser(null);
@@ -152,7 +176,12 @@
       throw new Error('请输入邮箱和密码');
     }
 
-    const { data, error } = await client.auth.signInWithPassword({
+    const c = getClient();
+    if (!c) {
+      throw new Error('无法连接 Supabase 认证服务，请检查网络');
+    }
+
+    const { data, error } = await c.auth.signInWithPassword({
       email: normalizedEmail,
       password
     });
@@ -167,8 +196,11 @@
   async function signOut() {
     await flushPendingWrites();
 
-    const { error } = await client.auth.signOut();
-    if (error) throw error;
+    const c = getClient();
+    if (c) {
+      const { error } = await c.auth.signOut();
+      if (error) throw error;
+    }
 
     showUser(null);
   }
@@ -177,7 +209,10 @@
     const user = validateIdentity(chapterId, dataType);
     setSyncStatus('正在读取…');
 
-    const { data, error } = await client
+    const c = getClient();
+    if (!c) throw new Error('Supabase 未连接');
+
+    const { data, error } = await c
       .from('user_progress')
       .select('data, updated_at')
       .eq('user_id', user.id)
@@ -209,10 +244,27 @@
     return Object.fromEntries(entries);
   }
 
+  async function loadAllProgress() {
+    const user = validateIdentity('all', 'status');
+    const c = getClient();
+    if (!c) throw new Error('Supabase 未连接');
+
+    const { data, error } = await c
+      .from('user_progress')
+      .select('chapter_id, data_type, data, updated_at')
+      .eq('user_id', user.id)
+      .in('data_type', ['status', 'reviewPlan']);
+    if (error) throw error;
+    return data || [];
+  }
+
   async function writeProgressForUser(userId, chapterId, dataType, value) {
     setSyncStatus('正在保存…');
 
-    const { error } = await client.from('user_progress').upsert(
+    const c = getClient();
+    if (!c) throw new Error('Supabase 未连接');
+
+    const { error } = await c.from('user_progress').upsert(
       {
         user_id: userId,
         chapter_id: chapterId,
@@ -238,7 +290,9 @@
   }
 
   function scheduleSave(chapterId, dataType, value, delayMs = 400) {
-    const user = validateIdentity(chapterId, dataType);
+    const user = currentUser;
+    if (!user) return; // 未登录时不执行云端保存
+
     const key = writeKey(user.id, chapterId, dataType);
     const existing = pendingWrites.get(key);
 
@@ -251,7 +305,8 @@
       chapterId,
       dataType,
       value: cloneJson(value),
-      timerId: 0
+      timerId: 0,
+      retryCount: 0
     };
 
     job.timerId = window.setTimeout(() => {
@@ -281,8 +336,6 @@
         job.dataType,
         job.value
       );
-      
-      // 仅成功后删除
       pendingWrites.delete(key);
     } catch (error) {
       job.retryCount = (job.retryCount || 0) + 1;
@@ -293,10 +346,8 @@
           flushWrite(key).catch(console.error);
         }, delay);
       } else {
-        // 超过重试次数，放弃任务
         pendingWrites.delete(key);
       }
-      
       throw error;
     }
   }
@@ -358,13 +409,14 @@
   }
 
   window.PrivateStudy = Object.freeze({
-    client,
+    get client() { return getClient(); },
     initializeAuth,
     signIn,
     signOut,
     getCurrentUser,
     loadProgress,
     loadBundle,
+    loadAllProgress,
     scheduleSave,
     flushPendingWrites,
     cancelPendingWrites
