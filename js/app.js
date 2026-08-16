@@ -392,6 +392,14 @@
     function loadSolutionPref() {
       var v = null;
       try { v = JSON.parse(localStorage.getItem(uiSolutionStorageKey())); } catch (e) { v = null; }
+      // 兼容旧版无前缀键（shu1_ui_solution 等）：账号隔离改造后新键为空时回退读旧键，
+      // 避免老用户解析显示偏好（默认显示/隐藏）在首次加载时丢失。
+      if (!v) {
+        var legacyKey = curSubjectId + '_ui_solution';
+        if (legacyKey !== uiSolutionStorageKey()) {
+          try { v = JSON.parse(localStorage.getItem(legacyKey)); } catch (e) { v = null; }
+        }
+      }
       if (v && typeof v.def === 'boolean') defaultShowSolution = v.def;
       else defaultShowSolution = false;
       if (v && typeof v.show === 'boolean') showSolution = v.show;
