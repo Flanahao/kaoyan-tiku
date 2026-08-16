@@ -192,15 +192,6 @@
         SHU1.splice(ch1Idx, 0, zero);
       }
 
-      // 2) 1000题章节 label 去「例」（与文件重命名 ex_→pb_ 一致）
-      // 含第0讲（ch85，wb 已改 '基础30讲' 但 statsWb 仍为 '1000题'）
-      for (var a = 0; a < SHU1.length; a++) {
-        var cA = SHU1[a];
-        if (cA.wb === '1000题' || cA.statsWb === '1000题') {
-          cA.labels = cA.labels.map(function (l) { return String(l).replace(/^例/, ''); });
-        }
-      }
-
       // 3) 配对：按 (书, 学科) 分组后的顺序下标一一配对
       // base 侧（30讲/36讲）subj 即主学科名；1000题侧 subj 为 '基础篇-高数' 形式。
       // 基础30讲 分组的 base 侧排除第0讲（statsWb 已改 '1000题' 的第0讲只作展示、不参与配对）。

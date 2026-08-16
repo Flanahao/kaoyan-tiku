@@ -1861,6 +1861,10 @@
       imgEl.src = encodeURI(localSrc).replace(/#/g, '%23');
     }
 
+    // 解析图探测代次：切换题目时递增，onload 里丢弃过期题目遗留的图片。
+    // 必须显式声明——缺失会让 ++undefined 恒为 NaN，gen !== _solutionImgGen 永远成立，
+    // 导致解析图加载成功后仍被丢弃（解析永远显示不出来）。
+    let _solutionImgGen = 0;
     function setSolutionImages(base) {
       const container = document.getElementById('solutionImgs');
       if (!container) return;
