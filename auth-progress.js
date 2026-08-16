@@ -44,6 +44,20 @@
   let currentUser = null;
   const pendingWrites = new Map();
 
+  // 本地「最后一次写入」时间戳（LWW 语义）：writeKey → 客户端时间。
+  // flushWrite 写前对比服务端 updated_at，仅当服务端不新于本地才覆盖（保守：绝不吞云端数据）。
+  let localWriteTs = {};
+  let _tsLoadedForUser = null;
+  function tsStorageKey(userId) { return `user_${userId}_write_ts`; }
+  function loadLocalWriteTs(userId) {
+    localWriteTs = {};
+    try { localWriteTs = JSON.parse(localStorage.getItem(tsStorageKey(userId)) || '{}') || {}; } catch (e) { localWriteTs = {}; }
+    _tsLoadedForUser = userId;
+  }
+  function persistLocalWriteTs(userId) {
+    try { localStorage.setItem(tsStorageKey(userId), JSON.stringify(localWriteTs)); } catch (e) {}
+  }
+
   function byId(id) {
     return document.getElementById(id);
   }
@@ -116,6 +130,7 @@
       setMessage('');
       setSyncStatus('已登录');
       if (previousUserId !== currentUser.id) {
+        loadLocalWriteTs(currentUser.id); // 预加载该用户的本地写入时间戳（LWW 用）
         document.dispatchEvent(
           new CustomEvent('private-study:signed-in', {
             detail: { user: currentUser }
@@ -194,7 +209,12 @@
   }
 
   async function signOut() {
-    await flushPendingWrites();
+    // 尽力而为：上行失败不阻断退出（弱网/离线时用户仍可登出，残留任务下次登录重发）
+    try {
+      await flushPendingWrites();
+    } catch (error) {
+      console.warn('退出前同步部分失败（已保留待重试）：', error);
+    }
 
     const c = getClient();
     if (c) {
@@ -202,6 +222,8 @@
       if (error) throw error;
     }
 
+    localWriteTs = {};
+    _tsLoadedForUser = null;
     showUser(null);
   }
 
@@ -264,6 +286,33 @@
     const c = getClient();
     if (!c) throw new Error('Supabase 未连接');
 
+    // ---- LWW 保守合并：写前读服务端 updated_at ----
+    // 仅当服务端记录不存在，或服务端时间戳不新于本地最后一次写入时才覆盖。
+    // 本地无写入时间记录（首次）且服务端已有数据 → 不覆盖（由 hydrateCloudStatuses 回填云端数据）。
+    const key = writeKey(userId, chapterId, dataType);
+    if (_tsLoadedForUser !== userId) loadLocalWriteTs(userId);
+    const localTs = localWriteTs[key] || 0;
+    try {
+      const { data: existing, error: readErr } = await c
+        .from('user_progress')
+        .select('updated_at')
+        .eq('user_id', userId)
+        .eq('chapter_id', chapterId)
+        .eq('data_type', dataType)
+        .maybeSingle();
+      if (!readErr && existing) {
+        const serverTs = new Date(existing.updated_at).getTime();
+        if (!isNaN(serverTs) && serverTs >= localTs) {
+          // 服务端不旧于本地：跳过本次写入，避免覆盖云端更新
+          setSyncStatus('已同步');
+          return;
+        }
+      }
+    } catch (readErr) {
+      // 读失败不阻断写入（尽力而为），避免离线/弱网时保存卡死
+      console.warn('LWW 读服务端时间戳失败，直接写入', readErr);
+    }
+
     const { error } = await c.from('user_progress').upsert(
       {
         user_id: userId,
@@ -300,13 +349,19 @@
       window.clearTimeout(existing.timerId);
     }
 
+    // 记录本地写入时间（LWW）：下次 flush 用它跟服务端 updated_at 比。
+    if (_tsLoadedForUser !== user.id) loadLocalWriteTs(user.id);
+    localWriteTs[key] = Date.now();
+    persistLocalWriteTs(user.id);
+
     const job = {
       userId: user.id,
       chapterId,
       dataType,
       value: cloneJson(value),
       timerId: 0,
-      retryCount: 0
+      retryCount: 0,
+      inFlight: false
     };
 
     job.timerId = window.setTimeout(() => {
@@ -329,6 +384,10 @@
       return;
     }
 
+    // in-flight 保护：重试窗口内 flushPendingWrites 并发调用时只跑一次
+    if (job.inFlight) return;
+    job.inFlight = true;
+
     try {
       await writeProgressForUser(
         job.userId,
@@ -349,6 +408,8 @@
         pendingWrites.delete(key);
       }
       throw error;
+    } finally {
+      job.inFlight = false;
     }
   }
 

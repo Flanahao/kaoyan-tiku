@@ -206,15 +206,109 @@
         });
       });
     }
+    // 登录后一次性迁移：
+    //  1) guest 阶段刷的题（user_guest_*）并入账号键（仅账号键为空时回填）
+    //  2) 旧无前缀全局 UI 键（ui_filters / <subj>_ui_solution / kaoyan_resume / kaoyan_subject / kaoyan_review_session）
+    //     迁到新带前缀键（仅目标为空时回填），保证老用户刷新后设置不丢。
+    //  3) 旧无前缀 annot_* 键并入带前缀 annot_*（仅目标为空时回填）。
+    function migrateGuestAndLegacyUi() {
+      var user = window.PrivateStudy?.getCurrentUser?.();
+      if (!user || !user.id) return;
+      var uid = user.id;
+
+      // 1) guest 刷题数据
+      SUBJECTS.forEach(function (subject) {
+        subject.chapters.forEach(function (ch) {
+          ['_status', '_qbad', '_sbad', '_notes'].forEach(function (suffix) {
+            var gKey = 'user_guest_' + ch.id + '_' + subject.storageSuffix + suffix;
+            var raw = localStorage.getItem(gKey);
+            if (!raw) return;
+            var target = userStoragePrefix() + ch.id + '_' + subject.storageSuffix + suffix;
+            try {
+              var obj = JSON.parse(raw);
+              if (!obj || typeof obj !== 'object') return;
+              var cur = JSON.parse(localStorage.getItem(target) || '{}') || {};
+              var changed = false;
+              Object.keys(obj).forEach(function (k) {
+                if (cur[k] === undefined && obj[k]) { cur[k] = obj[k]; changed = true; }
+              });
+              if (changed) localStorage.setItem(target, JSON.stringify(cur));
+              localStorage.removeItem(gKey); // 迁移后清理 guest 键
+            } catch (e) {}
+          });
+          // guest SM-2 记录（键：user_guest_sm2_<subjectId>_<chId>）
+          var gSm2 = 'user_guest_sm2_' + subject.id + '_' + ch.id;
+          var sRaw = localStorage.getItem(gSm2);
+          if (sRaw) {
+            var sTarget = userStoragePrefix() + 'sm2_' + subject.id + '_' + ch.id;
+            try {
+              var sObj = JSON.parse(sRaw);
+              if (sObj && typeof sObj === 'object') {
+                var sCur = JSON.parse(localStorage.getItem(sTarget) || '{}') || {};
+                var sChanged = false;
+                Object.keys(sObj).forEach(function (k) {
+                  if (sCur[k] === undefined && sObj[k]) { sCur[k] = sObj[k]; sChanged = true; }
+                });
+                if (sChanged) localStorage.setItem(sTarget, JSON.stringify(sCur));
+              }
+              localStorage.removeItem(gSm2);
+            } catch (e) {}
+          }
+        });
+      });
+
+      // 2) 全局 UI 键（带前缀 ⇐ 旧无前缀）
+      var uiPairs = [
+        ['ui_filters', 'kaoyan_ui_filters'],
+        [curSubjectId + '_ui_solution', curSubjectId + '_ui_solution']
+      ];
+      uiPairs.forEach(function (p) {
+        var target = userStoragePrefix() + p[0];
+        var legacy = localStorage.getItem(p[1]);
+        if (legacy && !localStorage.getItem(target)) {
+          try { localStorage.setItem(target, legacy); } catch (e) {}
+        }
+      });
+      ['kaoyan_resume', 'kaoyan_subject', 'kaoyan_review_session'].forEach(function (legacyKey) {
+        var legacy = localStorage.getItem(legacyKey);
+        if (legacy && !localStorage.getItem(userStoragePrefix() + legacyKey)) {
+          try { localStorage.setItem(userStoragePrefix() + legacyKey, legacy); } catch (e) {}
+        }
+      });
+
+      // 3) 旧无前缀 annot_* 键
+      var oldPrefix = 'annot_';
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf(oldPrefix) === 0) {
+          var srcKey = normalizeAnnotSrc(k.substring(oldPrefix.length));
+          var targetKey = annotKey(srcKey);
+          if (!localStorage.getItem(targetKey)) {
+            var v = localStorage.getItem(k);
+            if (v) { try { localStorage.setItem(targetKey, v); } catch (e) {} }
+          }
+          localStorage.removeItem(k); // 迁移后清理旧键
+        }
+      }
+      loadAnnotations(); // 重建内存标注索引（新键）
+    }
     async function hydrateCloudStatuses() {
       if (!window.PrivateStudy?.loadAllProgress || !window.PrivateStudy?.getCurrentUser?.()) return;
       try {
         var rows = await window.PrivateStudy.loadAllProgress();
         rows.forEach(function (row) {
-          if (row.data_type !== 'status' || !row.data || typeof row.data !== 'object') return;
+          if (!row.data || typeof row.data !== 'object') return;
           SUBJECTS.forEach(function (subject) {
-            if (subject.chapters.some(function (ch) { return ch.id === row.chapter_id; })) {
+            var matched = subject.chapters.some(function (ch) { return ch.id === row.chapter_id; });
+            if (!matched) return;
+            if (row.data_type === 'status') {
               mergeStatus(userStoragePrefix() + row.chapter_id + '_' + subject.storageSuffix + '_status', row.data);
+            } else if (row.data_type === 'reviewPlan') {
+              // 回填 SM-2 排期（saveSm2 按「源章节」整章上行；此处反向整章落回，仅本地为空时补）
+              var sm2LocalKey = userStoragePrefix() + 'sm2_' + subject.id + '_' + row.chapter_id;
+              if (!localStorage.getItem(sm2LocalKey)) {
+                try { localStorage.setItem(sm2LocalKey, JSON.stringify(row.data)); } catch (e) {}
+              }
             }
           });
         });
@@ -274,8 +368,9 @@
 
     // ===== 全局 UI 状态持久化（跨会话记忆） =====
     // 全局键：状态筛选（跨章节/科目保持）；科目键：解析显示偏好（showSolution 当前态 + defaultShowSolution 默认态）
-    function globalUIFilterKey() { return 'kaoyan_ui_filters'; }
-    function uiSolutionStorageKey() { return curSubjectId + '_ui_solution'; }
+    // 均带用户前缀：换账号不串入他人筛选/偏好
+    function globalUIFilterKey() { return userStoragePrefix() + 'ui_filters'; }
+    function uiSolutionStorageKey() { return userStoragePrefix() + curSubjectId + '_ui_solution'; }
 
     function loadGlobalFilters() {
       var saved = null;
@@ -406,8 +501,8 @@
         switchTo(current);
         return;
       }
-      // 定位逻辑：无章节记忆时落在第一道可见题（源序第一条，如 822 例题第一题）。
-      // 不再按 partOrder 跳到"第一分区第一个"——避免 822 落到习题区导致按 A 跳回上一分区末尾。
+      // 定位逻辑：无章节记忆时落在第一道可见题（源序第一条）。
+      // 不再按 partOrder 跳到"第一分区第一个"——避免落到习题区导致按 A 跳回上一分区末尾。
       // partOrder 仅用于侧栏显示排序（renderNav），不影响切章落点。
       let target = 0;
       const filtered = getFilteredIndices();
@@ -538,7 +633,7 @@
       fillSubjPanel(wb, subj);
       fillChapterPanel(wb, subj, ch.id);
 
-      // 学科下拉可见性：当前书籍仅一个学科时隐藏（822 各书只有「控制工程基础」，标题栏只需 书籍+章节；
+      // 学科下拉可见性：当前书籍仅一个学科时隐藏（标题栏只需 书籍+章节；
       // 数学各书有 高数/线代/概率论 三学科，保留学科下拉）
       var ddSubjEl = document.getElementById('ddSubj');
       if (ddSubjEl) ddSubjEl.style.display = getSortedSubjs(wb).length > 1 ? '' : 'none';
@@ -631,7 +726,7 @@
 
 
     // ===== 全局仪表盘（环形热力图） =====
-    // 书籍列表按当前科目（数学 4 本 / 822 1 本），用 getSortedWbs()
+    // 书籍列表按当前科目（数学 4 本），用 getSortedWbs()
     var dashboardOpen = false;
     // 全局进度处于详情视图时，用于「返回总览」按钮与鼠标后退键回总览
     var dashboardDetailReturn = false;
@@ -844,8 +939,11 @@
         });
       });
       // 英语不是题目章节，但同样纳入全局进度，避免学习记录被遗漏。
+      // 键与 english.js 一致：带用户前缀（guest 用 user_guest_）。
       try {
-        var english = JSON.parse(localStorage.getItem('kaoyan_english_vocabulary_v2') || '{"items":[]}');
+        var engUid = window.PrivateStudy?.getCurrentUser?.();
+        var engPrefix = (engUid && engUid.id) ? 'user_' + engUid.id + '_' : 'user_guest_';
+        var english = JSON.parse(localStorage.getItem(engPrefix + 'kaoyan_english_vocabulary_v2') || '{"items":[]}');
         var words = Array.isArray(english.items) ? english.items : [];
         var ec = { familiar: 0, vague: 0, wrong: 0 };
         words.forEach(function (word) { if (ec[word.status] !== undefined) ec[word.status]++; });
@@ -1066,24 +1164,27 @@
     }
 
     // ===== 记住上次位置（章节 + 题目 + 小题模式），按科目、再按书籍分别保存 =====
-    // 键 kaoyan_resume = JSON {
+    // 键 <user_<uid>_>kaoyan_resume = JSON {
     //   '<科目id>': { ch, idx, sub },                      // 切科目时恢复
     //   '<科目id>::<书籍wb>': { ch, idx, sub }             // 切书籍时恢复
     // }
+    function resumeStorageKey() { return userStoragePrefix() + 'kaoyan_resume'; }
+    function subjectStorageKey() { return userStoragePrefix() + 'kaoyan_subject'; }
+    function reviewSessionStorageKey() { return userStoragePrefix() + 'kaoyan_review_session'; }
     function saveResume() {
       var map = {};
-      try { map = JSON.parse(localStorage.getItem('kaoyan_resume')) || {}; } catch (e) { map = {}; }
+      try { map = JSON.parse(localStorage.getItem(resumeStorageKey())) || {}; } catch (e) { map = {}; }
       map[curSubjectId] = { ch: currentChapterId, idx: current, sub: !!subMode };
       var wb = getChapter() ? getChapter().wb : '';
       if (wb) map[curSubjectId + '::' + wb] = { ch: currentChapterId, idx: current, sub: !!subMode };
       // 章节级记忆：切回某章时恢复上次停的题（键含 ch id，无 ch 字段）
       if (currentChapterId) map[curSubjectId + '::ch::' + currentChapterId] = { idx: current, sub: !!subMode };
-      try { localStorage.setItem('kaoyan_resume', JSON.stringify(map)); } catch (e) {}
+      try { localStorage.setItem(resumeStorageKey(), JSON.stringify(map)); } catch (e) {}
     }
     // 读取某章的章节级停靠记录（无记录/记录失效返回 null）
     function loadChapterResume(chId) {
       var map = {};
-      try { map = JSON.parse(localStorage.getItem('kaoyan_resume')) || {}; } catch (e) { map = {}; }
+      try { map = JSON.parse(localStorage.getItem(resumeStorageKey())) || {}; } catch (e) { map = {}; }
       var r = map[curSubjectId + '::ch::' + chId];
       if (!r) return null;
       var ch = CHAPTERS.find(function (c) { return c.id === chId; });
@@ -1099,7 +1200,7 @@
     }
     function loadResume(subjectId) {
       var map = {};
-      try { map = JSON.parse(localStorage.getItem('kaoyan_resume')) || {}; } catch (e) { map = {}; }
+      try { map = JSON.parse(localStorage.getItem(resumeStorageKey())) || {}; } catch (e) { map = {}; }
       var r = map[subjectId];
       if (!r || !r.ch) return null;
       var subj = SUBJECTS.find(function (s) { return s.id === subjectId; });
@@ -1120,7 +1221,7 @@
     // 返回 true 表示已恢复；false 表示无记录/记录失效，调用方走「第一学科第一章节」。
     function applyResumeBook(wb) {
       var map = {};
-      try { map = JSON.parse(localStorage.getItem('kaoyan_resume')) || {}; } catch (e) { map = {}; }
+      try { map = JSON.parse(localStorage.getItem(resumeStorageKey())) || {}; } catch (e) { map = {}; }
       var r = map[curSubjectId + '::' + wb];
       if (!r || !r.ch) return false;
       var ch = CHAPTERS.find(function (c) { return c.id === r.ch; });
@@ -1132,6 +1233,9 @@
         var g = ch.groupForIdx[idx];
         subOk = !!(g && g.isParent && g.count > 1);
       }
+      // 改章节/题号前先保存未提交的笔记——loadNotes 内部会再调 autoSaveNotes，
+      // 但那时 currentChapterId 已是新章节，必须先在此处用旧章节 current 落盘。
+      autoSaveNotes();
       currentChapterId = ch.id;
       current = idx;
       // 小题模式（F）是全局开关，切书不重置、跨书保持
@@ -1154,7 +1258,6 @@
       curSubjectId = subjectId;
       curSubject = subj;
       CHAPTERS = subj.chapters;
-      migrate822LabelReorder(); // 822 labels 重排迁移，必须先于 migrateAllSm2（避免用旧索引建 SM-2）
       migrateAllSm2();   // 切科目时也触发迁移（每个科目只跑一次）
       var resume = loadResume(subjectId);
       if (resume) {
@@ -1165,7 +1268,7 @@
         current = 0;
       }
       // 小题模式（F）是全局开关，切科目不重置、跨科目保持
-      localStorage.setItem('kaoyan_subject', subjectId);
+      localStorage.setItem(subjectStorageKey(), subjectId);
       // 关闭可能打开的全局进度/错题本面板，避免旧科目 DOM 残留
       if (dashboardOpen) {
         dashboardOpen = false; dashboardDetailReturn = false;
@@ -1654,7 +1757,7 @@
     }
 
     function effectiveCols() {
-      // 每行列数：按科目配置（数学/822 均为 5），与 822 原工具一致；忽略章节数据中的 cols 字段
+      // 每行列数：按科目配置（数学为 5）；忽略章节数据中的 cols 字段
       return (curSubject && curSubject.navCols) ? curSubject.navCols : 5;
     }
 
@@ -1842,9 +1945,11 @@
       const src = img && img.src;
       if (!src || !overlay) return;
       if (img.complete && img.naturalWidth > 0) {
-        renderImageAnnotation(src, img, overlay);
+        renderImageAnnotation(img.src, img, overlay);
       } else {
-        img.onload = function() { renderImageAnnotation(src, img, overlay); };
+        // onload 时重新读 img.src：本地图失败 CDN 兜底后是最终 URL，
+        // 标注存在最终 URL 键下，必须用最终 src 查询（入口缓存 src 会导致兜底后标注不显示）
+        img.onload = function() { renderImageAnnotation(img.src, img, overlay); };
       }
     }
 
@@ -2125,9 +2230,9 @@
       const had = statuses[current];
       // 复习会话中不允许取消标记（同一键重复选 = 正常记录，不 toggle off）
       const togglingOff = reviewSession ? false : (had === status);
-      // 撤销栈：记录本次修改前的状态
-      if (!togglingOff) pushUndo(current, had);
-      if (togglingOff) { delete statuses[current]; pushUndo(current, had); }
+      // 撤销栈：记录本次修改前的状态（仅一次；togglingOff 与置新值互斥）
+      pushUndo(current, had, currentChapterId);
+      if (togglingOff) { delete statuses[current]; }
       else { statuses[current] = status; }
       saveStatuses(); updateStatusBtns(); renderStats(); renderNav(); updateFilterCounts();
       const scoreMap = { proficient: 5, familiar: 4, vague: 3, rusty: 2, wrong: 1 };
@@ -2154,13 +2259,19 @@
 
     // ===== 撤销最近一次掌握度标记 =====
     var undoStack = [];
-    function pushUndo(idx, prevStatus) {
-      undoStack.push({ idx: idx, prevStatus: prevStatus || '' });
+    function pushUndo(idx, prevStatus, chapterId) {
+      undoStack.push({ idx: idx, prevStatus: prevStatus || '', chapterId: chapterId || currentChapterId });
       if (undoStack.length > 50) undoStack.shift();
     }
     function undoLastMark() {
       if (undoStack.length === 0) return;
       var act = undoStack.pop();
+      // 撤销跨章标记：先切回原章节再改状态（saveStatuses 会写对该章），避免污染当前章
+      if (act.chapterId && act.chapterId !== currentChapterId) {
+        currentChapterId = act.chapterId;
+        loadStatuses();
+        renderTitle(); // 标题栏同步切回原章（renderNav/switchTo 不更新顶部标题下拉）
+      }
       switchTo(act.idx);
       if (act.prevStatus) { statuses[act.idx] = act.prevStatus; }
       else { delete statuses[act.idx]; }
@@ -2192,19 +2303,39 @@
     }
 
     // ===== 筛选栏数字统计 =====
+    // 标注题号集合缓存：切章/切科目时重建，saveAnnotation/clearAnnotation 时增量更新，
+    // 避免 updateFilterCounts（热路径）每次对整章每题 ×20 张解析图做标注查询。
+    var annotIdxCache = new Set();
+    var annotIdxCacheChapter = null;
+    function rebuildAnnotIdxCache() {
+      annotIdxCache = new Set();
+      annotIdxCacheChapter = getChapter();
+      const total = annotIdxCacheChapter.total;
+      for (let i = 0; i < total; i++) {
+        if (hasQuestionImagesAnnotated(i)) annotIdxCache.add(i);
+      }
+    }
+    function annotIdxHas(i) {
+      const ch = getChapter();
+      if (ch !== annotIdxCacheChapter) rebuildAnnotIdxCache();
+      return annotIdxCache.has(i);
+    }
     function updateFilterCounts() {
       const ch = getChapter();
       const total = ch.total;
       let prof = 0, vag = 0, wr = 0;
-      Object.values(statuses).forEach(function(s) {
+      // 按本章合并索引统计（与 renderStats 一致）：statuses[i] 只取 0..total-1，
+      // 避免 Object.values 扫到合并章节 1000题 段的其它书索引造成重复/虚高计数。
+      for (let i = 0; i < total; i++) {
+        const s = statuses[i];
         if (s === 'proficient' || s === 'familiar') prof++;
         else if (s === 'vague' || s === 'rusty') vag++;
         else if (s === 'wrong') wr++;
-      });
-      // 带笔记计数
+      }
+      // 带笔记/标注计数：标注集合走增量缓存（annotIdxHas），笔记查表 O(1)。
       let withNoteOrAnnot = 0;
       for (let i = 0; i < total; i++) {
-        if (notesData[notesKeyFor(i)] || hasQuestionImagesAnnotated(i)) withNoteOrAnnot++;
+        if (notesData[notesKeyFor(i)] || annotIdxHas(i)) withNoteOrAnnot++;
       }
       const setCount = function(filter, val) {
         const el = document.querySelector('.filter-btn[data-filter="' + filter + '"] .filter-count');
@@ -2341,13 +2472,15 @@
     function normalizeAnnotSrc(imgSrc) {
       try { return new URL(imgSrc, window.location.href).href; } catch (e) { return imgSrc; }
     }
-    function annotKey(imgSrc) { return 'annot_' + normalizeAnnotSrc(imgSrc); }
+    function annotKey(imgSrc) { return userStoragePrefix() + 'annot_' + normalizeAnnotSrc(imgSrc); }
+    function annotStoragePrefix() { return userStoragePrefix() + 'annot_'; }
     function loadAnnotations() {
+      const prefix = annotStoragePrefix();
       try {
         for (var i = 0; i < localStorage.length; i++) {
           var k = localStorage.key(i);
-          if (k && k.indexOf('annot_') === 0) {
-            try { imgAnnotations[normalizeAnnotSrc(k.substring(6))] = JSON.parse(localStorage.getItem(k)); } catch (e) {}
+          if (k && k.indexOf(prefix) === 0) {
+            try { imgAnnotations[normalizeAnnotSrc(k.substring(prefix.length))] = JSON.parse(localStorage.getItem(k)); } catch (e) {}
           }
         }
       } catch (e) {}
@@ -2355,12 +2488,14 @@
     function saveAnnotation(imgSrc, state) {
       imgAnnotations[normalizeAnnotSrc(imgSrc)] = state;
       try { localStorage.setItem(annotKey(imgSrc), JSON.stringify(state)); } catch (e) {}
+      annotIdxCacheChapter = null; // 标注增删后失效缓存（annotIdxHas 会按需重建）
     }
     function getAnnotation(imgSrc) { return imgAnnotations[normalizeAnnotSrc(imgSrc)] || null; }
     function clearAnnotation(imgSrc) {
       const key = normalizeAnnotSrc(imgSrc);
       delete imgAnnotations[key];
-      try { localStorage.removeItem('annot_' + key); } catch (e) {}
+      try { localStorage.removeItem(annotStoragePrefix() + key); } catch (e) {}
+      annotIdxCacheChapter = null; // 标注增删后失效缓存（annotIdxHas 会按需重建）
     }
     function hasAnnotation(imgSrc) { return !!getAnnotation(imgSrc); }
     loadAnnotations();
@@ -2502,7 +2637,12 @@
       highlightAnnotTool(toolName);
     }
 
-    function closeAnnotator() {
+    function closeAnnotator(doSave) {
+      // doSave=true（Esc / 工具栏「退出」/ 灯箱 X）：若有标注内容则先保存再退出，避免静默丢弃。
+      // doSave 缺省/undefined（openAnnotator 清理残留、openLightbox 切换图片）：纯清理不保存。
+      if (doSave && lbMarkerArea && annotHasContent()) {
+        try { saveAnnotationFromArea(); } catch (e) {}
+      }
       // 销毁 MarkerArea，退出标注模式，回到灯箱查看
       if (lbMarkerArea) {
         try { lbMarkerArea.remove(); } catch (e) {}
@@ -2588,7 +2728,7 @@
         if (action === 'undo')        { doUndo(); return; }
         if (action === 'redo')        { doRedo(); return; }
         if (action === 'save')        { saveAnnotationFromArea(); return; }
-        if (action === 'cancel')      { closeAnnotator(); return; }
+        if (action === 'cancel')      { closeAnnotator(true); return; }
         if (action === 'width-minus') { adjustAnnotWidth(-1); return; }
         if (action === 'width-plus')  { adjustAnnotWidth(1); return; }
         if (tool && ANNOT_TOOLS.indexOf(tool) >= 0) { selectAnnotTool(tool); }
@@ -2645,7 +2785,8 @@
     }
 
     function closeLightbox() {
-      closeAnnotator();
+      // 关灯箱若有未保存标注内容则先保存（不静默丢弃用户画的内容）
+      closeAnnotator(true);
       const overlay = document.getElementById('lightbox');
       overlay.classList.remove('show');
       document.body.style.overflow = '';
@@ -2699,7 +2840,7 @@
       switch (key) {
         case ' ':        e.preventDefault(); toggleAnnotToolbar(); return; // 空格：显隐工具栏
         case 'tab':      e.preventDefault(); cycleAnnotTool(); return;     // Tab：在直线/矩形/高亮/画笔间切换
-        case 'escape':   e.preventDefault(); closeAnnotator(); return;     // Esc：退出标注
+        case 'escape':   e.preventDefault(); closeAnnotator(true); return;     // Esc：保存并退出标注
         case 'delete':
         case 'backspace': e.preventDefault(); deleteAnnotSelection(); return;
       }
@@ -3036,7 +3177,7 @@ ${cardsHTML}
     let reviewSession = null;  // { queue: [{chapterId, idx}], currentIdx, mode }
     let sm2PanelOpen = false;
 
-    // SM-2 存储键：sm2_<subjectId>_<chapterId>（含科目 ID 避免数学/822 的 ch1 冲突，并增加用户隔离）
+    // SM-2 存储键：sm2_<subjectId>_<chapterId>（含科目 ID 避免数学与专业课的 ch1 冲突，并增加用户隔离）
     function sm2Key(ch) { return userStoragePrefix() + 'sm2_' + curSubjectId + '_' + ch.id; }
 
     function loadSm2() {
@@ -3053,125 +3194,10 @@ ${cardsHTML}
       });
     }
 
-    // ===== 822 章节 labels 重排迁移：习题→例题→章末例题 =====
-    // 2026-08-14 重构 chapters.js 中 822 教材章（ch2-ch7, ch9）的 labels 数组顺序为
-    // [习题, 例题, 章末例题]（与 partOrder 一致）。数字索引存储（status/qbad/sbad/sm2/
-    // 位置记忆/复习会话）需同步重排，否则旧索引会指向错误题目。
-    // 迁移映射（旧序 [例题,章末例题,习题] → 新序 [习题,例题,章末例题]）：
-    //   旧下标 k < a+b  ⇒ 新 = k + c（例题/章末例题整体后移 c 位）
-    //   旧下标 k >= a+b ⇒ 新 = k - (a+b)（习题整体前移 a+b 位）
-    // 其中 a=例题数, b=章末例题数, c=习题数，用 classifyLabel 从新 labels 现算。
-    // 幂等标记先置位防二次重排；备份键 __bak822r_<key> 可 F12 手动恢复。
-    function migrate822LabelReorder() {
-      try {
-        var flag = 'kaoyan_mig822_reorder_v1';
-        if (localStorage.getItem(flag)) return;
-        localStorage.setItem(flag, '1'); // 先置位，防中途失败二次执行套娃重排
-        var m822 = SUBJECTS.find(function (s) { return s.id === '822'; });
-        if (!m822) return;
-        // ch1 无例题区、旧序=新序，绝不迁移；小题300/强化240/真题分类 是纯数字 label 不变
-        var AFFECTED = ['ch2', 'ch3', 'ch4', 'ch5', 'ch6', 'ch7', 'ch9'];
-        // 计算某章 a/b/c 并返回旧下标→新下标映射
-        var abcMap = function (ch, k) {
-          var a = 0, b = 0, c = 0;
-          ch.labels.forEach(function (l) {
-            var cat = m822.classifyLabel(l);
-            if (cat === '例题') a++; else if (cat === '章末例题') b++; else c++;
-          });
-          return k < a + b ? k + c : k - (a + b);
-        };
-        var reorderIndexedObj = function (raw, ch) {
-          if (!raw) return null;
-          var obj; try { obj = JSON.parse(raw); } catch (e) { return null; }
-          if (!obj) return null;
-          var out = {}, changed = false;
-          for (var k in obj) {
-            if (!Object.prototype.hasOwnProperty.call(obj, k)) continue;
-            var idx = parseInt(k, 10);
-            if (isNaN(idx)) continue;
-            var nk = String(abcMap(ch, idx));
-            if (out[nk] !== undefined) continue; // 保底：不覆盖已搬入目标
-            out[nk] = obj[k];
-            changed = true;
-          }
-          return changed ? JSON.stringify(out) : raw;
-        };
-
-        AFFECTED.forEach(function (cid) {
-          var ch = m822.chapters.find(function (c) { return c.id === cid; });
-          if (!ch || ch.total === 0) return;
-          // 1) status / qbad / sbad（数字索引对象）
-          ['_status', '_qbad', '_sbad'].forEach(function (suffix) {
-            var key = cid + '_' + m822.storageSuffix + suffix;
-            var raw = localStorage.getItem(key);
-            if (!raw) return;
-            if (!localStorage.getItem('__bak822r_' + key)) localStorage.setItem('__bak822r_' + key, raw);
-            var out = reorderIndexedObj(raw, ch);
-            if (out !== raw && out !== null) localStorage.setItem(key, out);
-          });
-          // 2) SM-2（数字索引对象）
-          var sKey = 'sm2_822_' + cid;
-          var sRaw = localStorage.getItem(sKey);
-          if (sRaw) {
-            if (!localStorage.getItem('__bak822r_' + sKey)) localStorage.setItem('__bak822r_' + sKey, sRaw);
-            var sOut = reorderIndexedObj(sRaw, ch);
-            if (sOut !== sRaw && sOut !== null) localStorage.setItem(sKey, sOut);
-          }
-        });
-
-        // 3) kaoyan_resume 位置记忆：仅 822 相关子键的 idx
-        var map = {};
-        try { map = JSON.parse(localStorage.getItem('kaoyan_resume')) || {}; } catch (e) { map = {}; }
-        var resumeTouched = false;
-        var remapResumeIdx = function (entry) {
-          if (!entry || entry.ch === undefined || entry.idx === undefined) return entry;
-          if (AFFECTED.indexOf(entry.ch) === -1) return entry;
-          var ch = m822.chapters.find(function (c) { return c.id === entry.ch; });
-          if (!ch) return entry;
-          var nv = abcMap(ch, entry.idx);
-          if (nv !== entry.idx) { entry.idx = nv; resumeTouched = true; }
-          return entry;
-        };
-        ['822', '822::控制工程基础'].forEach(function (k) {
-          if (map[k]) map[k] = remapResumeIdx(map[k]);
-        });
-        Object.keys(map).forEach(function (k) {
-          var mm = k.match(/^822::ch::(ch\d+)$/);
-          if (mm && AFFECTED.indexOf(mm[1]) !== -1 && map[k] && map[k].idx !== undefined) {
-            var ch = m822.chapters.find(function (c) { return c.id === mm[1]; });
-            if (ch) {
-              var nv = abcMap(ch, map[k].idx);
-              if (nv !== map[k].idx) { map[k].idx = nv; resumeTouched = true; }
-            }
-          }
-        });
-        if (resumeTouched) localStorage.setItem('kaoyan_resume', JSON.stringify(map));
-
-        // 4) kaoyan_review_session 复习续接：仅 subjectId=822，queue idx + originIdx 重排
-        try {
-          var sess = JSON.parse(localStorage.getItem('kaoyan_review_session'));
-          if (sess && sess.subjectId === '822') {
-            var sessTouched = false;
-            sess.queue.forEach(function (it) {
-              if (AFFECTED.indexOf(it.chapterId) !== -1) {
-                var ch = m822.chapters.find(function (c) { return c.id === it.chapterId; });
-                if (ch) { it.idx = abcMap(ch, it.idx); sessTouched = true; }
-              }
-            });
-            if (sess.originChapter && AFFECTED.indexOf(sess.originChapter) !== -1) {
-              var ch = m822.chapters.find(function (c) { return c.id === sess.originChapter; });
-              if (ch) { sess.originIdx = abcMap(ch, sess.originIdx); sessTouched = true; }
-            }
-            if (sessTouched) localStorage.setItem('kaoyan_review_session', JSON.stringify(sess));
-          }
-        } catch (e) {}
-      } catch (e) {}
-    }
-
     // ===== 一次性全量迁移：为所有已有掌握度标记但缺 SM-2 记录的题目创建复习排期 =====
     // v2：修正迁移逻辑后升级版本号，确保已误迁移过的数据被清除后重新迁移
     function migrateAllSm2() {
-      var flagKey = 'kaoyan_sm2_migrated_v2_' + curSubjectId;
+      var flagKey = userStoragePrefix() + 'kaoyan_sm2_migrated_v2_' + curSubjectId;
       if (localStorage.getItem(flagKey) === '1') return;
       var scoreMap = { proficient: 5, familiar: 4, vague: 3, rusty: 2, wrong: 1 };
       var migrated = 0;
@@ -3233,7 +3259,9 @@ ${cardsHTML}
       });
       return out;
     }
-    // 将「合并后」的 SM-2 写回 own/伴章两块存储键
+    // 将「合并后」的 SM-2 写回 own/伴章两块存储键，并触发云端同步
+    // （复习评级走 commitReviewResults → writeMergedSm2，必须与普通打标一样上行，
+    //   否则复习产生的排期跨设备丢失）
     function writeMergedSm2(ch, merged) {
       statusSources(ch).forEach(function(src) {
         var out = {};
@@ -3242,8 +3270,14 @@ ${cardsHTML}
         }
         if (Object.keys(out).length > 0) {
           localStorage.setItem(sm2Key(src.ch), JSON.stringify(out));
+          if (window.PrivateStudy?.scheduleSave) {
+            try { window.PrivateStudy.scheduleSave(src.ch.id, 'reviewPlan', out); } catch (e) {}
+          }
         } else {
           localStorage.removeItem(sm2Key(src.ch));
+          if (window.PrivateStudy?.scheduleSave) {
+            try { window.PrivateStudy.scheduleSave(src.ch.id, 'reviewPlan', {}); } catch (e) {}
+          }
         }
       });
     }
@@ -3253,7 +3287,7 @@ ${cardsHTML}
       var keys = [];
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i);
-        if (k && (k.indexOf('sm2_') === 0 || k.indexOf('kaoyan_sm2_migrated_') === 0)) {
+        if (k && (k.indexOf('sm2_') === 0 || k.indexOf('_sm2_') !== -1 || k.indexOf('kaoyan_sm2_migrated_') !== -1)) {
           keys.push(k);
         }
       }
@@ -3439,7 +3473,7 @@ ${cardsHTML}
         '</div>';
     }
 
-    // 复习面板按「模块」（canonicalSubj）分组：数学 高数/线代/概率论，822 单模块退化为按书布局。
+    // 复习面板按「模块」（canonicalSubj）分组：数学 高数/线代/概率论，单模块科目退化为按书布局。
     // 模块内按书（wbOrder 顺序，排除 1000题）分章；1000题内容已在合并章内统计（sm2ChapterSummary 用合并索引）。
     function renderSm2Panel() {
       var allDue = 0, allOverdue = 0, allQueued = 0, allMastered = 0;
@@ -3508,7 +3542,7 @@ ${cardsHTML}
       document.querySelector('#sm2CardQueue .sm2-stat-num').textContent = allQueued;
       document.querySelector('#sm2CardMastered .sm2-stat-num').textContent = allMastered;
 
-      // 渲染章节列表：科目仅有 1 个模块（822）时不渲染模块头，退化为按书布局
+      // 渲染章节列表：科目仅有 1 个模块时不渲染模块头，退化为按书布局
       var chHtml = '';
       var totalModuleCount = moduleNames.length;
       moduleHtmls.forEach(function(m) {
@@ -3587,7 +3621,7 @@ ${cardsHTML}
     function saveReviewSession() {
       if (!reviewSession) return;
       var persist = {
-        subjectId: curSubjectId, // 记录所属科目（数学/822 章节 ID 共用 ch1..chN，切科目后需据此判失效）
+        subjectId: curSubjectId, // 记录所属科目（切科目后据此判会话失效）
         queue: reviewSession.queue.map(function(it) {
           return { chapterId: it.chapterId, idx: it.idx, status: it.status || 'pending', finalScore: it.finalScore };
         }),
@@ -3598,18 +3632,18 @@ ${cardsHTML}
         done: !!reviewSession.done,
         savedAt: Date.now()
       };
-      try { localStorage.setItem('kaoyan_review_session', JSON.stringify(persist)); } catch (e) {}
+      try { localStorage.setItem(reviewSessionStorageKey(), JSON.stringify(persist)); } catch (e) {}
     }
     function loadReviewSession() {
       var raw = null;
-      try { raw = JSON.parse(localStorage.getItem('kaoyan_review_session')) || null; } catch (e) { raw = null; }
+      try { raw = JSON.parse(localStorage.getItem(reviewSessionStorageKey())) || null; } catch (e) { raw = null; }
       if (!raw || !Array.isArray(raw.queue) || raw.queue.length === 0) return null;
-      // 校验科目：会话记录的是上次的科目，切科目后视为失效（数学/822 章节 ID 共用 ch1..chN）
+      // 校验科目：会话记录的是上次的科目，切科目后视为失效
       if (raw.subjectId && raw.subjectId !== curSubjectId) return null;
       return raw;
     }
     function clearReviewSession() {
-      try { localStorage.removeItem('kaoyan_review_session'); } catch (e) {}
+      try { localStorage.removeItem(reviewSessionStorageKey()); } catch (e) {}
     }
 
     function startReview(queue, mode) {
@@ -3640,10 +3674,10 @@ ${cardsHTML}
       var persist = loadReviewSession();
       if (!persist) { showSm2Toast('没有待续接的复习'); return; }
       // 校验会话是否属于当前科目（切科目后若会话章节不在当前 CHAPTERS 中则清除，避免续接到错误科目）
-      var anyInCurrent = persist.queue.some(function(it) { return chapterById(it.chapterId); });
-      if (!anyInCurrent) { clearReviewSession(); showSm2Toast('上次复习的科目已切换，无法续接'); return; }
-      // 重建 queue（record 从 merged 实时读，finalScore/status 从存储恢复）
-      var queue = persist.queue.map(function(it) {
+      var validQueue = persist.queue.filter(function(it) { return !!chapterById(it.chapterId); });
+      if (validQueue.length === 0) { clearReviewSession(); showSm2Toast('上次复习的科目已切换，无法续接'); return; }
+      // 重建 queue（record 从 merged 实时读，finalScore/status 从存储恢复；过滤失效章节项）
+      var queue = validQueue.map(function(it) {
         var ch = chapterById(it.chapterId);
         var rec = null;
         if (ch) {
@@ -3826,7 +3860,12 @@ ${cardsHTML}
         document.getElementById('reviewControls').style.display = 'none';
         return;
       }
-      commitReviewResults();
+      // 提交结果即便 localStorage 写入失败也不阻断会话清理与 UI 恢复
+      try {
+        commitReviewResults();
+      } catch (e) {
+        console.warn('复习结果提交失败（已跳过写入，会话仍将结束）：', e);
+      }
       clearReviewSession(); // 会话已结束，清除续接存储
       var originCh = reviewSession.originChapter;
       var originIdx = reviewSession.originIdx;
@@ -3893,15 +3932,18 @@ ${cardsHTML}
         return;
       }
 
-      // Ctrl+Z：撤销最近一次掌握度标记
+      // Ctrl+Z：撤销最近一次掌握度标记（同时清掉待触发的组合键定时器，避免残留误打标）
       if ((e.ctrlKey || e.metaKey) && key === 'z' && !isShift) {
+        resetCombo();
         e.preventDefault();
         undoLastMark();
         return;
       }
 
-      // Shift 筛选快捷键
+      // Shift 筛选快捷键（先清组合键定时器：Shift+Z/X/C 会切筛选并跳题，
+      // 若此前按过 Z 的 200ms 定时器未清，会误对新题目打标）
       if (isShift) {
+        resetCombo();
         switch (key) {
           case 'a': e.preventDefault(); applyFilter('all'); return;
           case 'z': e.preventDefault(); applyFilter('proficient'); return;
@@ -3924,8 +3966,14 @@ ${cardsHTML}
       // （Shift 组合已在上方处理；Alt 进入标注已在前面单独处理）
       if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      // 非 Z/X/C 键按下时，打断待处理的组合超时（避免导航/面板等操作后意外改标记）
-      if (key !== 'z' && key !== 'x' && key !== 'c') resetCombo();
+      // 非 Z/X/C 键按下时打断待处理的组合超时，但要小心：快速「打标后紧跟导航键」
+      // 不应取消尚未触发的单键标记。仅当这些键会「切换上下文/跳题」时才打断，
+      // 避免 Z 后立刻按 R（标图质）导致标记静默丢失。
+      if (key !== 'z' && key !== 'x' && key !== 'c') {
+        if (['a','d','w','s','q','e','arrowleft','arrowright','arrowup','arrowdown',' ','v','b','m','g','f','h'].indexOf(key) !== -1) {
+          resetCombo();
+        }
+      }
 
       switch (key) {
         // 上一题 / 下一题（题组级 / 子题级，见 navPrev / navNext）
@@ -4029,11 +4077,15 @@ ${cardsHTML}
 
     // ===== 初始化流程 =====
     async function initAppSession() {
-      var savedSubject = localStorage.getItem('kaoyan_subject');
+      var savedSubject = localStorage.getItem(subjectStorageKey());
       curSubjectId = (savedSubject && SUBJECTS.some(function (s) { return s.id === savedSubject; })) ? savedSubject : 'shu1';
       curSubject = SUBJECTS.find(function (s) { return s.id === curSubjectId; });
       CHAPTERS = curSubject.chapters;
-      migrate822LabelReorder();
+
+      migrateLegacyLocalStatuses();
+      // 先水合云端状态，再跑迁移：登录用户的 status 已回填本地后，
+      // 迁移才能基于完整数据生成 SM-2 排期（guest 首屏先置 flag 会让登录用户迁移永久失效）。
+      await hydrateCloudStatuses();
       migrateAllSm2();
 
       var resume = loadResume(curSubjectId);
@@ -4046,8 +4098,6 @@ ${cardsHTML}
         current = 0; subMode = false;
       }
 
-      migrateLegacyLocalStatuses();
-      await hydrateCloudStatuses();
       loadGlobalFilters(); loadSolutionPref();
       loadStatuses(); loadQBad(); loadSBad(); loadNotes(); loadSm2();
 
@@ -4064,21 +4114,36 @@ ${cardsHTML}
 
     // 监听 Supabase 登录与注销事件
     document.addEventListener('private-study:signed-in', async function (e) {
+      migrateGuestAndLegacyUi(); // 先迁移 guest/旧键数据，再初始化（迁移结果会被 initAppSession 读取）
+      loadAnnotations(); // 新用户键下重建标注索引
       initAppSession();
     });
 
     document.addEventListener('private-study:signed-out', function () {
+      // 登出清理：结束并清除续接复习会话，避免下个账号续接上一个账号的复习队列
+      if (reviewSession) {
+        try { commitReviewResults(); } catch (e) {}
+        reviewSession = null;
+      }
+      clearReviewSession();
+      // 清空内存态与标注查看器（标注存储键已按用户前缀隔离，下一账号自动读到自己的）
       statuses = {};
       qBad = {};
       sBad = {};
       notesData = {};
       sm2 = {};
+      imgAnnotations = {};
+      Object.keys(_annotViewers).forEach(function (k) {
+        try { if (_annotViewers[k]) _annotViewers[k].remove(); } catch (e) {}
+      });
+      _annotViewers = {};
+      undoStack = [];
       renderNav();
     });
 
     // 默认或离线初始化
     initAppSession();
-    if (!localStorage.getItem('kaoyan_subject')) {
+    if (!localStorage.getItem(subjectStorageKey())) {
       document.addEventListener('DOMContentLoaded', function () { openSubjectPicker(); });
     }
 
