@@ -1186,10 +1186,14 @@
       return { progress: len > 0 ? done / len : 0, done: done, total: len };
     }
 
-    function getChStats(ch) {
-      var key = chapterStatusKey(ch);
+    function getChStats(ch, subject) {
+      if (!subject) {
+        console.warn('[stats] getChStats missing explicit subject parameter, falling back to curSubject', ch);
+        subject = curSubject;
+      }
+      var key = userStoragePrefix() + ch.id + '_' + subject.storageSuffix + '_status';
       var statusObj;
-      try { statusObj = JSON.parse(localStorage.getItem(key)) || {}; } catch (e) { statusObj = {}; }
+      try { statusObj = JSON.parse(safeStorageGet(key) || '{}'); } catch (e) { statusObj = {}; }
       var lv5 = 0, lv4 = 0, lv3 = 0, lv2 = 0, lv1 = 0;
       var len = ch.ownTotal || ch.total;
       for (var i = 0; i < len; i++) {
@@ -1207,6 +1211,13 @@
         unmarked: len - done, done: done,
         pct: len > 0 ? Math.round(done / len * 100) : 0
       };
+    }
+
+    function getQuestionImagePath(index, subject) {
+      var sub = subject || curSubject;
+      var base = getImgPath(index);
+      var isProfessional = Boolean(sub && (sub.id === 'zhuanye' || sub.id === 'professional' || sub.isProfessional));
+      return isProfessional ? base + '.png' : base + '_question.png';
     }
 
     function dbLerpColor(c1, c2, t) {
@@ -1516,6 +1527,7 @@
 
     // 从总进度卡片进入对应书籍时，先切换数据源，再展示该书的章节明细。
     function openDashboardBook(subjectId, wb) {
+      var bookSub = SUBJECTS.find(function (s) { return s.id === subjectId; }) || curSubject;
       if (curSubjectId !== subjectId) {
         switchSubject(subjectId);
         dashboardOpen = true;
@@ -1523,21 +1535,22 @@
         document.getElementById('mainAreaContent').style.display = 'none';
         setPanelTitle('全局学习进度');
       }
-      openDashboardDetail(wb);
+      openDashboardDetail(wb, bookSub);
     }
 
-    function openDashboardDetail(wb) {
+    function openDashboardDetail(wb, bookSubject) {
+      var bookSub = bookSubject || curSubject;
       showDashboardBackBtn(true);
       document.getElementById('dbOverview').style.display = 'none';
       document.getElementById('dbDetail').style.display = '';
       document.getElementById('dbDetailTitle').textContent = getWbLabel(wb) + ' — 章节进度';
 
-      var chapters = getBookChapters(wb);
+      var chapters = getBookChapters(wb, bookSub.chapters);
       var grid = document.getElementById('dbDetailList');
 
       function cardHtml(ch) {
         var name = ch.short || ch.name;
-        var stats = getChStats(ch);
+        var stats = getChStats(ch, bookSub);
         return '<div class="db-chapter-card" data-cid="' + ch.id + '">' +
           '<div class="db-chapter-name">' + name + '</div>' +
           '<div class="db-chapter-bar"><div class="db-chapter-fill" style="width:' + stats.pct + '%"></div></div>' +
@@ -2391,8 +2404,9 @@
       imgEl.classList.remove('image-missing');
       delete imgEl.dataset.missing;
       imgEl.dataset.fallback = '0';
+      const enableGithubRaw = safeStorageGet('kaoyan_enable_github_fallback') === 'true';
       imgEl.onerror = function() {
-        if (this.dataset.fallback === '0') {
+        if (enableGithubRaw && this.dataset.fallback === '0') {
           this.dataset.fallback = '1';
           const cdnPrefix = 'https://raw.githubusercontent.com/flanahao/kaoyan-tiku/main/';
           this.src = cdnPrefix + encodeURI(localSrc).replace(/#/g, '%23');
@@ -2407,20 +2421,23 @@
     }
 
     // 解析图探测代次：切换题目时递增，onload 里丢弃过期题目遗留的图片。
-    // 必须显式声明——缺失会让 ++undefined 恒为 NaN，gen !== _solutionImgGen 永远成立，
-    // 导致解析图加载成功后仍被丢弃（解析永远显示不出来）。
     let _solutionImgGen = 0;
     function setSolutionImages(base) {
       const container = document.getElementById('solutionImgs');
       if (!container) return;
       container.innerHTML = '';
       const gen = ++_solutionImgGen;
-      function tryAdd(n) {
-        const src = n === 1 ? base + '_solution.png' : base + '_solution_' + n + '.png';
+
+      // 从 Manifest 中获取该题目的真实解析切片文件名数组（精准按需加载，彻底杜绝 404）
+      const manifestList = (window.SOLUTION_MANIFEST && window.SOLUTION_MANIFEST[base]);
+      const fileList = Array.isArray(manifestList) ? manifestList : ['_solution.png'];
+
+      fileList.forEach(function (sliceFilename, idx) {
+        const src = base + sliceFilename;
         const img = document.createElement('img');
         img.className = 'solution-img';
-        img.alt = '解析' + (n > 1 ? '（' + n + '）' : '');
-        
+        img.alt = '解析' + (idx > 0 ? '（' + (idx + 1) + '）' : '');
+
         const wrap = document.createElement('div');
         wrap.className = 'annot-wrapper';
         const overlay = document.createElement('div');
@@ -2434,15 +2451,13 @@
           container.appendChild(wrap);
           img.classList.toggle('sbad-border', !!sBad[current]);
           if (hasAnnotation(src)) renderImageAnnotation(src, img, overlay);
-          tryAdd(n + 1); // 加载成功则继续探测下一张
         }, function () {
-          if (gen === _solutionImgGen && n === 1 && container.children.length === 0) {
+          if (gen === _solutionImgGen && idx === 0 && container.children.length === 0) {
             container.appendChild(wrap);
             markImageMissing(img, '解析图片暂缺，请反馈题号');
           }
         });
-      }
-      tryAdd(1);
+      });
     }
 
     // ===== 普通浏览标注叠加（切题即见） =====
@@ -2507,8 +2522,8 @@
       const ch = getChapter();
       const base = getImgPath(idx);
       const qImg = document.getElementById('questionImg');
-      const isProfessional = curSubjectId === 'zhuanye';
-      loadImageWithFallback(qImg, base + (isProfessional ? '.png' : '_question.png'), function() {
+      const isProfessional = Boolean(curSubject && (curSubject.id === 'zhuanye' || curSubject.id === 'professional'));
+      loadImageWithFallback(qImg, getQuestionImagePath(idx, curSubject), function() {
         renderQuestionAnnotations();
       }, function() {
         markImageMissing(qImg, '题目图片暂缺，请反馈题号');
@@ -3747,7 +3762,7 @@
       const items = [];
       for (let i = 0; i < ch.total; i++) {
         if (statuses[i] === statusFilter) {
-          items.push({ label: ch.labels[i], qImg: getImgPath(i) + '_question.png' });
+          items.push({ label: ch.labels[i], qImg: getQuestionImagePath(i, curSubject) });
         }
       }
       if (items.length === 0) {
