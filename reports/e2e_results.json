@@ -1,0 +1,21 @@
+{
+  "viewports": [
+    1440,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "passed": 5,
+  "failed": 0,
+  "consoleErrors": [],
+  "unexpectedFailedRequests": [],
+  "externalRequests": [],
+  "screenshots": [
+    "D:\\考研题库网站\\reports\\screenshot_e2e_1440px.png",
+    "D:\\考研题库网站\\reports\\screenshot_e2e_1024px.png",
+    "D:\\考研题库网站\\reports\\screenshot_e2e_768px.png",
+    "D:\\考研题库网站\\reports\\screenshot_e2e_390px.png",
+    "D:\\考研题库网站\\reports\\screenshot_e2e_320px.png"
+  ]
+}
