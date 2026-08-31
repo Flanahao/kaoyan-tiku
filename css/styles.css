@@ -1,43 +1,72 @@
 :root {
-  --sidebar-bg: #0f172a;
-  --sidebar-surface: #1e293b;
-  --sidebar-hover: #334155;
-  --sidebar-text: #94a3b8;
-  --sidebar-text-active: #ffffff;
-  --sidebar-border: #1e293b;
-  --sidebar-active-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  --sidebar-active-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  --sidebar-bg: #2f63a6;
+  --sidebar-bg-deep: #244e88;
+  --sidebar-hover: #4f8fe6;
+  --sidebar-active: #78b7ff;
+  --sidebar-text: #f7fbff;
+  --sidebar-muted: #d8eaff;
 
-  --workspace-bg: #f5f7fb;
-  --header-bg: #ffffff;
-  --card-bg: #ffffff;
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
-  --text: #0f172a;
-  --text-muted: #64748b;
-  --text-subtle: #94a3b8;
+  --bg-main: #f4f8ff;
+  --bg-soft: #edf5ff;
+  --surface: #ffffff;
+  --surface-soft: #f8fbff;
 
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --primary-light: #3b82f6;
-  --primary-alpha: rgba(37, 99, 235, 0.12);
+  --primary: #2878e8;
+  --primary-strong: #1d5fbd;
+  --primary-light: #79b7ff;
 
-  /* 5 级掌握度色板：熟练(绿) -> 较熟练(蓝) -> 模糊(黄) -> 困难(橙) -> 不会(红) */
-  --lv5: #10b981; --lv5-dark: #059669; --lv5-alpha: rgba(16, 185, 129, 0.2);
-  --lv4: #3b82f6; --lv4-dark: #2563eb; --lv4-alpha: rgba(59, 130, 246, 0.2);
-  --lv3: #f59e0b; --lv3-dark: #d97706; --lv3-alpha: rgba(245, 158, 11, 0.2);
-  --lv2: #f97316; --lv2-dark: #ea580c; --lv2-alpha: rgba(249, 115, 22, 0.2);
-  --lv1: #ef4444; --lv1-dark: #dc2626; --lv1-alpha: rgba(239, 68, 68, 0.2);
+  --text: #17324d;
+  --text-muted: #6d839b;
+  --border: #d6e5f6;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --proficient: #159a72;
+  --vague: #d58b00;
+  --wrong: #d94b55;
+  --neutral: #8aa0b6;
+
+  --shadow-card: 0 8px 24px rgba(41, 100, 170, 0.12);
+  --shadow-hover: 0 12px 30px rgba(41, 100, 170, 0.18);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+
+  /* Aliases for workspace components */
+  --workspace-bg: var(--bg-main);
+  --header-bg: var(--surface);
+  --card-bg: var(--surface);
+  --border-light: var(--bg-soft);
+  --text-subtle: var(--neutral);
+  --sidebar-surface: rgba(255, 255, 255, 0.12);
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --sidebar-active-gradient: linear-gradient(135deg, #78b7ff 0%, #2878e8 100%);
+  --sidebar-active-shadow: 0 4px 14px rgba(40, 120, 232, 0.35);
+
+  /* 5 级掌握度色板 */
+  --lv5: var(--proficient); --lv5-dark: #0f7a5b; --lv5-alpha: rgba(21, 154, 114, 0.18);
+  --lv4: #3b82f6; --lv4-dark: var(--primary-strong); --lv4-alpha: rgba(40, 120, 232, 0.18);
+  --lv3: var(--vague); --lv3-dark: #b27400; --lv3-alpha: rgba(213, 139, 0, 0.18);
+  --lv2: #f97316; --lv2-dark: #ea580c; --lv2-alpha: rgba(249, 115, 22, 0.18);
+  --lv1: var(--wrong); --lv1-dark: #b8323c; --lv1-alpha: rgba(217, 75, 85, 0.18);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --radius-pill: 9999px;
 
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 1px 3px rgba(41, 100, 170, 0.08);
+  --shadow-md: var(--shadow-card);
+  --shadow-lg: var(--shadow-hover);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(40, 120, 232, 0.45);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 * {
@@ -82,11 +111,11 @@ body {
   z-index: 998;
 }
 
-/* ===== 左侧深海军蓝侧边栏 ===== */
+/* ===== 左侧明亮蓝调侧边栏 ===== */
 .sidebar-left {
   width: 240px;
   flex: 0 0 240px;
-  background: var(--sidebar-bg);
+  background: linear-gradient(180deg, #3d7bc7, #244e88);
   color: var(--sidebar-text);
   height: 100vh;
   position: sticky;
@@ -94,7 +123,7 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 60;
-  border-right: 1px solid var(--sidebar-surface);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
   user-select: none;
 }
 
@@ -103,20 +132,20 @@ body {
   align-items: center;
   gap: 12px;
   padding: 18px 18px 16px;
-  border-bottom: 1px solid var(--sidebar-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .brand-logo-badge {
   font-size: 20px;
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: #ffffff;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: #2878e8;
 }
 
 .brand-info {
@@ -127,14 +156,14 @@ body {
 .brand-title {
   font-size: 16px;
   font-weight: 700;
-  color: #f8fafc;
+  color: #ffffff;
   letter-spacing: 0.5px;
 }
 
 .brand-subtitle {
   font-size: 10px;
   font-weight: 600;
-  color: #64748b;
+  color: var(--sidebar-muted);
   letter-spacing: 0.8px;
   text-transform: uppercase;
 }
@@ -174,7 +203,7 @@ body {
 .nav-group-title {
   font-size: 11px;
   font-weight: 700;
-  color: #64748b;
+  color: var(--sidebar-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0 8px 6px;
@@ -200,16 +229,16 @@ body {
 }
 
 .sidebar-left .sol-default-btn:hover {
-  background: var(--sidebar-surface);
-  color: #f8fafc;
+  background: var(--sidebar-hover);
+  color: #ffffff;
   transform: none;
 }
 
 .sidebar-left .sol-default-btn.active {
-  background: var(--sidebar-active-gradient);
-  color: #ffffff;
-  box-shadow: var(--sidebar-active-shadow);
-  font-weight: 600;
+  background: var(--sidebar-active);
+  color: #17324d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-weight: 700;
 }
 
 .sidebar-left .sol-default-btn .nav-icon {
@@ -229,20 +258,21 @@ body {
   font-size: 10px;
   padding: 2px 6px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--sidebar-muted);
   margin-left: auto;
   font-family: monospace;
 }
 
 .sidebar-left .sol-default-btn.active .sol-key {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: rgba(23, 50, 77, 0.15);
+  color: #17324d;
 }
 
 /* 侧边栏状态筛选 */
 .filter-toolbar {
-  background: var(--sidebar-surface);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   padding: 10px;
   margin-top: 6px;
@@ -259,12 +289,12 @@ body {
 .filter-head .filter-label {
   font-size: 11px;
   font-weight: 700;
-  color: #94a3b8;
+  color: #ffffff;
 }
 
 .filter-head .filter-hint {
   font-size: 10px;
-  color: #64748b;
+  color: var(--sidebar-muted);
 }
 
 .filter-btn-group {
@@ -289,30 +319,43 @@ body {
 }
 
 .filter-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #f8fafc;
+  background: var(--sidebar-hover);
+  color: #ffffff;
 }
 
 .filter-btn.active {
-  background: rgba(37, 99, 235, 0.25);
-  color: #60a5fa !important;
-  font-weight: 600;
+  background: var(--sidebar-active);
+  color: #17324d !important;
+  font-weight: 700;
 }
 
 .filter-btn .filter-count {
   margin-left: auto;
   font-size: 11px;
-  opacity: 0.85;
+  opacity: 0.95;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.filter-btn.active .filter-count {
+  background: #ffffff;
+  color: #17324d;
 }
 
 .filter-btn .filter-key {
   font-size: 10px;
   padding: 1px 4px;
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--sidebar-muted);
   margin-left: 4px;
   font-family: monospace;
+}
+
+.filter-btn.active .filter-key {
+  background: rgba(23, 50, 77, 0.15);
+  color: #17324d;
 }
 
 .f-dot {
@@ -3045,14 +3088,14 @@ body {
 
     /* ===== 全局进度仪表盘现代化组件 ===== */
     .db-hero-card {
-      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%);
+      background: linear-gradient(135deg, #67b3ff 0%, #2878e8 100%);
       border-radius: 16px;
       color: #ffffff;
       padding: 26px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 10px 25px -5px rgba(40, 120, 232, 0.35);
       margin-bottom: 22px;
     }
 

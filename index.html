@@ -9,24 +9,7 @@
 </head>
 <body>
 
-  <!-- 登录 Gate（单机模式默认隐藏，保留 DOM 节点以供兼容） -->
-  <div id="authGate" class="auth-gate" style="display: none;" hidden>
-    <form id="authForm" class="auth-card" autocomplete="on" style="display: none;">
-      <h1>🎓 私有考研题库</h1>
-      <p>支持本地存储 · 间隔复习 · 错题精练</p>
-
-      <label for="authEmail">邮箱</label>
-      <input id="authEmail" name="email" type="email" autocomplete="username" placeholder="local@kaoyan.com">
-
-      <label for="authPassword">密码</label>
-      <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="******">
-
-      <button id="authSubmit" type="submit">登录账号</button>
-      <p id="authMessage" class="auth-message" aria-live="polite"></p>
-    </form>
-  </div>
-
-  <!-- 主应用 Shell（单机模式直接进入） -->
+  <!-- 主应用 Shell（纯本地单机模式直接进入） -->
   <div id="appShell">
 
     <!-- 侧边栏遮罩（移动端抽屉展开时） -->
@@ -154,9 +137,7 @@
             </div>
           </div>
           <div class="header-nav-right">
-            <span class="header-user-info">当前模式：<strong id="currentUserEmail">本地离线模式</strong></span>
-            <span id="syncStatus" aria-live="polite">🟢 本地存储</span>
-            <button id="btnLogout" type="button" style="display:none">退出登录</button>
+            <span id="syncStatus" class="local-mode-status">本地模式 · 自动保存</span>
           </div>
         </header>
 
@@ -549,8 +530,6 @@
   <script src="lib/katex/contrib/auto-render.min.js"></script>
   <script src="lib/markerjs3/markerjs3.umd.js"></script>
   
-  <script src="config.js?v=20260816c"></script>
-  <script src="auth-progress.js?v=20260816c"></script>
   <script src="english-import-data.js"></script>
   <script src="js/lilin880-chapters.js"></script>
   <script src="js/professional-chapters.js"></script>

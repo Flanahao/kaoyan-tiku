@@ -86,7 +86,7 @@
       return out;
     }
     function getSignedInUserId() {
-      return window.PrivateStudy?.getCurrentUser?.()?.id || 'guest';
+      return 'guest';
     }
     function userStoragePrefix() {
       const uid = getSignedInUserId();
@@ -301,40 +301,15 @@
       loadAnnotations(); // 重建内存标注索引（新键）
     }
     async function hydrateCloudStatuses() {
-      if (!window.PrivateStudy?.loadAllProgress || !window.PrivateStudy?.getCurrentUser?.()) return;
-      try {
-        var rows = await window.PrivateStudy.loadAllProgress();
-        rows.forEach(function (row) {
-          if (!row.data || typeof row.data !== 'object') return;
-          SUBJECTS.forEach(function (subject) {
-            var matched = subject.chapters.some(function (ch) { return ch.id === row.chapter_id; });
-            if (!matched) return;
-            if (row.data_type === 'status') {
-              mergeStatus(userStoragePrefix() + row.chapter_id + '_' + subject.storageSuffix + '_status', row.data);
-            } else if (row.data_type === 'reviewPlan') {
-              // 回填 SM-2 排期（saveSm2 按「源章节」整章上行；此处反向整章落回，仅本地为空时补）
-              var sm2LocalKey = userStoragePrefix() + 'sm2_' + subject.id + '_' + row.chapter_id;
-              if (!localStorage.getItem(sm2LocalKey)) {
-                try { localStorage.setItem(sm2LocalKey, JSON.stringify(row.data)); } catch (e) {}
-              }
-            }
-          });
-        });
-      } catch (e) { console.warn('云端进度读取失败，将继续使用本地记录', e); }
+      return;
     }
     function saveStatuses() {
       saveIndexedObj(statuses,
         function (ch, val) { 
           localStorage.setItem(chapterStatusKey(ch), val); 
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(ch.id, 'status', JSON.parse(val)); } catch (e) {}
-          }
         },
         function (ch) { 
           localStorage.removeItem(chapterStatusKey(ch)); 
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(ch.id, 'status', {}); } catch (e) {}
-          }
         });
     }
     function loadQBad() {
@@ -344,15 +319,9 @@
       saveIndexedObj(qBad,
         function (ch, val) { 
           localStorage.setItem(userStoragePrefix() + ch.id + '_' + curSubject.storageSuffix + '_qbad', val); 
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(ch.id, 'questionBad', JSON.parse(val)); } catch (e) {}
-          }
         },
         function (ch) { 
           localStorage.removeItem(userStoragePrefix() + ch.id + '_' + curSubject.storageSuffix + '_qbad'); 
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(ch.id, 'questionBad', {}); } catch (e) {}
-          }
         });
     }
     function loadSBad() {
@@ -362,15 +331,9 @@
       saveIndexedObj(sBad,
         function (ch, val) { 
           localStorage.setItem(userStoragePrefix() + ch.id + '_' + curSubject.storageSuffix + '_sbad', val); 
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(ch.id, 'solutionBad', JSON.parse(val)); } catch (e) {}
-          }
         },
         function (ch) { 
           localStorage.removeItem(userStoragePrefix() + ch.id + '_' + curSubject.storageSuffix + '_sbad'); 
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(ch.id, 'solutionBad', {}); } catch (e) {}
-          }
         });
     }
 
@@ -454,14 +417,8 @@
         const keys = Object.keys(part);
         if (keys.length > 0) {
           localStorage.setItem(key, JSON.stringify(part));
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(cid, 'notes', part); } catch (e) {}
-          }
         } else {
           localStorage.removeItem(key); // 空源不写、清残留空对象
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(cid, 'notes', {}); } catch (e) {}
-          }
         }
       });
     }
@@ -1051,8 +1008,7 @@
       // 英语不是题目章节，但同样纳入全局进度，避免学习记录被遗漏。
       // 键与 english.js 一致：带用户前缀。
       try {
-        var engUid = window.PrivateStudy?.getCurrentUser?.();
-        var engPrefix = (engUid && engUid.id) ? 'user_' + engUid.id + '_' : 'user_guest_';
+        var engPrefix = 'user_guest_';
         var english = JSON.parse(localStorage.getItem(engPrefix + 'kaoyan_english_vocabulary_v2') || '{"items":[]}');
         var words = Array.isArray(english.items) ? english.items : [];
         var ec = { familiar: 0, vague: 0, wrong: 0 };
@@ -3430,14 +3386,8 @@ ${cardsHTML}
         }
         if (Object.keys(out).length > 0) {
           localStorage.setItem(sm2Key(src.ch), JSON.stringify(out));
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(src.ch.id, 'reviewPlan', out); } catch (e) {}
-          }
         } else {
           localStorage.removeItem(sm2Key(src.ch));
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(src.ch.id, 'reviewPlan', {}); } catch (e) {}
-          }
         }
       });
     }
@@ -3454,9 +3404,7 @@ ${cardsHTML}
       });
       return out;
     }
-    // 将「合并后」的 SM-2 写回 own/伴章两块存储键，并触发云端同步
-    // （复习评级走 commitReviewResults → writeMergedSm2，必须与普通打标一样上行，
-    //   否则复习产生的排期跨设备丢失）
+    // 将「合并后」的 SM-2 写回 own/伴章两块存储键（纯本地写入）
     function writeMergedSm2(ch, merged) {
       statusSources(ch).forEach(function(src) {
         var out = {};
@@ -3465,14 +3413,8 @@ ${cardsHTML}
         }
         if (Object.keys(out).length > 0) {
           localStorage.setItem(sm2Key(src.ch), JSON.stringify(out));
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(src.ch.id, 'reviewPlan', out); } catch (e) {}
-          }
         } else {
           localStorage.removeItem(sm2Key(src.ch));
-          if (window.PrivateStudy?.scheduleSave) {
-            try { window.PrivateStudy.scheduleSave(src.ch.id, 'reviewPlan', {}); } catch (e) {}
-          }
         }
       });
     }
@@ -3664,7 +3606,7 @@ ${cardsHTML}
       }
       return '<div class="sm2-ch-row">' +
         '<div class="sm2-ch-info"><span class="sm2-ch-name">' + name + '</span><span class="sm2-ch-stats">' + statsStr + '</span></div>' +
-        '<button class="sm2-ch-btn"' + btnDisabled + ' onclick="' + (btnDisabled ? '' : 'startReviewChapter(\'' + ch.id + '\')') + '">' + btnText + '</button>' +
+        '<button class="sm2-ch-btn"' + btnDisabled + ' data-action="review-chapter" data-cid="' + ch.id + '">' + btnText + '</button>' +
         '</div>';
     }
 
@@ -3726,7 +3668,7 @@ ${cardsHTML}
             (modDue ? '<span class="sm2-ch-due">到期 ' + modDue + '</span> ' : '') +
             (modOverdue ? '<span class="sm2-ch-overdue">逾期 ' + modOverdue + '</span> ' : '') +
           '</span>' +
-          '<button class="sm2-mod-btn"' + modBtnDisabled + ' onclick="' + (modBtnDisabled ? '' : 'startReviewModule(\'' + mod + '\')') + '">' + modBtnText + '</button>' +
+          '<button class="sm2-mod-btn"' + modBtnDisabled + ' data-action="review-module" data-mod="' + mod + '">' + modBtnText + '</button>' +
           '</div>';
         moduleHtmls.push({ header: header, rows: rowsHtml });
       });
@@ -3749,9 +3691,25 @@ ${cardsHTML}
       var pending = loadReviewSession();
       if (pending) {
         var ungraded = pending.queue.filter(function(it) { return it.status !== 'graded'; }).length;
-        chHtml = '<button class="sm2-resume-btn" onclick="resumeReviewSession()">继续上次复习（剩余 ' + ungraded + ' 题）</button>' + chHtml;
+        chHtml = '<button class="sm2-resume-btn" data-action="resume-review">继续上次复习（剩余 ' + ungraded + ' 题）</button>' + chHtml;
       }
-      document.getElementById('sm2Chapters').innerHTML = chHtml;
+      var sm2Box = document.getElementById('sm2Chapters');
+      sm2Box.innerHTML = chHtml;
+      if (!sm2Box.dataset.bound) {
+        sm2Box.dataset.bound = '1';
+        sm2Box.addEventListener('click', function (e) {
+          var btn = e.target.closest('button[data-action]');
+          if (!btn || btn.disabled) return;
+          var act = btn.dataset.action;
+          if (act === 'review-chapter') {
+            startReviewChapter(btn.dataset.cid);
+          } else if (act === 'review-module') {
+            startReviewModule(btn.dataset.mod);
+          } else if (act === 'resume-review') {
+            resumeReviewSession();
+          }
+        });
+      }
       // 「开始全部复习」按钮状态：今日无到期/逾期且有记录 → 已完成（禁用）
       var startAllBtn = document.getElementById('btnSm2StartAll');
       if (startAllBtn) {
@@ -4309,54 +4267,44 @@ ${cardsHTML}
       renderSolDefaultBtn(); updateSolutionUI();
     }
 
-    // 监听本地与离线启动事件
-    let appStarted = false;
-    async function onAppReady() {
-      if (appStarted) return;
-      appStarted = true;
-      migrateGuestAndLegacyUi(); // 先迁移 guest/旧键数据，再初始化（迁移结果会被 initAppSession 读取）
-      loadAnnotations(); // 本地键下重建标注索引
-      await initAppSession();
-      if (!localStorage.getItem(subjectStorageKey())) {
-        openSubjectPicker();
+    // 唯一的本地初始化入口
+    let localAppBooted = false;
+
+    async function bootLocalApp() {
+      if (localAppBooted) return;
+      localAppBooted = true;
+
+      try {
+        migrateGuestAndLegacyUi(); // 兼容旧版本本地键
+        loadAnnotations();
+        await initAppSession();
+
+        // 首次使用时，题库初始化完成后再引导选择科目
+        if (!localStorage.getItem(subjectStorageKey())) {
+          openSubjectPicker();
+        }
+      } catch (error) {
+        localAppBooted = false;
+        console.error('[local] initAppSession failed:', error);
+
+        var statusNode = document.getElementById('syncStatus');
+        if (statusNode) {
+          statusNode.textContent = '题库初始化失败，请刷新重试';
+          statusNode.classList.add('is-error');
+        }
       }
     }
 
-    document.addEventListener('private-study:signed-in', onAppReady);
-
-    // 防御：若脚本加载时已处于就绪状态，自动触发启动
-    if (window.PrivateStudy?.getCurrentUser?.()) {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', onAppReady, { once: true });
-      } else {
-        window.setTimeout(onAppReady, 0);
-      }
+    if (document.readyState === 'loading') {
+      document.addEventListener(
+        'DOMContentLoaded',
+        function () {
+          void bootLocalApp();
+        },
+        { once: true }
+      );
+    } else {
+      void bootLocalApp();
     }
-
-    document.addEventListener('private-study:signed-out', function () {
-      appBootToken++;
-      if (subjectPickerOpen) {
-        closeSubjectPicker();
-      }
-      // 登出清理：结束并清除续接复习会话，避免下个账号续接上一个账号的复习队列
-      if (reviewSession) {
-        try { commitReviewResults(); } catch (e) {}
-        reviewSession = null;
-      }
-      clearReviewSession();
-      // 清空内存态与标注查看器（标注存储键已按用户前缀隔离，下一账号自动读到自己的）
-      statuses = {};
-      qBad = {};
-      sBad = {};
-      notesData = {};
-      sm2 = {};
-      imgAnnotations = {};
-      Object.keys(_annotViewers).forEach(function (k) {
-        try { if (_annotViewers[k]) _annotViewers[k].remove(); } catch (e) {}
-      });
-      _annotViewers = {};
-      undoStack = [];
-      renderNav();
-    });
 
   

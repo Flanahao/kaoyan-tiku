@@ -11,9 +11,7 @@
   function uid() { return 'w_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function cleanText(value) { return String(value || '').trim(); }
   function storageKey() {
-    var uid = window.PrivateStudy && window.PrivateStudy.getCurrentUser && window.PrivateStudy.getCurrentUser();
-    var prefix = (uid && uid.id) ? 'user_' + uid.id + '_' : 'user_guest_';
-    return prefix + 'kaoyan_english_vocabulary_v2';
+    return 'user_guest_kaoyan_english_vocabulary_v2';
   }
   function load() {
     try {
@@ -29,44 +27,12 @@
     return { items: groups };
   }
   function save() {
-    localStorage.setItem(storageKey(), JSON.stringify(data));
-    if (window.PrivateStudy && window.PrivateStudy.scheduleSave) {
-      try { window.PrivateStudy.scheduleSave('english-vocabulary', 'englishVocabulary', data); } catch (e) {}
+    try {
+      localStorage.setItem(storageKey(), JSON.stringify(data));
+    } catch (e) {
+      console.warn('保存英语词汇失败:', e);
     }
   }
-  // 登录后：guest 词汇并入账号键 + 云端回填（仅当本地为空时用云端数据，避免覆盖本地新词）
-  function hydrateFromAccount() {
-    var key = storageKey();
-    var guestKey = 'user_guest_kaoyan_english_vocabulary_v2';
-    var guest = null;
-    try { guest = JSON.parse(localStorage.getItem(guestKey)); } catch (e) {}
-    var local = data;
-    var changed = false;
-    // 合并 guest 词（按 id 去重，只补不覆盖）
-    if (guest && Array.isArray(guest.items) && guest.items.length) {
-      var ids = {};
-      local.items.forEach(function (it) { ids[it.id] = true; });
-      guest.items.forEach(function (it) {
-        if (!ids[it.id]) { local.items.unshift(it); ids[it.id] = true; changed = true; }
-      });
-      try { localStorage.removeItem(guestKey); } catch (e) {}
-    }
-    save();
-    // 云端回填：仅当本地为空（首次登录/换设备）时用云端数据
-    if (window.PrivateStudy && window.PrivateStudy.loadProgress) {
-      window.PrivateStudy.loadProgress('english-vocabulary', 'englishVocabulary')
-        .then(function (res) {
-          if (res && res.data && Array.isArray(res.data.items) &&
-              (!local.items.length || local.items.length === 0)) {
-            data = res.data;
-            localStorage.setItem(key, JSON.stringify(data));
-            if (!panel.hidden) render();
-          }
-        })
-        .catch(function () {});
-    }
-  }
-  document.addEventListener('private-study:signed-in', function () { hydrateFromAccount(); });
   function escapeHtml(value) {
     return cleanText(value).replace(/[&<>'"]/g, function (c) { return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' })[c]; });
   }
