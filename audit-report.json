@@ -1,0 +1,2395 @@
+{
+  "timestamp": "2026-08-31T04:37:52.571Z",
+  "totalQuestions": 6435,
+  "questionsScanned": 6435,
+  "questionImagesFound": 6371,
+  "questionImagesMissing": [
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-28(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-28_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-19(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-19_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-36(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-36_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-52(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-52_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-60(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-60_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-68(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-68_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-76(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-76_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-102(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-102_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-8(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-8_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-32(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-32_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-40(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-40_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-53(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-53_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-63(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-63_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-80(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-80_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-96(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-96_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-121(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-121_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch161",
+      "chapterName": "李林880 - 高数 - 第4章 空间解析几何",
+      "wb": "李林880",
+      "label": "习4-15(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第4章 空间解析几何/pb_4-15_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch162",
+      "chapterName": "李林880 - 高数 - 第5章 多元函数微分学",
+      "wb": "李林880",
+      "label": "习5-39(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第5章 多元函数微分学/pb_5-39_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-21(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-21_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-37(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-37_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-46(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-46_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-76(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-76_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch164",
+      "chapterName": "李林880 - 高数 - 第7章 微分方程",
+      "wb": "李林880",
+      "label": "习7-30(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第7章 微分方程/pb_7-30_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-6(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-6_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-17(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-17_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-37(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-37_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-51(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-51_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-64(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-64_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch166",
+      "chapterName": "李林880 - 高数 - 第9章 曲线积分与曲面积分",
+      "wb": "李林880",
+      "label": "习9-49(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第9章 曲线积分与曲面积分/pb_9-49_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-20(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-20_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-30(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-30_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-26(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-26_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-35(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-35_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-10(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-10_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-22(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-22_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-33(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-33_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-15(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-15_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-25(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-25_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-35(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-35_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-10(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-10_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-24(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-24_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-34(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-34_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-44(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-44_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-27(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-27_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-38(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-38_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-46(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-46_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch174",
+      "chapterName": "李林880 - 概率论 - 第17章 随机变量及其分布",
+      "wb": "李林880",
+      "label": "习17-21(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第17章 随机变量及其分布/pb_17-21_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-15(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-15_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-22(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-22_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-33(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-33_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-12(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-12_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-23(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-23_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-36(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-36_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-44(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-44_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch177",
+      "chapterName": "李林880 - 概率论 - 第20章 大数定律与中心极限定理",
+      "wb": "李林880",
+      "label": "习20-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第20章 大数定律与中心极限定理/pb_20-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-10(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-10_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch180",
+      "chapterName": "李林880 - 概率论 - 第23章 假设检验",
+      "wb": "李林880",
+      "label": "习23-6(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第23章 假设检验/pb_23-6_2_question.png"
+    }
+  ],
+  "solutionImagesFound": 4458,
+  "solutionImagesMissing": [
+    {
+      "subject": "shu1",
+      "chapterId": "ch28",
+      "chapterName": "基础30讲 - 概率论 - 第4讲 随机变量的数字特征",
+      "wb": "基础30讲",
+      "label": "例4-11",
+      "type": "solution",
+      "relPath": "数一题库/基础30讲/概率论/第4讲 随机变量的数字特征/ex_4-11_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch140",
+      "chapterName": "李范全书 - 高数 - 第7章 向量代数和空间解析几何",
+      "wb": "李范全书",
+      "label": "例7-11",
+      "type": "solution",
+      "relPath": "数一题库/李范全书/高数/第7章 向量代数和空间解析几何/ex_7-11_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch141",
+      "chapterName": "李范全书 - 高数 - 第8章 多元函数微分学",
+      "wb": "李范全书",
+      "label": "例8-29",
+      "type": "solution",
+      "relPath": "数一题库/李范全书/高数/第8章 多元函数微分学/ex_8-29_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch150",
+      "chapterName": "李范全书 - 线代 - 第6章 二次型",
+      "wb": "李范全书",
+      "label": "例6-27",
+      "type": "solution",
+      "relPath": "数一题库/李范全书/线代/第6章 二次型/ex_6-27_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-28(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-28_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-19(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-19_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-36(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-36_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-52(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-52_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-60(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-60_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-68(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-68_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-76(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-76_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-102(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-102_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-8(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-8_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-32(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-32_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-40(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-40_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-53(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-53_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-63(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-63_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-80(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-80_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-96(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-96_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-121(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-121_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch161",
+      "chapterName": "李林880 - 高数 - 第4章 空间解析几何",
+      "wb": "李林880",
+      "label": "习4-15(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第4章 空间解析几何/pb_4-15_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch162",
+      "chapterName": "李林880 - 高数 - 第5章 多元函数微分学",
+      "wb": "李林880",
+      "label": "习5-39(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第5章 多元函数微分学/pb_5-39_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-21(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-21_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-37(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-37_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-46(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-46_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-76(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-76_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch164",
+      "chapterName": "李林880 - 高数 - 第7章 微分方程",
+      "wb": "李林880",
+      "label": "习7-30(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第7章 微分方程/pb_7-30_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-6(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-6_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-17(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-17_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-37(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-37_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-51(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-51_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-64(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-64_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch166",
+      "chapterName": "李林880 - 高数 - 第9章 曲线积分与曲面积分",
+      "wb": "李林880",
+      "label": "习9-49(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第9章 曲线积分与曲面积分/pb_9-49_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-20(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-20_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-30(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-30_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-26(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-26_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-35(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-35_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-10(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-10_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-22(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-22_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-33(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-33_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-15(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-15_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-25(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-25_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-35(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-35_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-10(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-10_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-24(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-24_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-34(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-34_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-44(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-44_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-27(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-27_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-38(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-38_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-46(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-46_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch174",
+      "chapterName": "李林880 - 概率论 - 第17章 随机变量及其分布",
+      "wb": "李林880",
+      "label": "习17-21(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第17章 随机变量及其分布/pb_17-21_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-15(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-15_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-22(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-22_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-33(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-33_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-12(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-12_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-23(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-23_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-36(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-36_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-44(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-44_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch177",
+      "chapterName": "李林880 - 概率论 - 第20章 大数定律与中心极限定理",
+      "wb": "李林880",
+      "label": "习20-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第20章 大数定律与中心极限定理/pb_20-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-10(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-10_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch180",
+      "chapterName": "李林880 - 概率论 - 第23章 假设检验",
+      "wb": "李林880",
+      "label": "习23-6(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第23章 假设检验/pb_23-6_2_solution.png"
+    }
+  ],
+  "wb1000Stats": {
+    "totalQuestions": 1206,
+    "prefixErrors": 0,
+    "questionMissing": 0,
+    "solutionMissing": 0
+  },
+  "realMissingResources": [
+    {
+      "subject": "shu1",
+      "chapterId": "ch28",
+      "chapterName": "基础30讲 - 概率论 - 第4讲 随机变量的数字特征",
+      "wb": "基础30讲",
+      "label": "例4-11",
+      "type": "solution",
+      "relPath": "数一题库/基础30讲/概率论/第4讲 随机变量的数字特征/ex_4-11_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch140",
+      "chapterName": "李范全书 - 高数 - 第7章 向量代数和空间解析几何",
+      "wb": "李范全书",
+      "label": "例7-11",
+      "type": "solution",
+      "relPath": "数一题库/李范全书/高数/第7章 向量代数和空间解析几何/ex_7-11_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch141",
+      "chapterName": "李范全书 - 高数 - 第8章 多元函数微分学",
+      "wb": "李范全书",
+      "label": "例8-29",
+      "type": "solution",
+      "relPath": "数一题库/李范全书/高数/第8章 多元函数微分学/ex_8-29_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch150",
+      "chapterName": "李范全书 - 线代 - 第6章 二次型",
+      "wb": "李范全书",
+      "label": "例6-27",
+      "type": "solution",
+      "relPath": "数一题库/李范全书/线代/第6章 二次型/ex_6-27_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-28(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-28_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch158",
+      "chapterName": "李林880 - 高数 - 第1章 函数、极限、连续",
+      "wb": "李林880",
+      "label": "习1-28(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第1章 函数、极限、连续/pb_1-28_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-19(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-19_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-19(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-19_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-36(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-36_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-36(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-36_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-52(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-52_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-52(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-52_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-60(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-60_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-60(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-60_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-68(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-68_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-68(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-68_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-76(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-76_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-76(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-76_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-102(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-102_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch159",
+      "chapterName": "李林880 - 高数 - 第2章 一元函数微分学",
+      "wb": "李林880",
+      "label": "习2-102(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第2章 一元函数微分学/pb_2-102_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-8(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-8_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-8(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-8_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-32(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-32_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-32(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-32_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-40(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-40_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-40(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-40_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-53(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-53_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-53(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-53_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-63(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-63_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-63(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-63_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-80(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-80_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-80(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-80_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-96(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-96_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-96(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-96_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-121(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-121_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch160",
+      "chapterName": "李林880 - 高数 - 第3章 一元函数积分学",
+      "wb": "李林880",
+      "label": "习3-121(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第3章 一元函数积分学/pb_3-121_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch161",
+      "chapterName": "李林880 - 高数 - 第4章 空间解析几何",
+      "wb": "李林880",
+      "label": "习4-15(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第4章 空间解析几何/pb_4-15_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch161",
+      "chapterName": "李林880 - 高数 - 第4章 空间解析几何",
+      "wb": "李林880",
+      "label": "习4-15(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第4章 空间解析几何/pb_4-15_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch162",
+      "chapterName": "李林880 - 高数 - 第5章 多元函数微分学",
+      "wb": "李林880",
+      "label": "习5-39(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第5章 多元函数微分学/pb_5-39_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch162",
+      "chapterName": "李林880 - 高数 - 第5章 多元函数微分学",
+      "wb": "李林880",
+      "label": "习5-39(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第5章 多元函数微分学/pb_5-39_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-21(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-21_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-21(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-21_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-37(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-37_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-37(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-37_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-46(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-46_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-46(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-46_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-76(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-76_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch163",
+      "chapterName": "李林880 - 高数 - 第6章 重积分",
+      "wb": "李林880",
+      "label": "习6-76(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第6章 重积分/pb_6-76_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch164",
+      "chapterName": "李林880 - 高数 - 第7章 微分方程",
+      "wb": "李林880",
+      "label": "习7-30(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第7章 微分方程/pb_7-30_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch164",
+      "chapterName": "李林880 - 高数 - 第7章 微分方程",
+      "wb": "李林880",
+      "label": "习7-30(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第7章 微分方程/pb_7-30_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-6(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-6_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-6(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-6_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-17(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-17_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-17(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-17_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-37(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-37_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-37(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-37_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-51(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-51_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-51(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-51_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-64(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-64_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch165",
+      "chapterName": "李林880 - 高数 - 第8章 无穷级数",
+      "wb": "李林880",
+      "label": "习8-64(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第8章 无穷级数/pb_8-64_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch166",
+      "chapterName": "李林880 - 高数 - 第9章 曲线积分与曲面积分",
+      "wb": "李林880",
+      "label": "习9-49(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/高数/第9章 曲线积分与曲面积分/pb_9-49_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch166",
+      "chapterName": "李林880 - 高数 - 第9章 曲线积分与曲面积分",
+      "wb": "李林880",
+      "label": "习9-49(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/高数/第9章 曲线积分与曲面积分/pb_9-49_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-20(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-20_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-20(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-20_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-30(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-30_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch167",
+      "chapterName": "李林880 - 线代 - 第10章 行列式",
+      "wb": "李林880",
+      "label": "习10-30(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第10章 行列式/pb_10-30_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-26(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-26_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-26(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-26_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-35(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-35_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch168",
+      "chapterName": "李林880 - 线代 - 第11章 矩阵",
+      "wb": "李林880",
+      "label": "习11-35(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第11章 矩阵/pb_11-35_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-10(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-10_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-10(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-10_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-22(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-22_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-22(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-22_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-33(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-33_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch169",
+      "chapterName": "李林880 - 线代 - 第12章 向量",
+      "wb": "李林880",
+      "label": "习12-33(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第12章 向量/pb_12-33_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-15(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-15_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-15(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-15_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-25(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-25_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-25(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-25_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-35(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-35_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch170",
+      "chapterName": "李林880 - 线代 - 第13章 线性方程组",
+      "wb": "李林880",
+      "label": "习13-35(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第13章 线性方程组/pb_13-35_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-10(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-10_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-10(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-10_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-24(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-24_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-24(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-24_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-34(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-34_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-34(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-34_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-44(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-44_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch171",
+      "chapterName": "李林880 - 线代 - 第14章 相似矩阵",
+      "wb": "李林880",
+      "label": "习14-44(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第14章 相似矩阵/pb_14-44_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-27(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-27_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-27(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-27_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-38(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-38_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-38(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-38_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-46(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-46_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch172",
+      "chapterName": "李林880 - 线代 - 第15章 二次型",
+      "wb": "李林880",
+      "label": "习15-46(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/线代/第15章 二次型/pb_15-46_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch174",
+      "chapterName": "李林880 - 概率论 - 第17章 随机变量及其分布",
+      "wb": "李林880",
+      "label": "习17-21(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第17章 随机变量及其分布/pb_17-21_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch174",
+      "chapterName": "李林880 - 概率论 - 第17章 随机变量及其分布",
+      "wb": "李林880",
+      "label": "习17-21(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第17章 随机变量及其分布/pb_17-21_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-15(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-15_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-15(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-15_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-22(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-22_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-22(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-22_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-33(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-33_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch175",
+      "chapterName": "李林880 - 概率论 - 第18章 多维随机变量及其分布",
+      "wb": "李林880",
+      "label": "习18-33(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第18章 多维随机变量及其分布/pb_18-33_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-12(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-12_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-12(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-12_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-23(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-23_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-23(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-23_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-36(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-36_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-36(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-36_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-44(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-44_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch176",
+      "chapterName": "李林880 - 概率论 - 第19章 随机变量的数字特征",
+      "wb": "李林880",
+      "label": "习19-44(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第19章 随机变量的数字特征/pb_19-44_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch177",
+      "chapterName": "李林880 - 概率论 - 第20章 大数定律与中心极限定理",
+      "wb": "李林880",
+      "label": "习20-7(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第20章 大数定律与中心极限定理/pb_20-7_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch177",
+      "chapterName": "李林880 - 概率论 - 第20章 大数定律与中心极限定理",
+      "wb": "李林880",
+      "label": "习20-7(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第20章 大数定律与中心极限定理/pb_20-7_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-10(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-10_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-10(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-10_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-18(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-18_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch178",
+      "chapterName": "李林880 - 概率论 - 第21章 数理统计的基本概念",
+      "wb": "李林880",
+      "label": "习21-18(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第21章 数理统计的基本概念/pb_21-18_2_solution.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch180",
+      "chapterName": "李林880 - 概率论 - 第23章 假设检验",
+      "wb": "李林880",
+      "label": "习23-6(2)",
+      "type": "question",
+      "relPath": "数一题库/李林880/概率论/第23章 假设检验/pb_23-6_2_question.png"
+    },
+    {
+      "subject": "shu1",
+      "chapterId": "ch180",
+      "chapterName": "李林880 - 概率论 - 第23章 假设检验",
+      "wb": "李林880",
+      "label": "习23-6(2)",
+      "type": "solution",
+      "relPath": "数一题库/李林880/概率论/第23章 假设检验/pb_23-6_2_solution.png"
+    }
+  ]
+}

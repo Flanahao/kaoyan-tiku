@@ -8,6 +8,7 @@
 // ===== 状态变量 (0-based) =====
     let currentChapterId = 'ch1';
     let current = 0;
+    let appBootToken = 0;
     // 解析默认保持隐藏，避免切题时遮挡刷题区域。
     let showSolution = false;
     let defaultShowSolution = false;
@@ -95,6 +96,13 @@
     function qBadStorageKey() { return userStoragePrefix() + currentChapterId + '_' + curSubject.storageSuffix + '_qbad'; }
     function sBadStorageKey() { return userStoragePrefix() + currentChapterId + '_' + curSubject.storageSuffix + '_sbad'; }
     function chapterStatusKey(ch) { return userStoragePrefix() + ch.id + '_' + curSubject.storageSuffix + '_status'; }
+    function safeSetItem(k, v) {
+      try {
+        localStorage.setItem(k, v);
+      } catch (e) {
+        console.warn('localStorage.setItem 失败 (可能配额已满):', k, e);
+      }
+    }
     function totalQuestions() { return getChapter().total; }
 
     // ===== 筛选相关 =====
@@ -935,6 +943,100 @@
       document.getElementById('dbOverview').style.display = '';
       document.getElementById('dbDetail').style.display = 'none';
 
+      // 1. 顶部 Hero 卡片打招呼与时间段判断
+      var hour = new Date().getHours();
+      var greeting = '早上好';
+      if (hour >= 11 && hour < 14) greeting = '中午好';
+      else if (hour >= 14 && hour < 18) greeting = '下午好';
+      else if (hour >= 18 || hour < 5) greeting = '晚上好';
+      var heroGreeting = document.getElementById('heroGreeting');
+      if (heroGreeting) heroGreeting.textContent = greeting + '，开始高效学习吧';
+
+      // 2. 统计所有科目的真实学习数据（完成题数、错题数、总题数、SM-2 待复习数、连续打卡天数）
+      var totalDone = 0;
+      var totalWrong = 0;
+      var grandTotal = 0;
+      var totalDue = 0;
+      var datesSet = new Set();
+      var nowTime = Date.now();
+
+      SUBJECTS.forEach(function (subject) {
+        var chs = (subject.chapters || []).filter(function (c) { return !c.q1000Id; });
+        chs.forEach(function (c) {
+          var st = getChStats(c, subject);
+          totalDone += (st.done || 0);
+          totalWrong += (st.wrong || 0);
+          grandTotal += (c.total || 0);
+
+          // 读取 SM-2 复习记录
+          var sKey = userStoragePrefix() + 'sm2_' + subject.id + '_' + c.id;
+          try {
+            var sm = JSON.parse(localStorage.getItem(sKey) || '{}');
+            Object.keys(sm).forEach(function (k) {
+              var item = sm[k];
+              if (!item) return;
+              if (item.nextReview && item.nextReview <= nowTime) {
+                totalDue++;
+              }
+              if (item.lastReview) {
+                datesSet.add(new Date(item.lastReview).toLocaleDateString('en-CA'));
+              }
+              if (Array.isArray(item.history)) {
+                item.history.forEach(function (h) {
+                  if (h && h.date) datesSet.add(new Date(h.date).toLocaleDateString('en-CA'));
+                });
+              }
+            });
+          } catch (e) {}
+        });
+      });
+
+      // 计算连续打卡天数（从今天或昨天往前回溯）
+      var streak = 0;
+      var checkDate = new Date();
+      var checkStr = checkDate.toLocaleDateString('en-CA');
+      if (!datesSet.has(checkStr)) {
+        checkDate.setDate(checkDate.getDate() - 1);
+        checkStr = checkDate.toLocaleDateString('en-CA');
+      }
+      while (datesSet.has(checkStr)) {
+        streak++;
+        checkDate.setDate(checkDate.getDate() - 1);
+        checkStr = checkDate.toLocaleDateString('en-CA');
+      }
+
+      // 3. 填充 Hero 卡片与 4 个真实指标卡
+      var totalPct = grandTotal > 0 ? Math.round((totalDone / grandTotal) * 100) : 0;
+      var heroDueCount = document.getElementById('heroDueCount');
+      var heroTotalPct = document.getElementById('heroTotalPct');
+      var heroRingVal = document.getElementById('heroRingVal');
+      if (heroDueCount) heroDueCount.textContent = totalDue;
+      if (heroTotalPct) heroTotalPct.textContent = totalPct + '%';
+      if (heroRingVal) heroRingVal.textContent = totalPct + '%';
+
+      var dbStatDue = document.getElementById('dbStatDue');
+      var dbStatDone = document.getElementById('dbStatDone');
+      var dbStatWrong = document.getElementById('dbStatWrong');
+      var dbStatStreak = document.getElementById('dbStatStreak');
+      if (dbStatDue) dbStatDue.textContent = totalDue;
+      if (dbStatDone) dbStatDone.textContent = totalDone;
+      if (dbStatWrong) dbStatWrong.textContent = totalWrong;
+      if (dbStatStreak) dbStatStreak.textContent = (streak > 0 ? streak : (totalDone > 0 ? 1 : 0)) + ' 天';
+
+      // 4. 填充右列 Widget 说明文本
+      var widgetReviewPlan = document.getElementById('widgetReviewPlan');
+      if (widgetReviewPlan) {
+        widgetReviewPlan.textContent = totalDue > 0
+          ? ('今日有 ' + totalDue + ' 道题目到期待复习，建议趁热打铁温习！')
+          : '今日暂无到期复习题目，记忆状态极佳！';
+      }
+      var widgetWrongPlan = document.getElementById('widgetWrongPlan');
+      if (widgetWrongPlan) {
+        widgetWrongPlan.textContent = totalWrong > 0
+          ? ('累计收录 ' + totalWrong + ' 道错题，点击前往逐个攻克。')
+          : '目前还没有标记为不会的错题，继续保持！';
+      }
+
       var grid = document.getElementById('dbGrid');
       var html = '';
       // 总进度必须跨科目展示，不能只显示当前正在刷的那本书。
@@ -947,7 +1049,7 @@
         });
       });
       // 英语不是题目章节，但同样纳入全局进度，避免学习记录被遗漏。
-      // 键与 english.js 一致：带用户前缀（guest 用 user_guest_）。
+      // 键与 english.js 一致：带用户前缀。
       try {
         var engUid = window.PrivateStudy?.getCurrentUser?.();
         var engPrefix = (engUid && engUid.id) ? 'user_' + engUid.id + '_' : 'user_guest_';
@@ -958,21 +1060,29 @@
         var done = ec.familiar + ec.vague + ec.wrong;
         var empty = Math.max(0, words.length - done);
         var ring = 'conic-gradient(#22a06b 0 ' + (words.length ? ec.familiar / words.length * 100 : 0) + '%,#f59e0b 0 ' + (words.length ? (ec.familiar + ec.vague) / words.length * 100 : 0) + '%,#e05252 0 ' + (words.length ? (ec.familiar + ec.vague + ec.wrong) / words.length * 100 : 0) + '%,#d7dde5 0 100%)';
-        html += '<div class="db-donut-card" onclick="window.openEnglishVocabulary && window.openEnglishVocabulary()"><div style="width:150px;height:150px;margin:0 auto;border-radius:50%;background:' + ring + ';display:grid;place-items:center"><div style="width:108px;height:108px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center"><b>' + done + '/' + words.length + '</b><small>英语词汇</small></div></div><div style="text-align:center;margin-top:12px;font-weight:700">英语词汇</div><div class="db-chapter-stats"><span class="db-stat">熟悉 ' + ec.familiar + '</span><span class="db-stat">模糊 ' + ec.vague + '</span><span class="db-stat">不会 ' + ec.wrong + '</span><span class="db-stat">未标 ' + empty + '</span></div></div>';
+        html += '<div class="db-donut-card" data-action="english"><div style="width:150px;height:150px;margin:0 auto;border-radius:50%;background:' + ring + ';display:grid;place-items:center"><div style="width:108px;height:108px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center"><b>' + done + '/' + words.length + '</b><small>英语词汇</small></div></div><div style="text-align:center;margin-top:12px;font-weight:700">英语词汇</div><div class="db-chapter-stats"><span class="db-stat">熟悉 ' + ec.familiar + '</span><span class="db-stat">模糊 ' + ec.vague + '</span><span class="db-stat">不会 ' + ec.wrong + '</span><span class="db-stat">未标 ' + empty + '</span></div></div>';
       } catch (e) {}
       for (var b = 0; b < books.length; b++) {
         var wb = books[b].wb;
-        var label = books[b].label;
         var cid = 'dbCanvas' + b;
-        '<canvas id="' + cid + '"></canvas>' +
-        '</div>';
-        html += '<div class="db-donut-card" data-wb="' + wb + '" onclick="openDashboardBook(\'' + books[b].subject.id + '\',\'' + wb + '\')">' +
-        '<canvas id="' + cid + '"></canvas>' +
-        '<div style="text-align:center;font-size:12px;color:#64748b">' + books[b].subject.name + '</div></div>';
+        html += '<div class="db-donut-card" data-subject-id="' + books[b].subject.id + '" data-wb="' + wb + '">' +
           '<canvas id="' + cid + '"></canvas>' +
-        '</div>';
+          '<div style="text-align:center;font-size:12px;color:#64748b">' + books[b].subject.name + '</div></div>';
       }
       grid.innerHTML = html;
+      grid.onclick = function (e) {
+        var card = e.target.closest('.db-donut-card');
+        if (!card) return;
+        if (card.dataset.action === 'english') {
+          if (window.openEnglishVocabulary) window.openEnglishVocabulary();
+          return;
+        }
+        var sId = card.dataset.subjectId;
+        var wbName = card.dataset.wb;
+        if (sId && wbName) {
+          openDashboardBook(sId, wbName);
+        }
+      };
 
       // Draw donuts after DOM update
       setTimeout(function() {
@@ -1009,7 +1119,7 @@
       function cardHtml(ch) {
         var name = ch.short || ch.name;
         var stats = getChStats(ch);
-        return '<div class="db-chapter-card" data-cid="' + ch.id + '" onclick="jumpToChapter(\'' + ch.id + '\')">' +
+        return '<div class="db-chapter-card" data-cid="' + ch.id + '">' +
           '<div class="db-chapter-name">' + name + '</div>' +
           '<div class="db-chapter-bar"><div class="db-chapter-fill" style="width:' + stats.pct + '%"></div></div>' +
           '<div class="db-chapter-stats">' +
@@ -1051,6 +1161,12 @@
         html += '</div>';
       });
       grid.innerHTML = html;
+      grid.onclick = function (e) {
+        var card = e.target.closest('.db-chapter-card');
+        if (card && card.dataset.cid) {
+          jumpToChapter(card.dataset.cid);
+        }
+      };
     }
 
     function jumpToChapter(chapterId) {
@@ -1843,8 +1959,18 @@
       });
     }
 
+    function markImageMissing(imgEl, message) {
+      if (!imgEl) return;
+      imgEl.removeAttribute('src');
+      imgEl.alt = message || '图片暂缺';
+      imgEl.dataset.missing = '1';
+      imgEl.classList.add('image-missing');
+    }
+
     // ===== 图片双源容灾 Fallback =====
     function loadImageWithFallback(imgEl, localSrc, onLoadCallback, onFinalError) {
+      imgEl.classList.remove('image-missing');
+      delete imgEl.dataset.missing;
       imgEl.dataset.fallback = '0';
       imgEl.onerror = function() {
         if (this.dataset.fallback === '0') {
@@ -1892,12 +2018,8 @@
           tryAdd(n + 1); // 加载成功则继续探测下一张
         }, function () {
           if (gen === _solutionImgGen && n === 1 && container.children.length === 0) {
-            const ph = document.createElement('div');
-            ph.className = 'section-empty';
-            ph.style.textAlign = 'center';
-            ph.style.padding = '12px';
-            ph.textContent = '（该题暂无解析图）';
-            container.appendChild(ph);
+            container.appendChild(wrap);
+            markImageMissing(img, '解析图片暂缺，请反馈题号');
           }
         });
       }
@@ -1907,26 +2029,20 @@
     // ===== 普通浏览标注叠加（切题即见） =====
     var _annotViewers = {}; // key: 归一化 src，value: MarkerView 实例
 
-    // 永久屏蔽 marker.js 内置在 .canvas-container 上的滚轮平移监听（根因修复）：
-    // 该监听匿名、不可解绑，且 MarkerView/MarkerArea 都在 **appendChild 时**才绑定到
-    // .canvas-container 上（不是构造时），所以旧的「构造期临时 patch addEventListener」
-    // 根本拦不住它 → 标注图在只读浏览时滚轮一滚，标注层就相对底图平移并 preventDefault，
-    // 造成图片撕裂/重叠 + 页面无法滚动。
-    // 方案：启动即全局 patch Element.prototype.addEventListener，凡是在带
-    // canvas-container 类名的元素上注册 wheel 监听一律丢弃。这样无论 marker.js 何时、
-    // 在哪一步绑定，内置滚轮平移都永远不会生效。
-    // 兼容性验证：MarkerArea（编辑模式）自身的滚轮缩放/切工具走 ma 元素上的
-    // onAnnotWheel（capture 监听），而真实 wheel 事件是 composed 的，能从 shadow 内
-    // .canvas-container 冒泡穿透到宿主 ma 元素上，故全局屏蔽后编辑缩放功能不受影响。
-    (function blockMarkerCanvasWheel() {
-      const origAE = Element.prototype.addEventListener;
-      Element.prototype.addEventListener = function (type, fn, opts) {
-        if (type === 'wheel' && this.classList && this.classList.contains('canvas-container')) {
-          return; // 丢弃 marker.js 内置滚轮平移监听
+    // 在捕获阶段拦截只读标注容器内部抛出的 wheel 事件，彻底阻止 marker.js 内部 .canvas-container
+    // 监听器执行 e.preventDefault()，从而彻底根除对 Element.prototype 的全局改写污染，
+    // 同时保证父容器正常原生滚动、触摸和解析滚动。
+    document.addEventListener('wheel', function (e) {
+      const path = (typeof e.composedPath === 'function') ? e.composedPath() : [];
+      for (let i = 0; i < path.length; i++) {
+        const el = path[i];
+        if (el && el.classList && (el.classList.contains('annot-overlay') || el.classList.contains('lightbox-annot-overlay'))) {
+          e.stopImmediatePropagation();
+          break;
         }
-        return origAE.call(this, type, fn, opts);
-      };
-    })();
+      }
+    }, { capture: true });
+
     function clearImageAnnotation(src) {
       const key = normalizeAnnotSrc(src);
       const v = _annotViewers[key];
@@ -1975,6 +2091,8 @@
       const isProfessional = curSubjectId === 'zhuanye';
       loadImageWithFallback(qImg, base + (isProfessional ? '.png' : '_question.png'), function() {
         renderQuestionAnnotations();
+      }, function() {
+        markImageMissing(qImg, '题目图片暂缺，请反馈题号');
       });
       if (isProfessional) {
         document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
@@ -2002,7 +2120,15 @@
       renderNav();
       renderSm2InfoBar();
       saveResume(); // 记住当前停的章节/题目/小题模式，刷新或切科目前保留
-      document.getElementById('questionImg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try {
+        var qEl = document.getElementById('questionImg');
+        if (qEl && typeof qEl.scrollIntoView === 'function') {
+          var rect = qEl.getBoundingClientRect();
+          if (rect.top < 0 || rect.bottom > window.innerHeight) {
+            qEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      } catch (e) {}
     }
 
     // ===== 题目图/解析图不达标 =====
@@ -2236,6 +2362,13 @@
         if (!btn) return;
         btn.className = 'gel-btn btn-status' + (s === cur ? ' ' + s + ' active' : '');
       });
+      // 同步移动端快捷药丸按钮状态
+      const mWrong = document.getElementById('mBtnWrong');
+      const mVague = document.getElementById('mBtnVague');
+      const mProf = document.getElementById('mBtnProficient');
+      if (mWrong) mWrong.classList.toggle('active', cur === 'wrong');
+      if (mVague) mVague.classList.toggle('active', cur === 'vague');
+      if (mProf) mProf.classList.toggle('active', cur === 'proficient');
     }
 
     function setStatus(status) {
@@ -2688,12 +2821,16 @@
       if (lbOverlay) { lbOverlay.style.display = 'none'; lbOverlay.innerHTML = ''; }
       const hint = overlay.querySelector('.lightbox-hint');
       if (hint) hint.style.display = 'none';
-      // 内置滚轮平移已由全局 blockMarkerCanvasWheel 永久屏蔽，直接构造即可
       let ma;
       try {
         ma = new markerjs3.MarkerArea();
       } catch (e) {
         ma = null;
+      }
+      if (!ma) {
+        img.style.display = '';
+        if (hint) hint.style.display = '';
+        return;
       }
       lbMarkerArea = ma;
       ma.targetImage = img; // 复用灯箱中原图引用
@@ -3143,6 +3280,48 @@
     document.getElementById('btnExportVague').onclick = function () { exportQuestions('vague'); };
     document.getElementById('btnExportWrong').onclick = function () { exportQuestions('wrong'); };
 
+    // 侧边栏 SM-2 面板按钮事件
+    const sm2SidebarBtn = document.getElementById('btnSm2PanelSidebar');
+    if (sm2SidebarBtn) {
+      sm2SidebarBtn.onclick = toggleSm2Panel;
+    }
+
+    // 移动端汉堡菜单与抽屉侧边栏
+    const btnMobileMenu = document.getElementById('btnMobileMenu');
+    const btnSidebarClose = document.getElementById('btnSidebarClose');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+    function toggleMobileSidebar(open) {
+      const isOpen = open !== undefined ? open : !document.body.classList.contains('sidebar-open');
+      document.body.classList.toggle('sidebar-open', isOpen);
+    }
+    if (btnMobileMenu) btnMobileMenu.onclick = function () { toggleMobileSidebar(true); };
+    if (btnSidebarClose) btnSidebarClose.onclick = function () { toggleMobileSidebar(false); };
+    if (sidebarBackdrop) sidebarBackdrop.onclick = function () { toggleMobileSidebar(false); };
+
+    // 移动端底部快捷操作栏
+    const mBtnPrev = document.getElementById('mBtnPrev');
+    const mBtnNext = document.getElementById('mBtnNext');
+    const mBtnToggle = document.getElementById('mBtnToggle');
+    const mBtnWrong = document.getElementById('mBtnWrong');
+    const mBtnVague = document.getElementById('mBtnVague');
+    const mBtnProficient = document.getElementById('mBtnProficient');
+    if (mBtnPrev) mBtnPrev.onclick = navPrev;
+    if (mBtnNext) mBtnNext.onclick = navNext;
+    if (mBtnToggle) mBtnToggle.onclick = toggleSolution;
+    if (mBtnWrong) mBtnWrong.onclick = function () { setStatus('wrong'); };
+    if (mBtnVague) mBtnVague.onclick = function () { setStatus('vague'); };
+    if (mBtnProficient) mBtnProficient.onclick = function () { setStatus('proficient'); };
+
+    // Dashboard Hero 与侧边卡片快捷入口
+    const btnHeroContinue = document.getElementById('btnHeroContinue');
+    const btnHeroReview = document.getElementById('btnHeroReview');
+    const btnWidgetReview = document.getElementById('btnWidgetReview');
+    const btnWidgetWrong = document.getElementById('btnWidgetWrong');
+    if (btnHeroContinue) btnHeroContinue.onclick = function () { if (dashboardOpen) toggleDashboard(); };
+    if (btnHeroReview) btnHeroReview.onclick = function () { if (dashboardOpen) toggleDashboard(); toggleSm2Panel(); };
+    if (btnWidgetReview) btnWidgetReview.onclick = function () { if (dashboardOpen) toggleDashboard(); toggleSm2Panel(); };
+    if (btnWidgetWrong) btnWidgetWrong.onclick = function () { if (dashboardOpen) toggleDashboard(); toggleWrongBook(); };
+
     // ===== 错题导出 =====
     function exportQuestions(statusFilter) {
       const ch = getChapter();
@@ -3166,6 +3345,10 @@
       }).join('');
 
       const w = window.open('', '_blank', 'width=900,height=700');
+      if (!w) {
+        alert('浏览器拦截了弹窗，请允许本站弹出窗口以进行导出');
+        return;
+      }
       w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${ch.name} — ${statusLabel}题</title>
 <style>
 body{font-family:"Microsoft YaHei",sans-serif;background:#fff;padding:20px;color:#333}
@@ -4089,6 +4272,7 @@ ${cardsHTML}
 
     // ===== 初始化流程 =====
     async function initAppSession() {
+      const myToken = ++appBootToken;
       var savedSubject = localStorage.getItem(subjectStorageKey());
       curSubjectId = (savedSubject && SUBJECTS.some(function (s) { return s.id === savedSubject; })) ? savedSubject : 'shu1';
       curSubject = SUBJECTS.find(function (s) { return s.id === curSubjectId; });
@@ -4098,6 +4282,7 @@ ${cardsHTML}
       // 先水合云端状态，再跑迁移：登录用户的 status 已回填本地后，
       // 迁移才能基于完整数据生成 SM-2 排期（guest 首屏先置 flag 会让登录用户迁移永久失效）。
       await hydrateCloudStatuses();
+      if (myToken !== appBootToken) return;
       migrateAllSm2();
 
       var resume = loadResume(curSubjectId);
@@ -4124,14 +4309,35 @@ ${cardsHTML}
       renderSolDefaultBtn(); updateSolutionUI();
     }
 
-    // 监听 Supabase 登录与注销事件
-    document.addEventListener('private-study:signed-in', async function (e) {
+    // 监听本地与离线启动事件
+    let appStarted = false;
+    async function onAppReady() {
+      if (appStarted) return;
+      appStarted = true;
       migrateGuestAndLegacyUi(); // 先迁移 guest/旧键数据，再初始化（迁移结果会被 initAppSession 读取）
-      loadAnnotations(); // 新用户键下重建标注索引
-      initAppSession();
-    });
+      loadAnnotations(); // 本地键下重建标注索引
+      await initAppSession();
+      if (!localStorage.getItem(subjectStorageKey())) {
+        openSubjectPicker();
+      }
+    }
+
+    document.addEventListener('private-study:signed-in', onAppReady);
+
+    // 防御：若脚本加载时已处于就绪状态，自动触发启动
+    if (window.PrivateStudy?.getCurrentUser?.()) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onAppReady, { once: true });
+      } else {
+        window.setTimeout(onAppReady, 0);
+      }
+    }
 
     document.addEventListener('private-study:signed-out', function () {
+      appBootToken++;
+      if (subjectPickerOpen) {
+        closeSubjectPicker();
+      }
       // 登出清理：结束并清除续接复习会话，避免下个账号续接上一个账号的复习队列
       if (reviewSession) {
         try { commitReviewResults(); } catch (e) {}
@@ -4152,11 +4358,5 @@ ${cardsHTML}
       undoStack = [];
       renderNav();
     });
-
-    // 默认或离线初始化
-    initAppSession();
-    if (!localStorage.getItem(subjectStorageKey())) {
-      document.addEventListener('DOMContentLoaded', function () { openSubjectPicker(); });
-    }
 
   

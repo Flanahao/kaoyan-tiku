@@ -6,211 +6,401 @@
   <title>考研题库 - 全功能专业版</title>
   <link rel="stylesheet" href="lib/katex/katex.min.css">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="lib/supabase/supabase.min.js"></script>
 </head>
 <body>
 
-  <!-- Supabase 登录 Gate（双账号隔离与云端同步） -->
-  <div id="authGate" class="auth-gate">
-    <form id="authForm" class="auth-card" autocomplete="on">
+  <!-- 登录 Gate（单机模式默认隐藏，保留 DOM 节点以供兼容） -->
+  <div id="authGate" class="auth-gate" style="display: none;" hidden>
+    <form id="authForm" class="auth-card" autocomplete="on" style="display: none;">
       <h1>🎓 私有考研题库</h1>
-      <p>支持多端实时同步 · 间隔复习 · 错题精练</p>
+      <p>支持本地存储 · 间隔复习 · 错题精练</p>
 
       <label for="authEmail">邮箱</label>
-      <input id="authEmail" name="email" type="email" autocomplete="username" required placeholder="your_email@kaoyan.com">
+      <input id="authEmail" name="email" type="email" autocomplete="username" placeholder="local@kaoyan.com">
 
       <label for="authPassword">密码</label>
-      <input id="authPassword" name="password" type="password" autocomplete="current-password" required placeholder="******">
+      <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="******">
 
       <button id="authSubmit" type="submit">登录账号</button>
       <p id="authMessage" class="auth-message" aria-live="polite"></p>
     </form>
   </div>
 
-  <!-- 主应用 Shell（登录后展示） -->
-  <div id="appShell" hidden>
+  <!-- 主应用 Shell（单机模式直接进入） -->
+  <div id="appShell">
 
-    <!-- 顶部账号与云端状态指示条 -->
-    <header class="account-bar">
-      <span>当前账号：<strong id="currentUserEmail"></strong></span>
-      <span id="syncStatus" aria-live="polite">未同步</span>
-      <button id="btnLogout" type="button">退出登录</button>
-    </header>
+    <!-- 侧边栏遮罩（移动端抽屉展开时） -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <div class="app-layout">
 
-      <!-- 左侧栏：筛选、导出、面板入口 -->
-      <div class="sidebar-left">
-
-        <div class="filter-toolbar" id="filterToolbar">
-          <div class="filter-label">状态筛选</div>
-          <div class="filter-hint">点击切换单一状态</div>
-          <button class="filter-btn active" data-filter="all" aria-pressed="true">全部 <span class="filter-count"></span><span class="filter-key">Shift+A</span></button>
-          <button class="filter-btn" data-filter="proficient" aria-pressed="false">熟练 <span class="filter-count"></span><span class="filter-key">Shift+Z</span></button>
-          <button class="filter-btn" data-filter="vague" aria-pressed="false">模糊 <span class="filter-count"></span><span class="filter-key">Shift+X</span></button>
-          <button class="filter-btn" data-filter="wrong" aria-pressed="false">不会 <span class="filter-count"></span><span class="filter-key">Shift+C</span></button>
-          <button class="filter-btn" data-filter="unmarked" aria-pressed="false">带笔记 <span class="filter-count"></span><span class="filter-key">Shift+N</span></button>
+      <!-- 左侧深海军蓝导航栏 -->
+      <aside class="sidebar-left" id="sidebarLeft">
+        <!-- Logo 品牌区 -->
+        <div class="sidebar-brand">
+          <div class="brand-logo-badge">🎓</div>
+          <div class="brand-info">
+            <span class="brand-title">考研题库</span>
+            <span class="brand-subtitle">Smart Study Hub</span>
+          </div>
+          <button class="sidebar-close-btn" id="btnSidebarClose" type="button" aria-label="关闭导航栏">✕</button>
         </div>
 
-        <div class="export-section">
-          <div class="export-label">导出</div>
-          <button id="btnExportVague" class="export-btn btn-export-vague">导出模糊</button>
-          <button id="btnExportWrong" class="export-btn btn-export-wrong">导出不会</button>
+        <div class="sidebar-scroll-container">
+          <!-- 1. 学习 -->
+          <div class="nav-group">
+            <div class="nav-group-title">学习</div>
+            <button id="btnSolDefault" class="sol-default-btn" type="button">
+              <span class="nav-icon">💡</span>
+              <span class="nav-text">解析默认：隐藏</span>
+              <span class="sol-key">Shift+Space</span>
+            </button>
+          </div>
+
+          <!-- 2. 题库 -->
+          <div class="nav-group">
+            <div class="nav-group-title">题库</div>
+            <button id="btnSwitchSubject" class="sol-default-btn" type="button">
+              <span class="nav-icon">📚</span>
+              <span class="nav-text">切换科目</span>
+              <span class="sol-key">G</span>
+            </button>
+
+            <!-- 状态筛选 -->
+            <div class="filter-toolbar" id="filterToolbar">
+              <div class="filter-head">
+                <span class="filter-label">状态筛选</span>
+                <span class="filter-hint">单选过滤</span>
+              </div>
+              <div class="filter-btn-group">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">
+                  <span class="f-dot dot-all"></span>全部 <span class="filter-count"></span><span class="filter-key">Shift+A</span>
+                </button>
+                <button class="filter-btn" data-filter="proficient" aria-pressed="false">
+                  <span class="f-dot dot-proficient"></span>熟练 <span class="filter-count"></span><span class="filter-key">Shift+Z</span>
+                </button>
+                <button class="filter-btn" data-filter="vague" aria-pressed="false">
+                  <span class="f-dot dot-vague"></span>模糊 <span class="filter-count"></span><span class="filter-key">Shift+X</span>
+                </button>
+                <button class="filter-btn" data-filter="wrong" aria-pressed="false">
+                  <span class="f-dot dot-wrong"></span>不会 <span class="filter-count"></span><span class="filter-key">Shift+C</span>
+                </button>
+                <button class="filter-btn" data-filter="unmarked" aria-pressed="false">
+                  <span class="f-dot dot-notes"></span>带笔记 <span class="filter-count"></span><span class="filter-key">Shift+N</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 复习 -->
+          <div class="nav-group">
+            <div class="nav-group-title">复习</div>
+            <button id="btnSm2PanelSidebar" class="sol-default-btn" type="button">
+              <span class="nav-icon">🔄</span>
+              <span class="nav-text">间隔复习</span>
+              <span class="sol-key">M</span>
+            </button>
+            <button id="btnWrongBook" class="sol-default-btn" type="button">
+              <span class="nav-icon">📕</span>
+              <span class="nav-text">错题本</span>
+              <span class="sol-key">B</span>
+            </button>
+          </div>
+
+          <!-- 4. 统计 -->
+          <div class="nav-group">
+            <div class="nav-group-title">统计</div>
+            <button id="btnDashboard" class="sol-default-btn" type="button">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">全局进度</span>
+              <span class="sol-key">V</span>
+            </button>
+            <button id="btnEnglish" class="sol-default-btn" type="button">
+              <span class="nav-icon">🔤</span>
+              <span class="nav-text">英语词汇</span>
+            </button>
+          </div>
+
+          <!-- 5. 工具 -->
+          <div class="nav-group">
+            <div class="nav-group-title">工具</div>
+            <div class="export-section">
+              <div class="export-label">数据导出</div>
+              <div class="export-btn-row">
+                <button id="btnExportVague" class="export-btn btn-export-vague" type="button">导出模糊</button>
+                <button id="btnExportWrong" class="export-btn btn-export-wrong" type="button">导出不会</button>
+              </div>
+            </div>
+            <button id="btnShortcutHelp" class="sol-default-btn" type="button">
+              <span class="nav-icon">⌨️</span>
+              <span class="nav-text">快捷键帮助</span>
+              <span class="sol-key">H</span>
+            </button>
+          </div>
         </div>
+      </aside>
 
-        <button id="btnSolDefault" class="sol-default-btn">解析默认：隐藏<span class="sol-key">Shift+Space</span></button>
-        <button id="btnDashboard" class="sol-default-btn" style="margin-top:8px">全局进度<span class="sol-key">V</span></button>
-        <button id="btnWrongBook" class="sol-default-btn" style="margin-top:8px">错题本<span class="sol-key">B</span></button>
-        <button id="btnSm2PanelSidebar" class="sol-default-btn" style="margin-top:8px" onclick="toggleSm2Panel()">间隔复习<span class="sol-key">M</span></button>
-        <button id="btnEnglish" class="sol-default-btn" style="margin-top:8px">英语词汇</button>
-        <button id="btnShortcutHelp" class="sol-default-btn" style="margin-top:8px">快捷键帮助<span class="sol-key">H</span></button>
-        <button id="btnSwitchSubject" class="sol-default-btn" style="margin-top:8px">切换科目<span class="sol-key">G</span></button>
+      <!-- 浅灰蓝现代学习工作台 -->
+      <div class="app-workbench">
 
-      </div>
-
-      <!-- 中间主内容区 -->
-      <div class="main-content">
-
-        <!-- 顶部三级联动标题导航栏 -->
-        <div class="chapter-title-bar" id="chapterTitleBar">
-          <button class="db-back-btn wb-back-btn" id="btnBackWrongBook" style="display:none">返回错题本</button>
-          <button class="db-back-btn wb-back-btn" id="btnBackDashboard" style="display:none">返回总览</button>
-          <div class="title-dropdown" id="ddWb">
-            <button class="title-trigger" id="trigWb"><span class="title-trigger-text" id="txtWb"></span><span class="title-arrow">▾</span></button>
-            <div class="title-panel" id="panelWb"></div>
+        <!-- 顶部白色 Header：面包屑、同步状态、当前账号、登出按钮 -->
+        <header class="account-bar">
+          <div class="header-nav-left">
+            <button id="btnMobileMenu" class="mobile-menu-toggle" type="button" aria-label="展开菜单">☰</button>
+            <div class="header-breadcrumbs">
+              <span class="crumb-root">考研题库</span>
+              <span class="crumb-sep">/</span>
+              <span class="crumb-current" id="headerCurrentSection">刷题工作台</span>
+            </div>
           </div>
-          <div class="title-dropdown" id="ddSubj">
-            <button class="title-trigger" id="trigSubj"><span class="title-trigger-text" id="txtSubj"></span><span class="title-arrow">▾</span></button>
-            <div class="title-panel" id="panelSubj"></div>
+          <div class="header-nav-right">
+            <span class="header-user-info">当前模式：<strong id="currentUserEmail">本地离线模式</strong></span>
+            <span id="syncStatus" aria-live="polite">🟢 本地存储</span>
+            <button id="btnLogout" type="button" style="display:none">退出登录</button>
           </div>
-          <div class="title-dropdown" id="ddChapter">
-            <button class="title-trigger" id="trigChapter"><span class="title-trigger-text" id="txtChapter"></span><span class="title-arrow">▾</span></button>
-            <div class="title-panel" id="panelChapter"></div>
-          </div>
-          <div class="title-dropdown wrongbook-wb-dd" id="ddWbWrongbook" style="display:none">
-            <button class="title-trigger wrongbook-wb-trig" id="trigWbWrongbook"><span class="title-trigger-text" id="txtWbWrongbook"></span><span class="title-arrow">▾</span></button>
-            <div class="title-panel" id="panelWbWrongbook"></div>
-          </div>
-          <span class="panel-title" id="panelTitle" style="display:none"></span>
-        </div>
+        </header>
 
-        <div class="main-area" id="mainArea">
-          <div id="mainAreaContent">
-            <!-- 5 级掌握度操作条 -->
-            <div class="mastery-bar">
-              <span class="mastery-label">掌握状态</span>
-              <button id="btnProficient" class="gel-btn btn-status" data-status="proficient"><span class="func-name">熟练</span><span class="key">Z</span></button>
-              <button id="btnFamiliar" class="gel-btn btn-status" data-status="familiar"><span class="func-name">较熟练</span><span class="key">Z+X</span></button>
-              <button id="btnVague" class="gel-btn btn-status" data-status="vague"><span class="func-name">模糊</span><span class="key">X</span></button>
-              <button id="btnRusty" class="gel-btn btn-status" data-status="rusty"><span class="func-name">困难</span><span class="key">X+C</span></button>
-              <button id="btnWrong" class="gel-btn btn-status" data-status="wrong"><span class="func-name">不会</span><span class="key">C</span></button>
-              <span class="nav-sep">|</span>
-              <button id="btnQBad" class="gel-btn btn-qbad-toggle"><span class="func-name">题目图不达标</span><span class="key">R</span></button>
-              <button id="btnSBad" class="gel-btn btn-sbad-toggle"><span class="func-name">解析图不达标</span><span class="key">T</span></button>
+        <!-- 工作台主体区域 -->
+        <div class="workbench-body">
+
+          <!-- 中间主内容区 -->
+          <div class="main-content">
+
+            <!-- 顶部三级联动标题导航栏 -->
+            <div class="chapter-title-bar" id="chapterTitleBar">
+              <button class="db-back-btn wb-back-btn" id="btnBackWrongBook" style="display:none">返回错题本</button>
+              <button class="db-back-btn wb-back-btn" id="btnBackDashboard" style="display:none">返回总览</button>
+              <div class="title-dropdown" id="ddWb">
+                <button class="title-trigger" id="trigWb"><span class="title-trigger-text" id="txtWb"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelWb"></div>
+              </div>
+              <div class="title-dropdown" id="ddSubj">
+                <button class="title-trigger" id="trigSubj"><span class="title-trigger-text" id="txtSubj"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelSubj"></div>
+              </div>
+              <div class="title-dropdown" id="ddChapter">
+                <button class="title-trigger" id="trigChapter"><span class="title-trigger-text" id="txtChapter"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelChapter"></div>
+              </div>
+              <div class="title-dropdown wrongbook-wb-dd" id="ddWbWrongbook" style="display:none">
+                <button class="title-trigger wrongbook-wb-trig" id="trigWbWrongbook"><span class="title-trigger-text" id="txtWbWrongbook"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelWbWrongbook"></div>
+              </div>
+              <span class="panel-title" id="panelTitle" style="display:none"></span>
             </div>
 
-            <div class="sm2-info-bar" id="sm2InfoBar" style="display:none"></div>
-            <div id="reviewControls" style="display:none">
-              <button id="btnReviewPrev">上一题</button>
-              <button id="btnReviewSkip">跳过</button>
-              <button id="btnReviewNext">下一题</button>
-            </div>
-            
-            <div class="img-bad-warning" id="qBadWarning">题目图质量不达标</div>
-            <div class="q-label" id="qLabel"></div>
-            <div class="sub-select-bar" id="subSelectBar" style="display:none"></div>
-            
-            <!-- 题目图片与标注图层 -->
-            <div class="annot-wrapper" id="qAnnotWrap">
-              <img id="questionImg" class="question-img" src="" alt="题目">
-              <div class="annot-overlay" id="qAnnotOverlay"></div>
-            </div>
+            <div class="main-area" id="mainArea">
+              <div id="mainAreaContent">
+                <!-- 5 级掌握度操作条 -->
+                <div class="mastery-bar">
+                  <span class="mastery-label">掌握状态</span>
+                  <button id="btnProficient" class="gel-btn btn-status" data-status="proficient"><span class="func-name">熟练</span><span class="key">Z</span></button>
+                  <button id="btnFamiliar" class="gel-btn btn-status" data-status="familiar"><span class="func-name">较熟练</span><span class="key">Z+X</span></button>
+                  <button id="btnVague" class="gel-btn btn-status" data-status="vague"><span class="func-name">模糊</span><span class="key">X</span></button>
+                  <button id="btnRusty" class="gel-btn btn-status" data-status="rusty"><span class="func-name">困难</span><span class="key">X+C</span></button>
+                  <button id="btnWrong" class="gel-btn btn-status" data-status="wrong"><span class="func-name">不会</span><span class="key">C</span></button>
+                  <span class="nav-sep">|</span>
+                  <button id="btnQBad" class="gel-btn btn-qbad-toggle"><span class="func-name">题目图不达标</span><span class="key">R</span></button>
+                  <button id="btnSBad" class="gel-btn btn-sbad-toggle"><span class="func-name">解析图不达标</span><span class="key">T</span></button>
+                </div>
 
-            <!-- 解析显示开关 -->
-            <div class="toggle-bar">
-              <button id="btnToggle" class="gel-btn btn-toggle"><span class="func-name">显示解析</span><span class="key">Space</span></button>
-            </div>
+                <div class="sm2-info-bar" id="sm2InfoBar" style="display:none"></div>
+                <div id="reviewControls" style="display:none">
+                  <button id="btnReviewPrev">上一题</button>
+                  <button id="btnReviewSkip">跳过</button>
+                  <button id="btnReviewNext">下一题</button>
+                </div>
 
-            <!-- 解析内容展示区 -->
-            <div class="solution-area" id="solutionArea">
-              <div class="img-bad-warning solution-warn" id="sBadWarning">解析图质量不达标</div>
-              <div class="solution-imgs" id="solutionImgs"></div>
-            </div>
+                <div class="img-bad-warning" id="qBadWarning">题目图质量不达标</div>
+                <div class="q-label" id="qLabel"></div>
+                <div class="sub-select-bar" id="subSelectBar" style="display:none"></div>
 
-            <!-- Markdown + LaTeX 双栏笔记系统 -->
-            <div class="notes-section" id="notesSection">
-              <div class="notes-header">
-                <span class="notes-title">笔记</span>
-                <div class="notes-actions">
-                  <button id="btnNoteEdit">编辑</button>
-                  <button id="btnNoteSave" class="btn-save" style="display:none">保存</button>
-                  <button id="btnNoteCancel" style="display:none">取消</button>
-                  <button id="btnNoteDelete">删除</button>
+                <!-- 题目图片与标注图层 -->
+                <div class="annot-wrapper" id="qAnnotWrap">
+                  <img id="questionImg" class="question-img" src="" alt="题目">
+                  <div class="annot-overlay" id="qAnnotOverlay"></div>
+                </div>
+
+                <!-- 解析显示开关 -->
+                <div class="toggle-bar">
+                  <button id="btnToggle" class="gel-btn btn-toggle"><span class="func-name">显示解析</span><span class="key">Space</span></button>
+                </div>
+
+                <!-- 解析内容展示区 -->
+                <div class="solution-area" id="solutionArea">
+                  <div class="img-bad-warning solution-warn" id="sBadWarning">解析图质量不达标</div>
+                  <div class="solution-imgs" id="solutionImgs"></div>
+                </div>
+
+                <!-- Markdown + LaTeX 双栏笔记系统 -->
+                <div class="notes-section" id="notesSection">
+                  <div class="notes-header">
+                    <span class="notes-title">笔记</span>
+                    <div class="notes-actions">
+                      <button id="btnNoteEdit">编辑</button>
+                      <button id="btnNoteSave" class="btn-save" style="display:none">保存</button>
+                      <button id="btnNoteCancel" style="display:none">取消</button>
+                      <button id="btnNoteDelete">删除</button>
+                    </div>
+                  </div>
+                  <div class="notes-duo" id="notesDuo" style="display:none">
+                    <textarea class="notes-textarea" id="notesTextarea" placeholder="支持 Markdown 与 $LaTeX$ 公式，Enter 保存 / Shift+Enter 换行"></textarea>
+                    <div class="notes-render notes-preview" id="notesPreview"></div>
+                  </div>
+                  <div class="notes-render" id="notesRender"></div>
+                </div>
+              </div><!-- #mainAreaContent -->
+
+              <!-- 全局统计仪表盘 (V) -->
+              <div class="dashboard-panel" id="dashboardPanel" style="display:none">
+                <div class="db-overview" id="dbOverview">
+                  <!-- 顶部蓝色渐变 Hero 卡片 -->
+                  <div class="db-hero-card" id="dbHeroCard">
+                    <div class="hero-content">
+                      <h2 class="hero-greeting" id="heroGreeting">早上好，开始今天的刷题吧</h2>
+                      <p class="hero-subtitle" id="heroSubtitle">今日待复习 <strong id="heroDueCount">0</strong> 题，总题库完成率 <strong id="heroTotalPct">0%</strong></p>
+                      <div class="hero-actions">
+                        <button class="hero-action-btn primary" id="btnHeroContinue" type="button">继续刷题</button>
+                        <button class="hero-action-btn secondary" id="btnHeroReview" type="button">立即复习</button>
+                      </div>
+                    </div>
+                    <div class="hero-decor-badge">
+                      <div class="hero-ring-val" id="heroRingVal">0%</div>
+                      <div class="hero-ring-label">题库进度</div>
+                    </div>
+                  </div>
+
+                  <!-- 四个真实统计卡片 -->
+                  <div class="db-stat-grid" id="dbStatGrid">
+                    <div class="db-stat-card card-due">
+                      <div class="stat-card-icon">⏱️</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatDue">0</div>
+                        <div class="stat-card-title">今日待复习</div>
+                      </div>
+                    </div>
+                    <div class="db-stat-card card-done">
+                      <div class="stat-card-icon">✅</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatDone">0</div>
+                        <div class="stat-card-title">已完成题目</div>
+                      </div>
+                    </div>
+                    <div class="db-stat-card card-wrong">
+                      <div class="stat-card-icon">❌</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatWrong">0</div>
+                        <div class="stat-card-title">错题累计</div>
+                      </div>
+                    </div>
+                    <div class="db-stat-card card-streak">
+                      <div class="stat-card-icon">🔥</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatStreak">0 天</div>
+                        <div class="stat-card-title">连续学习天数</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 两列布局：左侧书籍进度网格 + 右侧复习与错题快捷卡片 -->
+                  <div class="db-two-columns">
+                    <div class="db-col-primary">
+                      <div class="db-block-header">
+                        <h3 class="db-block-title">书籍与科目进度</h3>
+                        <span class="db-block-hint">点击卡片可查看详细章节完成率</span>
+                      </div>
+                      <div class="db-grid" id="dbGrid"></div>
+                    </div>
+                    <div class="db-col-secondary">
+                      <div class="db-side-widget">
+                        <h4 class="widget-title">今日复习计划</h4>
+                        <div class="widget-body" id="widgetReviewPlan">暂无今日到期题目</div>
+                        <button class="widget-btn" id="btnWidgetReview" type="button">前往间隔复习</button>
+                      </div>
+                      <div class="db-side-widget">
+                        <h4 class="widget-title">错题集中攻克</h4>
+                        <div class="widget-body" id="widgetWrongPlan">错题本已收录待巩固题</div>
+                        <button class="widget-btn" id="btnWidgetWrong" type="button">打开错题本</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="db-detail" id="dbDetail" style="display:none">
+                  <div class="db-detail-title" id="dbDetailTitle"></div>
+                  <div class="db-subject-grid" id="dbDetailList"></div>
                 </div>
               </div>
-              <div class="notes-duo" id="notesDuo" style="display:none">
-                <textarea class="notes-textarea" id="notesTextarea" placeholder="支持 Markdown 与 $LaTeX$ 公式，Enter 保存 / Shift+Enter 换行"></textarea>
-                <div class="notes-render notes-preview" id="notesPreview"></div>
-              </div>
-              <div class="notes-render" id="notesRender"></div>
-            </div>
-          </div><!-- #mainAreaContent -->
 
-          <!-- 全局统计仪表盘 (V) -->
-          <div class="dashboard-panel" id="dashboardPanel" style="display:none">
-            <div class="db-overview" id="dbOverview">
-              <div class="db-grid" id="dbGrid"></div>
+              <!-- 专属错题本面板 (B) -->
+              <div class="wrongbook-panel" id="wrongBookPanel" style="display:none">
+                <div class="db-subject-grid" id="wrongBookGrid"></div>
+              </div>
+
+              <!-- SM2 间隔复习调度面板 (M) -->
+              <div class="sm2-panel" id="sm2Panel" style="display:none">
+                <div class="sm2-overview">
+                  <div class="sm2-stats-row">
+                    <div class="sm2-stat-card" id="sm2CardDue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">今日到期</div></div>
+                    <div class="sm2-stat-card" id="sm2CardOverdue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">已逾期</div></div>
+                    <div class="sm2-stat-card" id="sm2CardQueue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">队列中</div></div>
+                    <div class="sm2-stat-card" id="sm2CardMastered"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">已掌握</div></div>
+                  </div>
+                  <div class="sm2-mode-row">
+                    <span class="sm2-mode-label">刷题模式</span>
+                    <label class="sm2-radio"><input type="radio" name="sm2mode" value="sequential" checked> 顺序</label>
+                    <label class="sm2-radio"><input type="radio" name="sm2mode" value="random"> 随机</label>
+                    <label class="sm2-radio"><input type="radio" name="sm2mode" value="overdue"> 仅逾期</label>
+                  </div>
+                  <button id="btnSm2StartAll" class="gel-btn btn-status proficient">开始全部复习</button>
+                </div>
+                <div class="sm2-chapters" id="sm2Chapters"></div>
+              </div>
+              <section class="english-panel" id="englishPanel" hidden></section>
             </div>
-            <div class="db-detail" id="dbDetail" style="display:none">
-              <div class="db-detail-title" id="dbDetailTitle"></div>
-              <div class="db-subject-grid" id="dbDetailList"></div>
+
+          </div><!-- .main-content -->
+
+          <!-- 右侧栏：进度统计与题号网格 -->
+          <div class="sidebar-right">
+            <div class="chapter-selector" id="statsBlock">
+              <div class="chapter-label">进度</div>
+              <div class="stats-panel" id="statsPanel"></div>
+            </div>
+            <div id="reviewQueuePanel" style="display:none">
+              <div class="review-queue-header" id="reviewQueueHeader">本次复习 0 题</div>
+              <div class="review-queue" id="reviewQueue"></div>
+            </div>
+            <div id="qnavContainer" style="background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:12px;padding:12px;border:1px solid #e2e8f0;margin-top:12px">
+              <div class="qnav-label">题号</div>
+              <div class="qnav" id="qnav"></div>
             </div>
           </div>
 
-          <!-- 专属错题本面板 (B) -->
-          <div class="wrongbook-panel" id="wrongBookPanel" style="display:none">
-            <div class="db-subject-grid" id="wrongBookGrid"></div>
+        </div><!-- .workbench-body -->
+
+        <!-- 移动端底部快捷操作栏（<= 768px 显示） -->
+        <nav class="mobile-action-bar" id="mobileActionBar" aria-label="移动端快捷操作栏">
+          <button class="m-action-btn" id="mBtnPrev" type="button" aria-label="上一题">
+            <span class="m-icon">‹</span>
+            <span class="m-text">上一题</span>
+          </button>
+          <button class="m-action-btn m-toggle" id="mBtnToggle" type="button" aria-label="显示解析">
+            <span class="m-icon">💡</span>
+            <span class="m-text">解析</span>
+          </button>
+          <div class="m-status-pills">
+            <button class="m-pill m-wrong" id="mBtnWrong" data-status="wrong" type="button" aria-label="不会">不会</button>
+            <button class="m-pill m-vague" id="mBtnVague" data-status="vague" type="button" aria-label="模糊">模糊</button>
+            <button class="m-pill m-proficient" id="mBtnProficient" data-status="proficient" type="button" aria-label="熟练">熟练</button>
           </div>
+          <button class="m-action-btn" id="mBtnNext" type="button" aria-label="下一题">
+            <span class="m-icon">›</span>
+            <span class="m-text">下一题</span>
+          </button>
+        </nav>
 
-          <!-- SM2 间隔复习调度面板 (M) -->
-          <div class="sm2-panel" id="sm2Panel" style="display:none">
-            <div class="sm2-overview">
-              <div class="sm2-stats-row">
-                <div class="sm2-stat-card" id="sm2CardDue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">今日到期</div></div>
-                <div class="sm2-stat-card" id="sm2CardOverdue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">已逾期</div></div>
-                <div class="sm2-stat-card" id="sm2CardQueue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">队列中</div></div>
-                <div class="sm2-stat-card" id="sm2CardMastered"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">已掌握</div></div>
-              </div>
-              <div class="sm2-mode-row">
-                <span class="sm2-mode-label">刷题模式</span>
-                <label class="sm2-radio"><input type="radio" name="sm2mode" value="sequential" checked> 顺序</label>
-                <label class="sm2-radio"><input type="radio" name="sm2mode" value="random"> 随机</label>
-                <label class="sm2-radio"><input type="radio" name="sm2mode" value="overdue"> 仅逾期</label>
-              </div>
-              <button id="btnSm2StartAll" class="gel-btn btn-status proficient">开始全部复习</button>
-            </div>
-            <div class="sm2-chapters" id="sm2Chapters"></div>
-          </div>
-          <section class="english-panel" id="englishPanel" hidden></section>
-        </div>
-
-      </div><!-- .main-content -->
-
-      <!-- 右侧栏：进度统计与题号网格 -->
-      <div class="sidebar-right">
-        <div class="chapter-selector" id="statsBlock">
-          <div class="chapter-label">进度</div>
-          <div class="stats-panel" id="statsPanel"></div>
-        </div>
-        <div id="reviewQueuePanel" style="display:none">
-          <div class="review-queue-header" id="reviewQueueHeader">本次复习 0 题</div>
-          <div class="review-queue" id="reviewQueue"></div>
-        </div>
-        <div id="qnavContainer" style="background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.45);margin-top:12px">
-          <div class="qnav-label">题号</div>
-          <div class="qnav" id="qnav"></div>
-        </div>
-      </div>
+      </div><!-- .app-workbench -->
 
     </div><!-- .app-layout -->
 

@@ -275,11 +275,32 @@
         classifyLabel: function (label) { return label.startsWith('例') ? '例题' : '习题'; },
         getImgPath: function (ch, label) {
           var index = ch.labels.indexOf(label);
-          if (ch.fileBases && ch.fileBases[index]) return '数一题库/' + ch.relPath + '/' + ch.fileBases[index];
-          let prefix, numPart;
-          if (label.startsWith('例')) { prefix = 'ex'; numPart = label.substring(1); }
-          else { prefix = 'pb'; numPart = label; }
-          return '数一题库/' + ch.relPath + '/' + prefix + '_' + numPart;
+
+          if (ch.fileBases && ch.fileBases[index]) {
+            return '数一题库/' + ch.relPath + '/' + ch.fileBases[index];
+          }
+
+          var rawLabel = String(label || '');
+          var is1000Question =
+            ch.wb === '1000题' ||
+            ch.statsWb === '1000题';
+
+          var hasExamplePrefix = rawLabel.startsWith('例');
+          var numberPart = hasExamplePrefix
+            ? rawLabel.substring(1)
+            : rawLabel;
+
+          // 1000题仓库中的真实文件名使用 ex_ 前缀
+          var prefix = is1000Question || hasExamplePrefix
+            ? 'ex'
+            : 'pb';
+
+          return '数一题库/' +
+            ch.relPath +
+            '/' +
+            prefix +
+            '_' +
+            numberPart;
         },
         chapters: SHU1_CHAPTERS
       },
@@ -301,3 +322,7 @@
       },
       chapters: PROFESSIONAL_CHAPTERS
     });
+
+    if (typeof window !== 'undefined') {
+      window.SUBJECTS = SUBJECTS;
+    }
