@@ -1253,8 +1253,8 @@
 
       ctx.clearRect(0, 0, size, size);
 
-      var purpleDark = [102, 8, 116];
-      var purpleLight = [225, 190, 231];
+      var blueDark = [47, 128, 237];
+      var blueLight = [218, 235, 254];
       var totalDone = 0, totalQ = 0;
 
       // Inner to outer: inner ring = chapter 0 (第1讲), outer ring = last chapter
@@ -1265,7 +1265,7 @@
         totalDone += pr.done;
         totalQ += pr.total;
         var p = pr.progress;
-        var color = dbLerpColor(purpleLight, purpleDark, p);
+        var color = dbLerpColor(blueLight, blueDark, p);
         var cStr = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
 
         // Filled arc (clockwise from top)
@@ -1303,7 +1303,7 @@
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(label, cx, cy - 9);
-      ctx.fillStyle = '#660874';
+      ctx.fillStyle = '#1557a6';
       ctx.font = 'bold 17px "Microsoft YaHei","PingFang SC",sans-serif';
       ctx.fillText(pct + '%', cx, cy + 11);
     }
