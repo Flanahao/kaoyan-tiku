@@ -9,6 +9,9 @@
 </head>
 <body>
 
+  <!-- 保护性兼容节点 -->
+  <div id="authGate" style="display: none;" hidden></div>
+
   <!-- 主应用 Shell（纯本地单机模式直接进入） -->
   <div id="appShell">
 
@@ -108,8 +111,13 @@
           <div class="nav-group">
             <div class="nav-group-title">工具</div>
             <div class="export-section">
-              <div class="export-label">数据导出</div>
+              <div class="export-label">数据备份与导出</div>
               <div class="export-btn-row">
+                <button id="btnBackupExport" class="export-btn" type="button" title="导出全部学习记录 JSON 备份">导出备份</button>
+                <button id="btnBackupImport" class="export-btn" type="button" title="导入学习记录 JSON 备份">导入备份</button>
+                <input id="inputBackupFile" type="file" accept=".json,application/json" style="display:none">
+              </div>
+              <div class="export-btn-row" style="margin-top:4px">
                 <button id="btnExportVague" class="export-btn btn-export-vague" type="button">导出模糊</button>
                 <button id="btnExportWrong" class="export-btn btn-export-wrong" type="button">导出不会</button>
               </div>
@@ -519,6 +527,31 @@
       <div class="annot-palette-custom">
         <input type="color" id="annotColorCustom" value="#ff0000" title="自定义颜色">
         <span>自定义</span>
+      </div>
+    </div>
+  <!-- 历史多账号数据迁移选择模态框 -->
+  <div id="migrationPickerModal" class="subject-overlay" style="display:none" hidden>
+    <div class="subject-modal" style="max-width:460px">
+      <h2>发现历史学习数据</h2>
+      <p style="color:var(--text-muted);font-size:13px;margin:8px 0 16px">检测到您在历史版本中留存了本地学习记录。请选择要迁入当前单机模式的记录：</p>
+      <div id="migrationAccountList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;max-height:220px;overflow-y:auto"></div>
+      <div style="display:flex;justify-content:flex-end;gap:10px">
+        <button id="btnSkipMigration" class="hero-action-btn" style="background:#f1f5f9;color:var(--text)" type="button">暂不迁移</button>
+        <button id="btnConfirmMigration" class="hero-action-btn primary" type="button">确认迁移所选项</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学习数据导入预览与确认模态框 -->
+  <div id="backupImportModal" class="subject-overlay" style="display:none" hidden>
+    <div class="subject-modal" style="max-width:500px">
+      <h2>导入学习记录确认</h2>
+      <div id="backupImportSummary" style="background:var(--bg-main);padding:12px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.6;color:var(--text)"></div>
+      <p style="color:var(--text-muted);font-size:12px;margin-bottom:16px"><b>合并模式</b>：仅补充缺失题目的记录，不覆盖已有进度；<br><b>覆盖模式</b>：用备份完全替换当前进度（覆盖前将自动先保存一份当前快照）。</p>
+      <div style="display:flex;justify-content:flex-end;gap:10px">
+        <button id="btnCancelImport" class="hero-action-btn" style="background:#f1f5f9;color:var(--text)" type="button">取消</button>
+        <button id="btnMergeImport" class="hero-action-btn" style="background:var(--proficient);color:#fff" type="button">合并导入</button>
+        <button id="btnOverwriteImport" class="hero-action-btn primary" type="button">覆盖导入</button>
       </div>
     </div>
   </div>

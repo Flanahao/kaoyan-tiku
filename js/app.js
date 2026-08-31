@@ -85,8 +85,60 @@
       for (let k = 0; k < g.count; k++) { const idx = g.startIdx + k; if (filteredSet.has(idx)) out.push(idx); }
       return out;
     }
+    const APP_MODE = 'local';
+    const LOCAL_USER_ID = 'guest';
+
+    function safeStorageGet(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (error) {
+        console.warn('[storage] get failed', key, error);
+        return null;
+      }
+    }
+
+    function safeStorageSet(key, value) {
+      try {
+        localStorage.setItem(key, value);
+        return true;
+      } catch (error) {
+        console.warn('[storage] set failed (可能配额已满):', key, error);
+        var statusNode = document.getElementById('syncStatus');
+        if (statusNode) {
+          statusNode.textContent = '本地存储空间不足，请导出备份';
+          statusNode.classList.add('is-error');
+        }
+        return false;
+      }
+    }
+
+    function safeStorageRemove(key) {
+      try {
+        localStorage.removeItem(key);
+        return true;
+      } catch (error) {
+        console.warn('[storage] remove failed', key, error);
+        return false;
+      }
+    }
+
+    async function computeSha256(str) {
+      if (window.crypto && window.crypto.subtle && window.TextEncoder) {
+        try {
+          const buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+          return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        } catch (e) {}
+      }
+      let h = 0;
+      for (let i = 0; i < str.length; i++) {
+        h = ((h << 5) - h) + str.charCodeAt(i);
+        h |= 0;
+      }
+      return 'fallback_' + Math.abs(h).toString(16);
+    }
+
     function getSignedInUserId() {
-      return 'guest';
+      return LOCAL_USER_ID;
     }
     function userStoragePrefix() {
       const uid = getSignedInUserId();
@@ -97,11 +149,7 @@
     function sBadStorageKey() { return userStoragePrefix() + currentChapterId + '_' + curSubject.storageSuffix + '_sbad'; }
     function chapterStatusKey(ch) { return userStoragePrefix() + ch.id + '_' + curSubject.storageSuffix + '_status'; }
     function safeSetItem(k, v) {
-      try {
-        localStorage.setItem(k, v);
-      } catch (e) {
-        console.warn('localStorage.setItem 失败 (可能配额已满):', k, e);
-      }
+      safeStorageSet(k, v);
     }
     function totalQuestions() { return getChapter().total; }
 
@@ -202,106 +250,521 @@
       });
       if (changed) localStorage.setItem(targetKey, JSON.stringify(current));
     }
-    function migrateLegacyLocalStatuses() {
-      var user = window.PrivateStudy?.getCurrentUser?.();
-      if (!user || !user.id) return;
-      SUBJECTS.forEach(function (subject) {
-        subject.chapters.forEach(function (ch) {
-          var target = userStoragePrefix() + ch.id + '_' + subject.storageSuffix + '_status';
-          [ch.id + '_status', ch.id + '_' + subject.storageSuffix + '_status', ch.id + '_shu1_status'].forEach(function (legacyKey) {
-            try { mergeStatus(target, JSON.parse(localStorage.getItem(legacyKey) || '{}')); } catch (e) {}
-          });
-        });
-      });
-    }
-    // 登录后一次性迁移：
-    //  1) guest 阶段刷的题（user_guest_*）并入账号键（仅账号键为空时回填）
-    //  2) 旧无前缀全局 UI 键（ui_filters / <subj>_ui_solution / kaoyan_resume / kaoyan_subject / kaoyan_review_session）
-    //     迁到新带前缀键（仅目标为空时回填），保证老用户刷新后设置不丢。
-    //  3) 旧无前缀 annot_* 键并入带前缀 annot_*（仅目标为空时回填）。
-    function migrateGuestAndLegacyUi() {
-      var user = window.PrivateStudy?.getCurrentUser?.();
-      if (!user || !user.id) return;
-      var uid = user.id;
-
-      // 1) guest 刷题数据
-      SUBJECTS.forEach(function (subject) {
-        subject.chapters.forEach(function (ch) {
-          ['_status', '_qbad', '_sbad', '_notes'].forEach(function (suffix) {
-            var gKey = 'user_guest_' + ch.id + '_' + subject.storageSuffix + suffix;
-            var raw = localStorage.getItem(gKey);
-            if (!raw) return;
-            var target = userStoragePrefix() + ch.id + '_' + subject.storageSuffix + suffix;
-            try {
-              var obj = JSON.parse(raw);
-              if (!obj || typeof obj !== 'object') return;
-              var cur = JSON.parse(localStorage.getItem(target) || '{}') || {};
-              var changed = false;
-              Object.keys(obj).forEach(function (k) {
-                if (cur[k] === undefined && obj[k]) { cur[k] = obj[k]; changed = true; }
-              });
-              if (changed) localStorage.setItem(target, JSON.stringify(cur));
-              localStorage.removeItem(gKey); // 迁移后清理 guest 键
-            } catch (e) {}
-          });
-          // guest SM-2 记录（键：user_guest_sm2_<subjectId>_<chId>）
-          var gSm2 = 'user_guest_sm2_' + subject.id + '_' + ch.id;
-          var sRaw = localStorage.getItem(gSm2);
-          if (sRaw) {
-            var sTarget = userStoragePrefix() + 'sm2_' + subject.id + '_' + ch.id;
-            try {
-              var sObj = JSON.parse(sRaw);
-              if (sObj && typeof sObj === 'object') {
-                var sCur = JSON.parse(localStorage.getItem(sTarget) || '{}') || {};
-                var sChanged = false;
-                Object.keys(sObj).forEach(function (k) {
-                  if (sCur[k] === undefined && sObj[k]) { sCur[k] = sObj[k]; sChanged = true; }
-                });
-                if (sChanged) localStorage.setItem(sTarget, JSON.stringify(sCur));
-              }
-              localStorage.removeItem(gSm2);
-            } catch (e) {}
-          }
-        });
-      });
-
-      // 2) 全局 UI 键（带前缀 ⇐ 旧无前缀）
-      var uiPairs = [
-        ['ui_filters', 'kaoyan_ui_filters'],
-        [curSubjectId + '_ui_solution', curSubjectId + '_ui_solution']
-      ];
-      uiPairs.forEach(function (p) {
-        var target = userStoragePrefix() + p[0];
-        var legacy = localStorage.getItem(p[1]);
-        if (legacy && !localStorage.getItem(target)) {
-          try { localStorage.setItem(target, legacy); } catch (e) {}
-        }
-      });
-      ['kaoyan_resume', 'kaoyan_subject', 'kaoyan_review_session'].forEach(function (legacyKey) {
-        var legacy = localStorage.getItem(legacyKey);
-        if (legacy && !localStorage.getItem(userStoragePrefix() + legacyKey)) {
-          try { localStorage.setItem(userStoragePrefix() + legacyKey, legacy); } catch (e) {}
-        }
-      });
-
-      // 3) 旧无前缀 annot_* 键
-      var oldPrefix = 'annot_';
+    // ===== 历史旧数据安全迁移与多账号选择 =====
+    async function migrateHistoricalUserData() {
+      // 1. 扫描 localStorage 中的所有历史命名空间
+      var historicalUids = new Set();
+      var hasLegacyUnprefixed = false;
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i);
-        if (k && k.indexOf(oldPrefix) === 0) {
-          var srcKey = normalizeAnnotSrc(k.substring(oldPrefix.length));
-          var targetKey = annotKey(srcKey);
-          if (!localStorage.getItem(targetKey)) {
-            var v = localStorage.getItem(k);
-            if (v) { try { localStorage.setItem(targetKey, v); } catch (e) {} }
+        if (!k) continue;
+        var m = k.match(/^user_([a-zA-Z0-9-]+)_/);
+        if (m) {
+          var uid = m[1];
+          if (uid !== 'guest' && uid !== 'migration') {
+            historicalUids.add(uid);
           }
-          localStorage.removeItem(k); // 迁移后清理旧键
+        } else if (
+          k.indexOf('annot_') === 0 ||
+          k.indexOf('sm2_') === 0 ||
+          k === 'kaoyan_english_vocabulary_v2' ||
+          k === 'kaoyan_resume' ||
+          k === 'kaoyan_subject' ||
+          k === 'ui_filters' ||
+          k === 'kaoyan_ui_filters' ||
+          k.indexOf('_status') !== -1 ||
+          k.indexOf('_notes') !== -1
+        ) {
+          hasLegacyUnprefixed = true;
         }
       }
-      loadAnnotations(); // 重建内存标注索引（新键）
+
+      var uidList = Array.from(historicalUids);
+      var idemRaw = safeStorageGet('kaoyan_migration_idempotent_v2');
+      if (idemRaw) {
+        try {
+          var idem = JSON.parse(idemRaw);
+          if (idem && idem.schemaVersion >= 2) {
+            // 已完成过标准迁移且无新待选历史 UID
+            return;
+          }
+        } catch (e) {}
+      }
+
+      // 若检测到多个历史用户命名空间，必须提示选择，禁止静默合并
+      if (uidList.length >= 2) {
+        promptMigrationSelection(uidList, hasLegacyUnprefixed);
+        return;
+      }
+
+      // 仅有单个历史 UID 或仅有旧无前缀键时，直接安全迁移
+      var targetUid = uidList.length === 1 ? uidList[0] : null;
+      await executeDataMigration(targetUid, hasLegacyUnprefixed);
     }
-    async function hydrateCloudStatuses() {
-      return;
+
+    function promptMigrationSelection(uidList, hasLegacyUnprefixed) {
+      var modal = document.getElementById('migrationPickerModal');
+      var listEl = document.getElementById('migrationAccountList');
+      var btnConfirm = document.getElementById('btnConfirmMigration');
+      var btnSkip = document.getElementById('btnSkipMigration');
+      if (!modal || !listEl || !btnConfirm || !btnSkip) return;
+
+      var selected = uidList[0];
+      var html = '';
+      uidList.forEach(function (uid, idx) {
+        var count = 0;
+        var bytes = 0;
+        var prefix = 'user_' + uid + '_';
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k && k.indexOf(prefix) === 0) {
+            count++;
+            var val = localStorage.getItem(k) || '';
+            bytes += (k.length + val.length) * 2;
+          }
+        }
+        var kb = (bytes / 1024).toFixed(1);
+        html += '<label style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);border-radius:8px;cursor:pointer">' +
+          '<input type="radio" name="migrationUid" value="' + uid + '"' + (idx === 0 ? ' checked' : '') + '>' +
+          '<div><div style="font-weight:600;color:var(--text)">账号：' + uid + '</div>' +
+          '<div style="font-size:12px;color:var(--text-muted)">' + count + ' 条记录 · 约 ' + kb + ' KB</div></div>' +
+          '</label>';
+      });
+      listEl.innerHTML = html;
+      listEl.onchange = function (e) {
+        if (e.target && e.target.name === 'migrationUid') {
+          selected = e.target.value;
+        }
+      };
+
+      modal.style.display = 'flex';
+      modal.hidden = false;
+
+      btnSkip.onclick = function () {
+        modal.style.display = 'none';
+        modal.hidden = true;
+        safeStorageSet('kaoyan_migration_idempotent_v2', JSON.stringify({
+          schemaVersion: 2,
+          completedAt: new Date().toISOString(),
+          skipped: true
+        }));
+      };
+
+      btnConfirm.onclick = async function () {
+        modal.style.display = 'none';
+        modal.hidden = true;
+        await executeDataMigration(selected, hasLegacyUnprefixed);
+      };
+    }
+
+    async function executeDataMigration(sourceUid, includeLegacyUnprefixed) {
+      // 1. 迁移前生成完整 JSON 备份，防止异常或空间超额
+      var fullBackup = {
+        schemaVersion: 2,
+        appVersion: '2.1.0',
+        createdAt: new Date().toISOString(),
+        sourceOrigin: window.location.origin,
+        keyCount: localStorage.length,
+        storageData: {}
+      };
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k) fullBackup.storageData[k] = localStorage.getItem(k);
+      }
+      var backupStr = JSON.stringify(fullBackup);
+      fullBackup.checksum = await computeSha256(backupStr);
+      safeStorageSet('kaoyan_migration_backup_' + Date.now(), JSON.stringify(fullBackup));
+
+      var tmpPrefix = 'user_guest_migration_v2_tmp_';
+      try {
+        // 2. 将选定 UID 数据或无前缀数据提取并写入临时目标键
+        var srcPrefix = sourceUid ? 'user_' + sourceUid + '_' : '';
+
+        // 掌握度、笔记、SM-2、报错等
+        SUBJECTS.forEach(function (subject) {
+          subject.chapters.forEach(function (ch) {
+            // 掌握度
+            var targetStatusKey = 'user_guest_' + ch.id + '_' + subject.storageSuffix + '_status';
+            var curStatus = {};
+            try { curStatus = JSON.parse(safeStorageGet(targetStatusKey) || '{}'); } catch (e) {}
+            var srcStatusCandidates = [];
+            if (srcPrefix) {
+              srcStatusCandidates.push(srcPrefix + ch.id + '_' + subject.storageSuffix + '_status');
+            }
+            if (includeLegacyUnprefixed) {
+              srcStatusCandidates.push(ch.id + '_' + subject.storageSuffix + '_status');
+              srcStatusCandidates.push(ch.id + '_status');
+              srcStatusCandidates.push(ch.id + '_shu1_status');
+            }
+            srcStatusCandidates.forEach(function (sk) {
+              var sVal = safeStorageGet(sk);
+              if (sVal) {
+                try {
+                  var obj = JSON.parse(sVal);
+                  Object.keys(obj).forEach(function (qIdx) {
+                    if (curStatus[qIdx] === undefined && obj[qIdx]) curStatus[qIdx] = obj[qIdx];
+                  });
+                } catch (e) {}
+              }
+            });
+            if (Object.keys(curStatus).length > 0) {
+              safeStorageSet(tmpPrefix + targetStatusKey, JSON.stringify(curStatus));
+            }
+
+            // 笔记
+            var targetNotesKey = 'user_guest_' + ch.id + '_' + subject.storageSuffix + '_notes';
+            var curNotes = {};
+            try { curNotes = JSON.parse(safeStorageGet(targetNotesKey) || '{}'); } catch (e) {}
+            var srcNotesCandidates = [];
+            if (srcPrefix) srcNotesCandidates.push(srcPrefix + ch.id + '_' + subject.storageSuffix + '_notes');
+            if (includeLegacyUnprefixed) srcNotesCandidates.push(ch.id + '_' + subject.storageSuffix + '_notes');
+            srcNotesCandidates.forEach(function (nk) {
+              var nVal = safeStorageGet(nk);
+              if (nVal) {
+                try {
+                  var nobj = JSON.parse(nVal);
+                  Object.keys(nobj).forEach(function (qk) {
+                    if (!curNotes[qk] && nobj[qk]) curNotes[qk] = nobj[qk];
+                  });
+                } catch (e) {}
+              }
+            });
+            if (Object.keys(curNotes).length > 0) {
+              safeStorageSet(tmpPrefix + targetNotesKey, JSON.stringify(curNotes));
+            }
+
+            // SM-2
+            var targetSm2Key = 'user_guest_sm2_' + subject.id + '_' + ch.id;
+            var curSm2 = {};
+            try { curSm2 = JSON.parse(safeStorageGet(targetSm2Key) || '{}'); } catch (e) {}
+            var srcSm2Candidates = [];
+            if (srcPrefix) srcSm2Candidates.push(srcPrefix + 'sm2_' + subject.id + '_' + ch.id);
+            if (includeLegacyUnprefixed) srcSm2Candidates.push('sm2_' + subject.id + '_' + ch.id);
+            srcSm2Candidates.forEach(function (smk) {
+              var smVal = safeStorageGet(smk);
+              if (smVal) {
+                try {
+                  var smObj = JSON.parse(smVal);
+                  Object.keys(smObj).forEach(function (qk) {
+                    var sItem = smObj[qk];
+                    var cItem = curSm2[qk];
+                    if (!cItem || (sItem && sItem.updatedAt && (!cItem.updatedAt || sItem.updatedAt > cItem.updatedAt))) {
+                      curSm2[qk] = sItem;
+                    }
+                  });
+                } catch (e) {}
+              }
+            });
+            if (Object.keys(curSm2).length > 0) {
+              safeStorageSet(tmpPrefix + targetSm2Key, JSON.stringify(curSm2));
+            }
+          });
+        });
+
+        // 标注
+        for (var l = 0; l < localStorage.length; l++) {
+          var lk = localStorage.key(l);
+          if (!lk) continue;
+          if (srcPrefix && lk.indexOf(srcPrefix + 'annot_') === 0) {
+            var rawAnnot = safeStorageGet(lk);
+            var annotSub = lk.substring(srcPrefix.length);
+            var tKey = 'user_guest_' + annotSub;
+            if (!safeStorageGet(tKey) && rawAnnot) {
+              safeStorageSet(tmpPrefix + tKey, rawAnnot);
+            }
+          } else if (includeLegacyUnprefixed && lk.indexOf('annot_') === 0 && lk.indexOf('user_') !== 0) {
+            var srcRaw = safeStorageGet(lk);
+            var srcK = normalizeAnnotSrc(lk.substring('annot_'.length));
+            var tK = annotKey(srcK);
+            if (!safeStorageGet(tK) && srcRaw) {
+              safeStorageSet(tmpPrefix + tK, srcRaw);
+            }
+          }
+        }
+
+        // 英语词汇
+        var targetEngKey = 'user_guest_kaoyan_english_vocabulary_v2';
+        var engCandidates = [];
+        if (srcPrefix) engCandidates.push(srcPrefix + 'kaoyan_english_vocabulary_v2');
+        if (includeLegacyUnprefixed) engCandidates.push('kaoyan_english_vocabulary_v2');
+        engCandidates.forEach(function (ek) {
+          var eVal = safeStorageGet(ek);
+          if (eVal) {
+            try {
+              var eObj = JSON.parse(eVal);
+              if (eObj && Array.isArray(eObj.items) && !safeStorageGet(targetEngKey)) {
+                safeStorageSet(tmpPrefix + targetEngKey, eVal);
+              }
+            } catch (e) {}
+          }
+        });
+
+        // UI 偏好
+        var uiKeys = ['ui_filters', 'kaoyan_ui_filters', 'kaoyan_resume', 'kaoyan_subject', 'kaoyan_review_session'];
+        uiKeys.forEach(function (uk) {
+          var targetUk = 'user_guest_' + uk.replace(/^kaoyan_/, '');
+          var cand = [];
+          if (srcPrefix) cand.push(srcPrefix + uk);
+          if (includeLegacyUnprefixed) cand.push(uk);
+          cand.forEach(function (k) {
+            var uVal = safeStorageGet(k);
+            if (uVal && !safeStorageGet(targetUk)) {
+              safeStorageSet(tmpPrefix + targetUk, uVal);
+            }
+          });
+        });
+
+        // 3. 校验临时键并提交写入正式目标键
+        var tmpKeys = [];
+        for (var t = 0; t < localStorage.length; t++) {
+          var tk = localStorage.key(t);
+          if (tk && tk.indexOf(tmpPrefix) === 0) tmpKeys.push(tk);
+        }
+        tmpKeys.forEach(function (tk) {
+          var actualTargetKey = tk.substring(tmpPrefix.length);
+          var content = safeStorageGet(tk);
+          if (content !== null) {
+            safeStorageSet(actualTargetKey, content);
+          }
+          safeStorageRemove(tk); // 清理临时键
+        });
+
+        // 4. 源键严格只读保留，禁止 removeItem(sourceKey)
+        // 5. 写入幂等完成标记
+        safeStorageSet('kaoyan_migration_idempotent_v2', JSON.stringify({
+          schemaVersion: 2,
+          completedAt: new Date().toISOString(),
+          sourceUid: sourceUid || 'legacy_unprefixed',
+          checksum: fullBackup.checksum
+        }));
+
+        loadAnnotations();
+      } catch (err) {
+        console.error('[migration] 执行数据迁移失败，执行回滚:', err);
+        // 清理所有残留临时键
+        for (var r = 0; r < localStorage.length; r++) {
+          var rk = localStorage.key(r);
+          if (rk && rk.indexOf(tmpPrefix) === 0) safeStorageRemove(rk);
+        }
+      }
+    }
+
+    // ===== 完整学习记录导出与导入 =====
+    async function exportFullStudyBackup(isSilentSnapshot) {
+      var payload = {
+        statuses: {},
+        notes: {},
+        annotations: {},
+        sm2: {},
+        qBad: {},
+        sBad: {},
+        resume: safeStorageGet('user_guest_kaoyan_resume') || null,
+        english: safeStorageGet('user_guest_kaoyan_english_vocabulary_v2') || null,
+        uiPreferences: {
+          filters: safeStorageGet('user_guest_ui_filters') || null,
+          subject: safeStorageGet('user_guest_kaoyan_subject') || null,
+          mathSolutionPref: safeStorageGet('user_guest_math_ui_solution') || null,
+          proSolutionPref: safeStorageGet('user_guest_professional_ui_solution') || null,
+          reviewSession: safeStorageGet('user_guest_kaoyan_review_session') || null
+        }
+      };
+
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (!k || k.indexOf('user_guest_') !== 0) continue;
+        var val = safeStorageGet(k);
+        if (!val) continue;
+        if (k.endsWith('_status')) payload.statuses[k] = val;
+        else if (k.endsWith('_notes')) payload.notes[k] = val;
+        else if (k.indexOf('_annot_') !== -1) payload.annotations[k] = val;
+        else if (k.indexOf('_sm2_') !== -1) payload.sm2[k] = val;
+        else if (k.endsWith('_qbad')) payload.qBad[k] = val;
+        else if (k.endsWith('_sbad')) payload.sBad[k] = val;
+      }
+
+      var exportObj = {
+        schemaVersion: 2,
+        appVersion: '2.1.0',
+        exportedAt: new Date().toISOString(),
+        sourceOrigin: window.location.origin,
+        checksumAlgorithm: 'SHA-256',
+        checksum: '',
+        payload: payload
+      };
+
+      var payloadStr = JSON.stringify(payload);
+      exportObj.checksum = await computeSha256(payloadStr);
+      var jsonStr = JSON.stringify(exportObj, null, 2);
+
+      if (isSilentSnapshot) {
+        safeStorageSet('kaoyan_backup_before_overwrite_' + Date.now(), jsonStr);
+        return jsonStr;
+      }
+
+      // 下载文件 kaoyan-tiku-backup-YYYY-MM-DD.json
+      var blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+      var d = new Date();
+      var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      var filename = 'kaoyan-tiku-backup-' + dateStr + '.json';
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+    }
+
+    var _pendingImportObj = null;
+    async function handleBackupFileSelected(file) {
+      if (!file) return;
+      try {
+        var text = await file.text();
+        var data = JSON.parse(text);
+        if (!data || typeof data !== 'object' || !data.payload) {
+          alert('文件格式错误：未检测到合法的题库备份数据');
+          return;
+        }
+        if (data.schemaVersion && data.schemaVersion > 2) {
+          alert('该备份来自更新版本的题库 (schemaVersion: ' + data.schemaVersion + ')，当前版本可能无法完全解析');
+        }
+        if (data.checksum && data.checksumAlgorithm === 'SHA-256') {
+          var calcChecksum = await computeSha256(JSON.stringify(data.payload));
+          if (calcChecksum !== data.checksum) {
+            console.warn('[import] 校验码不匹配', calcChecksum, data.checksum);
+          }
+        }
+        _pendingImportObj = data;
+
+        // 计算导入概览
+        var p = data.payload;
+        var statusCount = Object.keys(p.statuses || {}).length;
+        var notesCount = Object.keys(p.notes || {}).length;
+        var annotCount = Object.keys(p.annotations || {}).length;
+        var sm2Count = Object.keys(p.sm2 || {}).length;
+        var englishCount = 0;
+        try {
+          var engObj = typeof p.english === 'string' ? JSON.parse(p.english) : p.english;
+          if (engObj && Array.isArray(engObj.items)) englishCount = engObj.items.length;
+        } catch (e) {}
+
+        var summaryEl = document.getElementById('backupImportSummary');
+        if (summaryEl) {
+          summaryEl.innerHTML = '<b>备份导出时间：</b>' + (data.exportedAt || '未知') + '<br>' +
+            '<b>包含数据项：</b><br>' +
+            '• 章节进度记录：' + statusCount + ' 份<br>' +
+            '• 题目笔记记录：' + notesCount + ' 份<br>' +
+            '• 图片手绘标注：' + annotCount + ' 处<br>' +
+            '• SM-2 复习规划：' + sm2Count + ' 份<br>' +
+            '• 英语词汇记录：' + englishCount + ' 词';
+        }
+
+        var modal = document.getElementById('backupImportModal');
+        if (modal) {
+          modal.style.display = 'flex';
+          modal.hidden = false;
+        }
+      } catch (err) {
+        alert('读取备份文件失败：' + (err.message || err));
+      }
+    }
+
+    async function applyImportPayload(mode) {
+      var modal = document.getElementById('backupImportModal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.hidden = true;
+      }
+      if (!_pendingImportObj || !_pendingImportObj.payload) return;
+      var p = _pendingImportObj.payload;
+
+      if (mode === 'overwrite') {
+        // 覆盖前必须先自动生成一份当前数据备份并可供下载
+        await exportFullStudyBackup(true);
+        // 覆盖写入
+        if (p.statuses) Object.keys(p.statuses).forEach(function (k) { safeStorageSet(k, p.statuses[k]); });
+        if (p.notes) Object.keys(p.notes).forEach(function (k) { safeStorageSet(k, p.notes[k]); });
+        if (p.annotations) Object.keys(p.annotations).forEach(function (k) { safeStorageSet(k, p.annotations[k]); });
+        if (p.sm2) Object.keys(p.sm2).forEach(function (k) { safeStorageSet(k, p.sm2[k]); });
+        if (p.qBad) Object.keys(p.qBad).forEach(function (k) { safeStorageSet(k, p.qBad[k]); });
+        if (p.sBad) Object.keys(p.sBad).forEach(function (k) { safeStorageSet(k, p.sBad[k]); });
+        if (p.resume) safeStorageSet('user_guest_kaoyan_resume', typeof p.resume === 'string' ? p.resume : JSON.stringify(p.resume));
+        if (p.english) safeStorageSet('user_guest_kaoyan_english_vocabulary_v2', typeof p.english === 'string' ? p.english : JSON.stringify(p.english));
+        if (p.uiPreferences) {
+          if (p.uiPreferences.filters) safeStorageSet('user_guest_ui_filters', p.uiPreferences.filters);
+          if (p.uiPreferences.subject) safeStorageSet('user_guest_kaoyan_subject', p.uiPreferences.subject);
+        }
+      } else {
+        // 合并模式 (merge)：仅填补缺失或合并新词，不覆盖已有进度
+        if (p.statuses) {
+          Object.keys(p.statuses).forEach(function (k) {
+            var cur = {};
+            try { cur = JSON.parse(safeStorageGet(k) || '{}'); } catch (e) {}
+            var imp = {};
+            try { imp = JSON.parse(p.statuses[k] || '{}'); } catch (e) {}
+            var changed = false;
+            Object.keys(imp).forEach(function (idx) {
+              if (cur[idx] === undefined && imp[idx]) { cur[idx] = imp[idx]; changed = true; }
+            });
+            if (changed) safeStorageSet(k, JSON.stringify(cur));
+          });
+        }
+        if (p.notes) {
+          Object.keys(p.notes).forEach(function (k) {
+            var cur = {};
+            try { cur = JSON.parse(safeStorageGet(k) || '{}'); } catch (e) {}
+            var imp = {};
+            try { imp = JSON.parse(p.notes[k] || '{}'); } catch (e) {}
+            var changed = false;
+            Object.keys(imp).forEach(function (qk) {
+              if (!cur[qk] && imp[qk]) { cur[qk] = imp[qk]; changed = true; }
+            });
+            if (changed) safeStorageSet(k, JSON.stringify(cur));
+          });
+        }
+        if (p.annotations) {
+          Object.keys(p.annotations).forEach(function (k) {
+            if (!safeStorageGet(k)) safeStorageSet(k, p.annotations[k]);
+          });
+        }
+        if (p.sm2) {
+          Object.keys(p.sm2).forEach(function (k) {
+            var cur = {};
+            try { cur = JSON.parse(safeStorageGet(k) || '{}'); } catch (e) {}
+            var imp = {};
+            try { imp = JSON.parse(p.sm2[k] || '{}'); } catch (e) {}
+            var changed = false;
+            Object.keys(imp).forEach(function (qk) {
+              var sItem = imp[qk];
+              var cItem = cur[qk];
+              if (!cItem || (sItem && sItem.updatedAt && (!cItem.updatedAt || sItem.updatedAt > cItem.updatedAt))) {
+                cur[qk] = sItem;
+                changed = true;
+              }
+            });
+            if (changed) safeStorageSet(k, JSON.stringify(cur));
+          });
+        }
+        if (p.english) {
+          try {
+            var impEng = typeof p.english === 'string' ? JSON.parse(p.english) : p.english;
+            var curEng = JSON.parse(safeStorageGet('user_guest_kaoyan_english_vocabulary_v2') || '{"items":[]}');
+            if (impEng && Array.isArray(impEng.items)) {
+              var curIds = new Set(curEng.items.map(function (it) { return it.id; }));
+              var changed = false;
+              impEng.items.forEach(function (it) {
+                if (!curIds.has(it.id)) { curEng.items.push(it); changed = true; }
+              });
+              if (changed) safeStorageSet('user_guest_kaoyan_english_vocabulary_v2', JSON.stringify(curEng));
+            }
+          } catch (e) {}
+        }
+      }
+
+      loadAnnotations();
+      await initAppSession();
+      alert(mode === 'overwrite' ? '已成功覆盖恢复学习记录！' : '已成功合并学习记录！');
     }
     function saveStatuses() {
       saveIndexedObj(statuses,
@@ -4228,6 +4691,56 @@ ${cardsHTML}
       }
     }, { passive: false });
 
+    function bindBackupUi() {
+      var btnExport = document.getElementById('btnBackupExport');
+      var btnImport = document.getElementById('btnBackupImport');
+      var fileInput = document.getElementById('inputBackupFile');
+      var btnCancel = document.getElementById('btnCancelImport');
+      var btnMerge = document.getElementById('btnMergeImport');
+      var btnOverwrite = document.getElementById('btnOverwriteImport');
+
+      if (btnExport && !btnExport.dataset.bound) {
+        btnExport.dataset.bound = '1';
+        btnExport.onclick = function () {
+          void exportFullStudyBackup(false);
+        };
+      }
+      if (btnImport && fileInput && !btnImport.dataset.bound) {
+        btnImport.dataset.bound = '1';
+        btnImport.onclick = function () {
+          fileInput.value = '';
+          fileInput.click();
+        };
+        fileInput.onchange = function (e) {
+          if (e.target.files && e.target.files[0]) {
+            void handleBackupFileSelected(e.target.files[0]);
+          }
+        };
+      }
+      if (btnCancel && !btnCancel.dataset.bound) {
+        btnCancel.dataset.bound = '1';
+        btnCancel.onclick = function () {
+          var modal = document.getElementById('backupImportModal');
+          if (modal) {
+            modal.style.display = 'none';
+            modal.hidden = true;
+          }
+        };
+      }
+      if (btnMerge && !btnMerge.dataset.bound) {
+        btnMerge.dataset.bound = '1';
+        btnMerge.onclick = function () {
+          void applyImportPayload('merge');
+        };
+      }
+      if (btnOverwrite && !btnOverwrite.dataset.bound) {
+        btnOverwrite.dataset.bound = '1';
+        btnOverwrite.onclick = function () {
+          void applyImportPayload('overwrite');
+        };
+      }
+    }
+
     // ===== 初始化流程 =====
     async function initAppSession() {
       const myToken = ++appBootToken;
@@ -4236,11 +4749,6 @@ ${cardsHTML}
       curSubject = SUBJECTS.find(function (s) { return s.id === curSubjectId; });
       CHAPTERS = curSubject.chapters;
 
-      migrateLegacyLocalStatuses();
-      // 先水合云端状态，再跑迁移：登录用户的 status 已回填本地后，
-      // 迁移才能基于完整数据生成 SM-2 排期（guest 首屏先置 flag 会让登录用户迁移永久失效）。
-      await hydrateCloudStatuses();
-      if (myToken !== appBootToken) return;
       migrateAllSm2();
 
       var resume = loadResume(curSubjectId);
@@ -4275,7 +4783,8 @@ ${cardsHTML}
       localAppBooted = true;
 
       try {
-        migrateGuestAndLegacyUi(); // 兼容旧版本本地键
+        bindBackupUi();
+        await migrateHistoricalUserData(); // 兼容旧版本本地键与历史命名空间安全迁移
         loadAnnotations();
         await initAppSession();
 
