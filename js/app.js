@@ -1329,24 +1329,51 @@
       }
     }
 
+    function closeAllWorkbenchPanels(except) {
+      if (except !== 'dashboard' && dashboardOpen) {
+        dashboardOpen = false;
+        var dp = document.getElementById('dashboardPanel');
+        if (dp) dp.style.display = 'none';
+        var db = document.getElementById('btnDashboard');
+        if (db) db.innerHTML = '全局进度<span class="sol-key">V</span>';
+        showDashboardBackBtn(false);
+      }
+      if (except !== 'wrongBook' && wrongBookOpen) {
+        wrongBookOpen = false;
+        var wp = document.getElementById('wrongBookPanel');
+        if (wp) wp.style.display = 'none';
+        var wb = document.getElementById('btnWrongBook');
+        if (wb) wb.innerHTML = '错题本<span class="sol-key">B</span>';
+        showWrongBookReturnBtn(false);
+      }
+      if (except !== 'sm2' && sm2PanelOpen) {
+        sm2PanelOpen = false;
+        var sp = document.getElementById('sm2Panel');
+        if (sp) sp.style.display = 'none';
+        var sb = document.getElementById('btnSm2PanelSidebar');
+        if (sb) sb.innerHTML = 'SM-2复习<span class="sol-key">R</span>';
+      }
+      if (except !== 'english') {
+        if (typeof window.closeEnglishVocabulary === 'function') {
+          window.closeEnglishVocabulary();
+        }
+      }
+    }
+    window.closeAllWorkbenchPanels = closeAllWorkbenchPanels;
+    window.renderTitle = renderTitle;
+
     function toggleDashboard() {
       dashboardOpen = !dashboardOpen;
       var panel = document.getElementById('dashboardPanel');
       var content = document.getElementById('mainAreaContent');
       var btn = document.getElementById('btnDashboard');
       if (dashboardOpen) {
+        closeAllWorkbenchPanels('dashboard');
         renderDashboardOverview();
         panel.style.display = '';
         content.style.display = 'none';
         setPanelTitle('全局学习进度');
         btn.innerHTML = '返回章节<span class="sol-key">V</span>';
-        showWrongBookReturnBtn(false); // 打开全局进度时隐藏错题本返回按钮
-        // 若错题本同时打开则关闭，避免两个面板重叠
-        if (wrongBookOpen) {
-          wrongBookOpen = false;
-          document.getElementById('wrongBookPanel').style.display = 'none';
-          document.getElementById('btnWrongBook').innerHTML = '错题本<span class="sol-key">B</span>';
-        }
       } else {
         panel.style.display = 'none';
         content.style.display = '';
@@ -1667,18 +1694,15 @@
     function toggleWrongBook() {
       wrongBookOpen = !wrongBookOpen;
       const panel = document.getElementById('wrongBookPanel');
-      const dashPanel = document.getElementById('dashboardPanel');
       const content = document.getElementById('mainAreaContent');
       const btn = document.getElementById('btnWrongBook');
       if (wrongBookOpen) {
+        closeAllWorkbenchPanels('wrongBook');
         renderWrongBook();
-        dashPanel.style.display = 'none';
         content.style.display = 'none';
         panel.style.display = '';
         btn.innerHTML = '返回章节<span class="sol-key">B</span>';
-        showWrongBookReturnBtn(false); // 打开错题本面板本身时不显示返回按钮
-        // 关闭仪表盘
-        if (dashboardOpen) { dashboardOpen = false; showDashboardBackBtn(false); document.getElementById('btnDashboard').innerHTML = '全局进度<span class="sol-key">V</span>'; }
+        showWrongBookReturnBtn(false);
       } else {
         panel.style.display = 'none';
         content.style.display = '';
@@ -4030,19 +4054,14 @@ ${cardsHTML}
 
     function toggleSm2Panel() {
       if (!sm2PanelOpen) {
+        closeAllWorkbenchPanels('sm2');
         var panel = document.getElementById('sm2Panel');
         var mainContent = document.getElementById('mainAreaContent');
-        var dashboard = document.getElementById('dashboardPanel');
-        var wrongBook = document.getElementById('wrongBookPanel');
-        if (dashboard) dashboard.style.display = 'none';
-        if (wrongBook) wrongBook.style.display = 'none';
-        dashboardOpen = false;
-        wrongBookOpen = false;
-        document.getElementById('btnDashboard').innerHTML = '全局进度<span class="sol-key">V</span>';
-        document.getElementById('btnWrongBook').innerHTML = '错题本<span class="sol-key">B</span>';
+        var btn = document.getElementById('btnSm2PanelSidebar');
         panel.style.display = 'block';
         mainContent.style.display = 'none';
         setPanelTitle('间隔重复复习');
+        if (btn) btn.innerHTML = '返回章节<span class="sol-key">R</span>';
         sm2PanelOpen = true;
         renderSm2Panel();
       } else {
@@ -4052,8 +4071,12 @@ ${cardsHTML}
 
     function closeSm2Panel() {
       sm2PanelOpen = false;
-      document.getElementById('sm2Panel').style.display = 'none';
-      document.getElementById('mainAreaContent').style.display = '';
+      var panel = document.getElementById('sm2Panel');
+      if (panel) panel.style.display = 'none';
+      var mainContent = document.getElementById('mainAreaContent');
+      if (mainContent) mainContent.style.display = '';
+      var btn = document.getElementById('btnSm2PanelSidebar');
+      if (btn) btn.innerHTML = 'SM-2复习<span class="sol-key">R</span>';
       setPanelTitle('');
       renderTitle();
     }

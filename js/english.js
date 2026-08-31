@@ -54,22 +54,31 @@
       '</div><div><button class="english-add-under" data-add-under="' + item.id + '">在这条词汇下添加</button><button class="english-delete" data-delete="' + item.id + '">删除这条词汇</button></div></article>';
   }
   function open() {
-    document.getElementById('mainAreaContent').style.display = 'none';
-    document.getElementById('dashboardPanel').style.display = 'none';
-    document.getElementById('wrongBookPanel').style.display = 'none';
-    document.getElementById('sm2Panel').style.display = 'none';
-    document.querySelector('.app-layout').classList.add('english-mode');
+    if (typeof window.closeAllWorkbenchPanels === 'function') {
+      window.closeAllWorkbenchPanels('english');
+    }
+    var content = document.getElementById('mainAreaContent');
+    if (content) content.style.display = 'none';
+    var layout = document.querySelector('.app-layout');
+    if (layout) layout.classList.add('english-mode');
     panel.hidden = false;
     button.textContent = '返回刷题';
     render();
   }
   window.openEnglishVocabulary = open;
+
   function close() {
     panel.hidden = true;
-    document.querySelector('.app-layout').classList.remove('english-mode');
-    document.getElementById('mainAreaContent').style.display = '';
+    var layout = document.querySelector('.app-layout');
+    if (layout) layout.classList.remove('english-mode');
+    var content = document.getElementById('mainAreaContent');
+    if (content) content.style.display = '';
     button.textContent = '英语词汇';
+    if (typeof window.renderTitle === 'function') {
+      window.renderTitle();
+    }
   }
+  window.closeEnglishVocabulary = close;
   button.addEventListener('click', function () { if (panel.hidden) open(); else close(); });
   panel.addEventListener('click', function (event) {
     var target = event.target.closest('button'); if (!target) return;
