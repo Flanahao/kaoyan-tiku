@@ -259,6 +259,11 @@
     if (Array.isArray(window.LILIN880_CHAPTERS)) {
       window.LILIN880_CHAPTERS.forEach(function (chapter) { SHU1_CHAPTERS.push(chapter); });
     }
+    if (Array.isArray(window.LILIN880_LATEX_CHAPTERS)) {
+      window.LILIN880_LATEX_CHAPTERS.forEach(function (chapter) {
+        SHU1_CHAPTERS.push(chapter);
+      });
+    }
     // ===== 科目（subject）数据模型：数学 =====
     const SUBJECTS = [
       {
@@ -269,6 +274,7 @@
           { wb: '强化36讲', label: '强化36讲' },
           { wb: '1000题', label: '1000题' },
           { wb: '李林880', label: '李林880' },
+          { wb: '李林880·LaTeX', label: '李林880·LaTeX' },
           { wb: '李范全书', label: '李范全书' }
         ],
         subjOrder: ['高数', '线代', '概率论'],

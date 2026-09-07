@@ -1,0 +1,353 @@
+{
+  "title": "李林考研数学精讲精练880题（数学一）全量结构化题库",
+  "source": "研砖 Yanbrick 考研题库中枢",
+  "total_questions": 1125,
+  "level_summary": {
+    "基础题": 540,
+    "综合题": 541,
+    "拓展题": 44
+  },
+  "type_summary": {
+    "选择题": 335,
+    "填空题": 287,
+    "解答题": 503
+  },
+  "disciplines": {
+    "高等数学": {
+      "chapters_count": 9,
+      "questions_count": 660
+    },
+    "线性代数": {
+      "chapters_count": 6,
+      "questions_count": 262
+    },
+    "概率论与数理统计": {
+      "chapters_count": 8,
+      "questions_count": 203
+    }
+  },
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "discipline": "高等数学",
+      "chapter_name": "第1章 函数、极限、连续",
+      "total": 56,
+      "basic_count": 20,
+      "comprehensive_count": 34,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 28,
+        "填空题": 9,
+        "解答题": 19
+      }
+    },
+    {
+      "chapter_number": 2,
+      "discipline": "高等数学",
+      "chapter_name": "第2章 一元函数微分学",
+      "total": 107,
+      "basic_count": 53,
+      "comprehensive_count": 51,
+      "expanded_count": 3,
+      "types": {
+        "选择题": 44,
+        "填空题": 25,
+        "解答题": 38
+      }
+    },
+    {
+      "chapter_number": 3,
+      "discipline": "高等数学",
+      "chapter_name": "第3章 一元函数积分学",
+      "total": 127,
+      "basic_count": 49,
+      "comprehensive_count": 74,
+      "expanded_count": 4,
+      "types": {
+        "选择题": 32,
+        "填空题": 33,
+        "解答题": 62
+      }
+    },
+    {
+      "chapter_number": 4,
+      "discipline": "高等数学",
+      "chapter_name": "第4章 空间解析几何与向量代数",
+      "total": 25,
+      "basic_count": 24,
+      "comprehensive_count": 0,
+      "expanded_count": 1,
+      "types": {
+        "选择题": 3,
+        "填空题": 12,
+        "解答题": 10
+      }
+    },
+    {
+      "chapter_number": 5,
+      "discipline": "高等数学",
+      "chapter_name": "第5章 多元函数微分学",
+      "total": 68,
+      "basic_count": 34,
+      "comprehensive_count": 33,
+      "expanded_count": 1,
+      "types": {
+        "选择题": 21,
+        "填空题": 22,
+        "解答题": 25
+      }
+    },
+    {
+      "chapter_number": 6,
+      "discipline": "高等数学",
+      "chapter_name": "第6章 重积分",
+      "total": 78,
+      "basic_count": 37,
+      "comprehensive_count": 38,
+      "expanded_count": 3,
+      "types": {
+        "选择题": 11,
+        "填空题": 21,
+        "解答题": 46
+      }
+    },
+    {
+      "chapter_number": 7,
+      "discipline": "高等数学",
+      "chapter_name": "第7章 微分方程",
+      "total": 65,
+      "basic_count": 29,
+      "comprehensive_count": 34,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 14,
+        "填空题": 21,
+        "解答题": 30
+      }
+    },
+    {
+      "chapter_number": 8,
+      "discipline": "高等数学",
+      "chapter_name": "第8章 无穷级数",
+      "total": 67,
+      "basic_count": 28,
+      "comprehensive_count": 37,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 23,
+        "填空题": 12,
+        "解答题": 32
+      }
+    },
+    {
+      "chapter_number": 9,
+      "discipline": "高等数学",
+      "chapter_name": "第9章 多元函数积分学",
+      "total": 67,
+      "basic_count": 29,
+      "comprehensive_count": 36,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 8,
+        "填空题": 16,
+        "解答题": 43
+      }
+    },
+    {
+      "chapter_number": 10,
+      "discipline": "线性代数",
+      "chapter_name": "第10章 行列式",
+      "total": 32,
+      "basic_count": 17,
+      "comprehensive_count": 13,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 6,
+        "填空题": 17,
+        "解答题": 9
+      }
+    },
+    {
+      "chapter_number": 11,
+      "discipline": "线性代数",
+      "chapter_name": "第11章 矩阵",
+      "total": 47,
+      "basic_count": 28,
+      "comprehensive_count": 17,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 13,
+        "填空题": 17,
+        "解答题": 17
+      }
+    },
+    {
+      "chapter_number": 12,
+      "discipline": "线性代数",
+      "chapter_name": "第12章 向量",
+      "total": 36,
+      "basic_count": 17,
+      "comprehensive_count": 18,
+      "expanded_count": 1,
+      "types": {
+        "选择题": 14,
+        "填空题": 6,
+        "解答题": 16
+      }
+    },
+    {
+      "chapter_number": 13,
+      "discipline": "线性代数",
+      "chapter_name": "第13章 线性方程组",
+      "total": 44,
+      "basic_count": 20,
+      "comprehensive_count": 21,
+      "expanded_count": 3,
+      "types": {
+        "选择题": 21,
+        "填空题": 5,
+        "解答题": 18
+      }
+    },
+    {
+      "chapter_number": 14,
+      "discipline": "线性代数",
+      "chapter_name": "第14章 特征值与特征向量",
+      "total": 52,
+      "basic_count": 20,
+      "comprehensive_count": 30,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 16,
+        "填空题": 7,
+        "解答题": 29
+      }
+    },
+    {
+      "chapter_number": 15,
+      "discipline": "线性代数",
+      "chapter_name": "第15章 二次型",
+      "total": 51,
+      "basic_count": 18,
+      "comprehensive_count": 27,
+      "expanded_count": 6,
+      "types": {
+        "选择题": 23,
+        "填空题": 5,
+        "解答题": 23
+      }
+    },
+    {
+      "chapter_number": 16,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第16章 随机事件和概率",
+      "total": 25,
+      "basic_count": 15,
+      "comprehensive_count": 9,
+      "expanded_count": 1,
+      "types": {
+        "选择题": 9,
+        "填空题": 11,
+        "解答题": 5
+      }
+    },
+    {
+      "chapter_number": 17,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第17章 一维随机变量及其分布",
+      "total": 32,
+      "basic_count": 18,
+      "comprehensive_count": 14,
+      "expanded_count": 0,
+      "types": {
+        "选择题": 10,
+        "填空题": 13,
+        "解答题": 9
+      }
+    },
+    {
+      "chapter_number": 18,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第18章 多维随机变量及其分布",
+      "total": 36,
+      "basic_count": 16,
+      "comprehensive_count": 17,
+      "expanded_count": 3,
+      "types": {
+        "选择题": 8,
+        "填空题": 6,
+        "解答题": 22
+      }
+    },
+    {
+      "chapter_number": 19,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第19章 随机变量的数字特征",
+      "total": 46,
+      "basic_count": 19,
+      "comprehensive_count": 25,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 16,
+        "填空题": 13,
+        "解答题": 17
+      }
+    },
+    {
+      "chapter_number": 20,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第20章 大数定律与中心极限定理",
+      "total": 9,
+      "basic_count": 9,
+      "comprehensive_count": 0,
+      "expanded_count": 0,
+      "types": {
+        "选择题": 3,
+        "填空题": 4,
+        "解答题": 2
+      }
+    },
+    {
+      "chapter_number": 21,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第21章 数理统计的基本概念",
+      "total": 23,
+      "basic_count": 10,
+      "comprehensive_count": 13,
+      "expanded_count": 0,
+      "types": {
+        "选择题": 10,
+        "填空题": 7,
+        "解答题": 6
+      }
+    },
+    {
+      "chapter_number": 22,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第22章 参数估计",
+      "total": 26,
+      "basic_count": 24,
+      "comprehensive_count": 0,
+      "expanded_count": 2,
+      "types": {
+        "选择题": 0,
+        "填空题": 3,
+        "解答题": 23
+      }
+    },
+    {
+      "chapter_number": 23,
+      "discipline": "概率论与数理统计",
+      "chapter_name": "第23章 假设检验",
+      "total": 6,
+      "basic_count": 6,
+      "comprehensive_count": 0,
+      "expanded_count": 0,
+      "types": {
+        "选择题": 2,
+        "填空题": 2,
+        "解答题": 2
+      }
+    }
+  ]
+}

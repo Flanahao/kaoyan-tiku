@@ -1,0 +1,23 @@
+{
+  "items": {
+    "1_image_question": "PASS",
+    "2_switch_latex": "PASS",
+    "3_chapter1_56_questions": "PASS",
+    "4_katex_stem_rendered": "PASS",
+    "5_options_rendered": "PASS",
+    "6_space_toggle_solution": "PASS",
+    "7_solution_analysis_rendered": "PASS",
+    "8_subjective_solution": "PASS",
+    "9_status_persistence": "PASS",
+    "10_wrongbook_jump": "PASS",
+    "11_sm2_support": "PASS",
+    "12_notes_persistence": "PASS",
+    "13_export_latex_html": "PASS",
+    "14_backup_import_export": "PASS",
+    "15_switch_back_to_image": "PASS",
+    "16_mobile_no_overflow": "PASS"
+  },
+  "consoleErrors": [],
+  "failedRequests": [],
+  "passedAll": true
+}

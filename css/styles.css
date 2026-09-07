@@ -3441,3 +3441,108 @@ body {
       text-align: center;
       object-fit: contain;
     }
+
+    /* ===== LaTeX 内容源 ===== */
+    #latexQuestion,
+    #latexSolution {
+      width: 100%;
+      color: var(--text);
+      line-height: 1.8;
+      word-break: break-word;
+    }
+
+    .latex-stem {
+      font-size: 17px;
+      margin-bottom: 18px;
+    }
+
+    .latex-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 12px 0 20px;
+    }
+
+    .latex-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg, #ffffff);
+    }
+
+    .latex-option-key {
+      flex: 0 0 auto;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .latex-option-body,
+    .latex-analysis,
+    .latex-section-body {
+      min-width: 0;
+    }
+
+    .latex-answer {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      color: #389e0d;
+      background: #f6ffed;
+      border: 1px solid #b7eb8f;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .latex-solution-section {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-main, var(--card-bg, #f8faff));
+    }
+
+    .latex-solution-section h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .latex-solution-section ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .latex-wrong-option + .latex-wrong-option {
+      margin-top: 8px;
+    }
+
+    /* LaTeX 题目没有图片质量标记，也不显示图片标注工具提示 */
+    #mainAreaContent.latex-mode .btn-qbad-toggle,
+    #mainAreaContent.latex-mode .btn-sbad-toggle,
+    #mainAreaContent.latex-mode #qBadWarning,
+    #mainAreaContent.latex-mode #sBadWarning {
+      display: none !important;
+    }
+
+    #mainAreaContent.latex-mode #qAnnotWrap,
+    #mainAreaContent.latex-mode #solutionImgs {
+      display: none !important;
+    }
+
+    #mainAreaContent.latex-mode #latexQuestion,
+    #mainAreaContent.latex-mode #latexSolution {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .latex-stem {
+        font-size: 16px;
+      }
+
+      .latex-option {
+        padding: 8px 10px;
+      }
+    }
