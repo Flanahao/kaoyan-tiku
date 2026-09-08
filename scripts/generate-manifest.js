@@ -30,6 +30,7 @@ function runScript(relPath) {
 }
 
 runScript('js/lilin880-chapters.js');
+runScript('js/lyf900-chapters.js');
 runScript('js/professional-chapters.js');
 runScript('js/chapters.js');
 

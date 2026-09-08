@@ -2492,6 +2492,16 @@
 
       // 从 Manifest 中获取该题目的真实解析切片文件名数组（精准按需加载，彻底杜绝 404）
       const manifestList = (window.SOLUTION_MANIFEST && window.SOLUTION_MANIFEST[base]);
+      if (window.SOLUTION_MANIFEST && (!manifestList || manifestList.length === 0)) {
+        const wrap = document.createElement('div');
+        wrap.className = 'annot-wrapper';
+        const img = document.createElement('img');
+        img.className = 'solution-img';
+        wrap.appendChild(img);
+        container.appendChild(wrap);
+        markImageMissing(img, '解析图片暂缺，请反馈题号');
+        return;
+      }
       const fileList = Array.isArray(manifestList) ? manifestList : ['_solution.png'];
 
       fileList.forEach(function (sliceFilename, idx) {
