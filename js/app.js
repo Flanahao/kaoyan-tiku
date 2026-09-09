@@ -560,6 +560,10 @@
         sBad: {},
         resume: safeStorageGet('user_guest_kaoyan_resume') || null,
         english: safeStorageGet('user_guest_kaoyan_english_vocabulary_v2') || null,
+        studyAnalytics: {
+          settings: safeStorageGet('user_guest_study_dashboard_settings_v1') || null,
+          events: safeStorageGet('user_guest_study_events_v1') || null
+        },
         uiPreferences: {
           filters: safeStorageGet('user_guest_ui_filters') || null,
           subject: safeStorageGet('user_guest_kaoyan_subject') || null,
@@ -583,8 +587,8 @@
       }
 
       var exportObj = {
-        schemaVersion: 2,
-        appVersion: '2.1.0',
+        schemaVersion: 3,
+        appVersion: '2.2.0',
         exportedAt: new Date().toISOString(),
         sourceOrigin: window.location.origin,
         checksumAlgorithm: 'SHA-256',
@@ -626,7 +630,7 @@
           alert('文件格式错误：未检测到合法的题库备份数据');
           return;
         }
-        if (data.schemaVersion && data.schemaVersion > 2) {
+        if (data.schemaVersion && data.schemaVersion > 3) {
           alert('该备份来自更新版本的题库 (schemaVersion: ' + data.schemaVersion + ')，当前版本可能无法完全解析');
         }
         if (data.checksum && data.checksumAlgorithm === 'SHA-256') {
@@ -649,6 +653,14 @@
           if (engObj && Array.isArray(engObj.items)) englishCount = engObj.items.length;
         } catch (e) {}
 
+        var analyticsEventsCount = 0;
+        try {
+          if (p.studyAnalytics && p.studyAnalytics.events) {
+            var evArr = typeof p.studyAnalytics.events === 'string' ? JSON.parse(p.studyAnalytics.events) : p.studyAnalytics.events;
+            if (Array.isArray(evArr)) analyticsEventsCount = evArr.length;
+          }
+        } catch (e) {}
+
         var summaryEl = document.getElementById('backupImportSummary');
         if (summaryEl) {
           summaryEl.innerHTML = '<b>备份导出时间：</b>' + (data.exportedAt || '未知') + '<br>' +
@@ -657,7 +669,8 @@
             '• 题目笔记记录：' + notesCount + ' 份<br>' +
             '• 图片手绘标注：' + annotCount + ' 处<br>' +
             '• SM-2 复习规划：' + sm2Count + ' 份<br>' +
-            '• 英语词汇记录：' + englishCount + ' 词';
+            '• 英语词汇记录：' + englishCount + ' 词' +
+            (analyticsEventsCount > 0 ? ('<br>• 学习行为事件：' + analyticsEventsCount + ' 条') : '');
         }
 
         var modal = document.getElementById('backupImportModal');
@@ -691,6 +704,14 @@
         if (p.sBad) Object.keys(p.sBad).forEach(function (k) { safeStorageSet(k, p.sBad[k]); });
         if (p.resume) safeStorageSet('user_guest_kaoyan_resume', typeof p.resume === 'string' ? p.resume : JSON.stringify(p.resume));
         if (p.english) safeStorageSet('user_guest_kaoyan_english_vocabulary_v2', typeof p.english === 'string' ? p.english : JSON.stringify(p.english));
+        if (p.studyAnalytics) {
+          if (p.studyAnalytics.settings) {
+            safeStorageSet('user_guest_study_dashboard_settings_v1', p.studyAnalytics.settings);
+          }
+          if (p.studyAnalytics.events) {
+            safeStorageSet('user_guest_study_events_v1', p.studyAnalytics.events);
+          }
+        }
         if (p.uiPreferences) {
           if (p.uiPreferences.filters) safeStorageSet('user_guest_ui_filters', p.uiPreferences.filters);
           if (p.uiPreferences.subject) safeStorageSet('user_guest_kaoyan_subject', p.uiPreferences.subject);
@@ -760,10 +781,38 @@
             }
           } catch (e) {}
         }
+        if (p.studyAnalytics) {
+          var settingsKey = 'user_guest_study_dashboard_settings_v1';
+          var eventsKey = 'user_guest_study_events_v1';
+          if (p.studyAnalytics.settings && !safeStorageGet(settingsKey)) {
+            safeStorageSet(settingsKey, p.studyAnalytics.settings);
+          }
+          try {
+            var currentEvents = JSON.parse(safeStorageGet(eventsKey) || '[]');
+            var importedEvents = JSON.parse(p.studyAnalytics.events || '[]');
+            if (!Array.isArray(currentEvents)) currentEvents = [];
+            if (!Array.isArray(importedEvents)) importedEvents = [];
+            var ids = new Set(currentEvents.map(function (item) { return item && item.id; }));
+            importedEvents.forEach(function (item) {
+              if (item && item.id && !ids.has(item.id)) {
+                currentEvents.push(item);
+                ids.add(item.id);
+              }
+            });
+            currentEvents.sort(function (a, b) { return Number(a.ts) - Number(b.ts); });
+            if (currentEvents.length > 10000) currentEvents = currentEvents.slice(-10000);
+            safeStorageSet(eventsKey, JSON.stringify(currentEvents));
+          } catch (error) {
+            console.warn('[import] study analytics merge failed', error);
+          }
+        }
       }
 
       loadAnnotations();
       await initAppSession();
+      if (window.StudyAnalytics && typeof window.StudyAnalytics.render === 'function') {
+        window.StudyAnalytics.render();
+      }
       alert(mode === 'overwrite' ? '已成功覆盖恢复学习记录！' : '已成功合并学习记录！');
     }
     function saveStatuses() {
@@ -1588,6 +1637,11 @@
           if (canvas) drawDonut(canvas, chapters, books[b].label, books[b].subject);
         }
       }, 20);
+
+      if (window.StudyAnalytics &&
+          typeof window.StudyAnalytics.render === 'function') {
+        window.StudyAnalytics.render();
+      }
     }
 
     // 从总进度卡片进入对应书籍时，先切换数据源，再展示该书的章节明细。
@@ -2895,6 +2949,19 @@
       if (togglingOff) { delete statuses[current]; }
       else { statuses[current] = status; }
       saveStatuses(); updateStatusBtns(); renderStats(); renderNav(); updateFilterCounts();
+
+      if (!togglingOff &&
+          window.StudyAnalytics &&
+          typeof window.StudyAnalytics.recordStatus === 'function') {
+        window.StudyAnalytics.recordStatus({
+          subjectId: curSubjectId,
+          chapterId: currentChapterId,
+          idx: current,
+          status: status,
+          source: reviewSession ? 'sm2' : 'mark'
+        });
+      }
+
       const scoreMap = { proficient: 5, familiar: 4, vague: 3, rusty: 2, wrong: 1 };
       const score = scoreMap[status];
       if (reviewSession && !togglingOff && score) {
@@ -4913,6 +4980,8 @@ ${cardsHTML}
         if (!localStorage.getItem(subjectStorageKey())) {
           openSubjectPicker();
         }
+
+        window.dispatchEvent(new Event('kaoyan:ready'));
       } catch (error) {
         localAppBooted = false;
         console.error('[local] initAppSession failed:', error);

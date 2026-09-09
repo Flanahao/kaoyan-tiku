@@ -263,6 +263,64 @@
                     </div>
                   </div>
 
+                  <!-- 学习分析区（倒计时、全站总进度、近14天趋势） -->
+                  <section class="study-insights" id="studyInsights" aria-label="学习分析">
+                    <article class="si-card si-countdown-card">
+                      <div class="si-countdown-copy">
+                        <h3>考研初试倒计时</h3>
+                        <p class="si-quote" id="siCountdownQuote">沉潜笃定，静待花开；乾坤未定，你我皆是黑马！</p>
+                        <button class="si-link" id="siExamDateBtn" type="button">设置考试日期</button>
+                      </div>
+                      <div class="si-countdown-value" aria-live="polite">
+                        <strong id="siCountdownDays">—</strong>
+                        <span>天</span>
+                      </div>
+                    </article>
+
+                    <article class="si-card si-progress-card">
+                      <div class="si-donut" id="siMasteryDonut" role="img" aria-label="全站学习进度">
+                        <div class="si-donut-hole">
+                          <strong id="siProgressPct">0%</strong>
+                          <span>总进度</span>
+                        </div>
+                      </div>
+                      <div class="si-progress-copy">
+                        <h3>全站学习总进度</h3>
+                        <p class="si-muted">数学、专业课题目和英语词汇统一统计</p>
+                        <div class="si-progress-grid">
+                          <div><span>已标记项目</span><strong id="siDoneText">0 / 0</strong></div>
+                          <div><span>熟练掌握</span><strong class="si-mastered" id="siMasteredText">0 项（0%）</strong></div>
+                          <div><span>模糊需复习</span><strong class="si-vague" id="siVagueText">0 项</strong></div>
+                          <div><span>不会错题</span><strong class="si-wrong" id="siWrongText">0 项</strong></div>
+                        </div>
+                        <div class="si-legend" aria-hidden="true">
+                          <span><i class="si-dot si-dot-mastered"></i>熟练</span>
+                          <span><i class="si-dot si-dot-vague"></i>模糊</span>
+                          <span><i class="si-dot si-dot-wrong"></i>不会</span>
+                          <span><i class="si-dot si-dot-unmarked"></i>未标记</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="si-card si-trend-card">
+                      <div class="si-card-header">
+                        <div>
+                          <h3>近 14 天推进趋势</h3>
+                          <p class="si-muted">每日状态标记与 SM-2 评级次数</p>
+                        </div>
+                        <div class="si-chips">
+                          <span id="siTrendTotal">近 14 天累计：0 次</span>
+                          <span id="siTrendAverage">日均：0 次/天</span>
+                        </div>
+                      </div>
+                      <div class="si-chart" id="siTrendChart" role="img" aria-label="近 14 天学习活动柱状图"></div>
+                      <div class="si-chart-axis" id="siTrendAxis" aria-hidden="true"></div>
+                      <p class="si-chart-empty" id="siTrendEmpty" hidden>
+                        设置完成后，状态标记和 SM-2 评级会从当天开始累计。
+                      </p>
+                    </article>
+                  </section>
+
                   <!-- 四个真实统计卡片 -->
                   <div class="db-stat-grid" id="dbStatGrid">
                     <div class="db-stat-card card-due">
@@ -533,6 +591,8 @@
         <span>自定义</span>
       </div>
     </div>
+  </div><!-- #lightbox -->
+
   <!-- 历史多账号数据迁移选择模态框 -->
   <div id="migrationPickerModal" class="subject-overlay" style="display:none" hidden>
     <div class="subject-modal" style="max-width:460px">
@@ -560,6 +620,23 @@
     </div>
   </div>
 
+  <!-- 学习仪表盘设置模态框 -->
+  <div id="studySettingsModal" class="subject-overlay" style="display:none" hidden>
+    <div class="subject-modal si-settings-modal" role="dialog" aria-modal="true" aria-labelledby="siSettingsTitle">
+      <h2 id="siSettingsTitle">学习仪表盘设置</h2>
+      <label class="si-date-label" for="siExamDateInput">
+        考研初试日期
+        <input id="siExamDateInput" type="date" inputmode="numeric">
+      </label>
+      <p class="si-settings-help">日期只保存在当前浏览器，不会上传服务器。清空日期可以暂时关闭倒计时。</p>
+      <div class="si-settings-actions">
+        <button id="siSettingsCancel" class="hero-action-btn" type="button">取消</button>
+        <button id="siSettingsSave" class="hero-action-btn primary" type="button">保存</button>
+      </div>
+    </div>
+  </div>
+
+
   <!-- 本地依赖脚本与核心模块 -->
   <script src="lib/dompurify/purify.min.js"></script>
   <script src="lib/marked/marked.umd.min.js"></script>
@@ -577,5 +654,6 @@
   <script src="js/chapters.js?v=20260907a"></script>
   <script src="js/app.js?v=20260907a"></script>
   <script src="js/english.js?v=20260907a"></script>
+  <script src="js/study-analytics.js?v=20260909a"></script>
 </body>
 </html>
