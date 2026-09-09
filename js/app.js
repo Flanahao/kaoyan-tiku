@@ -1416,29 +1416,39 @@
       }
     }
 
+    function setBtnNavText(btnId, text, iconId, key) {
+      var btn = document.getElementById(btnId);
+      if (!btn) return;
+      var navText = btn.querySelector('.nav-text');
+      if (navText) {
+        navText.textContent = text;
+      } else {
+        var iconHtml = iconId ? '<span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#' + iconId + '"></use></svg></span>' : '';
+        var keyHtml = key ? '<span class="sol-key">' + key + '</span>' : '';
+        btn.innerHTML = iconHtml + '<span class="nav-text">' + text + '</span>' + keyHtml;
+      }
+    }
+
     function closeAllWorkbenchPanels(except) {
       if (except !== 'dashboard' && dashboardOpen) {
         dashboardOpen = false;
         var dp = document.getElementById('dashboardPanel');
         if (dp) dp.style.display = 'none';
-        var db = document.getElementById('btnDashboard');
-        if (db) db.innerHTML = '全局进度<span class="sol-key">V</span>';
+        setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
         showDashboardBackBtn(false);
       }
       if (except !== 'wrongBook' && wrongBookOpen) {
         wrongBookOpen = false;
         var wp = document.getElementById('wrongBookPanel');
         if (wp) wp.style.display = 'none';
-        var wb = document.getElementById('btnWrongBook');
-        if (wb) wb.innerHTML = '错题本<span class="sol-key">B</span>';
+        setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
         showWrongBookReturnBtn(false);
       }
       if (except !== 'sm2' && sm2PanelOpen) {
         sm2PanelOpen = false;
         var sp = document.getElementById('sm2Panel');
         if (sp) sp.style.display = 'none';
-        var sb = document.getElementById('btnSm2PanelSidebar');
-        if (sb) sb.innerHTML = 'SM-2复习<span class="sol-key">R</span>';
+        setBtnNavText('btnSm2PanelSidebar', 'SM-2复习', 'icon-refresh', 'R');
       }
       if (except !== 'english') {
         if (typeof window.closeEnglishVocabulary === 'function') {
@@ -1460,14 +1470,14 @@
         panel.style.display = '';
         content.style.display = 'none';
         setPanelTitle('全局学习进度');
-        btn.innerHTML = '返回章节<span class="sol-key">V</span>';
+        setBtnNavText('btnDashboard', '返回章节', 'icon-chart', 'V');
       } else {
         panel.style.display = 'none';
         content.style.display = '';
         showDashboardBackBtn(false);
         setPanelTitle('');
         renderTitle();
-        btn.innerHTML = '全局进度<span class="sol-key">V</span>';
+        setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
       }
     }
 
@@ -1726,7 +1736,7 @@
       showDashboardBackBtn(false);
       document.getElementById('dashboardPanel').style.display = 'none';
       document.getElementById('mainAreaContent').style.display = '';
-      document.getElementById('btnDashboard').innerHTML = '全局进度<span class="sol-key">V</span>';
+      setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
       setPanelTitle('');
       renderTitle();
       // Switch to the chapter
@@ -1779,8 +1789,8 @@
       dashPanel.style.display = 'none';
       content.style.display = 'none';
       panel.style.display = '';
-      btn.innerHTML = '返回章节<span class="sol-key">B</span>';
-      if (dashboardOpen) { dashboardOpen = false; showDashboardBackBtn(false); document.getElementById('btnDashboard').innerHTML = '全局进度<span class="sol-key">V</span>'; }
+      setBtnNavText('btnWrongBook', '返回章节', 'icon-notebook', 'B');
+      if (dashboardOpen) { dashboardOpen = false; showDashboardBackBtn(false); setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V'); }
       showWrongBookReturnBtn(false); // 回到错题本后隐藏返回按钮
     }
     function toggleWrongBook() {
@@ -1793,14 +1803,14 @@
         renderWrongBook();
         content.style.display = 'none';
         panel.style.display = '';
-        btn.innerHTML = '返回章节<span class="sol-key">B</span>';
+        setBtnNavText('btnWrongBook', '返回章节', 'icon-notebook', 'B');
         showWrongBookReturnBtn(false);
       } else {
         panel.style.display = 'none';
         content.style.display = '';
         setPanelTitle('');
         renderTitle();
-        btn.innerHTML = '错题本<span class="sol-key">B</span>';
+        setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
         showWrongBookReturnBtn(false);
       }
     }
@@ -1946,14 +1956,14 @@
         dashboardOpen = false; dashboardDetailReturn = false;
         document.getElementById('dashboardPanel').style.display = 'none';
         document.getElementById('mainAreaContent').style.display = '';
-        document.getElementById('btnDashboard').innerHTML = '全局进度<span class="sol-key">V</span>';
+        setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
         showDashboardBackBtn(false); setPanelTitle('');
       }
       if (wrongBookOpen) {
         wrongBookOpen = false; wrongBookReturn = false;
         document.getElementById('wrongBookPanel').style.display = 'none';
         document.getElementById('mainAreaContent').style.display = '';
-        document.getElementById('btnWrongBook').innerHTML = '错题本<span class="sol-key">B</span>';
+        setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
         showWrongBookReturnBtn(false); setPanelTitle('');
       }
       wrongBookWb = null; // 无条件重置错题本书籍筛选（书籍列表按科目不同，防跨科目残留）
@@ -2161,7 +2171,7 @@
           wrongBookOpen = false;
           document.getElementById('wrongBookPanel').style.display = 'none';
           document.getElementById('mainAreaContent').style.display = '';
-          document.getElementById('btnWrongBook').innerHTML = '错题本<span class="sol-key">B</span>';
+          setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
           setPanelTitle(''); // 恢复章节下拉栏（与 dashboard 跳转一致）
           renderTitle();
           // 切换章节并跳转到目标题
@@ -3021,12 +3031,8 @@
     }
 
     function renderSolDefaultBtn() {
-      const btn = document.getElementById('btnSolDefault');
-      if (defaultShowSolution) {
-        btn.innerHTML = '解析默认：显示<span class="sol-key">Shift+Space</span>';
-      } else {
-        btn.innerHTML = '解析默认：隐藏<span class="sol-key">Shift+Space</span>';
-      }
+      const text = defaultShowSolution ? '解析默认：显示' : '解析默认：隐藏';
+      setBtnNavText('btnSolDefault', text, 'icon-lightbulb', 'Shift+Space');
     }
 
     // ===== 筛选栏数字统计 =====
@@ -4211,7 +4217,7 @@ ${cardsHTML}
         panel.style.display = 'block';
         mainContent.style.display = 'none';
         setPanelTitle('间隔重复复习');
-        if (btn) btn.innerHTML = '返回章节<span class="sol-key">R</span>';
+        setBtnNavText('btnSm2PanelSidebar', '返回章节', 'icon-refresh', 'R');
         sm2PanelOpen = true;
         renderSm2Panel();
       } else {
@@ -4225,8 +4231,7 @@ ${cardsHTML}
       if (panel) panel.style.display = 'none';
       var mainContent = document.getElementById('mainAreaContent');
       if (mainContent) mainContent.style.display = '';
-      var btn = document.getElementById('btnSm2PanelSidebar');
-      if (btn) btn.innerHTML = 'SM-2复习<span class="sol-key">R</span>';
+      setBtnNavText('btnSm2PanelSidebar', 'SM-2复习', 'icon-refresh', 'R');
       setPanelTitle('');
       renderTitle();
     }

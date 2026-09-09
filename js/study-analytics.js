@@ -104,12 +104,17 @@
       result.total += 1;
       var status = word && word.status;
       if (status === 'proficient' || status === 'familiar') {
-        result.done += 1; result.mastered += 1;
+        result.done += 1;
+        result.mastered += 1;
       } else if (status === 'vague' || status === 'rusty') {
-        result.done += 1; result.vague += 1;
+        result.done += 1;
+        result.vague += 1;
       } else if (status === 'wrong') {
-        result.done += 1; result.wrong += 1;
-      } else result.unmarked += 1;
+        result.done += 1;
+        result.wrong += 1;
+      } else {
+        result.unmarked += 1;
+      }
     });
     return result;
   }
@@ -127,15 +132,15 @@
     var donut = document.getElementById('siMasteryDonut');
     if (!donut) return;
     if (!totals.total) {
-      donut.style.background = 'conic-gradient(#e8e1eb 0 100%)';
+      donut.style.background = 'conic-gradient(#dbe8f6 0 100%)';
     } else {
       var cursor = 0;
       var segments = [];
       [
-        { value: totals.mastered, color: '#24752e' },
-        { value: totals.vague, color: '#f27d16' },
-        { value: totals.wrong, color: '#dc2f2f' },
-        { value: totals.unmarked, color: '#e8e1eb' }
+        { value: totals.mastered, color: '#087f5b' },
+        { value: totals.vague, color: '#b26b00' },
+        { value: totals.wrong, color: '#c63d4a' },
+        { value: totals.unmarked, color: '#dbe8f6' }
       ].forEach(function (segment) {
         var end = cursor + segment.value / totals.total * 100;
         if (end > cursor) segments.push(segment.color + ' ' + cursor + '% ' + end + '%');
@@ -238,7 +243,7 @@
     if (daysNode) daysNode.textContent = String(Math.max(0, difference));
     if (quoteNode) {
       quoteNode.textContent = difference >= 0
-        ? '沉潜笃定，静待花开；乾坤未定，你我皆是黑马！'
+        ? '稳住节奏，逐题推进；你今天的每一步，都在靠近目标。'
         : '设定的日期已过去，请更新下一次考试日期。';
     }
     if (button) button.textContent = '修改日期（' + settings.examDate + '）';
