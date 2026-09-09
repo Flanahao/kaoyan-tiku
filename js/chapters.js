@@ -259,8 +259,8 @@
     if (Array.isArray(window.LILIN880_CHAPTERS)) {
       window.LILIN880_CHAPTERS.forEach(function (chapter) { SHU1_CHAPTERS.push(chapter); });
     }
-    if (Array.isArray(window.LILIN880_LATEX_CHAPTERS)) {
-      window.LILIN880_LATEX_CHAPTERS.forEach(function (chapter) {
+    if (Array.isArray(window.LILIN880_OPTIMIZED_CHAPTERS)) {
+      window.LILIN880_OPTIMIZED_CHAPTERS.forEach(function (chapter) {
         SHU1_CHAPTERS.push(chapter);
       });
     }
@@ -279,7 +279,7 @@
           { wb: '强化36讲', label: '强化36讲' },
           { wb: '1000题', label: '1000题' },
           { wb: '李林880', label: '李林880' },
-          { wb: '李林880·LaTeX', label: '李林880·LaTeX' },
+          { wb: '李林880优化版', label: '李林880优化版' },
           { wb: '李艳芳900', label: '李艳芳900' },
           { wb: '李范全书', label: '李范全书' }
         ],

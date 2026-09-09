@@ -1,12 +1,12 @@
 {
-  "checked": 7335,
+  "checked": 8743,
   "wrongPrefix": 0,
   "expectedMissing": 142,
   "unexpectedMissing": 0,
   "brokenSequence": 0,
   "manifestMismatches": 0,
   "summary": {
-    "totalQuestions": 7335,
+    "totalQuestions": 8743,
     "missingQuestion": 64,
     "missingSolution": 78,
     "maxSolutionSliceFound": 8

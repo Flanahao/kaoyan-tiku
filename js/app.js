@@ -1269,44 +1269,6 @@
       return isProfessional ? base + '.png' : base + '_question.png';
     }
 
-    function isLatexChapter(ch) {
-      return Boolean(ch && ch.contentType === 'latex');
-    }
-
-    function getLatexRecord(ch, idx) {
-      const bank = window.LILIN880_LATEX_DATA;
-      const id = ch && Array.isArray(ch.questionIds) ? ch.questionIds[idx] : null;
-      if (!bank || !bank.recordsById || id == null) return null;
-      return bank.recordsById[String(id)] || null;
-    }
-
-    function setContentMode(isLatex) {
-      const root = document.getElementById('mainAreaContent');
-      const latexQuestion = document.getElementById('latexQuestion');
-      const latexSolution = document.getElementById('latexSolution');
-      const questionWrap = document.getElementById('qAnnotWrap');
-      const solutionImgs = document.getElementById('solutionImgs');
-
-      if (root) root.classList.toggle('latex-mode', isLatex);
-      if (latexQuestion) latexQuestion.hidden = !isLatex;
-      if (latexSolution) latexSolution.hidden = !isLatex;
-      if (questionWrap) questionWrap.hidden = isLatex;
-      if (solutionImgs) solutionImgs.hidden = isLatex;
-    }
-
-    function renderLatexQuestion(ch, idx) {
-      const record = getLatexRecord(ch, idx);
-      const questionNode = document.getElementById('latexQuestion');
-      const solutionNode = document.getElementById('latexSolution');
-      if (!record || !window.LatexRenderer) {
-        if (questionNode) questionNode.textContent = 'LaTeX 题目数据暂缺';
-        if (solutionNode) solutionNode.textContent = '';
-        return;
-      }
-      window.LatexRenderer.renderQuestion(questionNode, record);
-      window.LatexRenderer.renderSolution(solutionNode, record);
-    }
-
     function dbLerpColor(c1, c2, t) {
       return [
         Math.round(c1[0] + (c2[0] - c1[0]) * t),
@@ -2656,29 +2618,21 @@
       current = idx;
       showSolution = defaultShowSolution;
       const ch = getChapter();
-      const latex = isLatexChapter(ch);
-      setContentMode(latex);
 
-      if (latex) {
-        renderLatexQuestion(ch, idx);
-        const solImgs = document.getElementById('solutionImgs');
-        if (solImgs) solImgs.replaceChildren();
+      const base = getImgPath(idx);
+      const qImg = document.getElementById('questionImg');
+      const isProfessional = Boolean(curSubject && (curSubject.id === 'zhuanye' || curSubject.id === 'professional'));
+      loadImageWithFallback(qImg, getQuestionImagePath(idx, curSubject), function() {
+        renderQuestionAnnotations();
+      }, function() {
+        markImageMissing(qImg, '题目图片暂缺，请反馈题号');
+      });
+      if (isProfessional) {
+        document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
       } else {
-        const base = getImgPath(idx);
-        const qImg = document.getElementById('questionImg');
-        const isProfessional = Boolean(curSubject && (curSubject.id === 'zhuanye' || curSubject.id === 'professional'));
-        loadImageWithFallback(qImg, getQuestionImagePath(idx, curSubject), function() {
-          renderQuestionAnnotations();
-        }, function() {
-          markImageMissing(qImg, '题目图片暂缺，请反馈题号');
-        });
-        if (isProfessional) {
-          document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
-        } else {
-          setSolutionImages(base);
-        }
-        renderQuestionAnnotations(); // 叠加已保存的图片标注（切题即见）
+        setSolutionImages(base);
       }
+      renderQuestionAnnotations(); // 叠加已保存的图片标注（切题即见）
       updateSolutionUI();
       // 更新题号标签
       ensureGroups(ch);
@@ -3913,23 +3867,14 @@
     // ===== 错题导出 =====
     function exportQuestions(statusFilter) {
       const ch = getChapter();
-      const latex = isLatexChapter(ch);
       const items = [];
       for (let i = 0; i < ch.total; i++) {
         if (statuses[i] === statusFilter) {
-          if (latex) {
-            items.push({
-              label: ch.labels[i],
-              contentType: 'latex',
-              record: getLatexRecord(ch, i),
-            });
-          } else {
-            items.push({
-              label: ch.labels[i],
-              contentType: 'image',
-              qImg: getQuestionImagePath(i, curSubject),
-            });
-          }
+          items.push({
+            label: ch.labels[i],
+            contentType: 'image',
+            qImg: getQuestionImagePath(i, curSubject),
+          });
         }
       }
       if (items.length === 0) {
@@ -3939,10 +3884,7 @@
       const statusLabel = statusFilter === 'vague' ? '模糊' : '不会';
       const statusColor = statusFilter === 'vague' ? '#FBC02D' : '#B71C1C';
       const cardsHTML = items.map((item, idx) => {
-        const title = window.LatexRenderer ? window.LatexRenderer.escapeHtml(`${idx + 1}. ${item.label}`) : `${idx + 1}. ${item.label}`;
-        if (item.contentType === 'latex' && item.record && window.LatexRenderer) {
-          return `<div class="card"><h3>${title}</h3>${window.LatexRenderer.renderRecordToHtml(item.record)}</div>`;
-        }
+        const title = `${idx + 1}. ${item.label}`;
         let abs = item.qImg;
         try { abs = new URL(item.qImg, window.location.href).href; } catch (e) {}
         return `<div class="card"><h3>${title}</h3><img src="${abs}" alt="题目" onerror="this.style.display='none'"></div>`;
