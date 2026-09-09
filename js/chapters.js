@@ -269,6 +269,11 @@
         SHU1_CHAPTERS.push(chapter);
       });
     }
+    if (Array.isArray(window.YEYU_CHAPTERS)) {
+      window.YEYU_CHAPTERS.forEach(function (chapter) {
+        SHU1_CHAPTERS.push(chapter);
+      });
+    }
     // ===== 科目（subject）数据模型：数学 =====
     const SUBJECTS = [
       {
@@ -281,7 +286,8 @@
           { wb: '李林880', label: '李林880' },
           { wb: '李林880优化版', label: '李林880优化版' },
           { wb: '李艳芳900', label: '李艳芳900' },
-          { wb: '李范全书', label: '李范全书' }
+          { wb: '李范全书', label: '李范全书' },
+          { wb: '夜雨强化', label: '夜雨强化' }
         ],
         subjOrder: ['高数', '线代', '概率论'],
         classifyLabel: function (label) { return label.startsWith('例') ? '例题' : '习题'; },

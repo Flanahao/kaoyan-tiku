@@ -2629,6 +2629,8 @@
       });
       if (isProfessional) {
         document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
+      } else if (ch && ch.wb === '夜雨强化') {
+        document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该强化讲义题目暂无解析图，请参考课程讲解）</div>';
       } else {
         setSolutionImages(base);
       }

@@ -56,6 +56,7 @@ function runScript(relPath) {
 runScript('js/lilin880-chapters.js');
 runScript('js/lilin880-optimized-chapters.js');
 runScript('js/lyf900-chapters.js');
+runScript('js/yeyu-chapters.js');
 runScript('js/professional-chapters.js');
 runScript('js/solution-manifest.js');
 runScript('js/chapters.js');
@@ -127,8 +128,8 @@ subjects.forEach(subj => {
         }
       }
 
-      // 专业课无解析图，跳过解析检查
-      if (isProfessional) return;
+      // 专业课及夜雨强化讲义无解析图，跳过解析检查
+      if (isProfessional || ch.wb === '夜雨强化') return;
 
       // 解析图片分片检查 (_solution.png 至 _solution_20.png)
       const foundSlices = [];

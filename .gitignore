@@ -8,3 +8,5 @@ desktop.ini
 .claude/
 
 *.zip
+__pycache__/
+*.pyc
