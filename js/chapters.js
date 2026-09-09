@@ -323,19 +323,19 @@
         chapters: SHU1_CHAPTERS
       },
     ]
-    // 仅保留原项目已有的六本专业课（重构时不再附带额外题库）。
+    // 专业课：波哥信号与系统（包含波哥讲义例题与波哥习题集）
     const PROFESSIONAL_CHAPTERS = Array.isArray(window.PROFESSIONAL_CHAPTERS) ? window.PROFESSIONAL_CHAPTERS : [];
-    const PROFESSIONAL_BOOKS = ['何子述课后刷题本', '吴大正课后刷题本', '奥本海姆课后刷题本', '杨晓非课后刷题本', '管致中课后刷题本', '郑君里课后刷题本'];
+    const PROFESSIONAL_BOOKS = ['波哥讲义例题', '波哥习题集'];
     SUBJECTS.splice(1, 1, {
-      id: 'zhuanye', name: '专业课', desc: '原有专业课刷题本', storageSuffix: 'zhuanye',
+      id: 'zhuanye', name: '专业课', desc: '波哥信号与系统专业课题库', storageSuffix: 'zhuanye',
       initChapterId: PROFESSIONAL_CHAPTERS[0] ? PROFESSIONAL_CHAPTERS[0].id : '', navCols: 5,
-      partOrder: ['例题'],
+      partOrder: ['例题', '习题'],
       wbOrder: PROFESSIONAL_BOOKS.map(function (wb) { return { wb: wb, label: wb }; }),
       subjOrder: ['专业课'],
-      classifyLabel: function () { return '例题'; },
+      classifyLabel: function (label) { return label && label.startsWith('例') ? '例题' : '习题'; },
       getImgPath: function (ch, label) {
         var index = ch.labels.indexOf(label);
-        var base = ch.fileBases && ch.fileBases[index];
+        var base = (index >= 0 && ch.fileBases) ? ch.fileBases[index] : null;
         return '专业题库/' + ch.relPath + '/' + (base || label);
       },
       chapters: PROFESSIONAL_CHAPTERS
