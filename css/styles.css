@@ -2483,9 +2483,6 @@ body {
         gap: 16px;
         padding: 16px 16px 40px;
       }
-      .db-two-columns {
-        grid-template-columns: 1.5fr 1fr;
-      }
     }
 
     @media (max-width: 768px) {
@@ -2543,10 +2540,6 @@ body {
 
       .db-stat-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .db-two-columns {
-        grid-template-columns: 1fr;
       }
 
       .main-area {
@@ -3255,14 +3248,6 @@ body {
       font-size: 12px;
       color: var(--text-muted);
       margin-top: 2px;
-    }
-
-    /* 两列工作区 */
-    .db-two-columns {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-      align-items: start;
     }
 
     .db-block-header {
@@ -4709,5 +4694,105 @@ body {
   .daily-goal-widget,
   .daily-goal-toast {
     transition: none;
+  }
+}
+
+/* ===== Dashboard layout v2：Hero 满行 + 快捷卡移位 + 书籍三列 ===== */
+
+/* db-overview 当前是 align-items:center，所以 Hero 不写宽度会按内容收缩。
+   这里只让 Hero 明确铺满，不改变其它现有分析卡/统计卡的宽度语义。 */
+.db-overview > .db-hero-card {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.db-hero-card .hero-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* “今日复习计划 / 错题集中攻克”放到截图标出的上方位置。
+   桌面端采用与书籍卡完全相同的 3 列轨道，只占前两格，
+   不创建第三个空白 DOM 卡片。 */
+.db-quick-grid {
+  width: 100%;
+  min-width: 0;
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+  margin: 0 0 24px;
+}
+
+.db-quick-grid .db-side-widget {
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.db-quick-grid .widget-body {
+  flex: 1 1 auto;
+}
+
+.db-quick-grid .widget-btn {
+  margin-top: auto;
+}
+
+/* 书籍区不再被旧的 2fr + 1fr 两列布局挤压，整行铺满。 */
+.db-books-section {
+  width: 100%;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.db-books-section .db-block-header {
+  margin-bottom: 14px;
+}
+
+/* 桌面端一行 3 张进度卡。 */
+.db-books-section .db-grid {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.db-books-section .db-donut-card {
+  min-width: 0;
+}
+
+/* drawDonut() 会给 canvas 写入 inline width/height:260px。
+   在窄屏必须允许 CSS 把显示尺寸压小，否则 320/390px 可能横向溢出。
+   intrinsic canvas 像素仍保留，视觉只做等比缩放。 */
+.db-books-section .db-donut-card canvas {
+  width: 260px !important;
+  max-width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+}
+
+/* 中等桌面/平板：260px donut + 卡片 padding 不适合硬塞三列，改两列。 */
+@media (max-width: 1199px) {
+  .db-quick-grid,
+  .db-books-section .db-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 手机：快捷卡与书籍卡都单列，避免横向滚动。 */
+@media (max-width: 620px) {
+  .db-quick-grid,
+  .db-books-section .db-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-quick-grid {
+    gap: 12px;
+    margin-bottom: 18px;
   }
 }

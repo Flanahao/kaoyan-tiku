@@ -165,7 +165,12 @@
   }
 
   function title(type) {
-    return ({ mistakes: '易错词', meanings: '熟词生义', synonyms: '同义词 / 短语' })[type] || type;
+    return ({
+      synonyms: '同义词 / 短语',
+      meanings: '熟词生义',
+      mistakes: '易错词',
+      phrases: '常见词组'
+    })[type] || type;
   }
 
   function card(item) {
@@ -247,7 +252,7 @@
       '</div>' +
       '<div class="english-toolbar">' +
         '<div class="english-tabs">' +
-          ['synonyms', 'meanings', 'mistakes'].map(function (type) {
+          ['synonyms', 'meanings', 'mistakes', 'phrases'].map(function (type) {
             return '<button class="english-tab ' + (type === activeType ? 'active' : '') + '" data-type="' + type + '">' + title(type) + '</button>';
           }).join('') +
         '</div>' +
@@ -267,11 +272,20 @@
         }).join('') +
       '</div>' +
       '<form class="english-form" id="englishForm">' +
-        '<input id="englishInput" placeholder="' + (activeType === 'synonyms' ? '添加新词；可用 · 分隔同义词，附带释义例如：Doctrine · Dogma 信条' : '输入一个词或短语及汉语释义') + '"/>' +
+        '<input id="englishInput" placeholder="' +
+          (activeType === 'synonyms'
+            ? '添加新词；可用 · 分隔同义词，附带释义例如：Doctrine · Dogma 信条'
+            : (activeType === 'phrases'
+                ? '添加常见词组及汉语释义，例如：in terms of 依据；就...而言'
+                : (activeType === 'meanings'
+                    ? '添加熟词生义及汉语释义，例如：subject 易受...影响的；使屈服'
+                    : (activeType === 'mistakes'
+                        ? '添加易错词及汉语释义，例如：adopt vs adapt 采纳 / 适应'
+                        : '输入一个词或短语及汉语释义')))) + '"/>' +
         '<button class="english-action" type="submit">添加到此模块</button>' +
       '</form>' +
       '<div class="english-list ' + (hideChinese ? 'hide-meaning' : '') + '">' +
-        (items.length ? items.map(card).join('') : '<div class="section-empty">未找到匹配的词汇条目。</div>') +
+        (items.length ? items.map(card).join('') : '<div class="section-empty">' + (query ? '未找到匹配的词汇条目。' : '暂无' + title(activeType) + '，可在上方输入框添加。') + '</div>') +
       '</div>';
 
     // 绑定搜索输入框焦点与事件
@@ -455,13 +469,20 @@
     var group = terms.join(' · ');
     var primary = terms[0] || rawText;
 
+    var cat = ({
+      phrases: '常见词组',
+      mistakes: '易错词',
+      meanings: '熟词生义',
+      synonyms: '同义词'
+    })[activeType] || '自定义';
+
     data.items.unshift({
       id: uid(),
       type: activeType,
       text: primary,
       group: group,
       meaning: cnPart,
-      category: '自定义',
+      category: cat,
       status: '',
       custom: true
     });

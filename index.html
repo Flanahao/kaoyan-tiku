@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>考研题库 - 全功能专业版</title>
   <link rel="stylesheet" href="lib/katex/katex.min.css">
-  <link rel="stylesheet" href="css/styles.css?v=20260910c">
+  <link rel="stylesheet" href="css/styles.css?v=20260910d">
 </head>
 <body>
 
@@ -521,27 +521,28 @@
                     </div>
                   </div>
 
-                  <!-- 两列布局：左侧书籍进度网格 + 右侧复习与错题快捷卡片 -->
-                  <div class="db-two-columns">
-                    <div class="db-col-primary">
-                      <div class="db-block-header">
-                        <h3 class="db-block-title">书籍与科目进度</h3>
-                        <span class="db-block-hint">点击卡片可查看详细章节完成率</span>
-                      </div>
-                      <div class="db-grid" id="dbGrid"></div>
+                  <!-- Dashboard 快捷入口：桌面端对齐三列网格的前两列，第三列自然留空 -->
+                  <div class="db-quick-grid" id="dbQuickGrid" aria-label="学习快捷入口">
+                    <div class="db-side-widget">
+                      <h4 class="widget-title">今日复习计划</h4>
+                      <div class="widget-body" id="widgetReviewPlan">暂无今日到期题目</div>
+                      <button class="widget-btn" id="btnWidgetReview" type="button">前往间隔复习</button>
                     </div>
-                    <div class="db-col-secondary">
-                      <div class="db-side-widget">
-                        <h4 class="widget-title">今日复习计划</h4>
-                        <div class="widget-body" id="widgetReviewPlan">暂无今日到期题目</div>
-                        <button class="widget-btn" id="btnWidgetReview" type="button">前往间隔复习</button>
-                      </div>
-                      <div class="db-side-widget">
-                        <h4 class="widget-title">错题集中攻克</h4>
-                        <div class="widget-body" id="widgetWrongPlan">错题本已收录待巩固题</div>
-                        <button class="widget-btn" id="btnWidgetWrong" type="button">打开错题本</button>
-                      </div>
+
+                    <div class="db-side-widget">
+                      <h4 class="widget-title">错题集中攻克</h4>
+                      <div class="widget-body" id="widgetWrongPlan">错题本已收录待巩固题</div>
+                      <button class="widget-btn" id="btnWidgetWrong" type="button">打开错题本</button>
                     </div>
+                  </div>
+
+                  <!-- 书籍与科目进度：独占整行，桌面端一行三张卡 -->
+                  <div class="db-books-section" id="dbBooksSection">
+                    <div class="db-block-header">
+                      <h3 class="db-block-title">书籍与科目进度</h3>
+                      <span class="db-block-hint">点击卡片可查看详细章节完成率</span>
+                    </div>
+                    <div class="db-grid" id="dbGrid"></div>
                   </div>
                 </div>
 
@@ -872,7 +873,7 @@
   <script src="js/solution-manifest.js?v=20260910a"></script>
   <script src="js/chapters.js?v=20260910b"></script>
   <script src="js/app.js?v=20260910c"></script>
-  <script src="js/english.js?v=20260910c"></script>
+  <script src="js/english.js?v=20260910d"></script>
   <script src="js/study-analytics.js?v=20260910c"></script>
 </body>
 </html>
