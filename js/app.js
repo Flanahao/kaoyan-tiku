@@ -1265,8 +1265,8 @@
     function getQuestionImagePath(index, subject) {
       var sub = subject || curSubject;
       var base = getImgPath(index);
-      var isProfessional = Boolean(sub && (sub.id === 'zhuanye' || sub.id === 'professional' || sub.isProfessional));
-      return isProfessional ? base + '.png' : base + '_question.png';
+      if (base && base.endsWith('_question')) return base + '.png';
+      return base + '_question.png';
     }
 
     function dbLerpColor(c1, c2, t) {
@@ -2627,7 +2627,7 @@
       }, function() {
         markImageMissing(qImg, '题目图片暂缺，请反馈题号');
       });
-      if (isProfessional) {
+      if (isProfessional && ch && (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集')) {
         document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
       } else if (ch && ch.wb === '夜雨强化') {
         document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该强化讲义题目暂无解析图，请参考课程讲解）</div>';

@@ -1,0 +1,9 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,20,2020年真题,大连理工852真题,简答题,01,题1,pb_20-01_question.png,pb_20-01_solution.png,1
+002,20,2020年真题,大连理工852真题,简答题,02,题2,pb_20-02_question.png,pb_20-02_solution.png,1
+003,20,2020年真题,大连理工852真题,简答题,03,题3,pb_20-03_question.png,pb_20-03_solution.png,2
+004,20,2020年真题,大连理工852真题,简答题,04,题4,pb_20-04_question.png,pb_20-04_solution.png,1
+005,20,2020年真题,大连理工852真题,简答题,05,题5,pb_20-05_question.png,pb_20-05_solution.png,2
+006,20,2020年真题,大连理工852真题,计算题,06,题6,pb_20-06_question.png,pb_20-06_solution.png,2
+007,20,2020年真题,大连理工852真题,计算题,07,题7,pb_20-07_question.png,pb_20-07_solution.png,1
+008,20,2020年真题,大连理工852真题,计算题,08,题8,pb_20-08_question.png,pb_20-08_solution.png,2

@@ -47,9 +47,9 @@ let totalSlices = 0;
 let totalQuestionsWithSolution = 0;
 
 subjects.forEach(subj => {
-  if (subj.id === 'zhuanye' || subj.id === 'professional') return;
-
   subj.chapters.forEach(ch => {
+    // 波哥与夜雨强化讲义无解析图，跳过
+    if (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集' || ch.wb === '夜雨强化') return;
     (ch.labels || []).forEach(label => {
       const imgBase = subj.getImgPath(ch, label);
       const slices = [];

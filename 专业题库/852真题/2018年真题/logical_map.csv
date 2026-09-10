@@ -1,0 +1,9 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,18,2018年真题,大连理工852真题,简答题,01,题1,pb_18-01_question.png,pb_18-01_solution.png,1
+002,18,2018年真题,大连理工852真题,简答题,02,题2,pb_18-02_question.png,pb_18-02_solution.png,1
+003,18,2018年真题,大连理工852真题,简答题,03,题3,pb_18-03_question.png,pb_18-03_solution.png,2
+004,18,2018年真题,大连理工852真题,简答题,04,题4,pb_18-04_question.png,pb_18-04_solution.png,1
+005,18,2018年真题,大连理工852真题,简答题,05,题5,pb_18-05_question.png,pb_18-05_solution.png,2
+006,18,2018年真题,大连理工852真题,计算题,06,题6,pb_18-06_question.png,pb_18-06_solution.png,2
+007,18,2018年真题,大连理工852真题,计算题,07,题7,pb_18-07_question.png,pb_18-07_solution.png,1
+008,18,2018年真题,大连理工852真题,计算题,08,题8,pb_18-08_question.png,pb_18-08_solution.png,2

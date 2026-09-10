@@ -1,0 +1,10 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,14,2014年真题,大连理工852真题,选择题,01,题1,pb_14-01_question.png,pb_14-01_solution.png,1
+002,14,2014年真题,大连理工852真题,选择题,02,题2,pb_14-02_question.png,pb_14-02_solution.png,1
+003,14,2014年真题,大连理工852真题,选择题,03,题3,pb_14-03_question.png,pb_14-03_solution.png,1
+004,14,2014年真题,大连理工852真题,选择题,04,题4,pb_14-04_question.png,pb_14-04_solution.png,1
+005,14,2014年真题,大连理工852真题,选择题,05,题5,pb_14-05_question.png,pb_14-05_solution.png,1
+006,14,2014年真题,大连理工852真题,计算题,06,题6,pb_14-06_question.png,pb_14-06_solution.png,2
+007,14,2014年真题,大连理工852真题,计算题,07,题7,pb_14-07_question.png,pb_14-07_solution.png,1
+008,14,2014年真题,大连理工852真题,计算题,08,题8,pb_14-08_question.png,pb_14-08_solution.png,2
+009,14,2014年真题,大连理工852真题,计算题,09,题9,pb_14-09_question.png,pb_14-09_solution.png,1

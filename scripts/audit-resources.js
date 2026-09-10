@@ -116,7 +116,7 @@ subjects.forEach(subj => {
       }
 
       // 题目图片检查
-      const qRel = imgBase + (isProfessional ? '.png' : '_question.png');
+      const qRel = imgBase.endsWith('_question') ? imgBase + '.png' : imgBase + '_question.png';
       const qAbs = path.join(rootDir, qRel);
       if (!fs.existsSync(qAbs)) {
         auditResult.summary.missingQuestion++;
@@ -128,8 +128,8 @@ subjects.forEach(subj => {
         }
       }
 
-      // 专业课及夜雨强化讲义无解析图，跳过解析检查
-      if (isProfessional || ch.wb === '夜雨强化') return;
+      // 波哥及夜雨强化讲义无解析图，跳过解析检查
+      if (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集' || ch.wb === '夜雨强化') return;
 
       // 解析图片分片检查 (_solution.png 至 _solution_20.png)
       const foundSlices = [];

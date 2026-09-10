@@ -1,0 +1,12 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,13,2013年真题,大连理工852真题,选择题,01,题1,pb_13-01_question.png,pb_13-01_solution.png,1
+002,13,2013年真题,大连理工852真题,选择题,02,题2,pb_13-02_question.png,pb_13-02_solution.png,1
+003,13,2013年真题,大连理工852真题,选择题,03,题3,pb_13-03_question.png,pb_13-03_solution.png,1
+004,13,2013年真题,大连理工852真题,选择题,04,题4,pb_13-04_question.png,pb_13-04_solution.png,1
+005,13,2013年真题,大连理工852真题,选择题,05,题5,pb_13-05_question.png,pb_13-05_solution.png,1
+006,13,2013年真题,大连理工852真题,计算题,06,题6,pb_13-06_question.png,pb_13-06_solution.png,1
+007,13,2013年真题,大连理工852真题,计算题,07,题7,pb_13-07_question.png,pb_13-07_solution.png,1
+008,13,2013年真题,大连理工852真题,计算题,08,题8,pb_13-08_question.png,pb_13-08_solution.png,1
+009,13,2013年真题,大连理工852真题,计算题,09,题9,pb_13-09_question.png,pb_13-09_solution.png,2
+010,13,2013年真题,大连理工852真题,计算题,10,题10,pb_13-10_question.png,pb_13-10_solution.png,1
+011,13,2013年真题,大连理工852真题,计算题,11,题11,pb_13-11_question.png,pb_13-11_solution.png,2

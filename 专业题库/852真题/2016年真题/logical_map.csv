@@ -1,0 +1,10 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,16,2016年真题,大连理工852真题,简答题,01,题1,pb_16-01_question.png,pb_16-01_solution.png,1
+002,16,2016年真题,大连理工852真题,简答题,02,题2,pb_16-02_question.png,pb_16-02_solution.png,2
+003,16,2016年真题,大连理工852真题,简答题,03,题3,pb_16-03_question.png,pb_16-03_solution.png,1
+004,16,2016年真题,大连理工852真题,简答题,04,题4,pb_16-04_question.png,pb_16-04_solution.png,1
+005,16,2016年真题,大连理工852真题,简答题,05,题5,pb_16-05_question.png,pb_16-05_solution.png,1
+006,16,2016年真题,大连理工852真题,简答题,06,题6,pb_16-06_question.png,pb_16-06_solution.png,1
+007,16,2016年真题,大连理工852真题,计算题,07,题7,pb_16-07_question.png,pb_16-07_solution.png,2
+008,16,2016年真题,大连理工852真题,计算题,08,题8,pb_16-08_question.png,pb_16-08_solution.png,1
+009,16,2016年真题,大连理工852真题,计算题,09,题9,pb_16-09_question.png,pb_16-09_solution.png,1
