@@ -1310,7 +1310,9 @@
       for (var i = 0; i < ringCount; i++) {
         var ri = innerR + i * ringWidth;
         var ro = innerR + (i + 1) * ringWidth;
-        var pr = getChProgress(chapters[i], subject);
+        var pr = (chapters[i] && typeof chapters[i].progress === 'number')
+          ? chapters[i]
+          : getChProgress(chapters[i], subject);
         totalDone += pr.done;
         totalQ += pr.total;
         var p = pr.progress;
@@ -1455,6 +1457,19 @@
       // 从详情视图回到全局进度总览
       renderDashboardOverview();
     }
+    function createDashboardProgressCard(options) {
+      var attrs = [];
+      if (options.cardKey) attrs.push('data-card-key="' + options.cardKey + '"');
+      if (options.action) attrs.push('data-action="' + options.action + '"');
+      if (options.subjectId) attrs.push('data-subject-id="' + options.subjectId + '"');
+      if (options.wb) attrs.push('data-wb="' + options.wb + '"');
+      if (options.ariaLabel) attrs.push('aria-label="' + options.ariaLabel + '"');
+
+      return '<div class="db-donut-card" ' + attrs.join(' ') + '>' +
+        '<canvas id="' + options.canvasId + '"></canvas>' +
+        '<div style="text-align:center;font-size:12px;color:#64748b">' + (options.subjectLabel || '') + '</div></div>';
+    }
+
     function renderDashboardOverview() {
       showDashboardBackBtn(false);
       document.getElementById('dbOverview').style.display = '';
@@ -1565,25 +1580,74 @@
           }
         });
       });
-      // 英语不是题目章节，但同样纳入全局进度，避免学习记录被遗漏。
-      // 键与 english.js 一致：带用户前缀。
+
+      // 英语词汇进度卡：复用现有书籍进度卡视觉结构与同心页纹
+      var engPrefix = (typeof userStoragePrefix === 'function') ? userStoragePrefix() : 'user_guest_';
+      var english = null;
       try {
-        var engPrefix = 'user_guest_';
-        var english = JSON.parse(localStorage.getItem(engPrefix + 'kaoyan_english_vocabulary_v2') || '{"items":[]}');
-        var words = Array.isArray(english.items) ? english.items : [];
-        var ec = { familiar: 0, vague: 0, wrong: 0 };
-        words.forEach(function (word) { if (ec[word.status] !== undefined) ec[word.status]++; });
-        var done = ec.familiar + ec.vague + ec.wrong;
-        var empty = Math.max(0, words.length - done);
-        var ring = 'conic-gradient(#22a06b 0 ' + (words.length ? ec.familiar / words.length * 100 : 0) + '%,#f59e0b 0 ' + (words.length ? (ec.familiar + ec.vague) / words.length * 100 : 0) + '%,#e05252 0 ' + (words.length ? (ec.familiar + ec.vague + ec.wrong) / words.length * 100 : 0) + '%,#d7dde5 0 100%)';
-        html += '<div class="db-donut-card" data-action="english"><div style="width:150px;height:150px;margin:0 auto;border-radius:50%;background:' + ring + ';display:grid;place-items:center"><div style="width:108px;height:108px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center"><b>' + done + '/' + words.length + '</b><small>英语词汇</small></div></div><div style="text-align:center;margin-top:12px;font-weight:700">英语词汇</div><div class="db-chapter-stats"><span class="db-stat">熟悉 ' + ec.familiar + '</span><span class="db-stat">模糊 ' + ec.vague + '</span><span class="db-stat">不会 ' + ec.wrong + '</span><span class="db-stat">未标 ' + empty + '</span></div></div>';
-      } catch (e) {}
+        english = JSON.parse(localStorage.getItem(engPrefix + 'kaoyan_english_vocabulary_v2') || '{"items":[]}');
+      } catch (e) {
+        english = { items: [] };
+      }
+      var words = english && Array.isArray(english.items) ? english.items : [];
+      var englishTotal = words.length;
+      var englishDone = 0;
+      words.forEach(function (word) {
+        var s = word && word.status;
+        if (s === 'proficient' || s === 'familiar' || s === 'vague' || s === 'rusty' || s === 'wrong') {
+          englishDone++;
+        }
+      });
+      var englishPercent = englishTotal > 0 ? Math.round(englishDone / englishTotal * 100) : 0;
+
+      // 生成与普通书籍同等密度（约25-30圈）的同心环数据
+      var englishRings = [];
+      if (words.length > 0) {
+        var ringCount = Math.min(30, words.length);
+        var chunkSize = Math.ceil(words.length / ringCount);
+        for (var r = 0; r < ringCount; r++) {
+          var rStart = r * chunkSize;
+          var rEnd = Math.min(words.length, (r + 1) * chunkSize);
+          if (rStart >= words.length) break;
+          var rSlice = words.slice(rStart, rEnd);
+          var rSliceDone = 0;
+          for (var si = 0; si < rSlice.length; si++) {
+            var st = rSlice[si] && rSlice[si].status;
+            if (st === 'proficient' || st === 'familiar' || st === 'vague' || st === 'rusty' || st === 'wrong') {
+              rSliceDone++;
+            }
+          }
+          englishRings.push({
+            progress: rSlice.length > 0 ? rSliceDone / rSlice.length : 0,
+            done: rSliceDone,
+            total: rSlice.length
+          });
+        }
+      }
+      if (englishRings.length === 0) {
+        englishRings.push({ progress: 0, done: 0, total: 0 });
+      }
+
+      html += createDashboardProgressCard({
+        cardKey: 'english-vocabulary',
+        action: 'english',
+        canvasId: 'dbCanvasEnglish',
+        centerTitle: '英语词汇',
+        percent: englishPercent,
+        subjectLabel: '英语',
+        ariaLabel: '英语词汇，总进度 ' + englishPercent + '%，已标记 ' + englishDone + ' / ' + englishTotal
+      });
+
       for (var b = 0; b < books.length; b++) {
         var wb = books[b].wb;
         var cid = 'dbCanvas' + b;
-        html += '<div class="db-donut-card" data-subject-id="' + books[b].subject.id + '" data-wb="' + wb + '">' +
-          '<canvas id="' + cid + '"></canvas>' +
-          '<div style="text-align:center;font-size:12px;color:#64748b">' + books[b].subject.name + '</div></div>';
+        html += createDashboardProgressCard({
+          subjectId: books[b].subject.id,
+          wb: wb,
+          canvasId: cid,
+          subjectLabel: books[b].subject.name,
+          ariaLabel: books[b].label + '，' + books[b].subject.name
+        });
       }
       grid.innerHTML = html;
       grid.onclick = function (e) {
@@ -1602,6 +1666,10 @@
 
       // Draw donuts after DOM update
       setTimeout(function() {
+        var engCanvas = document.getElementById('dbCanvasEnglish');
+        if (engCanvas) {
+          drawDonut(engCanvas, englishRings, '英语词汇', null);
+        }
         for (var b = 0; b < books.length; b++) {
           var wb = books[b].wb;
           var chapters = getBookChapters(wb, books[b].subject.chapters);

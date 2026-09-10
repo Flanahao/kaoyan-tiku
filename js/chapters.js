@@ -278,6 +278,7 @@
     const SUBJECTS = [
       {
         id: 'shu1', name: '数学', storageSuffix: 's1', initChapterId: 'ch1', navCols: 5,
+        analyticsGroup: 'math',
         partOrder: ['例题', '习题'],
         wbOrder: [
           { wb: '基础30讲', label: '基础30讲' },
@@ -328,6 +329,7 @@
     const PROFESSIONAL_BOOKS = ['波哥讲义例题', '波哥习题集', '852真题'];
     SUBJECTS.splice(1, 1, {
       id: 'zhuanye', name: '专业课', desc: '信号与系统专业课题库（波哥 + 852真题）', storageSuffix: 'zhuanye',
+      analyticsGroup: 'major',
       initChapterId: PROFESSIONAL_CHAPTERS[0] ? PROFESSIONAL_CHAPTERS[0].id : '', navCols: 5,
       partOrder: ['真题', '例题', '习题'],
       wbOrder: PROFESSIONAL_BOOKS.map(function (wb) { return { wb: wb, label: wb }; }),

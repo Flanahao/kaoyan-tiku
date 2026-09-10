@@ -4248,6 +4248,133 @@ body {
 .si-settings-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 18px; }
 .si-settings-actions .hero-action-btn:not(.primary) { background: rgba(232, 243, 255, .85); color: #3d5d7d; }
 
+/* ===== 分科总进度：英语 / 数学 / 专业课 ===== */
+.si-subject-progress-grid {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  min-width: 0;
+}
+
+.si-subject-progress-card {
+  min-width: 0;
+  min-height: 162px;
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px 17px;
+  padding: 18px 20px 16px;
+}
+
+.si-donut-compact {
+  width: 108px;
+  height: 108px;
+  flex-basis: 108px;
+  align-self: center;
+  justify-self: center;
+}
+
+.si-donut-compact::after {
+  inset: 7px;
+}
+
+.si-donut-compact .si-donut-hole strong {
+  font-size: 22px;
+}
+
+.si-donut-compact .si-donut-hole span {
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.si-subject-progress-copy {
+  min-width: 0;
+}
+
+.si-subject-progress-copy h3 {
+  margin: 0;
+  color: #1d3858;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.si-subject-done {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 11px;
+}
+
+.si-subject-done strong {
+  color: #1557a6;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.si-subject-done span {
+  color: #7a8fa6;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.si-subject-status-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 12px;
+  min-width: 0;
+  padding-top: 11px;
+  border-top: 1px solid rgba(178, 201, 224, .42);
+  color: #6f849b;
+  font-size: 11px;
+}
+
+.si-subject-status-row > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.si-subject-status-row strong {
+  color: #36516f;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+@media (max-width: 620px) {
+  .si-subject-progress-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .si-subject-progress-card {
+    grid-template-columns: 92px minmax(0, 1fr);
+    min-height: 0;
+    padding: 16px 14px 14px;
+    gap: 12px 14px;
+  }
+
+  .si-donut-compact {
+    width: 92px;
+    height: 92px;
+    flex-basis: 92px;
+  }
+
+  .si-donut-compact .si-donut-hole strong {
+    font-size: 20px;
+  }
+
+  .si-subject-status-row {
+    gap: 7px 10px;
+  }
+}
+
 /* 现有模态框也使用同一套玻璃层次 */
 .subject-overlay {
   position: fixed;

@@ -69,90 +69,411 @@
     return node;
   }
 
-  function getStatusTotals() {
-    var result = { total: 0, done: 0, mastered: 0, vague: 0, wrong: 0, unmarked: 0 };
-    var subjects = Array.isArray(window.SUBJECTS) ? window.SUBJECTS : [];
+  function emptyTotals() {
+    return {
+      total: 0,
+      done: 0,
+      mastered: 0,
+      vague: 0,
+      wrong: 0,
+      unmarked: 0
+    };
+  }
+
+  function cloneTotals(source) {
+    var result = emptyTotals();
+    return mergeTotals(result, source);
+  }
+
+  function mergeTotals(target, source) {
+    if (!target || !source) return target;
+    target.total += Number(source.total) || 0;
+    target.done += Number(source.done) || 0;
+    target.mastered += Number(source.mastered) || 0;
+    target.vague += Number(source.vague) || 0;
+    target.wrong += Number(source.wrong) || 0;
+    target.unmarked += Number(source.unmarked) || 0;
+    return target;
+  }
+
+  function applyStatus(result, status) {
+    if (!Object.prototype.hasOwnProperty.call(STATUS_SCORE, status)) {
+      result.unmarked += 1;
+      return;
+    }
+
+    result.done += 1;
+
+    if (status === 'proficient' || status === 'familiar') {
+      result.mastered += 1;
+    } else if (status === 'vague' || status === 'rusty') {
+      result.vague += 1;
+    } else if (status === 'wrong') {
+      result.wrong += 1;
+    }
+  }
+
+  function normalizeAnalyticsGroup(value) {
+    var group = String(value || '').trim().toLowerCase();
+
+    if (
+      group === 'math' ||
+      group === 'mathematics' ||
+      group === '数学'
+    ) {
+      return 'math';
+    }
+
+    if (
+      group === 'major' ||
+      group === 'professional' ||
+      group === '专业' ||
+      group === '专业课'
+    ) {
+      return 'major';
+    }
+
+    return '';
+  }
+
+  function resolveQuestionGroup(subject) {
+    if (!subject) return '';
+
+    var explicit = normalizeAnalyticsGroup(
+      subject.analyticsGroup ||
+      subject.progressGroup ||
+      subject.group ||
+      subject.category
+    );
+
+    if (explicit) return explicit;
+
+    var text = [
+      subject.id,
+      subject.key,
+      subject.name,
+      subject.title,
+      subject.label,
+      subject.storageSuffix
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase();
+
+    if (
+      /数学|高数|高等数学|线代|线性代数|概率|math|calculus/.test(text)
+    ) {
+      return 'math';
+    }
+
+    if (
+      /专业课|专业|408|计算机|数据结构|组成原理|操作系统|计算机网络|电路|电子技术|信号|major|professional/.test(text)
+    ) {
+      return 'major';
+    }
+
+    return '';
+  }
+
+  function collectQuestionBuckets() {
+    var buckets = {
+      all: emptyTotals(),
+      math: emptyTotals(),
+      major: emptyTotals()
+    };
+
+    var subjects = Array.isArray(window.SUBJECTS)
+      ? window.SUBJECTS
+      : [];
+
     var prefix = getPrefix();
+
     subjects.forEach(function (subject) {
-      var chapters = Array.isArray(subject.chapters) ? subject.chapters : [];
+      if (!subject) return;
+
+      var group = resolveQuestionGroup(subject);
+      var chapters = Array.isArray(subject.chapters)
+        ? subject.chapters
+        : [];
+
       chapters.forEach(function (chapter) {
         if (!chapter) return;
+
         var rawTotal = Number(chapter.total);
         if (!Number.isFinite(rawTotal) || rawTotal <= 0) return;
+
         var total = Number(chapter.ownTotal || rawTotal);
         if (!Number.isFinite(total) || total <= 0) return;
-        var key = prefix + chapter.id + '_' + subject.storageSuffix + '_status';
+
+        var key =
+          prefix +
+          chapter.id +
+          '_' +
+          subject.storageSuffix +
+          '_status';
+
         var map = readJSON(key, {});
-        result.total += total;
+
+        var targets = [buckets.all];
+        if (group && buckets[group]) {
+          targets.push(buckets[group]);
+        }
+
+        targets.forEach(function (target) {
+          target.total += total;
+        });
+
         for (var index = 0; index < total; index += 1) {
           var status = map[String(index)];
-          if (!Object.prototype.hasOwnProperty.call(STATUS_SCORE, status)) {
-            result.unmarked += 1;
-            continue;
-          }
-          result.done += 1;
-          if (status === 'proficient' || status === 'familiar') result.mastered += 1;
-          else if (status === 'vague' || status === 'rusty') result.vague += 1;
-          else if (status === 'wrong') result.wrong += 1;
+
+          targets.forEach(function (target) {
+            applyStatus(target, status);
+          });
         }
       });
     });
 
-    var english = readJSON(prefix + 'kaoyan_english_vocabulary_v2', { items: [] });
-    var words = english && Array.isArray(english.items) ? english.items : [];
+    return buckets;
+  }
+
+  function collectEnglishTotals() {
+    var result = emptyTotals();
+    var prefix = getPrefix();
+
+    var english = readJSON(
+      prefix + 'kaoyan_english_vocabulary_v2',
+      { items: [] }
+    );
+
+    var words =
+      english && Array.isArray(english.items)
+        ? english.items
+        : [];
+
+    result.total = words.length;
+
     words.forEach(function (word) {
-      result.total += 1;
-      var status = word && word.status;
-      if (status === 'proficient' || status === 'familiar') {
-        result.done += 1;
-        result.mastered += 1;
-      } else if (status === 'vague' || status === 'rusty') {
-        result.done += 1;
-        result.vague += 1;
-      } else if (status === 'wrong') {
-        result.done += 1;
-        result.wrong += 1;
-      } else {
-        result.unmarked += 1;
-      }
+      applyStatus(result, word && word.status);
     });
+
     return result;
   }
 
-  function renderTotals() {
-    var totals = getStatusTotals();
-    var percent = totals.total > 0 ? Math.round(totals.done / totals.total * 100) : 0;
-    var masteredPercent = totals.total > 0 ? Math.round(totals.mastered / totals.total * 100) : 0;
-    setText('siProgressPct', percent + '%');
-    setText('siDoneText', totals.done.toLocaleString('zh-CN') + ' / ' + totals.total.toLocaleString('zh-CN'));
-    setText('siMasteredText', totals.mastered.toLocaleString('zh-CN') + ' 项（' + masteredPercent + '%）');
-    setText('siVagueText', totals.vague.toLocaleString('zh-CN') + ' 项');
-    setText('siWrongText', totals.wrong.toLocaleString('zh-CN') + ' 项');
+  function getSubjectTotals() {
+    var questionBuckets = collectQuestionBuckets();
+    var english = collectEnglishTotals();
 
-    var donut = document.getElementById('siMasteryDonut');
+    var all = cloneTotals(questionBuckets.all);
+    mergeTotals(all, english);
+
+    return {
+      all: all,
+      english: english,
+      math: questionBuckets.math,
+      major: questionBuckets.major
+    };
+  }
+
+  function getStatusTotals() {
+    return getSubjectTotals().all;
+  }
+
+  function progressPercent(totals) {
+    if (!totals || !totals.total) return 0;
+    return Math.round(totals.done / totals.total * 100);
+  }
+
+  function masteredPercent(totals) {
+    if (!totals || !totals.total) return 0;
+    return Math.round(totals.mastered / totals.total * 100);
+  }
+
+  function paintStatusDonut(donut, totals, label) {
     if (!donut) return;
-    if (!totals.total) {
-      donut.style.background = 'conic-gradient(#dbe8f6 0 100%)';
+
+    var percent = progressPercent(totals);
+
+    if (!totals || !totals.total) {
+      donut.style.background =
+        'conic-gradient(#dbe8f6 0 100%)';
     } else {
       var cursor = 0;
       var segments = [];
+
       [
         { value: totals.mastered, color: '#087f5b' },
         { value: totals.vague, color: '#b26b00' },
         { value: totals.wrong, color: '#c63d4a' },
         { value: totals.unmarked, color: '#dbe8f6' }
       ].forEach(function (segment) {
-        var end = cursor + segment.value / totals.total * 100;
-        if (end > cursor) segments.push(segment.color + ' ' + cursor + '% ' + end + '%');
+        var end =
+          cursor +
+          segment.value / totals.total * 100;
+
+        if (end > cursor) {
+          segments.push(
+            segment.color +
+            ' ' +
+            cursor +
+            '% ' +
+            end +
+            '%'
+          );
+        }
+
         cursor = end;
       });
-      donut.style.background = 'conic-gradient(' + segments.join(', ') + ')';
+
+      donut.style.background =
+        'conic-gradient(' + segments.join(', ') + ')';
     }
+
     donut.setAttribute(
       'aria-label',
-      '全站总进度 ' + percent + '%，熟练 ' + totals.mastered +
-      ' 项，模糊 ' + totals.vague + ' 项，不会 ' + totals.wrong + ' 项'
+      label +
+      ' ' +
+      percent +
+      '%，已标记 ' +
+      totals.done +
+      ' / ' +
+      totals.total +
+      '，熟练 ' +
+      totals.mastered +
+      '，模糊 ' +
+      totals.vague +
+      '，不会 ' +
+      totals.wrong +
+      '，未标 ' +
+      totals.unmarked
     );
+  }
+
+  function renderTotals(summary) {
+    var totals =
+      summary && summary.all
+        ? summary.all
+        : getSubjectTotals().all;
+
+    var percent = progressPercent(totals);
+    var mastered = masteredPercent(totals);
+
+    setText('siProgressPct', percent + '%');
+
+    setText(
+      'siDoneText',
+      totals.done.toLocaleString('zh-CN') +
+      ' / ' +
+      totals.total.toLocaleString('zh-CN')
+    );
+
+    setText(
+      'siMasteredText',
+      totals.mastered.toLocaleString('zh-CN') +
+      ' 项（' +
+      mastered +
+      '%）'
+    );
+
+    setText(
+      'siVagueText',
+      totals.vague.toLocaleString('zh-CN') + ' 项'
+    );
+
+    setText(
+      'siWrongText',
+      totals.wrong.toLocaleString('zh-CN') + ' 项'
+    );
+
+    paintStatusDonut(
+      document.getElementById('siMasteryDonut'),
+      totals,
+      '全站总进度'
+    );
+  }
+
+  var SUBJECT_PROGRESS_UI = {
+    english: {
+      label: '英语总进度',
+      donut: 'siEnglishDonut',
+      pct: 'siEnglishPct',
+      done: 'siEnglishDoneText',
+      mastered: 'siEnglishMasteredText',
+      vague: 'siEnglishVagueText',
+      wrong: 'siEnglishWrongText',
+      unmarked: 'siEnglishUnmarkedText'
+    },
+
+    math: {
+      label: '数学总进度',
+      donut: 'siMathDonut',
+      pct: 'siMathPct',
+      done: 'siMathDoneText',
+      mastered: 'siMathMasteredText',
+      vague: 'siMathVagueText',
+      wrong: 'siMathWrongText',
+      unmarked: 'siMathUnmarkedText'
+    },
+
+    major: {
+      label: '专业课总进度',
+      donut: 'siMajorDonut',
+      pct: 'siMajorPct',
+      done: 'siMajorDoneText',
+      mastered: 'siMajorMasteredText',
+      vague: 'siMajorVagueText',
+      wrong: 'siMajorWrongText',
+      unmarked: 'siMajorUnmarkedText'
+    }
+  };
+
+  function renderSubjectProgress(summary) {
+    var totalsBySubject =
+      summary || getSubjectTotals();
+
+    Object.keys(SUBJECT_PROGRESS_UI)
+      .forEach(function (group) {
+        var meta = SUBJECT_PROGRESS_UI[group];
+        var totals =
+          totalsBySubject[group] || emptyTotals();
+
+        setText(
+          meta.pct,
+          progressPercent(totals) + '%'
+        );
+
+        setText(
+          meta.done,
+          totals.done.toLocaleString('zh-CN') +
+          ' / ' +
+          totals.total.toLocaleString('zh-CN')
+        );
+
+        setText(
+          meta.mastered,
+          totals.mastered.toLocaleString('zh-CN')
+        );
+
+        setText(
+          meta.vague,
+          totals.vague.toLocaleString('zh-CN')
+        );
+
+        setText(
+          meta.wrong,
+          totals.wrong.toLocaleString('zh-CN')
+        );
+
+        setText(
+          meta.unmarked,
+          totals.unmarked.toLocaleString('zh-CN')
+        );
+
+        paintStatusDonut(
+          document.getElementById(meta.donut),
+          totals,
+          meta.label
+        );
+      });
   }
 
   function getRecentDays() {
@@ -250,8 +571,12 @@
   }
   function render() {
     if (!document.getElementById('studyInsights')) return;
+
+    var totals = getSubjectTotals();
+
     renderCountdown();
-    renderTotals();
+    renderTotals(totals);
+    renderSubjectProgress(totals);
     renderTrend();
   }
 
@@ -339,6 +664,7 @@
     render: render,
     recordStatus: recordStatus,
     getStatusTotals: getStatusTotals,
+    getSubjectTotals: getSubjectTotals,
     getTrendCounts: getTrendCounts
   };
   window.addEventListener('kaoyan:ready', render);
