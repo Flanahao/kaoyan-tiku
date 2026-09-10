@@ -3399,7 +3399,6 @@ body {
     .m-pill.m-proficient.active { background: var(--lv5); color: #ffffff; }
 
     /* ===== 英语词汇模块（现代蓝色毛玻璃体系与汉语释义） ===== */
-    .app-layout.english-mode .sidebar-left,
     .app-layout.english-mode .sidebar-right,
     .app-layout.english-mode #chapterTitleBar { display:none; }
     .app-layout.english-mode .main-content { max-width:1140px; margin:0 auto; width:100%; }
@@ -4453,4 +4452,262 @@ body {
   .sidebar-focus-card,
   .filter-toolbar,
   .export-section { background: rgba(18, 79, 153, .98); }
+}
+
+/* ===== 只在题目工作台显示的右侧刷题栏 ===== */
+.sidebar-right[hidden] {
+  display: none !important;
+}
+
+/* ===== Header 每日小目标 ===== */
+.daily-goal-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 4px 10px 4px 9px;
+  border: 1px solid rgba(47, 128, 237, .18);
+  border-radius: 999px;
+  appearance: none;
+  background: rgba(239, 247, 255, .78);
+  color: #35516f;
+  box-shadow: 0 2px 8px rgba(30, 100, 180, .06);
+  font: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    box-shadow .18s ease;
+}
+
+.daily-goal-widget:hover {
+  border-color: rgba(47, 128, 237, .34);
+  background: #f4f9ff;
+  box-shadow: 0 4px 12px rgba(30, 100, 180, .09);
+}
+
+.daily-goal-widget:focus-visible {
+  outline: 2px solid rgba(47, 128, 237, .28);
+  outline-offset: 2px;
+}
+
+.daily-goal-title {
+  color: #607a96;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.daily-goal-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.daily-goal-ring {
+  --goal-progress: 0%;
+  --goal-color: #2f80ed;
+
+  position: relative;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      var(--goal-color) 0 var(--goal-progress),
+      #dbe8f6 var(--goal-progress) 100%
+    );
+}
+
+.daily-goal-ring::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.daily-goal-ring > span {
+  position: relative;
+  z-index: 2;
+  color: #1557a6;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.daily-goal-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 45px;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.daily-goal-copy strong {
+  color: #36516f;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.daily-goal-copy span {
+  color: #6f849b;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.daily-goal-item.is-complete .daily-goal-ring {
+  --goal-color: #10b981;
+}
+
+.daily-goal-item.is-complete .daily-goal-ring > span,
+.daily-goal-item.is-complete .daily-goal-copy strong,
+.daily-goal-item.is-complete .daily-goal-copy span {
+  color: #047857;
+}
+
+/* ===== 小庆祝 toast ===== */
+.daily-goal-toast {
+  position: fixed;
+  top: 72px;
+  right: 28px;
+  z-index: 1400;
+  max-width: min(360px, calc(100vw - 28px));
+  padding: 10px 14px;
+  border: 1px solid rgba(16, 185, 129, .22);
+  border-radius: 12px;
+  background: rgba(240, 253, 250, .96);
+  color: #047857;
+  box-shadow: 0 12px 28px rgba(15, 118, 110, .14);
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity .18s ease,
+    transform .18s ease;
+}
+
+.daily-goal-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.daily-goal-toast[hidden] {
+  display: none !important;
+}
+
+/* ===== 设置弹窗中的每日目标 ===== */
+.si-goal-fieldset {
+  margin: 16px 0 0;
+  padding: 14px;
+  border: 1px solid rgba(185, 206, 228, .75);
+  border-radius: 12px;
+}
+
+.si-goal-fieldset legend {
+  padding: 0 6px;
+  color: #45627f;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.si-goal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.si-goal-label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #45627f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.si-goal-label input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid #b9cee4;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .75);
+  color: #293f5b;
+  font: inherit;
+  font-weight: 600;
+}
+
+.si-goal-label input:focus {
+  outline: 2px solid rgba(47, 128, 237, .22);
+  border-color: var(--si-primary);
+}
+
+@media (max-width: 620px) {
+  #syncStatus,
+  .daily-goal-title {
+    display: none;
+  }
+
+  .si-goal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-nav-right {
+    gap: 6px;
+  }
+
+  .daily-goal-widget {
+    padding: 4px 6px;
+    gap: 6px;
+  }
+
+  .daily-goal-copy {
+    display: none;
+  }
+
+  .daily-goal-ring {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
+  }
+
+  .daily-goal-ring > span {
+    display: none;
+  }
+
+  .daily-goal-ring::before {
+    content: attr(data-short);
+    position: relative;
+    z-index: 2;
+    color: #1557a6;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .daily-goal-item.is-complete .daily-goal-ring::before {
+    color: #047857;
+  }
+
+  .daily-goal-toast {
+    top: 64px;
+    right: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .daily-goal-widget,
+  .daily-goal-toast {
+    transition: none;
+  }
 }

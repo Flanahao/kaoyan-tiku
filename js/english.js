@@ -325,6 +325,9 @@
     if (content) content.style.display = 'none';
     var layout = document.querySelector('.app-layout');
     if (layout) layout.classList.add('english-mode');
+    if (typeof window.setPracticeSidebarVisible === 'function') {
+      window.setPracticeSidebarVisible(false);
+    }
     panel.hidden = false;
     setBtnNavText('btnEnglish', '返回刷题');
     render();
@@ -337,6 +340,9 @@
     if (layout) layout.classList.remove('english-mode');
     var content = document.getElementById('mainAreaContent');
     if (content) content.style.display = '';
+    if (typeof window.setPracticeSidebarVisible === 'function') {
+      window.setPracticeSidebarVisible(true);
+    }
     setBtnNavText('btnEnglish', '英语词汇');
     if (typeof window.renderTitle === 'function') {
       window.renderTitle();

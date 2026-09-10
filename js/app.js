@@ -26,6 +26,14 @@
     function getChapter() { return CHAPTERS.find(c => c.id === currentChapterId); }
     function chapterById(id) { return CHAPTERS.find(c => c.id === id); }
 
+    function setPracticeSidebarVisible(visible) {
+      const sidebar = document.getElementById('practiceSidebar') || document.querySelector('.sidebar-right');
+      if (!sidebar) return;
+      sidebar.hidden = !visible;
+      sidebar.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    }
+    window.setPracticeSidebarVisible = setPracticeSidebarVisible;
+
     // ===== 合并章节（1000题并入30讲/36讲）辅助 =====
     // 当前索引所属分区：idx 落在合并章节的 1000题 段 → '1000题'；否则按标签分类
     function partOfIdx(idx) {
@@ -1433,11 +1441,13 @@
         renderDashboardOverview();
         panel.style.display = '';
         content.style.display = 'none';
+        setPracticeSidebarVisible(false);
         setPanelTitle('全局学习进度');
         setBtnNavText('btnDashboard', '返回章节', 'icon-chart', 'V');
       } else {
         panel.style.display = 'none';
         content.style.display = '';
+        setPracticeSidebarVisible(true);
         showDashboardBackBtn(false);
         setPanelTitle('');
         renderTitle();
@@ -1694,6 +1704,7 @@
         document.getElementById('mainAreaContent').style.display = 'none';
         setPanelTitle('全局学习进度');
       }
+      setPracticeSidebarVisible(false);
       openDashboardDetail(wb, bookSub);
     }
 
@@ -1766,6 +1777,7 @@
       showDashboardBackBtn(false);
       document.getElementById('dashboardPanel').style.display = 'none';
       document.getElementById('mainAreaContent').style.display = '';
+      setPracticeSidebarVisible(true);
       setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
       setPanelTitle('');
       renderTitle();
@@ -1819,6 +1831,7 @@
       dashPanel.style.display = 'none';
       content.style.display = 'none';
       panel.style.display = '';
+      setPracticeSidebarVisible(false);
       setBtnNavText('btnWrongBook', '返回章节', 'icon-notebook', 'B');
       if (dashboardOpen) { dashboardOpen = false; showDashboardBackBtn(false); setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V'); }
       showWrongBookReturnBtn(false); // 回到错题本后隐藏返回按钮
@@ -1833,11 +1846,13 @@
         renderWrongBook();
         content.style.display = 'none';
         panel.style.display = '';
+        setPracticeSidebarVisible(false);
         setBtnNavText('btnWrongBook', '返回章节', 'icon-notebook', 'B');
         showWrongBookReturnBtn(false);
       } else {
         panel.style.display = 'none';
         content.style.display = '';
+        setPracticeSidebarVisible(true);
         setPanelTitle('');
         renderTitle();
         setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
@@ -1996,6 +2011,7 @@
         setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
         showWrongBookReturnBtn(false); setPanelTitle('');
       }
+      setPracticeSidebarVisible(true);
       wrongBookWb = null; // 无条件重置错题本书籍筛选（书籍列表按科目不同，防跨科目残留）
       closeAllTitlePanels(); // 关闭可能残留的标题下拉面板（切换后重建）
       loadStatuses(); loadQBad(); loadSBad(); loadNotes();
@@ -2006,7 +2022,9 @@
         const filtered = getFilteredIndices();
         if (filtered.length > 0 && filtered.indexOf(current) === -1) current = filtered[0];
       }
-      switchTo(current); updateFilterCounts();
+      switchTo(current);
+      updateFilterCounts();
+      setPracticeSidebarVisible(true);
       closeSubjectPicker();
     }
     function pickSubject(id) {
@@ -2201,6 +2219,7 @@
           wrongBookOpen = false;
           document.getElementById('wrongBookPanel').style.display = 'none';
           document.getElementById('mainAreaContent').style.display = '';
+          setPracticeSidebarVisible(true);
           setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
           setPanelTitle(''); // 恢复章节下拉栏（与 dashboard 跳转一致）
           renderTitle();
@@ -4228,6 +4247,7 @@ ${cardsHTML}
         var btn = document.getElementById('btnSm2PanelSidebar');
         panel.style.display = 'block';
         mainContent.style.display = 'none';
+        setPracticeSidebarVisible(false);
         setPanelTitle('间隔重复复习');
         setBtnNavText('btnSm2PanelSidebar', '返回章节', 'icon-refresh', 'R');
         sm2PanelOpen = true;
@@ -4243,6 +4263,7 @@ ${cardsHTML}
       if (panel) panel.style.display = 'none';
       var mainContent = document.getElementById('mainAreaContent');
       if (mainContent) mainContent.style.display = '';
+      setPracticeSidebarVisible(true);
       setBtnNavText('btnSm2PanelSidebar', 'SM-2复习', 'icon-refresh', 'R');
       setPanelTitle('');
       renderTitle();
@@ -4477,6 +4498,7 @@ ${cardsHTML}
       reviewSession = { queue: queue, currentIdx: 0, mode: mode, originChapter: currentChapterId, originIdx: current };
       saveReviewSession();
       closeSm2Panel();
+      setPracticeSidebarVisible(true);
       // 进入复习 UI：隐藏进度块，显示复习队列面板与复习控件
       document.getElementById('statsBlock').style.display = 'none';
       document.getElementById('reviewQueuePanel').style.display = '';
@@ -4516,6 +4538,7 @@ ${cardsHTML}
         done: !!persist.done
       };
       closeSm2Panel();
+      setPracticeSidebarVisible(true);
       document.getElementById('statsBlock').style.display = 'none';
       document.getElementById('reviewQueuePanel').style.display = '';
       document.getElementById('reviewControls').style.display = '';

@@ -8,8 +8,16 @@
   var MAX_EVENTS = 10000;
   var EVENT_RETENTION_DAYS = 365;
   var DEFAULT_EXAM_DATE = '';
+  var DEFAULT_DAILY_GOALS = { math: 20, major: 20 };
+  var MAX_DAILY_GOAL = 999;
   var STATUS_SCORE = { proficient: 5, familiar: 4, vague: 3, rusty: 2, wrong: 1 };
-  var state = { bound: false };
+
+  var goalToastTimer = 0;
+  var goalToastSequence = 0;
+  var state = {
+    bound: false,
+    midnightTimer: 0
+  };
 
   function getPrefix() {
     try {
@@ -56,12 +64,75 @@
     date.setHours(0, 0, 0, 0);
     return date;
   }
+  function normalizeGoal(value, fallback) {
+    if (value === null || value === undefined) return fallback;
+
+    var number = Number(value);
+    if (!Number.isFinite(number)) return fallback;
+
+    return Math.max(
+      0,
+      Math.min(MAX_DAILY_GOAL, Math.floor(number))
+    );
+  }
+
   function currentSettings() {
     var saved = readJSON(settingsKey(), {});
-    return { schemaVersion: 1, examDate: typeof saved.examDate === 'string' ? saved.examDate : DEFAULT_EXAM_DATE };
+    var savedGoals =
+      saved &&
+      saved.dailyGoals &&
+      typeof saved.dailyGoals === 'object'
+        ? saved.dailyGoals
+        : {};
+
+    return {
+      schemaVersion: 2,
+      examDate:
+        typeof saved.examDate === 'string'
+          ? saved.examDate
+          : DEFAULT_EXAM_DATE,
+      dailyGoals: {
+        math: normalizeGoal(
+          savedGoals.math,
+          DEFAULT_DAILY_GOALS.math
+        ),
+        major: normalizeGoal(
+          savedGoals.major,
+          DEFAULT_DAILY_GOALS.major
+        )
+      }
+    };
   }
+
   function saveSettings(settings) {
-    return writeJSON(settingsKey(), { schemaVersion: 1, examDate: settings.examDate || '' });
+    settings = settings || {};
+
+    var current = currentSettings();
+    var goals =
+      settings.dailyGoals &&
+      typeof settings.dailyGoals === 'object'
+        ? settings.dailyGoals
+        : current.dailyGoals;
+
+    var next = {
+      schemaVersion: 2,
+      examDate:
+        typeof settings.examDate === 'string'
+          ? settings.examDate
+          : current.examDate,
+      dailyGoals: {
+        math: normalizeGoal(
+          goals.math,
+          current.dailyGoals.math
+        ),
+        major: normalizeGoal(
+          goals.major,
+          current.dailyGoals.major
+        )
+      }
+    };
+
+    return writeJSON(settingsKey(), next);
   }
   function setText(id, value) {
     var node = document.getElementById(id);
@@ -173,6 +244,86 @@
     }
 
     return '';
+  }
+
+  function resolveEventGroup(event) {
+    var direct = normalizeAnalyticsGroup(event && event.group);
+    if (direct) return direct;
+
+    var subjectId =
+      event && event.subjectId != null
+        ? String(event.subjectId)
+        : '';
+
+    var subjects =
+      Array.isArray(window.SUBJECTS)
+        ? window.SUBJECTS
+        : [];
+
+    for (var i = 0; i < subjects.length; i += 1) {
+      var subject = subjects[i];
+
+      if (
+        subject &&
+        String(subject.id) === subjectId
+      ) {
+        return resolveQuestionGroup(subject);
+      }
+    }
+
+    return '';
+  }
+
+  function getDailyGoalCounts(input, eventsOverride) {
+    var wantedDay = dayKey(
+      input == null ? Date.now() : input
+    );
+
+    var events =
+      Array.isArray(eventsOverride)
+        ? eventsOverride
+        : readJSON(eventsKey(), []);
+
+    if (!Array.isArray(events)) {
+      events = [];
+    }
+
+    var seen = {
+      math: new Set(),
+      major: new Set()
+    };
+
+    events.forEach(function (event) {
+      if (!event) return;
+
+      // 只统计状态标记事件；兼容极早期没有 type 的旧记录。
+      if (event.type && event.type !== 'status') return;
+
+      var eventDay =
+        typeof event.day === 'string'
+          ? event.day
+          : dayKey(event.ts);
+
+      if (eventDay !== wantedDay) return;
+
+      var group = resolveEventGroup(event);
+      if (!seen[group]) return;
+      if (event.idx == null) return;
+
+      var identity =
+        String(event.subjectId || '') +
+        '::' +
+        String(event.chapterId || '') +
+        '::' +
+        String(event.idx);
+
+      seen[group].add(identity);
+    });
+
+    return {
+      math: seen.math.size,
+      major: seen.major.size
+    };
   }
 
   function collectQuestionBuckets() {
@@ -546,6 +697,197 @@
     if (empty) empty.hidden = total !== 0;
   }
 
+  var DAILY_GOAL_UI = {
+    math: {
+      label: '数学',
+      item: 'dailyGoalMathItem',
+      ring: 'dailyGoalMathRing',
+      pct: 'dailyGoalMathPct',
+      text: 'dailyGoalMathText'
+    },
+    major: {
+      label: '专业课',
+      item: 'dailyGoalMajorItem',
+      ring: 'dailyGoalMajorRing',
+      pct: 'dailyGoalMajorPct',
+      text: 'dailyGoalMajorText'
+    }
+  };
+
+  function renderDailyGoals(counts, settings) {
+    settings = settings || currentSettings();
+    counts = counts || getDailyGoalCounts(Date.now());
+
+    var targets = {
+      math: normalizeGoal(
+        settings.dailyGoals.math,
+        DEFAULT_DAILY_GOALS.math
+      ),
+      major: normalizeGoal(
+        settings.dailyGoals.major,
+        DEFAULT_DAILY_GOALS.major
+      )
+    };
+
+    Object.keys(DAILY_GOAL_UI).forEach(function (group) {
+      var meta = DAILY_GOAL_UI[group];
+      var target = targets[group];
+      var count = Number(counts[group]) || 0;
+
+      var complete =
+        target > 0 &&
+        count >= target;
+
+      var percent =
+        target > 0
+          ? Math.min(
+              100,
+              Math.round(count / target * 100)
+            )
+          : 0;
+
+      var item = document.getElementById(meta.item);
+      var ring = document.getElementById(meta.ring);
+
+      if (item) {
+        item.classList.toggle('is-complete', complete);
+      }
+
+      if (ring) {
+        ring.style.setProperty(
+          '--goal-progress',
+          percent + '%'
+        );
+      }
+
+      setText(
+        meta.pct,
+        target > 0
+          ? percent + '%'
+          : '—'
+      );
+
+      setText(
+        meta.text,
+        target > 0
+          ? (
+              complete
+                ? '已完成 · ' + count + '/' + target
+                : count + '/' + target
+            )
+          : '未设置'
+      );
+    });
+
+    var button = document.getElementById('dailyGoalButton');
+    if (button) {
+      var mathCopy =
+        targets.math > 0
+          ? counts.math + '/' + targets.math
+          : '未设置';
+
+      var majorCopy =
+        targets.major > 0
+          ? counts.major + '/' + targets.major
+          : '未设置';
+
+      button.setAttribute(
+        'aria-label',
+        '每日小目标：数学 ' +
+          mathCopy +
+          '，专业课 ' +
+          majorCopy +
+          '。点击设置'
+      );
+
+      button.title =
+        '点击设置每日小目标｜数学 ' +
+        mathCopy +
+        '｜专业课 ' +
+        majorCopy;
+    }
+  }
+
+  function showGoalToast(group, count, target) {
+    var toast = document.getElementById('dailyGoalToast');
+    if (!toast) return;
+
+    var label =
+      group === 'major'
+        ? '专业课'
+        : '数学';
+
+    goalToastSequence += 1;
+    var sequence = goalToastSequence;
+
+    if (goalToastTimer) {
+      clearTimeout(goalToastTimer);
+      goalToastTimer = 0;
+    }
+
+    toast.textContent =
+      '🎉 ' +
+      label +
+      '今日目标完成 · ' +
+      count +
+      '/' +
+      target +
+      ' 题';
+
+    toast.hidden = false;
+
+    var raf =
+      window.requestAnimationFrame ||
+      function (callback) {
+        return setTimeout(callback, 0);
+      };
+
+    raf(function () {
+      if (sequence !== goalToastSequence) return;
+      toast.classList.add('is-visible');
+    });
+
+    goalToastTimer = setTimeout(function () {
+      if (sequence !== goalToastSequence) return;
+
+      toast.classList.remove('is-visible');
+
+      setTimeout(function () {
+        if (sequence === goalToastSequence) {
+          toast.hidden = true;
+        }
+      }, 200);
+    }, 2200);
+  }
+
+  function maybeCelebrateGoal(
+    group,
+    beforeCounts,
+    afterCounts,
+    settings
+  ) {
+    if (group !== 'math' && group !== 'major') {
+      return;
+    }
+
+    var target = normalizeGoal(
+      settings.dailyGoals[group],
+      DEFAULT_DAILY_GOALS[group]
+    );
+
+    if (
+      target > 0 &&
+      beforeCounts[group] < target &&
+      afterCounts[group] >= target
+    ) {
+      showGoalToast(
+        group,
+        afterCounts[group],
+        target
+      );
+    }
+  }
+
   function renderCountdown() {
     var settings = currentSettings();
     var daysNode = document.getElementById('siCountdownDays');
@@ -570,6 +912,9 @@
     if (button) button.textContent = '修改日期（' + settings.examDate + '）';
   }
   function render() {
+    // Header 永远存在；dashboard 的 studyInsights 可能当前不可见。
+    renderDailyGoals();
+
     if (!document.getElementById('studyInsights')) return;
 
     var totals = getSubjectTotals();
@@ -587,64 +932,258 @@
     return String(timestamp) + '-' + Math.random().toString(36).slice(2);
   }
   function recordStatus(payload) {
-    if (!payload || !Object.prototype.hasOwnProperty.call(STATUS_SCORE, payload.status)) return;
+    if (
+      !payload ||
+      !Object.prototype.hasOwnProperty.call(
+        STATUS_SCORE,
+        payload.status
+      )
+    ) {
+      return;
+    }
+
     var timestamp = Date.now();
-    var cutoff = timestamp - EVENT_RETENTION_DAYS * DAY_MS;
+    var cutoff =
+      timestamp -
+      EVENT_RETENTION_DAYS * DAY_MS;
+
     var events = readJSON(eventsKey(), []);
-    if (!Array.isArray(events)) events = [];
-    events = events.filter(function (event) { return event && Number(event.ts) >= cutoff; });
+    if (!Array.isArray(events)) {
+      events = [];
+    }
+
+    events = events.filter(function (event) {
+      return (
+        event &&
+        Number(event.ts) >= cutoff
+      );
+    });
+
+    var beforeCounts =
+      getDailyGoalCounts(timestamp, events);
+
+    var group = resolveEventGroup({
+      subjectId: payload.subjectId
+    });
+
     events.push({
       id: makeEventId(timestamp),
       ts: timestamp,
       day: dayKey(timestamp),
       type: 'status',
-      source: payload.source === 'sm2' ? 'sm2' : 'mark',
-      subjectId: payload.subjectId == null ? '' : String(payload.subjectId),
-      chapterId: payload.chapterId == null ? '' : String(payload.chapterId),
-      idx: Number.isFinite(Number(payload.idx)) ? Number(payload.idx) : null,
+      source:
+        payload.source === 'sm2'
+          ? 'sm2'
+          : 'mark',
+      group: group,
+      subjectId:
+        payload.subjectId == null
+          ? ''
+          : String(payload.subjectId),
+      chapterId:
+        payload.chapterId == null
+          ? ''
+          : String(payload.chapterId),
+      idx:
+        Number.isFinite(Number(payload.idx))
+          ? Number(payload.idx)
+          : null,
       status: payload.status,
       score: STATUS_SCORE[payload.status]
     });
-    if (events.length > MAX_EVENTS) events = events.slice(events.length - MAX_EVENTS);
-    writeJSON(eventsKey(), events);
+
+    if (events.length > MAX_EVENTS) {
+      events = events.slice(
+        events.length - MAX_EVENTS
+      );
+    }
+
+    if (!writeJSON(eventsKey(), events)) {
+      return;
+    }
+
+    var afterCounts =
+      getDailyGoalCounts(timestamp, events);
+
     renderTrend();
+    renderDailyGoals(afterCounts);
+
+    maybeCelebrateGoal(
+      group,
+      beforeCounts,
+      afterCounts,
+      currentSettings()
+    );
   }
 
-  function openSettings() {
-    var modal = document.getElementById('studySettingsModal');
-    var input = document.getElementById('siExamDateInput');
-    if (!modal || !input) return;
-    input.value = currentSettings().examDate || '';
+  function readGoalInput(input, label) {
+    var raw =
+      String(
+        input && input.value || ''
+      ).trim();
+
+    if (raw === '') {
+      return 0;
+    }
+
+    var value = Number(raw);
+
+    if (
+      !Number.isInteger(value) ||
+      value < 0 ||
+      value > MAX_DAILY_GOAL
+    ) {
+      window.alert(
+        label +
+        '每日目标请输入 0–' +
+        MAX_DAILY_GOAL +
+        ' 的整数。'
+      );
+
+      if (input) input.focus();
+      return null;
+    }
+
+    return value;
+  }
+
+  function openSettings(event) {
+    var modal =
+      document.getElementById('studySettingsModal');
+
+    var dateInput =
+      document.getElementById('siExamDateInput');
+
+    var mathInput =
+      document.getElementById('siMathDailyGoalInput');
+
+    var majorInput =
+      document.getElementById('siMajorDailyGoalInput');
+
+    if (
+      !modal ||
+      !dateInput ||
+      !mathInput ||
+      !majorInput
+    ) {
+      return;
+    }
+
+    var settings = currentSettings();
+
+    dateInput.value =
+      settings.examDate || '';
+
+    mathInput.value =
+      String(settings.dailyGoals.math);
+
+    majorInput.value =
+      String(settings.dailyGoals.major);
+
     modal.hidden = false;
     modal.style.display = 'flex';
-    input.focus();
+
+    var fromGoalButton =
+      event &&
+      event.currentTarget &&
+      event.currentTarget.id === 'dailyGoalButton';
+
+    if (fromGoalButton) {
+      mathInput.focus();
+    } else {
+      dateInput.focus();
+    }
   }
+
   function closeSettings() {
-    var modal = document.getElementById('studySettingsModal');
+    var modal =
+      document.getElementById('studySettingsModal');
+
     if (!modal) return;
+
     modal.hidden = true;
     modal.style.display = 'none';
   }
+
   function saveSettingsFromDialog() {
-    var input = document.getElementById('siExamDateInput');
-    if (!input) return;
-    var value = String(input.value || '').trim();
-    if (value && !parseLocalDate(value)) {
-      window.alert('日期格式无效，请选择有效日期。');
+    var dateInput =
+      document.getElementById('siExamDateInput');
+
+    var mathInput =
+      document.getElementById('siMathDailyGoalInput');
+
+    var majorInput =
+      document.getElementById('siMajorDailyGoalInput');
+
+    if (
+      !dateInput ||
+      !mathInput ||
+      !majorInput
+    ) {
       return;
     }
-    saveSettings({ examDate: value });
+
+    var examDate =
+      String(dateInput.value || '').trim();
+
+    if (
+      examDate &&
+      !parseLocalDate(examDate)
+    ) {
+      window.alert(
+        '日期格式无效，请选择有效日期。'
+      );
+      dateInput.focus();
+      return;
+    }
+
+    var mathGoal =
+      readGoalInput(
+        mathInput,
+        '数学'
+      );
+
+    if (mathGoal == null) return;
+
+    var majorGoal =
+      readGoalInput(
+        majorInput,
+        '专业课'
+      );
+
+    if (majorGoal == null) return;
+
+    var saved = saveSettings({
+      examDate: examDate,
+      dailyGoals: {
+        math: mathGoal,
+        major: majorGoal
+      }
+    });
+
+    if (!saved) {
+      window.alert(
+        '设置保存失败，请检查浏览器本地存储权限后重试。'
+      );
+      return;
+    }
+
     closeSettings();
-    renderCountdown();
+    render();
   }
+
   function bind() {
     if (state.bound) return;
     state.bound = true;
+
     var examButton = document.getElementById('siExamDateBtn');
+    var goalButton = document.getElementById('dailyGoalButton');
     var cancelButton = document.getElementById('siSettingsCancel');
     var saveButton = document.getElementById('siSettingsSave');
     var modal = document.getElementById('studySettingsModal');
+
     if (examButton) examButton.addEventListener('click', openSettings);
+    if (goalButton) goalButton.addEventListener('click', openSettings);
     if (cancelButton) cancelButton.addEventListener('click', closeSettings);
     if (saveButton) saveButton.addEventListener('click', saveSettingsFromDialog);
     if (modal) modal.addEventListener('click', function (event) {
@@ -657,7 +1196,40 @@
       if (event.key === settingsKey() || event.key === eventsKey()) render();
     });
   }
-  function init() { bind(); render(); }
+
+  function scheduleMidnightRefresh() {
+    if (state.midnightTimer) {
+      clearTimeout(state.midnightTimer);
+    }
+
+    var now = new Date();
+
+    var nextMidnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 1,
+      0,
+      0,
+      1
+    );
+
+    state.midnightTimer = setTimeout(
+      function () {
+        renderDailyGoals();
+        scheduleMidnightRefresh();
+      },
+      Math.max(
+        1000,
+        nextMidnight.getTime() - now.getTime()
+      )
+    );
+  }
+
+  function init() {
+    bind();
+    render();
+    scheduleMidnightRefresh();
+  }
 
   window.StudyAnalytics = {
     init: init,
@@ -665,7 +1237,8 @@
     recordStatus: recordStatus,
     getStatusTotals: getStatusTotals,
     getSubjectTotals: getSubjectTotals,
-    getTrendCounts: getTrendCounts
+    getTrendCounts: getTrendCounts,
+    getDailyGoalCounts: getDailyGoalCounts
   };
   window.addEventListener('kaoyan:ready', render);
   if (document.readyState === 'loading') {

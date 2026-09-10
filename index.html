@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>考研题库 - 全功能专业版</title>
   <link rel="stylesheet" href="lib/katex/katex.min.css">
-  <link rel="stylesheet" href="css/styles.css?v=20260831a">
+  <link rel="stylesheet" href="css/styles.css?v=20260910c">
 </head>
 <body>
 
@@ -200,6 +200,46 @@
             </div>
           </div>
           <div class="header-nav-right">
+            <button
+              id="dailyGoalButton"
+              class="daily-goal-widget"
+              type="button"
+              aria-label="每日小目标：数学 0/20，专业课 0/20。点击设置"
+              title="点击设置每日小目标"
+            >
+              <span class="daily-goal-title">今日目标</span>
+
+              <span class="daily-goal-item" id="dailyGoalMathItem">
+                <span
+                  class="daily-goal-ring"
+                  id="dailyGoalMathRing"
+                  data-short="数"
+                  aria-hidden="true"
+                >
+                  <span id="dailyGoalMathPct">0%</span>
+                </span>
+                <span class="daily-goal-copy">
+                  <strong>数学</strong>
+                  <span id="dailyGoalMathText">0/20</span>
+                </span>
+              </span>
+
+              <span class="daily-goal-item" id="dailyGoalMajorItem">
+                <span
+                  class="daily-goal-ring"
+                  id="dailyGoalMajorRing"
+                  data-short="专"
+                  aria-hidden="true"
+                >
+                  <span id="dailyGoalMajorPct">0%</span>
+                </span>
+                <span class="daily-goal-copy">
+                  <strong>专业课</strong>
+                  <span id="dailyGoalMajorText">0/20</span>
+                </span>
+              </span>
+            </button>
+
             <span id="syncStatus" class="local-mode-status">本地模式 · 自动保存</span>
           </div>
         </header>
@@ -541,7 +581,7 @@
           </div><!-- .main-content -->
 
           <!-- 右侧栏：进度统计与题号网格 -->
-          <div class="sidebar-right">
+          <div class="sidebar-right" id="practiceSidebar" aria-hidden="false">
             <div class="chapter-selector" id="statsBlock">
               <div class="chapter-label">进度</div>
               <div class="stats-panel" id="statsPanel"></div>
@@ -748,21 +788,72 @@
     </div>
   </div>
 
-  <!-- 学习仪表盘设置模态框 -->
+  <!-- 学习仪表盘 / 每日目标设置模态框 -->
   <div id="studySettingsModal" class="subject-overlay" style="display:none" hidden>
-    <div class="subject-modal si-settings-modal" role="dialog" aria-modal="true" aria-labelledby="siSettingsTitle">
-      <h2 id="siSettingsTitle">学习仪表盘设置</h2>
+    <div
+      class="subject-modal si-settings-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="siSettingsTitle"
+    >
+      <h2 id="siSettingsTitle">学习目标与考试日期</h2>
+
       <label class="si-date-label" for="siExamDateInput">
         考研初试日期
         <input id="siExamDateInput" type="date" inputmode="numeric">
       </label>
-      <p class="si-settings-help">日期只保存在当前浏览器，不会上传服务器。清空日期可以暂时关闭倒计时。</p>
+      <p class="si-settings-help">
+        日期只保存在当前浏览器，不会上传服务器。清空日期可以暂时关闭倒计时。
+      </p>
+
+      <fieldset class="si-goal-fieldset">
+        <legend>每日小目标（题）</legend>
+        <div class="si-goal-grid">
+          <label class="si-goal-label" for="siMathDailyGoalInput">
+            数学
+            <input
+              id="siMathDailyGoalInput"
+              type="number"
+              min="0"
+              max="999"
+              step="1"
+              inputmode="numeric"
+            >
+          </label>
+
+          <label class="si-goal-label" for="siMajorDailyGoalInput">
+            专业课
+            <input
+              id="siMajorDailyGoalInput"
+              type="number"
+              min="0"
+              max="999"
+              step="1"
+              inputmode="numeric"
+            >
+          </label>
+        </div>
+        <p class="si-settings-help">
+          0 表示暂不设置。每日进度按当天首次标记过的不同题目计数；
+          同一题反复修改掌握状态不会重复累计。
+        </p>
+      </fieldset>
+
       <div class="si-settings-actions">
         <button id="siSettingsCancel" class="hero-action-btn" type="button">取消</button>
         <button id="siSettingsSave" class="hero-action-btn primary" type="button">保存</button>
       </div>
     </div>
   </div>
+
+  <div
+    id="dailyGoalToast"
+    class="daily-goal-toast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  ></div>
 
 
   <!-- 本地依赖脚本与核心模块 -->
@@ -780,8 +871,8 @@
   <script src="js/professional-chapters.js?v=20260910a"></script>
   <script src="js/solution-manifest.js?v=20260910a"></script>
   <script src="js/chapters.js?v=20260910b"></script>
-  <script src="js/app.js?v=20260910b"></script>
-  <script src="js/english.js?v=20260909c"></script>
-  <script src="js/study-analytics.js?v=20260910b"></script>
+  <script src="js/app.js?v=20260910c"></script>
+  <script src="js/english.js?v=20260910c"></script>
+  <script src="js/study-analytics.js?v=20260910c"></script>
 </body>
 </html>
