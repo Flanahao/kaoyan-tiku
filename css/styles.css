@@ -970,12 +970,20 @@ body {
       overflow-y: auto;
       flex: 1;
       padding: 4px;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
     }
     .db-overview {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 16px;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
     }
     .db-grid {
       display: grid;
@@ -4751,7 +4759,70 @@ body {
 }
 
 .db-books-section .db-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
   margin-bottom: 14px;
+}
+
+.db-block-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.db-books-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.db-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.db-legend-item i,
+.dot-mastered,
+.dot-fuzzy,
+.dot-wrong,
+.dot-unmarked,
+.legend-mastered,
+.legend-fuzzy,
+.legend-wrong,
+.legend-unmarked {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-mastered,
+.dot-mastered {
+  background: #4A90E2 !important;
+}
+
+.legend-fuzzy,
+.dot-fuzzy {
+  background: #8B5CF6 !important;
+}
+
+.legend-wrong,
+.dot-wrong {
+  background: #EF4444 !important;
+}
+
+.legend-unmarked,
+.dot-unmarked {
+  background: #DCE6F4 !important;
 }
 
 /* 桌面端一行 3 张进度卡。 */
@@ -4762,18 +4833,27 @@ body {
   gap: 16px;
 }
 
-.db-books-section .db-donut-card {
+.db-books-section .db-donut-card,
+.book-progress-card,
+.subject-progress-card,
+.progress-card {
   min-width: 0;
+  overflow: hidden;
 }
 
-/* drawDonut() 会给 canvas 写入 inline width/height:260px。
+/* drawDonut() / drawBookSegmentedDonut() 会给 canvas 写入 inline width/height:260px。
    在窄屏必须允许 CSS 把显示尺寸压小，否则 320/390px 可能横向溢出。
    intrinsic canvas 像素仍保留，视觉只做等比缩放。 */
-.db-books-section .db-donut-card canvas {
+.db-books-section .db-donut-card canvas,
+.book-progress-card canvas,
+.subject-progress-card canvas,
+.progress-card canvas {
+  display: block;
   width: 260px !important;
   max-width: 100% !important;
   height: auto !important;
   aspect-ratio: 1 / 1;
+  margin: 0 auto;
 }
 
 /* 中等桌面/平板：260px donut + 卡片 padding 不适合硬塞三列，改两列。 */

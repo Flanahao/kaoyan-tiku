@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>考研题库 - 全功能专业版</title>
   <link rel="stylesheet" href="lib/katex/katex.min.css">
-  <link rel="stylesheet" href="css/styles.css?v=20260910d">
+  <link rel="stylesheet" href="css/styles.css?v=20260912a">
 </head>
 <body>
 
@@ -539,8 +539,16 @@
                   <!-- 书籍与科目进度：独占整行，桌面端一行三张卡 -->
                   <div class="db-books-section" id="dbBooksSection">
                     <div class="db-block-header">
-                      <h3 class="db-block-title">书籍与科目进度</h3>
-                      <span class="db-block-hint">点击卡片可查看详细章节完成率</span>
+                      <div class="db-block-header-left">
+                        <h3 class="db-block-title">书籍与科目进度</h3>
+                        <span class="db-block-hint">点击卡片可查看详细章节完成率</span>
+                      </div>
+                      <div class="db-books-legend" aria-label="进度图例">
+                        <span class="db-legend-item"><i class="dot-mastered"></i>熟练</span>
+                        <span class="db-legend-item"><i class="dot-fuzzy"></i>模糊</span>
+                        <span class="db-legend-item"><i class="dot-wrong"></i>不会</span>
+                        <span class="db-legend-item"><i class="dot-unmarked"></i>未标记</span>
+                      </div>
                     </div>
                     <div class="db-grid" id="dbGrid"></div>
                   </div>
@@ -872,7 +880,7 @@
   <script src="js/professional-chapters.js?v=20260910a"></script>
   <script src="js/solution-manifest.js?v=20260910a"></script>
   <script src="js/chapters.js?v=20260910b"></script>
-  <script src="js/app.js?v=20260910c"></script>
+  <script src="js/app.js?v=20260912a"></script>
   <script src="js/english.js?v=20260910d"></script>
   <script src="js/study-analytics.js?v=20260910c"></script>
 </body>

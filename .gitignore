@@ -10,3 +10,4 @@ desktop.ini
 *.zip
 __pycache__/
 *.pyc
+*.lnk

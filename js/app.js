@@ -1367,6 +1367,130 @@
       ctx.fillText(pct + '%', cx, cy + 11);
     }
 
+    var BOOK_PROGRESS_COLORS = {
+      mastered: '#4A90E2', // 熟练：蓝色
+      fuzzy: '#8B5CF6',    // 模糊：紫色
+      wrong: '#EF4444',    // 不会：红色
+      unmarked: '#DCE6F4'  // 未标记：浅灰
+    };
+
+    function drawBookSegmentedDonut(canvas, data, label) {
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      var dpr = window.devicePixelRatio || 1;
+      var size = 260;
+      canvas.width = Math.round(size * dpr);
+      canvas.height = Math.round(size * dpr);
+      canvas.style.width = size + 'px';
+      canvas.style.height = size + 'px';
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, size, size);
+
+      data = data || {};
+      var total = Math.max(0, Number(data.total) || 0);
+      var mastered = Math.max(0, Number(data.mastered) || 0);
+      var fuzzy = Math.max(0, Number(data.fuzzy) || 0);
+      var wrong = Math.max(0, Number(data.wrong) || 0);
+      var marked = Math.max(0, mastered + fuzzy + wrong);
+      var unmarked = Math.max(0, total - marked);
+      var pct = total > 0 ? Math.round(marked / total * 100) : 0;
+
+      canvas._donutData = {
+        total: total,
+        mastered: mastered,
+        fuzzy: fuzzy,
+        wrong: wrong,
+        marked: marked,
+        unmarked: unmarked,
+        percent: pct,
+        label: label
+      };
+
+      var cx = size / 2;
+      var cy = size / 2;
+      var radius = 88;
+      var lineWidth = 22;
+      var startAngle = -Math.PI / 2;
+
+      // 1. 底层浅色背景环（超淡灰底）
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = '#EDF3FA';
+      ctx.lineWidth = lineWidth;
+      ctx.lineCap = 'butt';
+      ctx.stroke();
+
+      if (total <= 0) {
+        // 无题目时画完整未做浅灰环
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = BOOK_PROGRESS_COLORS.unmarked;
+        ctx.lineWidth = lineWidth;
+        ctx.lineCap = 'butt';
+        ctx.stroke();
+      } else {
+        var segments = [
+          { key: 'mastered', value: mastered, color: BOOK_PROGRESS_COLORS.mastered },
+          { key: 'fuzzy', value: fuzzy, color: BOOK_PROGRESS_COLORS.fuzzy },
+          { key: 'wrong', value: wrong, color: BOOK_PROGRESS_COLORS.wrong },
+          { key: 'unmarked', value: unmarked, color: BOOK_PROGRESS_COLORS.unmarked }
+        ];
+        var active = segments.filter(function (s) { return s.value > 0; });
+
+        if (active.length === 1) {
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.strokeStyle = active[0].color;
+          ctx.lineWidth = lineWidth;
+          ctx.lineCap = 'butt';
+          ctx.stroke();
+        } else if (active.length > 1) {
+          var gap = 0.035;
+          var availAngle = Math.PI * 2 - gap * active.length;
+          var cursor = startAngle;
+
+          active.forEach(function (seg) {
+            var sweep = (seg.value / total) * availAngle;
+            if (sweep <= 0) return;
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, cursor, cursor + sweep);
+            ctx.strokeStyle = seg.color;
+            ctx.lineWidth = lineWidth;
+            ctx.lineCap = 'butt';
+            ctx.stroke();
+            cursor += sweep + gap;
+          });
+        }
+      }
+
+      // 2. 中心白色圆核与微柔边阴影
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius - lineWidth / 2 - 2, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(15, 45, 89, 0.06)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // 3. 绘制中心书名与百分比
+      var displayLabel = String(label || '').trim();
+      ctx.fillStyle = '#334155';
+      var labelFontSize = displayLabel.length > 8 ? 11 : (displayLabel.length > 6 ? 12 : 13);
+      ctx.font = 'bold ' + labelFontSize + 'px "Microsoft YaHei","PingFang SC",sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(displayLabel, cx, cy - 10);
+
+      ctx.fillStyle = '#1557a6';
+      ctx.font = 'bold 22px "Microsoft YaHei","PingFang SC",sans-serif';
+      ctx.fillText(pct + '%', cx, cy + 14);
+    }
+    window.drawBookSegmentedDonut = drawBookSegmentedDonut;
+    window.BOOK_PROGRESS_COLORS = BOOK_PROGRESS_COLORS;
+
     function setPanelTitle(text, wrongbookMode) {
       var bar = document.getElementById('chapterTitleBar');
       var panelTitle = document.getElementById('panelTitle');
@@ -1475,7 +1599,7 @@
       if (options.wb) attrs.push('data-wb="' + options.wb + '"');
       if (options.ariaLabel) attrs.push('aria-label="' + options.ariaLabel + '"');
 
-      return '<div class="db-donut-card" ' + attrs.join(' ') + '>' +
+      return '<div class="db-donut-card book-progress-card" ' + attrs.join(' ') + '>' +
         '<canvas id="' + options.canvasId + '"></canvas>' +
         '<div style="text-align:center;font-size:12px;color:#64748b">' + (options.subjectLabel || '') + '</div></div>';
     }
@@ -1601,42 +1725,21 @@
       }
       var words = english && Array.isArray(english.items) ? english.items : [];
       var englishTotal = words.length;
-      var englishDone = 0;
+      var englishMastered = 0;
+      var englishFuzzy = 0;
+      var englishWrong = 0;
       words.forEach(function (word) {
         var s = word && word.status;
-        if (s === 'proficient' || s === 'familiar' || s === 'vague' || s === 'rusty' || s === 'wrong') {
-          englishDone++;
+        if (s === 'proficient' || s === 'familiar') {
+          englishMastered++;
+        } else if (s === 'vague' || s === 'rusty') {
+          englishFuzzy++;
+        } else if (s === 'wrong') {
+          englishWrong++;
         }
       });
+      var englishDone = englishMastered + englishFuzzy + englishWrong;
       var englishPercent = englishTotal > 0 ? Math.round(englishDone / englishTotal * 100) : 0;
-
-      // 生成与普通书籍同等密度（约25-30圈）的同心环数据
-      var englishRings = [];
-      if (words.length > 0) {
-        var ringCount = Math.min(30, words.length);
-        var chunkSize = Math.ceil(words.length / ringCount);
-        for (var r = 0; r < ringCount; r++) {
-          var rStart = r * chunkSize;
-          var rEnd = Math.min(words.length, (r + 1) * chunkSize);
-          if (rStart >= words.length) break;
-          var rSlice = words.slice(rStart, rEnd);
-          var rSliceDone = 0;
-          for (var si = 0; si < rSlice.length; si++) {
-            var st = rSlice[si] && rSlice[si].status;
-            if (st === 'proficient' || st === 'familiar' || st === 'vague' || st === 'rusty' || st === 'wrong') {
-              rSliceDone++;
-            }
-          }
-          englishRings.push({
-            progress: rSlice.length > 0 ? rSliceDone / rSlice.length : 0,
-            done: rSliceDone,
-            total: rSlice.length
-          });
-        }
-      }
-      if (englishRings.length === 0) {
-        englishRings.push({ progress: 0, done: 0, total: 0 });
-      }
 
       html += createDashboardProgressCard({
         cardKey: 'english-vocabulary',
@@ -1650,13 +1753,29 @@
 
       for (var b = 0; b < books.length; b++) {
         var wb = books[b].wb;
+        var chapters = getBookChapters(wb, books[b].subject.chapters);
+        var bTotal = 0;
+        var bMastered = 0;
+        var bFuzzy = 0;
+        var bWrong = 0;
+        chapters.forEach(function (ch) {
+          var st = getChStats(ch, books[b].subject);
+          var len = ch.ownTotal || ch.total || 0;
+          bTotal += len;
+          bMastered += (st.proficient || 0);
+          bFuzzy += (st.vague || 0);
+          bWrong += (st.wrong || 0);
+        });
+        var bDone = bMastered + bFuzzy + bWrong;
+        var bPercent = bTotal > 0 ? Math.round(bDone / bTotal * 100) : 0;
+
         var cid = 'dbCanvas' + b;
         html += createDashboardProgressCard({
           subjectId: books[b].subject.id,
           wb: wb,
           canvasId: cid,
           subjectLabel: books[b].subject.name,
-          ariaLabel: books[b].label + '，' + books[b].subject.name
+          ariaLabel: books[b].label + '，' + books[b].subject.name + '，总进度 ' + bPercent + '%'
         });
       }
       grid.innerHTML = html;
@@ -1674,17 +1793,41 @@
         }
       };
 
-      // Draw donuts after DOM update
+      // Draw multicolor donuts after DOM update
       setTimeout(function() {
         var engCanvas = document.getElementById('dbCanvasEnglish');
         if (engCanvas) {
-          drawDonut(engCanvas, englishRings, '英语词汇', null);
+          drawBookSegmentedDonut(engCanvas, {
+            total: englishTotal,
+            mastered: englishMastered,
+            fuzzy: englishFuzzy,
+            wrong: englishWrong
+          }, '英语词汇');
         }
         for (var b = 0; b < books.length; b++) {
           var wb = books[b].wb;
           var chapters = getBookChapters(wb, books[b].subject.chapters);
+          var bTotal = 0;
+          var bMastered = 0;
+          var bFuzzy = 0;
+          var bWrong = 0;
+          chapters.forEach(function (ch) {
+            var st = getChStats(ch, books[b].subject);
+            var len = ch.ownTotal || ch.total || 0;
+            bTotal += len;
+            bMastered += (st.proficient || 0);
+            bFuzzy += (st.vague || 0);
+            bWrong += (st.wrong || 0);
+          });
           var canvas = document.getElementById('dbCanvas' + b);
-          if (canvas) drawDonut(canvas, chapters, books[b].label, books[b].subject);
+          if (canvas) {
+            drawBookSegmentedDonut(canvas, {
+              total: bTotal,
+              mastered: bMastered,
+              fuzzy: bFuzzy,
+              wrong: bWrong
+            }, books[b].label);
+          }
         }
       }, 20);
 
@@ -1725,10 +1868,10 @@
           '<div class="db-chapter-name">' + name + '</div>' +
           '<div class="db-chapter-bar"><div class="db-chapter-fill" style="width:' + stats.pct + '%"></div></div>' +
           '<div class="db-chapter-stats">' +
-            '<span class="db-stat"><span class="db-stat-dot" style="background:#389E0D"></span>熟练 ' + stats.proficient + '</span>' +
-            '<span class="db-stat"><span class="db-stat-dot" style="background:#FBC02D"></span>模糊 ' + stats.vague + '</span>' +
-            '<span class="db-stat"><span class="db-stat-dot" style="background:#D32F2F"></span>不会 ' + stats.wrong + '</span>' +
-            '<span class="db-stat"><span class="db-stat-dot" style="background:#ccc"></span>未做 ' + stats.unmarked + '</span>' +
+            '<span class="db-stat"><span class="db-stat-dot dot-mastered" style="background:#4A90E2"></span>熟练 ' + stats.proficient + '</span>' +
+            '<span class="db-stat"><span class="db-stat-dot dot-fuzzy" style="background:#8B5CF6"></span>模糊 ' + stats.vague + '</span>' +
+            '<span class="db-stat"><span class="db-stat-dot dot-wrong" style="background:#EF4444"></span>不会 ' + stats.wrong + '</span>' +
+            '<span class="db-stat"><span class="db-stat-dot dot-unmarked" style="background:#DCE6F4"></span>未做 ' + stats.unmarked + '</span>' +
           '</div></div>';
       }
 
