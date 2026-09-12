@@ -204,6 +204,15 @@
       return 'major';
     }
 
+    if (
+      group === 'english' ||
+      group === 'en' ||
+      group === '英语' ||
+      group === '英语词汇'
+    ) {
+      return 'english';
+    }
+
     return '';
   }
 
@@ -324,6 +333,76 @@
       math: seen.math.size,
       major: seen.major.size
     };
+  }
+
+  function getStudyStreak(input, eventsOverride) {
+    var anchor =
+      input == null
+        ? new Date()
+        : new Date(input);
+
+    if (Number.isNaN(anchor.getTime())) {
+      return 0;
+    }
+
+    anchor.setHours(0, 0, 0, 0);
+
+    var events =
+      Array.isArray(eventsOverride)
+        ? eventsOverride
+        : readJSON(eventsKey(), []);
+
+    if (!Array.isArray(events)) {
+      events = [];
+    }
+
+    var activeDays = new Set();
+
+    events.forEach(function (event) {
+      if (!event) return;
+
+      // 只把真实状态学习事件算作学习日；
+      // 兼容很早期没有 type 的状态记录。
+      if (event.type && event.type !== 'status') {
+        return;
+      }
+
+      var group = resolveEventGroup(event);
+
+      if (
+        group !== 'math' &&
+        group !== 'major' &&
+        group !== 'english'
+      ) {
+        return;
+      }
+
+      var eventDay =
+        typeof event.day === 'string' &&
+        /^\d{4}-\d{2}-\d{2}$/.test(event.day)
+          ? event.day
+          : dayKey(event.ts);
+
+      if (eventDay) {
+        activeDays.add(eventDay);
+      }
+    });
+
+    var cursor = new Date(anchor.getTime());
+
+    // 今天没有学习，但昨天学习了：从昨天开始算连续天数。
+    if (!activeDays.has(dayKey(cursor))) {
+      cursor.setDate(cursor.getDate() - 1);
+    }
+
+    var streak = 0;
+
+    while (activeDays.has(dayKey(cursor))) {
+      streak += 1;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+
+    return streak;
   }
 
   function collectQuestionBuckets() {
@@ -630,25 +709,70 @@
   function getRecentDays() {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
+
     var days = [];
+
     for (var offset = 13; offset >= 0; offset -= 1) {
-      var date = new Date(today.getTime() - offset * DAY_MS);
-      days.push({ key: dayKey(date), label: (date.getMonth() + 1) + '/' + date.getDate() });
+      var date = new Date(today.getTime());
+      date.setDate(today.getDate() - offset);
+
+      days.push({
+        key: dayKey(date),
+        label: (date.getMonth() + 1) + '/' + date.getDate()
+      });
     }
+
     return days;
   }
+
   function getTrendCounts() {
     var days = getRecentDays();
     var byDay = {};
-    days.forEach(function (day) { byDay[day.key] = 0; });
+
+    days.forEach(function (day) {
+      byDay[day.key] = 0;
+    });
+
     var events = readJSON(eventsKey(), []);
-    if (!Array.isArray(events)) events = [];
+
+    if (!Array.isArray(events)) {
+      events = [];
+    }
+
     events.forEach(function (event) {
       if (!event) return;
-      var key = typeof event.day === 'string' ? event.day : dayKey(event.ts);
-      if (Object.prototype.hasOwnProperty.call(byDay, key)) byDay[key] += 1;
+
+      if (event.type && event.type !== 'status') {
+        return;
+      }
+
+      var group = resolveEventGroup(event);
+
+      if (
+        group !== 'math' &&
+        group !== 'major' &&
+        group !== 'english'
+      ) {
+        return;
+      }
+
+      var key =
+        typeof event.day === 'string' &&
+        /^\d{4}-\d{2}-\d{2}$/.test(event.day)
+          ? event.day
+          : dayKey(event.ts);
+
+      if (Object.prototype.hasOwnProperty.call(byDay, key)) {
+        byDay[key] += 1;
+      }
     });
-    return { days: days, counts: days.map(function (day) { return byDay[day.key]; }) };
+
+    return {
+      days: days,
+      counts: days.map(function (day) {
+        return byDay[day.key];
+      })
+    };
   }
   function renderTrend() {
     var chart = document.getElementById('siTrendChart');
@@ -948,6 +1072,7 @@
       EVENT_RETENTION_DAYS * DAY_MS;
 
     var events = readJSON(eventsKey(), []);
+
     if (!Array.isArray(events)) {
       events = [];
     }
@@ -963,6 +1088,7 @@
       getDailyGoalCounts(timestamp, events);
 
     var group = resolveEventGroup({
+      group: payload.group,
       subjectId: payload.subjectId
     });
 
@@ -988,6 +1114,10 @@
         Number.isFinite(Number(payload.idx))
           ? Number(payload.idx)
           : null,
+      itemKey:
+        payload.itemKey == null
+          ? ''
+          : String(payload.itemKey),
       status: payload.status,
       score: STATUS_SCORE[payload.status]
     });
@@ -1238,7 +1368,8 @@
     getStatusTotals: getStatusTotals,
     getSubjectTotals: getSubjectTotals,
     getTrendCounts: getTrendCounts,
-    getDailyGoalCounts: getDailyGoalCounts
+    getDailyGoalCounts: getDailyGoalCounts,
+    getStudyStreak: getStudyStreak
   };
   window.addEventListener('kaoyan:ready', render);
   if (document.readyState === 'loading') {

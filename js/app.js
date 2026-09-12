@@ -1221,8 +1221,12 @@
     // ===== 全局仪表盘（环形热力图） =====
     // 书籍列表按当前科目（数学 4 本），用 getSortedWbs()
     var dashboardOpen = false;
+    var activeWorkbenchView = 'practice';
+    var wrongBookOpen = false;
+    var sm2PanelOpen = false;
     // 全局进度处于详情视图时，用于「返回总览」按钮与鼠标后退键回总览
     var dashboardDetailReturn = false;
+    var wrongBookReturn = false;
 
     function getBookChapters(wb, chapters) {
       // 第0讲（statsWb='1000题' 但 wb 已改 '基础30讲'）按 statsWb 归属统计书
@@ -1462,58 +1466,198 @@
       }
     }
 
-    function closeAllWorkbenchPanels(except) {
-      if (except !== 'dashboard' && dashboardOpen) {
-        dashboardOpen = false;
-        var dp = document.getElementById('dashboardPanel');
-        if (dp) dp.style.display = 'none';
-        setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
+    function setWorkbenchView(view) {
+      var allowed = {
+        practice: true,
+        dashboard: true,
+        wrongBook: true,
+        sm2: true,
+        english: true
+      };
+
+      var nextView = allowed[view]
+        ? view
+        : 'practice';
+
+      activeWorkbenchView = nextView;
+
+      var mainContent =
+        document.getElementById('mainAreaContent');
+
+      var dashboardPanel =
+        document.getElementById('dashboardPanel');
+
+      var wrongBookPanel =
+        document.getElementById('wrongBookPanel');
+
+      var sm2Panel =
+        document.getElementById('sm2Panel');
+
+      var englishPanel =
+        document.getElementById('englishPanel');
+
+      var layout =
+        document.querySelector('.app-layout');
+
+      if (mainContent) {
+        mainContent.style.display =
+          nextView === 'practice'
+            ? ''
+            : 'none';
+      }
+
+      if (dashboardPanel) {
+        dashboardPanel.style.display =
+          nextView === 'dashboard'
+            ? ''
+            : 'none';
+      }
+
+      if (wrongBookPanel) {
+        wrongBookPanel.style.display =
+          nextView === 'wrongBook'
+            ? ''
+            : 'none';
+      }
+
+      if (sm2Panel) {
+        sm2Panel.style.display =
+          nextView === 'sm2'
+            ? 'block'
+            : 'none';
+      }
+
+      if (englishPanel) {
+        englishPanel.hidden =
+          nextView !== 'english';
+      }
+
+      if (layout) {
+        layout.classList.toggle(
+          'english-mode',
+          nextView === 'english'
+        );
+      }
+
+      setPracticeSidebarVisible(
+        nextView === 'practice'
+      );
+
+      // 兼容现有代码：这些 boolean 从此由同一个状态源同步。
+      dashboardOpen =
+        nextView === 'dashboard';
+
+      wrongBookOpen =
+        nextView === 'wrongBook';
+
+      sm2PanelOpen =
+        nextView === 'sm2';
+
+      if (nextView !== 'dashboard') {
+        dashboardDetailReturn = false;
         showDashboardBackBtn(false);
       }
-      if (except !== 'wrongBook' && wrongBookOpen) {
-        wrongBookOpen = false;
-        var wp = document.getElementById('wrongBookPanel');
-        if (wp) wp.style.display = 'none';
-        setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
+
+      if (nextView !== 'wrongBook') {
+        wrongBookReturn = false;
         showWrongBookReturnBtn(false);
       }
-      if (except !== 'sm2' && sm2PanelOpen) {
-        sm2PanelOpen = false;
-        var sp = document.getElementById('sm2Panel');
-        if (sp) sp.style.display = 'none';
-        setBtnNavText('btnSm2PanelSidebar', 'SM-2复习', 'icon-refresh', 'R');
+
+      setBtnNavText(
+        'btnDashboard',
+        nextView === 'dashboard'
+          ? '返回章节'
+          : '全局进度',
+        'icon-chart',
+        'V'
+      );
+
+      setBtnNavText(
+        'btnWrongBook',
+        nextView === 'wrongBook'
+          ? '返回章节'
+          : '错题本',
+        'icon-notebook',
+        'B'
+      );
+
+      // HTML 原本就是 M 键 + “间隔复习”，不要退回 R / “SM-2复习”。
+      setBtnNavText(
+        'btnSm2PanelSidebar',
+        nextView === 'sm2'
+          ? '返回章节'
+          : '间隔复习',
+        'icon-refresh',
+        'M'
+      );
+
+      setBtnNavText(
+        'btnEnglish',
+        nextView === 'english'
+          ? '返回刷题'
+          : '英语词汇'
+      );
+
+      if (
+        nextView === 'practice' ||
+        nextView === 'english'
+      ) {
+        setPanelTitle('');
       }
-      if (except !== 'english') {
-        if (typeof window.closeEnglishVocabulary === 'function') {
-          window.closeEnglishVocabulary();
-        }
-      }
+
+      return nextView;
     }
+
+    function getWorkbenchView() {
+      return activeWorkbenchView;
+    }
+
+    // 保留旧 API，避免其它代码调用失效。
+    // 注意：这里不再调用 closeEnglishVocabulary，防止互调递归。
+    function closeAllWorkbenchPanels(except) {
+      var map = {
+        dashboard: 'dashboard',
+        wrongBook: 'wrongBook',
+        sm2: 'sm2',
+        english: 'english'
+      };
+
+      return setWorkbenchView(
+        map[except] || 'practice'
+      );
+    }
+
+    window.setWorkbenchView = setWorkbenchView;
+    window.getWorkbenchView = getWorkbenchView;
     window.closeAllWorkbenchPanels = closeAllWorkbenchPanels;
     window.renderTitle = renderTitle;
+    window.switchSubject = switchSubject;
+    window.switchChapter = switchChapter;
+    window.switchTo = switchTo;
+    window.toggleSm2Panel = toggleSm2Panel;
+    window.getCurrentPracticeState = function () {
+      return {
+        curSubjectId: curSubjectId,
+        currentChapterId: currentChapterId,
+        current: current,
+        reviewSession: reviewSession ? {
+          queueLength: reviewSession.queue ? reviewSession.queue.length : 0,
+          currentIdx: reviewSession.currentIdx,
+          queue: reviewSession.queue
+        } : null
+      };
+    };
 
     function toggleDashboard() {
-      dashboardOpen = !dashboardOpen;
-      var panel = document.getElementById('dashboardPanel');
-      var content = document.getElementById('mainAreaContent');
-      var btn = document.getElementById('btnDashboard');
-      if (dashboardOpen) {
-        closeAllWorkbenchPanels('dashboard');
-        renderDashboardOverview();
-        panel.style.display = '';
-        content.style.display = 'none';
-        setPracticeSidebarVisible(false);
-        setPanelTitle('全局学习进度');
-        setBtnNavText('btnDashboard', '返回章节', 'icon-chart', 'V');
-      } else {
-        panel.style.display = 'none';
-        content.style.display = '';
-        setPracticeSidebarVisible(true);
-        showDashboardBackBtn(false);
-        setPanelTitle('');
+      if (getWorkbenchView() === 'dashboard') {
+        setWorkbenchView('practice');
         renderTitle();
-        setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
+        return;
       }
+
+      setWorkbenchView('dashboard');
+      renderDashboardOverview();
+      setPanelTitle('全局学习进度');
     }
 
     function showDashboardBackBtn(show) {
@@ -1541,6 +1685,359 @@
         '<div style="text-align:center;font-size:12px;color:#64748b">' + (options.subjectLabel || '') + '</div></div>';
     }
 
+    function getSubjectBookLabel(
+      subject,
+      wb
+    ) {
+      var order =
+        subject &&
+        Array.isArray(subject.wbOrder)
+          ? subject.wbOrder
+          : [];
+
+      for (
+        var i = 0;
+        i < order.length;
+        i += 1
+      ) {
+        if (order[i].wb === wb) {
+          return order[i].label;
+        }
+      }
+
+      return wb || '';
+    }
+
+    function getDashboardChapterDueCount(
+      ch,
+      subject,
+      nowTime
+    ) {
+      if (!ch || !subject) {
+        return 0;
+      }
+
+      var key =
+        userStoragePrefix() +
+        'sm2_' +
+        subject.id +
+        '_' +
+        ch.id;
+
+      var data = {};
+
+      try {
+        data =
+          JSON.parse(
+            safeStorageGet(key) || '{}'
+          ) || {};
+      } catch (e) {
+        data = {};
+      }
+
+      var due = 0;
+
+      Object.keys(data).forEach(
+        function (itemKey) {
+          var item = data[itemKey];
+
+          if (
+            item &&
+            item.nextReview &&
+            item.nextReview <= nowTime
+          ) {
+            due += 1;
+          }
+        }
+      );
+
+      return due;
+    }
+
+    function escapeDashboardText(value) {
+      return String(
+        value == null ? '' : value
+      ).replace(
+        /[&<>"']/g,
+        function (char) {
+          return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+          }[char];
+        }
+      );
+    }
+
+    function collectWeakChapters(limit) {
+      var max =
+        Number.isFinite(Number(limit))
+          ? Math.max(
+              0,
+              Math.floor(Number(limit))
+            )
+          : 3;
+
+      var nowTime = Date.now();
+      var rows = [];
+
+      SUBJECTS.forEach(function (subject, subjectIndex) {
+        var chapters =
+          Array.isArray(subject.chapters)
+            ? subject.chapters
+            : [];
+
+        chapters.forEach(function (ch, chapterIndex) {
+          if (!ch) return;
+
+          var total =
+            Number(
+              ch.ownTotal || ch.total
+            );
+
+          if (
+            !Number.isFinite(total) ||
+            total <= 0
+          ) {
+            return;
+          }
+
+          var stats =
+            getChStats(ch, subject);
+
+          var dueCount =
+            getDashboardChapterDueCount(
+              ch,
+              subject,
+              nowTime
+            );
+
+          var wrong =
+            Number(stats.wrong) || 0;
+
+          var vague =
+            Number(stats.vague) || 0;
+
+          if (
+            wrong <= 0 &&
+            vague <= 0 &&
+            dueCount <= 0
+          ) {
+            return;
+          }
+
+          var wrongRate =
+            wrong / total;
+
+          var fuzzyRate =
+            vague / total;
+
+          var duePressure =
+            Math.min(dueCount, 10) / 10;
+
+          var score =
+            wrongRate * 0.55 +
+            fuzzyRate * 0.30 +
+            duePressure * 0.15;
+
+          var wb =
+            ch.statsWb ||
+            ch.wb ||
+            '';
+
+          var wbIndex = 999;
+          if (subject && Array.isArray(subject.wbOrder)) {
+            for (var w = 0; w < subject.wbOrder.length; w++) {
+              if (subject.wbOrder[w].wb === wb) {
+                wbIndex = w;
+                break;
+              }
+            }
+          }
+
+          rows.push({
+            subjectId: subject.id,
+            subjectName:
+              subject.name ||
+              subject.title ||
+              subject.id,
+            chapterId: ch.id,
+            chapterName:
+              ch.short ||
+              ch.name ||
+              ch.id,
+            bookLabel:
+              getSubjectBookLabel(
+                subject,
+                wb
+              ),
+            total: total,
+            wrong: wrong,
+            vague: vague,
+            dueCount: dueCount,
+            wrongRate: wrongRate,
+            fuzzyRate: fuzzyRate,
+            score: score,
+            subjectOrder: subjectIndex,
+            bookOrder: wbIndex,
+            chapterOrder: chapterIndex
+          });
+        });
+      });
+
+      rows.sort(function (a, b) {
+        return (
+          (b.score - a.score) ||
+          (b.wrong - a.wrong) ||
+          (b.vague - a.vague) ||
+          (b.dueCount - a.dueCount) ||
+          (a.subjectOrder - b.subjectOrder) ||
+          (a.bookOrder - b.bookOrder) ||
+          (a.chapterOrder - b.chapterOrder) ||
+          String(a.chapterName)
+            .localeCompare(
+              String(b.chapterName),
+              'zh-CN'
+            )
+        );
+      });
+
+      return rows.slice(0, max);
+    }
+
+    function openWeakChapter(
+      subjectId,
+      chapterId
+    ) {
+      var subject =
+        SUBJECTS.find(function (item) {
+          return item.id === subjectId;
+        });
+
+      if (!subject) {
+        return;
+      }
+
+      var chapter =
+        (subject.chapters || [])
+          .find(function (item) {
+            return item.id === chapterId;
+          });
+
+      if (!chapter) {
+        return;
+      }
+
+      if (curSubjectId !== subjectId) {
+        switchSubject(subjectId);
+      }
+
+      setWorkbenchView('practice');
+      setPanelTitle('');
+      switchChapter(chapterId);
+    }
+
+    function renderWeakChapterTop3() {
+      var grid =
+        document.getElementById(
+          'dbWeakGrid'
+        );
+
+      if (!grid) {
+        return;
+      }
+
+      var rows =
+        collectWeakChapters(3);
+
+      if (rows.length === 0) {
+        grid.innerHTML =
+          '<div class="db-weak-empty">' +
+          '暂未产生薄弱章节；标记「模糊 / 不会」或产生到期复习后，这里会自动给出优先顺序。' +
+          '</div>';
+
+        return;
+      }
+
+      grid.innerHTML =
+        rows.map(function (row, index) {
+          var subjectText =
+            row.subjectName +
+            (
+              row.bookLabel
+                ? ' · ' + row.bookLabel
+                : ''
+            );
+
+          return (
+            '<button' +
+            ' class="db-weak-card"' +
+            ' type="button"' +
+            ' data-subject-id="' +
+            escapeDashboardText(
+              row.subjectId
+            ) +
+            '"' +
+            ' data-chapter-id="' +
+            escapeDashboardText(
+              row.chapterId
+            ) +
+            '"' +
+            '>' +
+              '<span class="db-weak-rank">#' +
+              (index + 1) +
+              '</span>' +
+
+              '<span class="db-weak-meta">' +
+              escapeDashboardText(
+                subjectText
+              ) +
+              '</span>' +
+
+              '<strong class="db-weak-name">' +
+              escapeDashboardText(
+                row.chapterName
+              ) +
+              '</strong>' +
+
+              '<span class="db-weak-metrics">' +
+                '<span>不会 ' +
+                row.wrong +
+                '</span>' +
+
+                '<span>模糊 ' +
+                row.vague +
+                '</span>' +
+
+                '<span>到期 ' +
+                row.dueCount +
+                '</span>' +
+              '</span>' +
+            '</button>'
+          );
+        }).join('');
+
+      grid.querySelectorAll(
+        '.db-weak-card'
+      ).forEach(function (button) {
+        button.addEventListener(
+          'click',
+          function () {
+            openWeakChapter(
+              this.getAttribute(
+                'data-subject-id'
+              ),
+              this.getAttribute(
+                'data-chapter-id'
+              )
+            );
+          }
+        );
+      });
+    }
+
     function renderDashboardOverview() {
       showDashboardBackBtn(false);
       document.getElementById('dbOverview').style.display = '';
@@ -1556,89 +2053,210 @@
       if (heroGreeting) heroGreeting.textContent = greeting + '，开始高效学习吧';
 
       // 2. 统计所有科目的真实学习数据（完成题数、错题数、总题数、SM-2 待复习数、连续打卡天数）
-      var totalDone = 0;
-      var totalWrong = 0;
-      var grandTotal = 0;
+      // 2. SM-2 今日到期仍然只针对数学/专业课题库
       var totalDue = 0;
-      var datesSet = new Set();
       var nowTime = Date.now();
 
       SUBJECTS.forEach(function (subject) {
-        var chs = (subject.chapters || []).filter(function (c) { return !c.q1000Id; });
-        chs.forEach(function (c) {
-          var st = getChStats(c, subject);
-          totalDone += (st.done || 0);
-          totalWrong += (st.wrong || 0);
-          grandTotal += (c.total || 0);
+        var chs =
+          (subject.chapters || []).filter(function (c) {
+            return c && c.total > 0;
+          });
 
-          // 读取 SM-2 复习记录
-          var sKey = userStoragePrefix() + 'sm2_' + subject.id + '_' + c.id;
+        chs.forEach(function (c) {
+          var sKey =
+            userStoragePrefix() +
+            'sm2_' +
+            subject.id +
+            '_' +
+            c.id;
+
           try {
-            var sm = JSON.parse(localStorage.getItem(sKey) || '{}');
+            var sm =
+              JSON.parse(
+                safeStorageGet(sKey) || '{}'
+              );
+
             Object.keys(sm).forEach(function (k) {
               var item = sm[k];
-              if (!item) return;
-              if (item.nextReview && item.nextReview <= nowTime) {
-                totalDue++;
-              }
-              if (item.lastReview) {
-                datesSet.add(new Date(item.lastReview).toLocaleDateString('en-CA'));
-              }
-              if (Array.isArray(item.history)) {
-                item.history.forEach(function (h) {
-                  if (h && h.date) datesSet.add(new Date(h.date).toLocaleDateString('en-CA'));
-                });
+
+              if (
+                item &&
+                item.nextReview &&
+                item.nextReview <= nowTime
+              ) {
+                totalDue += 1;
               }
             });
           } catch (e) {}
         });
       });
 
-      // 计算连续打卡天数（从今天或昨天往前回溯）
-      var streak = 0;
-      var checkDate = new Date();
-      var checkStr = checkDate.toLocaleDateString('en-CA');
-      if (!datesSet.has(checkStr)) {
-        checkDate.setDate(checkDate.getDate() - 1);
-        checkStr = checkDate.toLocaleDateString('en-CA');
+      // 3. Hero / Dashboard 总量统一走 StudyAnalytics。
+      // 全站 = 数学 + 专业课 + 英语。
+      var analyticsTotals =
+        window.StudyAnalytics &&
+        typeof window.StudyAnalytics.getSubjectTotals === 'function'
+          ? window.StudyAnalytics.getSubjectTotals()
+          : null;
+
+      var allTotals =
+        analyticsTotals &&
+        analyticsTotals.all
+          ? analyticsTotals.all
+          : null;
+
+      // 仅在 StudyAnalytics 不可用时做题库级兜底。
+      var fallbackDone = 0;
+      var fallbackWrong = 0;
+      var fallbackTotal = 0;
+
+      if (!allTotals) {
+        SUBJECTS.forEach(function (subject) {
+          (subject.chapters || []).forEach(function (c) {
+            if (!c || c.total <= 0) return;
+
+            var st = getChStats(c, subject);
+            var len = c.ownTotal || c.total || 0;
+
+            fallbackDone += st.done || 0;
+            fallbackWrong += st.wrong || 0;
+            fallbackTotal += len;
+          });
+        });
       }
-      while (datesSet.has(checkStr)) {
-        streak++;
-        checkDate.setDate(checkDate.getDate() - 1);
-        checkStr = checkDate.toLocaleDateString('en-CA');
+
+      var totalDone =
+        allTotals
+          ? Number(allTotals.done) || 0
+          : fallbackDone;
+
+      var totalWrong =
+        allTotals
+          ? Number(allTotals.wrong) || 0
+          : fallbackWrong;
+
+      var grandTotal =
+        allTotals
+          ? Number(allTotals.total) || 0
+          : fallbackTotal;
+
+      // 错题本只收数学/专业课题目，不把英语词汇 wrong 算进去。
+      var questionWrong = fallbackWrong;
+
+      if (analyticsTotals) {
+        questionWrong =
+          (Number(
+            analyticsTotals.math &&
+            analyticsTotals.math.wrong
+          ) || 0) +
+          (Number(
+            analyticsTotals.major &&
+            analyticsTotals.major.wrong
+          ) || 0);
       }
 
-      // 3. 填充 Hero 卡片与 4 个真实指标卡
-      var totalPct = grandTotal > 0 ? Math.round((totalDone / grandTotal) * 100) : 0;
-      var heroDueCount = document.getElementById('heroDueCount');
-      var heroTotalPct = document.getElementById('heroTotalPct');
-      var heroRingVal = document.getElementById('heroRingVal');
-      if (heroDueCount) heroDueCount.textContent = totalDue;
-      if (heroTotalPct) heroTotalPct.textContent = totalPct + '%';
-      if (heroRingVal) heroRingVal.textContent = totalPct + '%';
+      var streak =
+        window.StudyAnalytics &&
+        typeof window.StudyAnalytics.getStudyStreak === 'function'
+          ? window.StudyAnalytics.getStudyStreak()
+          : 0;
 
-      var dbStatDue = document.getElementById('dbStatDue');
-      var dbStatDone = document.getElementById('dbStatDone');
-      var dbStatWrong = document.getElementById('dbStatWrong');
-      var dbStatStreak = document.getElementById('dbStatStreak');
-      if (dbStatDue) dbStatDue.textContent = totalDue;
-      if (dbStatDone) dbStatDone.textContent = totalDone;
-      if (dbStatWrong) dbStatWrong.textContent = totalWrong;
-      if (dbStatStreak) dbStatStreak.textContent = (streak > 0 ? streak : (totalDone > 0 ? 1 : 0)) + ' 天';
+      // 4. Hero 与统计卡
+      var totalPct =
+        grandTotal > 0
+          ? Math.round(
+              totalDone / grandTotal * 100
+            )
+          : 0;
 
-      // 4. 填充右列 Widget 说明文本
-      var widgetReviewPlan = document.getElementById('widgetReviewPlan');
+      var heroDueCount =
+        document.getElementById('heroDueCount');
+
+      var heroTotalPct =
+        document.getElementById('heroTotalPct');
+
+      var heroRingVal =
+        document.getElementById('heroRingVal');
+
+      if (heroDueCount) {
+        heroDueCount.textContent = totalDue;
+      }
+
+      if (heroTotalPct) {
+        heroTotalPct.textContent =
+          totalPct + '%';
+      }
+
+      if (heroRingVal) {
+        heroRingVal.textContent =
+          totalPct + '%';
+      }
+
+      var dbStatDue =
+        document.getElementById('dbStatDue');
+
+      var dbStatDone =
+        document.getElementById('dbStatDone');
+
+      var dbStatWrong =
+        document.getElementById('dbStatWrong');
+
+      var dbStatStreak =
+        document.getElementById('dbStatStreak');
+
+      if (dbStatDue) {
+        dbStatDue.textContent = totalDue;
+      }
+
+      if (dbStatDone) {
+        dbStatDone.textContent = totalDone;
+      }
+
+      if (dbStatWrong) {
+        dbStatWrong.textContent = totalWrong;
+      }
+
+      if (dbStatStreak) {
+        dbStatStreak.textContent =
+          streak + ' 天';
+      }
+
+      // 5. 快捷入口
+      var widgetReviewPlan =
+        document.getElementById(
+          'widgetReviewPlan'
+        );
+
       if (widgetReviewPlan) {
-        widgetReviewPlan.textContent = totalDue > 0
-          ? ('今日有 ' + totalDue + ' 道题目到期待复习，建议趁热打铁温习！')
-          : '今日暂无到期复习题目，记忆状态极佳！';
+        widgetReviewPlan.textContent =
+          totalDue > 0
+            ? (
+                '今日有 ' +
+                totalDue +
+                ' 道题目到期待复习，建议趁热打铁温习！'
+              )
+            : '今日暂无到期复习题目，记忆状态极佳！';
       }
-      var widgetWrongPlan = document.getElementById('widgetWrongPlan');
+
+      var widgetWrongPlan =
+        document.getElementById(
+          'widgetWrongPlan'
+        );
+
       if (widgetWrongPlan) {
-        widgetWrongPlan.textContent = totalWrong > 0
-          ? ('累计收录 ' + totalWrong + ' 道错题，点击前往逐个攻克。')
-          : '目前还没有标记为不会的错题，继续保持！';
+        widgetWrongPlan.textContent =
+          questionWrong > 0
+            ? (
+                '数学/专业课累计收录 ' +
+                questionWrong +
+                ' 道不会题，点击前往逐个攻克。'
+              )
+            : '数学/专业课暂无不会题，继续保持！';
       }
+
+      // 6. 薄弱章节 Top 3
+      renderWeakChapterTop3();
 
       var grid = document.getElementById('dbGrid');
       var html = '';
@@ -1773,15 +2391,17 @@
 
     // 从总进度卡片进入对应书籍时，先切换数据源，再展示该书的章节明细。
     function openDashboardBook(subjectId, wb) {
-      var bookSub = SUBJECTS.find(function (s) { return s.id === subjectId; }) || curSubject;
+      var bookSub =
+        SUBJECTS.find(function (s) {
+          return s.id === subjectId;
+        }) || curSubject;
+
       if (curSubjectId !== subjectId) {
         switchSubject(subjectId);
-        dashboardOpen = true;
-        document.getElementById('dashboardPanel').style.display = '';
-        document.getElementById('mainAreaContent').style.display = 'none';
-        setPanelTitle('全局学习进度');
       }
-      setPracticeSidebarVisible(false);
+
+      setWorkbenchView('dashboard');
+      setPanelTitle('全局学习进度');
       openDashboardDetail(wb, bookSub);
     }
 
@@ -1849,16 +2469,8 @@
     }
 
     function jumpToChapter(chapterId) {
-      // Close dashboard panel
-      dashboardOpen = false;
-      showDashboardBackBtn(false);
-      document.getElementById('dashboardPanel').style.display = 'none';
-      document.getElementById('mainAreaContent').style.display = '';
-      setPracticeSidebarVisible(true);
-      setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
+      setWorkbenchView('practice');
       setPanelTitle('');
-      renderTitle();
-      // Switch to the chapter
       switchChapter(chapterId);
     }
 
@@ -1877,9 +2489,7 @@
     });
 
     // ===== 错题本 =====
-    let wrongBookOpen = false;
     // 从错题本跳题后，用于「返回错题本」按钮与鼠标后退键回错题本
-    let wrongBookReturn = false;
     function showWrongBookReturnBtn(show) {
       const btn = document.getElementById('btnBackWrongBook');
       if (btn) {
@@ -1898,43 +2508,21 @@
       btn.style.left = (mainRect.left - barRect.left) + 'px';
     }
     function backToWrongBook() {
-      // 从题目页回到错题本面板
-      wrongBookOpen = true;
-      const panel = document.getElementById('wrongBookPanel');
-      const dashPanel = document.getElementById('dashboardPanel');
-      const content = document.getElementById('mainAreaContent');
-      const btn = document.getElementById('btnWrongBook');
+      setWorkbenchView('wrongBook');
       renderWrongBook();
-      dashPanel.style.display = 'none';
-      content.style.display = 'none';
-      panel.style.display = '';
-      setPracticeSidebarVisible(false);
-      setBtnNavText('btnWrongBook', '返回章节', 'icon-notebook', 'B');
-      if (dashboardOpen) { dashboardOpen = false; showDashboardBackBtn(false); setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V'); }
-      showWrongBookReturnBtn(false); // 回到错题本后隐藏返回按钮
+      showWrongBookReturnBtn(false);
     }
     function toggleWrongBook() {
-      wrongBookOpen = !wrongBookOpen;
-      const panel = document.getElementById('wrongBookPanel');
-      const content = document.getElementById('mainAreaContent');
-      const btn = document.getElementById('btnWrongBook');
-      if (wrongBookOpen) {
-        closeAllWorkbenchPanels('wrongBook');
-        renderWrongBook();
-        content.style.display = 'none';
-        panel.style.display = '';
-        setPracticeSidebarVisible(false);
-        setBtnNavText('btnWrongBook', '返回章节', 'icon-notebook', 'B');
-        showWrongBookReturnBtn(false);
-      } else {
-        panel.style.display = 'none';
-        content.style.display = '';
-        setPracticeSidebarVisible(true);
+      if (getWorkbenchView() === 'wrongBook') {
+        setWorkbenchView('practice');
         setPanelTitle('');
         renderTitle();
-        setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
-        showWrongBookReturnBtn(false);
+        return;
       }
+
+      setWorkbenchView('wrongBook');
+      renderWrongBook();
+      showWrongBookReturnBtn(false);
     }
 
     // ===== 快捷键帮助模态 =====
@@ -2073,22 +2661,8 @@
       }
       // 小题模式（F）是全局开关，切科目不重置、跨科目保持
       localStorage.setItem(subjectStorageKey(), subjectId);
-      // 关闭可能打开的全局进度/错题本面板，避免旧科目 DOM 残留
-      if (dashboardOpen) {
-        dashboardOpen = false; dashboardDetailReturn = false;
-        document.getElementById('dashboardPanel').style.display = 'none';
-        document.getElementById('mainAreaContent').style.display = '';
-        setBtnNavText('btnDashboard', '全局进度', 'icon-chart', 'V');
-        showDashboardBackBtn(false); setPanelTitle('');
-      }
-      if (wrongBookOpen) {
-        wrongBookOpen = false; wrongBookReturn = false;
-        document.getElementById('wrongBookPanel').style.display = 'none';
-        document.getElementById('mainAreaContent').style.display = '';
-        setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
-        showWrongBookReturnBtn(false); setPanelTitle('');
-      }
-      setPracticeSidebarVisible(true);
+      setWorkbenchView('practice');
+      setPanelTitle('');
       wrongBookWb = null; // 无条件重置错题本书籍筛选（书籍列表按科目不同，防跨科目残留）
       closeAllTitlePanels(); // 关闭可能残留的标题下拉面板（切换后重建）
       loadStatuses(); loadQBad(); loadSBad(); loadNotes();
@@ -2292,18 +2866,13 @@
         el.addEventListener('click', function() {
           const cid = this.getAttribute('data-chapter');
           const idx = parseInt(this.getAttribute('data-index'));
-          // 关闭错题本
-          wrongBookOpen = false;
-          document.getElementById('wrongBookPanel').style.display = 'none';
-          document.getElementById('mainAreaContent').style.display = '';
-          setPracticeSidebarVisible(true);
-          setBtnNavText('btnWrongBook', '错题本', 'icon-notebook', 'B');
-          setPanelTitle(''); // 恢复章节下拉栏（与 dashboard 跳转一致）
+          setWorkbenchView('practice');
+          setPanelTitle('');
           renderTitle();
-          // 切换章节并跳转到目标题
+
           switchChapter(cid);
           switchTo(idx);
-          // 标记从错题本进入，显示「返回错题本」按钮
+
           showWrongBookReturnBtn(true);
         });
       });
@@ -4092,7 +4661,6 @@ ${cardsHTML}
     // ===== SM-2 间隔重复复习系统 =====
     let sm2 = {};          // { idx: { ef, interval, reps, nextReview, lastReview, history } }
     let reviewSession = null;  // { queue: [{chapterId, idx}], currentIdx, mode }
-    let sm2PanelOpen = false;
 
     // SM-2 存储键：sm2_<subjectId>_<chapterId>（含科目 ID 避免数学与专业课的 ch1 冲突，并增加用户隔离）
     function sm2Key(ch) { return userStoragePrefix() + 'sm2_' + curSubjectId + '_' + ch.id; }
@@ -4260,7 +4828,8 @@ ${cardsHTML}
       if (label === 'due') tag = '<span class="sm2-due-tag">今日到期</span>';
       else if (label === 'overdue') tag = '<span class="sm2-overdue-tag">已逾期</span>';
       else if (label === 'mastered') tag = '<span style="color:#F5A623;font-weight:600">⭐ 已掌握</span>';
-      bar.innerHTML = '<span>EF: ' + rec.ef.toFixed(2) + '</span>' +
+      var efDisplay = (typeof rec.ef === 'number') ? rec.ef.toFixed(2) : String(rec.ef || '2.50');
+      bar.innerHTML = '<span>EF: ' + efDisplay + '</span>' +
         '<span>间隔: ' + rec.interval + '天</span>' +
         '<span>复习次数: ' + rec.reps + '</span>' +
         (rec.lastReview ? '<span>上次: ' + new Date(rec.lastReview).toLocaleDateString('zh-CN') + '</span>' : '') +
@@ -4317,31 +4886,18 @@ ${cardsHTML}
     }
 
     function toggleSm2Panel() {
-      if (!sm2PanelOpen) {
-        closeAllWorkbenchPanels('sm2');
-        var panel = document.getElementById('sm2Panel');
-        var mainContent = document.getElementById('mainAreaContent');
-        var btn = document.getElementById('btnSm2PanelSidebar');
-        panel.style.display = 'block';
-        mainContent.style.display = 'none';
-        setPracticeSidebarVisible(false);
-        setPanelTitle('间隔重复复习');
-        setBtnNavText('btnSm2PanelSidebar', '返回章节', 'icon-refresh', 'R');
-        sm2PanelOpen = true;
-        renderSm2Panel();
-      } else {
+      if (getWorkbenchView() === 'sm2') {
         closeSm2Panel();
+        return;
       }
+
+      setWorkbenchView('sm2');
+      setPanelTitle('间隔重复复习');
+      renderSm2Panel();
     }
 
     function closeSm2Panel() {
-      sm2PanelOpen = false;
-      var panel = document.getElementById('sm2Panel');
-      if (panel) panel.style.display = 'none';
-      var mainContent = document.getElementById('mainAreaContent');
-      if (mainContent) mainContent.style.display = '';
-      setPracticeSidebarVisible(true);
-      setBtnNavText('btnSm2PanelSidebar', 'SM-2复习', 'icon-refresh', 'R');
+      setWorkbenchView('practice');
       setPanelTitle('');
       renderTitle();
     }
@@ -4836,11 +5392,32 @@ ${cardsHTML}
       if (subjectPickerOpen) {
         // 科目选择弹窗独占：只放行 G（重新打开/切换）与 Esc（关闭），H 等不再叠加其它弹窗
         if (key !== 'g' && key !== 'escape') return;
-      } else if (dashboardOpen || wrongBookOpen || shortcutHelpOpen || sm2PanelOpen) {
-        const panelKeys = ['h', 'escape'];
-        if (dashboardOpen || wrongBookOpen) panelKeys.push('v', 'b');
-        if (sm2PanelOpen) panelKeys.push('m');
-        if (!panelKeys.includes(key)) return;
+      } else if (
+        getWorkbenchView() !== 'practice' ||
+        shortcutHelpOpen
+      ) {
+        var workbenchView =
+          getWorkbenchView();
+
+        var panelKeys = [
+          'h',
+          'escape'
+        ];
+
+        if (
+          workbenchView === 'dashboard' ||
+          workbenchView === 'wrongBook'
+        ) {
+          panelKeys.push('v', 'b');
+        }
+
+        if (workbenchView === 'sm2') {
+          panelKeys.push('m');
+        }
+
+        if (!panelKeys.includes(key)) {
+          return;
+        }
       }
 
       // Alt：进入标注（进入/退出标注的快捷键；仅灯箱打开时生效）
@@ -4927,13 +5504,60 @@ ${cardsHTML}
         // 灯箱快捷键
         // Esc 关闭顺序：先关面板/灯箱/弹窗，再退复习——避免「复习中打开面板后按 Esc 直接退复习但面板残留」
         case 'escape':
-          if (sm2PanelOpen) { closeSm2Panel(); return; }
-          if (document.getElementById('lightbox').classList.contains('show')) { closeLightbox(); return; }
-          if (subjectPickerOpen) { closeSubjectPicker(); return; }
-          if (shortcutHelpOpen) { toggleShortcutHelp(); return; }
-          if (dashboardOpen) { toggleDashboard(); return; }
-          if (wrongBookOpen) { toggleWrongBook(); return; }
-          if (reviewSession) { exitReviewSession(); return; }
+          if (
+            getWorkbenchView() === 'sm2'
+          ) {
+            closeSm2Panel();
+            return;
+          }
+
+          if (
+            document
+              .getElementById('lightbox')
+              .classList
+              .contains('show')
+          ) {
+            closeLightbox();
+            return;
+          }
+
+          if (subjectPickerOpen) {
+            closeSubjectPicker();
+            return;
+          }
+
+          if (shortcutHelpOpen) {
+            toggleShortcutHelp();
+            return;
+          }
+
+          if (
+            getWorkbenchView() === 'english' &&
+            typeof window.closeEnglishVocabulary === 'function'
+          ) {
+            window.closeEnglishVocabulary();
+            return;
+          }
+
+          if (
+            getWorkbenchView() === 'dashboard'
+          ) {
+            toggleDashboard();
+            return;
+          }
+
+          if (
+            getWorkbenchView() === 'wrongBook'
+          ) {
+            toggleWrongBook();
+            return;
+          }
+
+          if (reviewSession) {
+            exitReviewSession();
+            return;
+          }
+
           break;
         case '=':
         case '+': if (document.getElementById('lightbox').classList.contains('show')) { lbScale = Math.min(lbScale * 1.2, 5); lbApplyTransform(); return; } break;
@@ -4953,7 +5577,13 @@ ${cardsHTML}
     document.addEventListener('wheel', function (e) {
       if (lbAnnotMode) return;
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      if (subjectPickerOpen || dashboardOpen || wrongBookOpen || shortcutHelpOpen || sm2PanelOpen) return;
+      if (
+        subjectPickerOpen ||
+        getWorkbenchView() !== 'practice' ||
+        shortcutHelpOpen
+      ) {
+        return;
+      }
       if (document.getElementById('lightbox').classList.contains('show')) return;
 
       const dx = e.deltaX || 0, dy = e.deltaY || 0;

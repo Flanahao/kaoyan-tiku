@@ -342,7 +342,7 @@
                   <div class="db-hero-card" id="dbHeroCard">
                     <div class="hero-content">
                       <h2 class="hero-greeting" id="heroGreeting">早上好，开始今天的刷题吧</h2>
-                      <p class="hero-subtitle" id="heroSubtitle">今日待复习 <strong id="heroDueCount">0</strong> 题，总题库完成率 <strong id="heroTotalPct">0%</strong></p>
+                      <p class="hero-subtitle" id="heroSubtitle">今日待复习 <strong id="heroDueCount">0</strong> 题，全站完成率 <strong id="heroTotalPct">0%</strong></p>
                       <div class="hero-actions">
                         <button class="hero-action-btn primary" id="btnHeroContinue" type="button">继续刷题</button>
                         <button class="hero-action-btn secondary" id="btnHeroReview" type="button">立即复习</button>
@@ -350,7 +350,7 @@
                     </div>
                     <div class="hero-decor-badge">
                       <div class="hero-ring-val" id="heroRingVal">0%</div>
-                      <div class="hero-ring-label">题库进度</div>
+                      <div class="hero-ring-label">全站进度</div>
                     </div>
                   </div>
 
@@ -474,7 +474,7 @@
                       <div class="si-card-header">
                         <div>
                           <h3>近 14 天推进趋势</h3>
-                          <p class="si-muted">每日状态标记与 SM-2 评级次数</p>
+                          <p class="si-muted">数学、专业课、英语状态标记与 SM-2 评级次数</p>
                         </div>
                         <div class="si-chips">
                           <span id="siTrendTotal">近 14 天累计：0 次</span>
@@ -484,7 +484,7 @@
                       <div class="si-chart" id="siTrendChart" role="img" aria-label="近 14 天学习活动柱状图"></div>
                       <div class="si-chart-axis" id="siTrendAxis" aria-hidden="true"></div>
                       <p class="si-chart-empty" id="siTrendEmpty" hidden>
-                        设置完成后，状态标记和 SM-2 评级会从当天开始累计。
+                        开始标记数学、专业课或英语状态后，学习活动会从当天开始累计。
                       </p>
                     </article>
                   </section>
@@ -502,14 +502,14 @@
                       <div class="stat-card-icon">✅</div>
                       <div class="stat-card-info">
                         <div class="stat-card-num" id="dbStatDone">0</div>
-                        <div class="stat-card-title">已完成题目</div>
+                        <div class="stat-card-title">已标记项目</div>
                       </div>
                     </div>
                     <div class="db-stat-card card-wrong">
                       <div class="stat-card-icon">❌</div>
                       <div class="stat-card-info">
                         <div class="stat-card-num" id="dbStatWrong">0</div>
-                        <div class="stat-card-title">错题累计</div>
+                        <div class="stat-card-title">不会累计</div>
                       </div>
                     </div>
                     <div class="db-stat-card card-streak">
@@ -535,6 +535,33 @@
                       <button class="widget-btn" id="btnWidgetWrong" type="button">打开错题本</button>
                     </div>
                   </div>
+
+                  <!-- 薄弱章节 Top 3：桌面端一行三张卡 -->
+                  <section
+                    class="db-weak-section"
+                    id="dbWeakSection"
+                    aria-labelledby="dbWeakTitle"
+                  >
+                    <div class="db-block-header">
+                      <div class="db-block-header-left">
+                        <h3
+                          class="db-block-title"
+                          id="dbWeakTitle"
+                        >
+                          薄弱章节 Top 3
+                        </h3>
+
+                        <span class="db-block-hint">
+                          综合不会率、模糊率与到期复习压力排序，点击直接进入章节
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      class="db-weak-grid"
+                      id="dbWeakGrid"
+                    ></div>
+                  </section>
 
                   <!-- 书籍与科目进度：独占整行，桌面端一行三张卡 -->
                   <div class="db-books-section" id="dbBooksSection">

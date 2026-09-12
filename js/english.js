@@ -332,36 +332,95 @@
   }
 
   function open() {
-    if (typeof window.closeAllWorkbenchPanels === 'function') {
-      window.closeAllWorkbenchPanels('english');
+    if (
+      typeof window.setWorkbenchView === 'function'
+    ) {
+      window.setWorkbenchView('english');
+    } else {
+      // 只作为极端加载顺序兜底
+      var content =
+        document.getElementById('mainAreaContent');
+
+      if (content) {
+        content.style.display = 'none';
+      }
+
+      var layout =
+        document.querySelector('.app-layout');
+
+      if (layout) {
+        layout.classList.add('english-mode');
+      }
+
+      if (
+        typeof window.setPracticeSidebarVisible === 'function'
+      ) {
+        window.setPracticeSidebarVisible(false);
+      }
+
+      panel.hidden = false;
     }
-    var content = document.getElementById('mainAreaContent');
-    if (content) content.style.display = 'none';
-    var layout = document.querySelector('.app-layout');
-    if (layout) layout.classList.add('english-mode');
-    if (typeof window.setPracticeSidebarVisible === 'function') {
-      window.setPracticeSidebarVisible(false);
-    }
-    panel.hidden = false;
-    setBtnNavText('btnEnglish', '返回刷题');
+
+    setBtnNavText(
+      'btnEnglish',
+      '返回刷题'
+    );
+
     render();
   }
+
   window.openEnglishVocabulary = open;
 
   function close() {
-    panel.hidden = true;
-    var layout = document.querySelector('.app-layout');
-    if (layout) layout.classList.remove('english-mode');
-    var content = document.getElementById('mainAreaContent');
-    if (content) content.style.display = '';
-    if (typeof window.setPracticeSidebarVisible === 'function') {
-      window.setPracticeSidebarVisible(true);
+    if (
+      typeof window.setWorkbenchView === 'function'
+    ) {
+      var currentView =
+        typeof window.getWorkbenchView === 'function'
+          ? window.getWorkbenchView()
+          : 'english';
+
+      if (currentView === 'english') {
+        window.setWorkbenchView('practice');
+      } else {
+        panel.hidden = true;
+      }
+    } else {
+      panel.hidden = true;
+
+      var layout =
+        document.querySelector('.app-layout');
+
+      if (layout) {
+        layout.classList.remove('english-mode');
+      }
+
+      var content =
+        document.getElementById('mainAreaContent');
+
+      if (content) {
+        content.style.display = '';
+      }
+
+      if (
+        typeof window.setPracticeSidebarVisible === 'function'
+      ) {
+        window.setPracticeSidebarVisible(true);
+      }
     }
-    setBtnNavText('btnEnglish', '英语词汇');
-    if (typeof window.renderTitle === 'function') {
+
+    setBtnNavText(
+      'btnEnglish',
+      '英语词汇'
+    );
+
+    if (
+      typeof window.renderTitle === 'function'
+    ) {
       window.renderTitle();
     }
   }
+
   window.closeEnglishVocabulary = close;
 
   button.addEventListener('click', function () {
@@ -440,10 +499,38 @@
     }
 
     if (target.dataset.status) {
-      var stItem = data.items.find(function (entry) { return entry.id === target.dataset.id; });
+      var stItem = data.items.find(function (entry) {
+        return entry.id === target.dataset.id;
+      });
+
       if (stItem) {
-        stItem.status = stItem.status === target.dataset.status ? '' : target.dataset.status;
+        var previousStatus = stItem.status || '';
+        var nextStatus =
+          previousStatus === target.dataset.status
+            ? ''
+            : target.dataset.status;
+
+        stItem.status = nextStatus;
         save();
+
+        // 只有真正设置成一个有效学习状态时才写学习事件。
+        // “再次点击同一按钮取消状态”不作为一次新的学习事件。
+        if (
+          nextStatus &&
+          nextStatus !== previousStatus &&
+          window.StudyAnalytics &&
+          typeof window.StudyAnalytics.recordStatus === 'function'
+        ) {
+          window.StudyAnalytics.recordStatus({
+            group: 'english',
+            subjectId: 'english',
+            chapterId: 'vocabulary',
+            itemKey: stItem.id,
+            status: nextStatus,
+            source: 'mark'
+          });
+        }
+
         render();
       }
     }
