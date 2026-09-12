@@ -127,7 +127,7 @@ async def test_behavior_2_dashboard_weak_chapter_restores_sidebar(browser, url):
         const chId = 'ch1';
         // 标记 3 道错题，2 道模糊题
         const statusMap = { '0': 'wrong', '1': 'wrong', '2': 'wrong', '3': 'vague', '4': 'vague' };
-        localStorage.setItem('user_guest_' + chId + '_shu1_status', JSON.stringify(statusMap));
+        localStorage.setItem('user_guest_' + chId + '_s1_status', JSON.stringify(statusMap));
         // 添加 1 个 SM-2 到期题
         const sm2Map = { '0': { nextReview: Date.now() - 10000, interval: 1, reps: 1, ef: 2.5 } };
         localStorage.setItem('user_guest_sm2_shu1_' + chId, JSON.stringify(sm2Map));
@@ -139,7 +139,7 @@ async def test_behavior_2_dashboard_weak_chapter_restores_sidebar(browser, url):
         await page.click("#btnDashboard")
         await expect(page.locator("#dashboardPanel")).to_be_visible()
 
-        weak_cards = page.locator("#dbWeakGrid .db-weak-card")
+        weak_cards = page.locator("#dbWeakMathGrid .db-weak-card")
         await expect(weak_cards.first).to_be_visible()
         card_ch = await weak_cards.first.get_attribute("data-chapter-id")
         assert card_ch == "ch1", f"Expected ch1 in weak top card, got {card_ch}"
@@ -180,7 +180,7 @@ async def test_behavior_3_cross_subject_weak_chapter_jump(browser, url):
         await page.click("#btnDashboard")
         await expect(page.locator("#dashboardPanel")).to_be_visible()
 
-        weak_cards = page.locator("#dbWeakGrid .db-weak-card")
+        weak_cards = page.locator("#dbWeakMajorGrid .db-weak-card")
         await expect(weak_cards.first).to_be_visible()
         card_subj = await weak_cards.first.get_attribute("data-subject-id")
         card_ch = await weak_cards.first.get_attribute("data-chapter-id")
@@ -396,6 +396,204 @@ async def test_behavior_8_streak_boundary_cases(browser, url):
         await context.close()
 
 
+async def test_weak_chapters_split_cases_a_to_f(browser, url):
+    print("Running test_weak_chapters_split_cases_a_to_f...")
+
+    # Case A: 数学和专业课都有薄弱数据
+    extra_a = r"""
+    (() => {
+      try {
+        localStorage.setItem('user_guest_kaoyan_subject', 'shu1');
+        ['ch1', 'ch2', 'ch3', 'ch4'].forEach((ch, idx) => {
+          const st = {};
+          for (let i = 0; i <= idx + 1; i++) st[String(i)] = 'wrong';
+          localStorage.setItem('user_guest_' + ch + '_s1_status', JSON.stringify(st));
+        });
+        ['bg_jy_01', 'bg_jy_02', 'bg_jy_03', 'bg_jy_04'].forEach((ch, idx) => {
+          const st = {};
+          for (let i = 0; i <= idx + 1; i++) st[String(i)] = 'wrong';
+          localStorage.setItem('user_guest_' + ch + '_zhuanye_status', JSON.stringify(st));
+        });
+      } catch (e) {}
+    })();
+    """
+    context, page, errors = await new_page(browser, url, extra_init=extra_a)
+    try:
+        await page.click("#btnDashboard")
+        await expect(page.locator("#dashboardPanel")).to_be_visible()
+
+        math_block = page.locator('.db-weak-subject-block[data-weak-subject="math"]')
+        major_block = page.locator('.db-weak-subject-block[data-weak-subject="major"]')
+        await expect(math_block.locator("h4")).to_have_text("数学薄弱章节 Top 3")
+        await expect(major_block.locator("h4")).to_have_text("专业课薄弱章节 Top 3")
+
+        math_cards = page.locator("#dbWeakMathGrid .db-weak-card")
+        major_cards = page.locator("#dbWeakMajorGrid .db-weak-card")
+        assert await math_cards.count() == 3, f"Expected 3 math cards in Case A, got {await math_cards.count()}"
+        assert await major_cards.count() == 3, f"Expected 3 major cards in Case A, got {await major_cards.count()}"
+
+        for i in range(3):
+            subj_m = await math_cards.nth(i).get_attribute("data-subject-id")
+            assert subj_m == "shu1", f"Math card #{i} expected shu1, got {subj_m}"
+            subj_p = await major_cards.nth(i).get_attribute("data-subject-id")
+            assert subj_p == "zhuanye", f"Major card #{i} expected zhuanye, got {subj_p}"
+
+        assert not errors, f"Unexpected errors in Case A: {errors}"
+    finally:
+        await context.close()
+
+    # Case B: 数学弱项很多 (10个)，专业课有 3 个弱项 -> 数学不挤占专业课
+    extra_b = r"""
+    (() => {
+      try {
+        localStorage.setItem('user_guest_kaoyan_subject', 'shu1');
+        for (let c = 1; c <= 10; c++) {
+          const ch = 'ch' + c;
+          const st = { '0': 'wrong', '1': 'wrong', '2': 'wrong', '3': 'wrong', '4': 'wrong' };
+          localStorage.setItem('user_guest_' + ch + '_s1_status', JSON.stringify(st));
+        }
+        ['bg_jy_01', 'bg_jy_02', 'bg_jy_03'].forEach(ch => {
+          const st = { '0': 'wrong' };
+          localStorage.setItem('user_guest_' + ch + '_zhuanye_status', JSON.stringify(st));
+        });
+      } catch (e) {}
+    })();
+    """
+    context, page, errors = await new_page(browser, url, extra_init=extra_b)
+    try:
+        await page.click("#btnDashboard")
+        await expect(page.locator("#dashboardPanel")).to_be_visible()
+
+        math_cards = page.locator("#dbWeakMathGrid .db-weak-card")
+        major_cards = page.locator("#dbWeakMajorGrid .db-weak-card")
+        assert await math_cards.count() == 3, f"Case B: Math must be capped at 3, got {await math_cards.count()}"
+        assert await major_cards.count() == 3, f"Case B: Major must display all 3 cards, not squeezed out, got {await major_cards.count()}"
+        for i in range(3):
+            assert await major_cards.nth(i).get_attribute("data-subject-id") == "zhuanye"
+        assert not errors, f"Unexpected errors in Case B: {errors}"
+    finally:
+        await context.close()
+
+    # Case C: 专业课弱项很多 (5个)，数学只有 1 个弱项 -> 不拿专业课填补数学名额
+    extra_c = r"""
+    (() => {
+      try {
+        localStorage.setItem('user_guest_kaoyan_subject', 'shu1');
+        localStorage.setItem('user_guest_ch1_s1_status', JSON.stringify({ '0': 'wrong', '1': 'wrong' }));
+        ['bg_jy_01', 'bg_jy_02', 'bg_jy_03', 'bg_jy_04', 'bg_jy_05'].forEach(ch => {
+          localStorage.setItem('user_guest_' + ch + '_zhuanye_status', JSON.stringify({ '0': 'wrong' }));
+        });
+      } catch (e) {}
+    })();
+    """
+    context, page, errors = await new_page(browser, url, extra_init=extra_c)
+    try:
+        await page.click("#btnDashboard")
+        await expect(page.locator("#dashboardPanel")).to_be_visible()
+
+        math_cards = page.locator("#dbWeakMathGrid .db-weak-card")
+        major_cards = page.locator("#dbWeakMajorGrid .db-weak-card")
+        assert await math_cards.count() == 1, f"Case C: Math must have exactly 1 card, got {await math_cards.count()}"
+        assert await major_cards.count() == 3, f"Case C: Major must have Top 3 cards, got {await major_cards.count()}"
+        assert await math_cards.first.get_attribute("data-chapter-id") == "ch1"
+        assert await math_cards.first.get_attribute("data-subject-id") == "shu1"
+        assert not errors, f"Unexpected errors in Case C: {errors}"
+    finally:
+        await context.close()
+
+    # Case D: 专业课没有弱项 -> 专业课独立展示空状态，数学正常
+    extra_d = r"""
+    (() => {
+      try {
+        localStorage.setItem('user_guest_kaoyan_subject', 'shu1');
+        localStorage.setItem('user_guest_ch1_s1_status', JSON.stringify({ '0': 'wrong' }));
+      } catch (e) {}
+    })();
+    """
+    context, page, errors = await new_page(browser, url, extra_init=extra_d)
+    try:
+        await page.click("#btnDashboard")
+        await expect(page.locator("#dashboardPanel")).to_be_visible()
+
+        math_cards = page.locator("#dbWeakMathGrid .db-weak-card")
+        assert await math_cards.count() == 1
+        major_cards = page.locator("#dbWeakMajorGrid .db-weak-card")
+        assert await major_cards.count() == 0
+
+        major_empty = page.locator("#dbWeakMajorGrid .db-weak-empty")
+        await expect(major_empty).to_be_visible()
+        text = await major_empty.inner_text()
+        assert "专业课目前暂无薄弱章节" in text, f"Expected major empty text, got {text}"
+        assert not errors, f"Unexpected errors in Case D: {errors}"
+    finally:
+        await context.close()
+
+    # Case E: 点击专业课薄弱章节卡片 -> 正确切换到专业课且处于 practice 视图，显示侧边栏
+    extra_e = r"""
+    (() => {
+      try {
+        localStorage.setItem('user_guest_kaoyan_subject', 'shu1');
+        localStorage.setItem('user_guest_bg_jy_02_zhuanye_status', JSON.stringify({ '0': 'wrong', '1': 'wrong' }));
+      } catch (e) {}
+    })();
+    """
+    context, page, errors = await new_page(browser, url, extra_init=extra_e)
+    try:
+        await page.click("#btnDashboard")
+        await expect(page.locator("#dashboardPanel")).to_be_visible()
+
+        card = page.locator("#dbWeakMajorGrid .db-weak-card").first
+        await expect(card).to_be_visible()
+        target_ch = await card.get_attribute("data-chapter-id")
+        assert target_ch == "bg_jy_02"
+
+        await card.click()
+        assert await page.evaluate("() => window.getWorkbenchView()") == "practice"
+        await expect(page.locator("#dashboardPanel")).not_to_be_visible()
+        await assert_sidebar(page, True, "进入专业课薄弱章节后应恢复刷题栏")
+
+        state = await page.evaluate("() => window.getCurrentPracticeState()")
+        assert state["curSubjectId"] == "zhuanye", f"Expected zhuanye, got {state['curSubjectId']}"
+        assert state["currentChapterId"] == "bg_jy_02", f"Expected bg_jy_02, got {state['currentChapterId']}"
+        assert not errors, f"Unexpected errors in Case E: {errors}"
+    finally:
+        await context.close()
+
+    # Case F: 点击数学薄弱章节卡片 (从专业课当前状态切入) -> 正确切换到数学且处于 practice 视图，显示侧边栏
+    extra_f = r"""
+    (() => {
+      try {
+        localStorage.setItem('user_guest_kaoyan_subject', 'zhuanye');
+        localStorage.setItem('user_guest_ch3_s1_status', JSON.stringify({ '0': 'wrong', '1': 'wrong' }));
+      } catch (e) {}
+    })();
+    """
+    context, page, errors = await new_page(browser, url, extra_init=extra_f)
+    try:
+        initial_state = await page.evaluate("() => window.getCurrentPracticeState()")
+        assert initial_state["curSubjectId"] == "zhuanye"
+
+        await page.click("#btnDashboard")
+        await expect(page.locator("#dashboardPanel")).to_be_visible()
+
+        card = page.locator("#dbWeakMathGrid .db-weak-card").first
+        await expect(card).to_be_visible()
+        target_ch = await card.get_attribute("data-chapter-id")
+        assert target_ch == "ch3"
+
+        await card.click()
+        assert await page.evaluate("() => window.getWorkbenchView()") == "practice"
+        await expect(page.locator("#dashboardPanel")).not_to_be_visible()
+        await assert_sidebar(page, True, "进入数学薄弱章节后应恢复刷题栏")
+
+        state = await page.evaluate("() => window.getCurrentPracticeState()")
+        assert state["curSubjectId"] == "shu1", f"Expected shu1, got {state['curSubjectId']}"
+        assert state["currentChapterId"] == "ch3", f"Expected ch3, got {state['currentChapterId']}"
+        assert not errors, f"Unexpected errors in Case F: {errors}"
+    finally:
+        await context.close()
+
+
 async def test_multi_resolution_and_overflow(browser, url):
     print("Running test_multi_resolution_and_overflow...")
     viewports = [
@@ -435,6 +633,7 @@ async def main():
                 await test_behavior_6_english_esc_preserves_practice_position(browser, test_url)
                 await test_behavior_7_english_status_updates_all_site_not_daily_goals(browser, test_url)
                 await test_behavior_8_streak_boundary_cases(browser, test_url)
+                await test_weak_chapters_split_cases_a_to_f(browser, test_url)
                 await test_multi_resolution_and_overflow(browser, test_url)
                 print("SUCCESS: ALL_SELECTED_FEATURES_BROWSER_TESTS_PASSED")
             finally:

@@ -536,7 +536,7 @@
                     </div>
                   </div>
 
-                  <!-- 薄弱章节 Top 3：桌面端一行三张卡 -->
+                  <!-- 薄弱章节：数学与专业课分科独立 Top 3 -->
                   <section
                     class="db-weak-section"
                     id="dbWeakSection"
@@ -548,19 +548,30 @@
                           class="db-block-title"
                           id="dbWeakTitle"
                         >
-                          薄弱章节 Top 3
+                          薄弱章节
                         </h3>
 
                         <span class="db-block-hint">
-                          综合不会率、模糊率与到期复习压力排序，点击直接进入章节
+                          根据不会、模糊与到期复习情况，按科目独立排序
                         </span>
                       </div>
                     </div>
 
-                    <div
-                      class="db-weak-grid"
-                      id="dbWeakGrid"
-                    ></div>
+                    <div class="db-weak-subject-block" data-weak-subject="math">
+                      <div class="db-weak-subject-header">
+                        <h4>数学薄弱章节 Top 3</h4>
+                        <span>只统计数学</span>
+                      </div>
+                      <div class="db-weak-grid" id="dbWeakMathGrid"></div>
+                    </div>
+
+                    <div class="db-weak-subject-block" data-weak-subject="major">
+                      <div class="db-weak-subject-header">
+                        <h4>专业课薄弱章节 Top 3</h4>
+                        <span>只统计专业课</span>
+                      </div>
+                      <div class="db-weak-grid" id="dbWeakMajorGrid"></div>
+                    </div>
                   </section>
 
                   <!-- 书籍与科目进度：独占整行，桌面端一行三张卡 -->

@@ -1647,6 +1647,7 @@
         } : null
       };
     };
+    window.collectWeakChaptersForSubject = collectWeakChaptersForSubject;
 
     function toggleDashboard() {
       if (getWorkbenchView() === 'dashboard') {
@@ -1771,140 +1772,119 @@
       );
     }
 
-    function collectWeakChapters(limit) {
-      var max =
-        Number.isFinite(Number(limit))
-          ? Math.max(
-              0,
-              Math.floor(Number(limit))
-            )
-          : 3;
+    function collectWeakChaptersForSubject(subjectId, limit) {
+      var subject = SUBJECTS.find(function (item) {
+        return item.id === subjectId;
+      });
+
+      if (!subject) return [];
 
       var nowTime = Date.now();
       var rows = [];
+      var chapters = (subject.chapters || []).filter(function (ch) {
+        // 兼容历史合并章节模型；当前独立书籍不会受影响
+        return ch && !ch.q1000Id && Number(ch.total || ch.ownTotal || 0) > 0;
+      });
 
-      SUBJECTS.forEach(function (subject, subjectIndex) {
-        var chapters =
-          Array.isArray(subject.chapters)
-            ? subject.chapters
-            : [];
+      chapters.forEach(function (ch, chapterOrder) {
+        var stats = getChStats(ch, subject);
+        var total = Number(ch.ownTotal || ch.total || 0);
+        if (total <= 0) return;
 
-        chapters.forEach(function (ch, chapterIndex) {
-          if (!ch) return;
+        var wrong = Number(stats.wrong || 0);
+        var vague = Number(stats.vague || 0);
+        var dueCount = getDashboardChapterDueCount(ch, subject, nowTime);
 
-          var total =
-            Number(
-              ch.ownTotal || ch.total
-            );
+        if (wrong <= 0 && vague <= 0 && dueCount <= 0) return;
 
-          if (
-            !Number.isFinite(total) ||
-            total <= 0
-          ) {
-            return;
-          }
+        var wrongRate = wrong / total;
+        var vagueRate = vague / total;
+        var duePressure = Math.min(dueCount, 10) / 10;
+        var score = wrongRate * 0.55 + vagueRate * 0.30 + duePressure * 0.15;
 
-          var stats =
-            getChStats(ch, subject);
-
-          var dueCount =
-            getDashboardChapterDueCount(
-              ch,
-              subject,
-              nowTime
-            );
-
-          var wrong =
-            Number(stats.wrong) || 0;
-
-          var vague =
-            Number(stats.vague) || 0;
-
-          if (
-            wrong <= 0 &&
-            vague <= 0 &&
-            dueCount <= 0
-          ) {
-            return;
-          }
-
-          var wrongRate =
-            wrong / total;
-
-          var fuzzyRate =
-            vague / total;
-
-          var duePressure =
-            Math.min(dueCount, 10) / 10;
-
-          var score =
-            wrongRate * 0.55 +
-            fuzzyRate * 0.30 +
-            duePressure * 0.15;
-
-          var wb =
-            ch.statsWb ||
-            ch.wb ||
-            '';
-
-          var wbIndex = 999;
-          if (subject && Array.isArray(subject.wbOrder)) {
-            for (var w = 0; w < subject.wbOrder.length; w++) {
-              if (subject.wbOrder[w].wb === wb) {
-                wbIndex = w;
-                break;
-              }
-            }
-          }
-
-          rows.push({
-            subjectId: subject.id,
-            subjectName:
-              subject.name ||
-              subject.title ||
-              subject.id,
-            chapterId: ch.id,
-            chapterName:
-              ch.short ||
-              ch.name ||
-              ch.id,
-            bookLabel:
-              getSubjectBookLabel(
-                subject,
-                wb
-              ),
-            total: total,
-            wrong: wrong,
-            vague: vague,
-            dueCount: dueCount,
-            wrongRate: wrongRate,
-            fuzzyRate: fuzzyRate,
-            score: score,
-            subjectOrder: subjectIndex,
-            bookOrder: wbIndex,
-            chapterOrder: chapterIndex
-          });
+        rows.push({
+          subjectId: subject.id,
+          subjectName: subject.name,
+          analyticsGroup: subject.analyticsGroup,
+          chapterId: ch.id,
+          chapterName: ch.short || ch.name || ch.id,
+          bookLabel: getSubjectBookLabel(subject, ch.wb || ch.statsWb || ''),
+          wrong: wrong,
+          vague: vague,
+          dueCount: dueCount,
+          total: total,
+          score: score,
+          chapterOrder: chapterOrder
         });
       });
 
       rows.sort(function (a, b) {
-        return (
-          (b.score - a.score) ||
+        return (b.score - a.score) ||
           (b.wrong - a.wrong) ||
           (b.vague - a.vague) ||
           (b.dueCount - a.dueCount) ||
-          (a.subjectOrder - b.subjectOrder) ||
-          (a.bookOrder - b.bookOrder) ||
-          (a.chapterOrder - b.chapterOrder) ||
-          String(a.chapterName)
-            .localeCompare(
-              String(b.chapterName),
-              'zh-CN'
-            )
-        );
+          (a.chapterOrder - b.chapterOrder);
       });
 
-      return rows.slice(0, max);
+      return rows.slice(0, Math.max(0, Number(limit) || 0));
+    }
+
+    function createWeakChapterCardHtml(item, rank) {
+      var subjectName = escapeDashboardText(item.subjectName || '');
+      var bookLabel = escapeDashboardText(item.bookLabel || '');
+      var chapterName = escapeDashboardText(item.chapterName || '');
+      var subjectId = escapeDashboardText(item.subjectId || '');
+      var chapterId = escapeDashboardText(item.chapterId || '');
+
+      return '' +
+        '<button type="button" class="db-weak-card"' +
+          ' data-subject-id="' + subjectId + '"' +
+          ' data-chapter-id="' + chapterId + '"' +
+          ' aria-label="进入' + subjectName + ' ' + chapterName + '">' +
+          '<span class="db-weak-rank">#' + rank + '</span>' +
+          '<span class="db-weak-meta">' + subjectName + (bookLabel ? ' · ' + bookLabel : '') + '</span>' +
+          '<strong class="db-weak-name">' + chapterName + '</strong>' +
+          '<span class="db-weak-metrics">' +
+            '<span>不会 ' + item.wrong + '</span>' +
+            '<span>模糊 ' + item.vague + '</span>' +
+            '<span>到期 ' + item.dueCount + '</span>' +
+          '</span>' +
+        '</button>';
+    }
+
+    function renderWeakChapterSubjectGrid(gridId, items, emptyText) {
+      var grid = document.getElementById(gridId);
+      if (!grid) return;
+
+      var list = Array.isArray(items) ? items : [];
+
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="db-weak-empty">' +
+          escapeDashboardText(emptyText) +
+          '</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(function (item, index) {
+        return createWeakChapterCardHtml(item, index + 1);
+      }).join('');
+    }
+
+    function bindWeakChapterSectionClicks() {
+      var section = document.getElementById('dbWeakSection');
+      if (!section || section.dataset.boundWeakClick === '1') return;
+
+      section.dataset.boundWeakClick = '1';
+
+      section.addEventListener('click', function (event) {
+        var card = event.target.closest('.db-weak-card[data-subject-id][data-chapter-id]');
+        if (!card || !section.contains(card)) return;
+
+        openWeakChapter(
+          card.getAttribute('data-subject-id'),
+          card.getAttribute('data-chapter-id')
+        );
+      });
     }
 
     function openWeakChapter(
@@ -1940,102 +1920,22 @@
     }
 
     function renderWeakChapterTop3() {
-      var grid =
-        document.getElementById(
-          'dbWeakGrid'
-        );
+      var mathWeak = collectWeakChaptersForSubject('shu1', 3);
+      var majorWeak = collectWeakChaptersForSubject('zhuanye', 3);
 
-      if (!grid) {
-        return;
-      }
+      renderWeakChapterSubjectGrid(
+        'dbWeakMathGrid',
+        mathWeak,
+        '数学目前暂无薄弱章节'
+      );
 
-      var rows =
-        collectWeakChapters(3);
+      renderWeakChapterSubjectGrid(
+        'dbWeakMajorGrid',
+        majorWeak,
+        '专业课目前暂无薄弱章节'
+      );
 
-      if (rows.length === 0) {
-        grid.innerHTML =
-          '<div class="db-weak-empty">' +
-          '暂未产生薄弱章节；标记「模糊 / 不会」或产生到期复习后，这里会自动给出优先顺序。' +
-          '</div>';
-
-        return;
-      }
-
-      grid.innerHTML =
-        rows.map(function (row, index) {
-          var subjectText =
-            row.subjectName +
-            (
-              row.bookLabel
-                ? ' · ' + row.bookLabel
-                : ''
-            );
-
-          return (
-            '<button' +
-            ' class="db-weak-card"' +
-            ' type="button"' +
-            ' data-subject-id="' +
-            escapeDashboardText(
-              row.subjectId
-            ) +
-            '"' +
-            ' data-chapter-id="' +
-            escapeDashboardText(
-              row.chapterId
-            ) +
-            '"' +
-            '>' +
-              '<span class="db-weak-rank">#' +
-              (index + 1) +
-              '</span>' +
-
-              '<span class="db-weak-meta">' +
-              escapeDashboardText(
-                subjectText
-              ) +
-              '</span>' +
-
-              '<strong class="db-weak-name">' +
-              escapeDashboardText(
-                row.chapterName
-              ) +
-              '</strong>' +
-
-              '<span class="db-weak-metrics">' +
-                '<span>不会 ' +
-                row.wrong +
-                '</span>' +
-
-                '<span>模糊 ' +
-                row.vague +
-                '</span>' +
-
-                '<span>到期 ' +
-                row.dueCount +
-                '</span>' +
-              '</span>' +
-            '</button>'
-          );
-        }).join('');
-
-      grid.querySelectorAll(
-        '.db-weak-card'
-      ).forEach(function (button) {
-        button.addEventListener(
-          'click',
-          function () {
-            openWeakChapter(
-              this.getAttribute(
-                'data-subject-id'
-              ),
-              this.getAttribute(
-                'data-chapter-id'
-              )
-            );
-          }
-        );
-      });
+      bindWeakChapterSectionClicks();
     }
 
     function renderDashboardOverview() {

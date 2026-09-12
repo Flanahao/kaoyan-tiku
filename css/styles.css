@@ -4899,6 +4899,29 @@ body {
   min-width: 0;
 }
 
+.db-weak-subject-block + .db-weak-subject-block {
+  margin-top: 22px;
+}
+
+.db-weak-subject-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.db-weak-subject-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #183250;
+}
+
+.db-weak-subject-header span {
+  font-size: 12px;
+  color: #7a8ca5;
+}
+
 .db-weak-grid {
   display: grid;
   grid-template-columns:
@@ -5018,6 +5041,12 @@ body {
 
   .db-weak-section .db-block-header {
     align-items: flex-start;
+  }
+
+  .db-weak-subject-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .db-weak-grid {
