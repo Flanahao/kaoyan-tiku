@@ -1285,20 +1285,29 @@
       ];
     }
 
+    var BOOK_PROGRESS_COLORS = {
+      mastered: '#4A90E2', // 熟练：蓝色
+      fuzzy: '#8B5CF6',    // 模糊：紫色
+      wrong: '#EF4444',    // 不会：红色
+      track: '#e8e8e8'     // 未标记/背景轨道：原有浅灰
+    };
+
     function drawDonut(canvas, chapters, label, subject) {
+      if (!canvas) return;
       var ctx = canvas.getContext('2d');
+      if (!ctx) return;
       var dpr = window.devicePixelRatio || 1;
       var size = 260;
-      canvas.width = size * dpr;
-      canvas.height = size * dpr;
+      canvas.width = Math.round(size * dpr);
+      canvas.height = Math.round(size * dpr);
       canvas.style.width = size + 'px';
       canvas.style.height = size + 'px';
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       var cx = size / 2, cy = size / 2;
       var outerR = 108;
       var innerR = 28;
-      var ringCount = chapters.length;
+      var ringCount = chapters ? chapters.length : 0;
       if (ringCount === 0) {
         ctx.fillStyle = '#999';
         ctx.font = '14px "Microsoft YaHei",sans-serif';
@@ -1310,43 +1319,82 @@
 
       ctx.clearRect(0, 0, size, size);
 
-      var blueDark = [47, 128, 237];
-      var blueLight = [218, 235, 254];
       var totalDone = 0, totalQ = 0;
+      var totalMastered = 0, totalFuzzy = 0, totalWrong = 0;
 
       // Inner to outer: inner ring = chapter 0 (第1讲), outer ring = last chapter
       for (var i = 0; i < ringCount; i++) {
         var ri = innerR + i * ringWidth;
         var ro = innerR + (i + 1) * ringWidth;
-        var pr = (chapters[i] && typeof chapters[i].progress === 'number')
-          ? chapters[i]
-          : getChProgress(chapters[i], subject);
-        totalDone += pr.done;
-        totalQ += pr.total;
-        var p = pr.progress;
-        var color = dbLerpColor(blueLight, blueDark, p);
-        var cStr = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
 
-        // Filled arc (clockwise from top)
-        ctx.beginPath();
-        ctx.arc(cx, cy, ro, -Math.PI / 2, -Math.PI / 2 + p * 2 * Math.PI);
-        ctx.arc(cx, cy, ri, -Math.PI / 2 + p * 2 * Math.PI, -Math.PI / 2, true);
-        ctx.closePath();
-        ctx.fillStyle = cStr;
-        ctx.fill();
+        var ch = chapters[i];
+        var chTotal = 0, chDone = 0;
+        var chMastered = 0, chFuzzy = 0, chWrong = 0;
 
-        // Unfilled arc
-        if (p < 1) {
+        if (ch && typeof ch.mastered === 'number') {
+          chMastered = ch.mastered;
+          chFuzzy = ch.fuzzy || ch.vague || 0;
+          chWrong = ch.wrong || 0;
+          chDone = ch.done != null ? ch.done : (chMastered + chFuzzy + chWrong);
+          chTotal = ch.total || 0;
+        } else if (ch && typeof ch.proficient === 'number') {
+          chMastered = ch.proficient;
+          chFuzzy = ch.vague || 0;
+          chWrong = ch.wrong || 0;
+          chDone = ch.done != null ? ch.done : (chMastered + chFuzzy + chWrong);
+          chTotal = ch.total || 0;
+        } else if (ch) {
+          var st = getChStats(ch, subject);
+          chMastered = st.proficient || 0;
+          chFuzzy = st.vague || 0;
+          chWrong = st.wrong || 0;
+          chDone = st.done || 0;
+          chTotal = ch.ownTotal || ch.total || 0;
+        }
+
+        totalDone += chDone;
+        totalQ += chTotal;
+        totalMastered += chMastered;
+        totalFuzzy += chFuzzy;
+        totalWrong += chWrong;
+
+        var startAngle = -Math.PI / 2;
+        var cursor = startAngle;
+
+        // 1. 如果该章节有完成题目，按状态连续绘制彩色前景弧（熟练=蓝，模糊=紫，不会=红）
+        if (chTotal > 0 && chDone > 0) {
+          var segs = [
+            { val: chMastered, color: BOOK_PROGRESS_COLORS.mastered },
+            { val: chFuzzy, color: BOOK_PROGRESS_COLORS.fuzzy },
+            { val: chWrong, color: BOOK_PROGRESS_COLORS.wrong }
+          ];
+          for (var s = 0; s < segs.length; s++) {
+            if (segs[s].val <= 0) continue;
+            var sweep = (segs[s].val / chTotal) * 2 * Math.PI;
+            if (sweep <= 0) continue;
+            ctx.beginPath();
+            ctx.arc(cx, cy, ro, cursor, cursor + sweep);
+            ctx.arc(cx, cy, ri, cursor + sweep, cursor, true);
+            ctx.closePath();
+            ctx.fillStyle = segs[s].color;
+            ctx.fill();
+            cursor += sweep;
+          }
+        }
+
+        // 2. 剩余未完成部分绘制原有浅灰背景轨道 (#e8e8e8)
+        var endAngle = startAngle + 2 * Math.PI;
+        if (cursor < endAngle - 0.0001) {
           ctx.beginPath();
-          ctx.arc(cx, cy, ro, -Math.PI / 2 + p * 2 * Math.PI, -Math.PI / 2 + 2 * Math.PI);
-          ctx.arc(cx, cy, ri, -Math.PI / 2 + 2 * Math.PI, -Math.PI / 2 + p * 2 * Math.PI, true);
+          ctx.arc(cx, cy, ro, cursor, endAngle);
+          ctx.arc(cx, cy, ri, endAngle, cursor, true);
           ctx.closePath();
-          ctx.fillStyle = '#e8e8e8';
+          ctx.fillStyle = BOOK_PROGRESS_COLORS.track;
           ctx.fill();
         }
       }
 
-      // Center circle with slight shadow
+      // Center circle with slight shadow (半径 28，白色内圆核 + 微柔阴影)
       ctx.beginPath();
       ctx.arc(cx, cy, innerR, 0, 2 * Math.PI);
       ctx.fillStyle = '#fff';
@@ -1355,140 +1403,29 @@
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // Center text
+      // Center text (书名与百分比)
       var pct = totalQ > 0 ? Math.round(totalDone / totalQ * 100) : 0;
       ctx.fillStyle = '#333';
       ctx.font = 'bold 12px "Microsoft YaHei","PingFang SC",sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(label, cx, cy - 9);
+
       ctx.fillStyle = '#1557a6';
       ctx.font = 'bold 17px "Microsoft YaHei","PingFang SC",sans-serif';
       ctx.fillText(pct + '%', cx, cy + 11);
-    }
-
-    var BOOK_PROGRESS_COLORS = {
-      mastered: '#4A90E2', // 熟练：蓝色
-      fuzzy: '#8B5CF6',    // 模糊：紫色
-      wrong: '#EF4444',    // 不会：红色
-      unmarked: '#DCE6F4'  // 未标记：浅灰
-    };
-
-    function drawBookSegmentedDonut(canvas, data, label) {
-      if (!canvas) return;
-      var ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      var dpr = window.devicePixelRatio || 1;
-      var size = 260;
-      canvas.width = Math.round(size * dpr);
-      canvas.height = Math.round(size * dpr);
-      canvas.style.width = size + 'px';
-      canvas.style.height = size + 'px';
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, size, size);
-
-      data = data || {};
-      var total = Math.max(0, Number(data.total) || 0);
-      var mastered = Math.max(0, Number(data.mastered) || 0);
-      var fuzzy = Math.max(0, Number(data.fuzzy) || 0);
-      var wrong = Math.max(0, Number(data.wrong) || 0);
-      var marked = Math.max(0, mastered + fuzzy + wrong);
-      var unmarked = Math.max(0, total - marked);
-      var pct = total > 0 ? Math.round(marked / total * 100) : 0;
 
       canvas._donutData = {
-        total: total,
-        mastered: mastered,
-        fuzzy: fuzzy,
-        wrong: wrong,
-        marked: marked,
-        unmarked: unmarked,
+        total: totalQ,
+        done: totalDone,
+        mastered: totalMastered,
+        fuzzy: totalFuzzy,
+        wrong: totalWrong,
         percent: pct,
         label: label
       };
-
-      var cx = size / 2;
-      var cy = size / 2;
-      var radius = 88;
-      var lineWidth = 22;
-      var startAngle = -Math.PI / 2;
-
-      // 1. 底层浅色背景环（超淡灰底）
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = '#EDF3FA';
-      ctx.lineWidth = lineWidth;
-      ctx.lineCap = 'butt';
-      ctx.stroke();
-
-      if (total <= 0) {
-        // 无题目时画完整未做浅灰环
-        ctx.beginPath();
-        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = BOOK_PROGRESS_COLORS.unmarked;
-        ctx.lineWidth = lineWidth;
-        ctx.lineCap = 'butt';
-        ctx.stroke();
-      } else {
-        var segments = [
-          { key: 'mastered', value: mastered, color: BOOK_PROGRESS_COLORS.mastered },
-          { key: 'fuzzy', value: fuzzy, color: BOOK_PROGRESS_COLORS.fuzzy },
-          { key: 'wrong', value: wrong, color: BOOK_PROGRESS_COLORS.wrong },
-          { key: 'unmarked', value: unmarked, color: BOOK_PROGRESS_COLORS.unmarked }
-        ];
-        var active = segments.filter(function (s) { return s.value > 0; });
-
-        if (active.length === 1) {
-          ctx.beginPath();
-          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-          ctx.strokeStyle = active[0].color;
-          ctx.lineWidth = lineWidth;
-          ctx.lineCap = 'butt';
-          ctx.stroke();
-        } else if (active.length > 1) {
-          var gap = 0.035;
-          var availAngle = Math.PI * 2 - gap * active.length;
-          var cursor = startAngle;
-
-          active.forEach(function (seg) {
-            var sweep = (seg.value / total) * availAngle;
-            if (sweep <= 0) return;
-            ctx.beginPath();
-            ctx.arc(cx, cy, radius, cursor, cursor + sweep);
-            ctx.strokeStyle = seg.color;
-            ctx.lineWidth = lineWidth;
-            ctx.lineCap = 'butt';
-            ctx.stroke();
-            cursor += sweep + gap;
-          });
-        }
-      }
-
-      // 2. 中心白色圆核与微柔边阴影
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius - lineWidth / 2 - 2, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill();
-      ctx.strokeStyle = 'rgba(15, 45, 89, 0.06)';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // 3. 绘制中心书名与百分比
-      var displayLabel = String(label || '').trim();
-      ctx.fillStyle = '#334155';
-      var labelFontSize = displayLabel.length > 8 ? 11 : (displayLabel.length > 6 ? 12 : 13);
-      ctx.font = 'bold ' + labelFontSize + 'px "Microsoft YaHei","PingFang SC",sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(displayLabel, cx, cy - 10);
-
-      ctx.fillStyle = '#1557a6';
-      ctx.font = 'bold 22px "Microsoft YaHei","PingFang SC",sans-serif';
-      ctx.fillText(pct + '%', cx, cy + 14);
     }
-    window.drawBookSegmentedDonut = drawBookSegmentedDonut;
+    window.drawDonut = drawDonut;
     window.BOOK_PROGRESS_COLORS = BOOK_PROGRESS_COLORS;
 
     function setPanelTitle(text, wrongbookMode) {
@@ -1725,21 +1662,46 @@
       }
       var words = english && Array.isArray(english.items) ? english.items : [];
       var englishTotal = words.length;
-      var englishMastered = 0;
-      var englishFuzzy = 0;
-      var englishWrong = 0;
+      var englishDone = 0;
       words.forEach(function (word) {
         var s = word && word.status;
-        if (s === 'proficient' || s === 'familiar') {
-          englishMastered++;
-        } else if (s === 'vague' || s === 'rusty') {
-          englishFuzzy++;
-        } else if (s === 'wrong') {
-          englishWrong++;
+        if (s === 'proficient' || s === 'familiar' || s === 'vague' || s === 'rusty' || s === 'wrong') {
+          englishDone++;
         }
       });
-      var englishDone = englishMastered + englishFuzzy + englishWrong;
       var englishPercent = englishTotal > 0 ? Math.round(englishDone / englishTotal * 100) : 0;
+
+      // 生成与普通书籍同等密度（约25-30圈）的同心环数据
+      var englishRings = [];
+      if (words.length > 0) {
+        var ringCount = Math.min(30, words.length);
+        var chunkSize = Math.ceil(words.length / ringCount);
+        for (var r = 0; r < ringCount; r++) {
+          var rStart = r * chunkSize;
+          var rEnd = Math.min(words.length, (r + 1) * chunkSize);
+          if (rStart >= words.length) break;
+          var rSlice = words.slice(rStart, rEnd);
+          var rMastered = 0, rFuzzy = 0, rWrong = 0;
+          for (var si = 0; si < rSlice.length; si++) {
+            var st = rSlice[si] && rSlice[si].status;
+            if (st === 'proficient' || st === 'familiar') rMastered++;
+            else if (st === 'vague' || st === 'rusty') rFuzzy++;
+            else if (st === 'wrong') rWrong++;
+          }
+          var rSliceDone = rMastered + rFuzzy + rWrong;
+          englishRings.push({
+            progress: rSlice.length > 0 ? rSliceDone / rSlice.length : 0,
+            done: rSliceDone,
+            total: rSlice.length,
+            mastered: rMastered,
+            fuzzy: rFuzzy,
+            wrong: rWrong
+          });
+        }
+      }
+      if (englishRings.length === 0) {
+        englishRings.push({ progress: 0, done: 0, total: 0, mastered: 0, fuzzy: 0, wrong: 0 });
+      }
 
       html += createDashboardProgressCard({
         cardKey: 'english-vocabulary',
@@ -1754,19 +1716,13 @@
       for (var b = 0; b < books.length; b++) {
         var wb = books[b].wb;
         var chapters = getBookChapters(wb, books[b].subject.chapters);
-        var bTotal = 0;
-        var bMastered = 0;
-        var bFuzzy = 0;
-        var bWrong = 0;
+        var bTotal = 0, bDone = 0;
         chapters.forEach(function (ch) {
           var st = getChStats(ch, books[b].subject);
           var len = ch.ownTotal || ch.total || 0;
           bTotal += len;
-          bMastered += (st.proficient || 0);
-          bFuzzy += (st.vague || 0);
-          bWrong += (st.wrong || 0);
+          bDone += (st.done || 0);
         });
-        var bDone = bMastered + bFuzzy + bWrong;
         var bPercent = bTotal > 0 ? Math.round(bDone / bTotal * 100) : 0;
 
         var cid = 'dbCanvas' + b;
@@ -1793,40 +1749,18 @@
         }
       };
 
-      // Draw multicolor donuts after DOM update
+      // Draw donuts after DOM update
       setTimeout(function() {
         var engCanvas = document.getElementById('dbCanvasEnglish');
         if (engCanvas) {
-          drawBookSegmentedDonut(engCanvas, {
-            total: englishTotal,
-            mastered: englishMastered,
-            fuzzy: englishFuzzy,
-            wrong: englishWrong
-          }, '英语词汇');
+          drawDonut(engCanvas, englishRings, '英语词汇', null);
         }
         for (var b = 0; b < books.length; b++) {
           var wb = books[b].wb;
           var chapters = getBookChapters(wb, books[b].subject.chapters);
-          var bTotal = 0;
-          var bMastered = 0;
-          var bFuzzy = 0;
-          var bWrong = 0;
-          chapters.forEach(function (ch) {
-            var st = getChStats(ch, books[b].subject);
-            var len = ch.ownTotal || ch.total || 0;
-            bTotal += len;
-            bMastered += (st.proficient || 0);
-            bFuzzy += (st.vague || 0);
-            bWrong += (st.wrong || 0);
-          });
           var canvas = document.getElementById('dbCanvas' + b);
           if (canvas) {
-            drawBookSegmentedDonut(canvas, {
-              total: bTotal,
-              mastered: bMastered,
-              fuzzy: bFuzzy,
-              wrong: bWrong
-            }, books[b].label);
+            drawDonut(canvas, chapters, books[b].label, books[b].subject);
           }
         }
       }, 20);

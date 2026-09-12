@@ -126,27 +126,23 @@ async def test_donut_rendering_and_legend(browser, url):
         assert "mastered" in d
         assert "fuzzy" in d
         assert "wrong" in d
-        assert "marked" in d
-        assert "unmarked" in d
+        assert "done" in d
         assert "percent" in d
         assert "label" in d
 
-        expected_marked = d["mastered"] + d["fuzzy"] + d["wrong"]
-        assert d["marked"] == expected_marked
-        expected_pct = round((expected_marked / d["total"]) * 100) if d["total"] > 0 else 0
+        expected_done = d["mastered"] + d["fuzzy"] + d["wrong"]
+        assert d["done"] == expected_done
+        expected_pct = round((expected_done / d["total"]) * 100) if d["total"] > 0 else 0
         assert d["percent"] == expected_pct, f"Card #{idx} pct mismatch: {d['percent']} vs {expected_pct}"
 
-    # 4. 验证函数单独调用与 Section 8.3 数据验收标准
+    # 4. 验证 drawDonut 函数单独调用与数据表现
     mock_test_result = await page.evaluate(
         """() => {
           const canvas = document.createElement('canvas');
           document.body.appendChild(canvas);
-          window.drawBookSegmentedDonut(canvas, {
-            mastered: 10,
-            fuzzy: 5,
-            wrong: 3,
-            total: 100
-          }, '测试书籍');
+          window.drawDonut(canvas, [
+            { mastered: 10, fuzzy: 5, wrong: 3, total: 100 }
+          ], '测试书籍', null);
 
           const d = canvas._donutData;
           document.body.removeChild(canvas);
@@ -157,19 +153,16 @@ async def test_donut_rendering_and_legend(browser, url):
     assert mock_test_result["fuzzy"] == 5
     assert mock_test_result["wrong"] == 3
     assert mock_test_result["total"] == 100
-    assert mock_test_result["unmarked"] == 82
+    assert mock_test_result["done"] == 18
     assert mock_test_result["percent"] == 18
 
     zero_test_result = await page.evaluate(
         """() => {
           const canvas = document.createElement('canvas');
           document.body.appendChild(canvas);
-          window.drawBookSegmentedDonut(canvas, {
-            mastered: 0,
-            fuzzy: 0,
-            wrong: 0,
-            total: 0
-          }, '空白书籍');
+          window.drawDonut(canvas, [
+            { mastered: 0, fuzzy: 0, wrong: 0, total: 0 }
+          ], '空白书籍', null);
 
           const d = canvas._donutData;
           document.body.removeChild(canvas);
