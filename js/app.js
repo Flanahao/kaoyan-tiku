@@ -3319,32 +3319,182 @@
       if (typeof DOMPurify === 'undefined') return String(html).replace(/<[^>]*>/g, ''); // 无 DOMPurify 时兜底去标签
       return DOMPurify.sanitize(html, { ADD_ATTR: ['target'] });
     }
+    function hasExplicitNotesMathDelimiter(line) {
+      var text = String(line || '').trim();
+      if (!text) return false;
+
+      // 已经由用户显式包裹的公式，不再进行裸公式自动包装。
+      if (/\$\$[\s\S]*\$\$/.test(text)) return true;
+      if (/(^|[^\\])\$[^$\n]+\$/.test(text)) return true;
+      if (/\\\([\s\S]*\\\)/.test(text)) return true;
+      if (/\\\[[\s\S]*\\\]/.test(text)) return true;
+      if (/\\begin\{(?:equation\*?|align\*?|alignat\*?|gather\*?|CD)\}/.test(text)) return true;
+
+      return false;
+    }
+
+    function looksLikeBareNotesLatex(line) {
+      var text = String(line || '').trim();
+      if (!text || hasExplicitNotesMathDelimiter(text)) return false;
+
+      // Markdown 结构、HTML、代码围栏等不自动包装。
+      if (/^(?:#{1,6}\s|>|[-+*]\s|\d+[.)]\s|```|~~~|<[^>]+>)/.test(text)) {
+        return false;
+      }
+
+      var hasChinese = /[\u3400-\u9fff]/.test(text);
+      var commands = text.match(/\\[A-Za-z]+/g) || [];
+
+      // 常见数学命令。用户本次示例中的 stackrel/mathcal/longleftrightarrow/frac/quad/sigma
+      // 都属于强数学信号。
+      var strongCommand = /\\(?:frac|dfrac|tfrac|sqrt|sum|prod|int|oint|lim|stackrel|overset|underset|mathcal|mathbb|mathbf|mathrm|operatorname|sin|cos|tan|cot|sec|csc|log|ln|exp|alpha|beta|gamma|delta|epsilon|theta|lambda|mu|pi|rho|sigma|phi|psi|omega|infty|partial|nabla|quad|qquad|cdot|times|pm|mp|leq|geq|neq|approx|sim|to|rightarrow|leftarrow|leftrightarrow|longleftrightarrow|mapsto|left|right)\b/.test(text);
+
+      var mathStructure = /(?:\^|_|=|<=|>=|<|>|\\[A-Za-z]+)/.test(text);
+
+      // 强数学命令 + 数学结构，视为裸公式。
+      if (strongCommand && (mathStructure || commands.length >= 2)) return true;
+
+      // 没有中文自然语言时，LaTeX 命令配合上下标/等式也视为公式。
+      if (!hasChinese && commands.length >= 1 && /(?:\^|_|=|<|>)/.test(text)) return true;
+
+      // 兼容 x^2+y^2=1 这类没有反斜杠的简单独立数学行。
+      if (
+        !hasChinese &&
+        commands.length === 0 &&
+        /[=<>^_]/.test(text) &&
+        /^[A-Za-z0-9\s+\-*/=<>^_{}()[\].,|:]+$/.test(text)
+      ) {
+        return true;
+      }
+
+      return false;
+    }
+
+    function normalizeBareNotesLatex(src) {
+      var lines = String(src || '').replace(/\r\n?/g, '\n').split('\n');
+      var fenceMarker = '';
+
+      return lines.map(function (line) {
+        var trimmed = line.trim();
+        var fenceMatch = trimmed.match(/^(```|~~~)/);
+
+        if (fenceMatch) {
+          if (!fenceMarker) {
+            fenceMarker = fenceMatch[1];
+          } else if (fenceMarker === fenceMatch[1]) {
+            fenceMarker = '';
+          }
+          return line;
+        }
+
+        if (fenceMarker || !trimmed) return line;
+
+        if (looksLikeBareNotesLatex(trimmed)) {
+          return '\\[' + trimmed + '\\]';
+        }
+
+        return line;
+      }).join('\n');
+    }
+
+    function protectNotesMath(src) {
+      var spans = [];
+
+      function stash(math) {
+        var index = spans.length;
+        spans.push(math);
+        return '\uE000' + index + '\uE001';
+      }
+
+      var text = String(src || '');
+
+      // 先保护块级 LaTeX 环境。
+      text = text.replace(
+        /\\begin\{(equation\*?|align\*?|alignat\*?|gather\*?|CD)\}[\s\S]*?\\end\{\1\}/g,
+        stash
+      );
+
+      // 再保护显式数学分隔符。
+      text = text.replace(/\$\$[\s\S]*?\$\$/g, stash);
+      text = text.replace(/\\\[[\s\S]*?\\\]/g, stash);
+      text = text.replace(/\\\([\s\S]*?\\\)/g, stash);
+
+      // 最后保护单美元内联公式；排除转义后的 \$。
+      text = text.replace(/(^|[^\\])\$([^$\n]+?)\$/gm, function (_, prefix, body) {
+        return prefix + stash('$' + body + '$');
+      });
+
+      return {
+        text: text,
+        spans: spans
+      };
+    }
+
     function renderNotesMarkdown(src) {
       if (!src) return '';
-      var html;
+
+      var html = '';
+      var mathSpans = [];
+
       try {
-        // 先抽离 $...$/$$...$$ 公式占位，避免 marked 的 Markdown 转义吞掉 LaTeX 反斜杠（如 \{、\\）
-        var mathSpans = [];
-        var protectedSrc = src.replace(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g, function (m) {
-          mathSpans.push(m);
-          return '' + (mathSpans.length - 1) + '';
-        });
-        // breaks:true → 单换行渲染为 <br>，所见即所得（空行仍是段落间距）
-        var md = marked.parse(protectedSrc, { breaks: true });
+        // 1. 先把用户直接粘贴的裸 LaTeX 独立公式行规范化为 \[...\]。
+        var normalizedSrc = normalizeBareNotesLatex(src);
+
+        // 2. 在 Markdown 解析前保护所有数学区域，避免 marked 吞反斜杠。
+        var protectedMath = protectNotesMath(normalizedSrc);
+        mathSpans = protectedMath.spans;
+
+        // 3. Markdown -> HTML。
+        var md = marked.parse(protectedMath.text, { breaks: true });
+
+        // 4. 第一次消毒。
         html = sanitizeNotesHtml(md);
-      } catch (e) { html = String(src).replace(/</g, '&lt;'); }
+      } catch (e) {
+        console.warn('[notes] Markdown render failed:', e);
+        html = String(src).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
       var holder = document.createElement('div');
       holder.innerHTML = html;
-      restoreMathPlaceholders(holder, mathSpans); // 在 DOM 中还原公式为纯文本，避免消毒器二次破坏
+
+      // 5. 在 DOM text node 中还原原始 LaTeX 文本。
+      restoreMathPlaceholders(holder, mathSpans);
+
+      // 6. KaTeX auto-render。
       try {
+        if (typeof renderMathInElement !== 'function') {
+          console.error('[notes] KaTeX auto-render 未加载');
+          return sanitizeNotesHtml(holder.innerHTML);
+        }
+
         renderMathInElement(holder, {
           delimiters: [
             { left: '$$', right: '$$', display: true },
-            { left: '$', right: '$', display: false }
+            { left: '$', right: '$', display: false },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\begin{equation}', right: '\\end{equation}', display: true },
+            { left: '\\begin{equation*}', right: '\\end{equation*}', display: true },
+            { left: '\\begin{align}', right: '\\end{align}', display: true },
+            { left: '\\begin{align*}', right: '\\end{align*}', display: true },
+            { left: '\\begin{alignat}', right: '\\end{alignat}', display: true },
+            { left: '\\begin{alignat*}', right: '\\end{alignat*}', display: true },
+            { left: '\\begin{gather}', right: '\\end{gather}', display: true },
+            { left: '\\begin{gather*}', right: '\\end{gather*}', display: true },
+            { left: '\\begin{CD}', right: '\\end{CD}', display: true }
           ],
-          throwOnError: false
+          throwOnError: false,
+          trust: false,
+          ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          errorCallback: function (message, error) {
+            console.warn('[notes latex]', message, error);
+          }
         });
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[notes] KaTeX render failed:', e);
+      }
+
+      // 7. KaTeX 渲染后再次消毒，保持当前安全策略。
       return sanitizeNotesHtml(holder.innerHTML);
     }
 

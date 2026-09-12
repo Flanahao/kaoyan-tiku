@@ -2662,9 +2662,16 @@ body {
         animation-duration: 0.01ms !important;
       }
     }
+    #mainAreaContent {
+      min-width: 0;
+      max-width: 100%;
+    }
+
     /* ===== 笔记区 ===== */
     .notes-section {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
       border-top: 1px dashed rgba(71, 76, 101, 0.14);
       padding-top: 14px;
       margin-top: 10px;
@@ -2713,6 +2720,10 @@ body {
     }
 
     .notes-render {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
       padding: 10px 12px;
       border: 1px solid rgba(71, 76, 101, 0.08);
       border-radius: var(--radius-sm);
@@ -2749,7 +2760,11 @@ body {
     .notes-render h2 { font-size: 1.3em; }
     .notes-render h3 { font-size: 1.15em; }
     .notes-render h4 { font-size: 1.05em; }
-    .notes-render p { margin: 0.35em 0; }
+    .notes-render p {
+      margin: 0.35em 0;
+      min-width: 0;
+      max-width: 100%;
+    }
     .notes-render ul, .notes-render ol { margin: 0.35em 0; padding-left: 1.6em; }
     .notes-render li { margin: 0.15em 0; }
     .notes-render blockquote {
@@ -2797,6 +2812,23 @@ body {
     .notes-render th { background: rgba(47, 128, 237, 0.06); font-weight: 700; }
     .notes-render img { max-width: 100%; height: auto; border-radius: 6px; }
     .notes-render hr { border: none; border-top: 1px solid rgba(71, 76, 101, 0.18); margin: 0.8em 0; }
+
+    .notes-render .katex-display {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin: 0.5em 0;
+      padding: 2px 0 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .notes-render .katex-display > .katex {
+      white-space: nowrap;
+    }
 
     .notes-actions {
       display: flex;
