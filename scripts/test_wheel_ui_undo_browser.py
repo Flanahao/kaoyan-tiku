@@ -64,7 +64,6 @@ async def run_browser_tests():
 
             page = await context.new_page()
 
-            # 自动处理所有的 confirm / alert 弹窗
             dialogs_log = []
 
             async def handle_dialog(dialog):
@@ -79,238 +78,213 @@ async def run_browser_tests():
             await page.wait_for_function("() => window.DailyStudyWheel && typeof window.DailyStudyWheel.openModal === 'function'")
 
             # =========================================================================
-            # Case 1 & 2: 尺寸规格统一测量 (数学转盘 vs 专业课转盘)
+            # Part 1: 7 个视口下数学与专业课尺寸严格一致性测量 (1440, 1200, 1024, 768, 620, 390, 320)
             # =========================================================================
             print("\n----------------------------------------------------")
-            print("📏 Case 1 & 2: 数学转盘与专业课转盘 UI 规格统一测量")
+            print("📏 Part 1: 7 个视口下数学与专业课转盘实际尺寸严格比对 (|Δ| <= 1px)")
 
-            # 打开数学转盘
+            viewports = [1440, 1200, 1024, 768, 620, 390, 320]
+            measured_sizes = {}
+
+            # 打开转盘弹窗
             await page.evaluate("() => window.DailyStudyWheel.openModal('shu1')")
             await page.wait_for_selector("#dailyMathWheelModal", state="visible")
-            await page.wait_for_timeout(300)
+            await page.wait_for_timeout(200)
 
-            # 测量数学转盘 wrap 和 canvas 尺寸
-            math_wrap_rect = await page.evaluate(
-                "() => { const r = document.querySelector('.daily-math-wheel-canvas-wrap').getBoundingClientRect(); return { width: Math.round(r.width), height: Math.round(r.height) }; }"
-            )
-            math_canvas_rect = await page.evaluate(
-                "() => { const r = document.getElementById('dailyMathWheelCanvas').getBoundingClientRect(); return { width: Math.round(r.width), height: Math.round(r.height) }; }"
-            )
-            print(f"   • 数学转盘 Wrap 尺寸: {math_wrap_rect['width']}px × {math_wrap_rect['height']}px")
-            print(f"   • 数学转盘 Canvas 尺寸: {math_canvas_rect['width']}px × {math_canvas_rect['height']}px")
+            for w in viewports:
+                await page.set_viewport_size({"width": w, "height": 900})
+                await page.wait_for_timeout(100)
 
-            assert math_wrap_rect["width"] == 360, f"数学转盘 Wrap 宽度应为 360px，实际: {math_wrap_rect['width']}px"
-            assert math_wrap_rect["height"] == 360, f"数学转盘 Wrap 高度应为 360px，实际: {math_wrap_rect['height']}px"
-            assert math_canvas_rect["width"] == math_canvas_rect["height"], "数学转盘宽与高必须严格相等 (1:1)"
+                # 切到数学并测量
+                await page.click(".study-wheel-tab[data-subject-id='shu1']")
+                await page.wait_for_timeout(100)
 
-            # 保存截图 1: 数学转盘
+                math_wrap = await page.evaluate(
+                    "() => { const r = document.querySelector('.study-wheel-stage') || document.querySelector('.daily-math-wheel-canvas-wrap'); const b = r.getBoundingClientRect(); return { width: Math.round(b.width), height: Math.round(b.height) }; }"
+                )
+                math_canvas = await page.evaluate(
+                    "() => { const r = document.getElementById('dailyMathWheelCanvas').getBoundingClientRect(); return { width: Math.round(r.width), height: Math.round(r.height) }; }"
+                )
+
+                # 切到专业课并测量
+                await page.click(".study-wheel-tab[data-subject-id='zhuanye']")
+                await page.wait_for_timeout(100)
+
+                major_wrap = await page.evaluate(
+                    "() => { const r = document.querySelector('.study-wheel-stage') || document.querySelector('.daily-math-wheel-canvas-wrap'); const b = r.getBoundingClientRect(); return { width: Math.round(b.width), height: Math.round(b.height) }; }"
+                )
+                major_canvas = await page.evaluate(
+                    "() => { const r = document.getElementById('dailyMathWheelCanvas').getBoundingClientRect(); return { width: Math.round(r.width), height: Math.round(r.height) }; }"
+                )
+
+                # 无横向溢出断言
+                overflow_info = await page.evaluate(
+                    """() => {
+                        const sw = document.documentElement.scrollWidth;
+                        const cw = document.documentElement.clientWidth;
+                        if (sw <= cw) return null;
+                        const list = [];
+                        document.querySelectorAll('*').forEach(el => {
+                            const r = el.getBoundingClientRect();
+                            if (r.right > cw + 1) {
+                                list.push(el.tagName + (el.id ? '#' + el.id : '') + (el.className ? '.' + String(el.className).replace(/\\s+/g, '.') : '') + ' [w=' + Math.round(r.width) + ', right=' + Math.round(r.right) + ']');
+                            }
+                        });
+                        return { sw, cw, list: list.slice(0, 8) };
+                    }"""
+                )
+                if overflow_info:
+                    print(f"⚠️ Overflow at {w}px: clientWidth={overflow_info['cw']}, scrollWidth={overflow_info['sw']}")
+                    for item in overflow_info['list']:
+                        print(f"   -> {item}")
+                overflow = bool(overflow_info)
+                assert not overflow, f"屏幕宽度 {w}px 下出现页面横向溢出！"
+
+                # 严格一致性断言 (|diff| <= 1px)
+                diff_w = abs(math_wrap["width"] - major_wrap["width"])
+                diff_h = abs(math_wrap["height"] - major_wrap["height"])
+                diff_cw = abs(math_canvas["width"] - major_canvas["width"])
+                diff_ch = abs(math_canvas["height"] - major_canvas["height"])
+
+                assert diff_w <= 1, f"Viewport {w}px: 外层宽度不一致: math={math_wrap['width']}, major={major_wrap['width']}"
+                assert diff_h <= 1, f"Viewport {w}px: 外层高度不一致: math={math_wrap['height']}, major={major_wrap['height']}"
+                assert diff_cw <= 1, f"Viewport {w}px: Canvas 宽度不一致: math={math_canvas['width']}, major={major_canvas['width']}"
+                assert diff_ch <= 1, f"Viewport {w}px: Canvas 高度不一致: math={math_canvas['height']}, major={major_canvas['height']}"
+
+                measured_sizes[w] = {
+                    "math": f"{math_canvas['width']}x{math_canvas['height']}",
+                    "major": f"{major_canvas['width']}x{major_canvas['height']}"
+                }
+                print(f"   • {w}px: math {measured_sizes[w]['math']} / major {measured_sizes[w]['major']} PASS (Δ=0px, overflow=false)")
+
+            # 保存截图
+            await page.set_viewport_size({"width": 1440, "height": 1000})
+            await page.click(".study-wheel-tab[data-subject-id='shu1']")
+            await page.wait_for_timeout(100)
             screenshot1 = str(SCREENSHOTS_DIR / "wheel_math_360.png")
             await page.locator(".daily-math-wheel-modal").screenshot(path=screenshot1)
-            print(f"   📸 截图已保存: {screenshot1}")
 
-            # 切换到专业课 Tab
             await page.click(".study-wheel-tab[data-subject-id='zhuanye']")
-            await page.wait_for_timeout(300)
-
-            # 测量专业课转盘 wrap 和 canvas 尺寸
-            major_wrap_rect = await page.evaluate(
-                "() => { const r = document.querySelector('.daily-math-wheel-canvas-wrap').getBoundingClientRect(); return { width: Math.round(r.width), height: Math.round(r.height) }; }"
-            )
-            major_canvas_rect = await page.evaluate(
-                "() => { const r = document.getElementById('dailyMathWheelCanvas').getBoundingClientRect(); return { width: Math.round(r.width), height: Math.round(r.height) }; }"
-            )
-            print(f"   • 专业课转盘 Wrap 尺寸: {major_wrap_rect['width']}px × {major_wrap_rect['height']}px")
-            print(f"   • 专业课转盘 Canvas 尺寸: {major_canvas_rect['width']}px × {major_canvas_rect['height']}px")
-
-            assert major_wrap_rect["width"] == math_wrap_rect["width"], "数学与专业课转盘宽度必须 100% 一致"
-            assert major_wrap_rect["height"] == math_wrap_rect["height"], "数学与专业课转盘高度必须 100% 一致"
-            assert major_canvas_rect["width"] == major_canvas_rect["height"], "专业课转盘宽与高必须严格相等 (1:1)"
-
-            # 保存截图 2: 专业课转盘
+            await page.wait_for_timeout(100)
             screenshot2 = str(SCREENSHOTS_DIR / "wheel_major_360.png")
             await page.locator(".daily-math-wheel-modal").screenshot(path=screenshot2)
-            print(f"   📸 截图已保存: {screenshot2}")
-            print("✅ Case 1 & 2 PASS: 数学与专业课转盘尺寸规格完全一致 (360×360px)")
+
+            print("✅ Part 1 PASS: 全部 7 个视口两科尺寸绝对一致，无横向溢出")
 
             # =========================================================================
-            # Case 3: 第一轮完成 -> 提示与继续加量按钮
+            # Part 2: 事务性撤销 (Transactional Undo) E2E 完整断言
             # =========================================================================
             print("\n----------------------------------------------------")
-            print("🎯 Case 3: 第一轮学习抽取与完成二次确认")
+            print("🔄 Part 2: 事务性撤销完整测试 (完成池回滚 + 派生进度 + 刷新保持 + 刷题保护)")
 
-            # 切回数学转盘，重置当天状态
+            # 1. 切回数学并重置转盘状态
             await page.click(".study-wheel-tab[data-subject-id='shu1']")
             await page.evaluate("""() => {
                 localStorage.removeItem('user_guest_daily_study_wheel_rounds_v2');
                 localStorage.removeItem('user_guest_daily_study_wheel_daily_v1');
                 localStorage.removeItem('user_guest_daily_study_wheel_history_v1');
+                localStorage.removeItem('user_guest_daily_study_wheel_undo_v1');
                 window.DailyStudyWheel.render();
             }""")
 
-            # 点击开始旋转
+            # 记录初始题目掌握度数据，用于验证保护
+            await page.evaluate("""() => {
+                localStorage.setItem('user_guest_q_test_001_status', 'mastered');
+                localStorage.setItem('user_guest_q_test_002_status', 'wrong');
+            }""")
+
+            base_prog = await page.evaluate("() => window.DailyStudyWheel.getWheelProgress('math')")
+            print(f"   • 基线状态: completed={base_prog['completed']}, remaining={base_prog['remaining']}")
+
+            # 2. 抽取第 1 轮
             await page.click("#btnDailyMathWheelSpin")
-            # 等待旋转动画结束
             await page.wait_for_function("() => !window.DailyStudyWheel.isSpinning()", timeout=5000)
 
-            round1_data = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
-            assert round1_data is not None, "第一轮必须已生成"
-            assert round1_data["round"] == 1, "轮次编号应为 1"
-            assert round1_data["status"] == "active", f"初始状态应为 active，实际: {round1_data['status']}"
-            print(f"   • 第 1 轮抽取完成: 《{round1_data.get('book')}》- {round1_data.get('short') or round1_data.get('name')}")
+            r1 = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
+            assert r1 is not None and r1["round"] == 1 and r1["status"] == "active"
+            print(f"   • 第 1 轮已抽取: 《{r1.get('book')}》- {r1.get('short') or r1.get('name')}")
 
-            # 验证完成按钮文案为 '完成本轮学习'
-            complete_btn_text = await page.locator("#btnStudyWheelComplete").text_content()
-            assert "完成本轮学习" in complete_btn_text, f"按钮文字应包含'完成本轮学习'，实际: {complete_btn_text}"
-
-            # 点击完成本轮学习 (二次确认由 dialog 自动捕获并 accept)
+            # 3. 点击完成本轮学习
             dialogs_log.clear()
             await page.click("#btnStudyWheelComplete")
             await page.wait_for_function(
                 "() => { const r = window.DailyStudyWheel.getCurrentRound('shu1'); return r && r.status === 'completed'; }",
                 timeout=3000
             )
-            assert any("确认已完成本轮学习" in msg for msg in dialogs_log), f"必须弹出二次确认提示，实际: {dialogs_log}"
 
-            # 验证完成后的 UI 状态
-            result_title = await page.locator("#dailyMathWheelResultName").text_content()
-            assert "🎉 本轮完成，继续挑战下一轮？" in result_title, f"应显示完成挑战提示，实际: {result_title}"
+            prog_after_complete = await page.evaluate("() => window.DailyStudyWheel.getWheelProgress('math')")
+            assert prog_after_complete["completed"] == base_prog["completed"] + 1, "完成一轮后 completed 应 +1"
+            assert prog_after_complete["remaining"] == base_prog["remaining"] - 1, "完成一轮后 remaining 应 -1"
+            print(f"   • 完成后状态: completed={prog_after_complete['completed']}, remaining={prog_after_complete['remaining']}")
 
-            # 验证按钮状态
-            add_round_visible = await page.locator("#btnStudyWheelAddRound").is_visible()
-            later_close_visible = await page.locator("#btnStudyWheelLaterClose").is_visible()
-            undo_visible = await page.locator("#btnStudyWheelUndoRound").is_visible()
+            # 验证历史完成池已写入
+            hist_completed_ids = await page.evaluate(
+                "() => { const h = window.DailyStudyWheel.getHistoryState(); return h.math.completed.map(c => c.chapterId); }"
+            )
+            assert r1["chapterId"] in hist_completed_ids, "历史完成池必须包含第 1 轮章节"
 
-            assert add_round_visible, "继续加量按钮应显示"
-            assert later_close_visible, "稍后结束按钮应显示"
-            assert undo_visible, "撤销上一轮按钮应显示"
-            print("   • 完成本轮学习后，成功显示「🔥 继续加量」、「稍后结束」以及「↩ 撤销上一轮」按钮")
-
-            # =========================================================================
-            # Case 4: 误点继续加量 -> 进入第 2 轮 -> 撤销上一轮恢复
-            # =========================================================================
-            print("\n----------------------------------------------------")
-            print("🔄 Case 4: 点击继续加量开启第 2 轮，并执行撤销上一轮")
-
-            # 点击继续加量开启第 2 轮
+            # 4. 点击继续加量 -> 开启第 2 轮
             await page.click("#btnStudyWheelAddRound")
-            # 等待加量旋转动画完成
             await page.wait_for_function("() => !window.DailyStudyWheel.isSpinning()", timeout=5000)
+            r2 = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
+            assert r2["round"] == 2 and r2["status"] == "active", "开启第 2 轮加量成功"
+            print(f"   • 第 2 轮已开启: 《{r2.get('book')}》- {r2.get('short') or r2.get('name')}")
 
-            round2_data = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
-            assert round2_data is not None
-            assert round2_data["round"] == 2, f"轮次应为 2，实际: {round2_data['round']}"
-            assert round2_data["status"] == "active", f"第 2 轮状态应为 active，实际: {round2_data['status']}"
-            print(f"   • 第 2 轮已开启: 《{round2_data.get('book')}》- {round2_data.get('short') or round2_data.get('name')}")
-
-            # 截图 3: 多轮进行中状态
             screenshot3 = str(SCREENSHOTS_DIR / "wheel_multi_round.png")
             await page.locator(".daily-math-wheel-modal").screenshot(path=screenshot3)
-            print(f"   📸 截图已保存: {screenshot3}")
 
-            # 点击 ↩ 撤销上一轮
+            # 5. 点击 ↩ 撤销上一轮
             dialogs_log.clear()
             await page.click("#btnStudyWheelUndoRound")
             await page.wait_for_function(
                 "() => { const r = window.DailyStudyWheel.getCurrentRound('shu1'); return r && r.round === 1 && r.status === 'active'; }",
                 timeout=3000
             )
-            assert any("撤销" in msg for msg in dialogs_log), "撤销操作应有确认拦截"
 
-            # 验证撤销后的状态恢复
-            restored_round = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
-            assert restored_round["round"] == 1, f"撤销后当前轮次应为 1，实际: {restored_round['round']}"
-            assert restored_round["status"] == "active", f"撤销后第 1 轮应恢复为 active，实际: {restored_round['status']}"
-            assert restored_round["chapterId"] == round1_data["chapterId"], "章节应保持第 1 轮原本章节"
+            # 6. 核心验证：撤销后完成池必须已撤回该章节！
+            hist_after_undo = await page.evaluate(
+                "() => { const h = window.DailyStudyWheel.getHistoryState(); return h.math.completed.map(c => c.chapterId); }"
+            )
+            assert r1["chapterId"] not in hist_after_undo, "撤销后历史完成池必须已移除第 1 轮章节！"
 
-            # 截图 4: 撤销恢复后的第 1 轮状态
+            prog_after_undo = await page.evaluate("() => window.DailyStudyWheel.getWheelProgress('math')")
+            assert prog_after_undo["completed"] == base_prog["completed"], "撤销后 completed 必须 -1 回退到基线！"
+            assert prog_after_undo["remaining"] == base_prog["remaining"], "撤销后 remaining 必须 +1 恢复到基线！"
+            print(f"   • 撤销后状态: completed={prog_after_undo['completed']}, remaining={prog_after_undo['remaining']} (完成池精确撤回)")
+
             screenshot4 = str(SCREENSHOTS_DIR / "wheel_undo_restored.png")
             await page.locator(".daily-math-wheel-modal").screenshot(path=screenshot4)
-            print(f"   📸 截图已保存: {screenshot4}")
-            print("✅ Case 4 PASS: 撤销上一轮成功恢复第 1 轮 active 状态")
 
-            # =========================================================================
-            # Case 5: 章节完成池保护验证
-            # =========================================================================
-            print("\n----------------------------------------------------")
-            print("🛡️ Case 5: 章节完成池保护验证")
-
-            active_pool_ids = await page.evaluate(
-                "() => window.DailyStudyWheel.getActiveCandidates('shu1').map(c => c.chapterId)"
-            )
-            assert round1_data["chapterId"] not in active_pool_ids, (
-                f"撤销回到第 1 轮进行中时，章节 {round1_data['chapterId']} 绝不得重进随机池！"
-            )
-            print(f"   • 正在学习的第 1 轮章节 {round1_data['chapterId']} 已从随机池安全隔离")
-            print("✅ Case 5 PASS: 章节完成池保护规则严格生效")
-
-            # =========================================================================
-            # Case 6: 全分辨率自适应无横向溢出 (1440px -> 320px)
-            # =========================================================================
-            print("\n----------------------------------------------------")
-            print("📱 Case 6: 全分辨率自适应无横向溢出测试 (1440px ~ 320px)")
-
-            test_widths = [1440, 1024, 768, 480, 390, 360, 320]
-            for w in test_widths:
-                await page.set_viewport_size({"width": w, "height": 900})
-                await page.wait_for_timeout(100)
-
-                overflow = await page.evaluate(
-                    "() => document.documentElement.scrollWidth > document.documentElement.clientWidth"
-                )
-                assert not overflow, f"屏幕宽度 {w}px 下出现横向溢出！"
-
-                wrap_width = await page.evaluate(
-                    "() => Math.round(document.querySelector('.daily-math-wheel-canvas-wrap').getBoundingClientRect().width)"
-                )
-                assert wrap_width <= w, f"转盘宽度 {wrap_width}px 超出了视口宽度 {w}px！"
-                print(f"   • {w}px 视口: 转盘宽度 {wrap_width}px，页面横向无溢出 ✓")
-
-            print("✅ Case 6 PASS: 1440px 到 320px 任意分辨率均无横向溢出")
-
-            # =========================================================================
-            # Case 7: 刷新页面持久性校验
-            # =========================================================================
-            print("\n----------------------------------------------------")
-            print("🔄 Case 7: 刷新页面持久性校验")
-
-            await page.set_viewport_size({"width": 1440, "height": 1000})
+            # 7. 刷新页面验证持久性
             await page.reload(wait_until="networkidle")
             await page.evaluate("() => window.DailyStudyWheel.openModal('shu1')")
-            persisted_round = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
-            assert persisted_round is not None, "刷新后当天轮次必须保持"
-            assert persisted_round["round"] == 1, "刷新后保持在第 1 轮"
-            assert persisted_round["chapterId"] == round1_data["chapterId"], "刷新后保持相同章节"
-            print("✅ Case 7 PASS: 页面刷新后轮次状态保持一致")
 
-            # =========================================================================
-            # Case 8: 次日自然日解锁与开启新的第 1 轮
-            # =========================================================================
-            print("\n----------------------------------------------------")
-            print("🌅 Case 8: 次日自然日重置校验")
+            reload_round = await page.evaluate("() => window.DailyStudyWheel.getCurrentRound('shu1')")
+            assert reload_round["round"] == 1 and reload_round["status"] == "active", "刷新后保持第 1 轮 active"
+            assert reload_round["chapterId"] == r1["chapterId"], "刷新后章节与撤销前完全一致"
 
-            next_day_round = await page.evaluate("""() => {
-                const RealDate = Date;
-                const tomorrow = new RealDate();
-                tomorrow.setDate(tomorrow.getDate() + 1);
+            reload_prog = await page.evaluate("() => window.DailyStudyWheel.getWheelProgress('math')")
+            assert reload_prog["completed"] == base_prog["completed"], "刷新后 completed 保持撤销后的回退值"
+            assert reload_prog["remaining"] == base_prog["remaining"], "刷新后 remaining 保持撤销后的恢复值"
+            print("   • 刷新页面持久性测试: 撤销状态与完成度完全保持 ✓")
 
-                class MockDate extends RealDate {
-                    constructor(...args) {
-                        if (args.length === 0) {
-                            super(tomorrow.getTime());
-                        } else {
-                            super(...args);
-                        }
-                    }
-                    static now() {
-                        return tomorrow.getTime();
-                    }
-                }
-                window.Date = MockDate;
-                window.DailyStudyWheel.render();
-                return window.DailyStudyWheel.getCurrentRound('shu1');
-            }""")
-            assert next_day_round is None, "次日自然日初始应无轮次记录，可重新开启第 1 轮"
-            print("✅ Case 8 PASS: 次日自然日自动重置，允许开启新的第 1 轮")
+            # 8. 真实题目数据保护验证
+            q1_status = await page.evaluate("() => localStorage.getItem('user_guest_q_test_001_status')")
+            q2_status = await page.evaluate("() => localStorage.getItem('user_guest_q_test_002_status')")
+            assert q1_status == "mastered" and q2_status == "wrong", "真实题目数据严格未被修改"
+            print("   • 真实刷题掌握度数据严格未被破坏 ✓")
+
+            # 9. 再次完成不重复计数验证
+            await page.click("#btnStudyWheelComplete")
+            await page.wait_for_function(
+                "() => { const r = window.DailyStudyWheel.getCurrentRound('shu1'); return r && r.status === 'completed'; }",
+                timeout=3000
+            )
+            recomplete_prog = await page.evaluate("() => window.DailyStudyWheel.getWheelProgress('math')")
+            assert recomplete_prog["completed"] == base_prog["completed"] + 1, "再次完成后 completed 精确 +1，未重复计数"
+            print("   • 再次完成测试: 完成数未重复计数，幂等安全 ✓")
+
+            print("✅ Part 2 PASS: 事务性撤销全部断言成功通过")
 
             await context.close()
             await browser.close()

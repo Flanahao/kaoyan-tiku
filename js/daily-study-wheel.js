@@ -35,6 +35,7 @@
   const STORAGE_HISTORY_SUFFIX = 'daily_study_wheel_history_v1';
   const STORAGE_ROUNDS_V2_SUFFIX = 'daily_study_wheel_rounds_v2';
   const STORAGE_DAILY_SUFFIX = 'daily_study_wheel_daily_v1';
+  const STORAGE_UNDO_SUFFIX = 'daily_study_wheel_undo_v1';
 
   let currentSubjectId = 'shu1'; // 'shu1' or 'zhuanye'
   let spinning = false;
@@ -82,6 +83,71 @@
 
   function dailySalesStorageKey() {
     return getStoragePrefix() + STORAGE_DAILY_SUFFIX;
+  }
+
+  function undoStorageKey() {
+    return getStoragePrefix() + STORAGE_UNDO_SUFFIX;
+  }
+
+  function createWheelActionId() {
+    return Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 9);
+  }
+
+  function getUndoState() {
+    try {
+      const raw = window.localStorage.getItem(undoStorageKey());
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object') {
+          return {
+            schemaVersion: 1,
+            math: Array.isArray(parsed.math) ? parsed.math : [],
+            major: Array.isArray(parsed.major) ? parsed.major : []
+          };
+        }
+      }
+    } catch (e) {
+      console.warn('[daily-wheel] load undo state failed', e);
+    }
+
+    return {
+      schemaVersion: 1,
+      math: [],
+      major: []
+    };
+  }
+
+  function saveUndoState(state) {
+    try {
+      window.localStorage.setItem(undoStorageKey(), JSON.stringify(state));
+      return true;
+    } catch (e) {
+      console.warn('[daily-wheel] save undo state failed', e);
+      return false;
+    }
+  }
+
+  function pushWheelUndo(subjectKey, undo) {
+    const state = getUndoState();
+    if (!state[subjectKey]) state[subjectKey] = [];
+    state[subjectKey].push(undo);
+    saveUndoState(state);
+  }
+
+  function popWheelUndo(subjectKey) {
+    const state = getUndoState();
+    if (!state[subjectKey] || state[subjectKey].length === 0) return null;
+    const undo = state[subjectKey].pop();
+    saveUndoState(state);
+    return undo;
+  }
+
+  function restoreWheelUndo(subjectKey, undo) {
+    if (!undo) return;
+    const state = getUndoState();
+    if (!state[subjectKey]) state[subjectKey] = [];
+    state[subjectKey].push(undo);
+    saveUndoState(state);
   }
 
   // ===== 历史完成池 (永久完成池) =====
@@ -278,6 +344,34 @@
     });
   }
 
+  // 保证已分配且处于 active 进行中状态的轮次，绝不出现于当前阶段的完成池（自愈旧版遗留的脏完成记录）
+  function reconcileActiveRoundsWithHistory(subjectId) {
+    const daily = getDailyState();
+    const key = getSubjectKey(subjectId);
+    const rounds = getSubjectRounds(daily, subjectId);
+    if (!rounds || rounds.length === 0) return;
+
+    const activeChapterIds = new Set();
+    rounds.forEach(function (r) {
+      if (r && r.status === 'active' && r.chapterId) {
+        activeChapterIds.add(r.chapterId);
+      }
+    });
+
+    if (activeChapterIds.size > 0) {
+      const hist = getHistoryState();
+      if (hist[key] && Array.isArray(hist[key].completed)) {
+        const originalLen = hist[key].completed.length;
+        hist[key].completed = hist[key].completed.filter(function (c) {
+          return c && !activeChapterIds.has(c.chapterId);
+        });
+        if (hist[key].completed.length !== originalLen) {
+          saveHistoryState(hist);
+        }
+      }
+    }
+  }
+
   // 获取当前正在进行的最新轮次
   function getCurrentRound(subjectId) {
     const daily = getDailyState();
@@ -288,6 +382,12 @@
 
   // 检查是否支持撤销上一轮
   function canUndo(subjectId) {
+    const key = getSubjectKey(subjectId);
+    const undoState = getUndoState();
+    if (undoState[key] && undoState[key].length > 0) {
+      return true;
+    }
+
     const daily = getDailyState();
     const rounds = getSubjectRounds(daily, subjectId);
     if (!rounds || rounds.length === 0) return false;
@@ -301,27 +401,91 @@
     return false;
   }
 
-  // 撤销上一轮操作 (仅撤销当日轮次流程状态，不删除永久完成记录，不重进随机池)
+  // 撤销上一轮操作 (事务性回滚：轮次状态恢复 + 删除生成下一轮 + 撤销历史完成池记录 + 动态重绘)
   function undoLastRound(subjectId) {
     const daily = getDailyState();
     const key = getSubjectKey(subjectId);
     const rounds = getSubjectRounds(daily, subjectId);
     if (!rounds || rounds.length === 0) return false;
 
-    const cur = rounds[rounds.length - 1];
+    const undo = popWheelUndo(key);
 
+    if (undo && undo.action === 'complete-round') {
+      let updatedRounds = rounds.slice();
+
+      // 1. 若本次完成动作随后生成了下一轮，精确删除该生成轮次
+      if (undo.generatedRoundNumber != null) {
+        updatedRounds = updatedRounds.filter(function (r) {
+          return r.round !== undo.generatedRoundNumber;
+        });
+      }
+
+      // 2. 找到上一轮，恢复其进行中状态
+      const targetRound = updatedRounds.find(function (r) {
+        return r.round === undo.roundNumber;
+      });
+
+      if (!targetRound) {
+        // 数据异常保护
+        restoreWheelUndo(key, undo);
+        return false;
+      }
+
+      targetRound.status = undo.previousRoundStatus || 'active';
+      if (undo.previousCompletedAt) {
+        targetRound.completedAt = undo.previousCompletedAt;
+      } else {
+        delete targetRound.completedAt;
+      }
+
+      // 3. 核心修复：无论之前历史状态如何，只要本轮次被撤销恢复为 active 进行中状态，该章节就属于未完成，必须从当前阶段完成池中精确撤回
+      const hist = getHistoryState();
+      if (hist[key] && Array.isArray(hist[key].completed)) {
+        hist[key].completed = hist[key].completed.filter(function (c) {
+          if (c.wheelActionId && undo.actionId && c.wheelActionId === undo.actionId) {
+            return false;
+          }
+          if (c.chapterId === undo.chapterId || c.chapterId === targetRound.chapterId) {
+            return false;
+          }
+          return true;
+        });
+        saveHistoryState(hist);
+      }
+
+      daily[key] = updatedRounds;
+      saveDailyState(daily);
+      reconcileActiveRoundsWithHistory(subjectId);
+      renderAll();
+      return true;
+    }
+
+    // 容错兜底：若无 undo 栈记录（例如旧版本历史数据），执行安全兜底撤销
+    const cur = rounds[rounds.length - 1];
     if (rounds.length > 1) {
-      // 弹出当前轮次，将上一轮状态恢复为 active 进行中
       rounds.pop();
       const prev = rounds[rounds.length - 1];
       if (prev) {
         prev.status = 'active';
         delete prev.completedAt;
+        const hist = getHistoryState();
+        if (hist[key] && Array.isArray(hist[key].completed)) {
+          hist[key].completed = hist[key].completed.filter(function (c) {
+            return c.chapterId !== prev.chapterId;
+          });
+          saveHistoryState(hist);
+        }
       }
     } else if (rounds.length === 1 && cur.status === 'completed') {
-      // 撤销第 1 轮完成状态，恢复为 active 进行中
       cur.status = 'active';
       delete cur.completedAt;
+      const hist = getHistoryState();
+      if (hist[key] && Array.isArray(hist[key].completed)) {
+        hist[key].completed = hist[key].completed.filter(function (c) {
+          return c.chapterId !== cur.chapterId;
+        });
+        saveHistoryState(hist);
+      }
     } else {
       return false;
     }
@@ -350,7 +514,15 @@
     return round;
   }
 
-  // 标记当前轮次为已完成
+  function isWheelChapterCompleted(subjectKey, chapterId) {
+    const hist = getHistoryState();
+    if (!hist[subjectKey] || !Array.isArray(hist[subjectKey].completed)) return false;
+    return hist[subjectKey].completed.some(function (c) {
+      return c && c.chapterId === chapterId;
+    });
+  }
+
+  // 标记当前轮次为已完成（记录事务 Undo 状态）
   function markCurrentRoundCompleted(subjectId) {
     const daily = getDailyState();
     const key = getSubjectKey(subjectId);
@@ -360,6 +532,24 @@
     const cur = rounds[rounds.length - 1];
     if (cur.status === 'completed') return true;
 
+    const chapterWasCompletedBefore = isWheelChapterCompleted(key, cur.chapterId);
+    const actionId = createWheelActionId();
+
+    const undo = {
+      schemaVersion: 1,
+      actionId: actionId,
+      action: 'complete-round',
+      subjectKey: key,
+      roundNumber: cur.round,
+      chapterId: cur.chapterId,
+      previousRoundStatus: cur.status || 'active',
+      previousCompletedAt: cur.completedAt || null,
+      chapterWasCompletedBefore: chapterWasCompletedBefore,
+      completionAddedByThisAction: !chapterWasCompletedBefore,
+      generatedRoundNumber: null,
+      createdAt: new Date().toISOString()
+    };
+
     cur.status = 'completed';
     cur.completedAt = localDayKey(new Date());
     daily[key] = rounds;
@@ -367,21 +557,21 @@
 
     // 加入永久完成池
     const hist = getHistoryState();
-    const already = hist[key].completed.some(function (c) {
-      return c.chapterId === cur.chapterId;
-    });
-
-    if (!already) {
+    if (!chapterWasCompletedBefore) {
       hist[key].completed.push({
         chapterId: cur.chapterId,
         book: cur.book,
         name: cur.name,
         short: cur.short,
         total: cur.total,
-        completedAt: cur.completedAt
+        completedAt: cur.completedAt,
+        source: 'wheel-complete-round',
+        wheelActionId: actionId
       });
       saveHistoryState(hist);
     }
+
+    pushWheelUndo(key, undo);
 
     renderAll();
     return true;
@@ -435,26 +625,74 @@
     return document.getElementById('dailyMathWheelCanvas');
   }
 
-  // 绘制转盘 (统一样式与尺寸规格)
+  // 画布尺寸准备函数 (单一尺寸源、同一 Backing store DPR 规则、统一 Radius 比例)
+  function prepareStudyWheelCanvas(canvas) {
+    if (!canvas) return null;
+
+    const stage =
+      (typeof canvas.closest === 'function' && (canvas.closest('.study-wheel-stage') || canvas.closest('.daily-math-wheel-canvas-wrap') || canvas.closest('.daily-math-wheel-stage'))) ||
+      canvas.parentElement;
+
+    if (!stage) return null;
+
+    const rect = typeof stage.getBoundingClientRect === 'function'
+      ? stage.getBoundingClientRect()
+      : { width: 0, height: 0 };
+
+    // 隐藏容器不要用 0 宽初始化
+    if (!rect.width || rect.width < 2) {
+      if (typeof window === 'undefined' || !window.document || !window.document.body) {
+        // 兼容非浏览器沙箱环境
+      } else {
+        return null;
+      }
+    }
+
+    const cssSize = Math.floor(rect.width || DAILY_WHEEL_CONFIG.size);
+    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+    const pixelSize = Math.round(cssSize * dpr);
+
+    if (canvas.width !== pixelSize) {
+      canvas.width = pixelSize;
+    }
+
+    if (canvas.height !== pixelSize) {
+      canvas.height = pixelSize;
+    }
+
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+
+    const ctx = typeof canvas.getContext === 'function' ? canvas.getContext('2d') : null;
+    if (!ctx) return null;
+
+    // canvas.width/height 被设置后 transform 会复位，所以这里统一重新设置
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    return {
+      ctx: ctx,
+      size: cssSize,
+      centerX: cssSize / 2,
+      centerY: cssSize / 2,
+      radius: cssSize * 0.445
+    };
+  }
+
+  // 绘制转盘 (基于统一 prepareStudyWheelCanvas 规格)
   function drawWheel(candidates, targetCanvas) {
     const canvas = targetCanvas || getCanvas();
     if (!canvas) return;
 
-    const baseSize = DAILY_WHEEL_CONFIG.size;
-    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+    const prepared = prepareStudyWheelCanvas(canvas);
+    if (!prepared) return;
 
-    canvas.width = Math.round(baseSize * dpr);
-    canvas.height = Math.round(baseSize * dpr);
+    const ctx = prepared.ctx;
+    const baseSize = prepared.size;
+    const cx = prepared.centerX;
+    const cy = prepared.centerY;
+    const radius = prepared.radius;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, baseSize, baseSize);
-
-    const cx = baseSize / 2;
-    const cy = baseSize / 2;
-    const radius = DAILY_WHEEL_CONFIG.radius;
 
     if (!candidates || candidates.length === 0) {
       ctx.beginPath();
@@ -465,7 +703,7 @@
       ctx.fillStyle = '#64748B';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = '600 14px system-ui, sans-serif';
+      ctx.font = '600 ' + Math.max(12, Math.round(baseSize * 0.04)) + 'px system-ui, sans-serif';
       ctx.fillText('本阶段无剩余章节', cx, cy);
       return;
     }
@@ -498,7 +736,8 @@
         ctx.fillStyle = '#FFFFFF';
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
-        ctx.font = '600 10px system-ui, sans-serif';
+        const fontSize = Math.max(9, Math.min(11, Math.round(baseSize * 0.028)));
+        ctx.font = '600 ' + fontSize + 'px system-ui, sans-serif';
 
         const label = String(item.short || item.name || '').replace(/^第/, '');
         ctx.fillText(label.length > 12 ? label.slice(0, 11) + '…' : label, radius - 10, 0);
@@ -506,7 +745,7 @@
       }
     });
 
-    // 中心白色轮毂
+    // 中心白色轮毂 (按统一比例)
     ctx.beginPath();
     ctx.arc(cx, cy, baseSize * 0.14, 0, Math.PI * 2);
     ctx.fillStyle = '#FFFFFF';
@@ -520,7 +759,8 @@
   const DailyStudyWheelRenderer = {
     config: DAILY_WHEEL_CONFIG,
     drawWheel: drawWheel,
-    draw: drawWheel
+    draw: drawWheel,
+    prepareStudyWheelCanvas: prepareStudyWheelCanvas
   };
 
   // 渲染图例
@@ -538,31 +778,54 @@
     }).join('');
   }
 
-  // 渲染推进进度条与阶段状态
-  function renderProgressInfo() {
-    const all = getAllCandidates(currentSubjectId);
+  // 派生计算转盘进度（单一真实来源）
+  function getWheelProgress(subjectKey) {
+    const subjectId = subjectKey === 'major' ? 'zhuanye' : 'shu1';
+    reconcileActiveRoundsWithHistory(subjectId);
+    const pool = getAllCandidates(subjectId);
     const hist = getHistoryState();
+    const key = getSubjectKey(subjectId);
+    const completedList = (hist[key] && Array.isArray(hist[key].completed)) ? hist[key].completed : [];
+    const completedSet = new Set(completedList.map(function (c) { return c && c.chapterId; }).filter(Boolean));
+
+    const validCompleted = pool.filter(function (item) {
+      return completedSet.has(item.chapterId);
+    });
+
+    const total = pool.length;
+    const completed = validCompleted.length;
+    const remaining = Math.max(0, total - completed);
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const stage = (hist[key] && hist[key].round) || 1;
+
+    return {
+      stage: stage,
+      total: total,
+      completed: completed,
+      remaining: remaining,
+      percent: percent
+    };
+  }
+
+  // 渲染推进进度条与阶段状态 (严格根据 getWheelProgress 派生)
+  function renderProgressInfo() {
     const key = getSubjectKey(currentSubjectId);
-    const stage = hist[key].round || 1;
-    const completedCount = hist[key].completed.length;
-    const totalCount = all.length;
-    const remainingCount = Math.max(0, totalCount - completedCount);
-    const pct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+    const prog = getWheelProgress(key);
 
     const stageNode = document.getElementById('studyWheelStageInfo');
     if (stageNode) {
-      stageNode.innerHTML = '<span>第 ' + stage + ' 阶段推进</span> · <span>完成 ' + completedCount + '/' + totalCount + ' 章 (' + pct + '%)</span> · <span>剩余 ' + remainingCount + ' 章</span>';
+      stageNode.innerHTML = '<span>第 ' + prog.stage + ' 阶段推进</span> · <span>完成 ' + prog.completed + '/' + prog.total + ' 章 (' + prog.percent + '%)</span> · <span>剩余 ' + prog.remaining + ' 章</span>';
     }
 
     const fillNode = document.getElementById('studyWheelProgressFill');
     if (fillNode) {
-      fillNode.style.width = pct + '%';
+      fillNode.style.width = prog.percent + '%';
     }
 
     // 全部完成 banner
     const nextStageBox = document.getElementById('studyWheelNextStageBox');
     if (nextStageBox) {
-      if (remainingCount === 0 && totalCount > 0) {
+      if (prog.remaining === 0 && prog.total > 0) {
         nextStageBox.style.display = 'block';
       } else {
         nextStageBox.style.display = 'none';
@@ -575,9 +838,9 @@
     checkAndUpdateCompletion(currentSubjectId);
 
     const round = getCurrentRound(currentSubjectId);
-    const all = getAllCandidates(currentSubjectId);
-    const completedSet = getCompletedChapterIdSet(currentSubjectId);
-    const remainingCount = Math.max(0, all.length - completedSet.size);
+    const key = getSubjectKey(currentSubjectId);
+    const prog = getWheelProgress(key);
+    const remainingCount = prog.remaining;
 
     const kickerNode = document.getElementById('studyWheelRoundKicker');
     const bookNode = document.getElementById('dailyMathWheelResultBook');
@@ -719,6 +982,7 @@
   }
 
   function renderAll() {
+    reconcileActiveRoundsWithHistory(currentSubjectId);
     const active = getActiveCandidates(currentSubjectId);
     drawWheel(active);
     renderLegend();
@@ -781,6 +1045,17 @@
 
     rounds.push(newRound);
     daily[key] = rounds;
+
+    // 关联新生成的下一轮到顶部 undo 记录
+    const undoState = getUndoState();
+    if (undoState[key] && undoState[key].length > 0) {
+      const topUndo = undoState[key][undoState[key].length - 1];
+      if (topUndo && topUndo.generatedRoundNumber == null) {
+        topUndo.generatedRoundNumber = newRound.round;
+        saveUndoState(undoState);
+      }
+    }
+
     const ok = saveDailyState(daily);
 
     // 向后兼容写入单机数学转盘旧存储
@@ -870,6 +1145,14 @@
     modal.style.display = 'flex';
 
     renderAll();
+
+    if (typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          renderAll();
+        });
+      });
+    }
 
     const closeButton = document.getElementById('btnCloseDailyMathWheel');
     if (closeButton) closeButton.focus();
@@ -965,9 +1248,33 @@
           if (sid && sid !== currentSubjectId) {
             currentSubjectId = sid;
             renderAll();
+            if (typeof window.requestAnimationFrame === 'function') {
+              window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () {
+                  renderAll();
+                });
+              });
+            }
           }
         });
       });
+    }
+
+    // ResizeObserver 支持自适应尺寸重绘
+    if (typeof window.ResizeObserver === 'function') {
+      const stage = (typeof document.querySelector === 'function' && (document.querySelector('.study-wheel-stage') || document.querySelector('.daily-math-wheel-canvas-wrap'))) || null;
+      if (stage) {
+        const resizeObserver = new window.ResizeObserver(function (entries) {
+          for (let i = 0; i < entries.length; i++) {
+            if (entries[i].contentRect && entries[i].contentRect.width > 1) {
+              if (!spinning && modal && !modal.hidden && modal.style.display !== 'none') {
+                renderAll();
+              }
+            }
+          }
+        });
+        resizeObserver.observe(stage);
+      }
     }
 
     if (modal) {
@@ -1008,6 +1315,13 @@
     saveHistoryState: saveHistoryState,
     getDailyState: getDailyState,
     saveDailyState: saveDailyState,
+    getUndoState: getUndoState,
+    saveUndoState: saveUndoState,
+    pushWheelUndo: pushWheelUndo,
+    popWheelUndo: popWheelUndo,
+    createWheelActionId: createWheelActionId,
+    getWheelProgress: getWheelProgress,
+    prepareStudyWheelCanvas: prepareStudyWheelCanvas,
     getActiveCandidates: getActiveCandidates,
     getAllCandidates: getAllCandidates,
     getCurrentRound: getCurrentRound,

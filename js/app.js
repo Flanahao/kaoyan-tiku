@@ -582,6 +582,7 @@
         dailyStudyWheelHistory: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_history_v1') || null,
         dailyStudyWheelRoundsV2: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_rounds_v2') || null,
         dailyStudyWheelDaily: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_daily_v1') || null,
+        dailyStudyWheelUndo: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_undo_v1') || null,
         dailyMathWheel: safeStorageGet(userStoragePrefix() + 'daily_math_wheel_v1') || null
       };
 
@@ -750,6 +751,14 @@
             typeof p.dailyStudyWheelDaily === 'string'
               ? p.dailyStudyWheelDaily
               : JSON.stringify(p.dailyStudyWheelDaily)
+          );
+        }
+        if (p.dailyStudyWheelUndo) {
+          safeStorageSet(
+            userStoragePrefix() + 'daily_study_wheel_undo_v1',
+            typeof p.dailyStudyWheelUndo === 'string'
+              ? p.dailyStudyWheelUndo
+              : JSON.stringify(p.dailyStudyWheelUndo)
           );
         }
         if (p.dailyMathWheel) {

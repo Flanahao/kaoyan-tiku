@@ -74,6 +74,10 @@
   --shadow-sm: 0 1px 3px rgba(41, 100, 170, 0.08);
   --shadow-md: var(--shadow-card);
   --shadow-lg: var(--shadow-hover);
+
+  /* 每日推进转盘尺寸规范 (V3 单一尺寸源) */
+  --study-wheel-desktop-size: 340px;
+  --study-wheel-tablet-size: 320px;
 }
 
 :focus-visible {
@@ -5418,14 +5422,20 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-width: 136px;
-  max-width: 220px;
-  padding: 8px 12px;
+  width: 172px;
+  min-width: 172px;
+  max-width: 172px;
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
+  padding: 4px 10px;
   border: 1px solid rgba(37, 99, 235, .16);
-  border-radius: 16px;
+  border-radius: 14px;
   background: rgba(239, 246, 255, .8);
   color: var(--text);
   cursor: pointer;
+  box-sizing: border-box;
+  flex: 0 0 172px;
   transition: all .2s ease;
 }
 
@@ -5437,22 +5447,33 @@ body {
 
 .daily-math-wheel-icon {
   flex: 0 0 auto;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .daily-math-wheel-copy {
   min-width: 0;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   line-height: 1.2;
+  overflow: hidden;
+  width: calc(100% - 26px);
 }
 
 .daily-math-wheel-copy strong {
   font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-#dailyMathWheelSummary {
+#dailyMathWheelSummary,
+#dailyMajorWheelSummary {
   display: block;
   width: 100%;
   margin-top: 2px;
@@ -5461,6 +5482,7 @@ body {
   white-space: nowrap;
   color: var(--text-muted);
   font-size: 11px;
+  line-height: 1.2;
 }
 
 .daily-math-wheel-modal {
@@ -5511,18 +5533,29 @@ body {
   min-width: 0;
 }
 
+.study-wheel-stage,
 .daily-math-wheel-canvas-wrap {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: min(var(--study-wheel-desktop-size), 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+  flex: 0 0 auto;
   max-width: 100%;
-  aspect-ratio: 1;
+  /* width: 360px legacy fallback reference */
+  /* height: 360px legacy fallback reference */
 }
 
-#dailyMathWheelCanvas {
+.study-wheel-stage canvas,
+.study-wheel-canvas,
+#dailyMathWheelCanvas,
+.daily-math-wheel-canvas {
   display: block;
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: none;
+  max-height: none;
   border-radius: 50%;
   filter: drop-shadow(0 16px 30px rgba(15, 23, 42, .14));
   will-change: transform;
@@ -5772,15 +5805,20 @@ body {
   color: #334155 !important;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
   .header-nav-right {
     gap: 8px;
   }
 
   .daily-math-wheel-widget {
-    min-width: 0;
-    max-width: 48px;
-    padding: 5px 8px;
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    height: 42px;
+    min-height: 42px;
+    max-height: 42px;
+    padding: 0;
+    flex: 0 0 42px;
     justify-content: center;
   }
 
@@ -5803,9 +5841,14 @@ body {
   }
 
   .daily-math-wheel-widget {
-    min-width: 36px;
-    max-width: 42px;
-    padding: 6px;
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    height: 38px;
+    min-height: 38px;
+    max-height: 38px;
+    padding: 0;
+    flex: 0 0 38px;
     justify-content: center;
   }
 
@@ -5816,23 +5859,46 @@ body {
   }
 }
 
+@media (max-width: 960px) {
+  .study-wheel-stage,
+  .daily-math-wheel-canvas-wrap {
+    width: min(var(--study-wheel-tablet-size), 100%);
+  }
+}
+
 @media (max-width: 768px) {
   .daily-math-wheel-layout {
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
+  .study-wheel-stage,
   .daily-math-wheel-canvas-wrap {
-    width: min(90vw, 320px);
-    height: min(90vw, 320px);
+    width: min(var(--study-wheel-tablet-size), 100%);
+    /* min(90vw, 320px) */
+  }
+}
+
+@media (max-width: 680px) {
+  .study-wheel-stage,
+  .daily-math-wheel-canvas-wrap {
+    width: min(
+      var(--study-wheel-tablet-size),
+      calc(100vw - 48px)
+    );
   }
 }
 
 @media (max-width: 620px) {
   .daily-math-wheel-widget {
-    min-width: 42px;
-    max-width: 48px;
-    padding: 6px;
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    height: 38px;
+    min-height: 38px;
+    max-height: 38px;
+    padding: 0;
+    flex: 0 0 38px;
     justify-content: center;
   }
 
@@ -5844,9 +5910,13 @@ body {
     width: calc(100vw - 20px);
   }
 
+  .study-wheel-stage,
   .daily-math-wheel-canvas-wrap {
-    width: min(90vw, 320px);
-    height: min(90vw, 320px);
+    width: min(
+      var(--study-wheel-tablet-size),
+      calc(100vw - 48px)
+    );
+    /* min(90vw, 320px) */
   }
 
   .daily-math-wheel-center-btn {
