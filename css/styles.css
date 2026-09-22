@@ -5418,7 +5418,8 @@ body {
 /* ==========================================================================
    每日数学随机转盘 (Daily Math Random Wheel)
    ========================================================================== */
-.daily-math-wheel-widget {
+.daily-math-wheel-widget,
+.wheel-status-chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -5439,10 +5440,25 @@ body {
   transition: all .2s ease;
 }
 
-.daily-math-wheel-widget:hover {
+.daily-math-wheel-widget:hover,
+.wheel-status-chip:hover {
   background: rgba(219, 234, 254, .9);
   border-color: rgba(37, 99, 235, .3);
   transform: translateY(-1px);
+}
+
+/* 统一完成推进态公共样式：数学与专业课完全同一套色系 */
+.daily-math-wheel-widget.is-progressed,
+.wheel-status-chip.is-progressed {
+  background: rgba(236, 253, 245, .85);
+  border-color: rgba(5, 150, 105, .25);
+  color: var(--text);
+}
+
+.daily-math-wheel-widget.is-progressed:hover,
+.wheel-status-chip.is-progressed:hover {
+  background: rgba(209, 250, 229, .95);
+  border-color: rgba(5, 150, 105, .4);
 }
 
 .daily-math-wheel-icon {
@@ -5670,14 +5686,9 @@ body {
   flex: 1;
 }
 
+/* 专业课转盘保持与数学转盘完全相同的默认样式，颜色纯由 .is-progressed 状态驱动 */
 .daily-major-wheel-widget {
-  border-color: rgba(5, 150, 105, .2);
-  background: rgba(236, 253, 245, .85);
-}
-
-.daily-major-wheel-widget:hover {
-  background: rgba(209, 250, 229, .95);
-  border-color: rgba(5, 150, 105, .35);
+  /* 语义保留，继承 .daily-math-wheel-widget 统一样式 */
 }
 
 .study-wheel-tabs {

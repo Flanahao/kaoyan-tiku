@@ -283,8 +283,25 @@
     }
   }
 
+  // 统一科目 Key 归一化入口
+  function normalizeWheelSubjectKey(value) {
+    const raw = String(value || '').toLowerCase().trim();
+    if (raw === 'math' || raw === 'shu1' || raw === '数学') {
+      return 'math';
+    }
+    if (raw === 'major' || raw === 'zhuanye' || raw === 'professional' || raw === '专业课') {
+      return 'major';
+    }
+    return raw || 'math';
+  }
+
+  // 归一化科目内部路由 ID ('shu1' / 'zhuanye')
+  function toWheelSubjectId(value) {
+    return normalizeWheelSubjectKey(value) === 'major' ? 'zhuanye' : 'shu1';
+  }
+
   function getSubjectKey(subjectId) {
-    return subjectId === 'zhuanye' ? 'major' : 'math';
+    return normalizeWheelSubjectKey(subjectId);
   }
 
   // 获取所有底层候选章节
@@ -957,28 +974,80 @@
     }
   }
 
-  // 渲染 Header 顶部导航小部件
-  function renderHeaderWidgets() {
-    ['shu1', 'zhuanye'].forEach(function (subjId) {
-      const btn = document.getElementById(subjId === 'zhuanye' ? 'dailyMajorWheelButton' : 'dailyMathWheelButton');
-      const sub = document.getElementById(subjId === 'zhuanye' ? 'dailyMajorWheelSummary' : 'dailyMathWheelSummary');
-      if (!btn) return;
-
-      const round = getCurrentRound(subjId);
-      if (!round) {
-        if (sub) sub.textContent = '今日未抽取';
-        return;
-      }
-
-      if (round.status === 'completed') {
-        const daily = getDailyState();
-        const rounds = getSubjectRounds(daily, subjId);
-        const count = rounds.filter(function (r) { return r.status === 'completed'; }).length;
-        if (sub) sub.textContent = '今日已完成 ' + count + ' 轮';
-      } else {
-        if (sub) sub.textContent = '第' + round.round + '轮 · ' + (round.short || round.name || round.book);
-      }
+  // 获得指定科目今日已完成的有效轮次列表
+  function getWheelCompletedRoundsToday(subjectKey) {
+    const key = normalizeWheelSubjectKey(subjectKey);
+    const daily = getDailyState();
+    const rounds = getSubjectRounds(daily, key);
+    return rounds.filter(function (round) {
+      return round && round.status === 'completed';
     });
+  }
+
+  // 获得指定科目当前活跃进行中的轮次
+  function getActiveWheelRound(subjectKey) {
+    const key = normalizeWheelSubjectKey(subjectKey);
+    const daily = getDailyState();
+    const rounds = getSubjectRounds(daily, key);
+    for (let i = rounds.length - 1; i >= 0; i--) {
+      if (rounds[i] && rounds[i].status === 'active') {
+        return rounds[i];
+      }
+    }
+    return null;
+  }
+
+  // 派生 Header 转盘小部件视觉状态：'progressed' | 'active' | 'idle'
+  // 语义：只要今天已至少推进/完成过 1 个轮次，即呈现 .is-progressed 完成推进态绿色
+  function getWheelHeaderVisualState(subjectKey) {
+    const key = normalizeWheelSubjectKey(subjectKey);
+    const completedRounds = getWheelCompletedRoundsToday(key);
+    if (completedRounds.length > 0) {
+      return 'progressed';
+    }
+    const activeRound = getActiveWheelRound(key);
+    if (activeRound) {
+      return 'active';
+    }
+    return 'idle';
+  }
+
+  // 渲染单个 Header 顶部导航小部件 (两科共用同一渲染管道)
+  function renderWheelHeaderChip(subjectKey) {
+    const key = normalizeWheelSubjectKey(subjectKey);
+    const subjId = toWheelSubjectId(key);
+    const btn = document.getElementById(key === 'major' ? 'dailyMajorWheelButton' : 'dailyMathWheelButton');
+    const sub = document.getElementById(key === 'major' ? 'dailyMajorWheelSummary' : 'dailyMathWheelSummary');
+    if (!btn) return;
+
+    const visualState = getWheelHeaderVisualState(key);
+
+    btn.classList.toggle('is-progressed', visualState === 'progressed');
+    btn.classList.toggle('is-active', visualState === 'active');
+    btn.classList.toggle('is-idle', visualState === 'idle');
+
+    const round = getCurrentRound(subjId);
+    if (!round) {
+      if (sub) sub.textContent = '今日未抽取';
+      return;
+    }
+
+    if (round.status === 'completed') {
+      const completedCount = getWheelCompletedRoundsToday(key).length;
+      if (sub) sub.textContent = '今日已完成 ' + completedCount + ' 轮';
+    } else {
+      if (sub) sub.textContent = '第' + round.round + '轮 · ' + (round.short || round.name || round.book);
+    }
+  }
+
+  // 统一渲染两科 Header 顶部导航小部件
+  function renderAllWheelHeaderChips() {
+    renderWheelHeaderChip('math');
+    renderWheelHeaderChip('major');
+  }
+
+  function renderHeaderWidgets() {
+    renderAllWheelHeaderChips();
   }
 
   function renderAll() {
@@ -1165,6 +1234,8 @@
     modal.hidden = true;
     modal.style.display = 'none';
 
+    renderAllWheelHeaderChips();
+
     if (opener && typeof opener.focus === 'function') {
       opener.focus();
     }
@@ -1332,11 +1403,18 @@
     secureRandomIndex: secureRandomIndex,
     restRotationForIndex: restRotationForIndex,
     localDayKey: localDayKey,
+    CONFIG: DAILY_WHEEL_CONFIG,
     MATH_BOOKS: MATH_BOOKS,
     MAJOR_BOOKS: MAJOR_BOOKS,
     BOOK_COLORS: BOOK_COLORS,
-    CONFIG: DAILY_WHEEL_CONFIG,
-    DailyStudyWheelRenderer: DailyStudyWheelRenderer
+    DailyStudyWheelRenderer: DailyStudyWheelRenderer,
+    normalizeWheelSubjectKey: normalizeWheelSubjectKey,
+    toWheelSubjectId: toWheelSubjectId,
+    getWheelCompletedRoundsToday: getWheelCompletedRoundsToday,
+    getActiveWheelRound: getActiveWheelRound,
+    getWheelHeaderVisualState: getWheelHeaderVisualState,
+    renderWheelHeaderChip: renderWheelHeaderChip,
+    renderAllWheelHeaderChips: renderAllWheelHeaderChips
   };
 
   window.DailyStudyWheelRenderer = DailyStudyWheelRenderer;
