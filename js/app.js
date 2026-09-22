@@ -580,6 +580,7 @@
           reviewSession: safeStorageGet('user_guest_kaoyan_review_session') || null
         },
         dailyStudyWheelHistory: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_history_v1') || null,
+        dailyStudyWheelRoundsV2: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_rounds_v2') || null,
         dailyStudyWheelDaily: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_daily_v1') || null,
         dailyMathWheel: safeStorageGet(userStoragePrefix() + 'daily_math_wheel_v1') || null
       };
@@ -733,6 +734,14 @@
             typeof p.dailyStudyWheelHistory === 'string'
               ? p.dailyStudyWheelHistory
               : JSON.stringify(p.dailyStudyWheelHistory)
+          );
+        }
+        if (p.dailyStudyWheelRoundsV2) {
+          safeStorageSet(
+            userStoragePrefix() + 'daily_study_wheel_rounds_v2',
+            typeof p.dailyStudyWheelRoundsV2 === 'string'
+              ? p.dailyStudyWheelRoundsV2
+              : JSON.stringify(p.dailyStudyWheelRoundsV2)
           );
         }
         if (p.dailyStudyWheelDaily) {
@@ -898,6 +907,32 @@
             }
           } catch (e) {
             console.warn('[import] dailyStudyWheelDaily merge failed', e);
+          }
+        }
+        if (p.dailyStudyWheelRoundsV2) {
+          try {
+            var r2Key = userStoragePrefix() + 'daily_study_wheel_rounds_v2';
+            var curR2Raw = safeStorageGet(r2Key);
+            if (!curR2Raw) {
+              safeStorageSet(r2Key, typeof p.dailyStudyWheelRoundsV2 === 'string' ? p.dailyStudyWheelRoundsV2 : JSON.stringify(p.dailyStudyWheelRoundsV2));
+            } else {
+              var curR2 = JSON.parse(curR2Raw);
+              var impR2 = typeof p.dailyStudyWheelRoundsV2 === 'string' ? JSON.parse(p.dailyStudyWheelRoundsV2) : p.dailyStudyWheelRoundsV2;
+              if (impR2 && impR2.date && curR2 && curR2.date && impR2.date > curR2.date) {
+                safeStorageSet(r2Key, JSON.stringify(impR2));
+              } else if (impR2 && impR2.date === curR2.date) {
+                ['math', 'major'].forEach(function (subk) {
+                  var curList = Array.isArray(curR2[subk]) ? curR2[subk] : (curR2[subk] && curR2[subk].rounds) || [];
+                  var impList = Array.isArray(impR2[subk]) ? impR2[subk] : (impR2[subk] && impR2[subk].rounds) || [];
+                  if (impList.length > curList.length) {
+                    curR2[subk] = impList;
+                  }
+                });
+                safeStorageSet(r2Key, JSON.stringify(curR2));
+              }
+            }
+          } catch (e) {
+            console.warn('[import] dailyStudyWheelRoundsV2 merge failed', e);
           }
         }
         if (p.dailyMathWheel) {

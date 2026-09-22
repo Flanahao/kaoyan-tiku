@@ -1112,8 +1112,8 @@
           <div class="daily-math-wheel-canvas-wrap">
             <canvas
               id="dailyMathWheelCanvas"
-              width="440"
-              height="440"
+              width="360"
+              height="360"
               aria-label="章节随机转盘"
             ></canvas>
 
@@ -1167,7 +1167,7 @@
               type="button"
               style="display:none"
             >
-              完成今日任务
+              完成本轮学习
             </button>
 
             <button
@@ -1177,6 +1177,24 @@
               style="display:none"
             >
               🔥 继续加量
+            </button>
+
+            <button
+              id="btnStudyWheelLaterClose"
+              class="hero-action-btn subtle-btn"
+              type="button"
+              style="display:none"
+            >
+              稍后结束
+            </button>
+
+            <button
+              id="btnStudyWheelUndoRound"
+              class="hero-action-btn undo-btn"
+              type="button"
+              style="display:none"
+            >
+              ↩ 撤销上一轮
             </button>
           </div>
         </div>

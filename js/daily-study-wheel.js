@@ -25,7 +25,15 @@
     '波哥习题集': '#059669'
   };
 
+  const DAILY_WHEEL_CONFIG = Object.freeze({
+    size: 360,
+    radius: 160,
+    pointerSize: 24,
+    animationDuration: 4500
+  });
+
   const STORAGE_HISTORY_SUFFIX = 'daily_study_wheel_history_v1';
+  const STORAGE_ROUNDS_V2_SUFFIX = 'daily_study_wheel_rounds_v2';
   const STORAGE_DAILY_SUFFIX = 'daily_study_wheel_daily_v1';
 
   let currentSubjectId = 'shu1'; // 'shu1' or 'zhuanye'
@@ -66,6 +74,10 @@
 
   function historyStorageKey() {
     return getStoragePrefix() + STORAGE_HISTORY_SUFFIX;
+  }
+
+  function dailyRoundsV2StorageKey() {
+    return getStoragePrefix() + STORAGE_ROUNDS_V2_SUFFIX;
   }
 
   function dailySalesStorageKey() {
@@ -113,24 +125,55 @@
     }
   }
 
-  // ===== 每日轮次记录 =====
+  // ===== 每日轮次记录 (v2 优先，向下兼容 v1) =====
+  function normalizeRoundStatus(round) {
+    if (!round || typeof round !== 'object') return round;
+    const copy = Object.assign({}, round);
+    if (copy.status === 'doing') {
+      copy.status = 'active';
+    }
+    return copy;
+  }
+
+  function createRoundList(arr) {
+    const list = Array.isArray(arr) ? arr.map(normalizeRoundStatus) : [];
+    Object.defineProperty(list, 'rounds', {
+      get: function () { return this; },
+      enumerable: false,
+      configurable: true
+    });
+    return list;
+  }
+
   function getDailyState() {
     const today = localDayKey(new Date());
     try {
-      const raw = window.localStorage.getItem(dailySalesStorageKey());
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed && parsed.date === today) {
+      const rawV2 = window.localStorage.getItem(dailyRoundsV2StorageKey());
+      if (rawV2) {
+        const parsedV2 = JSON.parse(rawV2);
+        if (parsedV2 && parsedV2.date === today) {
           return {
-            schemaVersion: 1,
+            schemaVersion: 2,
             date: today,
-            math: {
-              rounds: Array.isArray(parsed.math && parsed.math.rounds) ? parsed.math.rounds : []
-            },
-            major: {
-              rounds: Array.isArray(parsed.major && parsed.major.rounds) ? parsed.major.rounds : []
-            }
+            math: createRoundList(Array.isArray(parsedV2.math) ? parsedV2.math : (parsedV2.math && parsedV2.math.rounds)),
+            major: createRoundList(Array.isArray(parsedV2.major) ? parsedV2.major : (parsedV2.major && parsedV2.major.rounds))
           };
+        }
+      }
+
+      // Legacy fallback: daily_study_wheel_daily_v1
+      const rawV1 = window.localStorage.getItem(dailySalesStorageKey());
+      if (rawV1) {
+        const parsedV1 = JSON.parse(rawV1);
+        if (parsedV1 && parsedV1.date === today) {
+          const stateV2 = {
+            schemaVersion: 2,
+            date: today,
+            math: createRoundList(parsedV1.math && parsedV1.math.rounds),
+            major: createRoundList(parsedV1.major && parsedV1.major.rounds)
+          };
+          saveDailyState(stateV2);
+          return stateV2;
         }
       }
     } catch (e) {
@@ -138,16 +181,35 @@
     }
 
     return {
-      schemaVersion: 1,
+      schemaVersion: 2,
       date: today,
-      math: { rounds: [] },
-      major: { rounds: [] }
+      math: createRoundList([]),
+      major: createRoundList([])
     };
   }
 
   function saveDailyState(state) {
     try {
-      window.localStorage.setItem(dailySalesStorageKey(), JSON.stringify(state));
+      const today = localDayKey(new Date());
+      const mathRounds = Array.isArray(state.math) ? state.math : (Array.isArray(state.math && state.math.rounds) ? state.math.rounds : []);
+      const majorRounds = Array.isArray(state.major) ? state.major : (Array.isArray(state.major && state.major.rounds) ? state.major.rounds : []);
+
+      const stateToSave = {
+        schemaVersion: 2,
+        date: state.date || today,
+        math: mathRounds,
+        major: majorRounds
+      };
+      window.localStorage.setItem(dailyRoundsV2StorageKey(), JSON.stringify(stateToSave));
+
+      // Dual-write legacy V1
+      const legacyV1 = {
+        schemaVersion: 1,
+        date: stateToSave.date,
+        math: { rounds: mathRounds },
+        major: { rounds: majorRounds }
+      };
+      window.localStorage.setItem(dailySalesStorageKey(), JSON.stringify(legacyV1));
       return true;
     } catch (e) {
       console.warn('[daily-wheel] save daily state failed', e);
@@ -187,16 +249,20 @@
     return set;
   }
 
+  function getSubjectRounds(daily, subjectId) {
+    const key = getSubjectKey(subjectId);
+    if (!daily || !daily[key]) return [];
+    return Array.isArray(daily[key]) ? daily[key] : (daily[key].rounds || []);
+  }
+
   // 获得当天已分配章节 ID 集合
   function getTodayAssignedChapterIdSet(subjectId) {
     const daily = getDailyState();
-    const key = getSubjectKey(subjectId);
+    const rounds = getSubjectRounds(daily, subjectId);
     const set = new Set();
-    if (daily[key] && Array.isArray(daily[key].rounds)) {
-      daily[key].rounds.forEach(function (r) {
-        if (r && r.chapterId) set.add(r.chapterId);
-      });
-    }
+    rounds.forEach(function (r) {
+      if (r && r.chapterId) set.add(r.chapterId);
+    });
     return set;
   }
 
@@ -215,10 +281,55 @@
   // 获取当前正在进行的最新轮次
   function getCurrentRound(subjectId) {
     const daily = getDailyState();
-    const key = getSubjectKey(subjectId);
-    const rounds = daily[key].rounds;
+    const rounds = getSubjectRounds(daily, subjectId);
     if (!rounds || rounds.length === 0) return null;
     return rounds[rounds.length - 1];
+  }
+
+  // 检查是否支持撤销上一轮
+  function canUndo(subjectId) {
+    const daily = getDailyState();
+    const rounds = getSubjectRounds(daily, subjectId);
+    if (!rounds || rounds.length === 0) return false;
+
+    // 多于 1 轮时：可撤回上一轮
+    if (rounds.length > 1) return true;
+
+    // 仅有 1 轮且该轮已完成：可撤回 active 进行中
+    if (rounds.length === 1 && rounds[0].status === 'completed') return true;
+
+    return false;
+  }
+
+  // 撤销上一轮操作 (仅撤销当日轮次流程状态，不删除永久完成记录，不重进随机池)
+  function undoLastRound(subjectId) {
+    const daily = getDailyState();
+    const key = getSubjectKey(subjectId);
+    const rounds = getSubjectRounds(daily, subjectId);
+    if (!rounds || rounds.length === 0) return false;
+
+    const cur = rounds[rounds.length - 1];
+
+    if (rounds.length > 1) {
+      // 弹出当前轮次，将上一轮状态恢复为 active 进行中
+      rounds.pop();
+      const prev = rounds[rounds.length - 1];
+      if (prev) {
+        prev.status = 'active';
+        delete prev.completedAt;
+      }
+    } else if (rounds.length === 1 && cur.status === 'completed') {
+      // 撤销第 1 轮完成状态，恢复为 active 进行中
+      cur.status = 'active';
+      delete cur.completedAt;
+    } else {
+      return false;
+    }
+
+    daily[key] = rounds;
+    saveDailyState(daily);
+    renderAll();
+    return true;
   }
 
   // 检查并同步自动完成状态 (做题率 >= 90%)
@@ -243,7 +354,7 @@
   function markCurrentRoundCompleted(subjectId) {
     const daily = getDailyState();
     const key = getSubjectKey(subjectId);
-    const rounds = daily[key].rounds;
+    const rounds = getSubjectRounds(daily, subjectId);
     if (!rounds || rounds.length === 0) return false;
 
     const cur = rounds[rounds.length - 1];
@@ -251,6 +362,7 @@
 
     cur.status = 'completed';
     cur.completedAt = localDayKey(new Date());
+    daily[key] = rounds;
     saveDailyState(daily);
 
     // 加入永久完成池
@@ -323,27 +435,26 @@
     return document.getElementById('dailyMathWheelCanvas');
   }
 
-  // 绘制转盘
-  function drawWheel(candidates) {
-    const canvas = getCanvas();
+  // 绘制转盘 (统一样式与尺寸规格)
+  function drawWheel(candidates, targetCanvas) {
+    const canvas = targetCanvas || getCanvas();
     if (!canvas) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const cssSize = Math.max(260, Math.min(rect.width || 440, 440));
+    const baseSize = DAILY_WHEEL_CONFIG.size;
     const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
 
-    canvas.width = Math.round(cssSize * dpr);
-    canvas.height = Math.round(cssSize * dpr);
+    canvas.width = Math.round(baseSize * dpr);
+    canvas.height = Math.round(baseSize * dpr);
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, cssSize, cssSize);
+    ctx.clearRect(0, 0, baseSize, baseSize);
 
-    const cx = cssSize / 2;
-    const cy = cssSize / 2;
-    const radius = cssSize / 2 - 5;
+    const cx = baseSize / 2;
+    const cy = baseSize / 2;
+    const radius = DAILY_WHEEL_CONFIG.radius;
 
     if (!candidates || candidates.length === 0) {
       ctx.beginPath();
@@ -397,7 +508,7 @@
 
     // 中心白色轮毂
     ctx.beginPath();
-    ctx.arc(cx, cy, cssSize * 0.14, 0, Math.PI * 2);
+    ctx.arc(cx, cy, baseSize * 0.14, 0, Math.PI * 2);
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
 
@@ -405,6 +516,12 @@
     ctx.lineWidth = 2;
     ctx.stroke();
   }
+
+  const DailyStudyWheelRenderer = {
+    config: DAILY_WHEEL_CONFIG,
+    drawWheel: drawWheel,
+    draw: drawWheel
+  };
 
   // 渲染图例
   function renderLegend() {
@@ -472,6 +589,15 @@
     const startBtn = document.getElementById('btnDailyMathWheelStart');
     const completeBtn = document.getElementById('btnStudyWheelComplete');
     const addRoundBtn = document.getElementById('btnStudyWheelAddRound');
+    const laterCloseBtn = document.getElementById('btnStudyWheelLaterClose');
+    const undoRoundBtn = document.getElementById('btnStudyWheelUndoRound');
+
+    const undoPossible = canUndo(currentSubjectId);
+
+    if (undoRoundBtn) {
+      undoRoundBtn.style.display = undoPossible ? '' : 'none';
+      undoRoundBtn.disabled = !undoPossible;
+    }
 
     if (!round) {
       if (kickerNode) kickerNode.textContent = '今日尚未抽取';
@@ -488,9 +614,13 @@
         centerBtn.disabled = remainingCount === 0;
         centerBtn.textContent = '开始';
       }
-      if (startBtn) startBtn.disabled = true;
+      if (startBtn) {
+        startBtn.style.display = '';
+        startBtn.disabled = true;
+      }
       if (completeBtn) completeBtn.style.display = 'none';
       if (addRoundBtn) addRoundBtn.style.display = 'none';
+      if (laterCloseBtn) laterCloseBtn.style.display = 'none';
       return;
     }
 
@@ -500,12 +630,22 @@
       kickerNode.textContent = '今日第 ' + round.round + ' 轮 · ' + (isDone ? '✅ 已完成' : '⏳ 进行中');
     }
     if (bookNode) bookNode.textContent = round.book || '';
-    if (nameNode) nameNode.textContent = round.short || round.name || round.chapterId;
+    if (nameNode) {
+      if (isDone) {
+        nameNode.textContent = '🎉 本轮完成，继续挑战下一轮？';
+      } else {
+        nameNode.textContent = round.short || round.name || round.chapterId;
+      }
+    }
     if (metaNode) {
-      metaNode.textContent = [
-        round.subject || '',
-        round.total ? String(round.total) + ' 题' : ''
-      ].filter(Boolean).join(' · ');
+      if (isDone) {
+        metaNode.textContent = '已学章节：' + (round.short || round.name || round.chapterId) + (round.total ? ' (' + round.total + ' 题)' : '');
+      } else {
+        metaNode.textContent = [
+          round.subject || '',
+          round.total ? String(round.total) + ' 题' : ''
+        ].filter(Boolean).join(' · ');
+      }
     }
 
     // 旋转按钮控制
@@ -521,13 +661,15 @@
 
     // 开始学习按钮
     if (startBtn) {
-      startBtn.disabled = false;
+      startBtn.style.display = isDone ? 'none' : '';
+      startBtn.disabled = isDone;
     }
 
     // 手动完成按钮：进行中时显示
     if (completeBtn) {
       completeBtn.style.display = isDone ? 'none' : '';
       completeBtn.disabled = false;
+      completeBtn.textContent = '完成本轮学习';
     }
 
     // 继续加量按钮：完成上一轮后展示并可用
@@ -539,11 +681,16 @@
           addRoundBtn.textContent = '本阶段已无剩余章节';
         } else {
           addRoundBtn.disabled = false;
-          addRoundBtn.textContent = '🔥 状态很好，继续加量';
+          addRoundBtn.textContent = '🔥 继续加量';
         }
       } else {
         addRoundBtn.style.display = 'none';
       }
+    }
+
+    // 稍后结束按钮
+    if (laterCloseBtn) {
+      laterCloseBtn.style.display = isDone ? '' : 'none';
     }
   }
 
@@ -562,8 +709,8 @@
 
       if (round.status === 'completed') {
         const daily = getDailyState();
-        const key = getSubjectKey(subjId);
-        const count = (daily[key].rounds || []).filter(function (r) { return r.status === 'completed'; }).length;
+        const rounds = getSubjectRounds(daily, subjId);
+        const count = rounds.filter(function (r) { return r.status === 'completed'; }).length;
         if (sub) sub.textContent = '今日已完成 ' + count + ' 轮';
       } else {
         if (sub) sub.textContent = '第' + round.round + '轮 · ' + (round.short || round.name || round.book);
@@ -617,7 +764,8 @@
     // ===== 极其关键：动画前立刻向 localStorage 写入落地，防刷新作弊 =====
     const daily = getDailyState();
     const key = getSubjectKey(currentSubjectId);
-    const nextRoundNumber = (daily[key].rounds.length) + 1;
+    const rounds = getSubjectRounds(daily, currentSubjectId);
+    const nextRoundNumber = rounds.length + 1;
 
     const newRound = {
       round: nextRoundNumber,
@@ -627,11 +775,12 @@
       name: picked.name,
       short: picked.short,
       total: picked.total,
-      status: 'doing',
+      status: 'active',
       rolledAt: Date.now()
     };
 
-    daily[key].rounds.push(newRound);
+    rounds.push(newRound);
+    daily[key] = rounds;
     const ok = saveDailyState(daily);
 
     // 向后兼容写入单机数学转盘旧存储
@@ -670,7 +819,7 @@
     }
 
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const duration = reduceMotion ? 250 : 4300;
+    const duration = reduceMotion ? 250 : DAILY_WHEEL_CONFIG.animationDuration;
     const finalRest = restRotationForIndex(pickedIndex, active.length);
     const extraTurns = reduceMotion ? 1 : 8 + Math.floor(Math.random() * 4);
     const finalDeg = extraTurns * 360 + finalRest;
@@ -757,6 +906,8 @@
     const startBtn = document.getElementById('btnDailyMathWheelStart');
     const completeBtn = document.getElementById('btnStudyWheelComplete');
     const addRoundBtn = document.getElementById('btnStudyWheelAddRound');
+    const laterCloseBtn = document.getElementById('btnStudyWheelLaterClose');
+    const undoRoundBtn = document.getElementById('btnStudyWheelUndoRound');
     const nextStageBtn = document.getElementById('btnStudyWheelNextStage');
     const modal = document.getElementById('dailyMathWheelModal') || document.getElementById('dailyStudyWheelModal');
 
@@ -780,11 +931,23 @@
     }
     if (completeBtn) {
       completeBtn.addEventListener('click', function () {
-        markCurrentRoundCompleted(currentSubjectId);
+        if (window.confirm('确认已完成本轮学习？完成后将记录本轮进度。')) {
+          markCurrentRoundCompleted(currentSubjectId);
+        }
       });
     }
     if (addRoundBtn) {
       addRoundBtn.addEventListener('click', spin);
+    }
+    if (laterCloseBtn) {
+      laterCloseBtn.addEventListener('click', closeModal);
+    }
+    if (undoRoundBtn) {
+      undoRoundBtn.addEventListener('click', function () {
+        if (window.confirm('确认撤销上一轮操作，恢复到上一轮进行中状态？')) {
+          undoLastRound(currentSubjectId);
+        }
+      });
     }
     if (nextStageBtn) {
       nextStageBtn.addEventListener('click', function () {
@@ -840,6 +1003,7 @@
     openModal: openModal,
     closeModal: closeModal,
     spin: spin,
+    isSpinning: function () { return spinning; },
     getHistoryState: getHistoryState,
     saveHistoryState: saveHistoryState,
     getDailyState: getDailyState,
@@ -848,14 +1012,20 @@
     getAllCandidates: getAllCandidates,
     getCurrentRound: getCurrentRound,
     markCurrentRoundCompleted: markCurrentRoundCompleted,
+    undoLastRound: undoLastRound,
+    canUndo: canUndo,
     startNextStage: startNextStage,
     secureRandomIndex: secureRandomIndex,
     restRotationForIndex: restRotationForIndex,
     localDayKey: localDayKey,
     MATH_BOOKS: MATH_BOOKS,
     MAJOR_BOOKS: MAJOR_BOOKS,
-    BOOK_COLORS: BOOK_COLORS
+    BOOK_COLORS: BOOK_COLORS,
+    CONFIG: DAILY_WHEEL_CONFIG,
+    DailyStudyWheelRenderer: DailyStudyWheelRenderer
   };
+
+  window.DailyStudyWheelRenderer = DailyStudyWheelRenderer;
 
   // 向后兼容保留 DailyMathWheel
   window.DailyMathWheel = {

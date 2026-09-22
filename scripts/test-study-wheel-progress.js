@@ -24,15 +24,24 @@ assert(html.includes('id="dailyMathWheelButton"'), 'index.html 必须包含数�
 assert(html.includes('id="dailyMajorWheelButton"'), 'index.html 必须包含专业课转盘按钮');
 assert(html.includes('daily-study-wheel.js'), 'index.html 必须引入 daily-study-wheel.js 脚本');
 assert(html.includes('study-wheel-tabs'), 'index.html 必须包含转盘学科切换 Tab');
-assert(html.includes('btnStudyWheelComplete'), 'index.html 必须包含完成今日任务按钮');
+assert(html.includes('btnStudyWheelComplete'), 'index.html 必须包含完成本轮学习按钮');
 assert(html.includes('btnStudyWheelAddRound'), 'index.html 必须包含继续加量按钮');
+assert(html.includes('btnStudyWheelLaterClose'), 'index.html 必须包含稍后结束按钮');
+assert(html.includes('btnStudyWheelUndoRound'), 'index.html 必须包含撤销上一轮按钮');
 
 assert(app.includes('DAILY_STUDY_WHEEL_BOOKS'), 'app.js 必须包含数学与专业课候选书籍白名单定义');
 assert(app.includes('dailyStudyWheelHistory'), 'app.js 导出与导入必须支持 dailyStudyWheelHistory');
+assert(app.includes('dailyStudyWheelRoundsV2'), 'app.js 导出与导入必须支持 dailyStudyWheelRoundsV2');
 assert(app.includes('dailyStudyWheelDaily'), 'app.js 导出与导入必须支持 dailyStudyWheelDaily');
+
+assert(wheel.includes('DAILY_WHEEL_CONFIG'), 'daily-study-wheel.js 必须定义 DAILY_WHEEL_CONFIG');
+assert(wheel.includes('DailyStudyWheelRenderer'), 'daily-study-wheel.js 必须定义 DailyStudyWheelRenderer');
+assert(wheel.includes('daily_study_wheel_rounds_v2'), 'daily-study-wheel.js 必须支持 daily_study_wheel_rounds_v2 存储');
 
 assert(css.includes('.study-wheel-tabs'), 'styles.css 必须包含 .study-wheel-tabs');
 assert(css.includes('.breakthrough-btn'), 'styles.css 必须包含加量按钮样式');
+assert(css.includes('.undo-btn'), 'styles.css 必须包含撤销按钮样式');
+assert(css.includes('.subtle-btn'), 'styles.css 必须包含稍后结束按钮样式');
 
 console.log('✅ 静态文件合约检查全部通过');
 
@@ -266,17 +275,17 @@ assert(DSW, 'DailyStudyWheel 必须成功挂载');
     round: 1,
     chapterId: 'test_ch_1',
     book: '基础30讲',
-    status: 'doing',
+    status: 'active',
     rolledAt: Date.now()
   });
   DSW.saveDailyState(daily);
 
-  // 当前轮为 doing
+  // 当前轮为 active
   const curRound = DSW.getCurrentRound('shu1');
   assert(curRound !== null);
-  assert.equal(curRound.status, 'doing');
+  assert.equal(curRound.status, 'active');
 
-  // 在 doing 状态下，尝试继续加量必须被拦截（不产生新轮次）
+  // 在 active 状态下，尝试继续加量必须被拦截（不产生新轮次）
   let errorIntercepted = false;
   const originalAlert = global.window.alert;
   global.window.alert = function (msg) {
@@ -284,7 +293,7 @@ assert(DSW, 'DailyStudyWheel 必须成功挂载');
   };
 
   DSW.spin(); // 调用转盘加量
-  assert(errorIntercepted, '当前轮处于 doing 时，尝试加量必须被拦截并弹出警告');
+  assert(errorIntercepted, '当前轮处于 active 时，尝试加量必须被拦截并弹出警告');
   assert.equal(DSW.getDailyState().math.rounds.length, 1, '轮次不得增加');
 
   // 标记当前轮完成
@@ -298,7 +307,7 @@ assert(DSW, 'DailyStudyWheel 必须成功挂载');
   assert(!errorIntercepted, '完成后开启加量不应报错');
   assert.equal(DSW.getDailyState().math.rounds.length, 2, '成功开启第 2 轮');
   assert.equal(DSW.getCurrentRound('shu1').round, 2, '新轮次编号应为 2');
-  assert.equal(DSW.getCurrentRound('shu1').status, 'doing', '新轮次状态应为 doing');
+  assert.equal(DSW.getCurrentRound('shu1').status, 'active', '新轮次状态应为 active');
 
   global.window.alert = originalAlert;
   console.log('✅ Test 3 PASS: 加量前置条件规则严格生效');
@@ -318,7 +327,7 @@ assert(DSW, 'DailyStudyWheel 必须成功挂载');
     DSW.spin();
     const cur = DSW.getCurrentRound('shu1');
     assert.equal(cur.round, r, `第 ${r} 轮次生成正确`);
-    assert.equal(cur.status, 'doing');
+    assert.equal(cur.status, 'active');
 
     // 验证当天已抽取章节在后续抽取候选池中不可见
     const active = DSW.getActiveCandidates('shu1');
@@ -404,12 +413,97 @@ assert(DSW, 'DailyStudyWheel 必须成功挂载');
   console.log('Test 7: 完整备份导出与导入数据结构兼容性');
 
   assert(app.includes('dailyStudyWheelHistory'), 'app.js 导出 payload 必须包含 dailyStudyWheelHistory');
+  assert(app.includes('dailyStudyWheelRoundsV2'), 'app.js 导出 payload 必须包含 dailyStudyWheelRoundsV2');
   assert(app.includes('dailyStudyWheelDaily'), 'app.js 导出 payload 必须包含 dailyStudyWheelDaily');
 
   console.log('✅ Test 7 PASS: 备份与恢复数据结构支持完备');
 })();
 
+// =========================================================================
+// 8. rounds_v2 格式校验与撤销上一轮 (undoLastRound) 测试
+// =========================================================================
+(function testRoundsV2AndUndo() {
+  console.log('----------------------------------------------------');
+  console.log('Test 8: rounds_v2 结构与撤销上一轮 (undoLastRound) 测试');
+
+  mockLocalStorage.clear();
+
+  // 1. 验证转盘初始规格
+  assert(DSW.CONFIG, 'DSW.CONFIG 必须存在');
+  assert.equal(DSW.CONFIG.size, 360, '转盘 size 必须为 360');
+  assert.equal(DSW.CONFIG.radius, 160, '转盘 radius 必须为 160');
+  assert.equal(DSW.CONFIG.pointerSize, 24, '指针 pointerSize 必须为 24');
+  assert.equal(DSW.CONFIG.animationDuration, 4500, '动画时长必须为 4500');
+
+  // 2. 抽第一轮
+  DSW.spin();
+  const round1 = DSW.getCurrentRound('shu1');
+  assert(round1, '第 1 轮抽取成功');
+  assert.equal(round1.round, 1);
+  assert.equal(round1.status, 'active');
+  assert.equal(DSW.canUndo('shu1'), false, '第 1 轮进行中不可撤销');
+
+  // 3. 完成第 1 轮
+  DSW.markCurrentRoundCompleted('shu1');
+  assert.equal(DSW.getCurrentRound('shu1').status, 'completed');
+  assert.equal(DSW.canUndo('shu1'), true, '第 1 轮完成后支持撤销');
+
+  // 4. 撤销第 1 轮完成
+  const undoResult = DSW.undoLastRound('shu1');
+  assert.equal(undoResult, true, '撤销第 1 轮成功');
+  const restoredRound1 = DSW.getCurrentRound('shu1');
+  assert.equal(restoredRound1.status, 'active', '第 1 轮成功恢复为 active 状态');
+
+  // 5. 重新完成第 1 轮并开启第 2 轮
+  DSW.markCurrentRoundCompleted('shu1');
+  DSW.spin();
+  assert.equal(DSW.getCurrentRound('shu1').round, 2, '开启第 2 轮');
+  assert.equal(DSW.getCurrentRound('shu1').status, 'active');
+  assert.equal(DSW.canUndo('shu1'), true, '第 2 轮进行中支持撤销回第 1 轮');
+
+  // 6. 撤销第 2 轮
+  const undoRound2 = DSW.undoLastRound('shu1');
+  assert.equal(undoRound2, true, '撤销第 2 轮成功');
+  const afterUndo = DSW.getCurrentRound('shu1');
+  assert.equal(afterUndo.round, 1, '轮次成功回退到第 1 轮');
+  assert.equal(afterUndo.status, 'active', '第 1 轮状态恢复为 active');
+  assert.equal(afterUndo.chapterId, round1.chapterId, '回退到第 1 轮原本章节');
+
+  // 7. 检验 rounds_v2 存储结构
+  const rawV2 = mockLocalStorage.getItem('user_guest_daily_study_wheel_rounds_v2');
+  assert(rawV2, 'daily_study_wheel_rounds_v2 必须已写入 localStorage');
+  const parsedV2 = JSON.parse(rawV2);
+  assert.equal(parsedV2.schemaVersion, 2, 'schemaVersion 必须为 2');
+  assert(Array.isArray(parsedV2.math), 'math 必须为数组');
+  assert.equal(parsedV2.math.length, 1, 'math 此时只有 1 轮');
+  assert.equal(parsedV2.math[0].status, 'active');
+
+  // 8. 验证完成池保护：已完成章节不会重进活跃池
+  const activeAfterUndo = DSW.getActiveCandidates('shu1');
+  assert(!activeAfterUndo.some(c => c.chapterId === round1.chapterId), '正在学习的第 1 轮章节不得在可抽候选池中');
+
+  console.log('✅ Test 8 PASS: rounds_v2 结构与撤销上一轮操作验证通过');
+})();
+
+// =========================================================================
+// 9. UI 规格统一断言 (MathWheel 与 MajorWheel 规范一致性)
+// =========================================================================
+(function testUIUnificationContracts() {
+  console.log('----------------------------------------------------');
+  console.log('Test 9: UI 规格统一规范合约测试');
+
+  assert(wheel.includes('DailyStudyWheelRenderer'), '必须包含统一渲染器 DailyStudyWheelRenderer');
+  assert(css.includes('width: 360px'), 'styles.css 桌面端必须固定 360px');
+  assert(css.includes('height: 360px'), 'styles.css 桌面端必须固定 360px');
+  assert(css.includes('min(90vw, 320px)'), 'styles.css 移动端必须使用 min(90vw, 320px)');
+  assert(css.includes('border-top: 24px solid #0F172A'), '指针高度规格必须为 24px');
+  assert(html.includes('width="360"'), 'canvas width 必须为 360');
+  assert(html.includes('height="360"'), 'canvas height 必须为 360');
+
+  console.log('✅ Test 9 PASS: UI 规格与尺寸统一断言全部通过');
+})();
+
 console.log('====================================================');
-console.log('🎉 ALL 7 TEST CASES PASSED!');
+console.log('🎉 ALL 9 TEST CASES PASSED!');
 console.log('====================================================');
 process.exit(0);
