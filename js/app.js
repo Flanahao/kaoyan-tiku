@@ -578,7 +578,10 @@
           mathSolutionPref: safeStorageGet('user_guest_math_ui_solution') || null,
           proSolutionPref: safeStorageGet('user_guest_professional_ui_solution') || null,
           reviewSession: safeStorageGet('user_guest_kaoyan_review_session') || null
-        }
+        },
+        dailyStudyWheelHistory: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_history_v1') || null,
+        dailyStudyWheelDaily: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_daily_v1') || null,
+        dailyMathWheel: safeStorageGet(userStoragePrefix() + 'daily_math_wheel_v1') || null
       };
 
       for (var i = 0; i < localStorage.length; i++) {
@@ -724,6 +727,30 @@
           if (p.uiPreferences.filters) safeStorageSet('user_guest_ui_filters', p.uiPreferences.filters);
           if (p.uiPreferences.subject) safeStorageSet('user_guest_kaoyan_subject', p.uiPreferences.subject);
         }
+        if (p.dailyStudyWheelHistory) {
+          safeStorageSet(
+            userStoragePrefix() + 'daily_study_wheel_history_v1',
+            typeof p.dailyStudyWheelHistory === 'string'
+              ? p.dailyStudyWheelHistory
+              : JSON.stringify(p.dailyStudyWheelHistory)
+          );
+        }
+        if (p.dailyStudyWheelDaily) {
+          safeStorageSet(
+            userStoragePrefix() + 'daily_study_wheel_daily_v1',
+            typeof p.dailyStudyWheelDaily === 'string'
+              ? p.dailyStudyWheelDaily
+              : JSON.stringify(p.dailyStudyWheelDaily)
+          );
+        }
+        if (p.dailyMathWheel) {
+          safeStorageSet(
+            userStoragePrefix() + 'daily_math_wheel_v1',
+            typeof p.dailyMathWheel === 'string'
+              ? p.dailyMathWheel
+              : JSON.stringify(p.dailyMathWheel)
+          );
+        }
       } else {
         // 合并模式 (merge)：仅填补缺失或合并新词，不覆盖已有进度
         if (p.statuses) {
@@ -814,12 +841,96 @@
             console.warn('[import] study analytics merge failed', error);
           }
         }
+        if (p.dailyStudyWheelHistory) {
+          try {
+            var histKey = userStoragePrefix() + 'daily_study_wheel_history_v1';
+            var curHistRaw = safeStorageGet(histKey);
+            var impH = typeof p.dailyStudyWheelHistory === 'string' ? JSON.parse(p.dailyStudyWheelHistory) : p.dailyStudyWheelHistory;
+            if (!curHistRaw) {
+              safeStorageSet(histKey, JSON.stringify(impH));
+            } else {
+              var curH = JSON.parse(curHistRaw);
+              ['math', 'major'].forEach(function (sub) {
+                if (!curH[sub]) curH[sub] = { round: 1, completed: [] };
+                if (!impH[sub]) return;
+                curH[sub].round = Math.max(curH[sub].round || 1, impH[sub].round || 1);
+                var set = new Set(curH[sub].completed.map(function (c) { return c && c.chapterId; }));
+                (impH[sub].completed || []).forEach(function (c) {
+                  if (c && c.chapterId && !set.has(c.chapterId)) {
+                    curH[sub].completed.push(c);
+                    set.add(c.chapterId);
+                  }
+                });
+              });
+              safeStorageSet(histKey, JSON.stringify(curH));
+            }
+          } catch (e) {
+            console.warn('[import] dailyStudyWheelHistory merge failed', e);
+          }
+        }
+        if (p.dailyStudyWheelDaily) {
+          try {
+            var dailyKey = userStoragePrefix() + 'daily_study_wheel_daily_v1';
+            var curDailyRaw = safeStorageGet(dailyKey);
+            var impD = typeof p.dailyStudyWheelDaily === 'string' ? JSON.parse(p.dailyStudyWheelDaily) : p.dailyStudyWheelDaily;
+            if (!curDailyRaw) {
+              safeStorageSet(dailyKey, JSON.stringify(impD));
+            } else {
+              var curD = JSON.parse(curDailyRaw);
+              if (impD && impD.date && curD && curD.date) {
+                if (impD.date > curD.date) {
+                  safeStorageSet(dailyKey, JSON.stringify(impD));
+                } else if (impD.date === curD.date) {
+                  ['math', 'major'].forEach(function (sub) {
+                    if (!curD[sub]) curD[sub] = { rounds: [] };
+                    if (!impD[sub]) return;
+                    var rSet = new Set(curD[sub].rounds.map(function (r) { return r && r.chapterId; }));
+                    (impD[sub].rounds || []).forEach(function (r) {
+                      if (r && r.chapterId && !rSet.has(r.chapterId)) {
+                        curD[sub].rounds.push(r);
+                        rSet.add(r.chapterId);
+                      }
+                    });
+                  });
+                  safeStorageSet(dailyKey, JSON.stringify(curD));
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('[import] dailyStudyWheelDaily merge failed', e);
+          }
+        }
+        if (p.dailyMathWheel) {
+          try {
+            var wheelKey = userStoragePrefix() + 'daily_math_wheel_v1';
+            var curWheelRaw = safeStorageGet(wheelKey);
+            if (!curWheelRaw) {
+              safeStorageSet(wheelKey, typeof p.dailyMathWheel === 'string' ? p.dailyMathWheel : JSON.stringify(p.dailyMathWheel));
+            } else {
+              var curW = JSON.parse(curWheelRaw);
+              var impW = typeof p.dailyMathWheel === 'string' ? JSON.parse(p.dailyMathWheel) : p.dailyMathWheel;
+              if ((!curW || !curW.result) && (impW && impW.result)) {
+                safeStorageSet(wheelKey, JSON.stringify(impW));
+              } else if (impW && impW.date && curW && curW.date && impW.date > curW.date) {
+                safeStorageSet(wheelKey, JSON.stringify(impW));
+              }
+            }
+          } catch (e) {
+            console.warn('[import] dailyMathWheel merge failed', e);
+          }
+        }
       }
 
       loadAnnotations();
       await initAppSession();
       if (window.StudyAnalytics && typeof window.StudyAnalytics.render === 'function') {
         window.StudyAnalytics.render();
+      }
+      if (window.DailyStudyWheel && typeof window.DailyStudyWheel.render === 'function') {
+        window.DailyStudyWheel.render();
+      }
+      if (window.DailyMathWheel && typeof window.DailyMathWheel.render === 'function') {
+        window.DailyMathWheel.render();
       }
       alert(mode === 'overwrite' ? '已成功覆盖恢复学习记录！' : '已成功合并学习记录！');
     }
@@ -1635,6 +1746,7 @@
     window.switchChapter = switchChapter;
     window.switchTo = switchTo;
     window.toggleSm2Panel = toggleSm2Panel;
+    window.openWeakChapter = openWeakChapter;
     window.getCurrentPracticeState = function () {
       return {
         curSubjectId: curSubjectId,
@@ -1808,6 +1920,7 @@
           analyticsGroup: subject.analyticsGroup,
           chapterId: ch.id,
           chapterName: ch.short || ch.name || ch.id,
+          bookId: ch.wb || ch.statsWb || '',
           bookLabel: getSubjectBookLabel(subject, ch.wb || ch.statsWb || ''),
           wrong: wrong,
           vague: vague,
@@ -1832,14 +1945,19 @@
     function createWeakChapterCardHtml(item, rank) {
       var subjectName = escapeDashboardText(item.subjectName || '');
       var bookLabel = escapeDashboardText(item.bookLabel || '');
+      var bookId = escapeDashboardText(item.bookId || item.bookLabel || '');
       var chapterName = escapeDashboardText(item.chapterName || '');
       var subjectId = escapeDashboardText(item.subjectId || '');
       var chapterId = escapeDashboardText(item.chapterId || '');
 
       return '' +
-        '<button type="button" class="db-weak-card"' +
+        '<div class="db-weak-card"' +
+          ' tabindex="0"' +
+          ' role="button"' +
           ' data-subject-id="' + subjectId + '"' +
           ' data-chapter-id="' + chapterId + '"' +
+          ' data-book-id="' + bookId + '"' +
+          ' data-chapter-name="' + chapterName + '"' +
           ' aria-label="进入' + subjectName + ' ' + chapterName + '">' +
           '<span class="db-weak-rank">#' + rank + '</span>' +
           '<span class="db-weak-meta">' + subjectName + (bookLabel ? ' · ' + bookLabel : '') + '</span>' +
@@ -1849,7 +1967,10 @@
             '<span>模糊 ' + item.vague + '</span>' +
             '<span>到期 ' + item.dueCount + '</span>' +
           '</span>' +
-        '</button>';
+          '<div class="db-weak-actions" style="margin-top:10px;display:flex;justify-content:flex-end;">' +
+            '<button type="button" class="db-weak-set-topic-btn" title="将此章节设为今日专题">设为今日专题</button>' +
+          '</div>' +
+        '</div>';
     }
 
     function renderWeakChapterSubjectGrid(gridId, items, emptyText) {
@@ -1877,6 +1998,23 @@
       section.dataset.boundWeakClick = '1';
 
       section.addEventListener('click', function (event) {
+        var setTopicBtn = event.target.closest('.db-weak-set-topic-btn');
+        if (setTopicBtn) {
+          event.stopPropagation();
+          var card = setTopicBtn.closest('.db-weak-card[data-subject-id][data-chapter-id]');
+          if (!card) return;
+          var subjectId = card.getAttribute('data-subject-id');
+          var chapterId = card.getAttribute('data-chapter-id');
+          var bookId = card.getAttribute('data-book-id') || '';
+          var chapterName = card.getAttribute('data-chapter-name') || '';
+          if (typeof window.setWeakChapterAsDailyTopic === 'function') {
+            window.setWeakChapterAsDailyTopic(subjectId, bookId, chapterId, chapterName);
+          } else if (window.StudyAnalytics && typeof window.StudyAnalytics.setWeakChapterAsDailyTopic === 'function') {
+            window.StudyAnalytics.setWeakChapterAsDailyTopic(subjectId, bookId, chapterId, chapterName);
+          }
+          return;
+        }
+
         var card = event.target.closest('.db-weak-card[data-subject-id][data-chapter-id]');
         if (!card || !section.contains(card)) return;
 
@@ -1884,6 +2022,22 @@
           card.getAttribute('data-subject-id'),
           card.getAttribute('data-chapter-id')
         );
+      });
+
+      section.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          if (event.target.classList && event.target.classList.contains('db-weak-set-topic-btn')) {
+            return;
+          }
+          var card = event.target.closest('.db-weak-card[data-subject-id][data-chapter-id]');
+          if (card && section.contains(card)) {
+            event.preventDefault();
+            openWeakChapter(
+              card.getAttribute('data-subject-id'),
+              card.getAttribute('data-chapter-id')
+            );
+          }
+        }
       });
     }
 
@@ -3262,7 +3416,7 @@
       });
       if (isProfessional && ch && (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集')) {
         document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
-      } else if (ch && ch.wb === '夜雨强化') {
+      } else if (ch && ch.wb === '夜雨强化' && (!window.SOLUTION_MANIFEST || !window.SOLUTION_MANIFEST[base])) {
         document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该强化讲义题目暂无解析图，请参考课程讲解）</div>';
       } else {
         setSolutionImages(base);
@@ -5759,6 +5913,196 @@ ${cardsHTML}
       updateFilterButtons();
       renderSolDefaultBtn(); updateSolutionUI();
     }
+
+    // ===== 每日推进转盘 Bridge (数学 + 专业课) =====
+    const DAILY_STUDY_WHEEL_BOOKS = {
+      shu1: [
+        '李林880',
+        '基础30讲',
+        '强化36讲',
+        '1000题',
+        '夜雨强化'
+      ],
+      zhuanye: [
+        '波哥讲义例题',
+        '波哥习题集'
+      ]
+    };
+    const DAILY_MATH_WHEEL_BOOKS = DAILY_STUDY_WHEEL_BOOKS.shu1;
+
+
+    function getDailyStudyWheelCandidates(subjectId) {
+      const targetId = (subjectId === 'zhuanye') ? 'zhuanye' : 'shu1';
+      const allowedBooks = DAILY_STUDY_WHEEL_BOOKS[targetId] || [];
+
+      const subj = SUBJECTS.find(function (s) {
+        return s && s.id === targetId;
+      });
+
+      if (!subj || !Array.isArray(subj.chapters)) {
+        return [];
+      }
+
+      const grouped = {};
+      const seen = new Set();
+
+      allowedBooks.forEach(function (book) {
+        grouped[book] = [];
+      });
+
+      subj.chapters.forEach(function (chapter) {
+        if (!chapter || !chapter.id) return;
+
+        const book = String(chapter.wb || '');
+
+        if (allowedBooks.indexOf(book) === -1) {
+          return;
+        }
+
+        const total = Number(
+          chapter.total ||
+          (Array.isArray(chapter.labels) ? chapter.labels.length : 0)
+        );
+
+        if (!(total > 0)) return;
+
+        if (chapter.hidden === true || chapter.disabled === true) {
+          return;
+        }
+
+        if (seen.has(chapter.id)) return;
+        seen.add(chapter.id);
+
+        grouped[book].push({
+          subjectId: targetId,
+          chapterId: chapter.id,
+          book: book,
+          subject: chapter.subj || subj.name || '',
+          name: chapter.name || chapter.short || chapter.id,
+          short: chapter.short || chapter.name || chapter.id,
+          total: total
+        });
+      });
+
+      const mixed = [];
+      let row = 0;
+
+      while (true) {
+        let pushed = false;
+
+        allowedBooks.forEach(function (book) {
+          const item = grouped[book][row];
+
+          if (item) {
+            mixed.push(item);
+            pushed = true;
+          }
+        });
+
+        if (!pushed) break;
+
+        row += 1;
+      }
+
+      return mixed;
+    }
+
+    function getChapterMarkedProgress(subjectId, chapterId) {
+      const targetId = (subjectId === 'zhuanye') ? 'zhuanye' : 'shu1';
+      const subj = SUBJECTS.find(function (s) {
+        return s && s.id === targetId;
+      });
+      if (!subj || !Array.isArray(subj.chapters)) {
+        return { marked: 0, total: 0, rate: 0 };
+      }
+      const ch = subj.chapters.find(function (c) {
+        return c && c.id === chapterId;
+      });
+      if (!ch) {
+        return { marked: 0, total: 0, rate: 0 };
+      }
+
+      const total = Number(ch.total || (Array.isArray(ch.labels) ? ch.labels.length : 0));
+      if (!(total > 0)) {
+        return { marked: 0, total: 0, rate: 0 };
+      }
+
+      const key = userStoragePrefix() + ch.id + '_' + (subj.storageSuffix || (targetId === 'shu1' ? 's1' : 'zhuanye')) + '_status';
+      let markedCount = 0;
+      try {
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const map = JSON.parse(raw);
+          if (map && typeof map === 'object') {
+            markedCount = Object.keys(map).length;
+          }
+        }
+      } catch (e) {}
+
+      return {
+        marked: markedCount,
+        total: total,
+        rate: total > 0 ? (markedCount / total) : 0
+      };
+    }
+
+    function openStudyWheelChapter(targetSubjectId, chapterId) {
+      let subjId = targetSubjectId;
+      let chId = chapterId;
+      if (!chId && subjId) {
+        // 单参向后兼容 openChapter(chapterId)
+        chId = subjId;
+        subjId = 'shu1';
+      }
+
+      const subj = SUBJECTS.find(function (s) {
+        return s && s.id === subjId;
+      });
+      if (!subj) return false;
+
+      const exists = subj.chapters.some(function (c) {
+        return c && c.id === chId;
+      });
+      if (!exists) {
+        console.warn('[daily-wheel] chapter not found:', subjId, chId);
+        return false;
+      }
+
+      if (curSubjectId !== subjId) {
+        switchSubject(subjId);
+      }
+
+      if (typeof setWorkbenchView === 'function') {
+        setWorkbenchView('practice');
+      } else {
+        setPracticeSidebarVisible(true);
+      }
+
+      switchChapter(chId);
+      setPracticeSidebarVisible(true);
+      return true;
+    }
+
+    const StudyWheelBridge = {
+      getStoragePrefix: function () {
+        return userStoragePrefix();
+      },
+
+      getCandidates: function (subjectId) {
+        return getDailyStudyWheelCandidates(subjectId);
+      },
+
+      getChapterProgress: function (subjectId, chapterId) {
+        return getChapterMarkedProgress(subjectId, chapterId);
+      },
+
+      openChapter: function (subjectId, chapterId) {
+        return openStudyWheelChapter(subjectId, chapterId);
+      }
+    };
+
+    window.DailyStudyWheelBridge = StudyWheelBridge;
+    window.DailyMathWheelBridge = StudyWheelBridge;
 
     // 唯一的本地初始化入口
     let localAppBooted = false;

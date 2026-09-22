@@ -9,13 +9,20 @@
   var EVENT_RETENTION_DAYS = 365;
   var DEFAULT_EXAM_DATE = '';
   var DEFAULT_DAILY_GOALS = { math: 20, major: 20 };
+  var DEFAULT_DAILY_TOPIC_GOALS = {
+    math: { enabled: false, title: '', subjectId: 'shu1', bookId: '', chapterId: '', target: 10 },
+    major: { enabled: false, title: '', subjectId: 'zhuanye', bookId: '', chapterId: '', target: 10 }
+  };
   var MAX_DAILY_GOAL = 999;
   var STATUS_SCORE = { proficient: 5, familiar: 4, vague: 3, rusty: 2, wrong: 1 };
 
   var goalToastTimer = 0;
   var goalToastSequence = 0;
+  var topicToastTimer = 0;
+  var topicToastSequence = 0;
   var state = {
     bound: false,
+    topicBound: false,
     midnightTimer: 0
   };
 
@@ -76,6 +83,40 @@
     );
   }
 
+  function normalizeSingleTopicGoal(group, item) {
+    var defaultSubject = group === 'major' ? 'zhuanye' : 'shu1';
+    item = item && typeof item === 'object' ? item : {};
+
+    var title = typeof item.title === 'string' ? item.title.trim() : '';
+    var chapterId = typeof item.chapterId === 'string' ? item.chapterId.trim() : '';
+    var bookId = typeof item.bookId === 'string' ? item.bookId.trim() : '';
+    var subjectId = typeof item.subjectId === 'string' && item.subjectId.trim()
+      ? item.subjectId.trim()
+      : defaultSubject;
+
+    var target = normalizeGoal(item.target, 10);
+    if (target <= 0) target = 10;
+
+    var enabled = Boolean(item.enabled && (title || chapterId));
+
+    return {
+      enabled: enabled,
+      title: title,
+      subjectId: subjectId,
+      bookId: bookId,
+      chapterId: chapterId,
+      target: target
+    };
+  }
+
+  function normalizeDailyTopicGoals(raw) {
+    raw = raw && typeof raw === 'object' ? raw : {};
+    return {
+      math: normalizeSingleTopicGoal('math', raw.math),
+      major: normalizeSingleTopicGoal('major', raw.major)
+    };
+  }
+
   function currentSettings() {
     var saved = readJSON(settingsKey(), {});
     var savedGoals =
@@ -83,6 +124,20 @@
       saved.dailyGoals &&
       typeof saved.dailyGoals === 'object'
         ? saved.dailyGoals
+        : {};
+
+    var savedTopicGoals =
+      saved &&
+      saved.dailyTopicGoals &&
+      typeof saved.dailyTopicGoals === 'object'
+        ? saved.dailyTopicGoals
+        : {};
+
+    var savedCelebrations =
+      saved &&
+      saved.topicGoalCelebrations &&
+      typeof saved.topicGoalCelebrations === 'object'
+        ? saved.topicGoalCelebrations
         : {};
 
     return {
@@ -100,6 +155,11 @@
           savedGoals.major,
           DEFAULT_DAILY_GOALS.major
         )
+      },
+      dailyTopicGoals: normalizeDailyTopicGoals(savedTopicGoals),
+      topicGoalCelebrations: {
+        math: savedCelebrations.math || null,
+        major: savedCelebrations.major || null
       }
     };
   }
@@ -113,6 +173,18 @@
       typeof settings.dailyGoals === 'object'
         ? settings.dailyGoals
         : current.dailyGoals;
+
+    var topicGoals =
+      settings.dailyTopicGoals &&
+      typeof settings.dailyTopicGoals === 'object'
+        ? settings.dailyTopicGoals
+        : current.dailyTopicGoals;
+
+    var celebrations =
+      settings.topicGoalCelebrations &&
+      typeof settings.topicGoalCelebrations === 'object'
+        ? settings.topicGoalCelebrations
+        : current.topicGoalCelebrations;
 
     var next = {
       schemaVersion: 2,
@@ -129,10 +201,22 @@
           goals.major,
           current.dailyGoals.major
         )
-      }
+      },
+      dailyTopicGoals: normalizeDailyTopicGoals(topicGoals),
+      topicGoalCelebrations: celebrations
     };
 
     return writeJSON(settingsKey(), next);
+  }
+
+  function getDailyTopicGoals() {
+    return currentSettings().dailyTopicGoals;
+  }
+
+  function saveDailyTopicGoals(nextGoals) {
+    return saveSettings({
+      dailyTopicGoals: nextGoals
+    });
   }
   function setText(id, value) {
     var node = document.getElementById(id);
@@ -1038,6 +1122,7 @@
   function render() {
     // Header 永远存在；dashboard 的 studyInsights 可能当前不可见。
     renderDailyGoals();
+    renderDailyTopicGoals();
 
     if (!document.getElementById('studyInsights')) return;
 
@@ -1087,6 +1172,12 @@
     var beforeCounts =
       getDailyGoalCounts(timestamp, events);
 
+    var settingsBefore = currentSettings();
+    var beforeTopicProg = {
+      math: getTopicProgressFromEvents(settingsBefore.dailyTopicGoals.math, events, dayKey(timestamp)),
+      major: getTopicProgressFromEvents(settingsBefore.dailyTopicGoals.major, events, dayKey(timestamp))
+    };
+
     var group = resolveEventGroup({
       group: payload.group,
       subjectId: payload.subjectId
@@ -1135,8 +1226,14 @@
     var afterCounts =
       getDailyGoalCounts(timestamp, events);
 
+    var afterTopicProg = {
+      math: getTopicProgressFromEvents(settingsBefore.dailyTopicGoals.math, events, dayKey(timestamp)),
+      major: getTopicProgressFromEvents(settingsBefore.dailyTopicGoals.major, events, dayKey(timestamp))
+    };
+
     renderTrend();
     renderDailyGoals(afterCounts);
+    renderDailyTopicGoals(events);
 
     maybeCelebrateGoal(
       group,
@@ -1144,6 +1241,15 @@
       afterCounts,
       currentSettings()
     );
+
+    if (group === 'math' || group === 'major') {
+      maybeCelebrateDailyTopicGoal(
+        group,
+        beforeTopicProg[group],
+        afterTopicProg[group],
+        settingsBefore.dailyTopicGoals[group]
+      );
+    }
   }
 
   function readGoalInput(input, label) {
@@ -1175,6 +1281,503 @@
     }
 
     return value;
+  }
+
+  function escapeHtmlAttr(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function escapeHtmlText(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function findSubject(subjectId) {
+    var subjects = Array.isArray(window.SUBJECTS) ? window.SUBJECTS : [];
+    for (var i = 0; i < subjects.length; i += 1) {
+      if (subjects[i] && String(subjects[i].id) === String(subjectId)) {
+        return subjects[i];
+      }
+    }
+    return null;
+  }
+
+  function findSubjectChapter(subjectId, chapterId) {
+    if (!subjectId || !chapterId) return null;
+    var subject = findSubject(subjectId);
+    if (!subject || !Array.isArray(subject.chapters)) return null;
+    for (var j = 0; j < subject.chapters.length; j += 1) {
+      if (subject.chapters[j] && String(subject.chapters[j].id) === String(chapterId)) {
+        return { subject: subject, chapter: subject.chapters[j] };
+      }
+    }
+    return null;
+  }
+
+  function getTopicProgressFromEvents(goal, events, todayKey) {
+    if (!goal || !goal.enabled || !goal.chapterId) {
+      return {
+        count: 0,
+        target: Number(goal && goal.target) || 0,
+        done: false,
+        bound: false
+      };
+    }
+
+    todayKey = todayKey || dayKey(Date.now());
+    var seen = new Set();
+
+    (events || []).forEach(function (event) {
+      if (!event || (event.type && event.type !== 'status')) return;
+
+      var group = resolveEventGroup(event);
+
+      if (goal.subjectId === 'shu1' && group !== 'math') return;
+      if (goal.subjectId === 'zhuanye' && group !== 'major') return;
+
+      if (String(event.subjectId || '') !== String(goal.subjectId)) return;
+      if (String(event.chapterId || '') !== String(goal.chapterId)) return;
+
+      var eventDay =
+        typeof event.day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(event.day)
+          ? event.day
+          : dayKey(event.ts);
+
+      if (eventDay !== todayKey) return;
+
+      var itemKey =
+        event.itemKey != null && String(event.itemKey) !== ''
+          ? String(event.itemKey)
+          : event.idx != null
+            ? String(event.idx)
+            : '';
+
+      if (!itemKey) return;
+
+      seen.add(
+        String(goal.subjectId) +
+          '|' +
+          String(goal.chapterId) +
+          '|' +
+          itemKey
+      );
+    });
+
+    var count = seen.size;
+    var target = Math.max(1, Number(goal.target) || 1);
+
+    return {
+      count: count,
+      target: target,
+      done: count >= target,
+      bound: true
+    };
+  }
+
+  function getTodayTopicProgress(group, eventsOverride) {
+    var goals = getDailyTopicGoals();
+    var goal = goals[group];
+    var events = Array.isArray(eventsOverride)
+      ? eventsOverride
+      : readJSON(eventsKey(), []);
+
+    return getTopicProgressFromEvents(goal, events, dayKey(Date.now()));
+  }
+
+  function renderDailyTopicGoals(eventsOverride, settingsOverride) {
+    var settings = settingsOverride || currentSettings();
+    var goals = settings.dailyTopicGoals;
+    var events = Array.isArray(eventsOverride)
+      ? eventsOverride
+      : readJSON(eventsKey(), []);
+    var today = dayKey(Date.now());
+
+    var button = document.getElementById('dailyTopicGoalButton');
+    var summaries = {};
+
+    ['math', 'major'].forEach(function (group) {
+      var goal = goals[group];
+      var progress = getTopicProgressFromEvents(goal, events, today);
+      var nameNode = document.getElementById(group === 'math' ? 'dailyTopicMathName' : 'dailyTopicMajorName');
+      var progNode = document.getElementById(group === 'math' ? 'dailyTopicMathProgress' : 'dailyTopicMajorProgress');
+      var rowNode = button ? button.querySelector('.daily-topic-row[data-topic-group="' + group + '"]') : null;
+
+      var title = '';
+      var progText = '';
+
+      if (!goal || !goal.enabled || (!goal.title && !goal.chapterId)) {
+        title = '未设置';
+        progText = '';
+        if (rowNode) {
+          rowNode.classList.remove('daily-topic-complete', 'daily-topic-unbound');
+        }
+      } else {
+        var chMeta = goal.chapterId ? findSubjectChapter(goal.subjectId, goal.chapterId) : null;
+        var defaultName = chMeta && chMeta.chapter ? (chMeta.chapter.short || chMeta.chapter.name) : '';
+        title = goal.title || defaultName || '专题';
+
+        if (!progress.bound) {
+          progText = '未绑定章节';
+          if (rowNode) {
+            rowNode.classList.remove('daily-topic-complete');
+            rowNode.classList.add('daily-topic-unbound');
+          }
+        } else if (progress.done) {
+          progText = '已突破 · ' + progress.count + ' / ' + progress.target;
+          if (rowNode) {
+            rowNode.classList.add('daily-topic-complete');
+            rowNode.classList.remove('daily-topic-unbound');
+          }
+        } else {
+          progText = progress.count + ' / ' + progress.target;
+          if (rowNode) {
+            rowNode.classList.remove('daily-topic-complete', 'daily-topic-unbound');
+          }
+        }
+      }
+
+      if (nameNode) nameNode.textContent = title;
+      if (progNode) progNode.textContent = progText;
+
+      summaries[group] = (group === 'math' ? '数学' : '专业课') + ' · ' + title + (progText ? ' · ' + progText : '');
+    });
+
+    if (button) {
+      var ariaLabel = '今日专题：' + summaries.math + '，' + summaries.major + '。点击设置';
+      button.setAttribute('aria-label', ariaLabel);
+      button.title = '点击设置今日专题｜' + summaries.math + '｜' + summaries.major;
+    }
+  }
+
+  function showTopicGoalToast(group, title) {
+    var toast = document.getElementById('dailyTopicGoalToast') || document.getElementById('dailyGoalToast');
+    if (!toast) return;
+
+    var label = group === 'major' ? '专业课' : '数学';
+    topicToastSequence += 1;
+    var sequence = topicToastSequence;
+
+    if (topicToastTimer) {
+      clearTimeout(topicToastTimer);
+      topicToastTimer = 0;
+    }
+
+    toast.textContent = '🎉 ' + label + '今日专题已突破：' + (title || '目标达成');
+    toast.hidden = false;
+
+    var raf = window.requestAnimationFrame || function (cb) { return setTimeout(cb, 0); };
+    raf(function () {
+      if (sequence !== topicToastSequence) return;
+      toast.classList.add('is-visible');
+    });
+
+    topicToastTimer = setTimeout(function () {
+      if (sequence !== topicToastSequence) return;
+      toast.classList.remove('is-visible');
+      setTimeout(function () {
+        if (sequence === topicToastSequence) {
+          toast.hidden = true;
+        }
+      }, 200);
+    }, 2400);
+  }
+
+  function maybeCelebrateDailyTopicGoal(group, beforeProg, afterProg, goal) {
+    if (group !== 'math' && group !== 'major') return;
+    if (!goal || !goal.enabled || !goal.chapterId) return;
+
+    if (!beforeProg.done && afterProg.done && afterProg.bound) {
+      var today = dayKey(Date.now());
+      var fingerprint = String(goal.subjectId) + '|' + String(goal.chapterId) + '|' + String(goal.title) + '|' + String(goal.target);
+      var settings = currentSettings();
+      var lastCelebrated = settings.topicGoalCelebrations && settings.topicGoalCelebrations[group];
+
+      if (lastCelebrated && lastCelebrated.date === today && lastCelebrated.fingerprint === fingerprint) {
+        return;
+      }
+
+      showTopicGoalToast(group, goal.title || '专题目标');
+
+      var celebrations = {
+        math: settings.topicGoalCelebrations ? settings.topicGoalCelebrations.math : null,
+        major: settings.topicGoalCelebrations ? settings.topicGoalCelebrations.major : null
+      };
+      celebrations[group] = {
+        date: today,
+        fingerprint: fingerprint
+      };
+      saveSettings({ topicGoalCelebrations: celebrations });
+    }
+  }
+
+  var lastTopicTrigger = null;
+
+  function populateTopicGroupUI(group, goal) {
+    var subjectId = group === 'major' ? 'zhuanye' : 'shu1';
+    var subject = findSubject(subjectId);
+    var chapters = subject && Array.isArray(subject.chapters) ? subject.chapters : [];
+
+    var prefix = group === 'major' ? 'dailyTopicMajor' : 'dailyTopicMath';
+    var titleInput = document.getElementById(prefix + 'TitleInput');
+    var bookSelect = document.getElementById(prefix + 'BookSelect');
+    var chapterSelect = document.getElementById(prefix + 'ChapterSelect');
+    var targetInput = document.getElementById(prefix + 'TargetInput');
+    var startBtn = document.getElementById(prefix + 'StartBtn');
+
+    if (!titleInput || !bookSelect || !chapterSelect || !targetInput) return;
+
+    titleInput.value = goal.title || '';
+    targetInput.value = String(goal.target || 10);
+
+    var books = [];
+    var seenBooks = new Set();
+    if (subject && Array.isArray(subject.wbOrder)) {
+      subject.wbOrder.forEach(function (w) {
+        var name = typeof w === 'object' && w ? (w.wb || w.label) : String(w);
+        if (name && !seenBooks.has(name)) {
+          seenBooks.add(name);
+          books.push({ id: name, label: (typeof w === 'object' && w.label) ? w.label : name });
+        }
+      });
+    }
+    chapters.forEach(function (ch) {
+      var name = ch.wb || ch.statsWb || '';
+      if (name && !seenBooks.has(name)) {
+        seenBooks.add(name);
+        books.push({ id: name, label: name });
+      }
+    });
+
+    bookSelect.innerHTML = '<option value="">全部书籍 / 未指定</option>' +
+      books.map(function (b) {
+        return '<option value="' + escapeHtmlAttr(b.id) + '">' + escapeHtmlText(b.label) + '</option>';
+      }).join('');
+
+    var currentBook = goal.bookId || '';
+    if (!currentBook && goal.chapterId) {
+      var foundCh = chapters.find(function (ch) { return ch.id === goal.chapterId; });
+      if (foundCh) currentBook = foundCh.wb || foundCh.statsWb || '';
+    }
+    bookSelect.value = currentBook;
+
+    function refreshChapters(selectedBookId, selectedChapterId) {
+      var filtered = chapters;
+      if (selectedBookId) {
+        filtered = chapters.filter(function (ch) {
+          return (ch.wb || ch.statsWb || '') === selectedBookId;
+        });
+      }
+      chapterSelect.innerHTML = '<option value="">未绑定章节</option>' +
+        filtered.map(function (ch) {
+          var label = ch.short || ch.name || ch.id;
+          return '<option value="' + escapeHtmlAttr(ch.id) + '">' + escapeHtmlText(label) + '</option>';
+        }).join('');
+      chapterSelect.value = selectedChapterId || '';
+      updateStartBtnVisibility();
+    }
+
+    function updateStartBtnVisibility() {
+      if (startBtn) {
+        startBtn.style.display = chapterSelect.value ? 'inline-flex' : 'none';
+      }
+    }
+
+    refreshChapters(currentBook, goal.chapterId || '');
+
+    bookSelect.onchange = function () {
+      refreshChapters(bookSelect.value, chapterSelect.value);
+    };
+    chapterSelect.onchange = function () {
+      var selChId = chapterSelect.value;
+      if (selChId && !bookSelect.value) {
+        var foundCh = chapters.find(function (ch) { return ch.id === selChId; });
+        if (foundCh && (foundCh.wb || foundCh.statsWb)) {
+          bookSelect.value = foundCh.wb || foundCh.statsWb;
+          refreshChapters(bookSelect.value, selChId);
+        }
+      }
+      updateStartBtnVisibility();
+    };
+  }
+
+  function openDailyTopicGoalSettings(event) {
+    var modal = document.getElementById('dailyTopicGoalModal');
+    if (!modal) return;
+
+    if (event && event.currentTarget) {
+      lastTopicTrigger = event.currentTarget;
+    } else {
+      lastTopicTrigger = document.getElementById('dailyTopicGoalButton');
+    }
+
+    var goals = getDailyTopicGoals();
+    populateTopicGroupUI('math', goals.math);
+    populateTopicGroupUI('major', goals.major);
+
+    modal.hidden = false;
+    modal.style.display = 'flex';
+
+    var mathTitle = document.getElementById('dailyTopicMathTitleInput');
+    if (mathTitle) mathTitle.focus();
+  }
+
+  function closeDailyTopicGoalSettings() {
+    var modal = document.getElementById('dailyTopicGoalModal');
+    if (!modal) return;
+
+    modal.hidden = true;
+    modal.style.display = 'none';
+
+    if (lastTopicTrigger && typeof lastTopicTrigger.focus === 'function') {
+      try { lastTopicTrigger.focus(); } catch (e) {}
+    }
+  }
+
+  function saveDailyTopicGoalSettings() {
+    var mathTitle = document.getElementById('dailyTopicMathTitleInput');
+    var mathBook = document.getElementById('dailyTopicMathBookSelect');
+    var mathChapter = document.getElementById('dailyTopicMathChapterSelect');
+    var mathTarget = document.getElementById('dailyTopicMathTargetInput');
+
+    var majorTitle = document.getElementById('dailyTopicMajorTitleInput');
+    var majorBook = document.getElementById('dailyTopicMajorBookSelect');
+    var majorChapter = document.getElementById('dailyTopicMajorChapterSelect');
+    var majorTarget = document.getElementById('dailyTopicMajorTargetInput');
+
+    var mathTargetVal = readGoalInput(mathTarget, '数学专题');
+    if (mathTargetVal == null) return false;
+    if (mathTargetVal <= 0) mathTargetVal = 10;
+
+    var majorTargetVal = readGoalInput(majorTarget, '专业课专题');
+    if (majorTargetVal == null) return false;
+    if (majorTargetVal <= 0) majorTargetVal = 10;
+
+    var mathT = (mathTitle ? mathTitle.value : '').trim();
+    var mathB = mathBook ? mathBook.value : '';
+    var mathC = mathChapter ? mathChapter.value : '';
+
+    var majorT = (majorTitle ? majorTitle.value : '').trim();
+    var majorB = majorBook ? majorBook.value : '';
+    var majorC = majorChapter ? majorChapter.value : '';
+
+    var nextGoals = {
+      math: {
+        enabled: Boolean(mathT || mathC),
+        title: mathT,
+        subjectId: 'shu1',
+        bookId: mathB,
+        chapterId: mathC,
+        target: mathTargetVal
+      },
+      major: {
+        enabled: Boolean(majorT || majorC),
+        title: majorT,
+        subjectId: 'zhuanye',
+        bookId: majorB,
+        chapterId: majorC,
+        target: majorTargetVal
+      }
+    };
+
+    var saved = saveDailyTopicGoals(nextGoals);
+    if (!saved) {
+      window.alert('设置保存失败，请检查浏览器本地存储权限后重试。');
+      return false;
+    }
+
+    closeDailyTopicGoalSettings();
+    renderDailyTopicGoals();
+    return true;
+  }
+
+  function clearMathTopic() {
+    var mathTitle = document.getElementById('dailyTopicMathTitleInput');
+    var mathBook = document.getElementById('dailyTopicMathBookSelect');
+    var mathChapter = document.getElementById('dailyTopicMathChapterSelect');
+    var mathTarget = document.getElementById('dailyTopicMathTargetInput');
+    var mathStart = document.getElementById('dailyTopicMathStartBtn');
+
+    if (mathTitle) mathTitle.value = '';
+    if (mathBook) mathBook.value = '';
+    if (mathChapter) {
+      mathChapter.value = '';
+      mathChapter.innerHTML = '<option value="">未绑定章节</option>';
+    }
+    if (mathTarget) mathTarget.value = '10';
+    if (mathStart) mathStart.style.display = 'none';
+  }
+
+  function clearMajorTopic() {
+    var majorTitle = document.getElementById('dailyTopicMajorTitleInput');
+    var majorBook = document.getElementById('dailyTopicMajorBookSelect');
+    var majorChapter = document.getElementById('dailyTopicMajorChapterSelect');
+    var majorTarget = document.getElementById('dailyTopicMajorTargetInput');
+    var majorStart = document.getElementById('dailyTopicMajorStartBtn');
+
+    if (majorTitle) majorTitle.value = '';
+    if (majorBook) majorBook.value = '';
+    if (majorChapter) {
+      majorChapter.value = '';
+      majorChapter.innerHTML = '<option value="">未绑定章节</option>';
+    }
+    if (majorTarget) majorTarget.value = '10';
+    if (majorStart) majorStart.style.display = 'none';
+  }
+
+  function openDailyTopicPractice(group) {
+    var goals = getDailyTopicGoals();
+    var goal = goals[group];
+    if (!goal || !goal.chapterId) {
+      window.alert('请先绑定章节后再开始突破。');
+      return false;
+    }
+    var subjectId = goal.subjectId || (group === 'major' ? 'zhuanye' : 'shu1');
+    var chapterId = goal.chapterId;
+    closeDailyTopicGoalSettings();
+
+    if (typeof window.openWeakChapter === 'function') {
+      window.openWeakChapter(subjectId, chapterId);
+      return true;
+    }
+    if (typeof window.switchSubject === 'function' && typeof window.switchChapter === 'function') {
+      if (typeof window.getCurrentPracticeState === 'function') {
+        var s = window.getCurrentPracticeState();
+        if (s && s.curSubjectId !== subjectId) {
+          window.switchSubject(subjectId);
+        }
+      } else if (window.curSubjectId !== subjectId) {
+        window.switchSubject(subjectId);
+      }
+      if (typeof window.setWorkbenchView === 'function') {
+        window.setWorkbenchView('practice');
+      }
+      window.switchChapter(chapterId);
+      return true;
+    }
+    return false;
+  }
+
+  function handleBreakthrough(group) {
+    if (saveDailyTopicGoalSettings()) {
+      openDailyTopicPractice(group);
+    }
+  }
+
+  function setWeakChapterAsDailyTopic(subjectId, bookId, chapterId, chapterName) {
+    var group = (subjectId === 'zhuanye' || subjectId === 'major') ? 'major' : 'math';
+    var goals = getDailyTopicGoals();
+    var cur = goals[group] || {};
+
+    goals[group] = {
+      enabled: true,
+      title: chapterName || cur.title || '专题突破',
+      subjectId: subjectId || (group === 'major' ? 'zhuanye' : 'shu1'),
+      bookId: bookId || cur.bookId || '',
+      chapterId: chapterId || '',
+      target: cur.target || 10
+    };
+
+    saveDailyTopicGoals(goals);
+    renderDailyTopicGoals();
+    openDailyTopicGoalSettings();
   }
 
   function openSettings(event) {
@@ -1319,8 +1922,36 @@
     if (modal) modal.addEventListener('click', function (event) {
       if (event.target === modal) closeSettings();
     });
+
+    // 每日专题设置弹窗交互
+    var topicGoalButton = document.getElementById('dailyTopicGoalButton');
+    var topicModal = document.getElementById('dailyTopicGoalModal');
+    var topicCloseBtn = document.getElementById('dailyTopicGoalCloseBtn');
+    var topicCancel = document.getElementById('dailyTopicGoalCancel');
+    var topicSave = document.getElementById('dailyTopicGoalSave');
+    var mathClearBtn = document.getElementById('dailyTopicMathClearBtn');
+    var majorClearBtn = document.getElementById('dailyTopicMajorClearBtn');
+    var mathStartBtn = document.getElementById('dailyTopicMathStartBtn');
+    var majorStartBtn = document.getElementById('dailyTopicMajorStartBtn');
+
+    if (topicGoalButton) topicGoalButton.addEventListener('click', openDailyTopicGoalSettings);
+    if (topicCloseBtn) topicCloseBtn.addEventListener('click', closeDailyTopicGoalSettings);
+    if (topicCancel) topicCancel.addEventListener('click', closeDailyTopicGoalSettings);
+    if (topicSave) topicSave.addEventListener('click', saveDailyTopicGoalSettings);
+    if (topicModal) topicModal.addEventListener('click', function (event) {
+      if (event.target === topicModal) closeDailyTopicGoalSettings();
+    });
+
+    if (mathClearBtn) mathClearBtn.addEventListener('click', clearMathTopic);
+    if (majorClearBtn) majorClearBtn.addEventListener('click', clearMajorTopic);
+    if (mathStartBtn) mathStartBtn.addEventListener('click', function () { handleBreakthrough('math'); });
+    if (majorStartBtn) majorStartBtn.addEventListener('click', function () { handleBreakthrough('major'); });
+
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeSettings();
+      if (event.key === 'Escape') {
+        closeSettings();
+        closeDailyTopicGoalSettings();
+      }
     });
     window.addEventListener('storage', function (event) {
       if (event.key === settingsKey() || event.key === eventsKey()) render();
@@ -1346,6 +1977,7 @@
     state.midnightTimer = setTimeout(
       function () {
         renderDailyGoals();
+        renderDailyTopicGoals();
         scheduleMidnightRefresh();
       },
       Math.max(
@@ -1369,8 +2001,22 @@
     getSubjectTotals: getSubjectTotals,
     getTrendCounts: getTrendCounts,
     getDailyGoalCounts: getDailyGoalCounts,
-    getStudyStreak: getStudyStreak
+    getStudyStreak: getStudyStreak,
+    getDailyTopicGoals: getDailyTopicGoals,
+    saveDailyTopicGoals: saveDailyTopicGoals,
+    normalizeDailyTopicGoals: normalizeDailyTopicGoals,
+    getTodayTopicProgress: getTodayTopicProgress,
+    getTopicProgressFromEvents: getTopicProgressFromEvents,
+    renderDailyTopicGoals: renderDailyTopicGoals,
+    openDailyTopicGoalSettings: openDailyTopicGoalSettings,
+    closeDailyTopicGoalSettings: closeDailyTopicGoalSettings,
+    saveDailyTopicGoalSettings: saveDailyTopicGoalSettings,
+    openDailyTopicPractice: openDailyTopicPractice,
+    maybeCelebrateDailyTopicGoal: maybeCelebrateDailyTopicGoal,
+    setWeakChapterAsDailyTopic: setWeakChapterAsDailyTopic
   };
+  window.setWeakChapterAsDailyTopic = setWeakChapterAsDailyTopic;
+  window.openDailyTopicPractice = openDailyTopicPractice;
   window.addEventListener('kaoyan:ready', render);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });

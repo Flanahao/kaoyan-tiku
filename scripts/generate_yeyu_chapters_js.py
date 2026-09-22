@@ -1,4 +1,4 @@
-﻿import os, sys, csv, json
+import os, sys, csv, json
 
 base_dir = r"D:\考研题库网站\数一题库\夜雨强化"
 out_js = r"D:\考研题库网站\js\yeyu-chapters.js"
@@ -20,6 +20,8 @@ for subj_dir_name, subj_name, prefix in subjects:
     # Natural sort chapter directories
     dir_names = sorted(os.listdir(subj_path), key=lambda d: int(d.split('章')[0].replace('第', '')) if '第' in d and '章' in d else 999)
     for d in dir_names:
+        if '_backup' in d or '_old_' in d:
+            continue
         ch_dir = os.path.join(subj_path, d)
         if not os.path.isdir(ch_dir):
             continue

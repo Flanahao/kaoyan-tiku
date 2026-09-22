@@ -34,6 +34,7 @@ runScript('js/lilin880-optimized-chapters.js');
 runScript('js/lyf900-chapters.js');
 runScript('js/yeyu-chapters.js');
 runScript('js/professional-chapters.js');
+runScript('js/math-zhenti-chapters.js');
 runScript('js/chapters.js');
 
 const subjects = sandbox.SUBJECTS;
@@ -48,8 +49,8 @@ let totalQuestionsWithSolution = 0;
 
 subjects.forEach(subj => {
   subj.chapters.forEach(ch => {
-    // 波哥与夜雨强化讲义无解析图，跳过
-    if (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集' || ch.wb === '夜雨强化') return;
+    // 波哥讲义无解析图，跳过
+    if (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集') return;
     (ch.labels || []).forEach(label => {
       const imgBase = subj.getImgPath(ch, label);
       const slices = [];

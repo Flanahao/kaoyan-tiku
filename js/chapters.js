@@ -274,12 +274,17 @@
         SHU1_CHAPTERS.push(chapter);
       });
     }
+    if (Array.isArray(window.MATH_ZHENTI_CHAPTERS)) {
+      window.MATH_ZHENTI_CHAPTERS.forEach(function (chapter) {
+        SHU1_CHAPTERS.push(chapter);
+      });
+    }
     // ===== 科目（subject）数据模型：数学 =====
     const SUBJECTS = [
       {
         id: 'shu1', name: '数学', storageSuffix: 's1', initChapterId: 'ch1', navCols: 5,
         analyticsGroup: 'math',
-        partOrder: ['例题', '习题'],
+        partOrder: ['例题', '题', '习题'],
         wbOrder: [
           { wb: '基础30讲', label: '基础30讲' },
           { wb: '强化36讲', label: '强化36讲' },
@@ -288,10 +293,16 @@
           { wb: '李林880优化版', label: '李林880优化版' },
           { wb: '李艳芳900', label: '李艳芳900' },
           { wb: '李范全书', label: '李范全书' },
-          { wb: '夜雨强化', label: '夜雨强化' }
+          { wb: '夜雨强化', label: '夜雨强化' },
+          { wb: '历年真题', label: '历年真题' }
         ],
-        subjOrder: ['高数', '线代', '概率论'],
-        classifyLabel: function (label) { return label.startsWith('例') ? '例题' : '习题'; },
+        subjOrder: ['高数', '线代', '概率论', '历年真题'],
+        classifyLabel: function (label) {
+          if (!label) return '习题';
+          if (label.startsWith('例')) return '例题';
+          if (label.startsWith('题')) return '题';
+          return '习题';
+        },
         getImgPath: function (ch, label) {
           var index = ch.labels.indexOf(label);
 

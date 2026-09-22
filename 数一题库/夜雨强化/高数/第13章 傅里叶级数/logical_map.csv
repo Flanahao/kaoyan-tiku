@@ -1,4 +1,5 @@
 ﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
-001,13,第13章 傅里叶级数,夜雨强化,习题,01,,pb_13-01_question.png,,0
-002,13,第13章 傅里叶级数,夜雨强化,习题,02,,pb_13-02_question.png,,0
-003,13,第13章 傅里叶级数,夜雨强化,习题,03,,pb_13-03_question.png,,0
+001,13,第13章 傅里叶级数,夜雨强化,习题,01,,pb_13-01_question.png,pb_13-01_solution.png,1
+002,13,第13章 傅里叶级数,夜雨强化,习题,02,,pb_13-02_question.png,pb_13-02_solution.png,1
+003,13,第13章 傅里叶级数,夜雨强化,习题,03,,pb_13-03_question.png,pb_13-03_solution.png,1
+004,13,第13章 傅里叶级数,夜雨强化,习题,04,,pb_13-04_question.png,pb_13-04_solution.png,1

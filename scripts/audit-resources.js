@@ -128,8 +128,8 @@ subjects.forEach(subj => {
         }
       }
 
-      // 波哥及夜雨强化讲义无解析图，跳过解析检查
-      if (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集' || ch.wb === '夜雨强化') return;
+      // 波哥及夜雨强化未配解析部分跳过
+      if (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集' || (ch.wb === '夜雨强化' && ch.subj !== '高数')) return;
 
       // 解析图片分片检查 (_solution.png 至 _solution_20.png)
       const foundSlices = [];

@@ -4631,6 +4631,285 @@ body {
   display: none !important;
 }
 
+/* ===== Header 每日专题小目标 ===== */
+.daily-topic-goal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 4px 12px 4px 10px;
+  border: 1px solid rgba(47, 128, 237, .18);
+  border-radius: 999px;
+  appearance: none;
+  background: rgba(239, 247, 255, .78);
+  color: #35516f;
+  box-shadow: 0 2px 8px rgba(30, 100, 180, .06);
+  font: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    box-shadow .18s ease;
+}
+
+.daily-topic-goal:hover {
+  border-color: rgba(47, 128, 237, .34);
+  background: #f4f9ff;
+  box-shadow: 0 4px 12px rgba(30, 100, 180, .09);
+}
+
+.daily-topic-goal:focus-visible {
+  outline: 2px solid rgba(47, 128, 237, .28);
+  outline-offset: 2px;
+}
+
+.daily-topic-title {
+  color: #607a96;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.daily-topic-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 145px;
+  min-width: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.daily-topic-row:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: rgba(185, 206, 228, 0.6);
+  margin-left: 4px;
+}
+
+.daily-topic-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(47, 128, 237, 0.1);
+  color: #1557a6;
+  font-size: 10px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.daily-topic-name {
+  color: #36516f;
+  font-size: 11px;
+  font-weight: 700;
+  max-width: 65px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.daily-topic-progress {
+  color: #6f849b;
+  font-size: 10px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.daily-topic-row.daily-topic-complete .daily-topic-label {
+  background: rgba(16, 185, 129, 0.16);
+  color: #047857;
+}
+
+.daily-topic-row.daily-topic-complete .daily-topic-name {
+  color: #065f46;
+}
+
+.daily-topic-row.daily-topic-complete .daily-topic-progress {
+  color: #047857;
+  font-weight: 700;
+}
+
+.daily-topic-row.daily-topic-unbound .daily-topic-progress {
+  color: #94a3b8;
+  font-size: 9px;
+}
+
+/* ===== 每日专题模态框 ===== */
+.daily-topic-modal {
+  max-width: 580px;
+  width: 92%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.daily-topic-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.daily-topic-modal-header h2 {
+  margin: 0;
+  color: #16375b;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.daily-topic-close-btn {
+  border: none;
+  background: transparent;
+  color: #71839a;
+  font-size: 24px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+
+.daily-topic-close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #16375b;
+}
+
+.daily-topic-fieldset {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(185, 206, 228, .75);
+  border-radius: 12px;
+  background: rgba(248, 251, 255, 0.45);
+}
+
+.daily-topic-fieldset legend {
+  padding: 0 6px;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.daily-topic-field-row {
+  margin-bottom: 8px;
+}
+
+.daily-topic-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.daily-topic-field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #45627f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.daily-topic-field-label input,
+.daily-topic-field-label select {
+  width: 100%;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #b9cee4;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .9);
+  color: #293f5b;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.daily-topic-field-label input:focus,
+.daily-topic-field-label select:focus {
+  outline: 2px solid rgba(47, 128, 237, .25);
+  border-color: #2563eb;
+}
+
+.daily-topic-field-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding-bottom: 1px;
+}
+
+.daily-topic-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .15s ease;
+  white-space: nowrap;
+}
+
+.daily-topic-action-btn.subtle {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+
+.daily-topic-action-btn.subtle:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.daily-topic-action-btn.breakthrough {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.daily-topic-action-btn.breakthrough:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+
+.daily-topic-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* ===== 薄弱章节卡片设为今日专题按钮 ===== */
+.db-weak-set-topic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(47, 128, 237, 0.3);
+  background: rgba(239, 246, 255, 0.95);
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.db-weak-set-topic-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
 /* ===== 设置弹窗中的每日目标 ===== */
 .si-goal-fieldset {
   margin: 16px 0 0;
@@ -4680,23 +4959,44 @@ body {
 
 @media (max-width: 620px) {
   #syncStatus,
-  .daily-goal-title {
+  .daily-goal-title,
+  .daily-topic-title {
     display: none;
   }
 
-  .si-goal-grid {
+  .si-goal-grid,
+  .daily-topic-field-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
   .header-nav-right {
-    gap: 6px;
+    gap: 5px;
   }
 
   .daily-goal-widget {
     padding: 4px 6px;
     gap: 6px;
+  }
+
+  .daily-topic-goal {
+    padding: 4px 6px;
+    gap: 4px;
+  }
+
+  .daily-topic-row {
+    max-width: 95px;
+    gap: 3px;
+  }
+
+  .daily-topic-name {
+    max-width: 42px;
+    font-size: 10px;
+  }
+
+  .daily-topic-progress {
+    font-size: 9px;
   }
 
   .daily-goal-copy {
@@ -4732,8 +5032,24 @@ body {
   }
 }
 
+@media (max-width: 340px) {
+  .daily-topic-goal {
+    padding: 3px 4px;
+    gap: 3px;
+  }
+
+  .daily-topic-row {
+    max-width: 78px;
+  }
+
+  .daily-topic-name {
+    max-width: 34px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .daily-goal-widget,
+  .daily-topic-goal,
   .daily-goal-toast {
     transition: none;
   }
@@ -5092,5 +5408,421 @@ body {
 
   .db-weak-name {
     min-height: 0;
+  }
+}
+
+/* ==========================================================================
+   每日数学随机转盘 (Daily Math Random Wheel)
+   ========================================================================== */
+.daily-math-wheel-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 136px;
+  max-width: 220px;
+  padding: 8px 12px;
+  border: 1px solid rgba(37, 99, 235, .16);
+  border-radius: 16px;
+  background: rgba(239, 246, 255, .8);
+  color: var(--text);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.daily-math-wheel-widget:hover {
+  background: rgba(219, 234, 254, .9);
+  border-color: rgba(37, 99, 235, .3);
+  transform: translateY(-1px);
+}
+
+.daily-math-wheel-icon {
+  flex: 0 0 auto;
+  font-size: 20px;
+}
+
+.daily-math-wheel-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.daily-math-wheel-copy strong {
+  font-size: 12px;
+}
+
+#dailyMathWheelSummary {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.daily-math-wheel-modal {
+  width: min(920px, calc(100vw - 32px));
+  max-width: 920px;
+}
+
+.daily-math-wheel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.daily-math-wheel-head h2 {
+  margin: 0;
+}
+
+.daily-math-wheel-head p {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.daily-math-wheel-close {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--bg-main);
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.daily-math-wheel-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+  gap: 30px;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.daily-math-wheel-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.daily-math-wheel-canvas-wrap {
+  position: relative;
+  width: min(440px, 100%);
+  aspect-ratio: 1;
+}
+
+#dailyMathWheelCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  filter: drop-shadow(0 16px 30px rgba(15, 23, 42, .14));
+  will-change: transform;
+}
+
+.daily-math-wheel-pointer {
+  position: absolute;
+  z-index: 4;
+  top: -4px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 28px solid #0F172A;
+}
+
+.daily-math-wheel-center-btn {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  width: 92px;
+  height: 92px;
+  transform: translate(-50%, -50%);
+  border: 6px solid #fff;
+  border-radius: 50%;
+  background: #0F172A;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .24);
+  transition: transform .15s ease, background .15s ease;
+}
+
+.daily-math-wheel-center-btn:hover:not(:disabled) {
+  background: #1e293b;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.daily-math-wheel-center-btn:disabled {
+  cursor: default;
+  opacity: .9;
+}
+
+.daily-math-wheel-side {
+  min-width: 0;
+}
+
+.daily-math-wheel-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.daily-math-wheel-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.daily-math-wheel-legend-item i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.daily-math-wheel-result {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-main);
+}
+
+.daily-math-wheel-result-kicker {
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+#dailyMathWheelResultBook {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#dailyMathWheelResultName {
+  display: block;
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+#dailyMathWheelResultMeta {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.daily-math-wheel-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.daily-math-wheel-actions > button {
+  flex: 1;
+}
+
+.daily-major-wheel-widget {
+  border-color: rgba(5, 150, 105, .2);
+  background: rgba(236, 253, 245, .85);
+}
+
+.daily-major-wheel-widget:hover {
+  background: rgba(209, 250, 229, .95);
+  border-color: rgba(5, 150, 105, .35);
+}
+
+.study-wheel-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.study-wheel-tab {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-main);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.study-wheel-tab:hover {
+  color: var(--text);
+  background: rgba(241, 245, 249, .9);
+}
+
+.study-wheel-tab.active {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, .25);
+}
+
+.study-wheel-progress-box {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(241, 245, 249, .6);
+  border: 1px solid var(--border);
+}
+
+.study-wheel-stage-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.study-wheel-progress-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+
+.study-wheel-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3B82F6, #10B981);
+  transition: width .3s ease;
+}
+
+.study-wheel-next-stage-box {
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(236, 253, 245, .95), rgba(209, 250, 229, .9));
+  border: 1px solid rgba(16, 185, 129, .3);
+  text-align: center;
+}
+
+.study-wheel-stage-alert {
+  font-size: 15px;
+  font-weight: 800;
+  color: #065F46;
+  margin-bottom: 10px;
+}
+
+.success-btn {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #059669 !important;
+}
+
+.success-btn:hover {
+  background: #059669 !important;
+}
+
+.breakthrough-btn {
+  background: linear-gradient(135deg, #F59E0B, #EF4444) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, .3);
+}
+
+.breakthrough-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+  .daily-math-wheel-widget {
+    min-width: 0;
+    max-width: 120px;
+    padding: 5px 8px;
+  }
+
+  #dailyMathWheelSummary,
+  #dailyMajorWheelSummary,
+  #syncStatus {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .header-nav-right {
+    gap: 6px;
+  }
+
+  .daily-math-wheel-widget {
+    min-width: 36px;
+    max-width: 42px;
+    padding: 6px;
+    justify-content: center;
+  }
+
+  .daily-math-wheel-copy,
+  .daily-goal-title,
+  .daily-topic-title {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .daily-math-wheel-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .daily-math-wheel-canvas-wrap {
+    width: min(360px, 90vw);
+  }
+}
+
+@media (max-width: 620px) {
+  .daily-math-wheel-widget {
+    min-width: 42px;
+    max-width: 48px;
+    padding: 6px;
+    justify-content: center;
+  }
+
+  .daily-math-wheel-copy {
+    display: none;
+  }
+
+  .daily-math-wheel-modal {
+    width: calc(100vw - 20px);
+  }
+
+  .daily-math-wheel-canvas-wrap {
+    width: min(310px, calc(100vw - 54px));
+  }
+
+  .daily-math-wheel-center-btn {
+    width: 76px;
+    height: 76px;
+  }
+
+  .daily-math-wheel-actions {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #dailyMathWheelCanvas {
+    transition-duration: .2s !important;
   }
 }

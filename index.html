@@ -240,6 +240,60 @@
               </span>
             </button>
 
+            <button
+              type="button"
+              id="dailyTopicGoalButton"
+              class="daily-topic-goal"
+              aria-haspopup="dialog"
+              aria-controls="dailyTopicGoalModal"
+              aria-label="今日专题：数学 未设置，专业课 未设置。点击设置"
+              title="点击设置今日专题"
+            >
+              <span class="daily-topic-title">今日专题</span>
+
+              <span class="daily-topic-row" data-topic-group="math">
+                <span class="daily-topic-label">数学</span>
+                <span class="daily-topic-name" id="dailyTopicMathName">未设置</span>
+                <span class="daily-topic-progress" id="dailyTopicMathProgress"></span>
+              </span>
+
+              <span class="daily-topic-row" data-topic-group="major">
+                <span class="daily-topic-label">专业课</span>
+                <span class="daily-topic-name" id="dailyTopicMajorName">未设置</span>
+                <span class="daily-topic-progress" id="dailyTopicMajorProgress"></span>
+              </span>
+            </button>
+
+            <button
+              id="dailyMathWheelButton"
+              class="daily-math-wheel-widget"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dailyMathWheelModal"
+              title="打开今日数学推进转盘"
+            >
+              <span class="daily-math-wheel-icon" aria-hidden="true">🎯</span>
+              <span class="daily-math-wheel-copy">
+                <strong>数学转盘</strong>
+                <span id="dailyMathWheelSummary">未抽取</span>
+              </span>
+            </button>
+
+            <button
+              id="dailyMajorWheelButton"
+              class="daily-math-wheel-widget daily-major-wheel-widget"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dailyMathWheelModal"
+              title="打开今日专业课推进转盘"
+            >
+              <span class="daily-math-wheel-icon" aria-hidden="true">🎯</span>
+              <span class="daily-math-wheel-copy">
+                <strong>专业课转盘</strong>
+                <span id="dailyMajorWheelSummary">未抽取</span>
+              </span>
+            </button>
+
             <span id="syncStatus" class="local-mode-status">本地模式 · 自动保存</span>
           </div>
         </header>
@@ -902,6 +956,234 @@
     hidden
   ></div>
 
+  <!-- 每日专题小目标设置模态框 -->
+  <div id="dailyTopicGoalModal" class="subject-overlay daily-topic-overlay" style="display:none" hidden>
+    <div
+      class="subject-modal daily-topic-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dailyTopicGoalModalTitle"
+    >
+      <div class="daily-topic-modal-header">
+        <h2 id="dailyTopicGoalModalTitle">每日专题小目标设置</h2>
+        <button id="dailyTopicGoalCloseBtn" class="daily-topic-close-btn" type="button" aria-label="关闭设置">×</button>
+      </div>
+      <p class="si-settings-help">
+        设定每日主攻专题，输入专题名称并绑定目标章节。当天完成对应章节题目将自动累计进度。
+      </p>
+
+      <div class="daily-topic-form">
+        <!-- 数学专题区块 -->
+        <fieldset class="daily-topic-fieldset" data-group="math">
+          <legend>数学专题</legend>
+          <div class="daily-topic-field-row">
+            <label class="daily-topic-field-label" for="dailyTopicMathTitleInput">
+              专题名称
+              <input id="dailyTopicMathTitleInput" type="text" placeholder="例如：极限与连续（自由输入）" maxlength="40">
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMathBookSelect">
+              书籍
+              <select id="dailyTopicMathBookSelect">
+                <option value="">请选择书籍（可选）</option>
+              </select>
+            </label>
+            <label class="daily-topic-field-label" for="dailyTopicMathChapterSelect">
+              章节
+              <select id="dailyTopicMathChapterSelect">
+                <option value="">未绑定章节</option>
+              </select>
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMathTargetInput">
+              今日目标（题）
+              <input id="dailyTopicMathTargetInput" type="number" min="1" max="999" step="1" inputmode="numeric" value="10">
+            </label>
+            <div class="daily-topic-field-actions">
+              <button id="dailyTopicMathClearBtn" class="daily-topic-action-btn subtle" type="button">清除专题</button>
+              <button id="dailyTopicMathStartBtn" class="daily-topic-action-btn breakthrough" type="button" style="display:none">开始突破</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 专业课专题区块 -->
+        <fieldset class="daily-topic-fieldset" data-group="major">
+          <legend>专业课专题</legend>
+          <div class="daily-topic-field-row">
+            <label class="daily-topic-field-label" for="dailyTopicMajorTitleInput">
+              专题名称
+              <input id="dailyTopicMajorTitleInput" type="text" placeholder="例如：进程与线程（自由输入）" maxlength="40">
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMajorBookSelect">
+              书籍
+              <select id="dailyTopicMajorBookSelect">
+                <option value="">请选择书籍（可选）</option>
+              </select>
+            </label>
+            <label class="daily-topic-field-label" for="dailyTopicMajorChapterSelect">
+              章节
+              <select id="dailyTopicMajorChapterSelect">
+                <option value="">未绑定章节</option>
+              </select>
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMajorTargetInput">
+              今日目标（题）
+              <input id="dailyTopicMajorTargetInput" type="number" min="1" max="999" step="1" inputmode="numeric" value="10">
+            </label>
+            <div class="daily-topic-field-actions">
+              <button id="dailyTopicMajorClearBtn" class="daily-topic-action-btn subtle" type="button">清除专题</button>
+              <button id="dailyTopicMajorStartBtn" class="daily-topic-action-btn breakthrough" type="button" style="display:none">开始突破</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="si-settings-actions daily-topic-modal-footer">
+        <button id="dailyTopicGoalCancel" class="hero-action-btn" type="button">取消</button>
+        <button id="dailyTopicGoalSave" class="hero-action-btn primary" type="button">保存设置</button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="dailyTopicGoalToast"
+    class="daily-goal-toast daily-topic-celebration"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  ></div>
+
+  <!-- 每日推进转盘 Modal (数学 + 专业课) -->
+  <div
+    id="dailyMathWheelModal"
+    class="subject-overlay daily-math-wheel-overlay"
+    style="display:none"
+    hidden
+  >
+    <div
+      class="subject-modal daily-math-wheel-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dailyMathWheelTitle"
+    >
+      <div class="daily-math-wheel-head">
+        <div>
+          <div class="study-wheel-tabs" role="tablist" aria-label="推进科目切换">
+            <button type="button" id="studyWheelTabMath" class="study-wheel-tab active" data-subject-id="shu1" role="tab" aria-selected="true">📐 数学推进转盘</button>
+            <button type="button" id="studyWheelTabMajor" class="study-wheel-tab" data-subject-id="zhuanye" role="tab" aria-selected="false">📡 专业课推进转盘</button>
+          </div>
+          <h2 id="dailyMathWheelTitle" style="display:none">每日推进转盘系统</h2>
+          <p id="dailyMathWheelDesc">章节去重持续推进，支持每轮认真完成后无限加量。</p>
+        </div>
+
+        <button
+          id="btnCloseDailyMathWheel"
+          class="daily-math-wheel-close"
+          type="button"
+          aria-label="关闭转盘"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="study-wheel-progress-box">
+        <div class="study-wheel-stage-info" id="studyWheelStageInfo"></div>
+        <div class="study-wheel-progress-bar">
+          <div class="study-wheel-progress-fill" id="studyWheelProgressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="study-wheel-next-stage-box" id="studyWheelNextStageBox" style="display:none">
+        <div class="study-wheel-stage-alert">🎉 当前阶段全部推进完成！</div>
+        <button id="btnStudyWheelNextStage" class="hero-action-btn primary" type="button">开启下一阶段</button>
+      </div>
+
+      <div class="daily-math-wheel-layout">
+        <div class="daily-math-wheel-stage">
+          <div class="daily-math-wheel-pointer" aria-hidden="true"></div>
+
+          <div class="daily-math-wheel-canvas-wrap">
+            <canvas
+              id="dailyMathWheelCanvas"
+              width="440"
+              height="440"
+              aria-label="章节随机转盘"
+            ></canvas>
+
+            <button
+              id="btnDailyMathWheelSpinCenter"
+              class="daily-math-wheel-center-btn"
+              type="button"
+            >
+              开始
+            </button>
+          </div>
+        </div>
+
+        <div class="daily-math-wheel-side">
+          <div class="daily-math-wheel-legend" id="dailyMathWheelLegend"></div>
+
+          <div
+            id="dailyMathWheelResult"
+            class="daily-math-wheel-result"
+            aria-live="polite"
+          >
+            <div id="studyWheelRoundKicker" class="daily-math-wheel-result-kicker">今日结果</div>
+            <div id="dailyMathWheelResultBook">尚未抽取</div>
+            <strong id="dailyMathWheelResultName">
+              点击开始，让今天的学习推进交给转盘
+            </strong>
+            <div id="dailyMathWheelResultMeta"></div>
+          </div>
+
+          <div class="daily-math-wheel-actions">
+            <button
+              id="btnDailyMathWheelSpin"
+              class="hero-action-btn primary"
+              type="button"
+            >
+              开始旋转
+            </button>
+
+            <button
+              id="btnDailyMathWheelStart"
+              class="hero-action-btn"
+              type="button"
+              disabled
+            >
+              开始学习
+            </button>
+
+            <button
+              id="btnStudyWheelComplete"
+              class="hero-action-btn success-btn"
+              type="button"
+              style="display:none"
+            >
+              完成今日任务
+            </button>
+
+            <button
+              id="btnStudyWheelAddRound"
+              class="hero-action-btn breakthrough-btn"
+              type="button"
+              style="display:none"
+            >
+              🔥 继续加量
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 本地依赖脚本与核心模块 -->
   <script src="lib/dompurify/purify.min.js"></script>
@@ -914,11 +1196,13 @@
   <script src="js/lilin880-chapters.js"></script>
   <script src="js/lilin880-optimized-chapters.js?v=20260909d"></script>
   <script src="js/lyf900-chapters.js"></script>
-  <script src="js/yeyu-chapters.js?v=20260909e"></script>
+  <script src="js/yeyu-chapters.js?v=20260912g"></script>
   <script src="js/professional-chapters.js?v=20260910a"></script>
-  <script src="js/solution-manifest.js?v=20260910a"></script>
-  <script src="js/chapters.js?v=20260910b"></script>
-  <script src="js/app.js?v=20260912a"></script>
+  <script src="js/math-zhenti-chapters.js?v=20260921a"></script>
+  <script src="js/solution-manifest.js?v=20260921a"></script>
+  <script src="js/chapters.js?v=20260921a"></script>
+  <script src="js/app.js?v=20260921a"></script>
+  <script src="js/daily-study-wheel.js?v=20260922a"></script>
   <script src="js/english.js?v=20260910d"></script>
   <script src="js/study-analytics.js?v=20260910c"></script>
 </body>
