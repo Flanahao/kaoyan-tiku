@@ -806,9 +806,13 @@
 
         // 选项 HTML
         var optsHtml = '';
-        if (q.options && q.options.length) {
+        var isTranslationQuestion = curSec.type === 'translation';
+        var visibleOptions = (q.options || []).filter(function (opt) {
+          return opt && String(opt.text || '').trim();
+        });
+        if (!isTranslationQuestion && visibleOptions.length) {
           optsHtml = '<div class="ez-options">' +
-            q.options.map(function (opt) {
+            visibleOptions.map(function (opt) {
               var isSelected = userChoice === opt.key;
               var optClass = 'ez-option';
               if (isSelected) optClass += ' selected';
@@ -844,7 +848,7 @@
         var expBoxHtml = '';
         if (isExpOpen) {
           expBoxHtml = '<div class="ez-exp-box">' +
-            '<div class="ez-exp-answer-row"><span>🎯 标准正确答案:</span> <strong>' + escapeHtml(normAnswer || q.answer || '无') + '</strong></div>' +
+            '<div class="ez-exp-answer-row"><span>' + (isTranslationQuestion ? '📝 参考译文:' : '🎯 标准正确答案:') + '</span> <strong>' + escapeHtml(normAnswer || q.answer || '无') + '</strong></div>' +
             (q.explanation ? '<div class="ez-exp-content">' + safeRichHtml(q.explanation) + '</div>' : '<div style="color:#64748b">暂无详细解析内容</div>') +
           '</div>';
         }

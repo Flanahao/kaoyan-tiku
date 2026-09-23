@@ -203,6 +203,15 @@
     return item;
   }
 
+  function restoreWheelUndo(subjectKey, undoAction) {
+    if (!undoAction) return;
+    const st = getUndoState();
+    const arr = st[subjectKey] || [];
+    arr.push(undoAction);
+    st[subjectKey] = arr;
+    saveUndoState(st);
+  }
+
   // ===== 候选章节计算 =====
   function getAllCandidates(subjectId) {
     const api = bridge();
@@ -235,9 +244,10 @@
     }
   }
 
-  function getScopeFilteredCandidates(subjectId) {
+  function getScopeFilteredCandidates(subjectId, scope) {
     const all = getAllCandidates(subjectId);
-    if (currentScope === 'mistakes') {
+    const effectiveScope = scope || currentScope;
+    if (effectiveScope === 'mistakes') {
       const filtered = all.filter(function (c) {
         return c && (c.totalMistakes > 0 || c.wrong > 0 || c.vague > 0);
       });
@@ -292,7 +302,17 @@
     const round = getCurrentRound(subjectId);
     if (!round || round.status !== 'active') return active;
 
-    const all = getScopeFilteredCandidates(subjectId);
+    if (Array.isArray(round.candidateIds) && round.candidateIds.length > 0) {
+      const byId = new Map(getAllCandidates(subjectId).map(function (item) {
+        return [String(item.chapterId), item];
+      }));
+      const snapshot = round.candidateIds.map(function (id) {
+        return byId.get(String(id));
+      }).filter(Boolean);
+      if (snapshot.length > 0) return snapshot;
+    }
+
+    const all = getScopeFilteredCandidates(subjectId, round.scope);
     const selectedIndex = all.findIndex(function (item) {
       return item && String(item.chapterId) === String(round.chapterId);
     });
@@ -519,7 +539,10 @@
 
     const scopeList = getScopeFilteredCandidates(currentSubjectId);
     const totalCount = scopeList.length;
-    const doneCount = completedList.length;
+    const scopeIds = new Set(scopeList.map(function (c) { return c && c.chapterId; }).filter(Boolean));
+    const doneCount = new Set(completedList.filter(function (c) {
+      return c && scopeIds.has(c.chapterId) && (!c.scope || c.scope === currentScope);
+    }).map(function (c) { return c.chapterId; })).size;
     const pct = totalCount > 0 ? Math.min(100, Math.round((doneCount / totalCount) * 100)) : 100;
 
     const stageInfo = document.getElementById('wrongWheelStageInfo');
@@ -702,6 +725,10 @@
   }
 
   function renderAll() {
+    const lockedRound = getCurrentRound(currentSubjectId);
+    if (lockedRound && lockedRound.status === 'active' && (lockedRound.scope === 'all' || lockedRound.scope === 'mistakes')) {
+      currentScope = lockedRound.scope;
+    }
     const displayCandidates = getDisplayCandidates(currentSubjectId);
     drawWheel(displayCandidates);
     renderLegend();
@@ -771,12 +798,23 @@
       total: picked.total,
       wrongCount: picked.wrong || 0,
       vagueCount: picked.vague || 0,
+      scope: currentScope,
+      candidateIds: spinCandidates.map(function (item) { return item && item.chapterId; }).filter(Boolean),
       status: 'active',
       startedAt: localDayKey(new Date())
     };
 
     rounds.push(roundData);
     daily[key] = rounds;
+
+    // 将本轮关联到上一条“完成轮次”事务，撤销时可同时移除本轮。
+    const undoState = getUndoState();
+    const undoList = undoState[key] || [];
+    const topUndo = undoList[undoList.length - 1];
+    if (topUndo && topUndo.action === 'complete-round' && topUndo.generatedRoundNumber == null) {
+      topUndo.generatedRoundNumber = roundData.round;
+      saveUndoState(undoState);
+    }
     saveDailyState(daily);
 
     spinning = true;
@@ -828,14 +866,23 @@
     const cur = rounds[rounds.length - 1];
     if (cur.status === 'completed') return true;
 
+    const hist = getHistoryState();
+    const chapterWasCompletedBefore = hist[key].completed.some(function (c) {
+      return c && c.chapterId === cur.chapterId;
+    });
+    const actionId = 'wrong_complete_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
     const undo = {
       schemaVersion: 1,
-      actionId: 'wrong_undo_' + Date.now(),
+      actionId: actionId,
+      action: 'complete-round',
       subjectKey: key,
       roundNumber: cur.round,
       chapterId: cur.chapterId,
       previousRoundStatus: cur.status || 'active',
       previousCompletedAt: cur.completedAt || null,
+      chapterWasCompletedBefore: chapterWasCompletedBefore,
+      completionAddedByThisAction: !chapterWasCompletedBefore,
+      generatedRoundNumber: null,
       createdAt: new Date().toISOString()
     };
 
@@ -844,15 +891,16 @@
     daily[key] = rounds;
     saveDailyState(daily);
 
-    const hist = getHistoryState();
-    if (!hist[key].completed.some(function (c) { return c && c.chapterId === cur.chapterId; })) {
+    if (!chapterWasCompletedBefore) {
       hist[key].completed.push({
         chapterId: cur.chapterId,
         book: cur.book,
         name: cur.name,
         short: cur.short,
         total: cur.total,
-        completedAt: cur.completedAt
+        completedAt: cur.completedAt,
+        scope: cur.scope || currentScope,
+        wheelActionId: actionId
       });
       saveHistoryState(hist);
     }
@@ -880,26 +928,40 @@
     if (!rounds || rounds.length === 0) return false;
 
     const undo = popWheelUndo(key);
-    if (undo) {
-      const cur = rounds.find(function (r) { return r.round === undo.roundNumber; }) || rounds[rounds.length - 1];
-      if (cur) {
-        cur.status = undo.previousRoundStatus || 'active';
-        if (undo.previousCompletedAt) cur.completedAt = undo.previousCompletedAt;
-        else delete cur.completedAt;
+    if (undo && undo.action === 'complete-round') {
+      let updatedRounds = rounds.slice();
+      if (undo.generatedRoundNumber != null) {
+        updatedRounds = updatedRounds.filter(function (r) {
+          return r.round !== undo.generatedRoundNumber;
+        });
+      }
 
+      const cur = updatedRounds.find(function (r) { return r.round === undo.roundNumber; });
+      if (!cur) {
+        restoreWheelUndo(key, undo);
+        return false;
+      }
+
+      cur.status = undo.previousRoundStatus || 'active';
+      if (undo.previousCompletedAt) cur.completedAt = undo.previousCompletedAt;
+      else delete cur.completedAt;
+
+      if (undo.completionAddedByThisAction !== false) {
         const hist = getHistoryState();
         if (hist[key] && Array.isArray(hist[key].completed)) {
           hist[key].completed = hist[key].completed.filter(function (c) {
-            return c && c.chapterId !== cur.chapterId;
+            if (!c) return false;
+            if (c.wheelActionId && c.wheelActionId === undo.actionId) return false;
+            return c.chapterId !== undo.chapterId;
           });
           saveHistoryState(hist);
         }
-
-        daily[key] = rounds;
-        saveDailyState(daily);
-        renderAll();
-        return true;
       }
+
+      daily[key] = updatedRounds;
+      saveDailyState(daily);
+      renderAll();
+      return true;
     }
 
     // 兜底撤销
@@ -1007,6 +1069,11 @@
     if (btnScopeMistakes) {
       btnScopeMistakes.addEventListener('click', function () {
         if (currentScope === 'mistakes') return;
+        const round = getCurrentRound(currentSubjectId);
+        if (round && round.status === 'active') {
+          alert('当前轮次进行中，候选范围已锁定；完成或撤销本轮后再切换。');
+          return;
+        }
         currentScope = 'mistakes';
         renderAll();
       });
@@ -1014,6 +1081,11 @@
     if (btnScopeAll) {
       btnScopeAll.addEventListener('click', function () {
         if (currentScope === 'all') return;
+        const round = getCurrentRound(currentSubjectId);
+        if (round && round.status === 'active') {
+          alert('当前轮次进行中，候选范围已锁定；完成或撤销本轮后再切换。');
+          return;
+        }
         currentScope = 'all';
         renderAll();
       });

@@ -146,9 +146,11 @@ assert(
 // ---------- 功能 10 ----------
 assert(
   html.includes(
-    'id="dbWeakGrid"'
+    'id="dbWeakMathGrid"'
+  ) && html.includes(
+    'id="dbWeakMajorGrid"'
   ),
-  '缺少薄弱章节容器'
+  '缺少数学或专业课薄弱章节容器'
 );
 
 assert(

@@ -170,9 +170,9 @@
       });
     }
 
-    function applyFilter(filterKey) {
-      // 状态筛选为单选：点击任意项立即切换，不叠加多个条件。
-      currentFilters = new Set([filterKey]);
+    function applyFilters(filterKeys) {
+      const keys = Array.isArray(filterKeys) ? filterKeys.filter(Boolean) : [filterKeys];
+      currentFilters = new Set(keys.length ? keys : ['all']);
       updateFilterButtons();
       saveGlobalFilters(); // 筛选状态持久化（跨会话记忆）
       const filtered = getFilteredIndices();
@@ -182,6 +182,11 @@
       } else {
         renderNav();
       }
+    }
+
+    function applyFilter(filterKey) {
+      // 顶部状态筛选保持单选；内部流程可通过 applyFilters 组合多个状态。
+      applyFilters([filterKey]);
     }
 
     function getFilteredIndices() {
@@ -6269,21 +6274,13 @@ ${cardsHTML}
         return true;
       }
 
-      // 错题消灭模式：自动激活“不会”筛选器，并直接聚焦第一道错题
-      applyFilter('wrong');
+      // 错题消灭模式：联合展示“不会 + 模糊/困难”，避免两组题互相遮蔽。
+      applyFilters(['wrong', 'vague']);
       const filtered = getFilteredIndices();
       if (filtered.length > 0) {
         switchTo(filtered[0]);
       } else {
-        // 若该章没有标记为“不会”的题，尝试筛选“模糊”
-        applyFilter('vague');
-        const vFiltered = getFilteredIndices();
-        if (vFiltered.length > 0) {
-          switchTo(vFiltered[0]);
-        } else {
-          // 均无则恢复全部
-          applyFilter('all');
-        }
+        applyFilter('all');
       }
 
       showWrongBookReturnBtn(true);

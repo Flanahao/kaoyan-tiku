@@ -27,7 +27,7 @@ def fetch_json(url, retries=3, delay=0.3):
             else:
                 raise e
 
-def clean_tokens(tokens):
+def clean_tokens(tokens, is_cloze=False):
     if not tokens:
         return ""
     if isinstance(tokens, str):
@@ -38,9 +38,14 @@ def clean_tokens(tokens):
     words = []
     for t in tokens:
         if isinstance(t, dict):
-            name = str(t.get('name') or '')
-            # Sentence number marker in passage, e.g. "1", "2"
-            if name.isdigit() and len(name) <= 2:
+            # 内部句序标记（state == 3，如 1, 2, 3... 句序），必须跳过
+            if t.get('state') == 3:
+                continue
+
+            name = str(t.get('name') or t.get('text') or t.get('value') or '')
+            # 数字 token 在完形中且 types == 'number' 就是题号占位符。旧逻辑直接丢弃，导致 1~20 空格消失。
+            if is_cloze and t.get('types') == 'number' and name.isdigit() and len(name) <= 2:
+                words.append(f"___({name})___")
                 continue
             words.append(name)
         elif isinstance(t, str):
@@ -52,6 +57,7 @@ def clean_tokens(tokens):
     # Fix punctuation spacing: "word ," -> "word,", "word ." -> "word."
     text = re.sub(r'\s+([,.:;?!%\'\"])', r'\1', text)
     text = re.sub(r'([\'\"])\s+', r'\1', text)
+    text = re.sub(r'\s+(___\(\d{1,2}\)___)\s+', r' \1 ', text)
     return text.strip()
 
 def parse_section(data):
@@ -126,7 +132,7 @@ def parse_section(data):
                         econt = p.get('econt') or []
                         if isinstance(econt, dict) and 'cont' in econt:
                             econt = econt['cont']
-                        eng_text = clean_tokens(econt) if isinstance(econt, list) else str(econt).strip()
+                        eng_text = clean_tokens(econt, is_cloze=(sec_type == 'cloze')) if isinstance(econt, list) else str(econt).strip()
                         if eng_text or zcont:
                             result['paragraphs'].append({
                                 'duanluo': duanluo,
@@ -166,6 +172,8 @@ def parse_section(data):
                 stem = clean_tokens(tigan_tokens)
                 if not stem and q_data.get('title'):
                     stem = str(q_data.get('title')).strip()
+                if not stem and sec_type == 'cloze':
+                    stem = f"第 {num} 空"
 
                 # options
                 opts = []
@@ -174,7 +182,12 @@ def parse_section(data):
                     for idx, opt_tokens in enumerate(xuanxiang):
                         opt_key = chr(65 + idx)
                         opt_text = clean_tokens(opt_tokens)
-                        opts.append({'key': opt_key, 'text': opt_text})
+                        if opt_text:
+                            opts.append({'key': opt_key, 'text': opt_text})
+
+                # 翻译题不是选择题；来源偶尔带一个空 A 选项，前端会误渲染为空按钮。
+                if sec_type == 'translation':
+                    opts = []
 
                 # answer
                 ans_raw = str(q_data.get('zhengque') if q_data.get('zhengque') is not None else '').strip()
