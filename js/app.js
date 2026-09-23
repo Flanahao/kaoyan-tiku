@@ -5,7 +5,35 @@
     let curSubject = SUBJECTS[0];
     let CHAPTERS = curSubject.chapters;   // 当前科目章节数组（原 const 改 let，切换科目时重赋值）
     function getCurrentSubject() { return curSubject; }
-// ===== 状态变量 (0-based) =====
+    let lastPracticeSubjectId = 'shu1';
+
+    function isPracticeSubjectId(subjectId) {
+      return subjectId === 'shu1' || subjectId === 'zhuanye';
+    }
+
+    function getCurrentSubjectId() {
+      return curSubjectId;
+    }
+
+    function lastPracticeSubjectStorageKey() {
+      return userStoragePrefix() + 'kaoyan_last_practice_subject';
+    }
+
+    function rememberLastPracticeSubject(subjectId) {
+      if (!isPracticeSubjectId(subjectId)) return;
+      lastPracticeSubjectId = subjectId;
+      safeStorageSet(lastPracticeSubjectStorageKey(), subjectId);
+    }
+
+    function getLastPracticeSubjectId() {
+      var saved = safeStorageGet(lastPracticeSubjectStorageKey());
+      if (isPracticeSubjectId(saved)) return saved;
+      if (isPracticeSubjectId(lastPracticeSubjectId)) return lastPracticeSubjectId;
+      if (isPracticeSubjectId(curSubjectId)) return curSubjectId;
+      return 'shu1';
+    }
+
+    // ===== 状态变量 (0-based) =====
     let currentChapterId = 'ch1';
     let current = 0;
     let appBootToken = 0;
@@ -25,6 +53,30 @@
 
     function getChapter() { return CHAPTERS.find(c => c.id === currentChapterId); }
     function chapterById(id) { return CHAPTERS.find(c => c.id === id); }
+
+    function getValidPracticeChapter() {
+      if (!isPracticeSubjectId(curSubjectId)) return null;
+      if (!curSubject || curSubject.id !== curSubjectId || !Array.isArray(CHAPTERS)) return null;
+      const ch = getChapter();
+      if (!ch || !(Number(ch.total) > 0)) return null;
+      return ch;
+    }
+
+    function ensurePracticeActionContext(actionName) {
+      const ch = getValidPracticeChapter();
+      if (getWorkbenchView() === 'practice' && ch) return ch;
+      console.warn('[practice] ignored invalid action:', actionName, {
+        subjectId: curSubjectId,
+        chapterId: currentChapterId,
+        view: getWorkbenchView()
+      });
+      // 旧版本可能留下“英语科目 + 数学练习壳”的半初始化状态。
+      // 首次误触只负责恢复到最近一次数学/专业课，不执行本次写操作。
+      if (curSubjectId === 'english' && getWorkbenchView() === 'practice') {
+        openLastPracticeSubject();
+      }
+      return null;
+    }
 
     function setPracticeSidebarVisible(visible) {
       const sidebar = document.getElementById('practiceSidebar') || document.querySelector('.sidebar-right');
@@ -159,7 +211,10 @@
     function safeSetItem(k, v) {
       safeStorageSet(k, v);
     }
-    function totalQuestions() { return getChapter().total; }
+    function totalQuestions() {
+      const ch = getChapter();
+      return ch ? Number(ch.total || 0) : 0;
+    }
 
     // ===== 筛选相关 =====
     function updateFilterButtons() {
@@ -191,6 +246,7 @@
 
     function getFilteredIndices() {
       const ch = getChapter();
+      if (!ch || !(Number(ch.total) > 0)) return [];
       const all = Array.from({ length: ch.total }, function(_, i) { return i; });
       if (isAllFilterActive()) return all;
       return all.filter(function(i) {
@@ -217,10 +273,14 @@
     // 非合并章节与现状完全一致（单一源）。→ 进度天然按书分开。
     function statusSources(ch) {
       ch = ch || getChapter();
+      if (!ch) return [];
       // 合并章节：自身段长度为 ownTotal；非合并章节用 total
       const srcs = [{ ch: ch, offset: 0, len: (ch.q1000Total ? ch.ownTotal : ch.total) }];
       if (ch && ch.q1000Id) {
-        srcs.push({ ch: chapterById(ch.q1000Id), offset: ch.ownTotal, len: ch.q1000Total });
+        const companion = chapterById(ch.q1000Id);
+        if (companion) {
+          srcs.push({ ch: companion, offset: ch.ownTotal, len: ch.q1000Total });
+        }
       }
       return srcs;
     }
@@ -1812,6 +1872,8 @@
 
     window.setWorkbenchView = setWorkbenchView;
     window.getWorkbenchView = getWorkbenchView;
+    window.getCurrentSubjectId = getCurrentSubjectId;
+    window.getLastPracticeSubjectId = getLastPracticeSubjectId;
     window.closeAllWorkbenchPanels = closeAllWorkbenchPanels;
     window.renderTitle = renderTitle;
     window.switchSubject = switchSubject;
@@ -1824,6 +1886,8 @@
         curSubjectId: curSubjectId,
         currentChapterId: currentChapterId,
         current: current,
+        statuses: Object.assign({}, statuses),
+        sm2: Object.assign({}, sm2),
         reviewSession: reviewSession ? {
           queueLength: reviewSession.queue ? reviewSession.queue.length : 0,
           currentIdx: reviewSession.currentIdx,
@@ -1832,6 +1896,21 @@
       };
     };
     window.collectWeakChaptersForSubject = collectWeakChaptersForSubject;
+
+    function openLastPracticeSubject() {
+      const targetId = getLastPracticeSubjectId();
+      if (!isPracticeSubjectId(targetId)) return false;
+      if (curSubjectId !== targetId) {
+        switchSubject(targetId);
+      } else {
+        setWorkbenchView('practice');
+        renderTitle();
+        switchTo(current);
+        setPracticeSidebarVisible(true);
+      }
+      return true;
+    }
+    window.openLastPracticeSubject = openLastPracticeSubject;
 
     function toggleDashboard() {
       if (getWorkbenchView() === 'dashboard') {
@@ -2781,6 +2860,8 @@
       // 切科目时若有进行中的复习：提交已评级结果并清除续接会话（跨科目不保留）
       if (reviewSession) exitReviewSession();
       saveResume(); // 先记录当前科目停的位置，再切换
+      if (isPracticeSubjectId(curSubjectId)) rememberLastPracticeSubject(curSubjectId);
+      if (isPracticeSubjectId(subjectId)) rememberLastPracticeSubject(subjectId);
       curSubjectId = subjectId;
       curSubject = subj;
       CHAPTERS = subj.chapters;
@@ -2814,7 +2895,7 @@
       setPanelTitle('');
       wrongBookWb = null; // 无条件重置错题本书籍筛选（书籍列表按科目不同，防跨科目残留）
       closeAllTitlePanels(); // 关闭可能残留的标题下拉面板（切换后重建）
-      loadStatuses(); loadQBad(); loadSBad(); loadNotes();
+      loadStatuses(); loadQBad(); loadSBad(); loadNotes(); loadSm2();
       loadSolutionPref(); renderSolDefaultBtn(); updateSolutionUI(); // 解析默认按科目记忆
       renderTitle(); renderStats(); renderNav();
       // 若全局筛选激活且恢复的位置被筛掉，则跳到第一条筛中题，避免落在不可见题上
@@ -3495,15 +3576,27 @@
     }
 
     function switchTo(idx) {
+      const ch = getValidPracticeChapter();
+      const nextIdx = Number(idx);
+      if (!ch || !Number.isInteger(nextIdx) || nextIdx < 0 || nextIdx >= Number(ch.total)) {
+        console.warn('[practice] switchTo rejected invalid target:', {
+          subjectId: curSubjectId,
+          chapterId: currentChapterId,
+          idx: idx
+        });
+        if (!ch && curSubjectId === 'english' && getWorkbenchView() === 'practice') {
+          openLastPracticeSubject();
+        }
+        return false;
+      }
       autoSaveNotes(); // 切题前保存未提交的笔记（当前仍是旧题，saveNote 用 current 定位正确）
-      current = idx;
+      current = nextIdx;
       showSolution = defaultShowSolution;
-      const ch = getChapter();
 
-      const base = getImgPath(idx);
+      const base = getImgPath(nextIdx);
       const qImg = document.getElementById('questionImg');
       const isProfessional = Boolean(curSubject && (curSubject.id === 'zhuanye' || curSubject.id === 'professional'));
-      loadImageWithFallback(qImg, getQuestionImagePath(idx, curSubject), function() {
+      loadImageWithFallback(qImg, getQuestionImagePath(nextIdx, curSubject), function() {
         renderQuestionAnnotations();
       }, function() {
         markImageMissing(qImg, '题目图片暂缺，请反馈题号');
@@ -3545,6 +3638,7 @@
           }
         }
       } catch (e) {}
+      return true;
     }
 
     // ===== 题目图/解析图不达标 =====
@@ -3938,13 +4032,19 @@
     }
 
     function setStatus(status) {
-      const had = statuses[current];
+      if (!ensurePracticeActionContext('setStatus')) return false;
+      if (['proficient', 'familiar', 'vague', 'rusty', 'wrong'].indexOf(status) === -1) {
+        console.warn('[practice] ignored invalid status:', status);
+        return false;
+      }
+      const markedIdx = current;
+      const had = statuses[markedIdx];
       // 复习会话中不允许取消标记（同一键重复选 = 正常记录，不 toggle off）
       const togglingOff = reviewSession ? false : (had === status);
       // 撤销栈：记录本次修改前的状态（仅一次；togglingOff 与置新值互斥）
-      pushUndo(current, had, currentChapterId);
-      if (togglingOff) { delete statuses[current]; }
-      else { statuses[current] = status; }
+      pushUndo(markedIdx, had, currentChapterId);
+      if (togglingOff) { delete statuses[markedIdx]; }
+      else { statuses[markedIdx] = status; }
       saveStatuses(); updateStatusBtns(); renderStats(); renderNav(); updateFilterCounts();
 
       if (!togglingOff &&
@@ -3953,8 +4053,8 @@
         window.StudyAnalytics.recordStatus({
           subjectId: curSubjectId,
           chapterId: currentChapterId,
-          idx: current,
-          itemKey: String(current),
+          idx: markedIdx,
+          itemKey: String(markedIdx),
           status: status,
           source: reviewSession ? 'sm2' : 'mark'
         });
@@ -3965,42 +4065,106 @@
       if (reviewSession && !togglingOff && score) {
         // 复习会话评级：延迟提交，不即时改 SM-2
         const item = reviewCurrentItem();
-        const isReviewTarget = item && currentChapterId === item.chapterId && current === item.idx;
+        const isReviewTarget = item && currentChapterId === item.chapterId && markedIdx === item.idx;
         if (isReviewTarget) {
           item.finalScore = score;
           item.status = 'graded';
           reviewAdvance(1); // 评级后自动进入下一复习题
         } else {
           // A/D/W/S 漂移到相邻题评级：只重定基线，不改复习位置
-          rebaselineSm2(current, score);
+          rebaselineSm2(markedIdx, score);
         }
       } else if (!togglingOff && score) {
         // 非复习改标：重定基线（不累加），首打标自动跳到下一题
-        rebaselineSm2(current, score);
-        if (!had) navNext();
+        rebaselineSm2(markedIdx, score);
+        const relocated = relocateAfterFilterMutation(markedIdx);
+        if (!had && !relocated) navNext();
+      } else if (!reviewSession && togglingOff) {
+        // 取消掌握度时同步删除排期；否则“未标记”题仍会留在 SM-2 队列。
+        delete sm2[markedIdx];
+        saveSm2();
+        relocateAfterFilterMutation(markedIdx);
       }
       renderSm2InfoBar();
+      return true;
+    }
+
+    function relocateAfterFilterMutation(markedIdx) {
+      if (isAllFilterActive() || isFiltered(markedIdx)) return false;
+      const filtered = getFilteredIndices();
+      if (filtered.length === 0) {
+        applyFilter('all');
+        switchTo(markedIdx);
+        return true;
+      }
+      const nextIdx = filtered.find(function (idx) { return idx > markedIdx; });
+      switchTo(nextIdx === undefined ? filtered[0] : nextIdx);
+      return true;
     }
 
     // ===== 撤销最近一次掌握度标记 =====
     var undoStack = [];
     function pushUndo(idx, prevStatus, chapterId) {
-      undoStack.push({ idx: idx, prevStatus: prevStatus || '', chapterId: chapterId || currentChapterId });
+      var prevSm2 = sm2[idx] ? JSON.parse(JSON.stringify(sm2[idx])) : null;
+      var reviewSnapshot = reviewSession ? JSON.parse(JSON.stringify(reviewSession)) : null;
+      undoStack.push({
+        subjectId: curSubjectId,
+        idx: idx,
+        prevStatus: prevStatus || '',
+        prevSm2: prevSm2,
+        reviewSnapshot: reviewSnapshot,
+        chapterId: chapterId || currentChapterId
+      });
       if (undoStack.length > 50) undoStack.shift();
     }
     function undoLastMark() {
       if (undoStack.length === 0) return;
       var act = undoStack.pop();
-      // 撤销跨章标记：先切回原章节再改状态（saveStatuses 会写对该章），避免污染当前章
-      if (act.chapterId && act.chapterId !== currentChapterId) {
-        currentChapterId = act.chapterId;
-        loadStatuses();
-        renderTitle(); // 标题栏同步切回原章（renderNav/switchTo 不更新顶部标题下拉）
+      if (!isPracticeSubjectId(act.subjectId)) return;
+
+      // 先回到原科目，再加载原章节的全部内存态，避免把撤销写进当前科目。
+      if (act.subjectId !== curSubjectId) {
+        switchSubject(act.subjectId);
       }
-      switchTo(act.idx);
+      const targetChapter = chapterById(act.chapterId);
+      if (!targetChapter || act.idx < 0 || act.idx >= Number(targetChapter.total)) {
+        console.warn('[undo] skipped stale target:', act);
+        return;
+      }
+      if (act.chapterId !== currentChapterId) {
+        autoSaveNotes();
+        currentChapterId = act.chapterId;
+        current = act.idx;
+        loadStatuses(); loadQBad(); loadSBad(); loadNotes(); loadSm2();
+      }
+
       if (act.prevStatus) { statuses[act.idx] = act.prevStatus; }
       else { delete statuses[act.idx]; }
-      saveStatuses(); updateStatusBtns(); renderStats(); renderNav(); updateFilterCounts();
+
+      if (act.prevSm2) sm2[act.idx] = JSON.parse(JSON.stringify(act.prevSm2));
+      else delete sm2[act.idx];
+
+      saveStatuses();
+      saveSm2();
+
+      if (act.reviewSnapshot) {
+        reviewSession = JSON.parse(JSON.stringify(act.reviewSnapshot));
+        saveReviewSession();
+        document.getElementById('statsBlock').style.display = 'none';
+        document.getElementById('reviewQueuePanel').style.display = '';
+        document.getElementById('reviewControls').style.display = '';
+      }
+
+      setWorkbenchView('practice');
+      renderTitle();
+      switchTo(act.idx);
+      updateStatusBtns(); renderStats(); renderNav(); updateFilterCounts();
+      if (act.reviewSnapshot) {
+        renderReviewQueue();
+        renderReviewProgress();
+      } else {
+        relocateAfterFilterMutation(act.idx);
+      }
       renderSm2InfoBar();
     }
 
@@ -5980,9 +6144,17 @@ ${cardsHTML}
     async function initAppSession() {
       const myToken = ++appBootToken;
       var savedSubject = localStorage.getItem(subjectStorageKey());
+      var savedPracticeSubject = safeStorageGet(lastPracticeSubjectStorageKey());
+      if (isPracticeSubjectId(savedPracticeSubject)) {
+        lastPracticeSubjectId = savedPracticeSubject;
+      }
       curSubjectId = (savedSubject && SUBJECTS.some(function (s) { return s.id === savedSubject; })) ? savedSubject : 'shu1';
       curSubject = SUBJECTS.find(function (s) { return s.id === curSubjectId; });
       CHAPTERS = curSubject.chapters;
+
+      if (isPracticeSubjectId(curSubjectId)) {
+        rememberLastPracticeSubject(curSubjectId);
+      }
 
       if (curSubjectId === 'english') {
         var crumbEl = document.getElementById('headerCurrentSection');

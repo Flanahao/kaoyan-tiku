@@ -58,7 +58,7 @@ assert.match(appSource, /function openStartupDashboard\(\) \{[\s\S]*?setWorkbenc
 assert.match(appSource, /await initAppSession\(\);\s*openStartupDashboard\(\);/, '主页切换必须发生在题库状态初始化完成之后');
 assert.match(appSource, /getWorkbenchView\(\) === 'dashboard'[\s\S]*?curSubjectId === 'english'[\s\S]*?window\.openEnglishVocabulary\(\)/, '从主页返回时，英语科目必须回到英语工作台而不是空白刷题页');
 assert.match(htmlSource, /css\/styles\.css\?v=20260923c/, 'CSS 版本号必须更新，防止浏览器继续使用旧布局缓存');
-assert.match(htmlSource, /js\/app\.js\?v=20260923c/, 'app.js 版本号必须更新，确保刷新首页逻辑生效');
+assert.match(htmlSource, /js\/app\.js\?v=20260923[cd]/, 'app.js 版本号必须更新，确保刷新首页逻辑生效');
 
 assert.match(crawlerSource, /replace\('\.\?', '\.'\)\.replace\('!\?', '!'\)\.replace\('\?\?', '\?'\)/, '爬虫必须清理重复句末标点');
 

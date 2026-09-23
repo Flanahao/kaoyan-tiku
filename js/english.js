@@ -1634,7 +1634,10 @@
   }
 
   function open() {
-    if (typeof window.curSubjectId !== 'undefined' && window.curSubjectId !== 'english') {
+    var currentSubjectId = typeof window.getCurrentSubjectId === 'function'
+      ? window.getCurrentSubjectId()
+      : '';
+    if (currentSubjectId && currentSubjectId !== 'english') {
       if (typeof window.switchSubject === 'function') {
         window.switchSubject('english');
         return;
@@ -1660,11 +1663,9 @@
   window.openEnglishVocabulary = open;
 
   function close() {
-    if (typeof window.curSubjectId !== 'undefined' && window.curSubjectId === 'english') {
-      if (typeof window.switchSubject === 'function') {
-        window.switchSubject('shu1');
-        return;
-      }
+    if (typeof window.openLastPracticeSubject === 'function') {
+      window.openLastPracticeSubject();
+      return;
     }
     if (typeof window.setWorkbenchView === 'function') {
       var currentView = typeof window.getWorkbenchView === 'function' ? window.getWorkbenchView() : 'english';
