@@ -847,6 +847,7 @@ body {
     /* ===== 章节标题栏（三级面板式下拉） ===== */
     .chapter-title-bar {
       position: relative;
+      z-index: 10;
       margin: 2px 0 16px;
       color: #303342;
       font-weight: bold;
@@ -3038,9 +3039,10 @@ body {
     .account-bar {
       width: 100%;
       height: 58px;
+      max-height: 58px;
       background: #ffffff;
       border-bottom: 1px solid var(--border);
-      padding: 0 28px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -3054,6 +3056,8 @@ body {
       display: flex;
       align-items: center;
       gap: 14px;
+      flex: 0 0 auto;
+      min-width: 150px;
     }
 
     .mobile-menu-toggle {
@@ -3080,6 +3084,7 @@ body {
       align-items: center;
       gap: 8px;
       font-size: 13px;
+      white-space: nowrap;
     }
 
     .crumb-root {
@@ -3097,10 +3102,26 @@ body {
       font-weight: 600;
     }
 
+    .header-nav-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      gap: 12px;
+      max-height: 48px;
+      flex-wrap: nowrap;
+    }
+
     .header-nav-right {
       display: flex;
       align-items: center;
-      gap: 14px;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+      min-width: 150px;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
+      max-height: 48px;
+      gap: 12px;
       font-size: 13px;
       color: var(--text-muted);
     }
@@ -3120,6 +3141,10 @@ body {
       font-weight: 500;
       background: rgba(16, 185, 129, 0.1);
       color: #059669;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.2;
+      max-height: 28px;
     }
 
     #syncStatus.is-error {
@@ -4975,6 +5000,7 @@ body {
 }
 
 @media (max-width: 480px) {
+  .header-nav-center,
   .header-nav-right {
     gap: 5px;
   }
@@ -5816,7 +5842,51 @@ body {
   color: #334155 !important;
 }
 
+@media (max-width: 1650px) {
+  .header-nav-center,
+  .header-nav-right {
+    gap: 8px;
+  }
+
+  .daily-math-wheel-widget {
+    width: auto;
+    min-width: 104px;
+    max-width: 126px;
+    padding: 4px 8px;
+    flex: 0 0 auto;
+    gap: 6px;
+  }
+
+  .daily-math-wheel-copy {
+    width: auto;
+  }
+
+  #dailyMathWheelSummary,
+  #dailyMajorWheelSummary,
+  #dailyWrongWheelSummary {
+    display: none;
+  }
+}
+
+@media (max-width: 1400px) {
+  .header-nav-center {
+    gap: 6px;
+  }
+
+  .daily-math-wheel-widget {
+    min-width: 92px;
+    max-width: 112px;
+    padding: 4px 6px;
+  }
+
+  #syncStatus {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+}
+
 @media (max-width: 1280px) {
+  .header-nav-center,
   .header-nav-right {
     gap: 8px;
   }
@@ -5841,14 +5911,24 @@ body {
 
   #dailyMathWheelSummary,
   #dailyMajorWheelSummary,
-  #syncStatus {
+  #dailyWrongWheelSummary {
     display: none;
   }
 }
 
 @media (max-width: 860px) {
-  .header-nav-right {
+  .header-nav-left {
+    flex: 0 0 auto;
+  }
+
+  .header-nav-center {
+    flex: 1 1 auto;
+    justify-content: flex-end;
     gap: 6px;
+  }
+
+  .header-nav-right {
+    display: none;
   }
 
   .daily-math-wheel-widget {
@@ -7404,5 +7484,281 @@ body {
   color: #64748b;
   max-width: 480px;
   line-height: 1.6;
+}
+
+/* =======================================================================
+   英语真题阅读统一细节（覆盖旧版重复规则）
+   ======================================================================= */
+.english-top-tabs {
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.english-top-tab {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 9px 18px;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.english-top-tab:hover {
+  color: #1e293b;
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.english-top-tab.active {
+  color: #2563eb;
+  background: #eff6ff;
+  border-color: #93c5fd;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+}
+
+.ez-passage-card,
+.ez-writing-card,
+.ez-question-card {
+  overflow: hidden;
+}
+
+.ez-passage-body {
+  max-width: 78ch;
+  margin: 0 auto;
+}
+
+.ez-reading-hint {
+  margin: -6px auto 16px;
+  max-width: 78ch;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.ez-para {
+  position: relative;
+  margin: 0;
+  padding: 14px 0 16px 34px;
+  border-bottom: 1px solid #f1f5f9;
+  line-height: 1.9;
+}
+
+.ez-para:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ez-para-number {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 24px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #2563eb;
+  font: 700 10px/1 system-ui, sans-serif;
+  letter-spacing: .02em;
+}
+
+.ez-para-en,
+.ez-para-zh,
+.ez-ks-en,
+.ez-ks-zh,
+.ez-q-stem,
+.ez-opt-text {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.ez-para-en {
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.9;
+  letter-spacing: .012em;
+}
+
+.ez-para-zh {
+  margin-top: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.ez-option {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  appearance: none;
+}
+
+.ez-option:focus-visible,
+.ez-btn-action:focus-visible,
+.ez-pill:focus-visible,
+.english-top-tab:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, .32);
+  outline-offset: 2px;
+}
+
+.ez-exp-content p {
+  margin: 0 0 8px;
+}
+
+.ez-exp-content p:last-child {
+  margin-bottom: 0;
+}
+
+.study-wheel-stage canvas,
+.daily-math-wheel-canvas {
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  contain: layout paint;
+}
+
+@media (max-width: 680px) {
+  .ez-passage-card,
+  .ez-writing-card,
+  .ez-question-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .ez-passage-body,
+  .ez-reading-hint {
+    max-width: none;
+  }
+
+  .ez-para {
+    padding-left: 30px;
+  }
+
+  .ez-para-number {
+    left: 0;
+  }
+}
+
+/* =======================================================================
+   错题转盘专属样式 (数学 + 专业课)
+   ======================================================================= */
+.daily-wrong-wheel-widget {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.95), rgba(254, 215, 170, 0.95));
+  border-color: #fbd38d;
+  color: #9a3412;
+}
+
+.daily-wrong-wheel-widget:hover {
+  background: linear-gradient(135deg, #fef3c7, #fed7aa);
+  border-color: #f6ad55;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.15);
+}
+
+.daily-wrong-wheel-widget.is-progressed {
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.95), rgba(254, 202, 202, 0.95));
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.daily-wrong-wheel-widget.is-progressed:hover {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: #f87171;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.18);
+}
+
+.wrong-wheel-scope-bar {
+  display: flex;
+  gap: 8px;
+  margin: -2px 0 14px;
+}
+
+.wrong-scope-pill {
+  flex: 1;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.wrong-scope-pill:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.wrong-scope-pill.active {
+  background: #fff7ed;
+  color: #c2410c;
+  border-color: #fdba74;
+  box-shadow: 0 1px 4px rgba(234, 88, 12, 0.1);
+}
+
+.daily-wrong-wheel-mistake-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #fee2e2;
+  color: #dc2626;
+  margin-left: 5px;
+}
+
+.daily-wrong-wheel-empty-state {
+  text-align: center;
+  padding: 24px 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.daily-wrong-wheel-modal .daily-math-wheel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.daily-wrong-wheel-modal .daily-math-wheel-actions > button {
+  flex: 1 1 calc(50% - 5px);
+  min-width: 135px;
+}
+
+#btnDailyWrongWheelPractice {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  font-weight: 600;
+}
+
+#btnDailyWrongWheelPractice:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+#btnDailyWrongWheelPractice.primary-style {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+#btnDailyWrongWheelPractice.primary-style:hover {
+  background: #1d4ed8 !important;
 }
 

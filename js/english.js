@@ -281,6 +281,20 @@
     });
   }
 
+  // 题库解析与写作素材允许保留基础排版，但不能把爬取内容直接插入 innerHTML。
+  // DOMPurify 已由 index.html 提前加载；离线/测试环境没有它时退回纯文本渲染。
+  function safeRichHtml(value) {
+    var raw = String(value || '');
+    if (!raw) return '';
+    if (typeof DOMPurify !== 'undefined' && typeof DOMPurify.sanitize === 'function') {
+      return DOMPurify.sanitize(raw, {
+        USE_PROFILES: { html: true },
+        ADD_ATTR: ['target', 'rel']
+      });
+    }
+    return escapeHtml(raw).replace(/\r?\n/g, '<br>');
+  }
+
   function title(type) {
     return ({
       synonyms: '同义词 / 短语',
@@ -691,9 +705,9 @@
               '<select class="ez-year-select" id="ezYearSelect">' + yearOptionsHtml + '</select>' +
             '</div>' +
           '</div>' +
-          '<div class="ez-toolbar-actions">' +
-            '<button class="ez-btn-action ' + (bilingualMode ? 'active' : '') + '" id="ezBtnBilingual" type="button" title="点击切换文章段落中英对照">' +
-              (bilingualMode ? '👁️ 展开中英精读对照' : '🙈 隐藏中文译文') +
+        '<div class="ez-toolbar-actions">' +
+            '<button class="ez-btn-action ' + (bilingualMode ? 'active' : '') + '" id="ezBtnBilingual" type="button" title="点击切换文章段落中文译文">' +
+              (bilingualMode ? '🙈 隐藏中文译文' : '👁️ 显示中文译文') +
             '</button>' +
             '<button class="ez-btn-action ez-btn-back" data-action="back" type="button">返回刷题</button>' +
           '</div>' +
@@ -718,9 +732,11 @@
             '<span>段落数: ' + curSec.paragraphs.length + ' 段</span>' +
           '</div>' +
         '</div>' +
+        '<div class="ez-reading-hint">点击英文单词可查释义、发音，并加入真题生词本</div>' +
         '<div class="ez-passage-body">' +
-          curSec.paragraphs.map(function (p) {
-            return '<div class="ez-para">' +
+          curSec.paragraphs.map(function (p, paragraphIndex) {
+            return '<div class="ez-para" data-paragraph-index="' + (paragraphIndex + 1) + '">' +
+              '<span class="ez-para-number" aria-hidden="true">P' + (paragraphIndex + 1) + '</span>' +
               '<div class="ez-para-en">' + renderClickableWords(p.english) + '</div>' +
               (bilingualMode && p.chinese ? '<div class="ez-para-zh">' + escapeHtml(p.chinese) + '</div>' : '') +
             '</div>';
@@ -747,7 +763,7 @@
     if (curSec.writing) {
       mainHtml += '<article class="ez-writing-card">' +
         '<h3 class="ez-passage-title">' + curYear + ' 年考研英语（一）· ' + escapeHtml(curSec.displayTitle) + '</h3>' +
-        (curSec.writing.prompt ? '<div class="ez-writing-prompt">' + curSec.writing.prompt + '</div>' : '') +
+        (curSec.writing.prompt ? '<div class="ez-writing-prompt">' + safeRichHtml(curSec.writing.prompt) + '</div>' : '') +
         (curSec.writing.imageUrl ?
           '<div class="ez-writing-img-container">' +
             '<div class="ez-writing-img-header">📸 考研英语真题图画 / 图表题目配图</div>' +
@@ -760,13 +776,13 @@
             curSec.writing.sampleEssay.map(function (sp) {
               return '<div class="ez-para">' +
                 '<div class="ez-para-en">' + renderClickableWords(sp.english) + '</div>' +
-                (sp.chinese ? '<div class="ez-para-zh">' + escapeHtml(sp.chinese) + '</div>' : '') +
+                (bilingualMode && sp.chinese ? '<div class="ez-para-zh">' + escapeHtml(sp.chinese) + '</div>' : '') +
               '</div>';
             }).join('') +
           '</div>' : '') +
         (curSec.writing.analysis ?
           '<div class="ez-exp-box" style="margin-top:16px"><h4 style="font-size:14px;font-weight:700;margin-bottom:8px">💡 范文结构解析与写作技巧</h4>' +
-            curSec.writing.analysis +
+            safeRichHtml(curSec.writing.analysis) +
           '</div>' : '') +
       '</article>';
     }
@@ -800,10 +816,10 @@
                 if (opt.key === normAnswer) optClass += ' is-correct';
                 else if (isSelected) optClass += ' is-wrong';
               }
-              return '<div class="' + optClass + '" data-q-id="' + q.id + '" data-opt-key="' + opt.key + '">' +
-                '<span class="ez-opt-key">' + opt.key + '</span>' +
+              return '<button class="' + optClass + '" type="button" aria-pressed="' + (isSelected ? 'true' : 'false') + '" data-q-id="' + escapeHtml(q.id) + '" data-opt-key="' + escapeHtml(opt.key) + '">' +
+                '<span class="ez-opt-key">' + escapeHtml(opt.key) + '</span>' +
                 '<span class="ez-opt-text">' + escapeHtml(opt.text) + '</span>' +
-              '</div>';
+              '</button>';
             }).join('') +
           '</div>';
         }
@@ -828,8 +844,8 @@
         var expBoxHtml = '';
         if (isExpOpen) {
           expBoxHtml = '<div class="ez-exp-box">' +
-            '<div class="ez-exp-answer-row"><span>🎯 标准正确答案:</span> <strong>' + (normAnswer || q.answer || '无') + '</strong></div>' +
-            (q.explanation ? '<div class="ez-exp-content">' + q.explanation + '</div>' : '<div style="color:#64748b">暂无详细解析内容</div>') +
+            '<div class="ez-exp-answer-row"><span>🎯 标准正确答案:</span> <strong>' + escapeHtml(normAnswer || q.answer || '无') + '</strong></div>' +
+            (q.explanation ? '<div class="ez-exp-content">' + safeRichHtml(q.explanation) + '</div>' : '<div style="color:#64748b">暂无详细解析内容</div>') +
           '</div>';
         }
 
@@ -875,9 +891,9 @@
       else counts.unmarked++;
     });
 
-    var qnavGridHtml = questions.map(function (q) {
+    var qnavGridHtml = questions.map(function (q, qIdx) {
       var st = zhentiStatuses[q.id] || 'unmarked';
-      var isAct = activeQuestionId === q.id;
+      var isAct = activeQuestionId === q.id || (!activeQuestionId && qIdx === 0);
       return '<button class="ez-qnav-btn status-' + st + (isAct ? ' is-active' : '') + '" data-q-id="' + q.id + '" type="button">' +
         (q.num || '') +
       '</button>';
@@ -917,6 +933,7 @@
           curSectionId = yData.sections[0].id;
           localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
         }
+        activeQuestionId = null;
         render();
       });
     }
@@ -1426,9 +1443,10 @@
       }
 
       // (2) 点击选项 (A/B/C/D)
-      if (target.classList.contains('ez-option')) {
-        var qid = target.dataset.qId;
-        var optKey = target.dataset.optKey;
+      var optBtn = target.closest ? target.closest('.ez-option') : (target.classList.contains('ez-option') ? target : null);
+      if (optBtn) {
+        var qid = optBtn.dataset.qId;
+        var optKey = optBtn.dataset.optKey;
         if (qid && optKey) {
           zhentiUserAnswers[qid] = optKey;
           saveStorageJson(STORAGE_ZHENTI_ANSWERS_KEY, zhentiUserAnswers);

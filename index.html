@@ -195,7 +195,7 @@
               <span class="crumb-current" id="headerCurrentSection">刷题工作台</span>
             </div>
           </div>
-          <div class="header-nav-right">
+          <div class="header-nav-center">
             <button
               id="dailyGoalButton"
               class="daily-goal-widget"
@@ -290,6 +290,23 @@
               </span>
             </button>
 
+            <button
+              id="dailyWrongWheelButton"
+              class="daily-math-wheel-widget daily-wrong-wheel-widget"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dailyWrongWheelModal"
+              title="打开今日错题转盘（数学 + 专业课）"
+            >
+              <span class="daily-math-wheel-icon" aria-hidden="true">🔥</span>
+              <span class="daily-math-wheel-copy">
+                <strong>错题转盘</strong>
+                <span id="dailyWrongWheelSummary">未抽取</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="header-nav-right">
             <span id="syncStatus" class="local-mode-status">本地模式 · 自动保存</span>
           </div>
         </header>
@@ -650,6 +667,10 @@
 
               <!-- 专属错题本面板 (B) -->
               <div class="wrongbook-panel" id="wrongBookPanel" style="display:none">
+                <div class="wrongbook-top-bar" style="margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;background:#fff7ed;border:1px solid #ffedd5;padding:10px 16px;border-radius:10px;">
+                  <div style="font-size:13px;color:#9a3412;font-weight:600;">🔥 集中攻坚薄弱知识点，靶向消灭不会与模糊题目</div>
+                  <button type="button" id="btnOpenWrongWheelFromBook" class="hero-action-btn primary" style="padding:6px 14px;font-size:13px;background:linear-gradient(135deg,#f59e0b,#ea580c);border:none;box-shadow:0 2px 6px rgba(234,88,12,0.25);">🔥 开启错题转盘</button>
+                </div>
                 <div class="db-subject-grid" id="wrongBookGrid"></div>
               </div>
 
@@ -1199,6 +1220,167 @@
     </div>
   </div>
 
+  <!-- 错题转盘 Modal (数学 + 专业课) -->
+  <div
+    id="dailyWrongWheelModal"
+    class="subject-overlay daily-math-wheel-overlay daily-wrong-wheel-overlay"
+    style="display:none"
+    hidden
+  >
+    <div
+      class="subject-modal daily-math-wheel-modal daily-wrong-wheel-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dailyWrongWheelTitle"
+    >
+      <div class="daily-math-wheel-head">
+        <div>
+          <div class="study-wheel-tabs" role="tablist" aria-label="错题转盘科目切换">
+            <button type="button" id="wrongWheelTabMath" class="study-wheel-tab active" data-subject-id="shu1" role="tab" aria-selected="true">📐 数学错题转盘</button>
+            <button type="button" id="wrongWheelTabMajor" class="study-wheel-tab" data-subject-id="zhuanye" role="tab" aria-selected="false">📡 专业课错题转盘</button>
+          </div>
+          <h2 id="dailyWrongWheelTitle" style="display:none">错题转盘系统</h2>
+          <p id="dailyWrongWheelDesc">靶向抽取有错题的章节，攻坚薄弱知识点，逐个消灭不会题。</p>
+        </div>
+
+        <button
+          id="btnCloseDailyWrongWheel"
+          class="daily-math-wheel-close"
+          type="button"
+          aria-label="关闭错题转盘"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="wrong-wheel-scope-bar">
+        <button type="button" id="btnWrongScopeAll" class="wrong-scope-pill active" data-scope="all">
+          📚 全部候选章节 (<span id="wrongScopeAllCount">0</span>)
+        </button>
+        <button type="button" id="btnWrongScopeMistakes" class="wrong-scope-pill" data-scope="mistakes">
+          🎯 仅有错题章节 (<span id="wrongScopeMistakeCount">0</span>)
+        </button>
+      </div>
+
+      <div class="study-wheel-progress-box">
+        <div class="study-wheel-stage-info" id="wrongWheelStageInfo"></div>
+        <div class="study-wheel-progress-bar">
+          <div class="study-wheel-progress-fill" id="wrongWheelProgressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="study-wheel-next-stage-box" id="wrongWheelNextStageBox" style="display:none">
+        <div class="study-wheel-stage-alert">🎉 当前阶段错题全部攻坚完成！</div>
+        <button id="btnWrongWheelNextStage" class="hero-action-btn primary" type="button">开启下一阶段攻坚</button>
+      </div>
+
+      <div class="daily-math-wheel-layout">
+        <div class="daily-math-wheel-stage">
+          <div class="daily-math-wheel-pointer" aria-hidden="true"></div>
+
+          <div class="daily-math-wheel-canvas-wrap study-wheel-stage">
+            <canvas
+              id="dailyWrongWheelCanvas"
+              class="study-wheel-canvas daily-math-wheel-canvas"
+              width="360"
+              height="360"
+              aria-label="错题随机转盘"
+            ></canvas>
+
+            <button
+              id="btnDailyWrongWheelSpinCenter"
+              class="daily-math-wheel-center-btn"
+              type="button"
+            >
+              开始
+            </button>
+          </div>
+        </div>
+
+        <div class="daily-math-wheel-side">
+          <div class="daily-math-wheel-legend" id="dailyWrongWheelLegend"></div>
+
+          <div
+            id="dailyWrongWheelResult"
+            class="daily-math-wheel-result"
+            aria-live="polite"
+          >
+            <div id="wrongWheelRoundKicker" class="daily-math-wheel-result-kicker">错题攻坚</div>
+            <div id="dailyWrongWheelResultBook">尚未抽取</div>
+            <strong id="dailyWrongWheelResultName">
+              点击开始，让错题攻坚交给转盘
+            </strong>
+            <div id="dailyWrongWheelResultMeta"></div>
+          </div>
+
+          <div class="daily-math-wheel-actions">
+            <button
+              id="btnDailyWrongWheelSpin"
+              class="hero-action-btn primary"
+              type="button"
+            >
+              开始旋转
+            </button>
+
+            <button
+              id="btnDailyWrongWheelStart"
+              class="hero-action-btn"
+              type="button"
+              disabled
+            >
+              🎯 开始消灭错题
+            </button>
+
+            <button
+              id="btnDailyWrongWheelPractice"
+              class="hero-action-btn secondary"
+              type="button"
+              style="display:none"
+            >
+              📝 先去刷题完成这章
+            </button>
+
+            <button
+              id="btnWrongWheelComplete"
+              class="hero-action-btn success-btn"
+              type="button"
+              style="display:none"
+            >
+              ✅ 标记本轮攻克完成
+            </button>
+
+            <button
+              id="btnWrongWheelAddRound"
+              class="hero-action-btn breakthrough-btn"
+              type="button"
+              style="display:none"
+            >
+              🔥 攻坚下一轮
+            </button>
+
+            <button
+              id="btnWrongWheelLaterClose"
+              class="hero-action-btn subtle-btn"
+              type="button"
+              style="display:none"
+            >
+              稍后消灭
+            </button>
+
+            <button
+              id="btnWrongWheelUndoRound"
+              class="hero-action-btn undo-btn"
+              type="button"
+              style="display:none"
+            >
+              ↩ 撤销上一轮
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 本地依赖脚本与核心模块 -->
   <script src="lib/dompurify/purify.min.js"></script>
@@ -1220,6 +1402,7 @@
   <script src="js/chapters.js?v=20260921a"></script>
   <script src="js/app.js?v=20260921a"></script>
   <script src="js/daily-study-wheel.js?v=20260922d"></script>
+  <script src="js/daily-wrong-wheel.js?v=20260923a"></script>
   <script src="js/english.js?v=20260923b"></script>
   <script src="js/study-analytics.js?v=20260910c"></script>
 </body>

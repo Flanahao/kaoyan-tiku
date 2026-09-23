@@ -402,8 +402,13 @@
 
       var group = resolveEventGroup(event);
       if (!seen[group]) return;
-      var itemKey = event.itemKey != null ? event.itemKey : event.idx;
-      if (itemKey == null) return;
+      var itemKey =
+        event.itemKey != null && String(event.itemKey).trim() !== ''
+          ? String(event.itemKey)
+          : event.idx != null
+            ? String(event.idx)
+            : '';
+      if (!itemKey) return;
 
       var identity =
         String(event.subjectId || '') +
@@ -1261,9 +1266,9 @@
           ? Number(payload.idx)
           : null,
       itemKey:
-        payload.itemKey == null
-          ? ''
-          : String(payload.itemKey),
+        payload.itemKey != null && String(payload.itemKey).trim() !== ''
+          ? String(payload.itemKey)
+          : (payload.idx != null ? String(payload.idx) : ''),
       status: payload.status,
       score: STATUS_SCORE[payload.status]
     });

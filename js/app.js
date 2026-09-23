@@ -3945,6 +3945,7 @@
           subjectId: curSubjectId,
           chapterId: currentChapterId,
           idx: current,
+          itemKey: String(current),
           status: status,
           source: reviewSession ? 'sm2' : 'mark'
         });
@@ -6178,6 +6179,117 @@ ${cardsHTML}
       return true;
     }
 
+    function getChapterMistakeCounts(subjectId, chapterId) {
+      const targetId = (subjectId === 'zhuanye') ? 'zhuanye' : 'shu1';
+      const subj = SUBJECTS.find(function (s) {
+        return s && s.id === targetId;
+      });
+      if (!subj || !Array.isArray(subj.chapters)) {
+        return { wrong: 0, vague: 0, totalMistakes: 0, done: 0, unmarked: 0, total: 0, pct: 0 };
+      }
+      const ch = subj.chapters.find(function (c) {
+        return c && c.id === chapterId;
+      });
+      if (!ch) {
+        return { wrong: 0, vague: 0, totalMistakes: 0, done: 0, unmarked: 0, total: 0, pct: 0 };
+      }
+      const stats = getChStats(ch, subj);
+      const wrong = Number(stats.wrong || 0);
+      const vague = Number(stats.vague || 0);
+      const done = Number(stats.done || 0);
+      const total = Number(ch.ownTotal || ch.total || (stats.done + stats.unmarked) || 0);
+      const unmarked = Number(stats.unmarked != null ? stats.unmarked : Math.max(0, total - done));
+      const pct = Number(stats.pct || (total > 0 ? Math.round((done / total) * 100) : 0));
+      return {
+        wrong: wrong,
+        vague: vague,
+        totalMistakes: wrong + vague,
+        done: done,
+        unmarked: unmarked,
+        total: total,
+        pct: pct
+      };
+    }
+
+    function openWrongWheelChapter(targetSubjectId, chapterId, mode) {
+      let subjId = targetSubjectId;
+      let chId = chapterId;
+      if (!chId && subjId) {
+        chId = subjId;
+        subjId = 'shu1';
+      }
+
+      const subj = SUBJECTS.find(function (s) {
+        return s && s.id === subjId;
+      });
+      if (!subj) return false;
+
+      const exists = subj.chapters.some(function (c) {
+        return c && c.id === chId;
+      });
+      if (!exists) {
+        console.warn('[wrong-wheel] chapter not found:', subjId, chId);
+        return false;
+      }
+
+      if (curSubjectId !== subjId) {
+        switchSubject(subjId);
+      }
+
+      if (typeof setWorkbenchView === 'function') {
+        setWorkbenchView('practice');
+      } else {
+        setPracticeSidebarVisible(true);
+      }
+
+      switchChapter(chId);
+      setPracticeSidebarVisible(true);
+
+      if (mode === 'practice' || mode === 'normal') {
+        // 刷题完成章节模式：展示全量题目，自动定位到首个未做题
+        applyFilter('all');
+        const ch = subj.chapters.find(function (c) { return c && c.id === chId; });
+        const key = userStoragePrefix() + chId + '_' + (subj.storageSuffix || (subjId === 'shu1' ? 's1' : 'zhuanye')) + '_status';
+        let statusObj = {};
+        try { statusObj = JSON.parse(safeStorageGet(key) || '{}'); } catch (e) { statusObj = {}; }
+        const len = ch ? (ch.ownTotal || ch.total || 0) : 0;
+        let targetIdx = -1;
+        for (let i = 0; i < len; i++) {
+          if (!statusObj[i]) {
+            targetIdx = i;
+            break;
+          }
+        }
+        if (targetIdx >= 0) {
+          switchTo(targetIdx);
+        } else {
+          switchTo(0);
+        }
+        showWrongBookReturnBtn(true);
+        return true;
+      }
+
+      // 错题消灭模式：自动激活“不会”筛选器，并直接聚焦第一道错题
+      applyFilter('wrong');
+      const filtered = getFilteredIndices();
+      if (filtered.length > 0) {
+        switchTo(filtered[0]);
+      } else {
+        // 若该章没有标记为“不会”的题，尝试筛选“模糊”
+        applyFilter('vague');
+        const vFiltered = getFilteredIndices();
+        if (vFiltered.length > 0) {
+          switchTo(vFiltered[0]);
+        } else {
+          // 均无则恢复全部
+          applyFilter('all');
+        }
+      }
+
+      showWrongBookReturnBtn(true);
+      return true;
+    }
+
     const StudyWheelBridge = {
       getStoragePrefix: function () {
         return userStoragePrefix();
@@ -6193,11 +6305,20 @@ ${cardsHTML}
 
       openChapter: function (subjectId, chapterId) {
         return openStudyWheelChapter(subjectId, chapterId);
+      },
+
+      getChapterMistakes: function (subjectId, chapterId) {
+        return getChapterMistakeCounts(subjectId, chapterId);
+      },
+
+      openWrongChapter: function (subjectId, chapterId, mode) {
+        return openWrongWheelChapter(subjectId, chapterId, mode);
       }
     };
 
     window.DailyStudyWheelBridge = StudyWheelBridge;
     window.DailyMathWheelBridge = StudyWheelBridge;
+    window.DailyWrongWheelBridge = StudyWheelBridge;
 
     // 唯一的本地初始化入口
     let localAppBooted = false;

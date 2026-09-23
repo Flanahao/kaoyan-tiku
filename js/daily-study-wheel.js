@@ -42,6 +42,11 @@
   let spinTimer = 0;
   let midnightTimer = 0;
   let opener = null;
+  // 动画期间固定候选快照，避免抽中章节写入 localStorage 后候选池立即缩小，
+  // 导致 canvas 的扇区数量与停靠角度不一致。
+  let spinCandidates = null;
+  let spinPickedIndex = -1;
+  let settledRotationDeg = 0;
 
   function bridge() {
     return window.DailyStudyWheelBridge || window.DailyMathWheelBridge || null;
@@ -642,6 +647,43 @@
     return document.getElementById('dailyMathWheelCanvas');
   }
 
+  function setCanvasRotation(deg, animate) {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    if (!animate) canvas.style.transition = 'none';
+    canvas.style.transform = 'rotate(' + Number(deg || 0) + 'deg)';
+  }
+
+  // 当前轮进行中时把已抽中的章节临时放回显示池，保持动画结束后的扇区稳定；
+  // 它仍不在 getActiveCandidates 返回的可抽取池里，不会造成重复抽取。
+  function getDisplayCandidates(subjectId) {
+    if (spinning && spinCandidates && subjectId === currentSubjectId) {
+      return spinCandidates.slice();
+    }
+
+    const active = getActiveCandidates(subjectId);
+    const round = getCurrentRound(subjectId);
+    if (!round || round.status !== 'active') return active;
+
+    const all = getAllCandidates(subjectId);
+    const selectedIndex = all.findIndex(function (item) {
+      return item && String(item.chapterId) === String(round.chapterId);
+    });
+    if (selectedIndex < 0 || active.some(function (item) {
+      return item && String(item.chapterId) === String(round.chapterId);
+    })) {
+      return active;
+    }
+
+    const activeIds = new Set(active.map(function (item) { return item && item.chapterId; }));
+    let insertAt = 0;
+    for (let i = 0; i < selectedIndex; i += 1) {
+      if (all[i] && activeIds.has(all[i].chapterId)) insertAt += 1;
+    }
+    active.splice(Math.min(insertAt, active.length), 0, all[selectedIndex]);
+    return active;
+  }
+
   // 画布尺寸准备函数 (单一尺寸源、同一 Backing store DPR 规则、统一 Radius 比例)
   function prepareStudyWheelCanvas(canvas) {
     if (!canvas) return null;
@@ -1052,12 +1094,29 @@
 
   function renderAll() {
     reconcileActiveRoundsWithHistory(currentSubjectId);
-    const active = getActiveCandidates(currentSubjectId);
-    drawWheel(active);
+    const displayCandidates = getDisplayCandidates(currentSubjectId);
+    drawWheel(displayCandidates);
     renderLegend();
     renderProgressInfo();
     renderResultAndActions();
     renderHeaderWidgets();
+
+    // 动画期间完全交给 spin() 控制；其它重绘都把当前轮结果重新对齐到指针，
+    // 避免 resize / 切换 Tab 后 canvas 保留旧 transform 而产生跳动。
+    if (!spinning) {
+      const round = getCurrentRound(currentSubjectId);
+      let rotation = 0;
+      if (round && round.status === 'active') {
+        const resultIndex = displayCandidates.findIndex(function (item) {
+          return item && String(item.chapterId) === String(round.chapterId);
+        });
+        if (resultIndex >= 0) {
+          rotation = restRotationForIndex(resultIndex, displayCandidates.length);
+        }
+      }
+      settledRotationDeg = rotation;
+      setCanvasRotation(rotation, false);
+    }
 
     // 更新 Tab 高亮
     if (typeof document.querySelectorAll === 'function') {
@@ -1093,6 +1152,8 @@
     if (pickedIndex < 0) return;
 
     const picked = active[pickedIndex];
+    spinCandidates = active.slice();
+    spinPickedIndex = pickedIndex;
 
     // ===== 极其关键：动画前立刻向 localStorage 写入落地，防刷新作弊 =====
     const daily = getDailyState();
@@ -1158,20 +1219,24 @@
     const canvas = getCanvas();
     if (!canvas) {
       spinning = false;
+      spinCandidates = null;
+      spinPickedIndex = -1;
       renderAll();
       return;
     }
 
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const duration = reduceMotion ? 250 : DAILY_WHEEL_CONFIG.animationDuration;
-    const finalRest = restRotationForIndex(pickedIndex, active.length);
+    const finalRest = restRotationForIndex(spinPickedIndex, spinCandidates.length);
+    const currentRotation = normalizeDeg(settledRotationDeg);
+    const rotationDelta = normalizeDeg(finalRest - currentRotation);
     const extraTurns = reduceMotion ? 1 : 8 + Math.floor(Math.random() * 4);
-    const finalDeg = extraTurns * 360 + finalRest;
+    const finalDeg = settledRotationDeg + extraTurns * 360 + rotationDelta;
 
     canvas.style.transition = 'transform ' + duration + 'ms cubic-bezier(.12,.72,.08,1)';
     void canvas.offsetWidth; // 触发 reflow
 
-    requestAnimationFrame(function () {
+    window.requestAnimationFrame(function () {
       canvas.style.transform = 'rotate(' + finalDeg + 'deg)';
     });
 
@@ -1179,7 +1244,10 @@
     spinTimer = window.setTimeout(function () {
       canvas.style.transition = 'none';
       canvas.style.transform = 'rotate(' + finalRest + 'deg)';
+      settledRotationDeg = finalRest;
       spinning = false;
+      spinCandidates = null;
+      spinPickedIndex = -1;
       renderAll();
     }, duration + 40);
   }
