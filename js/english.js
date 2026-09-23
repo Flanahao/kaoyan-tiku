@@ -18,6 +18,7 @@
   var STORAGE_ZHENTI_STATUS_KEY = 'user_guest_kaoyan_english_zhenti_status_v1';
   var STORAGE_ZHENTI_ANSWERS_KEY = 'user_guest_kaoyan_english_user_answers_v1';
   var STORAGE_ZHENTI_NOTES_KEY = 'user_guest_kaoyan_english_notes_v1';
+  var STORAGE_ZHENTI_DRAFTS_KEY = 'user_guest_kaoyan_english_drafts_v1';
 
   var curYear = localStorage.getItem(STORAGE_ZHENTI_YEAR_KEY) || '2026';
   var curSectionId = null;
@@ -32,6 +33,7 @@
   var zhentiStatuses = loadStorageJson(STORAGE_ZHENTI_STATUS_KEY, {});
   var zhentiUserAnswers = loadStorageJson(STORAGE_ZHENTI_ANSWERS_KEY, {});
   var zhentiNotes = loadStorageJson(STORAGE_ZHENTI_NOTES_KEY, {});
+  var zhentiDrafts = loadStorageJson(STORAGE_ZHENTI_DRAFTS_KEY, {});
 
   function loadStorageJson(key, defaultVal) {
     try {
@@ -317,13 +319,33 @@
 
   function renderClickableWords(text) {
     if (!text) return '';
-    return text.replace(/([a-zA-Z]+(?:'[a-zA-Z]+)?)|([^a-zA-Z']+)/g, function (_, word, other) {
+    var source = normalizeExamText(text);
+    return source.replace(/([a-zA-Z]+(?:['’][a-zA-Z]+)?)|([^a-zA-Z'’]+)/g, function (_, word, other) {
       if (word) {
-        var clean = word.toLowerCase().replace(/'s$/, '');
+        var clean = word.toLowerCase().replace(/['’]s$/, '');
         return '<span class="ez-word" data-word="' + escapeHtml(clean) + '">' + escapeHtml(word) + '</span>';
       }
-      return escapeHtml(other);
+      // 不能调用 escapeHtml(other)：escapeHtml 内部会 trim，曾导致所有单词间空格被删除。
+      return escapeInlineHtml(other);
     });
+  }
+
+  function escapeInlineHtml(value) {
+    return String(value == null ? '' : value).replace(/[&<>'"]/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[c];
+    });
+  }
+
+  function normalizeExamText(value) {
+    return String(value == null ? '' : value)
+      .replace(/\u00a0/g, ' ')
+      .replace(/[ \t]+/g, ' ')
+      .replace(/\r?\n[ \t]*/g, ' ')
+      .replace(/\s+([,.;:!?%])/g, '$1')
+      .replace(/\.\?/g, '.')
+      .replace(/!\?/g, '!')
+      .replace(/\?\?/g, '?')
+      .trim();
   }
 
   function findBuiltInWord(word) {
@@ -657,7 +679,7 @@
       '</div>';
 
     if (activeMainTab === 'zhenti') {
-      panel.innerHTML = topTabsHtml + renderZhentiModule();
+      panel.innerHTML = topTabsHtml + renderZhentiModuleV2();
       bindZhentiEvents();
     } else if (activeMainTab === 'zhentiVocab') {
       panel.innerHTML = topTabsHtml + renderZhentiVocabModule();
@@ -921,6 +943,310 @@
       '</aside>';
 
     return toolbarHtml + '<div class="ez-layout">' + mainHtml + railHtml + '</div>';
+  }
+
+  // =========================================================================
+  // 4.1 历年真题 V2：统一外壳 + 分题型工作区
+  // =========================================================================
+  function normalizeObjectiveAnswer(answer) {
+    var value = String(answer == null ? '' : answer).trim();
+    if (/^[1-8]$/.test(value)) return String.fromCharCode(64 + parseInt(value, 10));
+    if (/^[A-H]$/i.test(value)) return value.toUpperCase();
+    return value;
+  }
+
+  function countEnglishWords(value) {
+    var matches = String(value || '').trim().match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g);
+    return matches ? matches.length : 0;
+  }
+
+  function renderSectionToolbarV2(manifest, sections, curSec) {
+    var yearOptionsHtml = manifest.map(function (item) {
+      return '<option value="' + item.year + '" ' + (item.year === curYear ? 'selected' : '') + '>' +
+        item.year + ' 年真题 (' + item.sectionCount + '部分)</option>';
+    }).join('');
+    var pillsHtml = sections.map(function (section) {
+      var active = curSec && section.id === curSec.id;
+      var count = section.questions && section.questions.length ? ' (' + section.questions.length + '题)' : '';
+      return '<button class="ez-pill ' + (active ? 'active' : '') + '" data-sec-id="' + section.id + '" type="button">' +
+        escapeHtml(section.sectionName) + count +
+      '</button>';
+    }).join('');
+
+    return '<div class="ez-toolbar">' +
+      '<div class="ez-toolbar-top">' +
+        '<div class="ez-selectors-group">' +
+          '<label class="ez-select-wrap" for="ezYearSelect">' +
+            '<span class="ez-select-label">考试年份</span>' +
+            '<select class="ez-year-select" id="ezYearSelect">' + yearOptionsHtml + '</select>' +
+          '</label>' +
+        '</div>' +
+        '<div class="ez-toolbar-actions">' +
+          '<button class="ez-btn-action ' + (bilingualMode ? 'active' : '') + '" id="ezBtnBilingual" type="button" aria-pressed="' + (bilingualMode ? 'true' : 'false') + '">' +
+            (bilingualMode ? '🙈 隐藏中文译文' : '👁️ 显示中文译文') +
+          '</button>' +
+          '<button class="ez-btn-action ez-btn-back" data-action="back" type="button">返回刷题</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ez-pills-bar" aria-label="真题题型">' + pillsHtml + '</div>' +
+    '</div>';
+  }
+
+  function getSectionUiMeta(section) {
+    var map = {
+      cloze: { eyebrow: 'USE OF ENGLISH', label: '完形填空', hint: '先通读全文建立语境，再逐空作答；选项与题号保持联动。' },
+      reading: { eyebrow: 'READING PART A', label: '阅读理解', hint: '文章与题目保持清晰层级；点击正文单词可查词并加入生词本。' },
+      partB: { eyebrow: 'READING PART B', label: '新题型', hint: '先浏览全部候选段落，再为每个空位选择唯一段落。' },
+      translation: { eyebrow: 'TRANSLATION', label: '英译汉', hint: '先独立完成译文，再展开参考译文与解析进行对照。' },
+      writingA: { eyebrow: 'WRITING PART A', label: '应用文写作', hint: '审题、列提纲、完成草稿，最后再查看范文和结构解析。' },
+      writingB: { eyebrow: 'WRITING PART B', label: '短文写作', hint: '先完成图表或图画描述，再展开论证与个人观点。' }
+    };
+    return map[section.type] || { eyebrow: 'ENGLISH I', label: section.sectionName || '真题', hint: '按题目要求完成作答。' };
+  }
+
+  function renderSectionHeroV2(section, questions) {
+    var meta = getSectionUiMeta(section);
+    var isWriting = section.type === 'writingA' || section.type === 'writingB';
+    return '<header class="ez-section-hero">' +
+      '<div class="ez-section-hero-copy">' +
+        '<span class="ez-section-eyebrow">' + meta.eyebrow + '</span>' +
+        '<h2>' + curYear + ' 年考研英语（一）· ' + escapeHtml(section.displayTitle) + '</h2>' +
+        '<p>' + meta.hint + '</p>' +
+      '</div>' +
+      '<div class="ez-section-facts" aria-label="题型信息">' +
+        '<span>' + meta.label + '</span>' +
+        '<strong>' + (isWriting ? 1 : questions.length) + '</strong>' +
+        '<small>' + (isWriting ? '项任务' : '题') + '</small>' +
+      '</div>' +
+    '</header>';
+  }
+
+  function renderPassageV2(section) {
+    var paragraphs = section.paragraphs || [];
+    if (!paragraphs.length) return '';
+    return '<article class="ez-passage-card ez-passage-card--' + escapeHtml(section.type) + '">' +
+      '<div class="ez-passage-header">' +
+        '<div>' +
+          '<span class="ez-card-kicker">原文</span>' +
+          '<h3 class="ez-passage-title">' + escapeHtml(section.displayTitle) + '</h3>' +
+        '</div>' +
+        '<div class="ez-passage-meta">' +
+          (section.beform ? '<span class="ez-passage-beform">出处 / 背景：' + escapeHtml(section.beform) + '</span>' : '') +
+          '<span>' + paragraphs.length + ' 段</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ez-reading-hint">点击英文单词可查释义、发音，并加入真题生词本</div>' +
+      '<div class="ez-passage-body">' +
+        paragraphs.map(function (paragraph, index) {
+          var label = section.type === 'partB' ? String(paragraph.duanluo || index + 1) : 'P' + (index + 1);
+          return '<section class="ez-para" data-paragraph-index="' + (index + 1) + '">' +
+            '<span class="ez-para-number" aria-hidden="true">' + escapeHtml(label) + '</span>' +
+            '<div class="ez-para-copy">' +
+              '<div class="ez-para-en">' + renderClickableWords(paragraph.english) + '</div>' +
+              (bilingualMode && paragraph.chinese ? '<div class="ez-para-zh">' + escapeHtml(paragraph.chinese) + '</div>' : '') +
+            '</div>' +
+          '</section>';
+        }).join('') +
+      '</div>' +
+    '</article>';
+  }
+
+  function renderMasteryV2(question, status) {
+    return '<div class="ez-mastery-group" aria-label="第 ' + escapeHtml(question.num) + ' 题掌握度">' +
+      [
+        { key: 'proficient', label: '熟练', shortcut: 'Z' },
+        { key: 'familiar', label: '较熟练', shortcut: '' },
+        { key: 'vague', label: '模糊', shortcut: 'X' },
+        { key: 'rusty', label: '困难', shortcut: '' },
+        { key: 'wrong', label: '不会', shortcut: 'C' }
+      ].map(function (item) {
+        return '<button class="ez-btn-mastery ' + item.key + (status === item.key ? ' active' : '') + '" data-q-id="' + escapeHtml(question.id) + '" data-status="' + item.key + '" type="button">' +
+          item.label + (item.shortcut ? '<kbd>' + item.shortcut + '</kbd>' : '') +
+        '</button>';
+      }).join('') +
+    '</div>';
+  }
+
+  function renderOptionsV2(question, userChoice, answer, isPartB) {
+    var options = (question.options || []).filter(function (option) {
+      return option && String(option.text || '').trim();
+    });
+    if (!options.length) return '';
+    return '<div class="ez-options' + (isPartB ? ' ez-options--partb' : '') + '" role="group" aria-label="第 ' + escapeHtml(question.num) + ' 题选项">' +
+      options.map(function (option) {
+        var selected = userChoice === option.key;
+        var optionClass = 'ez-option';
+        if (selected) optionClass += ' selected';
+        if (userChoice) {
+          if (option.key === answer) optionClass += ' is-correct';
+          else if (selected) optionClass += ' is-wrong';
+        }
+        return '<button class="' + optionClass + '" type="button" aria-pressed="' + (selected ? 'true' : 'false') + '" data-q-id="' + escapeHtml(question.id) + '" data-opt-key="' + escapeHtml(option.key) + '">' +
+          '<span class="ez-opt-key">' + escapeHtml(option.key) + '</span>' +
+          '<span class="ez-opt-text">' + escapeHtml(option.text) + '</span>' +
+        '</button>';
+      }).join('') +
+    '</div>';
+  }
+
+  function renderExplanationV2(question, isTranslation, isOpen) {
+    if (!isOpen) return '';
+    var answer = isTranslation ? String(question.answer || '') : normalizeObjectiveAnswer(question.answer);
+    return '<div class="ez-exp-box" id="exp_' + escapeHtml(question.id) + '">' +
+      '<div class="ez-exp-answer-row"><span>' + (isTranslation ? '参考译文' : '标准答案') + '</span><strong>' + escapeHtml(answer || '暂无') + '</strong></div>' +
+      (question.explanation ? '<div class="ez-exp-content">' + safeRichHtml(question.explanation) + '</div>' : '<p class="ez-muted">暂无详细解析内容</p>') +
+    '</div>';
+  }
+
+  function renderNoteV2(question) {
+    var note = zhentiNotes[question.id] || '';
+    var editing = Boolean(editingNotes[question.id]);
+    return '<div class="ez-note-section">' +
+      '<div class="ez-note-header">' +
+        '<span class="ez-note-title">题目笔记</span>' +
+        '<button class="ez-note-btn" data-q-id="' + escapeHtml(question.id) + '" data-note-action="' + (editing ? 'save' : 'edit') + '" type="button">' +
+          (editing ? '保存' : (note ? '修改' : '添加')) +
+        '</button>' +
+      '</div>' +
+      (editing
+        ? '<textarea class="ez-note-textarea" id="noteInput_' + escapeHtml(question.id) + '" placeholder="记录生词、长难句或解题思路……">' + escapeHtml(note) + '</textarea>'
+        : (note ? '<div class="ez-note-text">' + escapeHtml(note) + '</div>' : '<div class="ez-note-empty">暂无笔记</div>')) +
+    '</div>';
+  }
+
+  function renderQuestionV2(question, index, section) {
+    var status = zhentiStatuses[question.id] || '';
+    var userChoice = zhentiUserAnswers[question.id] || '';
+    var answer = normalizeObjectiveAnswer(question.answer);
+    var isTranslation = section.type === 'translation';
+    var isPartB = section.type === 'partB';
+    var isOpen = Boolean(expandedExplanations[question.id]);
+    var isActive = activeQuestionId === question.id || (!activeQuestionId && index === 0);
+    var draftKey = 'translation_' + question.id;
+    var draft = zhentiDrafts[draftKey] || '';
+    var className = 'ez-question-card';
+    if (section.type === 'cloze') className += ' ez-question-card--compact';
+    if (isTranslation) className += ' ez-question-card--translation';
+    if (isPartB) className += ' ez-question-card--partb';
+    if (isActive) className += ' is-active';
+
+    return '<article class="' + className + '" id="qcard_' + escapeHtml(question.id) + '" data-q-id="' + escapeHtml(question.id) + '">' +
+      '<div class="ez-question-header">' +
+        '<div class="ez-question-heading">' +
+          '<span class="ez-q-badge">' + (isPartB ? '空位 ' : '第 ') + escapeHtml(question.num || index + 1) + (isPartB ? '' : ' 题') + '</span>' +
+          '<span class="ez-question-kind">' + (isTranslation ? '独立翻译' : isPartB ? '段落匹配' : section.type === 'cloze' ? '语境选词' : '单项选择') + '</span>' +
+        '</div>' +
+        renderMasteryV2(question, status) +
+      '</div>' +
+      (!isPartB ? '<div class="ez-q-stem">' + renderClickableWords(question.stem) + '</div>' : '') +
+      (isTranslation
+        ? '<div class="ez-translation-editor">' +
+            '<label for="draft_' + escapeHtml(question.id) + '">我的译文</label>' +
+            '<textarea id="draft_' + escapeHtml(question.id) + '" class="ez-answer-textarea" data-draft-id="' + escapeHtml(draftKey) + '" data-count-target="count_' + escapeHtml(question.id) + '" placeholder="先独立完成译文，内容会自动保存在本机……">' + escapeHtml(draft) + '</textarea>' +
+            '<span class="ez-draft-status" id="count_' + escapeHtml(question.id) + '">' + String(draft.length) + ' 字</span>' +
+          '</div>'
+        : renderOptionsV2(question, userChoice, answer, isPartB)) +
+      '<div class="ez-q-actions">' +
+        '<button class="ez-btn-exp-toggle ' + (isOpen ? 'active' : '') + '" data-q-id="' + escapeHtml(question.id) + '" data-action="toggleExp" type="button" aria-expanded="' + (isOpen ? 'true' : 'false') + '">' +
+          (isOpen ? '收起' : (isTranslation ? '对照参考译文' : '查看答案与解析')) +
+        '</button>' +
+      '</div>' +
+      renderExplanationV2(question, isTranslation, isOpen) +
+      renderNoteV2(question) +
+    '</article>';
+  }
+
+  function renderPartBLeadV2(section) {
+    var stem = section.questions && section.questions[0] ? section.questions[0].stem : '';
+    if (!stem) return '';
+    return '<section class="ez-partb-lead">' +
+      '<span class="ez-card-kicker">作答顺序</span>' +
+      '<strong>' + escapeHtml(normalizeExamText(stem)) + '</strong>' +
+      '<p>下方每个空位只显示一次选项，避免把同一题干重复五遍。</p>' +
+    '</section>';
+  }
+
+  function renderWritingV2(section) {
+    var writing = section.writing || {};
+    var sample = writing.sampleEssay || [];
+    var draftKey = 'writing_' + curYear + '_' + section.id;
+    var draft = zhentiDrafts[draftKey] || '';
+    return '<article class="ez-writing-workspace">' +
+      '<section class="ez-writing-task">' +
+        '<div class="ez-writing-section-title"><span class="ez-card-kicker">题目要求</span><h3>先审题，再动笔</h3></div>' +
+        '<div class="ez-writing-prompt">' + safeRichHtml(writing.prompt || '暂无题目要求') + '</div>' +
+        (writing.imageUrl ? '<figure class="ez-writing-img-container"><img class="ez-writing-img" src="' + escapeHtml(writing.imageUrl) + '" alt="' + curYear + ' 年写作真题配图" /><figcaption class="ez-writing-img-hint">点击图片可查看大图</figcaption></figure>' : '') +
+      '</section>' +
+      '<section class="ez-writing-draft">' +
+        '<div class="ez-writing-section-title"><span class="ez-card-kicker">我的草稿</span><h3>在这里完成整篇作文</h3></div>' +
+        '<textarea class="ez-writing-textarea" data-draft-id="' + escapeHtml(draftKey) + '" data-count-target="writingCount_' + section.id + '" placeholder="建议先写提纲，再完成正文；内容会自动保存在本机……">' + escapeHtml(draft) + '</textarea>' +
+        '<div class="ez-writing-draft-footer"><span>自动保存</span><strong id="writingCount_' + section.id + '">' + countEnglishWords(draft) + ' words</strong></div>' +
+      '</section>' +
+      (sample.length ? '<details class="ez-writing-reference"><summary>查看参考范文与译文</summary><div class="ez-writing-sample">' +
+        sample.map(function (paragraph, index) {
+          return '<section class="ez-para"><span class="ez-para-number" aria-hidden="true">P' + (index + 1) + '</span><div class="ez-para-copy">' +
+            '<div class="ez-para-en">' + renderClickableWords(paragraph.english) + '</div>' +
+            (bilingualMode && paragraph.chinese ? '<div class="ez-para-zh">' + escapeHtml(paragraph.chinese) + '</div>' : '') +
+          '</div></section>';
+        }).join('') + '</div></details>' : '') +
+      (writing.analysis ? '<details class="ez-writing-reference"><summary>查看范文结构解析与写作技巧</summary><div class="ez-exp-box ez-writing-analysis">' + safeRichHtml(writing.analysis) + '</div></details>' : '') +
+    '</article>';
+  }
+
+  function renderQuestionRailV2(questions) {
+    if (!questions.length) return '';
+    var counts = { proficient: 0, familiar: 0, vague: 0, rusty: 0, wrong: 0, unmarked: 0 };
+    questions.forEach(function (question) {
+      var status = zhentiStatuses[question.id];
+      if (status && counts[status] !== undefined) counts[status] += 1;
+      else counts.unmarked += 1;
+    });
+    var nav = questions.map(function (question, index) {
+      var status = zhentiStatuses[question.id] || 'unmarked';
+      var active = activeQuestionId === question.id || (!activeQuestionId && index === 0);
+      return '<button class="ez-qnav-btn status-' + status + (active ? ' is-active' : '') + '" data-q-id="' + escapeHtml(question.id) + '" type="button">' + escapeHtml(question.num || index + 1) + '</button>';
+    }).join('');
+    return '<aside class="ez-sidebar-rail">' +
+      '<div class="ez-qnav-card">' +
+        '<div class="ez-qnav-title"><span>答题进度</span><span>' + questions.length + ' 题</span></div>' +
+        '<div class="ez-qnav-stats ez-qnav-stats--all">' +
+          '<span><i class="ez-stat-dot proficient"></i>熟练 <strong>' + counts.proficient + '</strong></span>' +
+          '<span><i class="ez-stat-dot familiar"></i>较熟 <strong>' + counts.familiar + '</strong></span>' +
+          '<span><i class="ez-stat-dot vague"></i>模糊 <strong>' + counts.vague + '</strong></span>' +
+          '<span><i class="ez-stat-dot rusty"></i>困难 <strong>' + counts.rusty + '</strong></span>' +
+          '<span><i class="ez-stat-dot wrong"></i>不会 <strong>' + counts.wrong + '</strong></span>' +
+          '<span><i class="ez-stat-dot unmarked"></i>未做 <strong>' + counts.unmarked + '</strong></span>' +
+        '</div>' +
+        '<div class="ez-qnav-grid">' + nav + '</div>' +
+      '</div>' +
+    '</aside>';
+  }
+
+  function renderZhentiModuleV2() {
+    var manifest = getManifest();
+    var section = getCurrentSection();
+    var yearData = getCurrentYearData();
+    if (!manifest.length) return '<div class="section-empty">暂无真题数据，请检查英语真题数据文件是否加载。</div>';
+    var sections = yearData && yearData.sections ? yearData.sections : [];
+    var toolbar = renderSectionToolbarV2(manifest, sections, section);
+    if (!section) return toolbar + '<div class="section-empty">未找到该年份真题内容。</div>';
+
+    var questions = section.questions || [];
+    var typeClass = String(section.type || 'reading').replace(/[^a-z0-9_-]/gi, '');
+    var main = '<main class="ez-main-content">' + renderSectionHeroV2(section, questions);
+    if (section.type === 'writingA' || section.type === 'writingB') {
+      main += renderWritingV2(section);
+    } else {
+      main += renderPassageV2(section);
+      if (section.type === 'partB') main += renderPartBLeadV2(section);
+      if (questions.length) {
+        main += '<section class="ez-question-list ez-question-list--' + typeClass + '">' +
+          questions.map(function (question, index) { return renderQuestionV2(question, index, section); }).join('') +
+        '</section>';
+      }
+    }
+    main += '</main>';
+    return toolbar + '<div class="ez-layout ez-layout--' + typeClass + (questions.length ? '' : ' ez-layout--single') + '">' + main + renderQuestionRailV2(questions) + '</div>';
   }
 
   // =========================================================================
@@ -1709,6 +2035,23 @@
           render();
         }
       }
+    }
+  });
+
+  // 翻译与写作草稿自动保存；仅更新计数，不整页重绘，避免输入光标跳动。
+  panel.addEventListener('input', function (event) {
+    var draftInput = event.target.closest('[data-draft-id]');
+    if (!draftInput) return;
+    var draftId = draftInput.dataset.draftId;
+    if (!draftId) return;
+    zhentiDrafts[draftId] = draftInput.value;
+    saveStorageJson(STORAGE_ZHENTI_DRAFTS_KEY, zhentiDrafts);
+    var countTarget = draftInput.dataset.countTarget;
+    var countEl = countTarget ? document.getElementById(countTarget) : null;
+    if (countEl) {
+      countEl.textContent = draftId.indexOf('writing_') === 0
+        ? countEnglishWords(draftInput.value) + ' words'
+        : draftInput.value.length + ' 字';
     }
   });
 

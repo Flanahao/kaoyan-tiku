@@ -58,6 +58,9 @@ def clean_tokens(tokens, is_cloze=False):
     text = re.sub(r'\s+([,.:;?!%\'\"])', r'\1', text)
     text = re.sub(r'([\'\"])\s+', r'\1', text)
     text = re.sub(r'\s+(___\(\d{1,2}\)___)\s+', r' \1 ', text)
+    # 来源 token 偶尔会在完整句末重复附加问号，生成 ".?"、"!?" 或 "??"。
+    # 这些不是原文标点，保留会破坏阅读排版与朗读停顿。
+    text = text.replace('.?', '.').replace('!?', '!').replace('??', '?')
     return text.strip()
 
 def parse_section(data):
