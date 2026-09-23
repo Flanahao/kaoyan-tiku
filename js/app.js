@@ -1835,8 +1835,12 @@
 
     function toggleDashboard() {
       if (getWorkbenchView() === 'dashboard') {
-        setWorkbenchView('practice');
-        renderTitle();
+        if (curSubjectId === 'english' && typeof window.openEnglishVocabulary === 'function') {
+          window.openEnglishVocabulary();
+        } else {
+          setWorkbenchView('practice');
+          renderTitle();
+        }
         return;
       }
 
@@ -5696,7 +5700,8 @@ ${cardsHTML}
 
         var panelKeys = [
           'h',
-          'escape'
+          'escape',
+          'g'
         ];
 
         if (
@@ -6015,6 +6020,13 @@ ${cardsHTML}
       renderSolDefaultBtn(); updateSolutionUI();
     }
 
+    // 每次重新加载都从“全局进度”主页开始，但不改写用户的科目、题号和作答进度。
+    function openStartupDashboard() {
+      setWorkbenchView('dashboard');
+      renderDashboardOverview();
+      setPanelTitle('全局学习进度');
+    }
+
     // ===== 每日推进转盘 Bridge (数学 + 专业课) =====
     const DAILY_STUDY_WHEEL_BOOKS = {
       shu1: [
@@ -6329,6 +6341,7 @@ ${cardsHTML}
         await migrateHistoricalUserData(); // 兼容旧版本本地键与历史命名空间安全迁移
         loadAnnotations();
         await initAppSession();
+        openStartupDashboard();
 
         // 首次使用时，题库初始化完成后再引导选择科目
         if (!localStorage.getItem(subjectStorageKey())) {

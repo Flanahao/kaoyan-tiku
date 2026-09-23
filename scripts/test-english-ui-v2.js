@@ -8,6 +8,8 @@ const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const englishSource = read('js/english.js');
 const cssSource = read('css/styles.css');
+const appSource = read('js/app.js');
+const htmlSource = read('index.html');
 const crawlerSource = read('scripts/crawl_english_papers.py');
 const dataSource = read('data/english/english-zhenti-data.js');
 
@@ -43,12 +45,20 @@ assert.match(rendered, /<\/span> <span/, '相邻英文单词的 span 之间必�
 assert.equal(rendered.replace(/<[^>]+>/g, ''), 'For thousands of years, donkeys mattered.');
 
 assert.match(cssSource, /英语真题刷题工作台 V2/);
-assert.match(cssSource, /\.ez-question-list--cloze\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2/);
+assert.match(cssSource, /\.app-layout\.english-mode \.workbench-body\s*\{[\s\S]*?max-width:\s*none;/, '英语工作台必须解除 1440px 外层限宽');
+assert.match(cssSource, /\.app-layout\.english-mode \.main-content\s*\{[\s\S]*?max-width:\s*none;/, '英语主内容必须解除 1140px 限宽');
+assert.match(cssSource, /\.ez-question-list--cloze\s*\{[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)/, '完形每题必须独占一整行');
 assert.match(cssSource, /\.ez-options--partb/);
 assert.match(cssSource, /\.ez-answer-textarea/);
 assert.match(cssSource, /\.ez-writing-workspace/);
 assert.match(cssSource, /\.ez-word\s*\{[\s\S]*?display:\s*inline;[\s\S]*?margin:\s*0;/);
 assert.match(cssSource, /@media \(max-width: 720px\)/);
+
+assert.match(appSource, /function openStartupDashboard\(\) \{[\s\S]*?setWorkbenchView\('dashboard'\);[\s\S]*?renderDashboardOverview\(\);[\s\S]*?setPanelTitle\('全局学习进度'\);/, '刷新后必须打开全局进度主页');
+assert.match(appSource, /await initAppSession\(\);\s*openStartupDashboard\(\);/, '主页切换必须发生在题库状态初始化完成之后');
+assert.match(appSource, /getWorkbenchView\(\) === 'dashboard'[\s\S]*?curSubjectId === 'english'[\s\S]*?window\.openEnglishVocabulary\(\)/, '从主页返回时，英语科目必须回到英语工作台而不是空白刷题页');
+assert.match(htmlSource, /css\/styles\.css\?v=20260923c/, 'CSS 版本号必须更新，防止浏览器继续使用旧布局缓存');
+assert.match(htmlSource, /js\/app\.js\?v=20260923c/, 'app.js 版本号必须更新，确保刷新首页逻辑生效');
 
 assert.match(crawlerSource, /replace\('\.\?', '\.'\)\.replace\('!\?', '!'\)\.replace\('\?\?', '\?'\)/, '爬虫必须清理重复句末标点');
 

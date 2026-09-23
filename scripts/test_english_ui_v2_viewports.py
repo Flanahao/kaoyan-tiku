@@ -14,6 +14,7 @@ async def main():
 
     url = "file:///" + os.path.abspath("index.html").replace("\\", "/")
     viewports = [
+        ("desktop_1920", 1920, 1080),
         ("desktop_1440", 1440, 900),
         ("laptop_1024", 1024, 768),
         ("tablet_768", 768, 1024),
@@ -31,6 +32,14 @@ async def main():
             await page.wait_for_timeout(200)
 
             # Switch to English
+            subj_visible = await page.locator("#subjectOverlay").is_visible()
+            if not subj_visible:
+                await page.keyboard.press("KeyG")
+                await page.wait_for_timeout(200)
+                if not await page.locator("#subjectOverlay").is_visible():
+                    await page.click("#btnSwitchSubject")
+                    await page.wait_for_timeout(200)
+
             english_opt = page.locator(".subject-option:has-text('考研英语')").first
             await english_opt.click()
             await page.wait_for_timeout(500)
@@ -50,7 +59,14 @@ async def main():
                 assert "Advancesin" not in para_text, "Cloze text must not stick words together"
                 assert ".?" not in para_text, "No .? in cloze text"
 
-                if width == 1440:
+                if width == 1920:
+                    wb_w = await page.locator(".app-layout.english-mode .workbench-body").evaluate("el => el.getBoundingClientRect().width")
+                    assert wb_w > 1500, f"English workbench width should utilize wide screen, got {wb_w}px"
+                    cloze_cols = await page.locator(".ez-question-list--cloze").evaluate("el => window.getComputedStyle(el).gridTemplateColumns")
+                    print(f"  - 1920 cloze cols: {cloze_cols}, workbench width: {wb_w}px")
+                    await page.screenshot(path="screenshots/v3_cloze_desktop_1920.png")
+                    print("  - Saved screenshots/v3_cloze_desktop_1920.png")
+                elif width == 1440:
                     await page.screenshot(path="screenshots/v2_cloze_desktop_1440.png")
                     print("  - Saved screenshots/v2_cloze_desktop_1440.png")
                 elif width == 390:
@@ -67,7 +83,10 @@ async def main():
                 assert "Forthousands" not in read_para, "No sticky words in reading"
                 assert ".?" not in read_para, "No .? in reading"
 
-                if width == 1440:
+                if width == 1920:
+                    await page.screenshot(path="screenshots/v3_reading_desktop_1920.png")
+                    print("  - Saved screenshots/v3_reading_desktop_1920.png")
+                elif width == 1440:
                     await page.screenshot(path="screenshots/v2_reading_desktop_1440.png")
                     print("  - Saved screenshots/v2_reading_desktop_1440.png")
 
@@ -101,6 +120,20 @@ async def main():
                 # Test reload persistence
                 await page.reload(wait_until="networkidle")
                 await page.wait_for_timeout(300)
+                dashboard_visible = await page.locator("#dashboardPanel").is_visible()
+                assert dashboard_visible, "Reload must return to the global progress dashboard"
+
+                # 回到英语翻译工作区后再验证草稿；刷新只改变起始视图，不清空作答数据。
+                # 验证 toggleDashboard() 快捷键 'v' 从全局进度直接返回英语工作台联动
+                await page.keyboard.press("KeyV")
+                await page.wait_for_timeout(300)
+                if await page.locator("#dashboardPanel").is_visible():
+                    await page.click("#btnDashboard")
+                    await page.wait_for_timeout(300)
+
+                trans_pill_after_reload = page.locator(".ez-pill").filter(has_text="翻译").first
+                await trans_pill_after_reload.click()
+                await page.wait_for_timeout(200)
                 val_after_reload = await page.locator(".ez-answer-textarea").first.input_value()
                 assert val_after_reload == test_trans_str, "Translation draft must persist after reload"
 

@@ -7839,6 +7839,30 @@ body {
   --ez-card: rgba(255, 255, 255, .97);
 }
 
+/* 英语工作台占满侧栏之外的可用空间；正文仍由 74ch 控制可读行长。 */
+.app-layout.english-mode .workbench-body {
+  max-width: none;
+  margin: 0;
+  padding-inline: clamp(16px, 2vw, 36px);
+}
+
+.app-layout.english-mode .main-content {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.app-layout.english-mode .main-area {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  align-items: stretch;
+}
+
+.app-layout.english-mode .english-panel {
+  width: 100%;
+}
+
 .english-top-tabs {
   max-width: 100%;
   box-sizing: border-box;
@@ -8144,7 +8168,7 @@ body {
 }
 
 .ez-question-list--cloze {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .ez-question-card {
