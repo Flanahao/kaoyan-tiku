@@ -5945,3 +5945,1464 @@ body {
     transition-duration: .2s !important;
   }
 }
+
+/* ==========================================================================
+   考研英语一真题模块 (Kaoyan English 1 True Exam Papers)
+   ========================================================================== */
+
+/* 顶部模块大Tab切换 */
+.english-top-tabs {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 2px solid rgba(226, 232, 240, 0.8);
+  padding-bottom: 12px;
+}
+
+.english-top-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.english-top-tab:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+
+.english-top-tab.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* 真题工具栏 */
+.ez-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.ez-toolbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ez-selectors-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ez-select-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ez-select-label {
+  font-size: 13px;
+  font-weight: 650;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.ez-year-select {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.ez-year-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.ez-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ez-btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ez-btn-action:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.ez-btn-action.active {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #6ee7b7;
+}
+
+.ez-btn-back {
+  background: #f1f5f9;
+  color: #475569;
+}
+.ez-btn-back:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* 模块分段药丸按钮 (Section Pills) */
+.ez-pills-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.ez-pill {
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.ez-pill:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.ez-pill.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+/* 工作台主体 2 栏布局 */
+.ez-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 20px;
+  align-items: start;
+}
+
+.ez-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 文章精读卡片 */
+.ez-passage-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.ez-passage-header {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.ez-passage-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.ez-passage-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+
+.ez-passage-beform {
+  font-style: italic;
+}
+
+.ez-para {
+  margin-bottom: 18px;
+  line-height: 1.85;
+}
+
+.ez-para-en {
+  font-size: 15.5px;
+  color: #1e293b;
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif, system-ui;
+  letter-spacing: 0.01em;
+}
+
+.ez-para-zh {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: rgba(241, 245, 249, 0.75);
+  border-left: 3px solid #3b82f6;
+  border-radius: 6px;
+  font-size: 13.5px;
+  color: #334155;
+  line-height: 1.7;
+}
+
+/* 重点长难句剖析卡片 */
+.ez-keysentences-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.ez-keysentences-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ez-ks-item {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.ez-ks-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.ez-ks-en {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.ez-ks-zh {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* 写作题目卡片 */
+.ez-writing-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.ez-writing-prompt {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #1e293b;
+}
+
+.ez-writing-img {
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 12px auto;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ez-writing-sample {
+  margin-top: 20px;
+  border-top: 2px solid #e2e8f0;
+  padding-top: 18px;
+}
+
+/* 题目卡片 */
+.ez-question-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s ease;
+}
+
+.ez-question-card.is-active {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.ez-question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 14px;
+}
+
+.ez-q-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ez-q-stem {
+  font-size: 15.5px;
+  font-weight: 650;
+  color: #0f172a;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+/* 选项列表 */
+.ez-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.ez-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.ez-option:hover {
+  background: #f8fafc;
+  border-color: #93c5fd;
+}
+
+.ez-option.selected {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.ez-option.is-correct {
+  border-color: #10b981;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.ez-option.is-wrong {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.ez-opt-key {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.ez-option.selected .ez-opt-key {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.ez-option.is-correct .ez-opt-key {
+  background: #059669;
+  color: #ffffff;
+  border-color: #059669;
+}
+
+.ez-option.is-wrong .ez-opt-key {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+.ez-opt-text {
+  font-size: 14.5px;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* 掌握度状态条与解析按钮 */
+.ez-q-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.ez-mastery-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ez-btn-mastery {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: #475569;
+}
+
+.ez-btn-mastery:hover {
+  background: #f8fafc;
+}
+
+.ez-btn-mastery.proficient.active {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+.ez-btn-mastery.familiar.active {
+  background: #ccfbf1;
+  color: #0f766e;
+  border-color: #99f6e4;
+}
+
+.ez-btn-mastery.vague.active {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.ez-btn-mastery.rusty.active {
+  background: #ffedd5;
+  color: #c2410c;
+  border-color: #fed7aa;
+}
+
+.ez-btn-mastery.wrong.active {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+.ez-btn-exp-toggle {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #3b82f6;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ez-btn-exp-toggle:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+
+.ez-btn-exp-toggle.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* 解析内容展开框 */
+.ez-exp-box {
+  margin-top: 14px;
+  background: #f8fafc;
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.ez-exp-answer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 10px;
+}
+
+/* 笔记卡片 */
+.ez-note-section {
+  margin-top: 14px;
+  background: #fdfdfd;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.ez-note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ez-note-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.ez-note-btn {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ez-note-btn:hover {
+  text-decoration: underline;
+}
+
+.ez-note-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 60px;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.ez-note-text {
+  font-size: 13px;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* 右侧边栏 Q-Nav 与统计 Rail */
+.ez-sidebar-rail {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ez-qnav-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.ez-qnav-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ez-qnav-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.ez-qnav-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ez-stat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.ez-stat-dot.proficient { background: #10b981; }
+.ez-stat-dot.vague { background: #f59e0b; }
+.ez-stat-dot.wrong { background: #ef4444; }
+.ez-stat-dot.unmarked { background: #cbd5e1; }
+
+.ez-qnav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.ez-qnav-btn {
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ez-qnav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.ez-qnav-btn.status-proficient {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+.ez-qnav-btn.status-familiar {
+  background: #ccfbf1;
+  color: #0f766e;
+  border-color: #99f6e4;
+}
+
+.ez-qnav-btn.status-vague {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.ez-qnav-btn.status-rusty {
+  background: #ffedd5;
+  color: #c2410c;
+  border-color: #fed7aa;
+}
+
+.ez-qnav-btn.status-wrong {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+.ez-qnav-btn.status-unmarked {
+  background: #f8fafc;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+
+.ez-qnav-btn.is-active {
+  box-shadow: 0 0 0 2px #2563eb;
+  font-weight: 800;
+}
+
+@media (max-width: 960px) {
+  .ez-layout {
+    grid-template-columns: 1fr;
+  }
+  .ez-sidebar-rail {
+    position: static;
+  }
+}
+
+/* =========================================================================
+   考研英语：单词点击查词浮窗 (Word Popover) 与生词卡交互
+   ========================================================================= */
+.ez-word {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1px 2px;
+  margin: 0 -1px;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.ez-word:hover {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ez-word.is-active {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+  text-decoration: none !important;
+}
+
+/* 查词浮窗容器 */
+.ez-word-popover {
+  position: fixed;
+  z-index: 99999;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.18), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+  padding: 16px;
+  font-family: inherit;
+  color: #1e293b;
+  animation: ezPopoverFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ezPopoverFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.ez-wp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.ez-wp-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ez-wp-word {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.ez-wp-phonetic {
+  font-size: 13px;
+  color: #64748b;
+  font-family: Consolas, Monaco, monospace;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ez-wp-btn-audio {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #3b82f6;
+  transition: transform 0.1s ease;
+}
+
+.ez-wp-btn-audio:hover {
+  transform: scale(1.15);
+}
+
+.ez-wp-btn-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #94a3b8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.ez-wp-btn-close:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+.ez-wp-body {
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.ez-wp-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 13px;
+  padding: 12px 0;
+}
+
+.ez-wp-definition {
+  color: #334155;
+}
+
+.ez-wp-definition p {
+  margin: 4px 0;
+}
+
+.ez-wp-definition .pos-badge {
+  display: inline-block;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 11.5px;
+  margin-right: 6px;
+}
+
+.ez-wp-sentence {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+  font-size: 12.5px;
+}
+
+.ez-wp-sentence-title {
+  font-weight: 700;
+  color: #475569;
+  font-size: 11.5px;
+  margin-bottom: 4px;
+}
+
+.ez-wp-sentence-text {
+  color: #334155;
+  font-style: italic;
+}
+
+.ez-wp-sentence-text mark {
+  background: #fef08a;
+  color: #854d0e;
+  font-weight: 700;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.ez-wp-custom-input-box {
+  margin-top: 8px;
+}
+
+.ez-wp-custom-input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.ez-wp-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ez-wp-btn-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.25);
+}
+
+.ez-wp-btn-add:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+
+.ez-wp-btn-add.is-added {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  box-shadow: none;
+}
+
+/* 写作题目图片容器优化 */
+.ez-writing-img-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 14px 0 18px 0;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.ez-writing-img-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.ez-writing-img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.ez-writing-img:hover {
+  transform: scale(1.01);
+}
+
+.ez-writing-img-hint {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* 轻量级 Toast 提示 */
+.ez-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 500;
+  z-index: 100000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ez-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== 考研英语：顶部主 Tab 路由 ===== */
+.english-top-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+}
+
+.english-top-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.english-top-tab:hover {
+  color: #1e293b;
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.english-top-tab.active {
+  color: #2563eb;
+  background: #eff6ff;
+  border-color: #93c5fd;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+}
+
+.english-top-tab .tab-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* 单词浮窗底部跳转按钮 */
+.ez-wp-btn-link {
+  background: none;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ez-wp-btn-link:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+/* ===== 考研英语：真题生词本 (Zhenti Vocab) 专属组件样式 ===== */
+.zv-toolbar {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zv-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.zv-year-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zv-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.zv-select {
+  padding: 6px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.zv-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.zv-search-wrap {
+  flex: 1;
+  max-width: 360px;
+}
+
+.zv-search-input {
+  width: 100%;
+  padding: 7px 12px;
+  font-size: 13.5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.zv-search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.zv-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.zv-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.zv-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.zv-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.zv-card-word-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zv-word {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.zv-phonetic {
+  font-size: 13px;
+  color: #64748b;
+  font-family: Consolas, Monaco, monospace;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.zv-btn-audio {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #3b82f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: transform 0.15s ease;
+}
+
+.zv-btn-audio:hover {
+  transform: scale(1.15);
+}
+
+.zv-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zv-badge {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.zv-badge-year {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #dbeafe;
+}
+
+.zv-badge-src {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zv-btn-tool-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.zv-btn-tool-icon:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.zv-btn-tool-icon.text-danger:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.zv-card-body {
+  margin-bottom: 12px;
+}
+
+.zv-meaning-box {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #1e293b;
+  line-height: 1.6;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.zv-meaning-box.blurred {
+  cursor: pointer;
+}
+
+.zv-meaning-box.blurred .zv-meaning-text {
+  filter: blur(5px);
+  user-select: none;
+}
+
+.zv-blur-tip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.zv-sentence-box {
+  margin-top: 10px;
+  background: #fafaf9;
+  border-left: 3px solid #3b82f6;
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.zv-sentence-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.zv-sentence-text mark {
+  background: #fef08a;
+  color: #854d0e;
+  font-weight: 700;
+  padding: 0 3px;
+  border-radius: 2px;
+}
+
+.zv-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 10px;
+}
+
+.zv-mastery-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zv-btn-mastery {
+  padding: 4px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.zv-btn-mastery:hover {
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.zv-btn-mastery.proficient.active {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
+}
+
+.zv-btn-mastery.vague.active {
+  background: #fffbeb;
+  border-color: #f59e0b;
+  color: #b45309;
+}
+
+.zv-btn-mastery.wrong.active {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+/* 空状态卡片 */
+.zv-empty-box {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.zv-empty-icon {
+  font-size: 40px;
+}
+
+.zv-empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.zv-empty-desc {
+  font-size: 14px;
+  color: #64748b;
+  max-width: 480px;
+  line-height: 1.6;
+}
+

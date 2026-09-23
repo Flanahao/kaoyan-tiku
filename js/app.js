@@ -1407,6 +1407,29 @@
         console.warn('[stats] getChStats missing explicit subject parameter, falling back to curSubject', ch);
         subject = curSubject;
       }
+      if (subject && subject.id === 'english') {
+        var enKey = userStoragePrefix() + 'kaoyan_english_zhenti_status_v1';
+        var enStatuses = {};
+        try { enStatuses = JSON.parse(safeStorageGet(enKey) || '{}'); } catch (e) { enStatuses = {}; }
+        var qids = ch.qids || [];
+        var lv5 = 0, lv4 = 0, lv3 = 0, lv2 = 0, lv1 = 0;
+        var len = ch.ownTotal || ch.total || qids.length;
+        qids.forEach(function (qid) {
+          var s = enStatuses[qid];
+          if (s === 'proficient') lv5++;
+          else if (s === 'familiar') lv4++;
+          else if (s === 'vague') lv3++;
+          else if (s === 'rusty') lv2++;
+          else if (s === 'wrong') lv1++;
+        });
+        var done = lv5 + lv4 + lv3 + lv2 + lv1;
+        return {
+          lv5: lv5, lv4: lv4, lv3: lv3, lv2: lv2, lv1: lv1,
+          proficient: lv5 + lv4, vague: lv3 + lv2, wrong: lv1,
+          unmarked: Math.max(0, len - done), done: done,
+          pct: len > 0 ? Math.round(done / len * 100) : 0
+        };
+      }
       var key = userStoragePrefix() + ch.id + '_' + subject.storageSuffix + '_status';
       var statusObj;
       try { statusObj = JSON.parse(safeStorageGet(key) || '{}'); } catch (e) { statusObj = {}; }
@@ -2489,6 +2512,10 @@
 
     // 从总进度卡片进入对应书籍时，先切换数据源，再展示该书的章节明细。
     function openDashboardBook(subjectId, wb) {
+      if (subjectId === 'english') {
+        switchSubject('english');
+        return;
+      }
       var bookSub =
         SUBJECTS.find(function (s) {
           return s.id === subjectId;
@@ -2639,7 +2666,7 @@
         list.innerHTML = '';
         SUBJECTS.forEach(function (s) {
           const btn = document.createElement('button');
-          btn.className = 'subject-option';
+          btn.className = 'subject-option' + (s.id === curSubjectId ? ' active' : '');
           btn.dataset.subject = s.id;
           btn.innerHTML = (s.name || s.id) + '<span class="subj-desc">' + (s.desc || '') + '</span>';
           btn.addEventListener('click', function () { pickSubject(s.id); });
@@ -2748,6 +2775,22 @@
       curSubjectId = subjectId;
       curSubject = subj;
       CHAPTERS = subj.chapters;
+      localStorage.setItem(subjectStorageKey(), subjectId);
+      closeSubjectPicker();
+
+      var crumbEl = document.getElementById('headerCurrentSection');
+      if (crumbEl) {
+        crumbEl.textContent = (subjectId === 'english') ? '考研英语' : '刷题工作台';
+      }
+
+      if (subjectId === 'english') {
+        setWorkbenchView('english');
+        if (typeof window.openEnglishVocabulary === 'function') {
+          window.openEnglishVocabulary();
+        }
+        return;
+      }
+
       migrateAllSm2();   // 切科目时也触发迁移（每个科目只跑一次）
       var resume = loadResume(subjectId);
       if (resume) {
@@ -2758,7 +2801,6 @@
         current = 0;
       }
       // 小题模式（F）是全局开关，切科目不重置、跨科目保持
-      localStorage.setItem(subjectStorageKey(), subjectId);
       setWorkbenchView('practice');
       setPanelTitle('');
       wrongBookWb = null; // 无条件重置错题本书籍筛选（书籍列表按科目不同，防跨科目残留）
@@ -2774,7 +2816,6 @@
       switchTo(current);
       updateFilterCounts();
       setPracticeSidebarVisible(true);
-      closeSubjectPicker();
     }
     function pickSubject(id) {
       const s = SUBJECTS.find(x => x.id === id);
@@ -5931,6 +5972,16 @@ ${cardsHTML}
       curSubjectId = (savedSubject && SUBJECTS.some(function (s) { return s.id === savedSubject; })) ? savedSubject : 'shu1';
       curSubject = SUBJECTS.find(function (s) { return s.id === curSubjectId; });
       CHAPTERS = curSubject.chapters;
+
+      if (curSubjectId === 'english') {
+        var crumbEl = document.getElementById('headerCurrentSection');
+        if (crumbEl) crumbEl.textContent = '考研英语';
+        setWorkbenchView('english');
+        if (typeof window.openEnglishVocabulary === 'function') {
+          window.openEnglishVocabulary();
+        }
+        return;
+      }
 
       migrateAllSm2();
 

@@ -359,6 +359,93 @@
       chapters: PROFESSIONAL_CHAPTERS
     });
 
+    // ===== 科目（subject）数据模型：考研英语（一）历年真题 (1998-2026) =====
+    var englishManifest = (typeof window !== 'undefined' && Array.isArray(window.ENGLISH_ZHENTI_MANIFEST))
+      ? window.ENGLISH_ZHENTI_MANIFEST
+      : [];
+    var englishPapers = (typeof window !== 'undefined' && window.ENGLISH_ZHENTI_PAPERS)
+      ? window.ENGLISH_ZHENTI_PAPERS
+      : {};
+
+    var ENGLISH_ZHENTI_CHAPTERS = [];
+    if (englishManifest.length > 0) {
+      // 按年份升序排序 (1998 -> 2026)，环图由内向外展开
+      var sortedManifest = englishManifest.slice().sort(function (a, b) {
+        return parseInt(a.year, 10) - parseInt(b.year, 10);
+      });
+
+      ENGLISH_ZHENTI_CHAPTERS = sortedManifest.map(function (m, idx) {
+        var year = m.year;
+        var paper = englishPapers[year];
+        var qids = [];
+        var totalQ = 0;
+
+        if (paper && Array.isArray(paper.sections)) {
+          paper.sections.forEach(function (sec) {
+            if (Array.isArray(sec.questions)) {
+              sec.questions.forEach(function (q) {
+                if (q && q.id) qids.push(q.id);
+              });
+            }
+          });
+        }
+        if (qids.length === 0 && Array.isArray(m.sections)) {
+          m.sections.forEach(function (sec) {
+            totalQ += (sec.questionCount || 0);
+          });
+          for (var i = 1; i <= totalQ; i++) {
+            qids.push(year + '_q' + i);
+          }
+        }
+        totalQ = qids.length || totalQ;
+
+        var labels = [];
+        for (var l = 1; l <= totalQ; l++) {
+          labels.push('题' + l);
+        }
+
+        return {
+          id: 'en_zhenti_' + year,
+          number: idx + 1,
+          name: year + '年 英语（一）历年真题',
+          short: year + '年真题',
+          total: totalQ,
+          cols: 5,
+          wb: '历年真题',
+          subj: '英语一',
+          year: year,
+          qids: qids,
+          labels: labels
+        };
+      });
+    }
+
+    if (typeof window !== 'undefined') {
+      window.ENGLISH_ZHENTI_CHAPTERS = ENGLISH_ZHENTI_CHAPTERS;
+    }
+
+    SUBJECTS.push({
+      id: 'english',
+      name: '考研英语',
+      desc: '英语（一）历年真题 (1998-2026) · 真题生词本 · 核心词汇',
+      storageSuffix: 'en',
+      analyticsGroup: 'english',
+      initChapterId: ENGLISH_ZHENTI_CHAPTERS.length > 0 ? ENGLISH_ZHENTI_CHAPTERS[ENGLISH_ZHENTI_CHAPTERS.length - 1].id : 'en_zhenti_2026',
+      navCols: 5,
+      partOrder: ['真题', '生词', '词汇'],
+      wbOrder: [
+        { wb: '历年真题', label: '历年真题' }
+      ],
+      subjOrder: ['英语一'],
+      classifyLabel: function () {
+        return '真题';
+      },
+      getImgPath: function () {
+        return '';
+      },
+      chapters: ENGLISH_ZHENTI_CHAPTERS
+    });
+
     if (typeof window !== 'undefined') {
       window.SUBJECTS = SUBJECTS;
     }

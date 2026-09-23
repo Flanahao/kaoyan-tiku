@@ -383,7 +383,8 @@
 
     var seen = {
       math: new Set(),
-      major: new Set()
+      major: new Set(),
+      english: new Set()
     };
 
     events.forEach(function (event) {
@@ -401,21 +402,23 @@
 
       var group = resolveEventGroup(event);
       if (!seen[group]) return;
-      if (event.idx == null) return;
+      var itemKey = event.itemKey != null ? event.itemKey : event.idx;
+      if (itemKey == null) return;
 
       var identity =
         String(event.subjectId || '') +
         '::' +
         String(event.chapterId || '') +
         '::' +
-        String(event.idx);
+        String(itemKey);
 
       seen[group].add(identity);
     });
 
     return {
       math: seen.math.size,
-      major: seen.major.size
+      major: seen.major.size,
+      english: seen.english.size
     };
   }
 
@@ -493,7 +496,8 @@
     var buckets = {
       all: emptyTotals(),
       math: emptyTotals(),
-      major: emptyTotals()
+      major: emptyTotals(),
+      english: emptyTotals()
     };
 
     var subjects = Array.isArray(window.SUBJECTS)
@@ -509,6 +513,37 @@
       var chapters = Array.isArray(subject.chapters)
         ? subject.chapters
         : [];
+
+      // 考研英语真题章节：读取全局真题状态表并按题 ID 统计
+      if (subject.id === 'english' || group === 'english') {
+        var enKey = prefix + 'kaoyan_english_zhenti_status_v1';
+        var enMap = readJSON(enKey, {});
+        chapters.forEach(function (chapter) {
+          if (!chapter) return;
+          var qids = chapter.qids || [];
+          var total = Number(chapter.ownTotal || chapter.total || qids.length);
+          if (!Number.isFinite(total) || total <= 0) return;
+
+          var targets = [buckets.all];
+          if (group && buckets[group]) {
+            targets.push(buckets[group]);
+          } else if (buckets.english) {
+            targets.push(buckets.english);
+          }
+
+          targets.forEach(function (target) {
+            target.total += total;
+          });
+
+          qids.forEach(function (qid) {
+            var status = enMap[qid];
+            targets.forEach(function (target) {
+              applyStatus(target, status);
+            });
+          });
+        });
+        return;
+      }
 
       chapters.forEach(function (chapter) {
         if (!chapter) return;
@@ -554,6 +589,7 @@
     var result = emptyTotals();
     var prefix = getPrefix();
 
+    // 1. 核心词汇
     var english = readJSON(
       prefix + 'kaoyan_english_vocabulary_v2',
       { items: [] }
@@ -564,9 +600,24 @@
         ? english.items
         : [];
 
-    result.total = words.length;
-
     words.forEach(function (word) {
+      result.total += 1;
+      applyStatus(result, word && word.status);
+    });
+
+    // 2. 真题生词本
+    var zhentiVocab = readJSON(
+      prefix + 'kaoyan_english_zhenti_vocab_v1',
+      { items: [] }
+    );
+
+    var zWords =
+      zhentiVocab && Array.isArray(zhentiVocab.items)
+        ? zhentiVocab.items
+        : [];
+
+    zWords.forEach(function (word) {
+      result.total += 1;
       applyStatus(result, word && word.status);
     });
 
@@ -575,10 +626,14 @@
 
   function getSubjectTotals() {
     var questionBuckets = collectQuestionBuckets();
-    var english = collectEnglishTotals();
+    var englishVocab = collectEnglishTotals();
+
+    // 英语科目总数 = 历年真题（1390题） + 词汇（核心词汇 + 真题生词本）
+    var english = cloneTotals(questionBuckets.english);
+    mergeTotals(english, englishVocab);
 
     var all = cloneTotals(questionBuckets.all);
-    mergeTotals(all, english);
+    mergeTotals(all, englishVocab);
 
     return {
       all: all,
