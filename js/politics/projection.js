@@ -1,128 +1,488 @@
 /**
- * 考研政治知识图谱 - 投影层 (Graph Projection)
- * 将 Domain 数据和 View 状态投影为图渲染模型
+ * Politics V1.1 Projection
+ *
+ * 负责：
+ * - 展开/折叠
+ * - 当前可见节点
+ * - hierarchy
+ * - relation semantic aggregation
  */
+
 (function () {
-  function build(domain, view) {
-    // In Milestone 1, all demo nodes are projected to verify complete layout & relations
-    const visibleNodes = domain.nodes;
-    const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
+  function isVisible(
+    node,
+    domain,
+    view
+  ) {
+    if (!node.parentId) {
+      return true;
+    }
 
-    // 1. Build hierarchy edges (parent -> child)
+    let current = node;
+
+    const guard = new Set();
+
+    while (current?.parentId) {
+      if (
+        guard.has(
+          current.parentId
+        )
+      ) {
+        return false;
+      }
+
+      guard.add(
+        current.parentId
+      );
+
+      if (
+        !view.expandedNodeIds.has(
+          current.parentId
+        )
+      ) {
+        return false;
+      }
+
+      current =
+        domain.nodeMap.get(
+          current.parentId
+        );
+
+      if (!current) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function nearestVisibleAncestor(
+    nodeId,
+    visibleIds,
+    domain
+  ) {
+    let current =
+      domain.nodeMap.get(
+        nodeId
+      );
+
+    const guard = new Set();
+
+    while (
+      current &&
+      !guard.has(current.id)
+    ) {
+      guard.add(
+        current.id
+      );
+
+      if (
+        visibleIds.has(
+          current.id
+        )
+      ) {
+        return current.id;
+      }
+
+      current =
+        current.parentId
+          ? domain.nodeMap.get(
+              current.parentId
+            )
+          : null;
+    }
+
+    return null;
+  }
+
+  function isAncestorOrSelf(
+    ancestorId,
+    nodeId,
+    domain
+  ) {
+    if (
+      !ancestorId ||
+      !nodeId
+    ) {
+      return false;
+    }
+
+    let current =
+      domain.nodeMap.get(
+        nodeId
+      );
+
+    const guard = new Set();
+
+    while (
+      current &&
+      !guard.has(current.id)
+    ) {
+      guard.add(
+        current.id
+      );
+
+      if (
+        current.id === ancestorId
+      ) {
+        return true;
+      }
+
+      current =
+        current.parentId
+          ? domain.nodeMap.get(
+              current.parentId
+            )
+          : null;
+    }
+
+    return false;
+  }
+
+  function build(
+    domain,
+    view
+  ) {
+    const visibleNodes =
+      domain.nodes.filter(
+        node =>
+          isVisible(
+            node,
+            domain,
+            view
+          )
+      );
+
+    const visibleIds =
+      new Set(
+        visibleNodes.map(
+          node => node.id
+        )
+      );
+
+    /*
+     * Hierarchy
+     */
     const hierarchyEdges = [];
-    visibleNodes.forEach(node => {
-      if (node.parentId && visibleNodeIds.has(node.parentId)) {
-        hierarchyEdges.push({
-          id: `hier-${node.parentId}-${node.id}`,
-          source: node.parentId,
-          target: node.id,
-          type: 'hierarchy',
-          bookId: node.bookId,
-          data: { type: 'hierarchy', bookId: node.bookId }
-        });
-      }
-    });
 
-    // 2. Build cross-subject relation edges
-    const relationEdges = [];
-    domain.relations.forEach(rel => {
-      if (visibleNodeIds.has(rel.source) && visibleNodeIds.has(rel.target)) {
-        relationEdges.push({
-          id: rel.id,
-          source: rel.source,
-          target: rel.target,
-          type: rel.type || 'related',
-          label: rel.label || '',
-          data: rel
-        });
+    for (
+      const node of
+      visibleNodes
+    ) {
+      if (
+        !node.parentId ||
+        !visibleIds.has(
+          node.parentId
+        )
+      ) {
+        continue;
       }
-    });
+
+      const parent =
+        domain.nodeMap.get(
+          node.parentId
+        );
+
+      /*
+       * SG Book -> SG Chapter
+       * 不再画成星状 hierarchy。
+       *
+       * 由 timeline spine 表现。
+       */
+      if (
+        node.bookId === 'sg' &&
+        node.kind === 'chapter' &&
+        parent?.kind === 'book'
+      ) {
+        continue;
+      }
+
+      hierarchyEdges.push({
+        id:
+          `hier-${node.parentId}-${node.id}`,
+
+        source:
+          node.parentId,
+
+        target:
+          node.id,
+
+        type:
+          'hierarchy',
+
+        bookId:
+          node.bookId
+      });
+    }
+
+    /*
+     * Relation semantic aggregation
+     */
+    const relationMap =
+      new Map();
+
+    if (view.showRelations) {
+      for (
+        const rel of
+        domain.relations
+      ) {
+        const type =
+          rel.type ||
+          'related';
+
+        if (
+          view.relationFilters?.size &&
+          !view.relationFilters.has(
+            type
+          )
+        ) {
+          continue;
+        }
+
+        const source =
+          nearestVisibleAncestor(
+            rel.source,
+            visibleIds,
+            domain
+          );
+
+        const target =
+          nearestVisibleAncestor(
+            rel.target,
+            visibleIds,
+            domain
+          );
+
+        if (
+          !source ||
+          !target ||
+          source === target
+        ) {
+          continue;
+        }
+
+        const a =
+          source < target
+            ? source
+            : target;
+
+        const b =
+          source < target
+            ? target
+            : source;
+
+        const key =
+          `${a}__${b}__${type}`;
+
+        if (
+          !relationMap.has(
+            key
+          )
+        ) {
+          relationMap.set(
+            key,
+            {
+              id:
+                `agg-${key}`,
+
+              source,
+              target,
+              type,
+
+              count: 0,
+
+              relationIds: [],
+              labels: []
+            }
+          );
+        }
+
+        const agg =
+          relationMap.get(
+            key
+          );
+
+        agg.count += 1;
+
+        agg.relationIds.push(
+          rel.id
+        );
+
+        if (
+          rel.label &&
+          !agg.labels.includes(
+            rel.label
+          )
+        ) {
+          agg.labels.push(
+            rel.label
+          );
+        }
+      }
+    }
+
+    const selected =
+      view.selectedNodeId;
+
+    const hovered =
+      view.hoveredNodeId;
+
+    const relationEdges =
+      [
+        ...relationMap.values()
+      ].map(
+        edge => ({
+          ...edge,
+
+          active: !!(
+            (
+              selected &&
+              (
+                isAncestorOrSelf(
+                  selected,
+                  edge.source,
+                  domain
+                ) ||
+                isAncestorOrSelf(
+                  selected,
+                  edge.target,
+                  domain
+                ) ||
+                isAncestorOrSelf(
+                  edge.source,
+                  selected,
+                  domain
+                ) ||
+                isAncestorOrSelf(
+                  edge.target,
+                  selected,
+                  domain
+                )
+              )
+            ) ||
+
+            (
+              hovered &&
+              (
+                isAncestorOrSelf(
+                  hovered,
+                  edge.source,
+                  domain
+                ) ||
+                isAncestorOrSelf(
+                  hovered,
+                  edge.target,
+                  domain
+                ) ||
+                isAncestorOrSelf(
+                  edge.source,
+                  hovered,
+                  domain
+                ) ||
+                isAncestorOrSelf(
+                  edge.target,
+                  hovered,
+                  domain
+                )
+              )
+            )
+          )
+        })
+      );
 
     return {
-      nodes: visibleNodes,
+      nodes:
+        visibleNodes,
+
+      visibleIds,
+
       hierarchyEdges,
+
       relationEdges,
-      edges: [...hierarchyEdges, ...relationEdges]
+
+      edges: [
+        ...hierarchyEdges,
+        ...relationEdges
+      ]
     };
   }
 
-  function toRenderModel(projection, positions, store) {
-    const config = window.PoliticsConfig || {};
-    const bookColors = config.bookColors || {};
-    const relationStyles = config.relationStyles || {};
-    const nodeSizes = config.nodeSizes || {};
+  function toRenderModel(
+    projection,
+    layoutModel,
+    store
+  ) {
+    return {
+      nodes:
+        projection.nodes.map(
+          node => {
+            const pos =
+              layoutModel
+                .positions
+                .get(node.id);
 
-    // Map Nodes
-    const nodes = projection.nodes.map(node => {
-      const pos = positions.get(node.id) || { x: 0, y: 0, width: 170, height: 34 };
-      const bookColor = bookColors[node.bookId] || { main: '#3B82F6', border: '#2563EB', bg: '#EFF6FF', text: '#1E3A8A' };
-      const defaultSize = nodeSizes[node.kind] || [170, 34];
-      const width = pos.width || defaultSize[0];
-      const height = pos.height || defaultSize[1];
+            return {
+              ...node,
 
-      return {
-        id: node.id,
-        data: node,
-        kind: node.kind,
-        bookId: node.bookId,
-        x: pos.x,
-        y: pos.y,
-        size: [width, height],
-        colors: bookColor
-      };
-    });
+              x:
+                pos?.x || 0,
 
-    // Map Edges
-    const edges = projection.edges.map(edge => {
-      if (edge.type === 'hierarchy') {
-        const bookColor = bookColors[edge.bookId] || { border: '#94A3B8' };
-        return {
-          id: edge.id,
-          source: edge.source,
-          target: edge.target,
-          edgeType: 'hierarchy',
-          data: edge.data,
-          renderType: 'cubic-horizontal',
-          style: {
-            stroke: bookColor.border || '#94A3B8',
-            lineWidth: 2,
-            opacity: 0.7,
-            cursor: 'default'
+              y:
+                pos?.y || 0,
+
+              width:
+                pos?.width || 180,
+
+              height:
+                pos?.height || 36,
+
+              outward:
+                pos?.outward || 1,
+
+              selected:
+                store
+                  .view
+                  .selectedNodeId ===
+                node.id,
+
+              expanded:
+                store
+                  .view
+                  .expandedNodeIds
+                  .has(node.id),
+
+              hasChildren:
+                store
+                  .hasChildren(
+                    node.id
+                  )
+            };
           }
-        };
-      } else {
-        const relStyle = relationStyles[edge.type] || relationStyles.default || { color: '#6366F1', lineDash: [4, 4] };
-        return {
-          id: edge.id,
-          source: edge.source,
-          target: edge.target,
-          edgeType: 'relation',
-          data: edge.data,
-          renderType: 'cubic-horizontal',
-          style: {
-            stroke: relStyle.color || '#6366F1',
-            lineWidth: 1.5,
-            lineDash: relStyle.lineDash || [4, 4],
-            opacity: 0.85,
-            labelText: edge.label || '',
-            labelFontSize: 11,
-            labelFill: relStyle.color || '#475569',
-            labelBackground: true,
-            labelBackgroundFill: '#FFFFFF',
-            labelBackgroundStroke: relStyle.color || '#CBD5E1',
-            labelBackgroundLineWidth: 1,
-            labelBackgroundRadius: 4,
-            labelBackgroundPadding: [2, 6]
-          }
-        };
-      }
-    });
+        ),
 
-    return { nodes, edges };
+      hierarchyEdges:
+        projection.hierarchyEdges,
+
+      relationEdges:
+        projection.relationEdges,
+
+      timeline:
+        layoutModel.timeline,
+
+      periodMarkers:
+        layoutModel.periodMarkers,
+
+      colors:
+        window
+          .PoliticsConfig
+          ?.bookColors ||
+        {}
+    };
   }
 
   window.PoliticsProjection = {
     build,
-    toRenderModel
+    toRenderModel,
+    nearestVisibleAncestor
   };
 })();

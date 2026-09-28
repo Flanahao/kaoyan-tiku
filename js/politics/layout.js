@@ -1,355 +1,1004 @@
 /**
- * 考研政治知识图谱 - 多轨拓扑布局引擎 (Politics Multi-Lane Layout Engine)
- * Milestone 0 + 1
- * - 史纲: 中央垂直时间主轴 (Lane 0)
- * - 其他学科: 可配置左右轨道 (Lanes)
- * - 锚点对齐: 非史纲考点通过 layoutAnchorIds 对齐史纲历史坐标 (支持单锚点与中位数多锚点)
- * - 树形外延: 深度向外侧缩进 (depthIndent)
- * - 碰撞消解: 双向扫描 (Dual-Pass Collision Avoidance)
+ * Politics V1.1
+ *
+ * Spine + Branch Mind-Map Layout
  */
+
 (function () {
+  const cfg = () =>
+    window.PoliticsConfig;
+
   function median(values) {
-    if (!values || values.length === 0) return 0;
-    const arr = [...values].sort((a, b) => a - b);
-    const mid = Math.floor(arr.length / 2);
-    return arr.length % 2 !== 0 ? arr[mid] : (arr[mid - 1] + arr[mid]) / 2;
-  }
-
-  function computeLayout(domain, visibleNodes) {
-    const config = window.PoliticsConfig?.layout || {
-      centerX: 0,
-      firstLaneOffset: 260,
-      laneWidth: 920,
-      depthIndent: 210,
-      nodeMinGap: 48,
-      periodGap: 140,
-      timelineTop: 120,
-      localGap: 62
-    };
-
-    const nodeSizes = window.PoliticsConfig?.nodeSizes || {
-      book: [180, 44],
-      chapter: [170, 38],
-      section: [160, 34],
-      point: [176, 32]
-    };
-
-    const booksById = new Map(domain.books.map(b => [b.id, b]));
-    const nodeMap = new Map(visibleNodes.map(n => [n.id, n]));
-    const positions = new Map();
-
-    // 1. Layout Central Timeline (史纲 sg)
-    layoutTimeline(domain, visibleNodes, config, nodeSizes, positions);
-
-    // 2. Layout Subject Lanes (非史纲各学科)
-    layoutSubjectLanes(domain, visibleNodes, booksById, nodeMap, config, nodeSizes, positions);
-
-    // 3. Resolve Collisions per Lane (双向扫描消解)
-    resolveLaneCollisions(domain, visibleNodes, booksById, config, positions);
-
-    return positions;
-  }
-
-  function layoutTimeline(domain, visibleNodes, config, nodeSizes, positions) {
-    const sgNodes = visibleNodes.filter(n => n.bookId === 'sg');
-    if (sgNodes.length === 0) return;
-
-    // Sort sg nodes by timelineRank, then depth, then order
-    const sorted = [...sgNodes].sort((a, b) => {
-      const rankA = a.timelineRank ?? (a.depth === 0 ? 0 : 1000);
-      const rankB = b.timelineRank ?? (b.depth === 0 ? 0 : 1000);
-      if (rankA !== rankB) return rankA - rankB;
-      if (a.depth !== b.depth) return a.depth - b.depth;
-      return (a.order || 0) - (b.order || 0);
-    });
-
-    let currentY = config.timelineTop;
-    let prevPeriodId = null;
-
-    sorted.forEach((node, index) => {
-      const size = nodeSizes[node.kind] || [170, 34];
-      const width = size[0];
-      const height = size[1];
-
-      // Add extra gap at period boundaries
-      if (node.periodId && prevPeriodId && node.periodId !== prevPeriodId) {
-        currentY += config.periodGap;
-      }
-      if (node.periodId) {
-        prevPeriodId = node.periodId;
-      }
-
-      const nodeCenterY = currentY + height / 2;
-
-      const itemPos = {
-        x: config.centerX,
-        y: nodeCenterY,
-        targetY: nodeCenterY,
-        width,
-        height,
-        lane: 0,
-        bookId: 'sg',
-        depth: node.depth || 0
-      };
-
-      positions.set(node.id, itemPos);
-
-      // Increment currentY for next item: height of current card + gap
-      let levelGap = config.nodeMinGap;
-      if (node.kind === 'book') levelGap += 35;
-      else if (node.kind === 'chapter') levelGap += 25;
-      else if (node.kind === 'section') levelGap += 15;
-
-      currentY += height + levelGap;
-    });
-  }
-
-  function layoutSubjectLanes(domain, visibleNodes, booksById, nodeMap, config, nodeSizes, positions) {
-    const nonSgNodes = visibleNodes.filter(n => n.bookId !== 'sg');
-
-    // Build children mapping for visible non-sg nodes
-    const childrenMap = new Map();
-    nonSgNodes.forEach(node => {
-      if (node.parentId) {
-        if (!childrenMap.has(node.parentId)) childrenMap.set(node.parentId, []);
-        childrenMap.get(node.parentId).push(node.id);
-      }
-    });
-
-    function getDescendantAnchorYs(nodeId) {
-      const anchorYs = [];
-      const node = nodeMap.get(nodeId);
-      if (!node) return anchorYs;
-
-      if (Array.isArray(node.layoutAnchorIds) && node.layoutAnchorIds.length > 0) {
-        node.layoutAnchorIds.forEach(id => {
-          const pos = positions.get(id);
-          if (pos && typeof pos.y === 'number') anchorYs.push(pos.y);
-        });
-      }
-
-      const children = childrenMap.get(nodeId) || [];
-      children.forEach(cid => {
-        anchorYs.push(...getDescendantAnchorYs(cid));
-      });
-
-      return anchorYs;
+    if (!values?.length) {
+      return null;
     }
 
-    // Group by book
-    const byBook = new Map();
-    nonSgNodes.forEach(node => {
-      if (!byBook.has(node.bookId)) byBook.set(node.bookId, []);
-      byBook.get(node.bookId).push(node);
-    });
+    const array =
+      [...values].sort(
+        (a, b) => a - b
+      );
 
-    byBook.forEach((bookNodes, bookId) => {
-      const book = booksById.get(bookId) || { lane: 1, side: 'right' };
-      const lane = book.lane || 1;
-      const side = book.side || (lane < 0 ? 'left' : 'right');
-      const firstLaneOffset = config.firstLaneOffset || 260;
-      const laneWidth = config.laneWidth || 920;
-      const depthIndent = config.depthIndent || 210;
-      const laneIndex = Math.abs(lane) - 1;
-      const baseX = (side === 'left' ? -1 : 1) * (firstLaneOffset + laneIndex * laneWidth);
+    const middle =
+      Math.floor(
+        array.length / 2
+      );
 
-      // Locate book root
-      const bookRoot = bookNodes.find(n => n.depth === 0) || { id: `pol.${bookId}` };
-      const chapters = bookNodes.filter(n => n.depth === 1).sort((a, b) => (a.order || 0) - (b.order || 0));
-
-      const branchUnits = [];
-
-      chapters.forEach(chap => {
-        const secIds = childrenMap.get(chap.id) || [];
-        const sections = secIds.map(id => nodeMap.get(id)).filter(Boolean).sort((a, b) => (a.order || 0) - (b.order || 0));
-
-        const secUnits = [];
-
-        sections.forEach(sec => {
-          const ptIds = childrenMap.get(sec.id) || [];
-          const points = ptIds.map(id => nodeMap.get(id)).filter(Boolean).sort((a, b) => (a.order || 0) - (b.order || 0));
-          const numPts = points.length;
-
-          const ptPitch = 56;
-          const ptOffsets = new Map();
-          for (let i = 0; i < numPts; i++) {
-            const relY = (i - (numPts - 1) / 2) * ptPitch;
-            ptOffsets.set(points[i].id, relY);
-          }
-
-          const halfSpan = Math.max(22, (numPts * ptPitch) / 2);
-          secUnits.push({
-            sec,
-            points,
-            ptOffsets,
-            halfSpan,
-            relY: 0
-          });
-        });
-
-        // Stack sections within the chapter
-        if (secUnits.length > 0) {
-          secUnits[0].relY = 0;
-          for (let k = 1; k < secUnits.length; k++) {
-            const prev = secUnits[k - 1];
-            const curr = secUnits[k];
-            curr.relY = prev.relY + prev.halfSpan + curr.halfSpan + config.nodeMinGap;
-          }
-          // Center sections around chapter
-          const centerOffset = median(secUnits.map(u => u.relY));
-          secUnits.forEach(u => { u.relY -= centerOffset; });
-        }
-
-        // Calculate branch vertical bounding box
-        let topOffset = -30;
-        let bottomOffset = 30;
-        secUnits.forEach(u => {
-          const sTop = u.relY - u.halfSpan;
-          const sBottom = u.relY + u.halfSpan;
-          if (sTop < topOffset) topOffset = sTop;
-          if (sBottom > bottomOffset) bottomOffset = sBottom;
-        });
-
-        // Determine targetY for chapter
-        let ty = null;
-        if (Array.isArray(chap.layoutAnchorIds) && chap.layoutAnchorIds.length > 0) {
-          const anchorYs = chap.layoutAnchorIds.map(id => positions.get(id)?.y).filter(y => typeof y === 'number');
-          if (anchorYs.length > 0) ty = anchorYs.length === 1 ? anchorYs[0] : median(anchorYs);
-        }
-        if (ty === null) {
-          const descYs = getDescendantAnchorYs(chap.id);
-          if (descYs.length > 0) ty = descYs.length === 1 ? descYs[0] : median(descYs);
-        }
-
-        branchUnits.push({
-          chap,
-          secUnits,
-          topOffset,
-          bottomOffset,
-          targetY: ty,
-          y: ty
-        });
-      });
-
-      // Pass 2: Fill targetY for any chapters without anchors
-      for (let i = 0; i < branchUnits.length; i++) {
-        if (typeof branchUnits[i].targetY !== 'number') {
-          if (i > 0 && typeof branchUnits[i - 1].targetY === 'number') {
-            branchUnits[i].targetY = branchUnits[i - 1].targetY + 400;
-          } else {
-            branchUnits[i].targetY = config.timelineTop + (i + 1) * 350;
-          }
-          branchUnits[i].y = branchUnits[i].targetY;
-        }
-      }
-
-      // Pass 3: Chapter-level Dual-Pass Collision Sweep
-      if (branchUnits.length > 1) {
-        // Top-down pass
-        for (let i = 1; i < branchUnits.length; i++) {
-          const prev = branchUnits[i - 1];
-          const curr = branchUnits[i];
-          const prevBottom = prev.y + prev.bottomOffset;
-          const currTop = curr.y + curr.topOffset;
-          if (currTop < prevBottom + config.nodeMinGap) {
-            curr.y = prevBottom + config.nodeMinGap - curr.topOffset;
-          }
-        }
-        // Bottom-up pass
-        for (let i = branchUnits.length - 2; i >= 0; i--) {
-          const curr = branchUnits[i];
-          const next = branchUnits[i + 1];
-          const currBottom = curr.y + curr.bottomOffset;
-          const nextTop = next.y + next.topOffset;
-          if (currBottom > nextTop - config.nodeMinGap) {
-            curr.y = nextTop - config.nodeMinGap - curr.bottomOffset;
-          }
-        }
-        // Strict downward enforcement
-        for (let i = 1; i < branchUnits.length; i++) {
-          const prev = branchUnits[i - 1];
-          const curr = branchUnits[i];
-          const prevBottom = prev.y + prev.bottomOffset;
-          const currTop = curr.y + curr.topOffset;
-          if (currTop < prevBottom + config.nodeMinGap) {
-            curr.y = prevBottom + config.nodeMinGap - curr.topOffset;
-          }
-        }
-      }
-
-      // Pass 4: Place all nodes into positions map
-      const chapYs = [];
-      branchUnits.forEach(bu => {
-        const chapY = Math.round(bu.y);
-        chapYs.push(chapY);
-        const chapX = baseX + (side === 'left' ? -1 : 1) * 1 * depthIndent;
-        const chapSize = nodeSizes.chapter || [170, 38];
-
-        positions.set(bu.chap.id, {
-          x: chapX,
-          y: chapY,
-          targetY: bu.targetY,
-          width: chapSize[0],
-          height: chapSize[1],
-          lane,
-          bookId,
-          depth: 1
-        });
-
-        bu.secUnits.forEach(su => {
-          const secY = Math.round(chapY + su.relY);
-          const secX = baseX + (side === 'left' ? -1 : 1) * 2 * depthIndent;
-          const secSize = nodeSizes.section || [160, 34];
-
-          positions.set(su.sec.id, {
-            x: secX,
-            y: secY,
-            targetY: secY,
-            width: secSize[0],
-            height: secSize[1],
-            lane,
-            bookId,
-            depth: 2
-          });
-
-          su.points.forEach(pt => {
-            const ptRel = su.ptOffsets.get(pt.id) || 0;
-            const ptY = Math.round(secY + ptRel);
-            const ptX = baseX + (side === 'left' ? -1 : 1) * 3 * depthIndent;
-            const ptSize = nodeSizes.point || [176, 32];
-
-            positions.set(pt.id, {
-              x: ptX,
-              y: ptY,
-              targetY: ptY,
-              width: ptSize[0],
-              height: ptSize[1],
-              lane,
-              bookId,
-              depth: 3
-            });
-          });
-        });
-      });
-
-      // Place book node
-      const bookY = chapYs.length > 0 ? Math.round(median(chapYs)) : config.timelineTop;
-      const bookSize = nodeSizes.book || [180, 44];
-      positions.set(bookRoot.id, {
-        x: baseX,
-        y: bookY,
-        targetY: bookY,
-        width: bookSize[0],
-        height: bookSize[1],
-        lane,
-        bookId,
-        depth: 0
-      });
-    });
+    return (
+      array.length % 2
+        ? array[middle]
+        : (
+            array[middle - 1] +
+            array[middle]
+          ) / 2
+    );
   }
 
-  function resolveLaneCollisions(domain, visibleNodes, booksById, config, positions) {
-    // Hierarchical branch layout already handles non-overlapping branches per lane
+  function visibleChildrenMap(
+    nodes
+  ) {
+    const map = new Map();
+
+    const ids =
+      new Set(
+        nodes.map(
+          node => node.id
+        )
+      );
+
+    for (
+      const node of nodes
+    ) {
+      if (
+        node.parentId &&
+        ids.has(node.parentId)
+      ) {
+        if (
+          !map.has(
+            node.parentId
+          )
+        ) {
+          map.set(
+            node.parentId,
+            []
+          );
+        }
+
+        map
+          .get(node.parentId)
+          .push(node);
+      }
+    }
+
+    for (
+      const list of
+      map.values()
+    ) {
+      list.sort(
+        (a, b) =>
+          (a.order || 0) -
+          (b.order || 0)
+      );
+    }
+
+    return map;
+  }
+
+  function leafUnits(
+    nodeId,
+    childMap
+  ) {
+    const children =
+      childMap.get(nodeId) ||
+      [];
+
+    if (!children.length) {
+      return 1;
+    }
+
+    return children.reduce(
+      (
+        sum,
+        child
+      ) =>
+        sum +
+        leafUnits(
+          child.id,
+          childMap
+        ),
+      0
+    );
+  }
+
+  function layoutVisibleDescendants(
+    parent,
+    side,
+    parentX,
+    top,
+    bottom,
+    childMap,
+    positions,
+    sizes,
+    depthIndent
+  ) {
+    const children =
+      childMap.get(
+        parent.id
+      ) || [];
+
+    if (!children.length) {
+      return;
+    }
+
+    const weights =
+      children.map(
+        child =>
+          leafUnits(
+            child.id,
+            childMap
+          )
+      );
+
+    const total =
+      weights.reduce(
+        (a, b) => a + b,
+        0
+      ) || 1;
+
+    let cursor = top;
+
+    children.forEach(
+      (
+        child,
+        index
+      ) => {
+        const span =
+          (
+            bottom -
+            top
+          ) *
+          (
+            weights[index] /
+            total
+          );
+
+        const childTop =
+          cursor;
+
+        const childBottom =
+          cursor + span;
+
+        const childY =
+          (
+            childTop +
+            childBottom
+          ) / 2;
+
+        const size =
+          sizes[
+            child.kind
+          ] ||
+          sizes.point;
+
+        const depthDelta =
+          Math.max(
+            1,
+
+            (
+              child.depth ||
+              1
+            ) -
+            (
+              parent.depth ||
+              0
+            )
+          );
+
+        const childX =
+          parentX +
+          side *
+          depthIndent *
+          depthDelta;
+
+        positions.set(
+          child.id,
+          {
+            x: childX,
+            y: childY,
+
+            width:
+              size[0],
+
+            height:
+              size[1],
+
+            outward:
+              side
+          }
+        );
+
+        layoutVisibleDescendants(
+          child,
+          side,
+          childX,
+          childTop,
+          childBottom,
+          childMap,
+          positions,
+          sizes,
+          depthIndent
+        );
+
+        cursor =
+          childBottom;
+      }
+    );
+  }
+
+  function computeLayout(
+    domain,
+    visibleNodes
+  ) {
+    const C = cfg();
+
+    const L =
+      C.layout;
+
+    const sizes =
+      C.nodeSizes;
+
+    const positions =
+      new Map();
+
+    const childMap =
+      visibleChildrenMap(
+        visibleNodes
+      );
+
+    const visibleById =
+      new Map(
+        visibleNodes.map(
+          node => [
+            node.id,
+            node
+          ]
+        )
+      );
+
+    /*
+     * =====================================
+     * 1. SG Central Timeline
+     * =====================================
+     */
+
+    const sgRoot =
+      visibleNodes.find(
+        node =>
+          node.bookId === 'sg' &&
+          node.kind === 'book'
+      );
+
+    const sgChapters =
+      visibleNodes
+        .filter(
+          node =>
+            node.bookId === 'sg' &&
+            node.kind === 'chapter'
+        )
+        .sort(
+          (a, b) =>
+            (
+              a.timelineRank ||
+              0
+            ) -
+              (
+                b.timelineRank ||
+                0
+              ) ||
+
+            (
+              a.order ||
+              0
+            ) -
+              (
+                b.order ||
+                0
+              )
+        );
+
+    const periodMarkers =
+      [];
+
+    let cursorY =
+      L.timelineTop;
+
+    let lastPeriod =
+      null;
+
+    if (sgRoot) {
+      const size =
+        sizes.book;
+
+      positions.set(
+        sgRoot.id,
+        {
+          x:
+            L.centerX,
+
+          y:
+            L.timelineTop -
+            L.timelineRootGap,
+
+          width:
+            size[0],
+
+          height:
+            size[1],
+
+          outward:
+            1
+        }
+      );
+    }
+
+    /*
+     * 每个 SG Chapter
+     * 都拥有独立 vertical block。
+     *
+     * 展开后只扩张自己的 block，
+     * 后面章节自然下移。
+     */
+    for (
+      const chapter of
+      sgChapters
+    ) {
+      const leaves =
+        leafUnits(
+          chapter.id,
+          childMap
+        );
+
+      const blockHeight =
+        Math.max(
+          L.timelineChapterGap,
+
+          leaves *
+            L.branchLeafGap +
+            L.branchPadding * 2
+        );
+
+      if (
+        lastPeriod &&
+        chapter.periodId &&
+        chapter.periodId !==
+          lastPeriod
+      ) {
+        cursorY +=
+          L.periodGap;
+      }
+
+      const chapterY =
+        cursorY +
+        blockHeight / 2;
+
+      const size =
+        sizes.chapter;
+
+      /*
+       * SG Chapter
+       * 左右交替生枝。
+       */
+      const side =
+        (
+          (
+            chapter.order ||
+            0
+          ) %
+          2 ===
+          0
+        )
+          ? 1
+          : -1;
+
+      positions.set(
+        chapter.id,
+        {
+          x:
+            L.centerX,
+
+          y:
+            chapterY,
+
+          width:
+            size[0],
+
+          height:
+            size[1],
+
+          outward:
+            side
+        }
+      );
+
+      if (
+        chapter.periodId !==
+        lastPeriod
+      ) {
+        const period =
+          domain
+            .periodMap
+            .get(
+              chapter.periodId
+            );
+
+        if (period) {
+          periodMarkers.push({
+            id:
+              period.id,
+
+            title:
+              period.title,
+
+            dateRange:
+              period.dateRange,
+
+            y:
+              chapterY
+          });
+        }
+      }
+
+      lastPeriod =
+        chapter.periodId ||
+        lastPeriod;
+
+      const children =
+        childMap.get(
+          chapter.id
+        ) || [];
+
+      if (
+        children.length
+      ) {
+        const branchX =
+          L.centerX +
+          side *
+          L.sgBranchOffset;
+
+        const totalWeights =
+          children.reduce(
+            (
+              sum,
+              child
+            ) =>
+              sum +
+              leafUnits(
+                child.id,
+                childMap
+              ),
+            0
+          ) || 1;
+
+        let branchCursor =
+          chapterY -
+          (
+            blockHeight -
+            L.branchPadding *
+              2
+          ) / 2;
+
+        const usable =
+          blockHeight -
+          L.branchPadding *
+            2;
+
+        for (
+          const child of
+          children
+        ) {
+          const weight =
+            leafUnits(
+              child.id,
+              childMap
+            );
+
+          const span =
+            usable *
+            weight /
+            totalWeights;
+
+          const childTop =
+            branchCursor;
+
+          const childBottom =
+            branchCursor +
+            span;
+
+          const childY =
+            (
+              childTop +
+              childBottom
+            ) / 2;
+
+          const childSize =
+            sizes[
+              child.kind
+            ] ||
+            sizes.section;
+
+          positions.set(
+            child.id,
+            {
+              x:
+                branchX,
+
+              y:
+                childY,
+
+              width:
+                childSize[0],
+
+              height:
+                childSize[1],
+
+              outward:
+                side
+            }
+          );
+
+          layoutVisibleDescendants(
+            child,
+            side,
+            branchX,
+            childTop,
+            childBottom,
+            childMap,
+            positions,
+            sizes,
+            L.depthIndent
+          );
+
+          branchCursor =
+            childBottom;
+        }
+      }
+
+      cursorY +=
+        blockHeight;
+    }
+
+    const timeline = {
+      x:
+        L.centerX,
+
+      y1:
+        sgRoot
+          ? positions
+              .get(
+                sgRoot.id
+              )
+              .y +
+            sizes.book[1] /
+              2
+          : L.timelineTop,
+
+      y2:
+        sgChapters.length
+          ? positions
+              .get(
+                sgChapters[
+                  sgChapters.length -
+                    1
+                ].id
+              )
+              .y
+          : L.timelineTop +
+            300
+    };
+
+    /*
+     * =====================================
+     * 2. Anchor -> visible SG Chapter
+     * =====================================
+     */
+
+    const sgChapterYById =
+      new Map(
+        sgChapters.map(
+          chapter => [
+            chapter.id,
+
+            positions
+              .get(
+                chapter.id
+              )
+              ?.y
+          ]
+        )
+      );
+
+    function anchorY(
+      anchorId
+    ) {
+      let node =
+        domain
+          .nodeMap
+          .get(
+            anchorId
+          );
+
+      const guard =
+        new Set();
+
+      while (
+        node &&
+        !guard.has(node.id)
+      ) {
+        guard.add(
+          node.id
+        );
+
+        if (
+          node.bookId ===
+            'sg' &&
+          node.kind ===
+            'chapter'
+        ) {
+          return (
+            sgChapterYById.get(
+              node.id
+            ) ??
+            null
+          );
+        }
+
+        node =
+          node.parentId
+            ? domain
+                .nodeMap
+                .get(
+                  node.parentId
+                )
+            : null;
+      }
+
+      return null;
+    }
+
+    /*
+     * descendant anchor
+     * 会被 memoize。
+     */
+    const anchorCache =
+      new Map();
+
+    function descendantAnchorYs(
+      nodeId
+    ) {
+      if (
+        anchorCache.has(
+          nodeId
+        )
+      ) {
+        return anchorCache.get(
+          nodeId
+        );
+      }
+
+      const node =
+        domain
+          .nodeMap
+          .get(
+            nodeId
+          );
+
+      if (!node) {
+        return [];
+      }
+
+      const ys = [];
+
+      for (
+        const id of
+        (
+          node.layoutAnchorIds ||
+          []
+        )
+      ) {
+        const y =
+          anchorY(id);
+
+        if (
+          typeof y ===
+          'number'
+        ) {
+          ys.push(y);
+        }
+      }
+
+      for (
+        const childId of
+        (
+          domain
+            .childrenMap
+            .get(nodeId) ||
+          []
+        )
+      ) {
+        ys.push(
+          ...descendantAnchorYs(
+            childId
+          )
+        );
+      }
+
+      anchorCache.set(
+        nodeId,
+        ys
+      );
+
+      return ys;
+    }
+
+    /*
+     * =====================================
+     * 3. Other subject trees
+     * =====================================
+     */
+
+    const nonSgBooks =
+      domain.books.filter(
+        book =>
+          book.id !== 'sg'
+      );
+
+    const bySide = {
+      left: [],
+      right: []
+    };
+
+    nonSgBooks.forEach(book => {
+      const sideKey =
+        book.side === 'left' ? 'left' : 'right';
+      const laneIdx =
+        Math.max(0, Math.abs(book.lane || 1) - 1);
+      bySide[sideKey].push({
+        laneIdx,
+        book
+      });
+    });
+
+    Object.values(bySide).forEach(list => {
+      list.sort((a, b) => a.laneIdx - b.laneIdx);
+    });
+
+    for (const [sideKey, bookItems] of Object.entries(bySide)) {
+      const side =
+        sideKey === 'left' ? -1 : 1;
+      let currentLaneEdge =
+        L.bookBaseOffset;
+
+      for (const { book } of bookItems) {
+        const bookRoot =
+          visibleById.get(`pol.${book.id}`) ||
+          visibleNodes.find(
+            node =>
+              node.bookId === book.id &&
+              node.kind === 'book'
+          );
+
+        if (!bookRoot) {
+          continue;
+        }
+
+        const chapters =
+          (
+            childMap.get(bookRoot.id) || []
+          ).filter(
+            node => node.kind === 'chapter'
+          );
+
+        /*
+         * 严格按教材章节顺序排序，
+         * 杜绝因历史锚点波动造成乱序。
+         */
+        chapters.sort(
+          (a, b) =>
+            (a.order || 0) - (b.order || 0)
+        );
+
+        const chapterUnits =
+          chapters.map((chapter, index) => {
+            const ys = descendantAnchorYs(chapter.id);
+            const targetY =
+              median(ys) ??
+              (L.timelineTop + 160 + index * 150);
+
+            const leaves = leafUnits(chapter.id, childMap);
+            const height = Math.max(
+              72,
+              leaves * L.branchLeafGap + L.branchPadding * 2
+            );
+
+            return {
+              chapter,
+              targetY,
+              height,
+              y: targetY
+            };
+          });
+
+        /*
+         * 单调约束：确保章节目标 Y 沿章节顺序单调不减
+         */
+        for (let i = 1; i < chapterUnits.length; i++) {
+          const minTY =
+            chapterUnits[i - 1].y +
+            chapterUnits[i - 1].height / 2 +
+            L.branchGap +
+            chapterUnits[i].height / 2;
+          if (chapterUnits[i].y < minTY) {
+            chapterUnits[i].y = minTY;
+          }
+        }
+
+        /*
+         * 1D 垂直碰撞消解
+         */
+        for (let i = 1; i < chapterUnits.length; i++) {
+          const prev = chapterUnits[i - 1];
+          const current = chapterUnits[i];
+          const minY =
+            prev.y +
+            prev.height / 2 +
+            L.branchGap +
+            current.height / 2;
+
+          if (current.y < minY) {
+            current.y = minY;
+          }
+        }
+
+        /*
+         * 居中防漂移
+         */
+        if (chapterUnits.length) {
+          const desired = median(
+            chapterUnits.map(unit => unit.targetY)
+          );
+          const actual = median(
+            chapterUnits.map(unit => unit.y)
+          );
+          const shift =
+            (desired ?? actual) - (actual ?? desired);
+
+          for (const unit of chapterUnits) {
+            unit.y += shift;
+          }
+        }
+
+        const rootSize = sizes.book;
+        const rootX =
+          side * (currentLaneEdge + rootSize[0] / 2);
+        const rootY =
+          median(chapterUnits.map(unit => unit.y)) ??
+          (timeline.y1 + timeline.y2) / 2;
+
+        positions.set(bookRoot.id, {
+          x: rootX,
+          y: rootY,
+          width: rootSize[0],
+          height: rootSize[1],
+          outward: side
+        });
+
+        for (const unit of chapterUnits) {
+          const chapter = unit.chapter;
+          const chapterX =
+            rootX + side * L.depthIndent;
+          const size = sizes.chapter;
+
+          positions.set(chapter.id, {
+            x: chapterX,
+            y: unit.y,
+            width: size[0],
+            height: size[1],
+            outward: side
+          });
+
+          const top =
+            unit.y - unit.height / 2 + L.branchPadding;
+          const bottom =
+            unit.y + unit.height / 2 - L.branchPadding;
+
+          layoutVisibleDescendants(
+            chapter,
+            side,
+            chapterX,
+            top,
+            bottom,
+            childMap,
+            positions,
+            sizes,
+            L.depthIndent
+          );
+        }
+
+        /*
+         * 动态外延计算：下一列科目放置在该科目最外侧可见节点之外，
+         * 杜绝任何展开层级交叉碰撞。
+         */
+        const bookNodes = visibleNodes.filter(
+          n => n.bookId === book.id && positions.has(n.id)
+        );
+        if (bookNodes.length) {
+          const maxReach = Math.max(
+            ...bookNodes.map(
+              n =>
+                Math.abs(positions.get(n.id).x) +
+                positions.get(n.id).width / 2
+            )
+          );
+          currentLaneEdge = maxReach + 48;
+        } else {
+          currentLaneEdge += rootSize[0] + 48;
+        }
+      }
+    }
+
+    /*
+     * =====================================
+     * 4. deterministic fallback
+     * =====================================
+     */
+
+    let fallback = 0;
+
+    for (
+      const node of
+      visibleNodes
+    ) {
+      if (
+        positions.has(
+          node.id
+        )
+      ) {
+        continue;
+      }
+
+      const size =
+        sizes[
+          node.kind
+        ] ||
+        sizes.point;
+
+      positions.set(
+        node.id,
+        {
+          x: 0,
+
+          y:
+            timeline.y2 +
+            180 +
+            fallback++ *
+              60,
+
+          width:
+            size[0],
+
+          height:
+            size[1],
+
+          outward:
+            1
+        }
+      );
+    }
+
+    return {
+      positions,
+      timeline,
+      periodMarkers
+    };
   }
 
   window.PoliticsLayout = {

@@ -1,225 +1,756 @@
-/**
- * 考研政治知识图谱 - 页面主控制器 (App Bootstrap)
- * Milestone 0 + 1
- */
+/** Politics V1.1 app controller */
+
 (function () {
-  let isBootstrapping = false;
+  let ready =
+    false;
 
-  async function bootstrap() {
-    if (isBootstrapping) return;
-    isBootstrapping = true;
+  function esc(value) {
+    return String(
+      value ??
+      ''
+    )
+      .replace(
+        /&/g,
+        '&amp;'
+      )
+      .replace(
+        /</g,
+        '&lt;'
+      )
+      .replace(
+        />/g,
+        '&gt;'
+      )
+      .replace(
+        /"/g,
+        '&quot;'
+      );
+  }
 
-    const errorContainer = document.getElementById('politicsErrorBanner');
-    const visibleCountEl = document.getElementById('politicsVisibleCount');
+  let rebuildQueue = Promise.resolve();
 
-    try {
-      // 1. Load Data via Dual Driver
-      console.info('[PoliticsApp] Loading politics data...');
-      const domainData = await window.PoliticsDataLoader.load();
+  function rebuild(
+    reason = 'update',
+    options = {}
+  ) {
+    rebuildQueue = rebuildQueue.then(async () => {
+      await doRebuild(reason, options);
+    }).catch(err => {
+      console.error('[PoliticsApp] rebuild error:', err);
+    });
+    return rebuildQueue;
+  }
 
-      // 2. Validate Data
-      console.info('[PoliticsApp] Validating canonical data...');
-      const validation = window.PoliticsValidator.validate(domainData);
-      if (!validation.valid) {
-        throw new Error(`Data validation failed:\n${validation.errors.join('\n')}`);
-      }
+  async function doRebuild(
+    reason = 'update',
+    options = {}
+  ) {
+    const store =
+      window.PoliticsStore;
 
-      // 3. Initialize Store
-      window.PoliticsStore.init(domainData);
+    const projection =
+      window
+        .PoliticsProjection
+        .build(
+          store.domain,
+          store.view
+        );
 
-      // 4. Initialize G6 Graph
-      console.info('[PoliticsApp] Initializing G6 Graph...');
-      window.PoliticsGraph.initGraph('politicsGraph');
+    const layoutModel =
+      window
+        .PoliticsLayout
+        .computeLayout(
+          store.domain,
+          projection.nodes
+        );
 
-      // 5. Compute Projection & Layout
-      console.info('[PoliticsApp] Computing projection and layout...');
-      const projection = window.PoliticsProjection.build(
-        window.PoliticsStore.domain,
-        window.PoliticsStore.view
+    const renderModel =
+      window
+        .PoliticsProjection
+        .toRenderModel(
+          projection,
+          layoutModel,
+          store
+        );
+
+    await window
+      .PoliticsGraph
+      .render(
+        renderModel
       );
 
-      const positions = window.PoliticsLayout.computeLayout(
-        window.PoliticsStore.domain,
-        projection.nodes
+    const count =
+      document.getElementById(
+        'politicsVisibleCount'
       );
 
-      const renderModel = window.PoliticsProjection.toRenderModel(
-        projection,
-        positions,
-        window.PoliticsStore
+    if (count) {
+      count.textContent =
+        `${renderModel.nodes.length} / ${store.domain.nodes.length} 节点`;
+    }
+
+    renderInspector();
+
+    if (
+      options.fit
+    ) {
+      await window
+        .PoliticsGraph
+        .fitView();
+    }
+
+    console.debug(
+      '[PoliticsApp] rebuild:',
+
+      reason,
+
+      {
+        visibleNodes:
+          renderModel
+            .nodes
+            .length,
+
+        hierarchyEdges:
+          renderModel
+            .hierarchyEdges
+            .length,
+
+        relationEdges:
+          renderModel
+            .relationEdges
+            .length
+      }
+    );
+  }
+
+  function renderInspector() {
+    const panel =
+      document.getElementById(
+        'politicsInspector'
       );
 
-      // 6. Render
-      await window.PoliticsGraph.render(renderModel);
+    const store =
+      window.PoliticsStore;
 
-      // 7. Initial Fit View
-      try {
-        await window.PoliticsGraph.fitView();
-        updateZoomUI(window.PoliticsGraph.getZoom());
-      } catch (e) {
-        console.warn('[PoliticsApp] Fit view warning:', e);
+    const id =
+      store
+        .view
+        .selectedNodeId;
+
+    const node =
+      id
+        ? store.getNode(id)
+        : null;
+
+    if (!panel) {
+      return;
+    }
+
+    if (!node) {
+      panel
+        .classList
+        .remove(
+          'is-open'
+        );
+
+      panel.innerHTML =
+        '';
+
+      return;
+    }
+
+    const book =
+      store
+        .domain
+        .booksById
+        .get(
+          node.bookId
+        );
+
+    const summary =
+      node
+        .detail
+        ?.summary ||
+      '暂无摘要';
+
+    const tags =
+      (
+        node.tags ||
+        []
+      ).slice(
+        0,
+        6
+      );
+
+    panel.innerHTML = `
+      <div class="politics-inspector-head">
+        <span class="politics-inspector-book">
+          ${esc(book?.title || node.bookId)}
+        </span>
+
+        <button
+          id="btnInspectorClose"
+          type="button"
+          aria-label="关闭"
+        >
+          ×
+        </button>
+      </div>
+
+      <h2>
+        ${esc(node.title)}
+      </h2>
+
+      <p>
+        ${esc(summary)}
+      </p>
+
+      ${
+        tags.length
+          ? `
+            <div class="politics-inspector-tags">
+              ${
+                tags
+                  .map(
+                    tag =>
+                      `<span>${esc(tag)}</span>`
+                  )
+                  .join('')
+              }
+            </div>
+          `
+          : ''
       }
 
-      // 8. Bind UI Controls & Period Bar
-      initPeriodBar(domainData.periods);
-      bindToolbarEvents();
-      bindTransformListener();
+      ${
+        window
+          .PoliticsStore
+          .hasChildren(
+            node.id
+          )
 
-      // Update node & relation count
-      if (visibleCountEl) {
-        visibleCountEl.textContent = `当前展示 ${renderModel.nodes.length} 个考点节点 · ${renderModel.edges.length} 条关系（${projection.hierarchyEdges.length} 层级 / ${projection.relationEdges.length} 跨学科）`;
-      }
+          ? `
+            <button
+              class="politics-inspector-expand"
+              id="btnInspectorToggle"
+            >
+              ${
+                window
+                  .PoliticsStore
+                  .isExpanded(
+                    node.id
+                  )
+                  ? '收起此节点'
+                  : '展开下一级'
+              }
+            </button>
+          `
 
-      window.__POLITICS_READY__ = true;
-      console.info('[PoliticsApp] Bootstrap completed successfully.');
-    } catch (err) {
-      console.error('[PoliticsApp] Fatal error during bootstrap:', err);
-      if (errorContainer) {
-        errorContainer.hidden = false;
-        errorContainer.innerHTML = `
-          <div class="politics-error-box">
-            <h3>⚠️ 政治知识图谱加载异常</h3>
-            <p>${escapeHtml(err.message || String(err))}</p>
-            <button onclick="location.reload()" class="politics-btn primary">重新加载</button>
-          </div>
-        `;
+          : ''
       }
-    } finally {
-      isBootstrapping = false;
+    `;
+
+    panel
+      .classList
+      .add(
+        'is-open'
+      );
+
+    document
+      .getElementById(
+        'btnInspectorClose'
+      )
+      ?.addEventListener(
+        'click',
+
+        async () => {
+          store
+            .view
+            .selectedNodeId =
+            null;
+
+          await rebuild(
+            'close-inspector'
+          );
+        }
+      );
+
+    document
+      .getElementById(
+        'btnInspectorToggle'
+      )
+      ?.addEventListener(
+        'click',
+
+        async () => {
+          store.toggleExpanded(
+            node.id
+          );
+
+          await rebuild(
+            'inspector-toggle'
+          );
+
+          await window
+            .PoliticsGraph
+            .focusNode(
+              node.id
+            );
+        }
+      );
+  }
+
+  function updateZoomUI(
+    scale
+  ) {
+    const percent =
+      Math.round(
+        scale *
+        100
+      );
+
+    const text =
+      document.getElementById(
+        'politicsZoomText'
+      );
+
+    const range =
+      document.getElementById(
+        'politicsZoomRange'
+      );
+
+    if (text) {
+      text.textContent =
+        `${percent}%`;
+    }
+
+    if (range) {
+      range.value =
+        String(
+          Math.max(
+            18,
+
+            Math.min(
+              180,
+              percent
+            )
+          )
+        );
     }
   }
 
-  function initPeriodBar(periods = []) {
-    const bar = document.getElementById('politicsPeriodBar');
-    if (!bar) return;
+  function bindGraphEvents() {
+    const store =
+      window.PoliticsStore;
 
-    bar.innerHTML = '';
+    window
+      .PoliticsGraph
+      .onNodeClick(
+        async id => {
+          store
+            .view
+            .selectedNodeId =
+            id;
 
-    // "全景视角" button
-    const allBtn = document.createElement('button');
-    allBtn.className = 'politics-period-pill active';
-    allBtn.textContent = '🌟 全学科全景';
-    allBtn.addEventListener('click', async () => {
-      bar.querySelectorAll('.politics-period-pill').forEach(b => b.classList.remove('active'));
-      allBtn.classList.add('active');
-      await window.PoliticsGraph.fitView();
-    });
-    bar.appendChild(allBtn);
+          await rebuild(
+            'select-node'
+          );
+        }
+      );
 
-    // Period buttons
-    periods.forEach(p => {
-      const btn = document.createElement('button');
-      btn.className = 'politics-period-pill';
-      btn.innerHTML = `<span class="period-dot"></span>${escapeHtml(p.title)} <small>(${p.dateRange})</small>`;
-      btn.addEventListener('click', async () => {
-        bar.querySelectorAll('.politics-period-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    const toggle =
+      async id => {
+        if (
+          !store.toggleExpanded(
+            id
+          )
+        ) {
+          return;
+        }
 
-        // Locate first sg node in this period, with fallbacks
-        const targetNode = window.PoliticsStore.domain.nodes.find(
-          n => n.bookId === 'sg' && n.periodId === p.id && n.kind === 'chapter'
-        ) || window.PoliticsStore.domain.nodes.find(
-          n => n.bookId === 'sg' && n.periodId === p.id
-        ) || window.PoliticsStore.domain.nodes.find(
-          n => n.periodId === p.id && n.kind === 'chapter'
-        ) || window.PoliticsStore.domain.nodes.find(
-          n => n.periodId === p.id
+        await rebuild(
+          'toggle-node'
         );
 
-        if (targetNode) {
-          await window.PoliticsGraph.focusNode(targetNode.id);
+        await window
+          .PoliticsGraph
+          .focusNode(
+            id
+          );
+      };
+
+    window
+      .PoliticsGraph
+      .onNodeDoubleClick(
+        toggle
+      );
+
+    window
+      .PoliticsGraph
+      .onNodeToggle(
+        toggle
+      );
+
+    /*
+     * Hover 不 rebuild 全图。
+     *
+     * 只操作 relation DOM class。
+     */
+    window
+      .PoliticsGraph
+      .onNodeHover(
+        (
+          id,
+          entering
+        ) => {
+          store
+            .view
+            .hoveredNodeId =
+            entering
+              ? id
+              : null;
+
+          window
+            .PoliticsGraph
+            .setHoveredNode(
+              entering
+                ? id
+                : null
+            );
         }
-      });
-      bar.appendChild(btn);
-    });
+      );
+
+    window
+      .PoliticsGraph
+      .onCanvasClick(
+        async () => {
+          if (
+            !store
+              .view
+              .selectedNodeId
+          ) {
+            return;
+          }
+
+          store
+            .view
+            .selectedNodeId =
+            null;
+
+          await rebuild(
+            'canvas-deselect'
+          );
+        }
+      );
+
+    window
+      .PoliticsGraph
+      .onTransform(
+        ({
+          scale
+        }) => {
+          updateZoomUI(
+            scale
+          );
+        }
+      );
   }
 
-  function bindToolbarEvents() {
-    const btnFit = document.getElementById('btnPoliticsFit');
-    const btnReset = document.getElementById('btnPoliticsReset');
-    const btnZoomIn = document.getElementById('btnPoliticsZoomIn');
-    const btnZoomOut = document.getElementById('btnPoliticsZoomOut');
-    const zoomRange = document.getElementById('politicsZoomRange');
+  function bindControls() {
+    const fit =
+      document.getElementById(
+        'btnPoliticsFit'
+      );
 
-    btnFit?.addEventListener('click', async () => {
-      await window.PoliticsGraph.fitView();
-      updateZoomUI(window.PoliticsGraph.getZoom());
-    });
-    btnReset?.addEventListener('click', async () => {
-      await window.PoliticsGraph.resetView();
-      updateZoomUI(window.PoliticsGraph.getZoom());
-    });
-    btnZoomIn?.addEventListener('click', async () => {
-      await window.PoliticsGraph.zoomIn();
-      updateZoomUI(window.PoliticsGraph.getZoom());
-    });
-    btnZoomOut?.addEventListener('click', async () => {
-      await window.PoliticsGraph.zoomOut();
-      updateZoomUI(window.PoliticsGraph.getZoom());
-    });
+    const reset =
+      document.getElementById(
+        'btnPoliticsReset'
+      );
 
-    zoomRange?.addEventListener('input', async (e) => {
-      const val = parseInt(e.target.value, 10);
-      if (!isNaN(val)) {
-        await window.PoliticsGraph.setZoom(val / 100);
-        const zoomText = document.getElementById('politicsZoomText');
-        if (zoomText) zoomText.textContent = `${val}%`;
+    const zoomIn =
+      document.getElementById(
+        'btnPoliticsZoomIn'
+      );
+
+    const zoomOut =
+      document.getElementById(
+        'btnPoliticsZoomOut'
+      );
+
+    const range =
+      document.getElementById(
+        'politicsZoomRange'
+      );
+
+    const relations =
+      document.getElementById(
+        'btnPoliticsRelations'
+      );
+
+    fit
+      ?.addEventListener(
+        'click',
+
+        () =>
+          window
+            .PoliticsGraph
+            .fitView()
+      );
+
+    reset
+      ?.addEventListener(
+        'click',
+
+        () =>
+          window
+            .PoliticsGraph
+            .resetView()
+      );
+
+    zoomIn
+      ?.addEventListener(
+        'click',
+
+        () =>
+          window
+            .PoliticsGraph
+            .zoomIn()
+      );
+
+    zoomOut
+      ?.addEventListener(
+        'click',
+
+        () =>
+          window
+            .PoliticsGraph
+            .zoomOut()
+      );
+
+    range
+      ?.addEventListener(
+        'input',
+
+        event =>
+          window
+            .PoliticsGraph
+            .setZoom(
+              Number(
+                event
+                  .target
+                  .value
+              ) /
+              100
+            )
+      );
+
+    relations
+      ?.addEventListener(
+        'click',
+
+        async () => {
+          const store =
+            window.PoliticsStore;
+
+          store
+            .view
+            .showRelations =
+            !store
+              .view
+              .showRelations;
+
+          relations
+            .classList
+            .toggle(
+              'is-active',
+
+              store
+                .view
+                .showRelations
+            );
+
+          relations
+            .setAttribute(
+              'aria-pressed',
+
+              String(
+                store
+                  .view
+                  .showRelations
+              )
+            );
+
+          relations.textContent =
+            store
+              .view
+              .showRelations
+
+              ? '关联线：开'
+
+              : '关联线：关';
+
+          await rebuild(
+            'toggle-relations'
+          );
+        }
+      );
+
+    window.addEventListener(
+      'keydown',
+
+      async event => {
+        if (
+          [
+            'INPUT',
+            'TEXTAREA'
+          ].includes(
+            event
+              .target
+              ?.tagName
+          )
+        ) {
+          return;
+        }
+
+        if (
+          event.key
+            .toLowerCase() ===
+          'f'
+        ) {
+          await window
+            .PoliticsGraph
+            .fitView();
+        }
+
+        if (
+          event.key ===
+          '0'
+        ) {
+          await window
+            .PoliticsGraph
+            .resetView();
+        }
+
+        if (
+          event.key ===
+            'Escape' &&
+          window
+            .PoliticsStore
+            .view
+            .selectedNodeId
+        ) {
+          window
+            .PoliticsStore
+            .view
+            .selectedNodeId =
+            null;
+
+          await rebuild(
+            'escape'
+          );
+        }
       }
-    });
+    );
+  }
 
-    // Keyboard shortcuts
-    window.addEventListener('keydown', async (e) => {
-      // Don't trigger if user is in an input
-      if (['INPUT', 'TEXTAREA'].includes(e.target?.tagName)) return;
+  async function bootstrap() {
+    if (ready) {
+      return;
+    }
 
-      if (e.key === '0') {
-        await window.PoliticsGraph.resetView();
-        updateZoomUI(window.PoliticsGraph.getZoom());
-      } else if (e.key.toLowerCase() === 'f') {
-        await window.PoliticsGraph.fitView();
-        updateZoomUI(window.PoliticsGraph.getZoom());
-      } else if (e.key === '+' || e.key === '=') {
-        await window.PoliticsGraph.zoomIn();
-        updateZoomUI(window.PoliticsGraph.getZoom());
-      } else if (e.key === '-' || e.key === '_') {
-        await window.PoliticsGraph.zoomOut();
-        updateZoomUI(window.PoliticsGraph.getZoom());
+    const error =
+      document.getElementById(
+        'politicsErrorBanner'
+      );
+
+    try {
+      const domain =
+        await window
+          .PoliticsDataLoader
+          .load();
+
+      const result =
+        window
+          .PoliticsValidator
+          .validate(
+            domain
+          );
+
+      if (
+        !result.valid
+      ) {
+        throw new Error(
+          result.errors.join(
+            '\n'
+          )
+        );
       }
-    });
+
+      window
+        .PoliticsStore
+        .init(
+          domain
+        );
+
+      window
+        .PoliticsGraph
+        .initGraph(
+          'politicsGraph'
+        );
+
+      bindGraphEvents();
+      bindControls();
+
+      await rebuild(
+        'bootstrap'
+      );
+
+      await window
+        .PoliticsGraph
+        .fitView();
+
+      updateZoomUI(
+        window
+          .PoliticsGraph
+          .getZoom()
+      );
+
+      ready =
+        true;
+
+      window.__POLITICS_READY__ =
+        true;
+    } catch (err) {
+      console.error(
+        '[PoliticsApp] bootstrap failed',
+
+        err
+      );
+
+      if (error) {
+        error.hidden =
+          false;
+
+        error.textContent =
+          `政治导图加载失败：${err.message || err}`;
+      }
+    }
   }
 
-  function bindTransformListener() {
-    window.PoliticsGraph.onTransform(({ zoom }) => {
-      updateZoomUI(zoom);
-    });
-  }
-
-  function updateZoomUI(zoom) {
-    const zoomText = document.getElementById('politicsZoomText');
-    const zoomRange = document.getElementById('politicsZoomRange');
-    const percent = Math.round(zoom * 100);
-
-    if (zoomText) zoomText.textContent = `${percent}%`;
-    if (zoomRange) zoomRange.value = Math.max(20, Math.min(200, percent));
-  }
-
-  function escapeHtml(str) {
-    if (!str) return '';
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  // Auto bootstrap when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootstrap);
+  if (
+    document.readyState ===
+    'loading'
+  ) {
+    document.addEventListener(
+      'DOMContentLoaded',
+      bootstrap
+    );
   } else {
     bootstrap();
   }
 
   window.PoliticsApp = {
-    bootstrap
+    bootstrap,
+    rebuild
   };
 })();
