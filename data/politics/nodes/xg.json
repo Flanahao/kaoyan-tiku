@@ -1,0 +1,7126 @@
+[
+  {
+    "id": "pol.xg",
+    "bookId": "xg",
+    "parentId": null,
+    "kind": "book",
+    "depth": 0,
+    "order": 5,
+    "title": "习近平新时代中国特色社会主义思想概论",
+    "shortTitle": "习概",
+    "tags": [
+      "习概",
+      "学科主干"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "当代中国马克思主义、二十一世纪马克思主义的科学体系",
+      "keyPoints": [
+        "两个结合",
+        "中国式现代化",
+        "高质量发展",
+        "全过程人民民主",
+        "全面从严治党"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概讲义"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 1,
+    "title": "导论",
+    "shortTitle": "导论",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "导论的科学体系与考点构架",
+      "keyPoints": [
+        "核心考点概览"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "核心考点概览",
+    "shortTitle": "核心考点概览",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "核心考点概览的核心考点与知识要点",
+      "keyPoints": [
+        "考点1   习近平新时代中国特色社会主义思想创立的时代背景",
+        "考点2  习近平新时代中国特色社会主义思想是“两个结合”的重大成果(（分析题考点）",
+        "考点3   习近平新时代中国特色社会主义思想是完整的科学体系（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01.s01.p001",
+    "bookId": "xg",
+    "parentId": "pol.xg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点1   习近平新时代中国特色社会主义思想创立的时代背景",
+    "shortTitle": "创立的时代背景",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "时代背景；世界百年未有之大变局加速演进；中华民族伟大复兴进入关键时期；中国式现代化全面推进拓展；科学社会主义在21 世纪的中国焕发新的蓬勃生机",
+      "keyPoints": [
+        "时代背景；世界百年未有之大变局加速演进；中华民族伟大复兴进入关键时期；中国式现代化全面推进拓展；科学"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01.s01.p002",
+    "bookId": "xg",
+    "parentId": "pol.xg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点2  习近平新时代中国特色社会主义思想是“两个结合”的重大成果(（分析题考点）",
+    "shortTitle": "“两个结合”的重大成果",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "习近平新时代中国特色社会主义思想是马克思主义基本原理同中国具体实际相结合、同中华优秀传统文化",
+      "keyPoints": [
+        "“两个结合”是对坚持和发展马克思主义作出的重大理论贡献："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01.s01.p003",
+    "bookId": "xg",
+    "parentId": "pol.xg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点3   习近平新时代中国特色社会主义思想是完整的科学体系（选）",
+    "shortTitle": "完整的科学体系",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "回答了；习近平新时代中国特色社会主义思想，从理论和实践的结合上科学回答了：；新时代坚持和发展什么样的中国特色社会主义、怎样坚持和发展中国特色社会主义",
+      "keyPoints": [
+        "习近平新时代中国特色社会主义思想，从理论和实践的结合上科学回答了：",
+        "基本精神，构成了这一思想体系的四梁八柱，发挥着统摄作用：",
+        "个意识：政治、核心、大局、看齐意识"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01.s01.p004",
+    "bookId": "xg",
+    "parentId": "pol.xg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 4   习近平新时代中国特色社会主义思想的历史地位【评价】",
+    "shortTitle": "历史地位",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "习近平新时代中国特色社会主义思想是当代中国马克思主义、21 世纪马克思主义，是中华文化和中国精神",
+      "keyPoints": [
+        "习近平新时代中国特色社会主义思想是当代中国马克思主义、21 世纪马克思主义，是中华文化和中国精神"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c01.s01.p005",
+    "bookId": "xg",
+    "parentId": "pol.xg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点 5  深刻领悟“两个确立”的决定性意义（记住“两个确立”即可）",
+    "shortTitle": "深刻领悟“两个确立”的决定性",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“两个确立”；确立习近平同志党中央的核心、全党的核心地位；确立习近平新时代中国特色社会主义思想的指导地位",
+      "keyPoints": [
+        "“两个确立”；确立习近平同志党中央的核心、全党的核心地位；确立习近平新时代中国特色社会主义思想的指导"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 2,
+    "title": "第一章 新时代坚持和发展中国特色社会主义",
+    "shortTitle": "第一章 新时代坚持和发展中国",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第一章 新时代坚持和发展中国特色社会主义的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 方向决定道路，道路决定命运",
+        "第二节 中国特色社会主义进入新时代",
+        "第三节 新时代坚持和发展中国特色社会主义要以一贯之"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 方向决定道路，道路决定命运",
+    "shortTitle": "第一节 方向决定道路，道路决",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 方向决定道路，道路决定命运的核心考点与知识要点",
+      "keyPoints": [
+        "考点6  中国特色社会主义是历史和人民的选择（选）",
+        "考点 7   中国特色社会主义是社会主义而不是其他什么主义",
+        "考点8    坚定道路自信、理论自信、制度自信、文化自信【文化自信是最根本的】（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s01.p006",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点6  中国特色社会主义是历史和人民的选择（选）",
+    "shortTitle": "历史和人民的选择",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "内涵；中国特色社会主义具有深厚的历史渊源；历史渊源：党领导人民革命、改造、建设的历史；中国特色社会主义具有广泛的现实基础",
+      "keyPoints": [
+        "历史渊源：党领导人民革命、改造、建设的历史",
+        "现实基础：改革开放、现代化建设的伟大实践"
+      ],
+      "traps": [
+        "扎根中国大地、开花结果，决不是偶然的，而是因为它回答了近代以来中华民",
+        "中国特色社会主义不是从天上掉下来的，而是在改革开放40 多年的伟大实践中"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s01.p007",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 7   中国特色社会主义是社会主义而不是其他什么主义",
+    "shortTitle": "社会主义而不是其他什么主义",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "原因；科学社会主义基本原则为中国特色社会主义奠定了思想前提和理论基础。科学社会主；义基本原则是马克思主义的核心内容",
+      "keyPoints": [
+        "原因；科学社会主义基本原则为中国特色社会主义奠定了思想前提和理论基础。科学社会主；义基本原则是马克思"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s01.p008",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点8    坚定道路自信、理论自信、制度自信、文化自信【文化自信是最根本的】（重点选择）",
+    "shortTitle": "坚定道路自信",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "改革开放以来我；们取得一切成绩；和进步的根本原；因；开辟了中国特色社会主义道路，形成了中国特色社会主义理论体系，确立了中国特色社",
+      "keyPoints": [
+        "改革开放以来我；们取得一切成绩；和进步的根本原；因；开辟了中国特色社会主义道路，形成了中国特色社会主"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 中国特色社会主义进入新时代",
+    "shortTitle": "第二节 中国特色社会主义进入",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 中国特色社会主义进入新时代的核心考点与知识要点",
+      "keyPoints": [
+        "考点 9  中国特色社会主义新时代是我国发展新的历史方位（注意大标题）",
+        "考点10  社会主要矛盾变化是关系全局的历史性变化（重点选择）",
+        "考点11   新时代伟大变革及其里程碑意义"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s02.p009",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 9  中国特色社会主义新时代是我国发展新的历史方位（注意大标题）",
+    "shortTitle": "新时代是我国发展新的历史方位",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国特色社会主义进入新时代的重大意义(“三个意味着”)；中国特色社会主；义进入新时代的；重大意义【了",
+      "keyPoints": [
+        "中国特色社会主义进入新时代的重大意义(“三个意味着”)",
+        "中国特色社会主义进入新时代的主要依据",
+        "个百年奋斗目标，开启实现第二个百年奋斗目标新征程，朝着实现中华民族伟大复"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s02.p010",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点10  社会主要矛盾变化是关系全局的历史性变化（重点选择）",
+    "shortTitle": "社会主要矛盾变化是关系全局的",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "准确认识和把握社会主要矛盾及其变化关系到党和国家事业的正确方向；年党的十九大明确指出，我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分",
+      "keyPoints": [
+        "准确认识和把握社会主要矛盾及其变化关系到党和国家事业的正确方向",
+        "年党的十九大明确指出，我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分",
+        "社会主要矛盾变化的依据【原因】"
+      ],
+      "traps": [
+        "注意几个描述: “三个变”"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s02.p011",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点11   新时代伟大变革及其里程碑意义",
+    "shortTitle": "新时代伟大变革及其里程碑意义",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "新时代伟大变革及其里程碑意义的理论核心与考点分析",
+      "keyPoints": [
+        "新时代伟大变革及其里程碑意义的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 新时代坚持和发展中国特色社会主义要以一贯之",
+    "shortTitle": "第三节 新时代坚持和发展中国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 新时代坚持和发展中国特色社会主义要以一贯之的核心考点与知识要点",
+      "keyPoints": [
+        "考点 12    全面贯彻党的基本理论、基本路线、基本方略【考定位】（重点选择）",
+        "考点13    统筹推进“五位一体”总体布局和协调推进“四个全面”战略布局"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s03.p012",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 12    全面贯彻党的基本理论、基本路线、基本方略【考定位】（重点选择）",
+    "shortTitle": "全面贯彻党的基本理论",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党的基本理论；是坚持和发展中国特色社会主义的行动指南；拥有马克思主义科学理论指导是我们党鲜明的政治品格和强大的政治优势，是我们党",
+      "keyPoints": [
+        "党的基本理论；是坚持和发展中国特色社会主义的行动指南；拥有马克思主义科学理论指导是我们党鲜明的政治品"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c02.s03.p013",
+    "bookId": "xg",
+    "parentId": "pol.xg.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点13    统筹推进“五位一体”总体布局和协调推进“四个全面”战略布局",
+    "shortTitle": "统筹推进“五位一体”总体布局",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "统筹推进“五位一体”总体布局和协调推进“四个全面”战略布局的理论核心与考点分析",
+      "keyPoints": [
+        "统筹推进“五位一体”总体布局和协调推进“四个全面”战略布局的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 3,
+    "title": "第二章 以中国式现代化全面推进中华民族伟大复兴",
+    "shortTitle": "第二章 以中国式现代化全面推",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第二章 以中国式现代化全面推进中华民族伟大复兴的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 中华民族近代以来最伟大的梦想",
+        "第二节 中国式现代化是强国建设、民族复兴的唯一正确道路",
+        "第三节 推进中国式现代化行稳致远"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 中华民族近代以来最伟大的梦想",
+    "shortTitle": "第一节 中华民族近代以来最伟",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 中华民族近代以来最伟大的梦想的核心考点与知识要点",
+      "keyPoints": [
+        "考点 14  实现中华民族伟大复兴的中国梦",
+        "考点15  在中华大地上全面建成小康社会【非重点—2021年7月1日已经建成】",
+        "考点 16    全面建成社会主义现代化强国（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s01.p014",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 14  实现中华民族伟大复兴的中国梦",
+    "shortTitle": "实现中华民族伟大复兴的中国梦",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国梦的提出；中国梦的本质要求；科学内；涵；本质；国家富强、民族振兴、人民幸福",
+      "keyPoints": [
+        "中国梦的提出",
+        "中国梦的本质要求"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s01.p015",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点15  在中华大地上全面建成小康社会【非重点—2021年7月1日已经建成】",
+    "shortTitle": "在中华大地上全面建成小康社会",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "在中华大地上全面建成小康社会的理论核心与考点分析",
+      "keyPoints": [
+        "在中华大地上全面建成小康社会的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s01.p016",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 16    全面建成社会主义现代化强国（重点选择）",
+    "shortTitle": "全面建成社会主义现代化强国",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "中国式现代化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新两步；全面建成社会主义现代化强国总的战略安排是分两步走：；从2020 年到2035 年基本实现社会主义现代化",
+      "keyPoints": [
+        "全面建成社会主义现代化强国总的战略安排是分两步走：",
+        "到2035 年",
+        "到2035 年，我国发展的总体目标："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 中国式现代化是强国建设、民族复兴的唯一正确道路",
+    "shortTitle": "第二节 中国式现代化是强国建",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 中国式现代化是强国建设、民族复兴的唯一正确道路的核心考点与知识要点",
+      "keyPoints": [
+        "考点17  中国式现代化是中国共产党领导人民长期探索和实践的重大成果",
+        "考点18  中国式现代化的中国特色（重点选择）",
+        "考点 19  中国式现代化的本质要求（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s02.p017",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点17  中国式现代化是中国共产党领导人民长期探索和实践的重大成果",
+    "shortTitle": "中国式现代化是中国共产党领导",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "中国式现代化",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "【分析题模板—可以回答新思想、史纲中的部分论述题】；按历史时期划分；新民主主义革命时期；以前）；我们党团结带领人民进行革命斗争，取得新民主主义革命的胜利，为实现现代化",
+      "keyPoints": [
+        "系列标志性成果，特别是消除了绝对贫困问题，全面建成小康社会，推动"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s02.p018",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点18  中国式现代化的中国特色（重点选择）",
+    "shortTitle": "中国式现代化的中国特色",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "中国式现代化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国式现代化；的中国特色；中国式现代化是人口规模巨大的现代化；中国式现代化是全体人民共同富裕的现代化【中国式现代化区别于西方现代化的",
+      "keyPoints": [
+        "中国式现代化；的中国特色；中国式现代化是人口规模巨大的现代化；中国式现代化是全体人民共同富裕的现代化"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s02.p019",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 19  中国式现代化的本质要求（重点选择）",
+    "shortTitle": "中国式现代化的本质要求",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "中国式现代化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国式现代化的本质要求；性质层面；领导；坚持中国共产党领导；旗帜；坚持中国特色社会主义",
+      "keyPoints": [
+        "中国式现代化的本质要求",
+        "为什么要强调党在中国式现代化建设中的领导地位?【选择】"
+      ],
+      "traps": [
+        "信念、政策主张决定了中国式现代化是社会主义现代化而不是别的什么现代化"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s02.p020",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 20  中国式现代化创造了人类文明新形态【要理解记忆】(",
+    "shortTitle": "中国式现代化创造了人类文明新",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "中国式现代化"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "具体内容；中国式现代化提供了一种全新的现代化模式；人类文明是在生产力与生产关系矛盾运动中演进的。西方资本主义国家作为现代工业革",
+      "keyPoints": [
+        "具体内容；中国式现代化提供了一种全新的现代化模式；人类文明是在生产力与生产关系矛盾运动中演进的。西方"
+      ],
+      "traps": [
+        "就是现代文明。实践证明，人类走向现代化并不是只有一条路，西方的现代化暴露出许"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 推进中国式现代化行稳致远",
+    "shortTitle": "第三节 推进中国式现代化行稳",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 推进中国式现代化行稳致远的核心考点与知识要点",
+      "keyPoints": [
+        "考点21   推进中国式现代化需要牢牢把握的重大原则（注意对应）",
+        "考点 22  推进中国式现代化需要正确处理的重大关系（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.13"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s03.p021",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点21   推进中国式现代化需要牢牢把握的重大原则（注意对应）",
+    "shortTitle": "推进中国式现代化需要牢牢把握",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "中国式现代化"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "领导力量；坚持和加强党的全面领导；旗帜方向；坚持中国特色社会主义道路；价值立场；坚持以人民为中心的发展思想",
+      "keyPoints": [
+        "领导力量；坚持和加强党的全面领导；旗帜方向；坚持中国特色社会主义道路；价值立场；坚持以人民为中心的发"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.13"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c03.s03.p022",
+    "bookId": "xg",
+    "parentId": "pol.xg.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 22  推进中国式现代化需要正确处理的重大关系（重点选择）",
+    "shortTitle": "推进中国式现代化需要正确处理",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "中国式现代化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "重大关系；正确处理顶层设计与实践探索的关系【上下联动】；正确处理战略与策略的关系【宏观微观】；正确处理守正与创新的关系【变与不变】",
+      "keyPoints": [
+        "重大关系；正确处理顶层设计与实践探索的关系【上下联动】；正确处理战略与策略的关系【宏观微观】；正确处"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.13"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 4,
+    "title": "第三章 坚持党的全面领导",
+    "shortTitle": "第三章 坚持党的全面领导",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第三章 坚持党的全面领导的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 中国共产党领导是中国特色社会主义最本质的特征",
+        "第二节 坚持党对一切工作的领导",
+        "第三节 健全和完善党的领导制度体系"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 中国共产党领导是中国特色社会主义最本质的特征",
+    "shortTitle": "第一节 中国共产党领导是中国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 中国共产党领导是中国特色社会主义最本质的特征的核心考点与知识要点",
+      "keyPoints": [
+        "考点23  中国最大的国情就是中国共产党的领导【命题点就是标题】",
+        "考点 24  中国共产党领导是中国特色社会主义制度的最大优势【命题点就是标题】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s01.p023",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点23  中国最大的国情就是中国共产党的领导【命题点就是标题】",
+    "shortTitle": "中国最大的国情就是中国共产党",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "【两个说法都对】；中国国情：社会主义初级阶段；中国最大的国情：中国共产党的领导；中国特色社会主义最本质的特征",
+      "keyPoints": [
+        "中国国情：社会主义初级阶段",
+        "中国最大的国情：中国共产党的领导"
+      ],
+      "traps": [
+        "注意: 【两个说法都对】"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s01.p024",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 24  中国共产党领导是中国特色社会主义制度的最大优势【命题点就是标题】",
+    "shortTitle": "中国共产党领导是中国特色社会",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "基本制度",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "为什么中国共产党领导是中国；特色社会主义制度的最大优势?；中国共产党以马克思主义作为行动指南，在实践中不断推进马克思主",
+      "keyPoints": [
+        "为什么中国共产党领导是中国；特色社会主义制度的最大优势?；中国共产党以马克思主义作为行动指南，在实践"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 坚持党对一切工作的领导",
+    "shortTitle": "第二节 坚持党对一切工作的领",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 坚持党对一切工作的领导的核心考点与知识要点",
+      "keyPoints": [
+        "考点25  中国共产党是最高政治领导力量（选）",
+        "考点 26  党的领导是全面的、系统的、整体的（选）",
+        "考点 27   维护党中央权威和集中统一领导"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s02.p025",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点25  中国共产党是最高政治领导力量（选）",
+    "shortTitle": "中国共产党是最高政治领导力量",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "为什么说中国共产党是；最高政治领导力量?；中国共产党得到了最广大人民群众的支持和拥护，得到了各民主党派、",
+      "keyPoints": [
+        "为什么说中国共产党是；最高政治领导力量?；中国共产党得到了最广大人民群众的支持和拥护，得到了各民主党"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s02.p026",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 26  党的领导是全面的、系统的、整体的（选）",
+    "shortTitle": "党的领导是全面的",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "全面的；【什么都要领导】；在领导对象上，党领导人大、政府、政协、监察机关、审判机关、检察机关、武装力",
+      "keyPoints": [
+        "全面的；【什么都要领导】；在领导对象上，党领导人大、政府、政协、监察机关、审判机关、检察机关、武装力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s02.p027",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 27   维护党中央权威和集中统一领导",
+    "shortTitle": "维护党中央权威和集中统一领导",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "怎样维护党中央权威；必须坚决贯彻党的理论、路线方针政策和党中央决策部署；和集中统一领导?；最关键的是坚决维护习近平同志党中央的核心、全党的核心地位",
+      "keyPoints": [
+        "干扰项：民主集中制会弱化党中央权威和集中统一领导"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 健全和完善党的领导制度体系",
+    "shortTitle": "第三节 健全和完善党的领导制",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 健全和完善党的领导制度体系的核心考点与知识要点",
+      "keyPoints": [
+        "考点 28   党的领导制度是我国的根本领导制度（重点选择）",
+        "考点 29    健全党中央对重大工作的领导体制（重点选择）",
+        "考点 30  健全党的全面领导制度【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s03.p028",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 28   党的领导制度是我国的根本领导制度（重点选择）",
+    "shortTitle": "党的领导制度是我国的根本领导",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "要点；中国共产党领导是国家治理体系的核心，党的领导制度是中国特色社会主义制度建；设的关键；党的领导制度是中国特色社会主义制度体系的核心，是国家治理体系和治理能力现",
+      "keyPoints": [
+        "要点；中国共产党领导是国家治理体系的核心，党的领导制度是中国特色社会主义制度建；设的关键；党的领导制"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s03.p029",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 29    健全党中央对重大工作的领导体制（重点选择）",
+    "shortTitle": "健全党中央对重大工作的领导体",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "早在土地革命战争时期，我们党就确立了各省委向中央报告的制度，要求各地及时向中央报告工作。；年年初，毛泽东为中共中央起草《关于建立报告制度》的党内指示，推动建立健全全党全军向",
+      "keyPoints": [
+        "年年初，毛泽东为中共中央起草《关于建立报告制度》的党内指示，推动建立健全全党全军向"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c04.s03.p030",
+    "bookId": "xg",
+    "parentId": "pol.xg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 30  健全党的全面领导制度【非重点】",
+    "shortTitle": "健全党的全面领导制度",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "理解了解",
+      "基本制度",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "健全党的全面领导制度的理论核心与考点分析",
+      "keyPoints": [
+        "健全党的全面领导制度的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 5,
+    "title": "第四章 坚持以人民为中心",
+    "shortTitle": "第四章 坚持以人民为中心",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第四章 坚持以人民为中心的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 江山就是人民，人民就是江山",
+        "第二节 坚持人民至上",
+        "第三节 全面落实以人民为中心的发展思想"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 江山就是人民，人民就是江山",
+    "shortTitle": "第一节 江山就是人民，人民就",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 江山就是人民，人民就是江山的核心考点与知识要点",
+      "keyPoints": [
+        "考点 31  人民是历史的创造者，是真正的英雄",
+        "考点 32  人民立场是中国共产党的根本政治立场（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s01.p031",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 31  人民是历史的创造者，是真正的英雄",
+    "shortTitle": "人民是历史的创造者，是真正的",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "尊重人民历史地位，充分发挥人民主体作用；习近平指出：“从建党的开天辟地，到新中国成立的改天换地，到改革开放的翻天覆地，再到党的十八大",
+      "keyPoints": [
+        "尊重人民历史地位，充分发挥人民主体作用",
+        "习近平指出：“从建党的开天辟地，到新中国成立的改天换地，到改革开放的翻天覆地，再到党的十八大"
+      ],
+      "traps": [
+        "以来党和国家事业取得历史性成就、发生历史性变革，根本原因就在于我们党始终坚守了为中国人民谋幸"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s01.p032",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 32  人民立场是中国共产党的根本政治立场（选）",
+    "shortTitle": "人民立场是中国共产党的根本政",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "人民立场；人民立场是中国共产党的根本政治立场，是我们党区别于其他政党的显著标志；如何坚持；人民立场",
+      "keyPoints": [
+        "人民立场；人民立场是中国共产党的根本政治立场，是我们党区别于其他政党的显著标志；如何坚持；人民立场"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 坚持人民至上",
+    "shortTitle": "第二节 坚持人民至上",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 坚持人民至上的核心考点与知识要点",
+      "keyPoints": [
+        "考点 33   人民对美好生活的向往就是党的奋斗目标（选）",
+        "考点34   依靠人民创造历史伟业"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s02.p033",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 33   人民对美好生活的向往就是党的奋斗目标（选）",
+    "shortTitle": "人民对美好生活的向往就是党的",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "坚持人民至上，是我们党百年奋斗的宝贵历史经验，也是新时代党治国理政的根本价值取向；要坚持把人民对美好生活的向往作为党的奋斗目标，把人民作为党的工作的最高裁决者和最终评判者",
+      "keyPoints": [
+        "坚持人民至上，是我们党百年奋斗的宝贵历史经验，也是新时代党治国理政的根本价值取向；要坚持把人民对美好"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s02.p034",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点34   依靠人民创造历史伟业",
+    "shortTitle": "依靠人民创造历史伟业",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "怎样依靠人民；必须尊重人民主体地位【宏观层面】；习近平指出：“坚持人民主体地位，充分调动人民积极性，始终是我们党立于不败之",
+      "keyPoints": [
+        "习近平指出：“坚持人民主体地位，充分调动人民积极性，始终是我们党立于不败之"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 全面落实以人民为中心的发展思想",
+    "shortTitle": "第三节 全面落实以人民为中心",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 全面落实以人民为中心的发展思想的核心考点与知识要点",
+      "keyPoints": [
+        "考点35   坚持和贯彻党的群众路线（重点选择）",
+        "考点 36   推动全体人民共同富裕取得更为明显的实质性进展（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s03.p035",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点35   坚持和贯彻党的群众路线（重点选择）",
+    "shortTitle": "坚持和贯彻党的群众路线",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "群众观点",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "群众路线；切为了群众、一切依靠群众，从群众中来到群众中去【是什么】；关键词；群众路线是我们党的生命线和根本工作路线，是我们党永葆青春活力和战斗力的重要",
+      "keyPoints": [
+        "切为了群众、一切依靠群众，从群众中来到群众中去【是什么】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c05.s03.p036",
+    "bookId": "xg",
+    "parentId": "pol.xg.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 36   推动全体人民共同富裕取得更为明显的实质性进展（重点选择）",
+    "shortTitle": "推动全体人民共同富裕取得更为",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "共同富裕是中国特色社会主义的本质要求，是中国式现代化的重要特征；内涵；实现共同富裕是关系党的执政基础的重大政治问题",
+      "keyPoints": [
+        "原则：促进共同富裕，要把握好鼓励勤劳创新致富、坚持基本经济制度、尽力而为量力而行、",
+        "总体思路：坚持以人民为中心的发展思想，在高质量发展中促进共同富裕，正确处理效率（蛋",
+        "靠社会）协调配套的基础性制度安排，加大税收、社保、转移支付等调节力度并提高精准"
+      ],
+      "traps": [
+        "精神生活都富裕，不是少数人的富裕，也不是整齐划一的平均主义，不是所有人都同时富裕，",
+        "也不是所有地区同时达到一个富裕水准"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 6,
+    "title": "第五章 全面深化改革开放",
+    "shortTitle": "第五章 全面深化改革开放",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第五章 全面深化改革开放的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 改革开放是决定当代中国命运的关键一招",
+        "第二节 统筹推进各领域各方面改革开放",
+        "第三节 将改革开放进行到底"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 改革开放是决定当代中国命运的关键一招",
+    "shortTitle": "第一节 改革开放是决定当代中",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 改革开放是决定当代中国命运的关键一招的核心考点与知识要点",
+      "keyPoints": [
+        "考点37   改革开放是党和人民大踏步赶上时代的重要法宝【非重点】",
+        "考点 38  新时代全面深化改革开放是一场深刻革命（重点选择）",
+        "考点 39   坚持全面深化改革开放的正确方向（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s01.p037",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点37   改革开放是党和人民大踏步赶上时代的重要法宝【非重点】",
+    "shortTitle": "改革开放是党和人民大踏步赶上",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "理解了解",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党的十一届三中全会是划时代的，开启了改革开放和社会主义现代化建设新时期；党的十八届三中全会也是划时代的，实现了改革由局部探索、破冰突围到系统集成、全面深化的转变，",
+      "keyPoints": [
+        "党的十一届三中全会是划时代的，开启了改革开放和社会主义现代化建设新时期；党的十八届三中全会也是划时代"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s01.p038",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 38  新时代全面深化改革开放是一场深刻革命（重点选择）",
+    "shortTitle": "新时代全面深化改革开放是一场",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "定性：新时代全面深化改革开放，就其艰巨性、复杂性和系统性来说，是一场深刻的革命；全面深化改革开放是涉险滩、闯难关的变革【可能考论述】",
+      "keyPoints": [
+        "定性：新时代全面深化改革开放，就其艰巨性、复杂性和系统性来说，是一场深刻的革命",
+        "全面深化改革开放是涉险滩、闯难关的变革【可能考论述】",
+        "“十五五”时期经济社会发展的指导方针和主要目标"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s01.p039",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 39   坚持全面深化改革开放的正确方向（重点选择）",
+    "shortTitle": "坚持全面深化改革开放的正确方",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "如何坚持；必须坚持和改善党的全面领导、坚持和完善中国特色社会主义制度；必须坚持以人民为中心，促进社会公平正义、增进人民福祉",
+      "keyPoints": [
+        "百姓过上好日子【全面深化改革的根本目的：促进社会公平正义、增进人民福祉/实"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 统筹推进各领域各方面改革开放",
+    "shortTitle": "第二节 统筹推进各领域各方面",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 统筹推进各领域各方面改革开放的核心考点与知识要点",
+      "keyPoints": [
+        "考点40    坚持全面深化改革总目标（重点选择）",
+        "考点 41    推进国家治理体系和治理能力现代化（重点选择）【治理≠管理】",
+        "考点 42    全面深化改革开放要坚持正确方法论（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.22"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s02.p040",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点40    坚持全面深化改革总目标（重点选择）",
+    "shortTitle": "坚持全面深化改革总目标",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全面深化；改革总目标；完善和发展中国特色社会主义制度；推进国家治理体系和治理能力现代化；总目标；者关系",
+      "keyPoints": [
+        "全面深化；改革总目标；完善和发展中国特色社会主义制度；推进国家治理体系和治理能力现代化；总目标；者关"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.22"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s02.p041",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 41    推进国家治理体系和治理能力现代化（重点选择）【治理≠管理】",
+    "shortTitle": "推进国家治理体系和治理能力现",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "中国式现代化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "国家治理体系和治理能力及二者的关系；国家治理体系；在党领导下管理国家的制度体系；国家治理能力；运用国家制度管理社会各方面事务的能力",
+      "keyPoints": [
+        "国家治理体系和治理能力及二者的关系",
+        "起，把二者当作一个相辅相成的有机整体，好的国家治理体系才能提高国家治理能",
+        "怎样推进国家治理体系和治理能力现代化?"
+      ],
+      "traps": [
+        "制度也难以发挥作用。同时，又不能把国家治理体系和国家治理能力等同起来，不是国"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.22"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s02.p042",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 42    全面深化改革开放要坚持正确方法论（重点选择）",
+    "shortTitle": "全面深化改革开放要坚持正确方",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "方法论；增强全面深化改革的系统性、整体性、协同性；加强顶层设计和摸着石头过河相结合",
+      "keyPoints": [
+        "方法论；增强全面深化改革的系统性、整体性、协同性；加强顶层设计和摸着石头过河相结合"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 将改革开放进行到底",
+    "shortTitle": "第三节 将改革开放进行到底",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 将改革开放进行到底的核心考点与知识要点",
+      "keyPoints": [
+        "考点 43   改革开放永无止境（重点选择）",
+        "考点44  坚定不移扩大高水平对外开放（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s03.p043",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 43   改革开放永无止境（重点选择）",
+    "shortTitle": "改革开放永无止境",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全面深化改革开放，是新时代坚持和发展中国特色社会主义的根本动力【新提法！易错】；为什么说改革开放",
+      "keyPoints": [
+        "全面深化改革开放，是新时代坚持和发展中国特色社会主义的根本动力【新提法！易错】；为什么说改革开放"
+      ],
+      "traps": [
+        "改革开放40 多年来，我国经济社会发展取得重大成就，根本原因就是我们不",
+        "注意区分"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c06.s03.p044",
+    "bookId": "xg",
+    "parentId": "pol.xg.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点44  坚定不移扩大高水平对外开放（重点选择）",
+    "shortTitle": "扩大高水平对外开放",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全面对外开放：是国家繁荣富强的根本出路；全面深化改革：是解决中国现实问题的根本途径；开放带来进步，封闭必然落后",
+      "keyPoints": [
+        "全面对外开放：是国家繁荣富强的根本出路",
+        "全面深化改革：是解决中国现实问题的根本途径",
+        "开放带来进步，封闭必然落后"
+      ],
+      "traps": [
+        "中国对外开放，不是要一家唱独角戏，而是要欢迎各方共同参与;不是要谋求势力范围，而是要支持各国共",
+        "同发展;不是要营造自己的后花园，而是要建设各国共享的百花园。"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 7,
+    "title": "第六章 推动高质量发展",
+    "shortTitle": "第六章 推动高质量发展",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第六章 推动高质量发展的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 坚持和完善社会主义基本经济制度",
+        "第二节“三新”：新发展阶段、新发展理念、新发展格局",
+        "第三节 推动高质量发展"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 坚持和完善社会主义基本经济制度",
+    "shortTitle": "第一节 坚持和完善社会主义基",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 坚持和完善社会主义基本经济制度的核心考点与知识要点",
+      "keyPoints": [
+        "考点 45  坚持和完善社会主义基本经济制度是实现高质量发展的保障（重点选择）",
+        "考点46  所有制：坚持“两个毫不动摇”(((（重点选择）",
+        "考点 47  分配制：坚持按劳分配为主体、多种分配方式并存"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s01.p045",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 45  坚持和完善社会主义基本经济制度是实现高质量发展的保障（重点选择）",
+    "shortTitle": "社会主义基本经济制度是实现高",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党的十八大以来，以习近平同志为核心的党中央着眼于更好发挥社会主义制度优越性、推动高质量发展，",
+      "keyPoints": [
+        "党的十八大以来，以习近平同志为核心的党中央着眼于更好发挥社会主义制度优越性、推动高质量发展，"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s01.p046",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点46  所有制：坚持“两个毫不动摇”(((（重点选择）",
+    "shortTitle": "所有制",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "所有制；公有制经济和非公有制经济都是社会主义市场经济的重要组成部分，都是我国经济社；会发展的重要基础。要毫不动摇巩固和发展公有制经济，毫不动摇鼓励、支持、引导",
+      "keyPoints": [
+        "所有制；公有制经济和非公有制经济都是社会主义市场经济的重要组成部分，都是我国经济社；会发展的重要基础"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s01.p047",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 47  分配制：坚持按劳分配为主体、多种分配方式并存",
+    "shortTitle": "分配制",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "基本分配制度是由我国社会主义性质和基本国情决定的；在社会主义初级阶段，我国实行的是公有制为主体、多种所有制经济共同发展的所有制，这种所有制决定",
+      "keyPoints": [
+        "基本分配制度是由我国社会主义性质和基本国情决定的",
+        "坚持和完善基本分配制度的政策导向【了解】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s01.p048",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 48  资源配置体制机制：构建高水平社会主义市场经济体制（重点选择）",
+    "shortTitle": "资源配置体制机制",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "构建高水平社会主义市场经济体制，关键是要处理好政府和市场的关系；政府和市场；的关系；使市场在资源配置中起决定性作用，更好发挥政府作用：",
+      "keyPoints": [
+        "构建高水平社会主义市场经济体制，关键是要处理好政府和市场的关系",
+        "使市场在资源配置中起决定性作用，更好发挥政府作用：",
+        "者是有机统一的，不是相互否定的，不能把二者割裂开来、对立起来。要用好"
+      ],
+      "traps": [
+        "二者是有机统一的，不是相互否定的，不能把二者割裂开来、对立起来。要用好"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节“三新”：新发展阶段、新发展理念、新发展格局",
+    "shortTitle": "第二节“三新”",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节“三新”：新发展阶段、新发展理念、新发展格局的核心考点与知识要点",
+      "keyPoints": [
+        "考点 49  立足新发展阶段，贯彻新发展理念（重点选择）",
+        "考点 50   建设强大国内市场，构建新发展格局"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s02.p049",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 49  立足新发展阶段，贯彻新发展理念（重点选择）",
+    "shortTitle": "立足新发展阶段，贯彻新发展理",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新发展阶段；“三期叠加”；我国经济发展正处在增长速度换挡期、结构调整阵痛期、前期刺激政策消化期“三期叠",
+      "keyPoints": [
+        "新发展阶段；“三期叠加”；我国经济发展正处在增长速度换挡期、结构调整阵痛期、前期刺激政策消化期“三期"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s02.p050",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 50   建设强大国内市场，构建新发展格局",
+    "shortTitle": "建设强大国内市场，构建新发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "新发展格局内涵；以国内大循环为主体、国内国际双循环相互促进的新发展格局；为什么要构建新发展格局?",
+      "keyPoints": [
+        "为什么要构建新发展格局?",
+        "年国际金融危机是我国发展格局演变的一个重要分水岭。面对",
+        "步把发展立足点放在国内，更多依靠国内市场实现经济发展。我"
+      ],
+      "traps": [
+        "不是封闭的国内单循环: 在新发展格局下，中国市场潜力将充分激发，中国开放的大门将进",
+        "主体，不是各地都搞自我小循环。以国内大循环为主体，是针对全"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 推动高质量发展",
+    "shortTitle": "第三节 推动高质量发展",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 推动高质量发展的核心考点与知识要点",
+      "keyPoints": [
+        "考点 51    以新发展理念引领高质量发展（重点选择）",
+        "考点52  以新质生产力强劲推动高质量发展",
+        "考点 53  建设现代化产业体系，巩固壮大实体经济根基（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s03.p051",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 51    以新发展理念引领高质量发展（重点选择）",
+    "shortTitle": "以新发展理念引领高质量发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "高质量发展；K；高质量发展是全面建设社会主义现代化国家的首要任务，是新时代我国经济社会发展的鲜；明主题，是遵循经济规律发展的必然要求",
+      "keyPoints": [
+        "方面，要更好统筹质的有效提升和量的合理增长"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s03.p052",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点52  以新质生产力强劲推动高质量发展",
+    "shortTitle": "以新质生产力强劲推动高质量发",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "大大强调:“发展新质生产力是推动高质量发展的内在要求和重要着力点，必须继续做好创新这篇大文章，",
+      "keyPoints": [
+        "为什么提出新质生产力?",
+        "什么是新质生产力?【帽子题】",
+        "怎样培育和发展新质生产力?"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s03.p053",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 53  建设现代化产业体系，巩固壮大实体经济根基（重点选择）",
+    "shortTitle": "建设现代化产业体系，巩固壮大",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "中国式现代化",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "现代化经济体系的内涵：建设现代化经济体系，就要建设创新引领、协同发展的产业体系，建设统一开放、",
+      "keyPoints": [
+        "现代化经济体系的内涵：建设现代化经济体系，就要建设创新引领、协同发展的产业体系，建设统一开放、"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s03.p054",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点54  加快农业农村现代化，扎实推进乡村振兴",
+    "shortTitle": "加快农业农村现代化，扎实推进",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点",
+      "中国式现代化"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "实施乡村振兴的；必要性；农业强国是社会主义现代化强国的根基。没有农业强国就没有整个现代化强国；没有农",
+      "keyPoints": [
+        "实施乡村振兴的；必要性；农业强国是社会主义现代化强国的根基。没有农业强国就没有整个现代化强国；没有农"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.30"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c07.s03.p055",
+    "bookId": "xg",
+    "parentId": "pol.xg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点 55  优化区域经济布局，促进区域协调发展（重点选择）",
+    "shortTitle": "优化区域经济布局，促进区域协",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "大；举措；完善实施区域协调发展战略机制【横向（地图）的维度】；优化国土空间发展格局【纵向（层次）的维度】",
+      "keyPoints": [
+        "大；举措；完善实施区域协调发展战略机制【横向（地图）的维度】；优化国土空间发展格局【纵向（层次）的维"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 8,
+    "title": "第七章 社会主义现代化建设的教育、科技、人才战略",
+    "shortTitle": "第七章 社会主义现代化建设的",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第七章 社会主义现代化建设的教育、科技、人才战略的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 全面建设社会主义现代化国家的基础性、战略性支撑",
+        "第二节 加快建设教育强国",
+        "第三节 加快建设科技强国"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 全面建设社会主义现代化国家的基础性、战略性支撑",
+    "shortTitle": "第一节 全面建设社会主义现代",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 全面建设社会主义现代化国家的基础性、战略性支撑的核心考点与知识要点",
+      "keyPoints": [
+        "考点56  坚持教育发展、科技创新、人才培养一体推进（重点选择）",
+        "考点57  深入实施科教兴国战略、人才强国战略、创新驱动发展战略【帽子题】（重点选择）",
+        "考点 58   坚持教育优先发展、科技自立自强、人才引领驱动【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s01.p056",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点56  坚持教育发展、科技创新、人才培养一体推进（重点选择）",
+    "shortTitle": "坚持教育发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "现代化强国必定是教育强国、科技强国、人才强国；教育、科技、人才是全面建设社会主义现代化国家的基础性、战略性支撑。全面建设社会主义现代化国",
+      "keyPoints": [
+        "教育、科技、人才事业取得历史性成就【选择】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s01.p057",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点57  深入实施科教兴国战略、人才强国战略、创新驱动发展战略【帽子题】（重点选择）",
+    "shortTitle": "深入实施科教兴国战略",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "科教兴国战略；就是要全面落实科学技术是第一生产力的思想；科教兴国是我国的基本国策；人才强国战略；就是要牢固树立人才资源是第一资源的理念",
+      "keyPoints": [
+        "科教兴国战略；就是要全面落实科学技术是第一生产力的思想；科教兴国是我国的基本国策；人才强国战略；就是"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s01.p058",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 58   坚持教育优先发展、科技自立自强、人才引领驱动【非重点】",
+    "shortTitle": "坚持教育优先发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "坚持教育优先发展、科技自立自强、人才引领驱动的理论核心与考点分析",
+      "keyPoints": [
+        "坚持教育优先发展、科技自立自强、人才引领驱动的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 加快建设教育强国",
+    "shortTitle": "第二节 加快建设教育强国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 加快建设教育强国的核心考点与知识要点",
+      "keyPoints": [
+        "考点59  教育是民族振兴、社会进步的基石（重点选择）",
+        "考点60  落实立德树人根本任务（重点选择）",
+        "考点61   办好人民满意的教育【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s02.p059",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点59  教育是民族振兴、社会进步的基石（重点选择）",
+    "shortTitle": "教育是民族振兴",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "教育是国家经济社会发展的支撑力量；坚持党的教育方针，坚持社会主义办学方向；坚持扎根中国大地办教育",
+      "keyPoints": [
+        "教育是国家经济社会发展的支撑力量",
+        "坚持党的教育方针，坚持社会主义办学方向",
+        "坚持扎根中国大地办教育"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s02.p060",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点60  落实立德树人根本任务（重点选择）",
+    "shortTitle": "落实立德树人根本任务",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "落实立德树人根本任务的理论核心与考点分析",
+      "keyPoints": [
+        "落实立德树人根本任务的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s02.p061",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点61   办好人民满意的教育【非重点】",
+    "shortTitle": "办好人民满意的教育",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "教育公平是社会公平的重要基础",
+      "keyPoints": [
+        "教育公平是社会公平的重要基础"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 加快建设科技强国",
+    "shortTitle": "第三节 加快建设科技强国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 加快建设科技强国的核心考点与知识要点",
+      "keyPoints": [
+        "考点62   科技强则国家强",
+        "考点63  打赢关键核心技术攻坚战",
+        "考点64  增强自主创新能力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s03.p062",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点62   科技强则国家强",
+    "shortTitle": "科技强则国家强",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "实现高水平科技；自立自强的必要性；实现高水平科技自立自强是国家强盛和民族复兴的战略基石；实现高水平科技自立自强是应对风险挑战和维护国家利益的必然选择",
+      "keyPoints": [
+        "实现高水平科技；自立自强的必要性；实现高水平科技自立自强是国家强盛和民族复兴的战略基石；实现高水平科"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s03.p063",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点63  打赢关键核心技术攻坚战",
+    "shortTitle": "打赢关键核心技术攻坚战",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "怎么做；关键核心技术必须掌握在自己手中；深入推进科技体制改革；发挥新型举国体制优势",
+      "keyPoints": [
+        "怎么做；关键核心技术必须掌握在自己手中；深入推进科技体制改革；发挥新型举国体制优势"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s03.p064",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点64  增强自主创新能力",
+    "shortTitle": "增强自主创新能力",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "什么是自主创新?；基础研究是科技创新的源头；我国面临的很多“卡脖子”技术问题，根子是基础理论研究跟不上",
+      "keyPoints": [
+        "什么是自主创新?",
+        "基础研究是科技创新的源头",
+        "国家战略科技力量是世界科技强国竞争的着力点"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s04",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 加快建设人才强国",
+    "shortTitle": "第四节 加快建设人才强国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 加快建设人才强国的核心考点与知识要点",
+      "keyPoints": [
+        "考点65  培养人才是国家和民族长远发展大计【非重点】",
+        "考点 66 培养造就大批德才兼备的高素质人才【非重点】",
+        "考点67 深化人才发展体制机制改革"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s04.p065",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点65  培养人才是国家和民族长远发展大计【非重点】",
+    "shortTitle": "培养人才是国家和民族长远发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "培养人才是国家和民族长远发展大计的理论核心与考点分析",
+      "keyPoints": [
+        "培养人才是国家和民族长远发展大计的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s04.p066",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 66 培养造就大批德才兼备的高素质人才【非重点】",
+    "shortTitle": "培养造就大批德才兼备的高素质",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "培养造就大批德才兼备的高素质人才的理论核心与考点分析",
+      "keyPoints": [
+        "培养造就大批德才兼备的高素质人才的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c08.s04.p067",
+    "bookId": "xg",
+    "parentId": "pol.xg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点67 深化人才发展体制机制改革",
+    "shortTitle": "深化人才发展体制机制改革",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p110"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "深化人才发展体制机制改革的理论核心与考点分析",
+      "keyPoints": [
+        "深化人才发展体制机制改革的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 9,
+    "title": "第八章 发展全过程人民民主",
+    "shortTitle": "第八章 发展全过程人民民主",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第八章 发展全过程人民民主的科学体系与考点构架",
+      "keyPoints": [
+        "第一节坚定中国特色社会主义政治制度自信",
+        "第二节 全过程人民民主是社会主义民主政治的本质属性",
+        "第三节 健全人民当家作主的制度体系"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节坚定中国特色社会主义政治制度自信",
+    "shortTitle": "第一节坚定中国特色社会主义政",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节坚定中国特色社会主义政治制度自信的核心考点与知识要点",
+      "keyPoints": [
+        "考点 68  人民民主是社会主义的生命【非重点】",
+        "考点 69  中国特色社会主义政治制度行得通、有生命力、有效率（重点选择）",
+        "考点70  坚定不移走中国特色社会主义政治发展道路（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s01.p068",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 68  人民民主是社会主义的生命【非重点】",
+    "shortTitle": "人民民主是社会主义的生命",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "人民民主是社会主义的生命，全过程人民民主是社会主义民主政治的本质属性；人民民主是全面建设社会主义现代化国家的应有之义",
+      "keyPoints": [
+        "人民民主是社会主义的生命，全过程人民民主是社会主义民主政治的本质属性；人民民主是全面建设社会主义现代"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s01.p069",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 69  中国特色社会主义政治制度行得通、有生命力、有效率（重点选择）",
+    "shortTitle": "政治制度行得通",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国特色社会主义政治制度的构成；构成；根本政治制度【人民代表大会制度】；基本政治制度【中国共产党领导的多党合作和政治协商制度、民族区域自治制度以及基",
+      "keyPoints": [
+        "中国特色社会主义政治制度的构成",
+        "中国特色社会主义政治制度具有鲜明的中国特色和巨大优势"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.35"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s01.p070",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点70  坚定不移走中国特色社会主义政治发展道路（重点选择）",
+    "shortTitle": "走中国特色社会主义政治发展道",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "个必须；必须坚持党的领导、人民当家作主、依法治国有机统一；党的领导是人民当家作主和依法治国的根本保证",
+      "keyPoints": [
+        "个必须；必须坚持党的领导、人民当家作主、依法治国有机统一；党的领导是人民当家作主和依法治国的根本保证"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.35"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 全过程人民民主是社会主义民主政治的本质属性",
+    "shortTitle": "第二节 全过程人民民主是社会",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 全过程人民民主是社会主义民主政治的本质属性的核心考点与知识要点",
+      "keyPoints": [
+        "考点 71  全过程人民民主是社会主义民主政治的伟大创造【非重点】",
+        "考点72   全过程人民民主的特点【记住下面两点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s02.p071",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 71  全过程人民民主是社会主义民主政治的伟大创造【非重点】",
+    "shortTitle": "全过程人民民主是社会主义民主",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全过程人民民主是社会主义民主政治的伟大创造的理论核心与考点分析",
+      "keyPoints": [
+        "全过程人民民主是社会主义民主政治的伟大创造的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s02.p072",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点72   全过程人民民主的特点【记住下面两点】",
+    "shortTitle": "全过程人民民主的特点",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "全过程人民民主是全链条、全方位、全覆盖的民主【全面覆盖】；全过程人民民主是最广泛、最真实、最管用的民主【真实管用】",
+      "keyPoints": [
+        "全过程人民民主是全链条、全方位、全覆盖的民主【全面覆盖】；全过程人民民主是最广泛、最真实、最管用的民"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 健全人民当家作主的制度体系",
+    "shortTitle": "第三节 健全人民当家作主的制",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 健全人民当家作主的制度体系的核心考点与知识要点",
+      "keyPoints": [
+        "考点73   加强人民当家作主制度保障（重点选择）",
+        "考点74  全面发展协商民主（重点选择）",
+        "考点 75  积极发展基层民主"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s03.p073",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点73   加强人民当家作主制度保障（重点选择）",
+    "shortTitle": "加强人民当家作主制度保障",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "根本政治制度；人民代表；大会制度；是什么；是我国的根本政治制度；是符合我国国情和实际、体现社会主义国家性质、保证人民当家作",
+      "keyPoints": [
+        "是具有坚持中国共产党领导、保证党领导人民依法有效治理国家的",
+        "是具有践行全过程人民民主、保障人民当家作主的显著优势",
+        "是具有贯彻民主集中制、保证国家政治生活既充满活力又安定有序"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s03.p074",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点74  全面发展协商民主（重点选择）",
+    "shortTitle": "全面发展协商民主",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "协商民主是实践全过程人民民主的重要形式；协商民主是中国社会主义民主政治中独特的、独有的、独到的民主形式/是中国社会主义民主政治的特",
+      "keyPoints": [
+        "协商民主是实践全过程人民民主的重要形式",
+        "协商民主是中国社会主义民主政治中独特的、独有的、独到的民主形式/是中国社会主义民主政治的特",
+        "不断完善协商民主体系"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.38"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s03.p075",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 75  积极发展基层民主",
+    "shortTitle": "积极发展基层民主",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "基层自治组织；我国基层民主有多种多样的形式，如；以村民委员会为组织形态的农村村民自治；以社区居民委员会为组织形态的城市居民自治",
+      "keyPoints": [
+        "发展基层民主：",
+        "重要制度载体：人民代表大会制度",
+        "重要形式：协商民主"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.38"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s04",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 巩固和发展新时代爱国统一战线",
+    "shortTitle": "第四节 巩固和发展新时代爱国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 巩固和发展新时代爱国统一战线的核心考点与知识要点",
+      "keyPoints": [
+        "考点76   统一战线是凝聚人心、汇聚力量的强大法宝（选）",
+        "考点77   铸牢中华民族共同体意识【民族工作主线】（重点选择）",
+        "考点78  加强和促进海内外中华儿女大团结【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s04.p076",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点76   统一战线是凝聚人心、汇聚力量的强大法宝（选）",
+    "shortTitle": "统一战线是凝聚人心",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "统一战线是中国共产党夺取革命、建设、改革事业胜利的重要法宝，也是实现中华民族伟；大复兴的重要法宝。要不断巩固由中国共产党领导的、以工农联盟为基础的，包括全体社会主义劳动者、",
+      "keyPoints": [
+        "统一战线是中国共产党夺取革命、建设、改革事业胜利的重要法宝，也是实现中华民族伟；大复兴的重要法宝。要"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s04.p077",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点77   铸牢中华民族共同体意识【民族工作主线】（重点选择）",
+    "shortTitle": "铸牢中华民族共同体意识",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "民族团结是我国各族人民的生命线，中华民族共同体意识是民族团结之本；中华民族共同体的形成是中华民族历史发展的必然结果",
+      "keyPoints": [
+        "怎样铸牢中华民族共同体意识?",
+        "宗教工作在党和国家工作全局中具有特殊重要性"
+      ],
+      "traps": [
+        "事实充分说明，对中华民族形成起决定作用的是对中华民族共同体的认同，而不是种族、血缘、地域、宗"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c09.s04.p078",
+    "bookId": "xg",
+    "parentId": "pol.xg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点78  加强和促进海内外中华儿女大团结【非重点】",
+    "shortTitle": "加强和促进海内外中华儿女大团",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "促进中华儿女大团结，是新时代爱国统一战线的历史责任，要把握做好统战工作的正确原；则和方法，最大限度汇聚起致力民族复兴的强大力量",
+      "keyPoints": [
+        "高举爱国主义、社会主义旗帜【非重点】",
+        "抓好重点领域统战工作【非重点】",
+        "辩证把握好四方面关系"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 10,
+    "title": "第九章 全面依法治国",
+    "shortTitle": "第九章 全面依法治国",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第九章 全面依法治国的科学体系与考点构架",
+      "keyPoints": [
+        "第二节 坚持中国特色社会主义法治道路",
+        "第二节 建设中国特色社会主义法治体系",
+        "第三节 加快建设法治中国"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第二节 坚持中国特色社会主义法治道路",
+    "shortTitle": "第二节 坚持中国特色社会主义",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 坚持中国特色社会主义法治道路的核心考点与知识要点",
+      "keyPoints": [
+        "考点79  全面依法治国是国家治理的一场深刻革命",
+        "考点80  全面依法治国的唯一正确道路（重点选择）",
+        "考点81  统筹处理全面依法治国的重大关系（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s01.p079",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点79  全面依法治国是国家治理的一场深刻革命",
+    "shortTitle": "全面依法治国是国家治理的一场",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点",
+      "革命史",
+      "法治建设"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "社会主义法治国家；建设取得历史性成就；党的十八大以来，以习近平同志为核心的党中央加强党对全面依法治国集中统一",
+      "keyPoints": [
+        "社会主义法治国家；建设取得历史性成就；党的十八大以来，以习近平同志为核心的党中央加强党对全面依法治国"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s01.p080",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点80  全面依法治国的唯一正确道路（重点选择）",
+    "shortTitle": "全面依法治国的唯一正确道路",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国特色社会主义法治道路：；核心要义；坚持党的领导；党的领导是中国特色社会主义最本质的特征，是社会主",
+      "keyPoints": [
+        "中国特色社会主义法治道路：",
+        "大优良作风（理论与实际相结合的作风、与人民群众紧密地联系在一起的作"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s01.p081",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点81  统筹处理全面依法治国的重大关系（重点选择）",
+    "shortTitle": "统筹处理全面依法治国的重大关",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党与法的关系：二者高度统一、根本一致、不分大小；正确处理；政治和法治的关系；党和法的关系是政治和法治关系的集中反映，是全面依法治国的一个根本问题。",
+      "keyPoints": [
+        "党与法的关系：二者高度统一、根本一致、不分大小",
+        "依法治国：基本方式",
+        "以德治国：重要方式"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.42"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 建设中国特色社会主义法治体系",
+    "shortTitle": "第二节 建设中国特色社会主义",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 建设中国特色社会主义法治体系的核心考点与知识要点",
+      "keyPoints": [
+        "考点 82 全面推进依法治国的总抓手——建设中国特色社会主义法治体系(((（重点选择）",
+        "考点 83  坚持依宪治国、依宪执政（重点选择）",
+        "考点 84  更好推进中国特色社会主义法治体系建设"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s02.p082",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 82 全面推进依法治国的总抓手——建设中国特色社会主义法治体系(((（重点选择）",
+    "shortTitle": "依法治国的总抓手",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "【见思修-第六章】",
+      "keyPoints": [
+        "【见思修-第六章】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s02.p083",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 83  坚持依宪治国、依宪执政（重点选择）",
+    "shortTitle": "坚持依宪治国",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "坚持依宪治国、依宪执政的理论核心与考点分析",
+      "keyPoints": [
+        "坚持依宪治国、依宪执政的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s02.p084",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 84  更好推进中国特色社会主义法治体系建设",
+    "shortTitle": "更好推进中国特色社会主义法治",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点",
+      "法治建设"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国特色社会主义法治体系建设：；具体方面；完备的法律；规范体系；高效的法治实；施体系",
+      "keyPoints": [
+        "中国特色社会主义法治体系建设："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 加快建设法治中国",
+    "shortTitle": "第三节 加快建设法治中国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 加快建设法治中国的核心考点与知识要点",
+      "keyPoints": [
+        "考点85  法治中国建设的总体目标",
+        "考点 86  法治中国建设的工作布局【见思修-第六章】",
+        "考点87  建设更高水平的法治中国【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s03.p085",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点85  法治中国建设的总体目标",
+    "shortTitle": "法治中国建设的总体目标",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点",
+      "法治建设"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "全面依法治国建设中特法治体系；宪法是国家的根本法，是治国安邦的总章程，是党和人民意志的集中体现，是国家各种制度和法律法规的总",
+      "keyPoints": [
+        "全面依法治国建设中特法治体系；宪法是国家的根本法，是治国安邦的总章程，是党和人民意志的集中体现，是国"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s03.p086",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 86  法治中国建设的工作布局【见思修-第六章】",
+    "shortTitle": "法治中国建设的工作布局",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点",
+      "法治建设"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "坚持依法治国（对应人民）、依法执政（对应党）、依法行政（对应政府）共同推进；坚持法治国家、法治政府、法治社会一体建设",
+      "keyPoints": [
+        "坚持依法治国（对应人民）、依法执政（对应党）、依法行政（对应政府）共同推进",
+        "坚持法治国家、法治政府、法治社会一体建设",
+        "坚持统筹推进国内法治和涉外法治"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.44"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c10.s03.p087",
+    "bookId": "xg",
+    "parentId": "pol.xg.c10.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点87  建设更高水平的法治中国【非重点】",
+    "shortTitle": "建设更高水平的法治中国",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "建设更高水平的法治中国的理论核心与考点分析",
+      "keyPoints": [
+        "建设更高水平的法治中国的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.44"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 11,
+    "title": "第十章 建设社会主义文化强国",
+    "shortTitle": "第十章 建设社会主义文化强国",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十章 建设社会主义文化强国的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 文化是民族生存和发展的重要力量",
+        "第二节 坚持党的文化领导权",
+        "第三节 以社会主义核心价值观引领文化建设"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 文化是民族生存和发展的重要力量",
+    "shortTitle": "第一节 文化是民族生存和发展",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 文化是民族生存和发展的重要力量的核心考点与知识要点",
+      "keyPoints": [
+        "考点 88  文化繁荣兴盛是实现中华民族伟大复兴的必然要求（重点选择）",
+        "考点89  坚定中国特色社会主义文化自信（重点选择）",
+        "考点90坚持中国特色社会主义文化发展道路【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s01.p088",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 88  文化繁荣兴盛是实现中华民族伟大复兴的必然要求（重点选择）",
+    "shortTitle": "文化繁荣兴盛是实现中华民族伟",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "文化繁荣兴盛；的重要性；文化繁荣兴盛是实现中华民族伟大复兴的精神支撑【根本保证/物质支撑；×】；文化繁荣兴盛是建设社会主义现代化强国的应有之义",
+      "keyPoints": [
+        "文化繁荣兴盛；的重要性；文化繁荣兴盛是实现中华民族伟大复兴的精神支撑【根本保证/物质支撑；×】；文化"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s01.p089",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点89  坚定中国特色社会主义文化自信（重点选择）",
+    "shortTitle": "坚定中国特色社会主义文化自信",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "文化自信；文化自信是更基础、更广泛、更深厚的自信，是一个国家、一个民族发展中最基；本、最深沉、最持久的力量",
+      "keyPoints": [
+        "文化自信；文化自信是更基础、更广泛、更深厚的自信，是一个国家、一个民族发展中最基；本、最深沉、最持久"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s01.p090",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点90坚持中国特色社会主义文化发展道路【非重点】",
+    "shortTitle": "坚持中国特色社会主义文化发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“二为”方向；坚持为人民服务、为社会主义服务的根本方向，是决定社会主义文化事业前途命运的关键；“双百”方针",
+      "keyPoints": [
+        "“二为”方向；坚持为人民服务、为社会主义服务的根本方向，是决定社会主义文化事业前途命运的关键；“双百"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 坚持党的文化领导权",
+    "shortTitle": "第二节 坚持党的文化领导权",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 坚持党的文化领导权的核心考点与知识要点",
+      "keyPoints": [
+        "考点 91  坚持马克思主义在意识形态领域指导地位的根本制度【非重点】",
+        "考点 92  大力加强马克思主义理论建设【选】",
+        "考点93  积极塑造主流舆论新格局（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s02.p091",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 91  坚持马克思主义在意识形态领域指导地位的根本制度【非重点】",
+    "shortTitle": "坚持马克思主义在意识形态领域",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "坚持马克思主义在意识形态领域指导地位的根本制度的理论核心与考点分析",
+      "keyPoints": [
+        "坚持马克思主义在意识形态领域指导地位的根本制度的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s02.p092",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 92  大力加强马克思主义理论建设【选】",
+    "shortTitle": "大力加强马克思主义理论建设",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "点举措；坚持用马克思主义特别是中国化时代化的马克思主义武装全党、教育人民、指导实践；深化马克思主义理论研究和建设",
+      "keyPoints": [
+        "点举措；坚持用马克思主义特别是中国化时代化的马克思主义武装全党、教育人民、指导实践；深化马克思主义理"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s02.p093",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点93  积极塑造主流舆论新格局（重点选择）",
+    "shortTitle": "积极塑造主流舆论新格局",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "坚持正确的政治方向是做好；新闻舆论工作的第一位要求；新闻舆论工作有鲜明的意识形态属性；党性原则是新闻舆论工作的根本原则",
+      "keyPoints": [
+        "坚持正确的政治方向是做好；新闻舆论工作的第一位要求；新闻舆论工作有鲜明的意识形态属性；党性原则是新闻"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 以社会主义核心价值观引领文化建设",
+    "shortTitle": "第三节 以社会主义核心价值观",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 以社会主义核心价值观引领文化建设的核心考点与知识要点",
+      "keyPoints": [
+        "考点94   广泛践行社会主义核心价值观（重点选择）",
+        "考点 95   弘扬以伟大建党精神为源头的中国共产党人精神谱系（重点选择）",
+        "考点96  提高全社会文明程度【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s03.p094",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点94   广泛践行社会主义核心价值观（重点选择）",
+    "shortTitle": "广泛践行社会主义核心价值观",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会主义核心；价值观内涵；是一个民族赖以维系的精神纽带，是一个国家共同的思想道德基础，集中体现着全体人",
+      "keyPoints": [
+        "社会主义核心；价值观内涵；是一个民族赖以维系的精神纽带，是一个国家共同的思想道德基础，集中体现着全体"
+      ],
+      "traps": [
+        "注重区分层次、突: 出重点，"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s03.p095",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 95   弘扬以伟大建党精神为源头的中国共产党人精神谱系（重点选择）",
+    "shortTitle": "弘扬以伟大建党精神为源头的中",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "中国精神",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "建党精神；坚持真理、坚守理想，践行初心、担当使命，不怕牺牲、英勇斗争，对党忠诚、不负人民",
+      "keyPoints": [
+        "建党精神；坚持真理、坚守理想，践行初心、担当使命，不怕牺牲、英勇斗争，对党忠诚、不负人民"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s03.p096",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点96  提高全社会文明程度【非重点】",
+    "shortTitle": "提高全社会文明程度",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "提高全社会文明程度的理论核心与考点分析",
+      "keyPoints": [
+        "提高全社会文明程度的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s04",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 铸就社会主义文化新辉煌",
+    "shortTitle": "第四节 铸就社会主义文化新辉",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 铸就社会主义文化新辉煌的核心考点与知识要点",
+      "keyPoints": [
+        "考点97  传承发展中华优秀传统文化(((（重点选择）",
+        "考点98  繁荣发展文化事业和文化产业(((【高频考点】（重点选择）",
+        "考点99  不断提升国家文化软实力和中华文化影响力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s04.p097",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点97  传承发展中华优秀传统文化(((（重点选择）",
+    "shortTitle": "传承发展中华优秀传统文化",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "深刻把握中华文明的突出特性；连续性；连续性从根本上决定了中华民族必然走自己的路；创新性；创新性从根本上决定了中华民族守正不守旧、尊古不复古的进取精神，决定了中华民族不惧",
+      "keyPoints": [
+        "深刻把握中华文明的突出特性",
+        "推动中华优秀传统文化创造性转化、创新性发展",
+        "保护好、传承好文化遗产"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s04.p098",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点98  繁荣发展文化事业和文化产业(((【高频考点】（重点选择）",
+    "shortTitle": "繁荣发展文化事业和文化产业",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "把为人民服务作为文艺工作者的天职；中国精神是社会主义文艺的灵魂；发展文化事业；繁荣文化产业；总结&扩展文化事业与文化产业的比较",
+      "keyPoints": [
+        "把为人民服务作为文艺工作者的天职",
+        "发展文化事业",
+        "繁荣文化产业"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c11.s04.p099",
+    "bookId": "xg",
+    "parentId": "pol.xg.c11.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点99  不断提升国家文化软实力和中华文化影响力",
+    "shortTitle": "不断提升国家文化软实力和中华",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "文化软实力的内涵；文化软实力集中体现了一个国家基于文化而具有的凝聚力和生命力，以及由此产生的吸引力和影响力",
+      "keyPoints": [
+        "文化软实力的内涵",
+        "提高国家文化软实力必须使当代中国价值观念走向世界",
+        "个国家的文化软实力，从根本上说，取决于其核心价值观的生命力、凝聚力、感召力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.49"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 12,
+    "title": "第十一章 以保障和改善民生为重点加强社会建设",
+    "shortTitle": "第十一章 以保障和改善民生为",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十一章 以保障和改善民生为重点加强社会建设的科学体系与考点构架",
+      "keyPoints": [
+        "第一节让人民生活幸福是“国之大者”",
+        "第二节 不断提高人民生活品质",
+        "第三节 在共建共治共享中推进社会治理现代化"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节让人民生活幸福是“国之大者”",
+    "shortTitle": "第一节让人民生活幸福是“国之",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节让人民生活幸福是“国之大者”的核心考点与知识要点",
+      "keyPoints": [
+        "考点 100   民生是人民幸福之基（重点选择）",
+        "考点101  人民获得感幸福感安全感更加充实、更有保障、更可持续【非重点】",
+        "考点102   坚持在发展中增进民生福祉（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s01.p100",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 100   民生是人民幸福之基（重点选择）",
+    "shortTitle": "民生是人民幸福之基",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全面建设社会主义现代化国家，出发点和落脚点是让人民生活越过越好；增进民生福祉；是坚持立党为公、执政为民的本质要求",
+      "keyPoints": [
+        "全面建设社会主义现代化国家，出发点和落脚点是让人民生活越过越好；增进民生福祉；是坚持立党为公、执政为"
+      ],
+      "traps": [
+        "在资本主义社会，生产表现为人的目的，而人并不是生产的目的。关注人本身的"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s01.p101",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点101  人民获得感幸福感安全感更加充实、更有保障、更可持续【非重点】",
+    "shortTitle": "人民获得感幸福感安全感更加充",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "人民获得感幸福感安全感更加充实、更有保障、更可持续的理论核心与考点分析",
+      "keyPoints": [
+        "人民获得感幸福感安全感更加充实、更有保障、更可持续的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s01.p102",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点102   坚持在发展中增进民生福祉（重点选择）",
+    "shortTitle": "坚持在发展中增进民生福祉",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "重要前提；正确把握民生和发展的关系【可能考论述题】；发展是改善民生的物质基础，离开发展谈改善民生是无源之水、无本之木。如果发展不能",
+      "keyPoints": [
+        "重要前提；正确把握民生和发展的关系【可能考论述题】；发展是改善民生的物质基础，离开发展谈改善民生是无"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 不断提高人民生活品质",
+    "shortTitle": "第二节 不断提高人民生活品质",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 不断提高人民生活品质的核心考点与知识要点",
+      "keyPoints": [
+        "考点103   完善分配制度（重点选择）",
+        "考点104   实施就业优先战略（重点选择）",
+        "考点105  健全社会保障体系（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.51"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s02.p103",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点103   完善分配制度（重点选择）",
+    "shortTitle": "完善分配制度",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "次分配；首先，发挥初次分配的基础性作用；其次，发挥再分配的调节作用，加大税收、社保、转移支付等的调节力度，提高精准性",
+      "keyPoints": [
+        "次分配；首先，发挥初次分配的基础性作用；其次，发挥再分配的调节作用，加大税收、社保、转移支付等的调节"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.51"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s02.p104",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点104   实施就业优先战略（重点选择）",
+    "shortTitle": "实施就业优先战略",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "就业内涵；就业是最基本的民生，是劳动者赖以生存和发展的基础、共享经济发展成果的基本；件，关系到亿万劳动者及其家庭的切身利益",
+      "keyPoints": [
+        "强化就业优先政策，健全就业促进机制，促进高质量充分就业：",
+        "共同富裕的制度基础：社会主义基本经济制度"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.51"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s02.p105",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点105  健全社会保障体系（重点选择）",
+    "shortTitle": "健全社会保障体系",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新时代加强社会建设的重要着力点就是健全和完善社会保障体系，我国基本建成以社会保险为主体、功能完",
+      "keyPoints": [
+        "新时代加强社会建设的重要着力点就是健全和完善社会保障体系，我国基本建成以社会保险为主体、功能完"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s02.p106",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 106   推进健康中国建设【非重点】",
+    "shortTitle": "推进健康中国建设",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "推进健康中国建设的理论核心与考点分析",
+      "keyPoints": [
+        "推进健康中国建设的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s02.p107",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点107  健全人口发展支持和服务体系",
+    "shortTitle": "健全人口发展支持和服务体系",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "完善生育支持政策体系和激励机制，推动建设生育友好型社会；以应对老龄化、少子化为重点完善人口发展战略，健全覆盖全人群、全生命周期的人口服务体系，促进人",
+      "keyPoints": [
+        "完善生育支持政策体系和激励机制，推动建设生育友好型社会",
+        "积极应对人口老龄化，完善发展养老事业和养老产业政策机制"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 在共建共治共享中推进社会治理现代化",
+    "shortTitle": "第三节 在共建共治共享中推进",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 在共建共治共享中推进社会治理现代化的核心考点与知识要点",
+      "keyPoints": [
+        "考点108   加强和创新社会治理【社会管理≠社会治理】",
+        "考点109   完善社会治理体系【一套制度体系】（重点选择）",
+        "考点110   加强城乡社区治理【基层治理】（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s03.p108",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点108   加强和创新社会治理【社会管理≠社会治理】",
+    "shortTitle": "加强和创新社会治理",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "加强和创新社会治理，就是要在党的领导下，以政府为主导，以社会多元主体参与为基础，以维护人民群众",
+      "keyPoints": [
+        "加强和创新社会治理，就是要在党的领导下，以政府为主导，以社会多元主体参与为基础，以维护人民群众"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s03.p109",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点109   完善社会治理体系【一套制度体系】（重点选择）",
+    "shortTitle": "完善社会治理体系",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会治理体系是进行社会治理的基础，也是提高社会治理效能的保障。党的十九届四中全会提出，要完善党",
+      "keyPoints": [
+        "理念是先导，必须坚持共建共治共享的社会治理理念",
+        "制度是保障，必须健全社会治理制度，提升社会治理效能",
+        "方式方法是重要内容，必须不断创新社会治理方式、途径和手段"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.53"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c12.s03.p110",
+    "bookId": "xg",
+    "parentId": "pol.xg.c12.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点110   加强城乡社区治理【基层治理】（重点选择）",
+    "shortTitle": "加强城乡社区治理",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "基层治理；基层治理是国家治理的基石，城乡社区是社会治理最基本的单元，是党和政府联系、服；务居民群众的“最后一公里”。社会治理的重心必须向基层下移，落实到城乡社区，有效",
+      "keyPoints": [
+        "基层治理；基层治理是国家治理的基石，城乡社区是社会治理最基本的单元，是党和政府联系、服；务居民群众的"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.53"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 13,
+    "title": "第十二章 建设社会主义生态文明",
+    "shortTitle": "第十二章 建设社会主义生态文",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十二章 建设社会主义生态文明的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 坚持人与自然和谐共生【结合时政会议考的多】",
+        "第二节 建设美丽中国",
+        "第三节 共谋全球生态文明建设之路"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 坚持人与自然和谐共生【结合时政会议考的多】",
+    "shortTitle": "第一节 坚持人与自然和谐共生",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 坚持人与自然和谐共生【结合时政会议考的多】的核心考点与知识要点",
+      "keyPoints": [
+        "考点111   生态兴则文明兴",
+        "考点 112   绿水青山就是金山银山（重点选择）",
+        "考点113   把生态文明建设摆在全局工作的突出位置【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s01.p111",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点111   生态兴则文明兴",
+    "shortTitle": "生态兴则文明兴",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "生态环境是人类生存最为基础的条件，生态文明建设是关系中华民族永续发展的根本大计。大自然是人类赖",
+      "keyPoints": [
+        "生态环境是人类生存最为基础的条件，生态文明建设是关系中华民族永续发展的根本大计。大自然是人类赖"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s01.p112",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 112   绿水青山就是金山银山（重点选择）",
+    "shortTitle": "绿水青山就是金山银山",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "生态环境问题归根到底是经济发展方式和生活方式问题。绿水青山就是金山银山，这是重要的发展理念，也",
+      "keyPoints": [
+        "生态环境问题归根到底是经济发展方式和生活方式问题。绿水青山就是金山银山，这是重要的发展理念，也"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s01.p113",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点113   把生态文明建设摆在全局工作的突出位置【非重点】",
+    "shortTitle": "把生态文明建设摆在全局工作的",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "把生态文明建设摆在全局工作的突出位置的理论核心与考点分析",
+      "keyPoints": [
+        "把生态文明建设摆在全局工作的突出位置的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 建设美丽中国",
+    "shortTitle": "第二节 建设美丽中国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 建设美丽中国的核心考点与知识要点",
+      "keyPoints": [
+        "考点114   加快形成绿色生产方式和生活方式（重点选择）",
+        "考点115   坚持山水林田湖草沙一体化保护和系统治理（重点选择）",
+        "考点116   用最严格制度最严密法治保护生态环境（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s02.p114",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点114   加快形成绿色生产方式和生活方式（重点选择）",
+    "shortTitle": "加快形成绿色生产方式和生活方",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "大大指出：“绿色发展，就其要义来讲，是要解决好人与自然和谐共生问题。”要加快推动发展方式绿色低碳",
+      "keyPoints": [
+        "大大指出：“绿色发展，就其要义来讲，是要解决好人与自然和谐共生问题。”要加快推动发展方式绿色低碳"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s02.p115",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点115   坚持山水林田湖草沙一体化保护和系统治理（重点选择）",
+    "shortTitle": "坚持山水林田湖草沙一体化保护",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "加快实施重要生态系统保护和修复重大工程；几条线；强化国土空间规划和用途管控，划定落实生态保护红线、永久基本农田、城镇开发边界三条",
+      "keyPoints": [
+        "加快实施重要生态系统保护和修复重大工程",
+        "推进自然保护地体系建设",
+        "科学推进荒漠化、石漠化、水土流失综合治理，持续开展大规模国土绿化行动"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s02.p116",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点116   用最严格制度最严密法治保护生态环境（重点选择）",
+    "shortTitle": "用最严格制度最严密法治保护生",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "实行最严格的生态环境保护制度【事前】；全面建立资源高效利用制度；严明生态环境保护责任制度【事后】",
+      "keyPoints": [
+        "实行最严格的生态环境保护制度【事前】",
+        "全面建立资源高效利用制度",
+        "严明生态环境保护责任制度【事后】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 共谋全球生态文明建设之路",
+    "shortTitle": "第三节 共谋全球生态文明建设",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 共谋全球生态文明建设之路的核心考点与知识要点",
+      "keyPoints": [
+        "考点117   保护人类共同家园【非重点】",
+        "考点118   共建清洁美丽世界【非重点】",
+        "考点119   积极推动全球可持续发展【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s03.p117",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点117   保护人类共同家园【非重点】",
+    "shortTitle": "保护人类共同家园",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "保护人类共同家园的理论核心与考点分析",
+      "keyPoints": [
+        "保护人类共同家园的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s03.p118",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点118   共建清洁美丽世界【非重点】",
+    "shortTitle": "共建清洁美丽世界",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "共建清洁美丽世界的理论核心与考点分析",
+      "keyPoints": [
+        "共建清洁美丽世界的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c13.s03.p119",
+    "bookId": "xg",
+    "parentId": "pol.xg.c13.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点119   积极推动全球可持续发展【非重点】",
+    "shortTitle": "积极推动全球可持续发展",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p111"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "如何推动全球；可持续发展?；积极参与全球气候治理；积极推进全球生物多样性治理；积极打造绿色“一带一路”",
+      "keyPoints": [
+        "如何推动全球；可持续发展?；积极参与全球气候治理；积极推进全球生物多样性治理；积极打造绿色“一带一路"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 14,
+    "title": "第十三章 维护和塑造国家安全",
+    "shortTitle": "第十三章 维护和塑造国家安全",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十三章 维护和塑造国家安全的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 坚持总体国家安全观",
+        "第二节 构建统筹各领域安全的新安全格局",
+        "第三节 开创新时代国家安全工作新局面"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 坚持总体国家安全观",
+    "shortTitle": "第一节 坚持总体国家安全观",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 坚持总体国家安全观的核心考点与知识要点",
+      "keyPoints": [
+        "考点 120   国家安全是民族复兴的根基（重点选择）",
+        "考点 121   总体国家安全观是新时代国家安全工作的基本遵循（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s01.p120",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 120   国家安全是民族复兴的根基（重点选择）",
+    "shortTitle": "国家安全是民族复兴的根基",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "国家安全是民族复兴的根基，社会稳定是国家强盛的前提",
+      "keyPoints": [
+        "国家安全是民族复兴的根基，社会稳定是国家强盛的前提"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s01.p121",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 121   总体国家安全观是新时代国家安全工作的基本遵循（重点选择）",
+    "shortTitle": "总体国家安全观是新时代国家安",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "总体国家安全观的；内涵；总体国家安全观以人民安全为宗旨【基石】；以政治安全为根本【首位】；以经济安全为基础",
+      "keyPoints": [
+        "总体国家安全观的；内涵；总体国家安全观以人民安全为宗旨【基石】；以政治安全为根本【首位】；以经济安全"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 构建统筹各领域安全的新安全格局",
+    "shortTitle": "第二节 构建统筹各领域安全的",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 构建统筹各领域安全的新安全格局的核心考点与知识要点",
+      "keyPoints": [
+        "考点 122   统筹发展和安全（重点选择）",
+        "考点123   把维护政治安全放在首要位置",
+        "考点124  维护重点领域国家安全【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s02.p122",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 122   统筹发展和安全（重点选择）",
+    "shortTitle": "统筹发展和安全",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "发展和安全；的关系；发展解决的是动力问题，是推动国家和民族赓续绵延的根本支撑；安全解决的是保；障问题，是确保国家和民族行稳致远的坚强柱石",
+      "keyPoints": [
+        "发展和安全；的关系；发展解决的是动力问题，是推动国家和民族赓续绵延的根本支撑；安全解决的是保；障问题"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s02.p123",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点123   把维护政治安全放在首要位置",
+    "shortTitle": "把维护政治安全放在首要位置",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "政治安全是国家安全的根本。政治安全涉及国家主权、政权、制度和意识形态的稳固，是一个国家最根本",
+      "keyPoints": [
+        "政治安全是国家安全的根本。政治安全涉及国家主权、政权、制度和意识形态的稳固，是一个国家最根本"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s02.p124",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点124  维护重点领域国家安全【非重点】",
+    "shortTitle": "维护重点领域国家安全",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "维护重点领域国家安全的理论核心与考点分析",
+      "keyPoints": [
+        "维护重点领域国家安全的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 开创新时代国家安全工作新局面",
+    "shortTitle": "第三节 开创新时代国家安全工",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 开创新时代国家安全工作新局面的核心考点与知识要点",
+      "keyPoints": [
+        "考点125   推进国家安全体系和能力现代化【非重点】",
+        "考点126   提高防范化解重大风险能力【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s03.p125",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点125   推进国家安全体系和能力现代化【非重点】",
+    "shortTitle": "推进国家安全体系和能力现代化",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解",
+      "中国式现代化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "推进国家安全体系和能力现代化的理论核心与考点分析",
+      "keyPoints": [
+        "推进国家安全体系和能力现代化的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c14.s03.p126",
+    "bookId": "xg",
+    "parentId": "pol.xg.c14.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点126   提高防范化解重大风险能力【非重点】",
+    "shortTitle": "提高防范化解重大风险能力",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "提高防范化解重大风险能力的理论核心与考点分析",
+      "keyPoints": [
+        "提高防范化解重大风险能力的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 15,
+    "title": "第十四章 建设巩固国防和强大人民军队",
+    "shortTitle": "第十四章 建设巩固国防和强大",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十四章 建设巩固国防和强大人民军队的科学体系与考点构架",
+      "keyPoints": [
+        "第一节强国必须强军，军强才能国安",
+        "第二节 实现党在新时代的强军目标",
+        "第三节 加快推进国防和军队现代化"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节强国必须强军，军强才能国安",
+    "shortTitle": "第一节强国必须强军，军强才能",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节强国必须强军，军强才能国安的核心考点与知识要点",
+      "keyPoints": [
+        "考点127   国防和军队建设是捍卫国家主权、安全、发展利益的坚强后盾【非重点】",
+        "考点128  新时代人民军队使命任务【新提法】（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s01.p127",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点127   国防和军队建设是捍卫国家主权、安全、发展利益的坚强后盾【非重点】",
+    "shortTitle": "国防和军队建设是捍卫国家主权",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "国防和军队建设是捍卫国家主权、安全、发展利益的坚强后盾的理论核心与考点分析",
+      "keyPoints": [
+        "国防和军队建设是捍卫国家主权、安全、发展利益的坚强后盾的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s01.p128",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点128  新时代人民军队使命任务【新提法】（重点选择）",
+    "shortTitle": "新时代人民军队使命任务",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“四个战略支撑”；为巩固中国共产党领导和我国社会主义制度提供战略支撑；为捍卫国家主权、统一和领土完整提供战略支撑",
+      "keyPoints": [
+        "“四个战略支撑”；为巩固中国共产党领导和我国社会主义制度提供战略支撑；为捍卫国家主权、统一和领土完整"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 实现党在新时代的强军目标",
+    "shortTitle": "第二节 实现党在新时代的强军",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 实现党在新时代的强军目标的核心考点与知识要点",
+      "keyPoints": [
+        "考点129  强军目标的科学内涵（重点选择）",
+        "考点130  全面推进国防和军队现代化的战略安排"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s02.p129",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点129  强军目标的科学内涵（重点选择）",
+    "shortTitle": "强军目标的科学内涵",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党在新时代的强军目标是建设一支听党指挥、能打胜仗、作风优良的人民军队，把人民军队建设成为世界一",
+      "keyPoints": [
+        "党在新时代的强军目标是建设一支听党指挥、能打胜仗、作风优良的人民军队，把人民军队建设成为世界一"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s02.p130",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点130  全面推进国防和军队现代化的战略安排",
+    "shortTitle": "国防和军队现代化的战略安排",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点",
+      "中国式现代化"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "(1)到2027 年实现建军一百年奋斗目标；(2)到2035 年基本实现国防和军队现代化。这一步的关键是实现军事理论现代化、军队组织形态现代化、军事",
+      "keyPoints": [
+        "(1)到2027 年实现建军一百年奋斗目标；(2)到2035 年基本实现国防和军队现代化。这一步的关"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 加快推进国防和军队现代化",
+    "shortTitle": "第三节 加快推进国防和军队现",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 加快推进国防和军队现代化的核心考点与知识要点",
+      "keyPoints": [
+        "考点131   坚持党对人民军队的绝对领导",
+        "考点 132   坚持政治建军、改革强军、科技强军、人才强军、依法治军（重点选择）",
+        "考点133  全面加强练兵备战【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s03.p131",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点131   坚持党对人民军队的绝对领导",
+    "shortTitle": "坚持党对人民军队的绝对领导",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "党对人民军队的绝对领导，是建军之本、强军之魂；坚持党对人民军队的绝对领导必须有一整套制度作保证",
+      "keyPoints": [
+        "党对人民军队的绝对领导，是建军之本、强军之魂",
+        "坚持党对人民军队的绝对领导必须有一整套制度作保证",
+        "这些制度主要有："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s03.p132",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 132   坚持政治建军、改革强军、科技强军、人才强军、依法治军（重点选择）",
+    "shortTitle": "坚持政治建军",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "戴帽子题；政治建军是人民军队的立军之本；改革是决定人民军队发展壮大、制胜未来的关键一招；科技是核心战斗力，是军事发展中最活跃、最具革命性的因素",
+      "keyPoints": [
+        "戴帽子题；政治建军是人民军队的立军之本；改革是决定人民军队发展壮大、制胜未来的关键一招；科技是核心战"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.59"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s03.p133",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点133  全面加强练兵备战【非重点】",
+    "shortTitle": "全面加强练兵备战",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全面加强练兵备战的理论核心与考点分析",
+      "keyPoints": [
+        "全面加强练兵备战的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.59"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c15.s03.p134",
+    "bookId": "xg",
+    "parentId": "pol.xg.c15.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点134   巩固提高一体化国家战略体系和能力【非重点】",
+    "shortTitle": "巩固提高一体化国家战略体系和",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "巩固提高一体化国家战略体系和能力的理论核心与考点分析",
+      "keyPoints": [
+        "巩固提高一体化国家战略体系和能力的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.59"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 16,
+    "title": "第十五章 坚持“一国两制”和推进祖国完全统一",
+    "shortTitle": "第十五章 坚持“一国两制”和",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十五章 坚持“一国两制”和推进祖国完全统一的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 全面准确理解和贯彻“一国两制”方针",
+        "第二节 保持香港、澳门长期繁荣稳定",
+        "第三节 推进祖国完全统一"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.59"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 全面准确理解和贯彻“一国两制”方针",
+    "shortTitle": "第一节 全面准确理解和贯彻“",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 全面准确理解和贯彻“一国两制”方针的核心考点与知识要点",
+      "keyPoints": [
+        "考点135  “一国两制”是中国特色社会主义的伟大创举【非重点】",
+        "考点136   准确把握“一国两制”的科学内涵(((（重点选择）",
+        "考点 137  坚持和完善“一国两制”制度体系【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s01.p135",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点135  “一国两制”是中国特色社会主义的伟大创举【非重点】",
+    "shortTitle": "“一国两制”是中国特色社会主",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“一国两制”是中国特色社会主义的伟大创举的理论核心与考点分析",
+      "keyPoints": [
+        "“一国两制”是中国特色社会主义的伟大创举的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s01.p136",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点136   准确把握“一国两制”的科学内涵(((（重点选择）",
+    "shortTitle": "准确把握“一国两制”的科学内",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "牢牢把握“一国两制”的根本宗旨；“一国两制”的根本宗旨是维护国家主权、安全、发展利益，保持香港、澳门长期繁荣稳定",
+      "keyPoints": [
+        "牢牢把握“一国两制”的根本宗旨",
+        "准确把握“一国”和“两制”的关系",
+        "坚持中央全面管治权和保障特别行政区高度自治权相统一"
+      ],
+      "traps": [
+        "治权是中央行使全面管治权的体现。高度自治不是完全自治，也不是分权，而是中央授予的地方事务管理权"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s01.p137",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 137  坚持和完善“一国两制”制度体系【非重点】",
+    "shortTitle": "“一国两制”制度体系",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "坚持和完善“一国两制”制度体系的理论核心与考点分析",
+      "keyPoints": [
+        "坚持和完善“一国两制”制度体系的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 保持香港、澳门长期繁荣稳定",
+    "shortTitle": "第二节 保持香港",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 保持香港、澳门长期繁荣稳定的核心考点与知识要点",
+      "keyPoints": [
+        "考点138   香港、澳门保持长期稳定发展良好态势【非重点】",
+        "考点139   推动香港进入由乱到治走向由治及兴的新阶段（重点选择）",
+        "考点140  支持香港、澳门融入国家发展大局【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s02.p138",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点138   香港、澳门保持长期稳定发展良好态势【非重点】",
+    "shortTitle": "香港",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "香港、澳门保持长期稳定发展良好态势的理论核心与考点分析",
+      "keyPoints": [
+        "香港、澳门保持长期稳定发展良好态势的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s02.p139",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点139   推动香港进入由乱到治走向由治及兴的新阶段（重点选择）",
+    "shortTitle": "推动香港进入由乱到治走向由治",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“一国两制”的提出首先是为了实现和维护国家统一，任何危害国家主权安全、挑战中央权力和香港特别行政",
+      "keyPoints": [
+        "“一国两制”的提出首先是为了实现和维护国家统一，任何危害国家主权安全、挑战中央权力和香港特别行政"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s02.p140",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点140  支持香港、澳门融入国家发展大局【非重点】",
+    "shortTitle": "支持香港",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "支持香港、澳门融入国家发展大局的理论核心与考点分析",
+      "keyPoints": [
+        "支持香港、澳门融入国家发展大局的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 推进祖国完全统一",
+    "shortTitle": "第三节 推进祖国完全统一",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 推进祖国完全统一的核心考点与知识要点",
+      "keyPoints": [
+        "考点141   实现祖国完全统一是中华民族伟大复兴的必然要求【非重点】",
+        "考点142   坚持贯彻新时代党解决台湾问题的总体方略（重点选择）",
+        "考点143  牢牢把握两岸关系主导权和主动权"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s03.p141",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点141   实现祖国完全统一是中华民族伟大复兴的必然要求【非重点】",
+    "shortTitle": "实现祖国完全统一是中华民族伟",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中华文明具有突出的统一性，国家统一永远是中国核心利益的核心；“台独”分裂是祖国统一的最大障碍；祖国统一的突出障碍是外部干涉势力",
+      "keyPoints": [
+        "中华文明具有突出的统一性，国家统一永远是中国核心利益的核心；“台独”分裂是祖国统一的最大障碍；祖国统"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s03.p142",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点142   坚持贯彻新时代党解决台湾问题的总体方略（重点选择）",
+    "shortTitle": "坚持贯彻新时代党解决台湾问题",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "总结&扩展新时代党解决台湾问题的总体方略；统一的根本保证；坚持党中央对对台工作的集中统一领导；统一的历史方位",
+      "keyPoints": [
+        "总结&扩展新时代党解决台湾问题的总体方略；统一的根本保证；坚持党中央对对台工作的集中统一领导；统一的"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c16.s03.p143",
+    "bookId": "xg",
+    "parentId": "pol.xg.c16.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点143  牢牢把握两岸关系主导权和主动权",
+    "shortTitle": "牢牢把握两岸关系主导权和主动",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“和平统一、一国两制”方针是实现两岸统一的最佳方式；促进两岸经济文化交流合作，深化两岸各领域融合发展",
+      "keyPoints": [
+        "“和平统一、一国两制”方针是实现两岸统一的最佳方式",
+        "促进两岸经济文化交流合作，深化两岸各领域融合发展",
+        "坚持以最大诚意、尽最大努力争取和平统一的前景，但决不承诺放弃使用武力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 17,
+    "title": "第十六章 中国特色大国外交和推动构建人类命运共同体",
+    "shortTitle": "第十六章 中国特色大国外交和",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十六章 中国特色大国外交和推动构建人类命运共同体的科学体系与考点构架",
+      "keyPoints": [
+        "第一节新时代中国外交在大变局中开创新局",
+        "第二节 全面推进中国特色大国外交",
+        "第三节 推动构建人类命运共同体"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.62"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节新时代中国外交在大变局中开创新局",
+    "shortTitle": "第一节新时代中国外交在大变局",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节新时代中国外交在大变局中开创新局的核心考点与知识要点",
+      "keyPoints": [
+        "考点144  当今世界正经历百年未有之大变局【非重点】",
+        "考点145  中国必须有自己特色的大国外交（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.62"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s01.p144",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点144  当今世界正经历百年未有之大变局【非重点】",
+    "shortTitle": "当今世界正经历百年未有之大变",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "当今世界正经历百年未有之大变局的理论核心与考点分析",
+      "keyPoints": [
+        "当今世界正经历百年未有之大变局的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.62"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s01.p145",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点145  中国必须有自己特色的大国外交（重点选择）",
+    "shortTitle": "中国必须有自己特色的大国外交",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国特色大国外交建立在正确的历史观、大局观、角色观基础之上；中国特色大国外交牢牢把握服务民族复兴、促进人类进步这条主线",
+      "keyPoints": [
+        "中国特色大国外交建立在正确的历史观、大局观、角色观基础之上",
+        "中国特色大国外交牢牢把握服务民族复兴、促进人类进步这条主线",
+        "中国特色大国外交坚持正确的原则要求"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.62"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 全面推进中国特色大国外交",
+    "shortTitle": "第二节 全面推进中国特色大国",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 全面推进中国特色大国外交的核心考点与知识要点",
+      "keyPoints": [
+        "考点 146   坚持走和平发展道路（重点选择）",
+        "考点147  推动构建新型国际关系(((（重点选择）",
+        "考点148   坚决维护国家主权、安全、发展利益（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s02.p146",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 146   坚持走和平发展道路（重点选择）",
+    "shortTitle": "坚持走和平发展道路",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国为什么走和平发展道路?；原因；首先，走和平发展道路是由中国共产党性质宗旨和我国社会主义制度决定的",
+      "keyPoints": [
+        "中国为什么走和平发展道路?",
+        "走和平发展道路的政治主张"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s02.p147",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点147  推动构建新型国际关系(((（重点选择）",
+    "shortTitle": "推动构建新型国际关系",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "推动构建新型国际关系，就是要秉持相互尊重、公平正义、合作共赢原则，走出一条对话而不对抗、结伴而",
+      "keyPoints": [
+        "发展中国家是基础"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s02.p148",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点148   坚决维护国家主权、安全、发展利益（重点选择）",
+    "shortTitle": "坚决维护国家主权",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "维护国家主权、安全、发展利益是我国对外工作的出发点和落脚点，这是中国外交的神圣使命",
+      "keyPoints": [
+        "维护国家主权、安全、发展利益是我国对外工作的出发点和落脚点，这是中国外交的神圣使命"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s02.p149",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 149   坚持外交为民",
+    "shortTitle": "坚持外交为民",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国外交始终坚守外交为民的宗旨",
+      "keyPoints": [
+        "中国外交始终坚守外交为民的宗旨"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 推动构建人类命运共同体",
+    "shortTitle": "第三节 推动构建人类命运共同",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 推动构建人类命运共同体的核心考点与知识要点",
+      "keyPoints": [
+        "考点150   构建人类命运共同体是世界各国人民前途所在",
+        "考点151   推动构建人类命运共同体的价值基础和重要依托",
+        "考点152   积极参与全球治理体系改革和建设（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s03.p150",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点150   构建人类命运共同体是世界各国人民前途所在",
+    "shortTitle": "构建人类命运共同体是世界各国",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "构建人类命运；共同体重要性；推动构建人类命运共同体，是当代中国共产党人回答和解决关乎人类前途命运的时",
+      "keyPoints": [
+        "构建人类命运；共同体重要性；推动构建人类命运共同体，是当代中国共产党人回答和解决关乎人类前途命运的时"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s03.p151",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点151   推动构建人类命运共同体的价值基础和重要依托",
+    "shortTitle": "推动构建人类命运共同体的价值",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "大大指出：“和平、发展、公平、正义、民主、自由，是全人类的共同价值，也是联合国的崇高目标。”",
+      "keyPoints": [
+        "大大指出：“和平、发展、公平、正义、民主、自由，是全人类的共同价值，也是联合国的崇高目标。”"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s03.p152",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点152   积极参与全球治理体系改革和建设（重点选择）",
+    "shortTitle": "积极参与全球治理体系改革和建",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "要秉持共商共建共享的全球治理观，坚持真正的多边主义，推动全球治理体系朝着更加公正合理的方向发展，",
+      "keyPoints": [
+        "要秉持共商共建共享的全球治理观，坚持真正的多边主义，推动全球治理体系朝着更加公正合理的方向发展，"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c17.s03.p153",
+    "bookId": "xg",
+    "parentId": "pol.xg.c17.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点153   高质量共建“一带一路”（重点选择）",
+    "shortTitle": "高质量共建“一带一路”",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“一带一路”倡议的基本主张；原则；共商共建共享；理念；开放、绿色、廉洁；目标",
+      "keyPoints": [
+        "“一带一路”倡议的基本主张；原则；共商共建共享；理念；开放、绿色、廉洁；目标"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18",
+    "bookId": "xg",
+    "parentId": "pol.xg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 18,
+    "title": "第十七章 全面从严治党",
+    "shortTitle": "第十七章 全面从严治党",
+    "tags": [
+      "习概",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第十七章 全面从严治党的科学体系与考点构架",
+      "keyPoints": [
+        "第二节全面从严治党是新时代党的建设的鲜明主题",
+        "第三节以政治建设为统领深入推进党的建设",
+        "第三节 坚定不移推进反腐败斗争"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s01",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第二节全面从严治党是新时代党的建设的鲜明主题",
+    "shortTitle": "第二节全面从严治党是新时代党",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节全面从严治党是新时代党的建设的鲜明主题的核心考点与知识要点",
+      "keyPoints": [
+        "考点 154   打铁必须自身硬（重点选择）",
+        "考点155  坚定不移全面从严治党"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s01.p154",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 154   打铁必须自身硬（重点选择）",
+    "shortTitle": "打铁必须自身硬",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全面从严治党是党永葆生机活力、走好新的赶考之路的必由之路，是新时代党的建设的鲜明主题",
+      "keyPoints": [
+        "全面从严治党是党永葆生机活力、走好新的赶考之路的必由之路，是新时代党的建设的鲜明主题"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s01.p155",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点155  坚定不移全面从严治党",
+    "shortTitle": "全面从严治党",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "全面从严治党，核心是加强党的领导，基础在全面，关键在严，要害在治",
+      "keyPoints": [
+        "全面从严治党，核心是加强党的领导，基础在全面，关键在严，要害在治"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s02",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第三节以政治建设为统领深入推进党的建设",
+    "shortTitle": "第三节以政治建设为统领深入推",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节以政治建设为统领深入推进党的建设的核心考点与知识要点",
+      "keyPoints": [
+        "考点156  把党的政治建设摆在首位（重点选择）",
+        "考点157  思想建设是党的基础性建设（重点选择）",
+        "考点158  贯彻新时代党的组织路线（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s02.p156",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点156  把党的政治建设摆在首位（重点选择）",
+    "shortTitle": "把党的政治建设摆在首位",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党的政治建设；旗帜鲜明讲政治是我们党作为马克思主义政党的根本要求；党的政治建设是党的根本性建设【思想建设是党的基础性建设】",
+      "keyPoints": [
+        "旗帜鲜明讲政治是我们党作为马克思主义政党的根本要求",
+        "党的政治建设的首要任务：保证全党服从中央，维护党中央权威和集中统一领导"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s02.p157",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点157  思想建设是党的基础性建设（重点选择）",
+    "shortTitle": "思想建设是党的基础性建设",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "思想建设是党的基础性建设的理论核心与考点分析",
+      "keyPoints": [
+        "思想建设是党的基础性建设的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s02.p158",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点158  贯彻新时代党的组织路线（重点选择）",
+    "shortTitle": "贯彻新时代党的组织路线",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "如何加强党的；组织建设？；严密党的组织体系是重点；建设高素质专业化干部队伍是关键",
+      "keyPoints": [
+        "如何加强党的；组织建设？；严密党的组织体系是重点；建设高素质专业化干部队伍是关键"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s02.p159",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点159  以严的基调强化正风肃纪（重点选择）",
+    "shortTitle": "以严的基调强化正风肃纪",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "如何加强党的；作风和纪律建；设?；作风问题的核心是党同人民群众的关系问题；党要管党、从严治党，就要靠严明纪律和规矩，加强纪律建设是全面从严治党的治",
+      "keyPoints": [
+        "如何加强党的；作风和纪律建；设?；作风问题的核心是党同人民群众的关系问题；党要管党、从严治党，就要靠"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s02.p160",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点160   把制度建设贯穿到党的各项建设之中（重点选择）",
+    "shortTitle": "把制度建设贯穿到党的各项建设",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "法规制度带有根本性、全局性、稳定性、长期性。要把制度建设贯穿到党的各项建设之中，增强依规治党的",
+      "keyPoints": [
+        "新时代党的建设总要求："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s03",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 坚定不移推进反腐败斗争",
+    "shortTitle": "第三节 坚定不移推进反腐败斗",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 坚定不移推进反腐败斗争的核心考点与知识要点",
+      "keyPoints": [
+        "考点161   腐败是党长期执政面临的最大威胁（重点选择）",
+        "考点 162   反腐败必须永远吹冲锋号【非重点】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s03.p161",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点161   腐败是党长期执政面临的最大威胁（重点选择）",
+    "shortTitle": "腐败是党长期执政面临的最大威",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "腐败是危害党的生命力和战斗力的最大毒瘤，对党的执政基础破坏力最大、杀伤力也最大，是党长期执政面",
+      "keyPoints": [
+        "腐败是危害党的生命力和战斗力的最大毒瘤，对党的执政基础破坏力最大、杀伤力也最大，是党长期执政面"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s03.p162",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 162   反腐败必须永远吹冲锋号【非重点】",
+    "shortTitle": "反腐败必须永远吹冲锋号",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "反腐败必须永远吹冲锋号的理论核心与考点分析",
+      "keyPoints": [
+        "反腐败必须永远吹冲锋号的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s04",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 建设长期执政的马克思主义政党",
+    "shortTitle": "第四节 建设长期执政的马克思",
+    "tags": [
+      "习概",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 建设长期执政的马克思主义政党的核心考点与知识要点",
+      "keyPoints": [
+        "考点163   党的自我革命是跳出历史周期率的第二个答案（重点选择）",
+        "考点164   时刻保持解决大党独有难题的清醒和坚定【非重点】",
+        "考点165   以伟大自我革命引领伟大社会革命"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s04.p163",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点163   党的自我革命是跳出历史周期率的第二个答案（重点选择）",
+    "shortTitle": "党的自我革命是跳出历史周期率",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "勇于自我革命是中国共产党区别于其他政党的显著标志；勇于自我革命的重要途径；“四个自我”；个自我：自我净化、自我完善、自我革新、自我提高",
+      "keyPoints": [
+        "勇于自我革命是中国共产党区别于其他政党的显著标志",
+        "勇于自我革命的重要途径",
+        "个自我：自我净化、自我完善、自我革新、自我提高"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s04.p164",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点164   时刻保持解决大党独有难题的清醒和坚定【非重点】",
+    "shortTitle": "时刻保持解决大党独有难题的清",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "理解了解",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "时刻保持解决大党独有难题的清醒和坚定的理论核心与考点分析",
+      "keyPoints": [
+        "时刻保持解决大党独有难题的清醒和坚定的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.xg.c18.s04.p165",
+    "bookId": "xg",
+    "parentId": "pol.xg.c18.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点165   以伟大自我革命引领伟大社会革命",
+    "shortTitle": "以伟大自我革命引领伟大社会革",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p112"
+    ],
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "以伟大自我革命引领伟大社会革命的理论核心与考点分析",
+      "keyPoints": [
+        "以伟大自我革命引领伟大社会革命的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 习概 p.67"
+      ]
+    }
+  }
+]

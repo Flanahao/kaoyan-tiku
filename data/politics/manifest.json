@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "books": "books.json",
+  "periods": "periods.json",
+  "relations": "relations.json",
+  "nodes": [
+    "nodes/sg.json",
+    "nodes/my.json",
+    "nodes/mzt.json",
+    "nodes/xg.json",
+    "nodes/sx.json",
+    "nodes/xs.json"
+  ]
+}

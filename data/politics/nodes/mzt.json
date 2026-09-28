@@ -1,0 +1,2028 @@
+[
+  {
+    "id": "pol.mzt",
+    "bookId": "mzt",
+    "parentId": null,
+    "kind": "book",
+    "depth": 0,
+    "order": 3,
+    "title": "毛泽东思想和中国特色社会主义理论体系概论",
+    "shortTitle": "毛中特",
+    "tags": [
+      "毛中特",
+      "学科主干"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "马克思主义中国化时代化的理论飞跃与历史探索",
+      "keyPoints": [
+        "毛泽东思想",
+        "新民主主义革命理论",
+        "社会主义改造理论",
+        "邓小平理论"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特讲义"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 1,
+    "title": "导论 马克思主义中国化的三次飞跃",
+    "shortTitle": "导论 马克思主义中国化的三次",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "导论 马克思主义中国化的三次飞跃的科学体系与考点构架",
+      "keyPoints": [
+        "核心考点概览"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c01.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "核心考点概览",
+    "shortTitle": "核心考点概览",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "核心考点概览的核心考点与知识要点",
+      "keyPoints": [
+        "考点1   马克思主义中国化时代化的内涵（重点选择）",
+        "考点2   马克思主义中国化时代化的历史进程与理论成果（非重点）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c01.s01.p001",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点1   马克思主义中国化时代化的内涵（重点选择）",
+    "shortTitle": "时代化的内涵",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "什么是马克思主义中国化时代化?【理解其含义】；科学内涵；运用马克思主义的立场、观点和方法，观察时代、把握时代、引领时代，解决中国革",
+      "keyPoints": [
+        "什么是马克思主义中国化时代化?【理解其含义】",
+        "运用马克思主义的立场、观点和方法，观察时代、把握时代、引领时代，解决中国革",
+        "总结和提炼中国革命、建设、改革的实践经验并将其上升为理论，不断丰富和发展马克"
+      ],
+      "traps": [
+        "中国化”这一命题的正式提出【不是开始】"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c01.s01.p002",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点2   马克思主义中国化时代化的历史进程与理论成果（非重点）",
+    "shortTitle": "时代化的历史进程与理论成果",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一次飞跃成果；毛泽东思想；第二次飞跃成果；中国特色社会主义理论体系；新的飞跃；习近平新时代中国特色社会主义思想【属于中国特色社会主义理论体系】",
+      "keyPoints": [
+        "第一次飞跃成果；毛泽东思想；第二次飞跃成果；中国特色社会主义理论体系；新的飞跃；习近平新时代中国特色"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 2,
+    "title": "第一章 毛泽东思想及其历史地位",
+    "shortTitle": "第一章 毛泽东思想及其历史地",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第一章 毛泽东思想及其历史地位的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 毛泽东思想的形成和发展",
+        "第二节 毛泽东思想的主要内容和活的灵魂",
+        "第三节 毛泽东思想的历史地位"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 毛泽东思想的形成和发展",
+    "shortTitle": "第一节 毛泽东思想的形成和发",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 毛泽东思想的形成和发展的核心考点与知识要点",
+      "keyPoints": [
+        "考点3  毛泽东思想的形成和发展的历史条件（重点选择）",
+        "考点4  毛泽东思想形成和发展的过程【步骤】（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s01.p003",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点3  毛泽东思想的形成和发展的历史条件（重点选择）",
+    "shortTitle": "形成和发展的历史条件",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "时代背景：19 世纪末20 世纪初，世界进入帝国主义和无产阶级革命时代（革命与战争）；实践基础：中国共产党领导人民进行革命和建设的成功实践",
+      "keyPoints": [
+        "时代背景：19 世纪末20 世纪初，世界进入帝国主义和无产阶级革命时代（革命与战争）",
+        "实践基础：中国共产党领导人民进行革命和建设的成功实践"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s01.p004",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点4  毛泽东思想形成和发展的过程【步骤】（重点选择）",
+    "shortTitle": "形成和发展的过程",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "时期；形成过程；毛泽东代表著作；大革命时期；国民革命时期）；提出思想",
+      "keyPoints": [
+        "国民革命时期）",
+        "切工作的指针。这标志着把毛泽东思想确立为党必须长期坚持的"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 毛泽东思想的主要内容和活的灵魂",
+    "shortTitle": "第二节 毛泽东思想的主要内容",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 毛泽东思想的主要内容和活的灵魂的核心考点与知识要点",
+      "keyPoints": [
+        "考点5   毛泽东思想的主要内容（非重点）",
+        "考点6   毛泽东思想的活的灵魂（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s02.p005",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点5   毛泽东思想的主要内容（非重点）",
+    "shortTitle": "主要内容",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "毛泽东思想的主要内容的理论核心与考点分析",
+      "keyPoints": [
+        "毛泽东思想的主要内容的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s02.p006",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点6   毛泽东思想的活的灵魂（重点选择）",
+    "shortTitle": "活的灵魂",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "年党的十一届六中全会通过的《中国共产党中央委员会关于建国以来党的若干历史问题的决议》(以；下简称《历史决议》)指出：贯穿于毛泽东思想各个组成部分的立场、观点和方法，是毛泽东思想的活的灵",
+      "keyPoints": [
+        "年党的十一届六中全会通过的《中国共产党中央委员会关于建国以来党的若干历史问题的决议》(以",
+        "下简称《历史决议》)指出：贯穿于毛泽东思想各个组成部分的立场、观点和方法，是毛泽东思想的活的灵"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s03",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 毛泽东思想的历史地位",
+    "shortTitle": "第三节 毛泽东思想的历史地位",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 毛泽东思想的历史地位的核心考点与知识要点",
+      "keyPoints": [
+        "考点7  毛泽东思想的重要意义（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c02.s03.p007",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点7  毛泽东思想的重要意义（重点选择）",
+    "shortTitle": "重要意义",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "对毛泽东思想的评价；马克思主义中国化时代化的第一个重大理论成果；中国革命和建设的科学指南；中国共产党和中国人民宝贵的精神财富",
+      "keyPoints": [
+        "对毛泽东思想的评价；马克思主义中国化时代化的第一个重大理论成果；中国革命和建设的科学指南；中国共产党"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 3,
+    "title": "第二章 新民主主义革命理论",
+    "shortTitle": "第二章 新民主主义革命理论",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第二章 新民主主义革命理论的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 新民主主义革命形成的依据",
+        "第二节 新民主主义革命的总路线和基本纲领",
+        "第三节 新民主主义革命的道路和基本经验"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 新民主主义革命形成的依据",
+    "shortTitle": "第一节 新民主主义革命形成的",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 新民主主义革命形成的依据的核心考点与知识要点",
+      "keyPoints": [
+        "考点8   近代中国国情和中国革命的时代特征（重点选择）",
+        "考点9   新民主主义革命理论的实践基础（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s01.p008",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点8   近代中国国情和中国革命的时代特征（重点选择）",
+    "shortTitle": "近代中国国情和中国革命的时代",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "国情；近代中国已经沦为一个半殖民地半封建性质的社会。认清中国国情，是解决中国革命问题的；本前提（/中国的经济政治文化发展极不平衡）",
+      "keyPoints": [
+        "国情；近代中国已经沦为一个半殖民地半封建性质的社会。认清中国国情，是解决中国革命问题的；本前提（/中"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s01.p009",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点9   新民主主义革命理论的实践基础（重点选择）",
+    "shortTitle": "新民主主义革命理论的实践基础",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新民主主义革命理论的形成，一是基于旧民主主义革命没有为中华民族找到出路；二是新民主主义革命的实",
+      "keyPoints": [
+        "新民主主义革命理论的形成，一是基于旧民主主义革命没有为中华民族找到出路；二是新民主主义革命的实"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 新民主主义革命的总路线和基本纲领",
+    "shortTitle": "第二节 新民主主义革命的总路",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 新民主主义革命的总路线和基本纲领的核心考点与知识要点",
+      "keyPoints": [
+        "考点10  新民主主义革命的总路线（重点选择）",
+        "考点11   新民主主义革命的基本纲领（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s02.p010",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点10  新民主主义革命的总路线（重点选择）",
+    "shortTitle": "新民主主义革命的总路线",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一次提出：1939 年（抗日战争时期）《中国革命和中国共产党》一文中，第一次提出了“新民主主义革",
+      "keyPoints": [
+        "第一次提出：1939 年（抗日战争时期）《中国革命和中国共产党》一文中，第一次提出了“新民主主义革",
+        "完整表述总路线内容：1948（抗日战争时期）《在晋绥干部会议上的讲话》中完整地总结和概括了新民主",
+        "新民主主义革命的对象→分清敌友，这是革命的首要问题"
+      ],
+      "traps": [
+        "注意: ★",
+        "小资产阶级不是资产阶级——是劳动人民，是先进阶级"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s02.p011",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点11   新民主主义革命的基本纲领（选）",
+    "shortTitle": "新民主主义革命的基本纲领",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "提出；年，毛泽东在《新民主主义论》中，阐述了新民主主义的政治、经济和文化；年，他在党的七大所作的政治报告《论联合政府》中，进一步把新民主主义的政治、经",
+      "keyPoints": [
+        "年，毛泽东在《新民主主义论》中，阐述了新民主主义的政治、经济和文化",
+        "年，他在党的七大所作的政治报告《论联合政府》中，进一步把新民主主义的政治、经",
+        "提醒：今天的国体是人民民主专政，不包括剥削者——民族资产阶级"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s03",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 新民主主义革命的道路和基本经验",
+    "shortTitle": "第三节 新民主主义革命的道路",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 新民主主义革命的道路和基本经验的核心考点与知识要点",
+      "keyPoints": [
+        "考点12  新民主主义革命的道路（重点选择）",
+        "考点13   新民主主义革命的三大法宝（重点选择）",
+        "考点14   新民主主义革命理论的意义（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s03.p012",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点12  新民主主义革命的道路（重点选择）",
+    "shortTitle": "新民主主义革命的道路",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "提出；初步形成；土地革命；早期；《中国的红色政权为什么能够存在?》《井冈山的斗争》《星星之火，可以燎",
+      "keyPoints": [
+        "年11 月，在党的六届六中全会（《战争与战略问题》）上明确指出：“共",
+        "形成的必然性",
+        "中国革命必须"
+      ],
+      "traps": [
+        "产党的任务，基本地不是经过长期合法斗争以进入起义和战争，也不是先占",
+        "经济发展极端不平衡（革命道路最根本原因、近代半殖民地半封建社会国情"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s03.p013",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点13   新民主主义革命的三大法宝（重点选择）",
+    "shortTitle": "新民主主义革命的三大法宝",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "提出；毛泽东在《共产党人〉发刊词》一文中，总结了中国革命两次胜利和两次失败的经验教训，；揭示了中国革命发展的客观规律，把统一战线、武装斗争、党的建设，比作党在中国革命中",
+      "keyPoints": [
+        "方面，是由中国半殖民地半封建社会的阶级状况所决定的。中国社会是一",
+        "个是工人阶级同农民阶级、广大知识分子及其他劳动者的联盟，主要是工",
+        "是要建立巩固的工农联盟（最重要的关系）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c03.s03.p014",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点14   新民主主义革命理论的意义（选）",
+    "shortTitle": "新民主主义革命理论的意义",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s02.p044"
+    ],
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "理论上；科学地回答了中国革命向何处去的问题，正确地解决了中国革命的发展阶段问题，揭示了近代；中国革命发展的客观规律，极大地丰富了马克思主义的理论宝库",
+      "keyPoints": [
+        "理论上；科学地回答了中国革命向何处去的问题，正确地解决了中国革命的发展阶段问题，揭示了近代；中国革命"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 4,
+    "title": "第三章 社会主义改造理论（1949-1956）",
+    "shortTitle": "第三章 社会主义改造理论",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第三章 社会主义改造理论（1949-1956）的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 从新民主主义到社会主义的转变",
+        "第二节 社会主义改造道路和历史经验（一化三改的细节）",
+        "第三节 社会主义基本制度在中国的确立"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 从新民主主义到社会主义的转变",
+    "shortTitle": "第一节 从新民主主义到社会主",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 从新民主主义到社会主义的转变的核心考点与知识要点",
+      "keyPoints": [
+        "考点15   新民主主义社会的性质和特点（重点选择）",
+        "考点16   党在过渡时期的总路线及其理论依据（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s01.p015",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点15   新民主主义社会的性质和特点（重点选择）",
+    "shortTitle": "新民主主义社会的性质和特点",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s03.p085"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "时间与性质；(3)；时间；从1949 年中华人民共和国成立到1956 年社会主义改造基本完成；性质；这一时期，我国社会的性质是新民主主义社会",
+      "keyPoints": [
+        "新民主主义社会时期，民族资产阶级两面性：:剥削工人+接受工人",
+        "新民主主义革命时期，民族资产阶级两面性：软弱性妥协性+革命性"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s01.p016",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点16   党在过渡时期的总路线及其理论依据（重点选择）",
+    "shortTitle": "党在过渡时期的总路线及其理论",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s03.p085"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "党在过渡时期的总路线的提出；党在过渡时期总；路线的；主要内容；党在过渡时期总路线的主要内容被概括为“一化三改”",
+      "keyPoints": [
+        "党在过渡时期的总路线的提出；党在过渡时期总；路线的；主要内容；党在过渡时期总路线的主要内容被概括为“"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 社会主义改造道路和历史经验（一化三改的细节）",
+    "shortTitle": "第二节 社会主义改造道路和历",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 社会主义改造道路和历史经验（一化三改的细节）的核心考点与知识要点",
+      "keyPoints": [
+        "考点17    适合中国特点的社会主义改造道路(((（重点选择）",
+        "考点18    社会主义改造的历史经验（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s02.p017",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点17    适合中国特点的社会主义改造道路(((（重点选择）",
+    "shortTitle": "适合中国特点的社会主义改造道",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s03.p085"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "农业的社会主义改造；方式；合作化；道路；积极引导农民组织起来，走互助合作道路。土地改革完成后，我国广大农民的生产积极性",
+      "keyPoints": [
+        "农业的社会主义改造",
+        "这种积极性表现在两个方面：",
+        "是个体经济的积极性"
+      ],
+      "traps": [
+        "主义公有制。赎买的具体方式不是由国家支付一笔巨额补偿资金，而是让资本家在一定",
+        "注意对比社会主义三大改造：: 性质"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s02.p018",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点18    社会主义改造的历史经验（选）",
+    "shortTitle": "社会主义改造的历史经验",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s03.p085"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "在进行社会主义改造、向社会主义过渡的进程中，中国共产党积累了丰富的历史经验：；坚持社会主义工业化建设与社会主义改造并举",
+      "keyPoints": [
+        "在进行社会主义改造、向社会主义过渡的进程中，中国共产党积累了丰富的历史经验：",
+        "坚持社会主义工业化建设与社会主义改造并举",
+        "采取积极引导、逐步过渡的方式"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s03",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 社会主义基本制度在中国的确立",
+    "shortTitle": "第三节 社会主义基本制度在中",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 社会主义基本制度在中国的确立的核心考点与知识要点",
+      "keyPoints": [
+        "考点19   社会主义基本制度的确立及其理论依据（选）",
+        "考点20   确立社会主义基本制度的重大意义（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s03.p019",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点19   社会主义基本制度的确立及其理论依据（选）",
+    "shortTitle": "社会主义基本制度的确立及其理",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s03.p085"
+    ],
+    "tags": [
+      "高频考点",
+      "基本制度"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "年年底，我国对农业、手工业和资本主义工商业的社会主义改造基本完成，标志着中国历史上长达数；千年的阶级剥削制度的结束，实现了由新民主主义向社会主义的转变，社会主义基本制度在我国初步确立，",
+      "keyPoints": [
+        "年年底，我国对农业、手工业和资本主义工商业的社会主义改造基本完成，标志着中国历史上长达数"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c04.s03.p020",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点20   确立社会主义基本制度的重大意义（选）",
+    "shortTitle": "确立社会主义基本制度的重大意",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s03.p085"
+    ],
+    "tags": [
+      "高频考点",
+      "基本制度"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "社会主义基本制度的确立是中国历史上最深刻最伟大的社会变革，为当代中国一切发展进步奠定了制度；基础，也为中国特色社会主义制度的创新和发展提供了重要前提",
+      "keyPoints": [
+        "社会主义基本制度的确立是中国历史上最深刻最伟大的社会变革，为当代中国一切发展进步奠定了制度",
+        "社会主义基本制度的确立，极大地提高了工人阶级和广大劳动人民的积极性、创造性，极大地促进了我",
+        "社会主义基本制度的确立，使广大劳动人民真正成为国家的主人。这是中国几千年来阶级关系的最根本"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 5,
+    "title": "第四章 社会主义建设道路初步探索的理论成果（1956-1976）",
+    "shortTitle": "第四章 社会主义建设道路初步",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第四章 社会主义建设道路初步探索的理论成果（1956-1976）的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 初步探索的重要理论成果",
+        "第二节 初步探索的意义和经验教训"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 初步探索的重要理论成果",
+    "shortTitle": "第一节 初步探索的重要理论成",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 初步探索的重要理论成果的核心考点与知识要点",
+      "keyPoints": [
+        "考点21   调动一切积极因素为社会主义事业服务（重点选择）",
+        "考点22   正确认识和处理社会主义社会矛盾的思想（重点选择）",
+        "考点23   走中国工业化道路的思想（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s01.p021",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点21   调动一切积极因素为社会主义事业服务（重点选择）",
+    "shortTitle": "调动一切积极因素为社会主义事",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "《论十大关系》（1956.4）——1 原则1 方针2 标志；提出；提出调动一切积极因素为社会主义事业服务的思想",
+      "keyPoints": [
+        "调动一切积极因素为社会主义事业服务："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s01.p022",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点22   正确认识和处理社会主义社会矛盾的思想（重点选择）",
+    "shortTitle": "正确认识和处理社会主义社会矛",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "《关于正确处理人民内部矛盾的问题》（1957）；毛泽东在1957 年2 月所作的《关于正确处理人民内部矛盾的问题》的报告，系统论述了社会主义社会矛",
+      "keyPoints": [
+        "毛泽东指出：“在社会主义社会中，基本的矛盾仍然是生产关系和生产力之间的矛",
+        "【党的八大】国内的主要矛盾：",
+        "毛泽东强调：在我们面前有两类社会矛盾，这就是敌我矛盾和人民内部矛盾，这"
+      ],
+      "traps": [
+        "由于社会主义社会的矛盾不是对抗性的矛盾，因此“它可以经过社会主义制度本",
+        "毛泽东提醒人们注意两类不同性质矛盾的转化问题，认为两类不同性质的矛盾的"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s01.p023",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点23   走中国工业化道路的思想（选）",
+    "shortTitle": "走中国工业化道路的思想",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国工业化道路的问题；毛泽东在《论十大关系》中论述的第一大关系，便是重工业、轻工业和农；业的关系",
+      "keyPoints": [
+        "年至今，我国的国情没有变——社会主义初级阶段，但是主要矛盾发生了三次变化：",
+        "毛泽东+中共八大：人民对于建立先进的工业国的要求同落后的农业国的现实之间的矛盾，人民对于经",
+        "邓小平+十一届六中全会：人民日益增长的物质文化需要，同落后的社会生产之间有矛盾"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.22"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s01.p024",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点24   初步探索的其他理论成果（选）",
+    "shortTitle": "初步探索的其他理论成果",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "在探索中国社会主义建设道路过程中，毛泽东提出：“社会主义这个阶段，又可能分为两个阶段，第一个阶",
+      "keyPoints": [
+        "在探索中国社会主义建设道路过程中，毛泽东提出：“社会主义这个阶段，又可能分为两个阶段，第一个阶"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 初步探索的意义和经验教训",
+    "shortTitle": "第二节 初步探索的意义和经验",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 初步探索的意义和经验教训的核心考点与知识要点",
+      "keyPoints": [
+        "考点25  初步探索的意义和经验教训（选）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c05.s02.p025",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点25  初步探索的意义和经验教训（选）",
+    "shortTitle": "初步探索的意义和经验教训",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "意义；巩固和发展了我国的社会主义制度；为开创中国特色社会主义提供了宝贵经验、理论准备、物质基础；丰富了科学社会主义的理论和实践",
+      "keyPoints": [
+        "意义；巩固和发展了我国的社会主义制度；为开创中国特色社会主义提供了宝贵经验、理论准备、物质基础；丰富"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 6,
+    "title": "第五章 中国特色社会主义理论体系的形成发展",
+    "shortTitle": "第五章 中国特色社会主义理论",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第五章 中国特色社会主义理论体系的形成发展的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 中国特色社会主义理论体系形成发展的社会历史条件",
+        "第二节 中国特色社会主义理论体系形成发展过程"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 中国特色社会主义理论体系形成发展的社会历史条件",
+    "shortTitle": "第一节 中国特色社会主义理论",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 中国特色社会主义理论体系形成发展的社会历史条件的核心考点与知识要点",
+      "keyPoints": [
+        "考点 26  中国特色社会主义理论体系形成发展的国际背景",
+        "考点 27  中国特色社会主义理论体系形成发展的历史条件",
+        "考点 28   中国特色社会主义理论体系形成发展的实践基础"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s01.p026",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 26  中国特色社会主义理论体系形成发展的国际背景",
+    "shortTitle": "形成发展的国际背景",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国特色社会主义理论体系形成发展的国际背景的理论核心与考点分析",
+      "keyPoints": [
+        "中国特色社会主义理论体系形成发展的国际背景的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s01.p027",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 27  中国特色社会主义理论体系形成发展的历史条件",
+    "shortTitle": "形成发展的历史条件",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国特色社会主义理论体系形成发展的历史条件的理论核心与考点分析",
+      "keyPoints": [
+        "中国特色社会主义理论体系形成发展的历史条件的理论核心与考点分析"
+      ],
+      "traps": [
+        "注意辨别中国特色社会主义理论体系在不同实践基础上提出的时代课题"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s01.p028",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 28   中国特色社会主义理论体系形成发展的实践基础",
+    "shortTitle": "形成发展的实践基础",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "邓小平理论；什么是社会主义、怎样建设社会主义；(这也是毛中特的首要的基本的理论问题)；“三个代表”重要思想",
+      "keyPoints": [
+        "邓小平理论；什么是社会主义、怎样建设社会主义；(这也是毛中特的首要的基本的理论问题)；“三个代表”重"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 中国特色社会主义理论体系形成发展过程",
+    "shortTitle": "第二节 中国特色社会主义理论",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 中国特色社会主义理论体系形成发展过程的核心考点与知识要点",
+      "keyPoints": [
+        "考点29  邓小平理论：中国特色社会主义理论体系的形成（重点选择）",
+        "考点30  “三个代表”重要思想：中国特色社会主义理论体系的跨世纪发展",
+        "考点31  科学发展观：中国特色社会主义理论体系在新世纪新阶段的新发展"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s02.p029",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点29  邓小平理论：中国特色社会主义理论体系的形成（重点选择）",
+    "shortTitle": "邓小平理论",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "重要会议；会议内容；党的十一届三中全会；重新确立解放思想、实事求是的思想路线；揭开了改革开放的序幕；开始了拨乱反正",
+      "keyPoints": [
+        "重要会议；会议内容；党的十一届三中全会；重新确立解放思想、实事求是的思想路线；揭开了改革开放的序幕；"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s02.p030",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点30  “三个代表”重要思想：中国特色社会主义理论体系的跨世纪发展",
+    "shortTitle": "“三个代表”重要思想",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“三个代表”重要思想：中国特色社会主义理论体系的跨世纪发展的理论核心与考点分析",
+      "keyPoints": [
+        "“三个代表”重要思想：中国特色社会主义理论体系的跨世纪发展的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s02.p031",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点31  科学发展观：中国特色社会主义理论体系在新世纪新阶段的新发展",
+    "shortTitle": "科学发展观",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "科学发展观：中国特色社会主义理论体系在新世纪新阶段的新发展的理论核心与考点分析",
+      "keyPoints": [
+        "科学发展观：中国特色社会主义理论体系在新世纪新阶段的新发展的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c06.s02.p032",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 32  习近平新时代中国特色社会主义思想：中国特色社会主义理论体系在新时代的新篇章【习思想中展",
+    "shortTitle": "考点 32  习近平新时代中",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "想中展开】",
+      "keyPoints": [
+        "想中展开】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07",
+    "bookId": "mzt",
+    "parentId": "pol.mzt",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 7,
+    "title": "第六章 邓小平理论",
+    "shortTitle": "第六章 邓小平理论",
+    "tags": [
+      "毛中特",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第六章 邓小平理论的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 邓小平理论的形成",
+        "第二节 邓小平理论的主要内容",
+        "第三节 邓小平理论的历史地位"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s01",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 邓小平理论的形成",
+    "shortTitle": "第一节 邓小平理论的形成",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 邓小平理论的形成的核心考点与知识要点",
+      "keyPoints": [
+        "考点33    邓小平理论首要的基本的理论问题：什么是社会主义、怎样建设社会主义（重点选择）",
+        "考点34   邓小平理论的精髓：解放思想、实事求是"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s01.p033",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点33    邓小平理论首要的基本的理论问题：什么是社会主义、怎样建设社会主义（重点选择）",
+    "shortTitle": "邓小平理论首要的基本的理论问",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "搞清楚“什么是社会主义、怎样建设社会主义”,关键是要在坚持社会主义基本制度的基础上进一步认清社",
+      "keyPoints": [
+        "年年初，邓小平在南方谈话中对社会主义本质作了总结性的理论概括：“社会主义的",
+        "方面，它突出地强调解放和发展生产力在社会主义社会发展中的重要地位",
+        "是揭示了资本主义建立在生产资料私有制基础上，必然产生剥削和两极分化；"
+      ],
+      "traps": [
+        "二是阐明了社会主义社会发展生产力的目的不是为少数人谋利益，生产力发展的",
+        "成果不是少数人享有，而是要使全体社会成员过上富裕幸福的生活，是要实现共"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s01.p034",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点34   邓小平理论的精髓：解放思想、实事求是",
+    "shortTitle": "邓小平理论的精髓",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "理论；精髓；毛泽东思想；实事求是；邓小平理论；解放思想、实事求是",
+      "keyPoints": [
+        "理论；精髓；毛泽东思想；实事求是；邓小平理论；解放思想、实事求是"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 邓小平理论的主要内容",
+    "shortTitle": "第二节 邓小平理论的主要内容",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 邓小平理论的主要内容的核心考点与知识要点",
+      "keyPoints": [
+        "考点 35    社会主义初级阶段理论和党的基本路线（重点选择）",
+        "考点36   社会主义根本任务和发展战略理论（重点选择）",
+        "考点 37   社会主义改革开放和社会主义市场经济理论（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p035",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 35    社会主义初级阶段理论和党的基本路线（重点选择）",
+    "shortTitle": "社会主义初级阶段理论和党的基",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "改革开放以后，以邓小平同志为主要代表的中国共产党人深刻总结世界社会主义特别是我国社会主义建设",
+      "keyPoints": [
+        "社会主义初级阶段理论",
+        "党的十三大召开前夕，邓小平指出：“我们党的十三大要阐述中国社会主义是处在一个什么阶",
+        "分成两个阶段："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p036",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点36   社会主义根本任务和发展战略理论（重点选择）",
+    "shortTitle": "社会主义根本任务和发展战略理",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会主义根本；任务的理论；根本任务；社会主义的根本任务：发展生产力；易混淆考点；新时代中特的总任务：",
+      "keyPoints": [
+        "社会主义的根本任务：发展生产力",
+        "新时代中特的总任务：",
+        "新时代党和政府三大历史任务："
+      ],
+      "traps": [
+        "易混淆考点: 新时代中特的总任务："
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p037",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 37   社会主义改革开放和社会主义市场经济理论（重点选择）",
+    "shortTitle": "社会主义改革开放和社会主义市",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会主义改革开放理论；改革的性质；社会主义制度的自我完善和发展；改革作为一次新的革命，不是也不允许否定和抛弃我们建立起来的社会主义基本制度，",
+      "keyPoints": [
+        "社会主义改革开放理论",
+        "社会主义社会发展的根本动力：社会主义社会的基本矛盾",
+        "【补充】基本国策：对外开放、一国两制、节约资源、保护环境、男女平等"
+      ],
+      "traps": [
+        "改革作为一次新的革命，不是也不允许否定和抛弃我们建立起来的社会主义基本制度，",
+        "不是一个阶级推翻另一个阶级那种原来意义上的革命，也不是原有经济体制的细枝末节"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p038",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点38  “两手抓，两手都要硬”",
+    "shortTitle": "“两手抓，两手都要硬”",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“两手抓，两手都要硬”的理论核心与考点分析",
+      "keyPoints": [
+        "“两手抓，两手都要硬”的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.30"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p039",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点39  “一国两制”与祖国统一(((（重点选择）",
+    "shortTitle": "“一国两制”与祖国统一",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“和平统一、一国两制”；构想的基本内容；坚持一个中国，这是“和平统一、一国两制”的核心，是发展两岸关系和实",
+      "keyPoints": [
+        "“和平统一、一国两制”；构想的基本内容；坚持一个中国，这是“和平统一、一国两制”的核心，是发展两岸关"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.30"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p040",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点40   中国特色社会主义外交和国际战略（选）",
+    "shortTitle": "外交和国际战略",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "战略问题；年，邓小平进一步指出：“现在世界上真正大的问题，带全球性的战略问；题，一个是和平问题，一个是经济问题或者说发展问题。和平问题是东西问",
+      "keyPoints": [
+        "年，邓小平进一步指出：“现在世界上真正大的问题，带全球性的战略问",
+        "外交政策的基本目标：明确维护我国的独立和主权，促进世界的和平与发展"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s02.p041",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 7,
+    "title": "考点 41  党的建设理论",
+    "shortTitle": "党的建设理论",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "党的建设理论的理论核心与考点分析",
+      "keyPoints": [
+        "党的建设理论的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s03",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 邓小平理论的历史地位",
+    "shortTitle": "第三节 邓小平理论的历史地位",
+    "tags": [
+      "毛中特",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 邓小平理论的历史地位的核心考点与知识要点",
+      "keyPoints": [
+        "考点42   邓小平理论的历史功绩",
+        "考点43   邓小平理论的重要意义【评价】（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s03.p042",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点42   邓小平理论的历史功绩",
+    "shortTitle": "邓小平理论的历史功绩",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "新民主主义革命时期；邓小平相继领导发动百色起义和龙州起义，创建左右江革命根据地，参加中央；革命根据地有关工作，亲历长征和遵义会议。抗日战争和解放战争期间，邓小",
+      "keyPoints": [
+        "新民主主义革命时期；邓小平相继领导发动百色起义和龙州起义，创建左右江革命根据地，参加中央；革命根据地"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.mzt.c07.s03.p043",
+    "bookId": "mzt",
+    "parentId": "pol.mzt.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点43   邓小平理论的重要意义【评价】（重点选择）",
+    "shortTitle": "邓小平理论的重要意义",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "马克思列宁主义、毛泽东思想的继承和发展；中国特色社会主义理论体系的开篇之作；改革开放和社会主义现代化建设的科学指南",
+      "keyPoints": [
+        "马克思列宁主义、毛泽东思想的继承和发展；中国特色社会主义理论体系的开篇之作；改革开放和社会主义现代化"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 毛中特 p.32"
+      ]
+    }
+  }
+]

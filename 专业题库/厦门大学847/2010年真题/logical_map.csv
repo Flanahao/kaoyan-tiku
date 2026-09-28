@@ -1,0 +1,6 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,10,2010年真题,厦门大学847真题,计算题,01,题1,pb_10-01_question.png,pb_10-01_solution.png,1
+002,10,2010年真题,厦门大学847真题,计算题,02,题2,pb_10-02_question.png,pb_10-02_solution.png,1
+003,10,2010年真题,厦门大学847真题,计算题,03,题3,pb_10-03_question.png,pb_10-03_solution.png,2
+004,10,2010年真题,厦门大学847真题,计算题,04,题4,pb_10-04_question.png,pb_10-04_solution.png,1
+005,10,2010年真题,厦门大学847真题,计算题,05,题5,pb_10-05_question.png,pb_10-05_solution.png,2

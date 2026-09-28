@@ -1,0 +1,361 @@
+/**
+ * 考研政治知识图谱 - 样式表 (Politics Stylesheet)
+ * 命名空间: .politics-*
+ */
+
+:root {
+  --pol-bg: #F8FAFC;
+  --pol-surface: #FFFFFF;
+  --pol-border: #E2E8F0;
+  --pol-border-subtle: #EDF2F7;
+  --pol-text: #0F172A;
+  --pol-text-muted: #64748B;
+  --pol-primary: #2563EB;
+  --pol-primary-hover: #1D4ED8;
+  --pol-primary-bg: #EFF6FF;
+  --pol-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --pol-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --pol-radius-sm: 6px;
+  --pol-radius-md: 10px;
+  --pol-radius-lg: 16px;
+  --pol-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+body.politics-page {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--pol-bg);
+  font-family: var(--pol-font);
+  color: var(--pol-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.politics-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* 顶部主工具栏 */
+.politics-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  height: 56px;
+  min-height: 56px;
+  background: var(--pol-surface);
+  border-bottom: 1px solid var(--pol-border);
+  box-shadow: var(--pol-shadow-sm);
+  z-index: 20;
+}
+
+.politics-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  text-decoration: none;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: var(--pol-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.politics-back:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+  transform: translateX(-1px);
+}
+
+.politics-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pol-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.politics-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
+.politics-toolbar-spacer {
+  flex: 1;
+}
+
+.politics-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.politics-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--pol-radius-sm);
+  border: 1px solid var(--pol-border);
+  background: var(--pol-surface);
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.politics-btn:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  color: #0F172A;
+}
+
+.politics-btn:active {
+  transform: scale(0.98);
+}
+
+.politics-btn.primary {
+  background: var(--pol-primary);
+  border-color: var(--pol-primary);
+  color: #FFFFFF;
+}
+
+.politics-btn.primary:hover {
+  background: var(--pol-primary-hover);
+}
+
+/* 历史阶段快捷导航条 */
+.politics-period-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--pol-border);
+  overflow-x: auto;
+  white-space: nowrap;
+  z-index: 10;
+  scrollbar-width: thin;
+}
+
+.politics-period-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.politics-period-bar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.politics-period-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.politics-period-pill:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+  color: #0F172A;
+}
+
+.politics-period-pill.active {
+  background: #EFF6FF;
+  border-color: #3B82F6;
+  color: #1D4ED8;
+  font-weight: 600;
+  box-shadow: 0 0 0 1px #3B82F6;
+}
+
+.politics-period-pill .period-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94A3B8;
+}
+
+.politics-period-pill.active .period-dot {
+  background: #2563EB;
+}
+
+.politics-period-pill small {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.politics-period-pill.active small {
+  color: #60A5FA;
+}
+
+/* 主画布工作区 */
+.politics-main {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 100px);
+  overflow: hidden;
+  background: #F8FAFC;
+}
+
+.politics-graph-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#politicsGraph {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  cursor: grab;
+}
+
+#politicsGraph:active {
+  cursor: grabbing;
+}
+
+/* 底部状态控制栏 */
+.politics-statusbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 20px;
+  height: 38px;
+  min-height: 38px;
+  background: var(--pol-surface);
+  border-top: 1px solid var(--pol-border);
+  font-size: 12px;
+  color: var(--pol-text-muted);
+  z-index: 20;
+}
+
+.politics-zoom-ctrls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.politics-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--pol-radius-sm);
+  border: 1px solid var(--pol-border);
+  background: #FFFFFF;
+  color: #334155;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.politics-icon-btn:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+  color: #0F172A;
+}
+
+.politics-zoom-text {
+  min-width: 44px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.politics-zoom-slider {
+  width: 90px;
+  height: 4px;
+  accent-color: var(--pol-primary);
+  cursor: pointer;
+}
+
+.politics-statusbar-spacer {
+  flex: 1;
+}
+
+.politics-status-text {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.politics-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.politics-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* 异常提示 */
+.politics-error-banner {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  max-width: 600px;
+  width: 90%;
+}
+
+.politics-error-box {
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  border-radius: var(--pol-radius-md);
+  padding: 16px 20px;
+  box-shadow: var(--pol-shadow-md);
+  color: #991B1B;
+}
+
+.politics-error-box h3 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+}
+
+.politics-error-box p {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}

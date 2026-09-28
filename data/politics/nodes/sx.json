@@ -1,0 +1,2838 @@
+[
+  {
+    "id": "pol.sx",
+    "bookId": "sx",
+    "parentId": null,
+    "kind": "book",
+    "depth": 0,
+    "order": 6,
+    "title": "思想道德与法治",
+    "shortTitle": "思法",
+    "tags": [
+      "思法",
+      "学科主干"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "青年学子世界观、人生观、价值观与法治素养培育体系",
+      "keyPoints": [
+        "人生观",
+        "理想信念",
+        "中国精神",
+        "社会主义核心价值观",
+        "社会主义道德",
+        "全面依法治国"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法讲义"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c01",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 1,
+    "title": "绪 论 担当复兴大任 成就时代新人",
+    "shortTitle": "绪 论 担当复兴大任 成就时",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "绪 论 担当复兴大任 成就时代新人的科学体系与考点构架",
+      "keyPoints": [
+        "核心考点概览"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c01.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "核心考点概览",
+    "shortTitle": "核心考点概览",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "核心考点概览的核心考点与知识要点",
+      "keyPoints": [
+        "考点1  做有理想有本领有担当的时代新人",
+        "考点2  思想道德素养",
+        "考点3  法治素养"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c01.s01.p001",
+    "bookId": "sx",
+    "parentId": "pol.sx.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点1  做有理想有本领有担当的时代新人",
+    "shortTitle": "做有理想有本领有担当的时代新",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "做有理想有本领有担当的时代新人的理论核心与考点分析",
+      "keyPoints": [
+        "做有理想有本领有担当的时代新人的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c01.s01.p002",
+    "bookId": "sx",
+    "parentId": "pol.sx.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点2  思想道德素养",
+    "shortTitle": "思想道德素养",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "思想道德素养的理论核心与考点分析",
+      "keyPoints": [
+        "思想道德素养的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c01.s01.p003",
+    "bookId": "sx",
+    "parentId": "pol.sx.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点3  法治素养",
+    "shortTitle": "法治素养",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点",
+      "法治建设"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "法治素养的理论核心与考点分析",
+      "keyPoints": [
+        "法治素养的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c01.s01.p004",
+    "bookId": "sx",
+    "parentId": "pol.sx.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点4  思想道德和法律的关系（重点选择）",
+    "shortTitle": "思想道德和法律的关系",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "思想道德和法律都是调节人们思想行为、协调人际关系、维护社会秩序的重要手段；思想道德和法律虽然在调节领域、调节方式、调节目标等方面存在很大不同，但是二者都是上层",
+      "keyPoints": [
+        "方面，思想道德建设为法治建设提供思想指引和价值基础"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 2,
+    "title": "第一章 领悟人生真谛 把握人生方向",
+    "shortTitle": "第一章 领悟人生真谛 把握人",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第一章 领悟人生真谛 把握人生方向的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 人生观是对人生的总看法",
+        "第二节 正确的人生观",
+        "第三节 创造有意义的人生"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 人生观是对人生的总看法",
+    "shortTitle": "第一节 人生观是对人生的总看",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 人生观是对人生的总看法的核心考点与知识要点",
+      "keyPoints": [
+        "考点5   正确认识人的本质（重点选择）",
+        "考点6  个人与社会的辩证关系 ★（重点论述）",
+        "考点7  人生观的主要内容"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s01.p005",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点5   正确认识人的本质（重点选择）",
+    "shortTitle": "正确认识人的本质",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "人的本质：“人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和”；社会属性是人的本质属性",
+      "keyPoints": [
+        "人的本质：“人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和”"
+      ],
+      "traps": [
+        "人的本质：“人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和”"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s01.p006",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点6  个人与社会的辩证关系 ★（重点论述）",
+    "shortTitle": "个人与社会的辩证关系",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点论述",
+      "分析题"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "个人与社会的关系问题是认识和处理人生问题的重要着眼点和出发点；个人与社会是对立统一的关系，二者相互依存、相互制约、相互促进",
+      "keyPoints": [
+        "个人与社会是对立统一的关系，二者相互依存、相互制约、相互促进",
+        "【发展的角度：个人——（基础、目标）——>社会】",
+        "个人与社会的关系，最根本的是个人利益与社会利益的关系"
+      ],
+      "traps": [
+        "社会利益离不开个人利益，个人利益离不开社会利益。社会利益不是个人利益的简单相加，而是所有人"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s01.p007",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点7  人生观的主要内容",
+    "shortTitle": "人生观的主要内容",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "人生观的主要内容包括对人生目的、人生态度和人生价值等问题的根本看法。三个方面相互联系、相辅相",
+      "keyPoints": [
+        "人生价值内在地包含了人生的自我价值和社会价值两个方面：",
+        "者既相互区别，又密切联系、相互依存，共同构成人生价值的矛盾统一体：",
+        "【价值的角度：个人——（前提）——>社会；个人<——（保障）——社会】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s01.p008",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点8    人生观与世界观",
+    "shortTitle": "人生观与世界观",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "世界观；世界观是人们对生活在其中的世界及人与世界的关系的总体看法和根本观点；人生观；人生观是人们关于人生目的、人生态度、人生价值等问题的总观点和总看法",
+      "keyPoints": [
+        "世界观；世界观是人们对生活在其中的世界及人与世界的关系的总体看法和根本观点；人生观；人生观是人们关于"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s02",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 正确的人生观",
+    "shortTitle": "第二节 正确的人生观",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 正确的人生观的核心考点与知识要点",
+      "keyPoints": [
+        "考点9   高尚的人生追求（重点选择）",
+        "考点10  积极进取的人生态度",
+        "考点11  人生价值的评价与实现★（重点）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s02.p009",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点9   高尚的人生追求（重点选择）",
+    "shortTitle": "高尚的人生追求",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "是什么；“服务人民、奉献社会”的思想以其科学而高尚的品质，代表了人类社会迄今最先进的人生；追求；人生的价值首先在于奉献",
+      "keyPoints": [
+        "个人确立了服务人民、奉献社会的人生追求，才能清楚地把握人的生命历程和奋斗目",
+        "个人确立了服务人民、奉献社会的人生追求，才能以正确的人生态度对待人生、解决",
+        "个人确立了服务人民、奉献社会的人生追求，才能掌握正确的人生价值标准，才能懂"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s02.p010",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点10  积极进取的人生态度",
+    "shortTitle": "积极进取的人生态度",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "积极进取的人生态度的理论核心与考点分析",
+      "keyPoints": [
+        "积极进取的人生态度的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s02.p011",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点11  人生价值的评价与实现★（重点）",
+    "shortTitle": "人生价值的评价与实现",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "评价人生价值大；小的标准（2）；历史标准；根本尺度（标准）：看一个人的实践活动是否符合社会发展的客观规律，是否促进了历",
+      "keyPoints": [
+        "根本尺度（标准）：看一个人的实践活动是否符合社会发展的客观规律，是否促进了历",
+        "在今天，衡量人生价值的普遍标准：最重要的就是看一个人是否用自己的劳动和聪明"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s03",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 创造有意义的人生",
+    "shortTitle": "第三节 创造有意义的人生",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 创造有意义的人生的核心考点与知识要点",
+      "keyPoints": [
+        "考点12    辩证对待人生矛盾（重点选择-考频不高）",
+        "考点13   反对错误人生观",
+        "考点14   成就出彩人生"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s03.p012",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点12    辩证对待人生矛盾（重点选择-考频不高）",
+    "shortTitle": "辩证对待人生矛盾",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "树立正确的幸福观；首先，幸福是一个总体性范畴，它意味着人总体上生活得美好，家庭和睦、职业；成功、行为正当、人格完善等都是幸福的重要因素",
+      "keyPoints": [
+        "进取的人生态度："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s03.p013",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点13   反对错误人生观",
+    "shortTitle": "反对错误人生观",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "反对拜金主义；拜金主义是引发钱权交易、行贿受贿、贪赃枉法等丑恶现象的重要思想根源；反对享乐主义；比阔气、讲排场、追逐名牌，在消费上超出自己及家庭的承受能力，有的甚至因此负债",
+      "keyPoints": [
+        "反对拜金主义；拜金主义是引发钱权交易、行贿受贿、贪赃枉法等丑恶现象的重要思想根源；反对享乐主义；比阔"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c02.s03.p014",
+    "bookId": "sx",
+    "parentId": "pol.sx.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点14   成就出彩人生",
+    "shortTitle": "成就出彩人生",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "与历史同向；与祖国同行；与人民同行；社会实践是实现人生价值的必由之路/根本途径",
+      "keyPoints": [
+        "社会实践是实现人生价值的必由之路/根本途径"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 3,
+    "title": "第二章 追求远大理想 坚定崇高信念",
+    "shortTitle": "第二章 追求远大理想 坚定崇",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第二章 追求远大理想 坚定崇高信念的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 理想信念的内涵及重要性",
+        "第二节 坚定信仰信念信心",
+        "第三节 在实现中国梦的实践中放飞青春梦想"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 理想信念的内涵及重要性",
+    "shortTitle": "第一节 理想信念的内涵及重要",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 理想信念的内涵及重要性的核心考点与知识要点",
+      "keyPoints": [
+        "考点15  理想信念（重点选择）",
+        "考点16   理想信念是精神之“钙”（理想信念的作用）（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s01.p015",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点15  理想信念（重点选择）",
+    "shortTitle": "理想信念",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "理想的内涵与特征；内涵；理想是人们在实践中形成的、有实现可能性的、对未来社会和自身发展目标的向往与追求，是人",
+      "keyPoints": [
+        "理想的内涵与特征",
+        "信念的内涵与特征",
+        "方面，不同的人由于社会环境、思想观念、利益需要、人生经历和性格特"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s01.p016",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点16   理想信念是精神之“钙”（理想信念的作用）（重点选择）",
+    "shortTitle": "理想信念是精神之“钙”",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "重点选择",
+      "中国精神"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "理想指引方向，信念决定成败；理想信念昭示奋斗目标；理想信念催生前进动力；理想信念提供精神支柱（理想信念是一个人在精神生活领域“安身立命”的根本）",
+      "keyPoints": [
+        "理想指引方向，信念决定成败",
+        "理想信念昭示奋斗目标",
+        "理想信念催生前进动力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s02",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 坚定信仰信念信心",
+    "shortTitle": "第二节 坚定信仰信念信心",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 坚定信仰信念信心的核心考点与知识要点",
+      "keyPoints": [
+        "考点17   马克思主义信仰",
+        "考点18   中国特色社会主义是我们的共同理想",
+        "考点19   胸怀共产主义远大理想"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s02.p017",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点17   马克思主义信仰",
+    "shortTitle": "信仰",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "马克思主义信仰的理论核心与考点分析",
+      "keyPoints": [
+        "马克思主义信仰的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s02.p018",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点18   中国特色社会主义是我们的共同理想",
+    "shortTitle": "我们的共同理想",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国特色社会主义是我们的共同理想的理论核心与考点分析",
+      "keyPoints": [
+        "中国特色社会主义是我们的共同理想的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s02.p019",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点19   胸怀共产主义远大理想",
+    "shortTitle": "胸怀共产主义远大理想",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "胸怀共产主义远大理想的理论核心与考点分析",
+      "keyPoints": [
+        "胸怀共产主义远大理想的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s02.p020",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点20  增强对实现中华民族伟大复兴的信心",
+    "shortTitle": "增强对实现中华民族伟大复兴的",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "增强对实现中华民族伟大复兴的信心的理论核心与考点分析",
+      "keyPoints": [
+        "增强对实现中华民族伟大复兴的信心的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s03",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 在实现中国梦的实践中放飞青春梦想",
+    "shortTitle": "第三节 在实现中国梦的实践中",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 在实现中国梦的实践中放飞青春梦想的核心考点与知识要点",
+      "keyPoints": [
+        "考点21  理想与现实的辩证关系",
+        "考点22   个人理想与社会理想的统一（分析题  重点选择）★（重点）",
+        "考点23  为实现中国梦注入青春能量"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s03.p021",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点21  理想与现实的辩证关系",
+    "shortTitle": "理想与现实的辩证关系",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "理想与现实是对立统一的关系【重点分析题考点】；对立；理想和现实是对立的，二者的矛盾与冲突，属于“应然”和“实然”的矛盾",
+      "keyPoints": [
+        "理想与现实是对立统一的关系【重点分析题考点】",
+        "方面，现实中包含着理想的因素，孕育着理想的发展",
+        "实现理想的长期性、艰巨性和曲折性——理想的实现是一个过程"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s03.p022",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点22   个人理想与社会理想的统一（分析题  重点选择）★（重点）",
+    "shortTitle": "个人理想与社会理想的统一",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "个人理想；指处于一定历史条件和社会关系中的个体对于自己未来的物质生活、精神生活所产生的种种向；往和追求",
+      "keyPoints": [
+        "个人理想与社会理想之间相互联系、相互影响、相互制约："
+      ],
+      "traps": [
+        "正确的个人理想不是依个人主观愿望随意确定的，从根本上说，它是由正确的社会理想",
+        "社会是个人的联合体，社会理想与个人理想密不可分。社会理想不是凭空产生的，也"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c03.s03.p023",
+    "bookId": "sx",
+    "parentId": "pol.sx.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点23  为实现中国梦注入青春能量",
+    "shortTitle": "为实现中国梦注入青春能量",
+    "layoutAnchorIds": [
+      "pol.sg.c05.s01.p038"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "立鸿鹄之志，做奋斗者（远大志向+坚毅意志）；心怀“国之大者”，敢于担当；自觉躬身实践，知行合一",
+      "keyPoints": [
+        "立鸿鹄之志，做奋斗者（远大志向+坚毅意志）",
+        "心怀“国之大者”，敢于担当",
+        "自觉躬身实践，知行合一"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 4,
+    "title": "第三章 继承优良传统 弘扬中国精神",
+    "shortTitle": "第三章 继承优良传统 弘扬中",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第三章 继承优良传统 弘扬中国精神的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 中国精神是兴国强国之魂",
+        "第二节 做新时代的忠诚爱国者",
+        "第三节 让改革创新成为青春远航的动力"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 中国精神是兴国强国之魂",
+    "shortTitle": "第一节 中国精神是兴国强国之",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 中国精神是兴国强国之魂的核心考点与知识要点",
+      "keyPoints": [
+        "考点24  崇尚精神是中华民族的优秀传统（重点选择）",
+        "考点25   中国精神的丰富内涵——4个伟大+对应词（重点选择）",
+        "考点26   实现中国梦必须弘扬中国精神【考频最高】（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s01.p024",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点24  崇尚精神是中华民族的优秀传统（重点选择）",
+    "shortTitle": "崇尚精神是中华民族的优秀传统",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择",
+      "中国精神"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中华民族自古以来崇尚精神的表现：；表现；关键词；古文；对物质生活与精神生活相；互关系的独到理解",
+      "keyPoints": [
+        "中华民族自古以来崇尚精神的表现：",
+        "箪食，一瓢饮，人不堪其忧，回也不改其乐",
+        "关注理想人格：真、善、"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s01.p025",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点25   中国精神的丰富内涵——4个伟大+对应词（重点选择）",
+    "shortTitle": "中国精神的丰富内涵",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择",
+      "中国精神"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "伟大创造精神；发明创造）；造纸术、火药、印刷术、指南针、诗经、楚辞、汉赋、唐诗、宋词、元曲、明；清小说、万里长城、都江堰、大运河、故宫、布达拉宫等伟大工程",
+      "keyPoints": [
+        "伟大创造精神；发明创造）；造纸术、火药、印刷术、指南针、诗经、楚辞、汉赋、唐诗、宋词、元曲、明；清小"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s01.p026",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点26   实现中国梦必须弘扬中国精神【考频最高】（重点选择）",
+    "shortTitle": "实现中国梦必须弘扬中国精神",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择",
+      "中国精神"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "凝聚民族复兴的磅礴伟力——作用、意义；不局限于下面3 点，指引/引领都√；弘扬以爱国主义为核心的民族精神",
+      "keyPoints": [
+        "凝聚民族复兴的磅礴伟力——作用、意义",
+        "弘扬以爱国主义为核心的民族精神",
+        "具体的：要有一个具体的对象"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s01.p027",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "1.凝聚民族复兴的磅礴伟力——作用、意义      不局限于下面3点，指引/引领都√",
+    "shortTitle": "凝聚民族复兴的磅礴伟力",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "坚持爱党爱国；爱社会主义相统一；当代中国爱国主义的本质就是坚持爱国和爱党、爱社会主义高度统一；爱国爱党爱社会主义统一于实现中华民族伟大复兴的历史进程。在不同历史条",
+      "keyPoints": [
+        "坚持爱党爱国；爱社会主义相统一；当代中国爱国主义的本质就是坚持爱国和爱党、爱社会主义高度统一；爱国爱"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s02",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 做新时代的忠诚爱国者",
+    "shortTitle": "第二节 做新时代的忠诚爱国者",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 做新时代的忠诚爱国者的核心考点与知识要点",
+      "keyPoints": [
+        "考点27   新时代的爱国主义——基本要求（重点选择）",
+        "考点28   做忠诚爱国者"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s02.p028",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点27   新时代的爱国主义——基本要求（重点选择）",
+    "shortTitle": "新时代的爱国主义",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "坚持爱党爱国；爱社会主义相统一；当代中国爱国主义的本质就是坚持爱国和爱党、爱社会主义高度统一；爱国爱党爱社会主义统一于实现中华民族伟大复兴的历史进程。在不同历史条",
+      "keyPoints": [
+        "坚持爱党爱国；爱社会主义相统一；当代中国爱国主义的本质就是坚持爱国和爱党、爱社会主义高度统一；爱国爱"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s02.p029",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点28   做忠诚爱国者",
+    "shortTitle": "做忠诚爱国者",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "做忠诚爱国者的理论核心与考点分析",
+      "keyPoints": [
+        "做忠诚爱国者的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s03",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 让改革创新成为青春远航的动力",
+    "shortTitle": "第三节 让改革创新成为青春远",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 让改革创新成为青春远航的动力的核心考点与知识要点",
+      "keyPoints": [
+        "考点29  创新创造是中华民族最深沉的民族禀赋",
+        "考点30  改革是新时代的迫切要求（重点选择）",
+        "考点31   做改革创新生力军【学会对应即可】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s03.p030",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点29  创新创造是中华民族最深沉的民族禀赋",
+    "shortTitle": "创新创造是中华民族最深沉的民",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "创新创造是中华民族最深沉的民族禀赋的理论核心与考点分析",
+      "keyPoints": [
+        "创新创造是中华民族最深沉的民族禀赋的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s03.p031",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点30  改革是新时代的迫切要求（重点选择）",
+    "shortTitle": "改革是新时代的迫切要求",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "维护和推进祖国统一；促进民族团结；增强国家安全意识；改革创新的意义(作用)：；创新是推动人类社会发展的重要力量",
+      "keyPoints": [
+        "改革创新的意义(作用)：",
+        "创新是推动人类社会发展的重要力量",
+        "创新能力是当今国际竞争新优势的集中体现"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c04.s03.p032",
+    "bookId": "sx",
+    "parentId": "pol.sx.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点31   做改革创新生力军【学会对应即可】",
+    "shortTitle": "做改革创新生力军",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "树立改革创新的自觉意识；精神层面）；增强改革创新的责任感；树立敢于突破陈规的意识；树立大胆探索未知领域的信心",
+      "keyPoints": [
+        "增强改革创新的能力本领"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 5,
+    "title": "第四章 明确价值要求 践行价值标准",
+    "shortTitle": "第四章 明确价值要求 践行价",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第四章 明确价值要求 践行价值标准的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 全体人民的共同的价值追求",
+        "第二节 社会主义核心价值观的显著特征",
+        "第三节 积极践行社会主义核心价值观"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 全体人民的共同的价值追求",
+    "shortTitle": "第一节 全体人民的共同的价值",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 全体人民的共同的价值追求的核心考点与知识要点",
+      "keyPoints": [
+        "考点32   价值观与社会主义核心价值观（重点选择）",
+        "考点33   当代中国发展进步的精神指引（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s01.p033",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点32   价值观与社会主义核心价值观（重点选择）",
+    "shortTitle": "价值观与社会主义核心价值观",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "内涵；价值观；意识形态）；概念；价值观就是主体对客体有无价值、价值大小的立场和态度，是对价值及其相；关内容的基本观点和看法",
+      "keyPoints": [
+        "马克思主义指导思想",
+        "中国特色社会主义共同理想",
+        "以爱国主义为核心的民族精神和以改革创新为核心的时代精神"
+      ],
+      "traps": [
+        "民主指的是社会主义民主，是人民当家作主，不是由别人作主，也不是由少"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s01.p034",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点33   当代中国发展进步的精神指引（重点选择）",
+    "shortTitle": "当代中国发展进步的精神指引",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择",
+      "中国精神"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "当代中国发展进步的精神指引的理论核心与考点分析",
+      "keyPoints": [
+        "当代中国发展进步的精神指引的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s02",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 社会主义核心价值观的显著特征",
+    "shortTitle": "第二节 社会主义核心价值观的",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 社会主义核心价值观的显著特征的核心考点与知识要点",
+      "keyPoints": [
+        "考点34    反映人类社会发展进步的价值理念——先进性（重点选择）",
+        "考点35   彰显人民至上的价值立场——人民性（重点选择）",
+        "考点36   因真实可信而具有强大的道义力量——真实性（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s02.p035",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点34    反映人类社会发展进步的价值理念——先进性（重点选择）",
+    "shortTitle": "反映人类社会发展进步的价值理",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "反映人类社会发展进步的价值理念——先进性的理论核心与考点分析",
+      "keyPoints": [
+        "反映人类社会发展进步的价值理念——先进性的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s02.p036",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点35   彰显人民至上的价值立场——人民性（重点选择）",
+    "shortTitle": "彰显人民至上的价值立场",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "彰显人民至上的价值立场——人民性的理论核心与考点分析",
+      "keyPoints": [
+        "彰显人民至上的价值立场——人民性的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s02.p037",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点36   因真实可信而具有强大的道义力量——真实性（重点选择）",
+    "shortTitle": "因真实可信而具有强大的道义力",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "培育和践行社会主义核心价值观的重要性(作用/意义)：；坚持和发展中国特色社会主义的价值遵循；提高国家文化软实力的迫切要求",
+      "keyPoints": [
+        "培育和践行社会主义核心价值观的重要性(作用/意义)："
+      ],
+      "traps": [
+        "反对西方国家所谓的“普世价值”，并不是说人类社会不存在共同价值"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s03",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 积极践行社会主义核心价值观",
+    "shortTitle": "第三节 积极践行社会主义核心",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 积极践行社会主义核心价值观的核心考点与知识要点",
+      "keyPoints": [
+        "考点37   扣好人生的扣子",
+        "考点38  勤学、修德、明辨、笃实（选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s03.p038",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点37   扣好人生的扣子",
+    "shortTitle": "扣好人生的扣子",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "扣好人生的扣子的理论核心与考点分析",
+      "keyPoints": [
+        "扣好人生的扣子的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c05.s03.p039",
+    "bookId": "sx",
+    "parentId": "pol.sx.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点38  勤学、修德、明辨、笃实（选择）",
+    "shortTitle": "勤学",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s04.p108"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "对青年而言，就是要切实做到勤学、修德、明辨、笃实，使社会主义核心价值观成为一言一行的基本遵循",
+      "keyPoints": [
+        "对青年而言，就是要切实做到勤学、修德、明辨、笃实，使社会主义核心价值观成为一言一行的基本遵循"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 6,
+    "title": "第五章 遵守道德规范 锤炼道德品格",
+    "shortTitle": "第五章 遵守道德规范 锤炼道",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第五章 遵守道德规范 锤炼道德品格的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 社会主义道德的核心与原则",
+        "第二节 吸收借鉴优秀道德成果",
+        "第三节 投身崇德向善的道德实践【四个领域】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 社会主义道德的核心与原则",
+    "shortTitle": "第一节 社会主义道德的核心与",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 社会主义道德的核心与原则的核心考点与知识要点",
+      "keyPoints": [
+        "考点39  什么是道德（重点选择）",
+        "考点40  道德的功能与作用（重点选择）",
+        "考点41  社会主义道德是一种崭新类型的道德（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s01.p040",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点39  什么是道德（重点选择）",
+    "shortTitle": "什么是道德",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "起源；劳动/实践是道德起源的首要前提，第一个历史前提；决定性因素；社会关系是道德赖以产生的客观条件",
+      "keyPoints": [
+        "起源；劳动/实践是道德起源的首要前提，第一个历史前提；决定性因素；社会关系是道德赖以产生的客观条件"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s01.p041",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点40  道德的功能与作用（重点选择）",
+    "shortTitle": "道德的功能与作用",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "在道德的功能系统中，认识功能、规范功能、调节功能是最基本的功能，此外还有导向功能、激励功能等",
+      "keyPoints": [
+        "行为前认知）",
+        "行为中规范）",
+        "行为后调节）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s01.p042",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点41  社会主义道德是一种崭新类型的道德（重点选择）",
+    "shortTitle": "社会主义道德是一种崭新类型的",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会主义道德具有显著的先进性特征；与以往社会的道德形态相比，社会主义道德具有显著的先进性特征，这种先进性主要体现在：",
+      "keyPoints": [
+        "社会主义道德具有显著的先进性特征",
+        "与以往社会的道德形态相比，社会主义道德具有显著的先进性特征，这种先进性主要体现在：",
+        "首先，社会主义道德是社会主义经济基础的反映"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s02",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 吸收借鉴优秀道德成果",
+    "shortTitle": "第二节 吸收借鉴优秀道德成果",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 吸收借鉴优秀道德成果的核心考点与知识要点",
+      "keyPoints": [
+        "考点42   传承中华传统美德【高频】（重点选择）",
+        "考点43    发扬中国革命道德【分析题考点】“红色血脉”“红色基因”（重点）",
+        "考点44  借鉴人类文明优秀道德成果 【一切  √】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s02.p043",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点42   传承中华传统美德【高频】（重点选择）",
+    "shortTitle": "传承中华传统美德",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中华传统美德的基本精神；重视整体利益；强调责任奉献；个人对国家、民族、集体的道德要求；“公义胜私欲”",
+      "keyPoints": [
+        "中华传统美德的基本精神",
+        "仁爱、和谐）",
+        "中华传统美德的创造性转化和创新性发展"
+      ],
+      "traps": [
+        "注意古文【常做题干】与具体的传统美德的对应词",
+        "注意区分: 对待传统道德：批判地继承（取其精华去其糟粕）"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s02.p044",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点43    发扬中国革命道德【分析题考点】“红色血脉”“红色基因”（重点）",
+    "shortTitle": "发扬中国革命道德“红色血脉”",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "形成与发展；中国革命道德继承了中国传统道德的精华，摒弃了传统道德的糟粕，是中国优良传统道德的；延续和发展【批判地继承】，是超越了中华传统美德的时代局限而形成的一种崭新的道德",
+      "keyPoints": [
+        "形成与发展；中国革命道德继承了中国传统道德的精华，摒弃了传统道德的糟粕，是中国优良传统道德的；延续和"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.22"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s02.p045",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点44  借鉴人类文明优秀道德成果 【一切  √】",
+    "shortTitle": "借鉴人类文明优秀道德成果",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "借鉴人类文明优秀道德成果的理论核心与考点分析",
+      "keyPoints": [
+        "借鉴人类文明优秀道德成果的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s03",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 投身崇德向善的道德实践【四个领域】",
+    "shortTitle": "第三节 投身崇德向善的道德实",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 投身崇德向善的道德实践【四个领域】的核心考点与知识要点",
+      "keyPoints": [
+        "考点45   遵守社会公德 (（重点选择，部分考论述）",
+        "考点46    恪守职业道德（非重点-不常考）",
+        "考点47    弘扬家庭美德（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s03.p046",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点45   遵守社会公德 (（重点选择，部分考论述）",
+    "shortTitle": "遵守社会公德",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "公共生活；公共秩序；公共生活的特征；活动范围的广泛性；活动内容的开放性；交往对象的复杂性",
+      "keyPoints": [
+        "有序的公共生活：",
+        "公共生活中的道德规范（社会公德的内容）",
+        "注意区分：公民道德的最低要求是：爱国守法"
+      ],
+      "traps": [
+        "注意区分：公民道德的最低要求是：爱国守法"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s03.p047",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点46    恪守职业道德（非重点-不常考）",
+    "shortTitle": "恪守职业道德",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "职业生活中的道德规范（了解）：；爱岗敬业；职业道德规范的最低要求；诚实守信；诚实守信在我国思想道德建设中具有特殊重要的作用",
+      "keyPoints": [
+        "职业生活中的道德规范（了解）：",
+        "社会主义道德建设：",
+        "正确使用网络工具"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s03.p048",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点47    弘扬家庭美德（重点选择）",
+    "shortTitle": "弘扬家庭美德",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "注重家庭、家教、家风【非重点】；恋爱、婚姻家庭中的道德规范；恋爱中的道德规范；尊重人格平等；自觉承担责任",
+      "keyPoints": [
+        "注重家庭、家教、家风【非重点】",
+        "恋爱、婚姻家庭中的道德规范"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s03.p049",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点48    锤炼个人品德（选择题考点-可能有论述）",
+    "shortTitle": "锤炼个人品德",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "个人品德及其作用；个人品德的概念；个人品德是通过社会道德教育和个人自觉的道德修养所形成的稳定的心理状态和行",
+      "keyPoints": [
+        "个人品德及其作用",
+        "道德修养重在践行"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s04",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 向上向善、知行合一",
+    "shortTitle": "第四节 向上向善",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 向上向善、知行合一的核心考点与知识要点",
+      "keyPoints": [
+        "考点49   向道德模范学习",
+        "考点50   参加志愿服务",
+        "考点51  引领社会风尚"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s04.p050",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点49   向道德模范学习",
+    "shortTitle": "向道德模范学习",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "向道德模范学习的理论核心与考点分析",
+      "keyPoints": [
+        "向道德模范学习的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s04.p051",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点50   参加志愿服务",
+    "shortTitle": "参加志愿服务",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "参加志愿服务的理论核心与考点分析",
+      "keyPoints": [
+        "参加志愿服务的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c06.s04.p052",
+    "bookId": "sx",
+    "parentId": "pol.sx.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点51  引领社会风尚",
+    "shortTitle": "引领社会风尚",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s01.p045"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "引领社会风尚的理论核心与考点分析",
+      "keyPoints": [
+        "引领社会风尚的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07",
+    "bookId": "sx",
+    "parentId": "pol.sx",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 7,
+    "title": "第六章 学习法治思想 提升法治素养",
+    "shortTitle": "第六章 学习法治思想 提升法",
+    "tags": [
+      "思法",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第六章 学习法治思想 提升法治素养的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 社会主义法律的特征和运行",
+        "第二节 坚持全面依法治国",
+        "第三节 维护宪法权威"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s01",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 社会主义法律的特征和运行",
+    "shortTitle": "第一节 社会主义法律的特征和",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 社会主义法律的特征和运行的核心考点与知识要点",
+      "keyPoints": [
+        "考点52   法律的含义（重点选择）",
+        "考点53   我国社会主义法律的本质特征（重点选择）",
+        "考点54   我国社会主义法律的运行（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s01.p053",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点52   法律的含义（重点选择）",
+    "shortTitle": "法律的含义",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "法律是由国家创制；和实施的行为规范；国家创制法律规范的方式主要有两种：立法：法律制定、修改和废止",
+      "keyPoints": [
+        "国家创制法律规范的方式主要有两种：立法：法律制定、修改和废止",
+        "是国家机关在法定的职权范围内依照法律程序，制定、修改、废止规范性法",
+        "是国家机关赋予某些既存社会规范以法律效力，或者赋予先前的判例以法律"
+      ],
+      "traps": [
+        "法律作为上层建筑的重要组成部分，不是凭空出现的，而是产生于特定社会物质生",
+        "法律所体现的统治阶级意志具有整体性≠总和。不是统治阶级内部个别人的意"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s01.p054",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点53   我国社会主义法律的本质特征（重点选择）",
+    "shortTitle": "我国社会主义法律的本质特征",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "从法律体现的意志看；我国社会主义法律体现了党的主张和人民意志的统一；从法律的实质内容看；我国社会主义法律具有科学性和先进性",
+      "keyPoints": [
+        "从法律体现的意志看；我国社会主义法律体现了党的主张和人民意志的统一；从法律的实质内容看；我国社会主义"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s01.p055",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点54   我国社会主义法律的运行（重点选择）",
+    "shortTitle": "我国社会主义法律的运行",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "法律制定；立法）；属性；法律运行的起始性和关键性环节；环节；法律案的提出；②法律案的审议；③法律案的表决；④法律的公布",
+      "keyPoints": [
+        "法律案的提出；②法律案的审议；③法律案的表决；④法律的公布",
+        "合法性；②合理性；③信赖保护（信誉度）；④效率",
+        "司法公正；②公民在法律面前一律平等；③以事实为依据，以法律为准绳；④"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s02",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 坚持全面依法治国",
+    "shortTitle": "第二节 坚持全面依法治国",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 坚持全面依法治国的核心考点与知识要点",
+      "keyPoints": [
+        "考点55   全面依法治国的根本遵循——习近平法治思想（重点选择）",
+        "考点56   坚持走中国特色社会主义法治道路（重点选择）",
+        "考点57   建设法治中国（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s02.p056",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点55   全面依法治国的根本遵循——习近平法治思想（重点选择）",
+    "shortTitle": "全面依法治国的根本遵循",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "习近平法治思想的意义；习近平法治思想的主要内容——十一个坚持；坚持党对全面依法治国的领导；谁领导；政治方向",
+      "keyPoints": [
+        "习近平法治思想的意义",
+        "习近平法治思想的主要内容——十一个坚持",
+        "根本大法、总章程、定盘星）"
+      ],
+      "traps": [
+        "全面依法治国总抓手区分法律体系"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s02.p057",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点56   坚持走中国特色社会主义法治道路（重点选择）",
+    "shortTitle": "坚持走中国特色社会主义法治道",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "为什么要走中国特色社会主义法治道路以及坚持中国特色社会主义法治道路必须遵循的原则；核心要义；坚持党的领导",
+      "keyPoints": [
+        "为什么要走中国特色社会主义法治道路以及坚持中国特色社会主义法治道路必须遵循的原则",
+        "提醒：在我国，党和法不存在谁大的问题，党的领导和依法治",
+        "坚持依法治国和以德治国相结合："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.30"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s02.p058",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点57   建设法治中国（重点选择）",
+    "shortTitle": "建设法治中国",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "建设中国特色社会主义法治体系（全面依法治国的总抓手）；主要内容；第一，完备的法律规范体系；完备的法律规范体系，是中国特色社会主义法治体系的前提，是法治国家、法治政府、",
+      "keyPoints": [
+        "坚持依法治国、依法执政、依法行政共同推进，法治国家、法治政府、法治社会一体建设",
+        "坚持全面推进科学立法、严格执法、公正司法、全民守法（全面依法治国的基本格局）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s03",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 维护宪法权威",
+    "shortTitle": "第三节 维护宪法权威",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 维护宪法权威的核心考点与知识要点",
+      "keyPoints": [
+        "考点58   我国宪法的形成和发展",
+        "考点59  我国宪法的地位和基本原则（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s03.p059",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点58   我国宪法的形成和发展",
+    "shortTitle": "我国宪法的形成和发展",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "我国宪法的形成和发展的理论核心与考点分析",
+      "keyPoints": [
+        "我国宪法的形成和发展的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s03.p060",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点59  我国宪法的地位和基本原则（重点选择）",
+    "shortTitle": "我国宪法的地位和基本原则",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "我国宪法的地位；我国宪法的基本原则（5 个）；党的领导原则；我国宪法对中国共产党领导地位和执政地位的规定，既是对中国共产党领导人民在革",
+      "keyPoints": [
+        "我国宪法的地位",
+        "我国宪法的基本原则（5 个）",
+        "这一原则在宪法中的表现是多方面的："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 自觉尊法学法守法用法",
+    "shortTitle": "第四节 自觉尊法学法守法用法",
+    "tags": [
+      "思法",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 自觉尊法学法守法用法的核心考点与知识要点",
+      "keyPoints": [
+        "考点60   培养社会主义法治思维（重点选择）",
+        "考点61   依法行使权利和履行义务 （重点选择）",
+        "考点62  我国宪法法律规定的权利——学会分类与匹配（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04.p061",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点60   培养社会主义法治思维（重点选择）",
+    "shortTitle": "培养社会主义法治思维",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择",
+      "法治建设"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "法治思维及其内涵；含义；多选）；正当性思维；以法治价值和法治精神为指导，蕴含着公正、平等、民主、人权等法治",
+      "keyPoints": [
+        "法治思维及其内涵",
+        "法治思维的基本内容（多选/单选）",
+        "权利公平包括三重含义："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04.p062",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点61   依法行使权利和履行义务 （重点选择）",
+    "shortTitle": "依法行使权利和履行义务",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "法律权利；含义；法律权利是指反映一定的社会物质生活条件所制约的行为自由，是法律所允许；的权利人为了满足自己的利益而采取的、由其他人的法律义务所保证的法律手",
+      "keyPoints": [
+        "作为：是指义务人实施积极的行为",
+        "不作为：是指义务人不得实施某种行为"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.35"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04.p063",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点62  我国宪法法律规定的权利——学会分类与匹配（重点选择）",
+    "shortTitle": "我国宪法法律规定的权利",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "政治权利；选举权利、表达权、民主管理权、监督权；人身权利；生命健康权、人身自由权、人格尊严权、住宅安全权、通信自由权",
+      "keyPoints": [
+        "政治权利；选举权利、表达权、民主管理权、监督权；人身权利；生命健康权、人身自由权、人格尊严权、住宅安"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04.p064",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点63  依法行使法律权利（重点选择）",
+    "shortTitle": "依法行使法律权利",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "权利行使的目的；正当性；权利行使的必要限度；如果因行使自己权利而损害了国家、集体或他人的利益，超出了国家法律所许",
+      "keyPoints": [
+        "权利行使的目的；正当性；权利行使的必要限度；如果因行使自己权利而损害了国家、集体或他人的利益，超出了"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04.p065",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点64   依法履行法律义务（重点选择）",
+    "shortTitle": "依法履行法律义务",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "公民应履行的基本法律义务；维护国家统一和民族团结（最；高法律义务）；国家统一是公民实现法律权利与自由的前提",
+      "keyPoints": [
+        "公民应履行的基本法律义务；维护国家统一和民族团结（最；高法律义务）；国家统一是公民实现法律权利与自由"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.37"
+      ]
+    }
+  },
+  {
+    "id": "pol.sx.c07.s04.p066",
+    "bookId": "sx",
+    "parentId": "pol.sx.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点65   不断提升法治素养",
+    "shortTitle": "不断提升法治素养",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点",
+      "法治建设"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "尊重法律权威；法律的权威源自人民的内心拥护和真诚信仰，法律权威靠外在强制力和内在说服力来维系；学习法律知识",
+      "keyPoints": [
+        "学习法律知识：途径广泛，除了从书本上获取外，还可以通过收听收看法治广播电视节目、阅读法律",
+        "参与法治实践：一是参与立法讨论；二是旁听司法审判；三是参与校园法治文化活动"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 思法 p.37"
+      ]
+    }
+  }
+]

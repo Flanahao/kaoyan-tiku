@@ -335,11 +335,19 @@
         chapters: SHU1_CHAPTERS
       },
     ]
-    // 专业课：波哥信号与系统 + 852真题
+    // 专业课：波哥信号与系统 + 各大高校历年真题
     const PROFESSIONAL_CHAPTERS = Array.isArray(window.PROFESSIONAL_CHAPTERS) ? window.PROFESSIONAL_CHAPTERS : [];
-    const PROFESSIONAL_BOOKS = ['波哥讲义例题', '波哥习题集', '852真题'];
+    const PROFESSIONAL_BOOKS = [
+      '波哥讲义例题',
+      '波哥习题集',
+      '大连理工大学852',
+      '南京大学851',
+      '武汉大学807',
+      '厦门大学847',
+      '华中科技大学824'
+    ];
     SUBJECTS.splice(1, 1, {
-      id: 'zhuanye', name: '专业课', desc: '信号与系统专业课题库（波哥 + 852真题）', storageSuffix: 'zhuanye',
+      id: 'zhuanye', name: '专业课', desc: '信号与系统专业课题库（波哥 + 各校真题）', storageSuffix: 'zhuanye',
       analyticsGroup: 'major',
       initChapterId: PROFESSIONAL_CHAPTERS[0] ? PROFESSIONAL_CHAPTERS[0].id : '', navCols: 5,
       partOrder: ['真题', '例题', '习题'],

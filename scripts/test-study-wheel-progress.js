@@ -201,7 +201,7 @@ assert(DSW, 'DailyStudyWheel 必须成功挂载');
   const majorBooks = new Set(majorCandidates.map(c => c.book));
   assert.equal(majorBooks.size, 2, '专业课候选必须且只能包含 2 本书');
   DSW.MAJOR_BOOKS.forEach(b => assert(majorBooks.has(b), '专业课必须包含 ' + b));
-  assert(!majorBooks.has('852真题'), '专业课绝不能包含852真题');
+  assert(!majorBooks.has('大连理工大学852') && !majorBooks.has('852真题'), '专业课绝不能包含真题');
   assert(!majorBooks.has('基础30讲'), '专业课绝不能包含数学');
 
   console.log(`   • 数学总章节: ${mathCandidates.length} 章`);

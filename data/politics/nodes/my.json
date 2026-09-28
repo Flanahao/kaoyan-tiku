@@ -1,0 +1,3960 @@
+[
+  {
+    "id": "pol.my",
+    "bookId": "my",
+    "parentId": null,
+    "kind": "book",
+    "depth": 0,
+    "order": 2,
+    "title": "马克思主义基本原理",
+    "shortTitle": "马原",
+    "tags": [
+      "马原",
+      "学科主干"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "考研政治哲学与政治经济学基石理论体系",
+      "keyPoints": [
+        "辩证唯物论",
+        "唯物辩证法",
+        "认识论",
+        "唯物史观",
+        "资本主义本质与趋势",
+        "科学社会主义"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原讲义"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 1,
+    "title": "导论 马克思主义是关于无产阶级和人类解放的科学",
+    "shortTitle": "导论 马克思主义是关于无产阶",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "导论 马克思主义是关于无产阶级和人类解放的科学的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 马克思主义的创立与发展",
+        "第二节 马克思主义的基本特征和当代价值"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 马克思主义的创立与发展",
+    "shortTitle": "第一节 马克思主义的创立与发",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 马克思主义的创立与发展的核心考点与知识要点",
+      "keyPoints": [
+        "考点1    马克思主义的内涵及构成（是什么？组成部分？）",
+        "考点2    马克思主义的基本立场、基本观点和方法",
+        "考点3    马克思主义的创立（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s01.p001",
+    "bookId": "my",
+    "parentId": "pol.my.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点1    马克思主义的内涵及构成（是什么？组成部分？）",
+    "shortTitle": "内涵及构成",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s03.p009"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "【非重点】马克思主义的内涵（六个是）；创立者；马克思和恩格斯创立并为后继者所不断发展的科学理论体系",
+      "keyPoints": [
+        "【非重点】马克思主义的内涵（六个是）",
+        "课堂中，徐涛老师会将考点定义为两类：",
+        "注：自2026 考研起，分析题的命题范围大大增加，这需要我们更加注重学习的全面性。"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s01.p002",
+    "bookId": "my",
+    "parentId": "pol.my.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点2    马克思主义的基本立场、基本观点和方法",
+    "shortTitle": "基本立场",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s03.p009"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "基本立场；基本观点；以无产阶级的解放和全人类的解放为己任，以；人的自由全面发展为美好目标，以人民为中",
+      "keyPoints": [
+        "确认识世界和改造世界的思想方法和工作方法，主要包括："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s01.p003",
+    "bookId": "my",
+    "parentId": "pol.my.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点3    马克思主义的创立（重点选择）",
+    "shortTitle": "创立",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s03.p009"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "【四个考点】；马克思主义产生的条件；社会根源；时代背景；马克思、恩格斯生活的时代，资本主义生产方式在欧洲已经有了相当的发展",
+      "keyPoints": [
+        "资本主义经济发展/资本主义矛盾）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s01.p004",
+    "bookId": "my",
+    "parentId": "pol.my.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点4    马克思主义的发展（了解）",
+    "shortTitle": "发展",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s03.p009"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "列宁主义；世界上第一个无产阶级政党：共产主义者同盟；共产主义同盟的前身：正义者同盟【国际性工人组织——不是政党】",
+      "keyPoints": [
+        "世界上第一个无产阶级政党：共产主义者同盟",
+        "共产主义同盟的前身：正义者同盟【国际性工人组织——不是政党】",
+        "马克思主义公开问世的标志/第一个无阶政党的党纲：1848 年2 月《共产党宣言》的发表）"
+      ],
+      "traps": [
+        "共产主义同盟的前身：正义者同盟【国际性工人组织——不是政党】",
+        "主义和“马克思主义的诞生”或“公开问世”作区分"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 马克思主义的基本特征和当代价值",
+    "shortTitle": "第二节 马克思主义的基本特征",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 马克思主义的基本特征和当代价值的核心考点与知识要点",
+      "keyPoints": [
+        "考点5    马克思主义的基本特征",
+        "考点6    马克思主义的当代价值"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s02.p005",
+    "bookId": "my",
+    "parentId": "pol.my.c01.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点5    马克思主义的基本特征",
+    "shortTitle": "基本特征",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s03.p009"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "特征；内容；科学性；马克思主义是对自然、社会和人类思维发展本质和规律的正确反映；独有的特征；实践性",
+      "keyPoints": [
+        "特征；内容；科学性；马克思主义是对自然、社会和人类思维发展本质和规律的正确反映；独有的特征；实践性"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c01.s02.p006",
+    "bookId": "my",
+    "parentId": "pol.my.c01.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点6    马克思主义的当代价值",
+    "shortTitle": "当代价值",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s03.p009"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "观察当代世界变化的认识工具；指引当代中国发展的行动指南；引领人类社会进步的科学真理",
+      "keyPoints": [
+        "观察当代世界变化的认识工具",
+        "指引当代中国发展的行动指南",
+        "引领人类社会进步的科学真理"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 2,
+    "title": "第一章 辩证唯物论",
+    "shortTitle": "第一章 辩证唯物论",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第一章 辩证唯物论的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 哲学及其基本问题",
+        "第二节 世界多样性与物质统一性"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 哲学及其基本问题",
+    "shortTitle": "第一节 哲学及其基本问题",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 哲学及其基本问题的核心考点与知识要点",
+      "keyPoints": [
+        "考点7   哲学基本问题及不同哲学流派（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s01.p007",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点7   哲学基本问题及不同哲学流派（重点选择）",
+    "shortTitle": "哲学基本问题及不同哲学流派",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "重点选择",
+      "哲学原理"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "基本问题；近代哲学的重大的基本问题，是思维和存在的关系问题；哲学基本问题的内容，包括两个方面（思维=精神/意识，存在=物质）：",
+      "keyPoints": [
+        "哲学基本问题的内容，包括两个方面（思维=精神/意识，存在=物质）：",
+        "唯物主义：物质第一性",
+        "现代辩证唯物主义（马）：物质是一切客观存在/实在"
+      ],
+      "traps": [
+        "马克思主义：第三派包含着前两派，第三派认为人类历史物质性的，与前两派区分"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 世界多样性与物质统一性",
+    "shortTitle": "第二节 世界多样性与物质统一",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 世界多样性与物质统一性的核心考点与知识要点",
+      "keyPoints": [
+        "考点8  物质范畴及其理论意义（重点选择）",
+        "考点9    物质和运动【考研中，运动==变化】",
+        "考点10  运动和静止"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p008",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点8  物质范畴及其理论意义（重点选择）",
+    "shortTitle": "物质范畴及其理论意义",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "关于物质概念的定义；恩格斯；“物、物质无非是各种物的总和，而这个概念就是从这一总和中抽象出来的。”",
+      "keyPoints": [
+        "提醒：物质范畴和具体的物之间的关系：",
+        "定义方式：通过物质和意识的关系",
+        "列宁的定义表明："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p009",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点9    物质和运动【考研中，运动==变化】",
+    "shortTitle": "物质和运动",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "运动概念；运动是标志一切事物和现象的变化及其过程的哲学范畴。运动是物质的存在方式和根本属；性（固有属性）",
+      "keyPoints": [
+        "运动概念；运动是标志一切事物和现象的变化及其过程的哲学范畴。运动是物质的存在方式和根本属；性（固有属"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p010",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点10  运动和静止",
+    "shortTitle": "运动和静止",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "运动和静止；静止概念；静止是物质运动在一定条件下的稳定状态，包括空间相对位置和根本性质暂时未变这样两种",
+      "keyPoints": [
+        "提醒：人不能两次踏进同一条河流（√），人不能一次踏进同一条河流（×）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p011",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点11  物质运动和时空",
+    "shortTitle": "物质运动和时空",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "物质运动和时空（喜欢考多选）；时空概念；时间是指物质运动的持续性、顺序性，特点是一维性，即一去不复返",
+      "keyPoints": [
+        "基本）存在形式",
+        "提醒：在之后做题的过程中，如果主语只有物质，那么选择“运动”，如果主语是物质",
+        "客观性：不以人的意志为转移（不是主观范畴）"
+      ],
+      "traps": [
+        "客观性：不以人的意志为转移（不是主观范畴）",
+        "注意区分以下四个词：: 物质的存在方式"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p012",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点12  物质世界的二重化",
+    "shortTitle": "物质世界的二重化",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "物质世界的二重化；方面；世界分化为自然界与人类社会。人类社会是最高级的物质存在形态；自然界与人类社会不是截然分开的，而是交叉重叠和相互作用的",
+      "keyPoints": [
+        "物质世界的二重化；方面；世界分化为自然界与人类社会。人类社会是最高级的物质存在形态；自然界与人类社会"
+      ],
+      "traps": [
+        "自然界与人类社会不是截然分开的，而是交叉重叠和相互作用的",
+        "体，也不是一个超然于客观世界而孤立存在的世界，它不能完全脱离客观世界，而"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p013",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点13  物质和意识的辩证关系",
+    "shortTitle": "物质和意识的辩证关系",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "意识是人脑的机能和属性，是客观世界的主观映象（意识概念）；物质和意识的辩证关系：物质决定意识，意识依赖于物质并反作用于物质",
+      "keyPoints": [
+        "物质和意识的辩证关系：物质决定意识，意识依赖于物质并反作用于物质",
+        "物质对意识的决定作用表现在意识的起源和本质上",
+        "意识是自然界长期发展的产物"
+      ],
+      "traps": [
+        "意识不是大脑自生的: 提醒：在意识产生的过程中，劳动起决定作用，其他都是影响、重要作用",
+        "意识是物质的产物，但又不是物质本身"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p014",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 7,
+    "title": "考点14  主观能动性和客观规律性的辩证统一",
+    "shortTitle": "主观能动性和客观规律性的辩证",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "正确认识和把握物质与意识的辩证关系，必须处理好主观能动性和客观规律性的关系；首先，尊重客观规律是正确发挥主观能动性的前提",
+      "keyPoints": [
+        "首先，尊重客观规律是正确发挥主观能动性的前提",
+        "其次，只有充分发挥主观能动性，才能正确认识和利用客观规律",
+        "实践是客观规律性与主观能动性统一的基础"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.13"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p015",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 8,
+    "title": "考点15   意识与人工智能（高频考点）（重点）",
+    "shortTitle": "意识与人工智能",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "人工智能的实质；所谓人工智能，就是把人的部分智能活动机器化，让机器具有完成某种复杂目标的能力，它实质上是对人脑组织",
+      "keyPoints": [
+        "人工智能的实质",
+        "提醒：虽然人工智能很火爆，但意识仍然是人类独有的",
+        "人工智能对人类的影响"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.13"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c02.s02.p016",
+    "bookId": "my",
+    "parentId": "pol.my.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 9,
+    "title": "考点16   世界的物质统一性原理",
+    "shortTitle": "世界的物质统一性原理",
+    "layoutAnchorIds": [
+      "pol.sg.c01.s04.p011"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "内容；自然界是物质的；人类的实践活动能够改变自然事物的形态和面貌，在自然界打上人类的印记，使之成为人化",
+      "keyPoints": [
+        "切从实际出发"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 3,
+    "title": "第二章 唯物辩证法",
+    "shortTitle": "第二章 唯物辩证法",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第二章 唯物辩证法的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 事物的联系与发展",
+        "第二节 唯物辩证法是认识世界和改造世界的根本方法"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 事物的联系与发展",
+    "shortTitle": "第一节 事物的联系与发展",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 事物的联系与发展的核心考点与知识要点",
+      "keyPoints": [
+        "考点17  唯物辩证法的两大总特征",
+        "考点18  对立统一规律 ——回答事物联系的内容和发展的原因和动力问题（必考）",
+        "考点19  量变质变规律 →回答事物发展的过程和状态的问题（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p017",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点17  唯物辩证法的两大总特征",
+    "shortTitle": "唯物辩证法的两大总特征",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点",
+      "唯物主义"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "事物的普遍联系；联系的概念；联系是指事物内部各要素之间和事物之间相互影响、相互制约和相互作用的关系",
+      "keyPoints": [
+        "事物的普遍联系",
+        "×：联系都是人为的主观的",
+        "任何事物内部的不同部分和要素是相互联系的，即任何事物都具有内在的结构性"
+      ],
+      "traps": [
+        "联系是事物本身所固有的，不是主观臆想的，不以人的意志为转移",
+        "改变和创造条件不是任意的，必须尊重事物发展的客观规律"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p018",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点18  对立统一规律 ——回答事物联系的内容和发展的原因和动力问题（必考）",
+    "shortTitle": "对立统一规律",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "对立统一规律——回答事物联系的内容和发展的原因和动力问题（必考）；对立统一规律是唯物辩证法的实质和核心：",
+      "keyPoints": [
+        "对立统一规律是唯物辩证法的实质和核心：",
+        "矛盾的同一性和斗争性及其辩证关系",
+        "矛盾的同一性：是指矛盾双方相互依存、相互贯通的性质和趋势"
+      ],
+      "traps": [
+        "提醒：同一和斗争不是时而，时而的关系，而是既……又……，同时的关系",
+        "注意：: 在考试中，“同一”和“统一”没有区别，仅需要注意搭配，“对立统一”和“同一斗争”"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p019",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点19  量变质变规律 →回答事物发展的过程和状态的问题（重点选择）",
+    "shortTitle": "量变质变规律 →回答事物发展",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "概念:质、量、度和关节点、量变、质变；质；是一事物成为自身并区别于其他事物的内在规定性【是什么的问题】",
+      "keyPoints": [
+        "概念:质、量、度和关节点、量变、质变",
+        "量：是事物的规模、程度、速度等可以用数量关系表示的规定性",
+        "认识量的意义："
+      ],
+      "traps": [
+        "区分质——前提；考察量——深化"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p020",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点20   否定之否定规律 →回答事物发展的最终方向和归宿问题",
+    "shortTitle": "否定之否定规律 →回答事物发",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "否定之否定规律→回答事物发展的最终方向和归宿问题；事物发展过程中的肯定因素和否定因素；事物发展过程中的肯定和否定",
+      "keyPoints": [
+        "事物发展过程中的肯定因素和否定因素",
+        "肯定因素：是维持现存事物存在的因素",
+        "否定因素：是促使现存事物灭亡的因素"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p021",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点21   内容和形式（唯物辩证法的第一对基本范畴）（选择）",
+    "shortTitle": "内容和形式",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "内容和形式是从构成要素和表现方式上反映事物的一对范畴；概念；内容是构成事物一切要素的总和，是事物存在的基础",
+      "keyPoints": [
+        "内容和形式是从构成要素和表现方式上反映事物的一对范畴；概念；内容是构成事物一切要素的总和，是事物存在"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.22"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p022",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点22   现象和本质（唯物辩证法的第二对基本范畴）——（选择）（考题最多）",
+    "shortTitle": "现象和本质",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "现象和本质（唯物辩证法的第二对基本范畴）——（选择）（考题最多）；现象和本质是揭示客观事物的外部表现和内在联系相互关系的范畴",
+      "keyPoints": [
+        "×：错觉一定是由假象迷惑导致的（二者没有必然关系）",
+        "举例：筷子插在装满水的碗里，水里面的筷子看起来好像弯了一样，属于假象。看到这",
+        "×：现象和本质之间有一道不可逾越的鸿沟"
+      ],
+      "traps": [
+        "现象有真象和假象之分，假象与错觉不是一回事",
+        "错觉是一种错误的感觉，是主观的，注意二者区分"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p023",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 7,
+    "title": "考点23  原因和结果（唯物辩证法的第三对基本范畴）（选择）",
+    "shortTitle": "原因和结果",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "原因和结果是揭示事物的前后相继、彼此制约的关系范畴；概念；引起某种现象的现象叫原因，而被某种现象所引起的现象叫结果",
+      "keyPoints": [
+        "提醒：因果是前后相继的，但前后相继未必是因果关系，如昼夜更替",
+        "彼此制约：要成为“因为…所有…”的逻辑",
+        "内因和外因：内部矛盾=内因，外部矛盾=外因"
+      ],
+      "traps": [
+        "原因和结果的区分既是确定的，又是不确定的",
+        "注意前缀: √：有因必有果"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p024",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 8,
+    "title": "考点24   必然和偶然（唯物辩证法的第四对基本范畴）（选择）",
+    "shortTitle": "必然和偶然",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "必然和偶然是揭示客观事物发生、发展和灭亡的不同趋势的范畴；概念；必然是指事物联系和发展过程中一定要发生、确定不移的趋势",
+      "keyPoints": [
+        "考试判断关键词：机遇、灵机一动——偶然",
+        "产生和形成的原因不同：",
+        "表现形式不同："
+      ],
+      "traps": [
+        "注意——几个“寓于”说法：: 斗争寓于同一"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s01.p025",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 9,
+    "title": "考点25  可能和现实（唯物辩证法的第五对基本范畴）（选择）",
+    "shortTitle": "可能和现实",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "可能和现实是揭示事物的过去、现在和将来的相互关系的范畴；概念；可能是指事物发展过程中潜在的东西，是指包含在事物中并预示事物发展前途的种种趋势",
+      "keyPoints": [
+        "方面，现实蕴藏着未来的发展方向，会不断产生出新的可能",
+        "可能性：一定能变成现实的",
+        "不可能性：无论如何都不可能变成现实"
+      ],
+      "traps": [
+        "可能不等于现实，现实已经不是可能。现实是当下的客观存在，标志着事物的当前状况",
+        "区分依据: 具体内容"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 唯物辩证法是认识世界和改造世界的根本方法",
+    "shortTitle": "第二节 唯物辩证法是认识世界",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 唯物辩证法是认识世界和改造世界的根本方法的核心考点与知识要点",
+      "keyPoints": [
+        "考点26   唯物辩证法本质上是批判的和革命的（非重点）",
+        "考点27 客观辩证法与主观辩证法的统一（重点选择）",
+        "考点 28  辩证思维方法（非重点）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s02.p026",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点26   唯物辩证法本质上是批判的和革命的（非重点）",
+    "shortTitle": "唯物辩证法本质上是批判的和革",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "理解了解",
+      "革命史",
+      "唯物主义"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "唯物辩证法本质上是批判的和革命的的理论核心与考点分析",
+      "keyPoints": [
+        "唯物辩证法本质上是批判的和革命的的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s02.p027",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点27 客观辩证法与主观辩证法的统一（重点选择）",
+    "shortTitle": "客观辩证法与主观辩证法的统一",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "客观辩证法是指客观事物或客观存在的辩证法（物质）；主观辩证法是指人类认识和思维运动的辩证法（意识）",
+      "keyPoints": [
+        "提醒：客观辩证法是唯物辩证法，主观辩证法是唯心辩证法×"
+      ],
+      "traps": [
+        "主客观辩证法是一种反映与被反映、第一性与第二性的关系（不是正确与错误、唯物与唯心的关系），而唯物"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c03.s02.p028",
+    "bookId": "my",
+    "parentId": "pol.my.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 28  辩证思维方法（非重点）",
+    "shortTitle": "辩证思维方法",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s01.p012"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "辩证思维方法的理论核心与考点分析",
+      "keyPoints": [
+        "辩证思维方法的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 4,
+    "title": "第三章 认识论",
+    "shortTitle": "第三章 认识论",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第三章 认识论的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 认识与实践",
+        "第二节 真理与价值",
+        "第三节 认识世界和改造世界"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 认识与实践",
+    "shortTitle": "第一节 认识与实践",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 认识与实践的核心考点与知识要点",
+      "keyPoints": [
+        "考点29  实践的本质和基本特征（重点选择）",
+        "考点30  实践的基本结构和形式",
+        "考点31   实践对认识的决定作用（重点）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p029",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点29  实践的本质和基本特征（重点选择）",
+    "shortTitle": "实践的本质和基本特征",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "实践性是马克思主义理论区别于其他理论的根本特征【独有的特性】；实践的观点是马克思主义的基本观点",
+      "keyPoints": [
+        "中国古代哲学：实践被称为“践行”“实行”或“行”，与“知”相对",
+        "错误：范围太小",
+        "康德：把实践看成理性自主的道德活动"
+      ],
+      "traps": [
+        "错误：忽略了实践客体，并不是全靠主体理性自主",
+        "混淆点: 世界物质统一性原理——辩证唯物主义最基本（最核心）的观点"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p030",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点30  实践的基本结构和形式",
+    "shortTitle": "实践的基本结构和形式",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "实践的基本结构；实践的主体、客体和中介是实践活动的三项基本要素，三者的有机统一构成实践的基本结构",
+      "keyPoints": [
+        "实践的基本结构",
+        "×：所有人都是主体",
+        "×：所有的客观事物都是客体"
+      ],
+      "traps": [
+        "（未纳入实践和认知范围内的就不是）",
+        "提醒：虚拟实践是实践活动的派生形式，具有相对独立性，但不是实践的基本形式之一"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p031",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点31   实践对认识的决定作用（重点）",
+    "shortTitle": "实践对认识的决定作用",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "实践是认识的基础，实践在认识活动中起着决定性的作用；实践是认识的起点，也是认识的归宿；实践的观点是辩证唯物论的认识论之第一的和基本的观点",
+      "keyPoints": [
+        "切真知都是从直接经验发源的，但认识也可以通过间接经验获得",
+        "×：逻辑可以成为检验认识的标准"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p032",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点32   认识的本质（重点选择）",
+    "shortTitle": "认识的本质",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "唯心主义；先验论；主观唯心；认识是主观自生的，是生而知之的；从思想和；感觉到物",
+      "keyPoints": [
+        "能动反映2 个特点：①摹写反映（再现）②能动创造",
+        "认识的反应特性是人类认识的基本规定性",
+        "认识的能动反映具有创造性"
+      ],
+      "traps": [
+        "认识是一种在思维中的能动的、创造性活动，而不是主",
+        "注意：: 来源具有最终指向性（即归根到底）"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.30"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p033",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点33    认识的过程（两次飞跃）（重点选择）",
+    "shortTitle": "认识的过程",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "从感性认识到理性认识的飞跃（第一次飞跃）——考试重点；概念；感性认识；是人们在实践基础上，由感觉器官直接感受到的关于事物的现象、事物的外部联系、事",
+      "keyPoints": [
+        "从感性认识到理性认识的飞跃（第一次飞跃）——考试重点",
+        "×：感性认识是不可靠的",
+        "√：感性认识有局限"
+      ],
+      "traps": [
+        "注意!强调谁，渗透谁: ★"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p034",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点34   认识过程中的影响因素（重点）",
+    "shortTitle": "认识过程中的影响因素",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "影响因素；理性因素；非理性因素（感性因素）；概念；理性因素是指人的理性直观、理性思维等能力；非理性因素主要是指认识主体的情感和意志。",
+      "keyPoints": [
+        "影响因素；理性因素；非理性因素（感性因素）；概念；理性因素是指人的理性直观、理性思维等能力；非理性因"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p035",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 7,
+    "title": "考点35  认识的两大规律（重点）",
+    "shortTitle": "认识的两大规律",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "反复性；认识的反复性：；人们对于一个复杂事物的认识往往要经过由感性认识到理性认识、再由理性认识到实践的多",
+      "keyPoints": [
+        "认识的反复性：",
+        "认识的无限性：",
+        "×：人不能认识世界"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s01.p036",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 8,
+    "title": "考点36   实践和认识是具体的历史的统一",
+    "shortTitle": "实践和认识是具体的历史的统一",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "实践超前于认识：冒进主义（左）；实践落后于认识：保守主义（右）",
+      "keyPoints": [
+        "实践超前于认识：冒进主义（左）",
+        "实践落后于认识：保守主义（右）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 真理与价值",
+    "shortTitle": "第二节 真理与价值",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 真理与价值的核心考点与知识要点",
+      "keyPoints": [
+        "考点37   真理及其特性（重点）",
+        "考点38    真理和谬误：对立统一【可能考论述题】（重点）",
+        "考点39   真理的检验标准"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s02.p037",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点37   真理及其特性（重点）",
+    "shortTitle": "真理及其特性",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点",
+      "真理检验"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "真理观；错误的真理观：；马赫主义：认为真理是“思想形式”，是“社会地组织起来的经验”，凡是多数人承认的就",
+      "keyPoints": [
+        "错误的真理观：",
+        "马赫主义：认为真理是“思想形式”，是“社会地组织起来的经验”，凡是多数人承认的就",
+        "实用主义：认为“有用即真理”，把真理的有用性与真理本身等同起来"
+      ],
+      "traps": [
+        "绝对真理和相对真理不是两种真理，而是指客观真理的两种属性"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s02.p038",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点38    真理和谬误：对立统一【可能考论述题】（重点）",
+    "shortTitle": "真理和谬误",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点",
+      "真理检验"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "相互区别；真理和谬误是相伴而生的，人类在探索真理的过程中，难免发生谬误；真理：正确的认识；在确定的对象和范围内是绝对对立的",
+      "keyPoints": [
+        "真理：正确的认识",
+        "谬误：错误的认识"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s02.p039",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点39   真理的检验标准",
+    "shortTitle": "真理的检验标准",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点",
+      "真理检验"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "真理的检验标准；实践是检验真理的唯一标准，这是由真理的本性和实践的特点决定的：；真理的本性是主观和客观的一致、符合",
+      "keyPoints": [
+        "实践是检验真理的唯一标准，这是由真理的本性和实践的特点决定的：",
+        "确定性：实践一定能够检验认识是否正确",
+        "√：实践能够检验一切认识"
+      ],
+      "traps": [
+        "理和扩大真理范围的重要手段，是对实践标准的一个重要补充，但不是检验真",
+        "实践检验真理是一个过程，不是一次完成的"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.37"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s02.p040",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点40   真理与价值的辩证统一（重点选择）",
+    "shortTitle": "真理与价值的辩证统一",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "重点选择",
+      "真理检验"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "认识行为分为：；知识性（认知性）认识——对象是客体本身；价值评价性认识——对象是主客体之间的关系",
+      "keyPoints": [
+        "认识行为分为：",
+        "主体性：主体不同，价值不同（因人而异）",
+        "举例：南北方人对米饭的观念（不具有主观性）"
+      ],
+      "traps": [
+        "评价作为一种价值判断活动，虽然有主观性，并不是一种主观随意性"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.38"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s03",
+    "bookId": "my",
+    "parentId": "pol.my.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 认识世界和改造世界",
+    "shortTitle": "第三节 认识世界和改造世界",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 认识世界和改造世界的核心考点与知识要点",
+      "keyPoints": [
+        "考点41   认识世界和改造世界必须勇于创新",
+        "考点42   改造客观世界和改造主观世界及其辩证关系",
+        "考点43   从必然走向自由（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s03.p041",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点41   认识世界和改造世界必须勇于创新",
+    "shortTitle": "认识世界和改造世界必须勇于创",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "认识世界和改造世界必须勇于创新的理论核心与考点分析",
+      "keyPoints": [
+        "认识世界和改造世界必须勇于创新的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s03.p042",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点42   改造客观世界和改造主观世界及其辩证关系",
+    "shortTitle": "改造客观世界和改造主观世界及",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "改造客观世界和改造主观世界及其辩证关系的理论核心与考点分析",
+      "keyPoints": [
+        "改造客观世界和改造主观世界及其辩证关系的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c04.s03.p043",
+    "bookId": "my",
+    "parentId": "pol.my.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点43   从必然走向自由（重点选择）",
+    "shortTitle": "从必然走向自由",
+    "layoutAnchorIds": [
+      "pol.sg.c02.s03.p017"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "认识世界和改造世界、改造客观世界和改造主观世界的过程，也就是从必然走向自由的过程；自由；能动）；哲学上的自由是表示人的活动状态的范畴，是指人在活动中通过认识和利用必然所",
+      "keyPoints": [
+        "自由是历史发展的产物，自由是有条件的：",
+        "认识条件：认知越多，越自由",
+        "个蘑菇1 个无毒→活着的自由"
+      ],
+      "traps": [
+        "自由不是摆脱规律的束缚，自由是对规律的认识和利用"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 5,
+    "title": "第四章 唯物史观",
+    "shortTitle": "第四章 唯物史观",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第四章 唯物史观的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 社会基本矛盾及其运动规律",
+        "第二节 社会历史发展的动力",
+        "第三节 人民群众在历史发展中的作用"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 社会基本矛盾及其运动规律",
+    "shortTitle": "第一节 社会基本矛盾及其运动",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 社会基本矛盾及其运动规律的核心考点与知识要点",
+      "keyPoints": [
+        "考点44   唯物史观和唯心史观的对立（重点选择）",
+        "考点45   社会存在和社会意识及其辩证关系（物质和意识）",
+        "考点46    生产力和生产关系矛盾运动的规律（第一对社会基本矛盾）（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01.p044",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点44   唯物史观和唯心史观的对立（重点选择）",
+    "shortTitle": "唯物史观和唯心史观的对立",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择",
+      "唯物主义"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会历史观的基本问题；社会存在和社会意识的关系问题；唯心史观的缺陷；至多考察了人的活动的思想动机，而没有进一步考究思想动机背后的物质动因和",
+      "keyPoints": [
+        "社会历史观的基本问题；社会存在和社会意识的关系问题；唯心史观的缺陷；至多考察了人的活动的思想动机，而"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01.p045",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点45   社会存在和社会意识及其辩证关系（物质和意识）",
+    "shortTitle": "社会存在和社会意识及其辩证关",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "社会存在及其在社会发展过程中的作用；概念；社会存在是社会生活的物质方面，是社会实践和物质生活各种条件的总和，主要包括物质生产方",
+      "keyPoints": [
+        "社会存在及其在社会发展过程中的作用",
+        "劳动资料：生产工具是生产力发展水平的标志",
+        "决定性力量）"
+      ],
+      "traps": [
+        "提醒：变化不是立刻，不一定同步"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01.p046",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点46    生产力和生产关系矛盾运动的规律（第一对社会基本矛盾）（重点选择）",
+    "shortTitle": "生产力和生产关系矛盾运动的规",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "生产力的含义和基本要素；含义；生产力是标志人类改造自然的实际程度和实际能力的范畴，它表示人与自然的关系",
+      "keyPoints": [
+        "生产关系的含义和内容",
+        "生产力与生产关系的辩证关系（社会发展第一规律：生产关系一定要适应生产力发展状况的规律）",
+        "生产力和生产关系的相互关系是：生产力决定生产关系，生产关系反作用于生产力"
+      ],
+      "traps": [
+        "即劳动手段，最重要的是生产工具，它是生产力发展水平的客观尺度，是区分社会",
+        "★注意生产工具和劳动者: 科学技术"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.42"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01.p047",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点47   经济基础和上层建筑矛盾运动的规律（第二对社会基本矛盾）",
+    "shortTitle": "经济基础和上层建筑矛盾运动的",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点",
+      "主要矛盾",
+      "经济体制"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "内涵；经济基础；骨骼）；是指由社会一定发展阶段的生产力所决定的生产关系的总和（制度化的生产关系）；经济基础是生产关系，因此，生产力决定经济基础，生产关系决定上层建筑，",
+      "keyPoints": [
+        "意识形态又称观念上层建筑，包括政治法律思想、道德、艺术、宗教、哲学",
+        "政治法律制度及设施和政治组织又称政治上层建筑，包括国家政治制度、立",
+        "观念上层建筑和政治上层建筑的关系："
+      ],
+      "traps": [
+        "★判断一种上层建筑是否先进，并不是看它能不能适应经济基础，而是看它服务的经济基础，"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.44"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01.p048",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点48   人类普遍交往与世界历史的形成与发展（重点选择）",
+    "shortTitle": "人类普遍交往与世界历史的形成",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“交往”概念；指在一定历史条件下的现实的个人、群体、阶级、民族、国家之间在物质和精神上相互；往来、相互作用、彼此联系的活动",
+      "keyPoints": [
+        "组成部分，对社会生活有着重要的影响："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s01.p049",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点49    社会进步与形态更替（重点选择）",
+    "shortTitle": "社会进步与形态更替",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会进步与人的发展；社会进步；社会进步作为对社会前进发展的总概括，主要表现在两个方面：；是社会形态从低级到高级的发展",
+      "keyPoints": [
+        "社会进步与人的发展",
+        "社会进步作为对社会前进发展的总概括，主要表现在两个方面：",
+        "是社会形态从低级到高级的发展"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 社会历史发展的动力",
+    "shortTitle": "第二节 社会历史发展的动力",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 社会历史发展的动力的核心考点与知识要点",
+      "keyPoints": [
+        "考点50   社会基本矛盾是社会发展的根本动力（第一动力）",
+        "考点51  阶级斗争、社会革命在阶级社会发展中的作用",
+        "考点52  改革在社会发展中的作用"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s02.p050",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点50   社会基本矛盾是社会发展的根本动力（第一动力）",
+    "shortTitle": "社会基本矛盾是社会发展的根本",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点",
+      "主要矛盾"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "第一动力；生产力和生产关系、经济基础和上层建筑的矛盾是社会基本矛盾；社会基本矛盾作为历史发展的根本动力，它在历史发展中的作用主要表现在：",
+      "keyPoints": [
+        "社会基本矛盾作为历史发展的根本动力，它在历史发展中的作用主要表现在：",
+        "生产力是社会基本矛盾运动中最基本的动力因素，是人类社会发展和进步的最终决定力量",
+        "社会基本矛盾特别是生产力和生产关系的矛盾，是“一切历史冲突的根源”，决定着社会"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s02.p051",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点51  阶级斗争、社会革命在阶级社会发展中的作用",
+    "shortTitle": "阶级斗争",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "阶级斗争、社会革命在阶级社会发展中的作用的理论核心与考点分析",
+      "keyPoints": [
+        "阶级斗争、社会革命在阶级社会发展中的作用的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s02.p052",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点52  改革在社会发展中的作用",
+    "shortTitle": "改革在社会发展中的作用",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "改革在社会发展中的作用的理论核心与考点分析",
+      "keyPoints": [
+        "改革在社会发展中的作用的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s02.p053",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点53  科学技术在社会发展中的作用",
+    "shortTitle": "科学技术在社会发展中的作用",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "科学技术在社会发展中的作用的理论核心与考点分析",
+      "keyPoints": [
+        "科学技术在社会发展中的作用的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s02.p054",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点54  文化在社会发展中的作用",
+    "shortTitle": "文化在社会发展中的作用",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "文化在社会发展中的作用的理论核心与考点分析",
+      "keyPoints": [
+        "文化在社会发展中的作用的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s03",
+    "bookId": "my",
+    "parentId": "pol.my.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 人民群众在历史发展中的作用",
+    "shortTitle": "第三节 人民群众在历史发展中",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 人民群众在历史发展中的作用的核心考点与知识要点",
+      "keyPoints": [
+        "考点55  关于历史创造者的问题（重点选择）",
+        "考点56   人民群众创造历史（重点选择）",
+        "考点57   个人在社会历史中的作用"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s03.p055",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点55  关于历史创造者的问题（重点选择）",
+    "shortTitle": "关于历史创造者的问题",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "唯心史观和唯物史观的分水岭：究竟谁是历史的创造者？是人民群众还是英雄？；唯物史观；唯物史观考察历史创造者问题的原则：",
+      "keyPoints": [
+        "唯心史观和唯物史观的分水岭：究竟谁是历史的创造者？是人民群众还是英雄？",
+        "唯物史观考察历史创造者问题的原则：",
+        "唯物史观立足于现实的人及其本质来把握历史的创造者"
+      ],
+      "traps": [
+        "人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和。人的本质",
+        "属性是社会属性，而不是自然属性"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s03.p056",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点56   人民群众创造历史（重点选择）",
+    "shortTitle": "人民群众创造历史",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "重点选择",
+      "群众观点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "唯物史观关于人民群众是历史创造者的原理，是无产阶级政党的群众观点和群众路线的理论基础；人民群众的",
+      "keyPoints": [
+        "切为了群众，一切依靠群众，从群众中来，到群众中去。群众路线是无产阶级政党的根本路"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.48"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c05.s03.p057",
+    "bookId": "my",
+    "parentId": "pol.my.c05.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点57   个人在社会历史中的作用",
+    "shortTitle": "个人在社会历史中的作用",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p036"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "历史人物的作用性质取决于他们的思想、行为是否符合社会发展规律，是否符合人民群众的意愿；个人在历史上的作用存在差别，有的人作用大些，可称为“历史人物”;有的人作用小些，可称为“普通个人”",
+      "keyPoints": [
+        "普通个人：历史参与者",
+        "群众、阶级、政党、领袖的关系"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.49"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 6,
+    "title": "第五章 资本主义的本质及规律",
+    "shortTitle": "第五章 资本主义的本质及规律",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第五章 资本主义的本质及规律的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 商品经济和价值规律（简单商品经济）",
+        "第二节 资本主义经济制度的本质（发达商品经济）",
+        "第三节 资本主义上层建筑（政治制度+意识形态（文化））"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 商品经济和价值规律（简单商品经济）",
+    "shortTitle": "第一节 商品经济和价值规律",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 商品经济和价值规律（简单商品经济）的核心考点与知识要点",
+      "keyPoints": [
+        "考点58   价值是什么",
+        "考点59    价值如何衡量",
+        "考点60   价值如何表现（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01.p058",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点58   价值是什么",
+    "shortTitle": "价值是什么",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "商品经济产生的历史条件；商品经济；商品经济是以交换为目的而进行生产的经济形式；历史条件；个）；社会分工的存在",
+      "keyPoints": [
+        "商品经济产生的历史条件",
+        "商品的二因素",
+        "★关键词：有差别的"
+      ],
+      "traps": [
+        "决定商品交换比例的，不是商品的使用价值，而是价值",
+        "注意劳动二重性与商品二因素是因果关系"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01.p059",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点59    价值如何衡量",
+    "shortTitle": "价值如何衡量",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "商品的价值；商品的价值包括：；质的规定：回答的是价值的实体是什么（实体=本体=本质=质）；质：凝结在商品中无差别的人类劳动",
+      "keyPoints": [
+        "商品的价值包括：",
+        "质的规定：回答的是价值的实体是什么（实体=本体=本质=质）",
+        "质：凝结在商品中无差别的人类劳动"
+      ],
+      "traps": [
+        "决定商品价值量的，不是生产商品的个别劳动时间，而是社会必要劳动时间"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.51"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01.p060",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点60   价值如何表现（重点选择）",
+    "shortTitle": "价值如何表现",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "商品交换发；展历史；商品的价值形式的发展经历了四个阶段：；简单的或偶然的价值形式；举例：一只绵羊=两把石斧（价值的初级形式）",
+      "keyPoints": [
+        "商品的价值形式的发展经历了四个阶段：",
+        "简单的或偶然的价值形式",
+        "举例：一只绵羊=两把石斧（价值的初级形式）"
+      ],
+      "traps": [
+        "金银天然不是货币，但货币天然是金银"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01.p061",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点61  价值有何规律（重点选择）",
+    "shortTitle": "价值有何规律",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "基本内容；价值规律是商品生产和商品交换的基本规律，其主要内容和客观要求是：；商品的价值量由生产商品的社会必要劳动时间决定",
+      "keyPoints": [
+        "价值规律是商品生产和商品交换的基本规律，其主要内容和客观要求是：",
+        "价格的形成是多因素作用的结果：供求（影响）、币值（影响）、商品本身价值（决定）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.53"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01.p062",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点62   以私有制为基础的商品经济的基本矛盾（重点选择）",
+    "shortTitle": "以私有制为基础的商品经济的基",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择",
+      "主要矛盾",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "私人劳动和社会劳动；在以私有制为基础的商品经济中，商品生产者的劳动具有两重性：既是具有社会性；质的社会劳动，又是具有私人性质的私人劳动",
+      "keyPoints": [
+        "在以私有制为基础的商品经济中，商品生产者的劳动具有两重性：既是具有社会性",
+        "私人劳动和社会劳动的矛盾贯穿商品经济发展过程的始终，决定着商品经济的各",
+        "资本主义的基本矛盾："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s01.p063",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点63   马克思劳动价值论的意义",
+    "shortTitle": "马克思劳动价值论的意义",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "意义；马克思在继承古典政治经济学劳动创造价值理论的同时，创立了劳动二重性理论；劳动二重性理论成为理解政治经济学的枢纽",
+      "keyPoints": [
+        "深化对马克思劳动价值论的认识："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 资本主义经济制度的本质（发达商品经济）",
+    "shortTitle": "第二节 资本主义经济制度的本",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 资本主义经济制度的本质（发达商品经济）的核心考点与知识要点",
+      "keyPoints": [
+        "考点64   资本主义经济制度的产生（重点选择）",
+        "考点65   劳动力成为商品与货币转化为资本（重点选择）",
+        "考点66   资本主义所有制的确立"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p064",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点64   资本主义经济制度的产生（重点选择）",
+    "shortTitle": "资本主义经济制度的产生",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "前资本主义社会的演进和更替；原始社会、奴隶社会、封建社会；资本主义生产关系产生的途径；是从小商品经济分化而来",
+      "keyPoints": [
+        "是从小商品经济分化而来",
+        "是从商人和高利贷者转化而来",
+        "是用暴力手段剥夺农民土地（圈地运动）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p065",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点65   劳动力成为商品与货币转化为资本（重点选择）",
+    "shortTitle": "劳动力成为商品与货币转化为资",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "劳动力成为商品；是货币转化为资本的；前提；是资本主义经济制度；形成的前提；概念",
+      "keyPoints": [
+        "是货币转化为资本的",
+        "是资本主义经济制度",
+        "劳动力商品的价值：是由生产、发展、维持和延续劳动力所必需的"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p066",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点66   资本主义所有制的确立",
+    "shortTitle": "资本主义所有制的确立",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "资本主义所有制的确立的理论核心与考点分析",
+      "keyPoints": [
+        "资本主义所有制的确立的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p067",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点67  剩余价值的生产（重点选择）",
+    "shortTitle": "剩余价值的生产",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "．资本主义生产过程的两重性及其特点；资本主义生产方式的绝对规律；生产剩余价值是资本主义生产方式的绝对规律",
+      "keyPoints": [
+        "．资本主义生产过程的两重性及其特点",
+        "克思指出：“生产剩余价值或赚钱，是这个生产方式的绝对规律。”",
+        "资本主义生产过程具有二重性："
+      ],
+      "traps": [
+        "各种物品表现出来，但资本的本质不是物，而是一定的历史社会形态下的生产关系",
+        "不变资本和可变资本的区分及其意义，剩余价值率"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.56"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p068",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点68  资本的积累（重点选择）",
+    "shortTitle": "资本的积累",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本主义简单再生产和扩大再生产；资本积累的本质、源泉和后果；简单再生产和；扩大再生产；资本主义简单；再生产",
+      "keyPoints": [
+        "资本主义简单再生产和扩大再生产",
+        "资本积累的本质、源泉和后果",
+        "资本积累规模的大小取决于：对工人的剥削程度↑、劳动生产率的高低"
+      ],
+      "traps": [
+        "本积累不但是社会财富占有两极分化的重要原因，也是资本主义社会失业现"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p069",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点69   资本的循环周转与再生产（重点选择）",
+    "shortTitle": "资本的循环周转与再生产",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本循环及其职能形式；资本周转及其速度；资本循环及其职；能形式；资本循环是资本从一种形式出发，经过一系列形式的变化，又回到原来出发点的运动。产业",
+      "keyPoints": [
+        "资本循环及其职能形式",
+        "资本周转及其速度",
+        "是产业资本的三种职能形式必须在空间上并存"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p070",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 7,
+    "title": "考点70   工资与剩余价值的分配（重点选择）",
+    "shortTitle": "工资与剩余价值的分配",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本主义工资的本质和形式；工资本质；在资本主义制度下，工人工资是劳动力的价值或价格，这是资本主义工资的本质",
+      "keyPoints": [
+        "资本主义工资的本质和形式",
+        "资本主义工资的形式：计时工资和计件工资",
+        "利润和平均利润"
+      ],
+      "traps": [
+        "注意: 工人的实际工资呈现出不断提高的趋势，但是与其创造的剩余价值的增长幅度相比，实际工资",
+        "生产价格是价值的转化形式，商品按照生产价格而不是价值出售（价格围绕生产价格上下"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p071",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 8,
+    "title": "考点71  马克思剩余价值理论的意义（重点）",
+    "shortTitle": "马克思剩余价值理论的意义",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "马克思通过分析剩余价值的生产、积累、流通以及分配，揭示了剩余价值的运动规律，创立了剩余价值理论。剩",
+      "keyPoints": [
+        "马克思通过分析剩余价值的生产、积累、流通以及分配，揭示了剩余价值的运动规律，创立了剩余价值理论。剩"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s02.p072",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 9,
+    "title": "考点72  资本主义的基本矛盾与经济危机 （重点选择）",
+    "shortTitle": "资本主义的基本矛盾与经济危机",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择",
+      "主要矛盾",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本主义基本矛盾；生产资料资本主义私人占有和生产社会化之间的矛盾，是资本主义的基本矛盾（资本；主义灭亡的根本原因）",
+      "keyPoints": [
+        "盾具体表现两个方面：深层次根源"
+      ],
+      "traps": [
+        "主义灭亡的根本原因）: 资本主义经济危机",
+        "产的商品显得过剩，而不是与劳动人民的实际需要相比的绝对过剩"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s03",
+    "bookId": "my",
+    "parentId": "pol.my.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 资本主义上层建筑（政治制度+意识形态（文化））",
+    "shortTitle": "第三节 资本主义上层建筑）",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 资本主义上层建筑（政治制度+意识形态（文化））的核心考点与知识要点",
+      "keyPoints": [
+        "考点73    资本主义的国家、民主制度及其本质（重点选择）",
+        "考点74   资本主义的意识形态（文化）及其本质"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s03.p073",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点73    资本主义的国家、民主制度及其本质（重点选择）",
+    "shortTitle": "资本主义的国家",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "重点选择",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本主义国家的职能和；本质；资本主义国家的职能是以服务于资本主义制度和资产阶级利益为根本内容的，是",
+      "keyPoints": [
+        "宪法是资本主义国家法律制度的核心，它所依据的基本原则有：私"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c06.s03.p074",
+    "bookId": "my",
+    "parentId": "pol.my.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点74   资本主义的意识形态（文化）及其本质",
+    "shortTitle": "资本主义的意识形态及其本质",
+    "layoutAnchorIds": [
+      "pol.sg.c04.s03.p037"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "资本主义的意识形态（文化）及其本质；资本主义国家意识形态的本质，可以概括为两个方面：；资本主义意识形态是资本主义社会的观念上层建筑，是为资本主义的经济基础服务的",
+      "keyPoints": [
+        "资本主义国家意识形态的本质，可以概括为两个方面："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 7,
+    "title": "第六章 资本主义的发展及其趋势",
+    "shortTitle": "第六章 资本主义的发展及其趋",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第六章 资本主义的发展及其趋势的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 垄断资本主义的形成与发展",
+        "第二节 正确认识当代资本主义的新变化",
+        "第三节 资本主义的历史地位和发展趋势"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 垄断资本主义的形成与发展",
+    "shortTitle": "第一节 垄断资本主义的形成与",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 垄断资本主义的形成与发展的核心考点与知识要点",
+      "keyPoints": [
+        "考点75   资本主义从自由竞争到垄断（重点选择）",
+        "考点76  垄断资本主义的发展（重点选择）",
+        "考点77  经济全球化及其影响（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s01.p075",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点75   资本主义从自由竞争到垄断（重点选择）",
+    "shortTitle": "资本主义从自由竞争到垄断",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "生产集中与垄断的形成；资本主义发展阶段；自由竞争资本主义；垄断资本主义：包括私人垄断资本主义和国家垄断资本主义两种形式",
+      "keyPoints": [
+        "生产集中与垄断的形成",
+        "垄断资本主义：包括私人垄断资本主义和国家垄断资本主义两种形式",
+        "垄断条件下竞争的特点"
+      ],
+      "traps": [
+        "注意在不同时期，价值规律的不同表现，但这些都没有否认价值规律"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s01.p076",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点76  垄断资本主义的发展（重点选择）",
+    "shortTitle": "垄断资本主义的发展",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "国家垄断资本主义的形成、主要形式及作用；概念；国家垄断资本主义：是国家政权和私人垄断资本融合在一起的垄断资本主义（标志着资本主义进",
+      "keyPoints": [
+        "国家垄断资本主义的形成、主要形式及作用",
+        "国家垄断资本主义：是国家政权和私人垄断资本融合在一起的垄断资本主义（标志着资本主义进",
+        "国家垄断资本主义形成的原因："
+      ],
+      "traps": [
+        "国家垄断资本主义的形成和发展不是偶然的，他是科技进步和生产社会化程度进一步提高的",
+        "根本原因: 经济波动和经济危机的深化，要求国家垄断资本主义的产生"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.70"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s01.p077",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点77  经济全球化及其影响（重点选择）",
+    "shortTitle": "经济全球化及其影响",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "表现；生产全球化；贸易全球化；金融全球化；发展动因；科学技术的进步和生产力的发展：坚实的物质基础和根本的推动力",
+      "keyPoints": [
+        "科学技术的进步和生产力的发展：坚实的物质基础和根本的推动力",
+        "跨国公司的发展：提供了适宜的企业组织形式",
+        "各国经济体制和国际经济组织的发展的变革：体制与组织保障"
+      ],
+      "traps": [
+        "根本原因: 跨国公司的发展：提供了适宜的企业组织形式"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.73"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 正确认识当代资本主义的新变化",
+    "shortTitle": "第二节 正确认识当代资本主义",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 正确认识当代资本主义的新变化的核心考点与知识要点",
+      "keyPoints": [
+        "考点78   第二次世界大战后资本主义的变化及其实质（重点选择）",
+        "考点79   第二次世界大战后资本主义新变化的原因和实质（重点选择）",
+        "考点80  当代资本主义变化的新特征"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.73"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s02.p078",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点78   第二次世界大战后资本主义的变化及其实质（重点选择）",
+    "shortTitle": "第二次世界大战后资本主义的变",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "生产资料；所有制的变化；私人资本所有制→私人股份资本所有制→国家资本所有制→法人资本所有制；占主导地位）",
+      "keyPoints": [
+        "占主导地位）",
+        "虽然二者交织在一起，但周期性危机仍然是根本危机）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.73"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s02.p079",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点79   第二次世界大战后资本主义新变化的原因和实质（重点选择）",
+    "shortTitle": "第二次世界大战后资本主义新变",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "原因；科学技术革命和生产力的发展，是当代资本主义变化的根本推动力量；工人阶级争取自身权利的斗争，是推动当代资本主义变化的重要力量",
+      "keyPoints": [
+        "原因；科学技术革命和生产力的发展，是当代资本主义变化的根本推动力量；工人阶级争取自身权利的斗争，是推"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.74"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s02.p080",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点80  当代资本主义变化的新特征",
+    "shortTitle": "当代资本主义变化的新特征",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "第一，科技创新加速资本主义生产方式变化；第二，国际金融垄断资本主义影响日益显现。国际金融资本的垄断成为当代资本主义最突出、最鲜明、最主",
+      "keyPoints": [
+        "国际金融资本的垄断主要表现在：",
+        "世纪以来资本主义的新变化，并未改变资本主义的经济基础和追求利润最大化的本性"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.74"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s02.p081",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点81  世界大变局下资本主义的矛盾与冲突（非重点）",
+    "shortTitle": "世界大变局下资本主义的矛盾与",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "理解了解",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "在这场危机的影响下，西方国家的经济生活、政治生活和民生等各方面都出现了各种问题；经济发展“失调”",
+      "keyPoints": [
+        "在这场危机的影响下，西方国家的经济生活、政治生活和民生等各方面都出现了各种问题；经济发展“失调”"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.75"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s03",
+    "bookId": "my",
+    "parentId": "pol.my.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 资本主义的历史地位和发展趋势",
+    "shortTitle": "第三节 资本主义的历史地位和",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 资本主义的历史地位和发展趋势的核心考点与知识要点",
+      "keyPoints": [
+        "考点82   资本主义历史地位（非重点）",
+        "考点83   资本主义被社会主义所代替的历史必然性（非重点）",
+        "考点84   社会主义代替资本主义是一个长期的历史过程（非重点）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.75"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s03.p082",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点82   资本主义历史地位（非重点）",
+    "shortTitle": "资本主义历史地位",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "进步性；同此前的其他社会制度相比，资本主义显示了巨大的历史进步性；比封建进步，比社会主义落后；局限性",
+      "keyPoints": [
+        "资本主义的历史进步性并不能掩盖其自身的局限性，其表现是："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.75"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s03.p083",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点83   资本主义被社会主义所代替的历史必然性（非重点）",
+    "shortTitle": "资本主义被社会主义所代替的历",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本主义被社会主义所代替的历史必然性；资本主义基本矛盾包含着现代的一切冲突的萌芽。也就是说，只有用社会主义生产方式取而代之，才能根",
+      "keyPoints": [
+        "资本主义被社会主义所代替的历史必然性；资本主义基本矛盾包含着现代的一切冲突的萌芽。也就是说，只有用社"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.76"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c07.s03.p084",
+    "bookId": "my",
+    "parentId": "pol.my.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点84   社会主义代替资本主义是一个长期的历史过程（非重点）",
+    "shortTitle": "社会主义代替资本主义是一个长",
+    "layoutAnchorIds": [
+      "pol.sg.c06.s05.p064"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会主义代替资本主义是一个长期的历史过程的理论核心与考点分析",
+      "keyPoints": [
+        "社会主义代替资本主义是一个长期的历史过程的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.76"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 8,
+    "title": "第七章 社会主义的发展及其规律",
+    "shortTitle": "第七章 社会主义的发展及其规",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第七章 社会主义的发展及其规律的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 社会主义五百年的历史进程",
+        "第二节 科学社会主义一般原则"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.77"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 社会主义五百年的历史进程",
+    "shortTitle": "第一节 社会主义五百年的历史",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 社会主义五百年的历史进程的核心考点与知识要点",
+      "keyPoints": [
+        "考点85  社会主义从空想到科学（重点选择）",
+        "考点86  第一国际和巴黎公社",
+        "考点87   十月革命胜利与第一个社会主义国家的建立（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.77"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01.p085",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点85  社会主义从空想到科学（重点选择）",
+    "shortTitle": "社会主义从空想到科学",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "从16 世纪初期兴起的社会主义思潮算起，社会主义到现在已经有500 多年的历史，其间经历了从空想到科",
+      "keyPoints": [
+        "世纪初期，以圣西门、傅立叶、欧文为代表的空想社会主义是科学社会主义的直",
+        "马克思在哲学上的两大贡献：唯物史观和辩证唯物主义",
+        "马克思在理论上的两大贡献：唯物史观和剩余价值学说"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.77"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01.p086",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点86  第一国际和巴黎公社",
+    "shortTitle": "第一国际和巴黎公社",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "第一国际；年，国际工人协会（第一国际）应运而生；马克思是第一国际的灵魂；第一国际促进了马克思主义的传播与国际工人运动的结合，初步确立了马克思主义在工",
+      "keyPoints": [
+        "年，国际工人协会（第一国际）应运而生",
+        "年爆发的巴黎公社革命，是第一国际精神的产儿，是无产阶级夺取政权的第一次伟",
+        "马克思、恩格斯总结巴黎公社经验："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.78"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01.p087",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点87   十月革命胜利与第一个社会主义国家的建立（重点选择）",
+    "shortTitle": "十月革命胜利与第一个社会主义",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "十月革命是世界历史上划时代的重大事件，产生了深远的历史影响：；(1) 首先，它将马克思主义关于无产阶级革命的理论变为现实，开启了无产阶级革命的新时代，建立了世界上第",
+      "keyPoints": [
+        "十月革命是世界历史上划时代的重大事件，产生了深远的历史影响：",
+        "个社会主义国家",
+        "国论：马克思、恩格斯曾经从自由竞争的资本主义时代条件出发，认为无产阶级革命至少将在几个主要的"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.78"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01.p088",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点88   社会主义在苏联的实践（重点选择）",
+    "shortTitle": "社会主义在苏联的实践",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "列宁领导的苏维埃俄国对社会主义道路的探索，大体经历了三个时期:；第一个时期；进一步巩固苏维埃政权时期",
+      "keyPoints": [
+        "列宁领导的苏维埃俄国对社会主义道路的探索，大体经历了三个时期:",
+        "主要特征：①余粮收集制②取消商品货币关系",
+        "年3 月，俄共（布）召开十大，毅然决定从战时共产主义政策过渡到实行以"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.79"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01.p089",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点89   社会主义发展到多个国家",
+    "shortTitle": "社会主义发展到多个国家",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "社会主义发展到多个国家的理论核心与考点分析",
+      "keyPoints": [
+        "社会主义发展到多个国家的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.80"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s01.p090",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点90   20世纪社会主义制度对人类历史发展的巨大贡献",
+    "shortTitle": "20世纪社会主义制度对人类历",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "高频考点",
+      "基本制度"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "世纪社会主义制度对人类历史发展的巨大贡献",
+      "keyPoints": [
+        "世纪社会主义制度对人类历史发展的巨大贡献"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.80"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 科学社会主义一般原则",
+    "shortTitle": "第二节 科学社会主义一般原则",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 科学社会主义一般原则的核心考点与知识要点",
+      "keyPoints": [
+        "考点91   科学社会主义基本原则及其主要内容（非重点）",
+        "考点92   社会主义建设的曲折发展与不断完善（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.80"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s02.p091",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点91   科学社会主义基本原则及其主要内容（非重点）",
+    "shortTitle": "科学社会主义基本原则及其主要",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "正确把握科学社会主；义基本原则的；科学方法；马克思，恩格斯历来反对不顾实际情况照搬照抄自己的理论，反对将科学社会主义的",
+      "keyPoints": [
+        "则提供了科学方法：",
+        "方面，作为无产阶级政党理论与实践的基本准则，科学社会主义基本原则指出"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.80"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c08.s02.p092",
+    "bookId": "my",
+    "parentId": "pol.my.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点92   社会主义建设的曲折发展与不断完善（重点选择）",
+    "shortTitle": "社会主义建设的曲折发展与不断",
+    "layoutAnchorIds": [
+      "pol.sg.c08.s04.p092"
+    ],
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "建设社会主义必然具有长；期性和艰巨性的原因；生产力发展状况的制约【根本原因】；经济基础和上层建筑发展状况的制约",
+      "keyPoints": [
+        "建设社会主义必然具有长；期性和艰巨性的原因；生产力发展状况的制约【根本原因】；经济基础和上层建筑发展"
+      ],
+      "traps": [
+        "生产力发展状况的制约【根本原因】"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.81"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09",
+    "bookId": "my",
+    "parentId": "pol.my",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 9,
+    "title": "第八章 共产主义崇高理想及其最终实现",
+    "shortTitle": "第八章 共产主义崇高理想及其",
+    "tags": [
+      "马原",
+      "章节"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第八章 共产主义崇高理想及其最终实现的科学体系与考点构架",
+      "keyPoints": [
+        "第一节 展望未来共产主义新社会",
+        "第二节 实现共产主义是历史发展的必然趋势"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s01",
+    "bookId": "my",
+    "parentId": "pol.my.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 展望未来共产主义新社会",
+    "shortTitle": "第一节 展望未来共产主义新社",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 展望未来共产主义新社会的核心考点与知识要点",
+      "keyPoints": [
+        "考点93   预见未来社会的方法论原则",
+        "考点94   共产主义社会的基本特征"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s01.p093",
+    "bookId": "my",
+    "parentId": "pol.my.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点93   预见未来社会的方法论原则",
+    "shortTitle": "预见未来社会的方法论原则",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "在展望未来社会的问题上，是否坚持科学的立场、观点和方法，是能否正确预见未来的基本前提，也是马克",
+      "keyPoints": [
+        "原则主要有：",
+        "(4) 立足于揭示未来社会的一般特征，而不可能对各种细节作具体描绘（天坑词：具体描绘细节×）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s01.p094",
+    "bookId": "my",
+    "parentId": "pol.my.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点94   共产主义社会的基本特征",
+    "shortTitle": "共产主义社会的基本特征",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "(1) 物质财富极大丰富，消费资料按需分配；(2) .社会关系高度和谐，人们精神境界极大提高；(3) 实现每个人自由而全面的发展，人类从必然王国向自由王国的飞跃。实现人的自由而全面的发展，是马克",
+      "keyPoints": [
+        "(1) 物质财富极大丰富，消费资料按需分配；(2) .社会关系高度和谐，人们精神境界极大提高；(3)"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s02",
+    "bookId": "my",
+    "parentId": "pol.my.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 实现共产主义是历史发展的必然趋势",
+    "shortTitle": "第二节 实现共产主义是历史发",
+    "tags": [
+      "马原",
+      "小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 实现共产主义是历史发展的必然趋势的核心考点与知识要点",
+      "keyPoints": [
+        "考点95  实现共产主义是历史发展的必然",
+        "考点96  实现共产主义是长期历史过程、",
+        "考点97   共产主义远大理想与中国特色社会主义共同理想之间的关系"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s02.p095",
+    "bookId": "my",
+    "parentId": "pol.my.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点95  实现共产主义是历史发展的必然",
+    "shortTitle": "实现共产主义是历史发展的必然",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "实现共产主义是历史发展的必然的理论核心与考点分析",
+      "keyPoints": [
+        "实现共产主义是历史发展的必然的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s02.p096",
+    "bookId": "my",
+    "parentId": "pol.my.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点96  实现共产主义是长期历史过程、",
+    "shortTitle": "实现共产主义是长期历史过程",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "实现共产主义是长期历史过程、的理论核心与考点分析",
+      "keyPoints": [
+        "实现共产主义是长期历史过程、的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  },
+  {
+    "id": "pol.my.c09.s02.p097",
+    "bookId": "my",
+    "parentId": "pol.my.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点97   共产主义远大理想与中国特色社会主义共同理想之间的关系",
+    "shortTitle": "共产主义远大理想与中国特色社",
+    "layoutAnchorIds": [
+      "pol.sg.c09.s03.p102"
+    ],
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "共产主义远大理想与中国特色社会主义共同理想之间的关系的理论核心与考点分析",
+      "keyPoints": [
+        "共产主义远大理想与中国特色社会主义共同理想之间的关系的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 马原 p.82"
+      ]
+    }
+  }
+]

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>考研政治知识图谱 - 考研题库</title>
+  <link rel="stylesheet" href="css/politics.css">
+</head>
+<body class="politics-page">
+
+  <div class="politics-shell">
+
+    <!-- 顶部主工具栏 -->
+    <header class="politics-toolbar">
+      <a class="politics-back" href="index.html" title="返回题库主工作台">← 返回题库</a>
+      <div class="politics-title">
+        <span>考研政治知识图谱</span>
+        <span class="politics-badge">Milestone 0+1 拓扑引擎</span>
+      </div>
+
+      <div class="politics-toolbar-spacer"></div>
+
+      <div class="politics-btn-group">
+        <button id="btnPoliticsFit" class="politics-btn" type="button" title="自适应画布居中 (快捷键: F)">适应内容 (F)</button>
+        <button id="btnPoliticsReset" class="politics-btn primary" type="button" title="复位画布视口 (快捷键: 0)">复位视口 (0)</button>
+      </div>
+    </header>
+
+    <!-- 史纲历史阶段快捷导航条 -->
+    <nav id="politicsPeriodBar" class="politics-period-bar" aria-label="历史阶段导航"></nav>
+
+    <!-- 主画布区 -->
+    <main class="politics-main">
+      <div id="politicsErrorBanner" class="politics-error-banner" hidden></div>
+      <section id="politicsGraphView" class="politics-graph-view">
+        <div id="politicsGraph"></div>
+      </section>
+    </main>
+
+    <!-- 底部状态控制栏 -->
+    <footer class="politics-statusbar">
+      <div class="politics-zoom-ctrls">
+        <button id="btnPoliticsZoomOut" class="politics-icon-btn" type="button" title="缩小">−</button>
+        <input id="politicsZoomRange" class="politics-zoom-slider" type="range" min="20" max="200" value="75">
+        <button id="btnPoliticsZoomIn" class="politics-icon-btn" type="button" title="放大">＋</button>
+        <span id="politicsZoomText" class="politics-zoom-text">75%</span>
+      </div>
+
+      <div class="politics-legend" aria-label="图例">
+        <span class="politics-legend-item"><span class="legend-swatch" style="background:#C026D3"></span>史纲(轴)</span>
+        <span class="politics-legend-item"><span class="legend-swatch" style="background:#2563EB"></span>马原</span>
+        <span class="politics-legend-item"><span class="legend-swatch" style="background:#EA580C"></span>毛中特</span>
+        <span class="politics-legend-item"><span class="legend-swatch" style="background:#0D9488"></span>当代</span>
+        <span class="politics-legend-item"><span class="legend-swatch" style="background:#DC2626"></span>习概</span>
+        <span class="politics-legend-item"><span class="legend-swatch" style="background:#4F46E5"></span>思法</span>
+      </div>
+
+      <div class="politics-statusbar-spacer"></div>
+      <span id="politicsVisibleCount" class="politics-status-text">初始化中...</span>
+    </footer>
+
+  </div>
+
+  <!-- 本地 G6 5.x 引擎 -->
+  <script src="lib/g6/g6.min.js"></script>
+
+  <!-- 业务模块 (Vanilla JS) -->
+  <script src="js/politics/config.js"></script>
+  <script src="js/politics/data-loader.js"></script>
+  <script src="js/politics/data-validator.js"></script>
+  <script src="js/politics/store.js"></script>
+  <script src="js/politics/projection.js"></script>
+  <script src="js/politics/layout.js"></script>
+  <script src="js/politics/graph.js"></script>
+  <script src="js/politics/app.js"></script>
+
+</body>
+</html>

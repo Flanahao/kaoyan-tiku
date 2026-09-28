@@ -1,0 +1,68 @@
+[
+  {
+    "id": "sg",
+    "title": "史纲",
+    "fullTitle": "中国近现代史纲要",
+    "role": "timeline",
+    "lane": 0,
+    "side": "center",
+    "order": 1,
+    "colorToken": "sg",
+    "color": "#B91C1C"
+  },
+  {
+    "id": "my",
+    "title": "马原",
+    "fullTitle": "马克思主义基本原理",
+    "role": "subject",
+    "lane": -3,
+    "side": "left",
+    "order": 2,
+    "colorToken": "my",
+    "color": "#1D4ED8"
+  },
+  {
+    "id": "mzt",
+    "title": "毛中特",
+    "fullTitle": "毛泽东思想和中国特色社会主义理论体系概论",
+    "role": "subject",
+    "lane": -2,
+    "side": "left",
+    "order": 3,
+    "colorToken": "mzt",
+    "color": "#C2410C"
+  },
+  {
+    "id": "xs",
+    "title": "当代",
+    "fullTitle": "形势与政策与当代世界经济与政治",
+    "role": "subject",
+    "lane": -1,
+    "side": "left",
+    "order": 4,
+    "colorToken": "xs",
+    "color": "#0F766E"
+  },
+  {
+    "id": "xg",
+    "title": "习概",
+    "fullTitle": "习近平新时代中国特色社会主义思想概论",
+    "role": "subject",
+    "lane": 1,
+    "side": "right",
+    "order": 5,
+    "colorToken": "xg",
+    "color": "#DC2626"
+  },
+  {
+    "id": "sx",
+    "title": "思法",
+    "fullTitle": "思想道德与法治",
+    "role": "subject",
+    "lane": 2,
+    "side": "right",
+    "order": 6,
+    "colorToken": "sx",
+    "color": "#4338CA"
+  }
+]

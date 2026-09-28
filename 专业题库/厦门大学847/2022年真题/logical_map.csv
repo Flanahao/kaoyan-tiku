@@ -1,0 +1,9 @@
+﻿asset_no,chapter_no,chapter_name,category,question_type,item_no,subpart_label,question_file,solution_file,solution_page_count
+001,22,2022年真题,厦门大学847真题,计算题,01,题1,pb_22-01_question.png,pb_22-01_solution.png,1
+002,22,2022年真题,厦门大学847真题,计算题,02,题2,pb_22-02_question.png,pb_22-02_solution.png,2
+003,22,2022年真题,厦门大学847真题,计算题,03,题3,pb_22-03_question.png,pb_22-03_solution.png,2
+004,22,2022年真题,厦门大学847真题,计算题,04,题4,pb_22-04_question.png,pb_22-04_solution.png,3
+005,22,2022年真题,厦门大学847真题,计算题,05,题5,pb_22-05_question.png,pb_22-05_solution.png,2
+006,22,2022年真题,厦门大学847真题,计算题,06,题6,pb_22-06_question.png,pb_22-06_solution.png,2
+007,22,2022年真题,厦门大学847真题,计算题,07,题7,pb_22-07_question.png,pb_22-07_solution.png,4
+008,22,2022年真题,厦门大学847真题,计算题,08,题8,pb_22-08_question.png,pb_22-08_solution.png,3

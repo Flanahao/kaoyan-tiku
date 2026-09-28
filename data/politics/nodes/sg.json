@@ -1,0 +1,4704 @@
+[
+  {
+    "id": "pol.sg",
+    "bookId": "sg",
+    "parentId": null,
+    "kind": "book",
+    "depth": 0,
+    "order": 1,
+    "title": "中国近现代史纲要",
+    "shortTitle": "史纲",
+    "timelineRank": 900,
+    "tags": [
+      "主轴",
+      "历史纵深",
+      "中央时间轴"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "考研政治中央历史时间轴基准学科，贯穿近代以来救国、兴国、强国史实",
+      "keyPoints": [
+        "旧民主主义革命",
+        "新民主主义革命",
+        "社会主义革命和建设",
+        "改革开放与中国特色社会主义新时代"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 1,
+    "title": "第一章 进入近代后中华民族的磨难与抗争（旧民主主义革命时期）",
+    "shortTitle": "第一章 进入近代后中华民族的",
+    "periodId": "period-01",
+    "timelineRank": 1050,
+    "tags": [
+      "史纲章节",
+      "period-01"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第一章 进入近代后中华民族的磨难与抗争（旧民主主义革命时期）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 鸦片战争前后的中国与世界",
+        "第二节 西方列强对中国的侵略",
+        "第三节 反抗外国武装侵略的斗争"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 鸦片战争前后的中国与世界",
+    "shortTitle": "第一节 鸦片战争前后的中国与",
+    "periodId": "period-01",
+    "timelineRank": 1060,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 鸦片战争前后的中国与世界的核心史实脉络",
+      "keyPoints": [
+        "考点1   中国封建社会的衰落",
+        "考点2   世界资本主义的发展与殖民扩张",
+        "考点3   鸦片战争的爆发（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s01.p001",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点1   中国封建社会的衰落",
+    "shortTitle": "中国封建社会的衰落",
+    "periodId": "period-01",
+    "timelineRank": 1062,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "鸦片战争前中国封建社会特点：；经济；封建地主土地所有制经济占主导地位；政治；实行高度中央集权的封建君主专制制度",
+      "keyPoints": [
+        "鸦片战争前中国封建社会特点："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s01.p002",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点2   世界资本主义的发展与殖民扩张",
+    "shortTitle": "世界资本主义的发展与殖民扩张",
+    "periodId": "period-01",
+    "timelineRank": 1064,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "资本主义生产方式的确立：资产阶级革命；工业革命",
+      "keyPoints": [
+        "资本主义生产方式的确立：资产阶级革命；工业革命"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s01.p003",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点3   鸦片战争的爆发（重点选择）",
+    "shortTitle": "鸦片战争的爆发",
+    "periodId": "period-01",
+    "timelineRank": 1066,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中英；《南京条约》——中国近代史上第一个不平等条约；中英；《虎门条约》；中美",
+      "keyPoints": [
+        "鸦片战争期间条约（注意名称+和谁签订）",
+        "鸦片战争性质：钦差大臣林则徐于1839 年6 月在广东虎门销毁所收缴鸦片的行动，完全是维护国家利益",
+        "鸦片战争的结果"
+      ],
+      "traps": [
+        "鸦片战争期间条约（注意名称+和谁签订）"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s01.p004",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点4   近代中国社会的半殖民地半封建性质（重点选择）",
+    "shortTitle": "近代中国社会的半殖民地半封建",
+    "periodId": "period-01",
+    "timelineRank": 1068,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国逐步变成半殖民地的原因；殖；中国已经丧失了完全独立的地位，在相当程度上被殖民地化了（外来侵略）",
+      "keyPoints": [
+        "中国逐步变成半殖民地的原因",
+        "中国逐步变成半封建社会的原因",
+        "中国半殖民地半封建社会的基本特征"
+      ],
+      "traps": [
+        "小资产阶级不是资产阶级，不剥削别人，属于劳动人民"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.3"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s01.p005",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点5    近代中国的主要矛盾和历史任务（重点选择）",
+    "shortTitle": "近代中国的主要矛盾和历史任务",
+    "periodId": "period-01",
+    "timelineRank": 1070,
+    "tags": [
+      "重点选择",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "近代中国的主要矛盾；近代中国的历史任务；内容；争取民族独立、人民解放（反帝反封）；实现国家富强、人民幸福",
+      "keyPoints": [
+        "近代中国的主要矛盾",
+        "近代中国的历史任务",
+        "争取民族独立、人民解放（反帝反封）"
+      ],
+      "traps": [
+        "注意区分: 近代以来（历史任务）：争取民族独立、人民解放和实现国家富强、人民幸福"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 西方列强对中国的侵略",
+    "shortTitle": "第二节 西方列强对中国的侵略",
+    "periodId": "period-01",
+    "timelineRank": 1080,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 西方列强对中国的侵略的核心史实脉络",
+      "keyPoints": [
+        "考点6-9    军事侵略、政治控制、经济掠夺、文化渗透（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s02.p006",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点6-9    军事侵略、政治控制、经济掠夺、文化渗透（重点选择）",
+    "shortTitle": "军事侵略",
+    "periodId": "period-01",
+    "timelineRank": 1082,
+    "tags": [
+      "重点选择",
+      "经济体制"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "资本-帝国主义列强对中国的侵略，首先和主要的是进行军事侵略（单选）；不同领域；侵略的具体表现；军事侵略",
+      "keyPoints": [
+        "帝国主义和中华民族的矛盾（更主要）",
+        "封建主义和人民大众的矛盾",
+        "海关行政权）"
+      ],
+      "traps": [
+        "勒索赔款，抢掠财富（注意不是经济掠夺—贸易往来，这是“抢”）"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.4"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 反抗外国武装侵略的斗争",
+    "shortTitle": "第三节 反抗外国武装侵略的斗",
+    "periodId": "period-01",
+    "timelineRank": 1092,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 反抗外国武装侵略的斗争的核心史实脉络",
+      "keyPoints": [
+        "考点10   抵御外来侵略的斗争历程（重点选择）",
+        "考点11   义和团运动（掌握评价）（重点选择）",
+        "考点12  列强瓜分中国图谋的破产（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s03.p007",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点10   抵御外来侵略的斗争历程（重点选择）",
+    "shortTitle": "抵御外来侵略的斗争历程",
+    "periodId": "period-01",
+    "timelineRank": 1094,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "人民群众的反侵略斗争；广州三元里人民的抗英斗争，是中国近代史上中国人民第一次大规模的反侵略武装斗争",
+      "keyPoints": [
+        "人民群众的反侵略斗争",
+        "年八国联军侵华时，义和团及部分清军在多地与之展开殊死战斗",
+        "爱国官兵的反侵略斗争"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.5"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s03.p008",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点11   义和团运动（掌握评价）（重点选择）",
+    "shortTitle": "义和团运动",
+    "periodId": "period-01",
+    "timelineRank": 1096,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "局限；由于当时中国人民对帝国主义的认识还停留在感性认识的阶段，义和团运动存在着笼统的；排外主义的错误",
+      "keyPoints": [
+        "但一个基本的历史事实不容抹杀：义和团运动在粉碎帝国主义列强瓜分中国的斗争中，发挥了"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s03.p009",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点12  列强瓜分中国图谋的破产（重点选择）",
+    "shortTitle": "列强瓜分中国图谋的破产",
+    "periodId": "period-01",
+    "timelineRank": 1098,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "边疆危机和瓜分危机；边疆危机；世纪70 至80 年代，帝国主义列强从侵占中国周边邻国发展到蚕食中国边疆地区，使中国陷",
+      "keyPoints": [
+        "边疆危机和瓜分危机",
+        "世纪70 至80 年代，帝国主义列强从侵占中国周边邻国发展到蚕食中国边疆地区，使中国陷",
+        "帝国主义侵略中国的最终目的：要瓜分中国、灭亡中国"
+      ],
+      "traps": [
+        "注意: 瓜分中国狂潮何时开始——甲午中日战争战败，《马关条约》",
+        "帝国主义列强不能灭亡和瓜分中国，其根本原因在于中华民族进行的不屈不挠的反侵"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.6"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s04",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 反侵略战争的失败与民族意识的觉醒",
+    "shortTitle": "第四节 反侵略战争的失败与民",
+    "periodId": "period-01",
+    "timelineRank": 1108,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 反侵略战争的失败与民族意识的觉醒的核心史实脉络",
+      "keyPoints": [
+        "考点13   反侵略战争的失败及其原因（重点选择）",
+        "考点14   民族意识的觉醒（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s04.p010",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点13   反侵略战争的失败及其原因（重点选择）",
+    "shortTitle": "反侵略战争的失败及其原因",
+    "periodId": "period-01",
+    "timelineRank": 1110,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "反侵略战争的失败及其原因的理论核心与考点分析",
+      "keyPoints": [
+        "反侵略战争的失败及其原因的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c01.s04.p011",
+    "bookId": "sg",
+    "parentId": "pol.sg.c01.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点14   民族意识的觉醒（重点选择）",
+    "shortTitle": "民族意识的觉醒",
+    "periodId": "period-01",
+    "timelineRank": 1112,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "民族意识的觉醒；开始觉醒；鸦片战争之后；普遍觉醒；甲午战争之后；第一次全面觉醒",
+      "keyPoints": [
+        "根本原因：社会制度的腐败",
+        "重要原因：经济技术的落后",
+        "早期维新派）"
+      ],
+      "traps": [
+        "根本原因：社会制度的腐败: ②重要原因：经济技术的落后",
+        "重要原因：经济技术的落后: 郑观应等"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.7"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 2,
+    "title": "第二章 不同社会力量对国家出路的早期探索（旧民主主义革命时期）",
+    "shortTitle": "第二章 不同社会力量对国家出",
+    "periodId": "period-01",
+    "timelineRank": 1400,
+    "tags": [
+      "史纲章节",
+      "period-01"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第二章 不同社会力量对国家出路的早期探索（旧民主主义革命时期）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 太平天国运动的起落（农民阶级）",
+        "第二节 洋务运动的兴衰（封建地主）",
+        "第三节 维新运动的兴起和夭折（资产阶级维新派）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 太平天国运动的起落（农民阶级）",
+    "shortTitle": "第一节 太平天国运动的起落",
+    "periodId": "period-01",
+    "timelineRank": 1410,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 太平天国运动的起落（农民阶级）的核心史实脉络",
+      "keyPoints": [
+        "考点15   太平天国农民战争（重点选择）",
+        "考点16   太平天国农民战争的意义和局限（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s01.p012",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点15   太平天国农民战争（重点选择）",
+    "shortTitle": "太平天国农民战争",
+    "periodId": "period-01",
+    "timelineRank": 1412,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "领导人、时间、爆发原因（背景）；领导人；洪秀全；时间；年1 月，洪秀全率拜上帝教教众在广西桂平县金田村发动起义，建号太平天国；1853 年3",
+      "keyPoints": [
+        "领导人、时间、爆发原因（背景）",
+        "年1 月，洪秀全率拜上帝教教众在广西桂平县金田村发动起义，建号太平天国；1853 年3",
+        "金田起义和太平天国的建立"
+      ],
+      "traps": [
+        "是一个具有资本主义色彩（不是资本主义性质）的方案"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.8"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s01.p013",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点16   太平天国农民战争的意义和局限（重点选择）",
+    "shortTitle": "太平天国农民战争的意义和局限",
+    "periodId": "period-01",
+    "timelineRank": 1414,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "历史意义；沉重打击了封建统治阶级，强烈撼动了清政府的统治根基；太平天国农民战争是中国旧式农民战争的最高峰",
+      "keyPoints": [
+        "提醒：太平天国在任务上应该反帝反封，但在纲领中没有提出明确的反帝纲领，反封不反",
+        "局限性表现在：",
+        "无法从根本上提出完整的、正确的政治纲领和社会改革方案"
+      ],
+      "traps": [
+        "根本原因在于农民阶级不是新的生产力和生产关系的代表，他们无法克服小生产者所固有",
+        "太平天国是以宗教来发动、组织群众的，但是，拜上帝教教义毕竟不是科学的思想理论，"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.9"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 洋务运动的兴衰（封建地主）",
+    "shortTitle": "第二节 洋务运动的兴衰",
+    "periodId": "period-01",
+    "timelineRank": 1424,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 洋务运动的兴衰（封建地主）的核心史实脉络",
+      "keyPoints": [
+        "考点17     洋务事业的兴办（重点选择）",
+        "考点18   洋务运动的历史作用及其失败原因"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s02.p014",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点17     洋务事业的兴办（重点选择）",
+    "shortTitle": "洋务事业的兴办",
+    "periodId": "period-01",
+    "timelineRank": 1426,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "洋务运动领导人、时间、背景、目标以及指导思想；领导人；地主阶级；时间；世纪60-90 年代，以甲午战争的失败而告终（1860-1895）",
+      "keyPoints": [
+        "洋务运动领导人、时间、背景、目标以及指导思想",
+        "世纪60-90 年代，以甲午战争的失败而告终（1860-1895）",
+        "主要目的：为了挽救清政府的统治危机（根本目的）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.10"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s02.p015",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点18   洋务运动的历史作用及其失败原因",
+    "shortTitle": "洋务运动的历史作用及其失败原",
+    "periodId": "period-01",
+    "timelineRank": 1428,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "洋务运动的历史作用（意义）、失败原因以及经验教训；历史作用；在客观上对中国的早期工业和民族资本主义的发展起了一定促进作用。但是，洋务派兴",
+      "keyPoints": [
+        "洋务运动的历史作用（意义）、失败原因以及经验教训；历史作用；在客观上对中国的早期工业和民族资本主义的"
+      ],
+      "traps": [
+        "办洋务新政，主要是为了维护封建统治，并不是要使中国朝着独立的资本主义方向发展"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.11"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 维新运动的兴起和夭折（资产阶级维新派）",
+    "shortTitle": "第三节 维新运动的兴起和夭折",
+    "periodId": "period-01",
+    "timelineRank": 1438,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 维新运动的兴起和夭折（资产阶级维新派）的核心史实脉络",
+      "keyPoints": [
+        "考点19   戊戌维新运动的开展（重点选择）",
+        "考点20   戊戌维新运动的历史意义、失败原因和教训（选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s03.p016",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点19   戊戌维新运动的开展（重点选择）",
+    "shortTitle": "戊戌维新运动的开展",
+    "periodId": "period-01",
+    "timelineRank": 1440,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "维新运动领导人、时间、兴起的原因（背景）、活动；领导人；民资（改良派/维新派）；时间；背景；在内忧外患的冲击和中西文化的碰撞过程中，人们逐步形成了一个共识：要救国，只有维新，",
+      "keyPoints": [
+        "维新运动领导人、时间、兴起的原因（背景）、活动",
+        "在内忧外患的冲击和中西文化的碰撞过程中，人们逐步形成了一个共识：要救国，只有维新，",
+        "向皇帝上书。“公车上书”"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.12"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c02.s03.p017",
+    "bookId": "sg",
+    "parentId": "pol.sg.c02.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点20   戊戌维新运动的历史意义、失败原因和教训（选择）",
+    "shortTitle": "戊戌维新运动的历史意义",
+    "periodId": "period-01",
+    "timelineRank": 1442,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "历史意义；戊戌维新运动是一次爱国救亡运动；戊戌维新运动是一场资产阶级性质的政治改良运动；戊戌维新运动更是一场思想启蒙运动。京师大学堂的创设，更成为中国近代国立高等教",
+      "keyPoints": [
+        "不敢否定封建主义",
+        "对帝国主义抱有幻想",
+        "惧怕人民群众（走的是精英路线，我们现在是群众路线）"
+      ],
+      "traps": [
+        "维新派自身的局限（根本原因）和以慈禧太后为首的强大的守旧势力的反对"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.14"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 3,
+    "title": "第三章 辛亥革命与君主专制制度的终结（资产阶级革命派）",
+    "shortTitle": "第三章 辛亥革命与君主专制制",
+    "periodId": "period-01",
+    "timelineRank": 1700,
+    "tags": [
+      "史纲章节",
+      "period-01"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第三章 辛亥革命与君主专制制度的终结（资产阶级革命派）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 举起近代民族民主革命的旗帜",
+        "第二节 辛亥革命与中华民国的建立",
+        "第三节 北洋军阀统治与旧民主主义革命的失败"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 举起近代民族民主革命的旗帜",
+    "shortTitle": "第一节 举起近代民族民主革命",
+    "periodId": "period-01",
+    "timelineRank": 1710,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 举起近代民族民主革命的旗帜的核心史实脉络",
+      "keyPoints": [
+        "考点21  辛亥革命爆发的历史条件（重点选择）",
+        "考点22   资产阶级革命派的活动——内容1（重点选择）",
+        "考点23  三民主义学说和资产阶级共和国方案——内容2（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s01.p018",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点21  辛亥革命爆发的历史条件（重点选择）",
+    "shortTitle": "辛亥革命爆发的历史条件",
+    "periodId": "period-01",
+    "timelineRank": 1712,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "领导人；民资（革命派）；时间；狭义——武昌起义，1911.10.10；广义——中国同盟会创立——护法运动失败",
+      "keyPoints": [
+        "《辛丑条约》后的变化：",
+        "社会性质变化，正式（完全）沦为半殖半封社会",
+        "清政府，彻底沦为洋人的朝廷"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.15"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s01.p019",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点22   资产阶级革命派的活动——内容1（重点选择）",
+    "shortTitle": "资产阶级革命派的活动",
+    "periodId": "period-01",
+    "timelineRank": 1714,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "孙中山与资产；阶级民主革命；的开始；年11 月，孙中山到檀香山组建了第一个革命团体兴中会，立誓“驱除鞑虏，恢复中",
+      "keyPoints": [
+        "年11 月，孙中山到檀香山组建了第一个革命团体兴中会，立誓“驱除鞑虏，恢复中",
+        "这也是中国资产阶级革命派与改良派的根本不同之处：武装起义",
+        "名字文章对应）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s01.p020",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点23  三民主义学说和资产阶级共和国方案——内容2（重点选择）",
+    "shortTitle": "三民主义学说和资产阶级共和国",
+    "periodId": "period-01",
+    "timelineRank": 1716,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "同盟会的政治纲领是“驱除鞑虏，恢复中华，创立民国，平均地权”。孙中山将同盟会的纲领概括为三大",
+      "keyPoints": [
+        "政治革命的目的是建立民国）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.16"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s01.p021",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点24    关于革命与改良的辩论——内容3（重点选择）",
+    "shortTitle": "关于革命与改良的辩论",
+    "periodId": "period-01",
+    "timelineRank": 1718,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "围绕中国究竟是采用革命手段还是改良方式这个问题，革命派与改良派分别以《民报》、《新民丛报》为主",
+      "keyPoints": [
+        "围绕中国究竟是采用革命手段还是改良方式这个问题，革命派与改良派分别以《民报》、《新民丛报》为主"
+      ],
+      "traps": [
+        "他们所说的“国民”，主要还是指资产阶级及其知识分子，而不是广大的劳动群众",
+        "注意对比两次论战: 论战双方"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.17"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 辛亥革命与中华民国的建立",
+    "shortTitle": "第二节 辛亥革命与中华民国的",
+    "periodId": "period-01",
+    "timelineRank": 1728,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 辛亥革命与中华民国的建立的核心史实脉络",
+      "keyPoints": [
+        "考点25    辛亥革命的爆发与清王朝的覆灭（重点选择）",
+        "考点26  中华民国的成立——内容4（重点选择）",
+        "考点27    辛亥革命的历史意义（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s02.p022",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点25    辛亥革命的爆发与清王朝的覆灭（重点选择）",
+    "shortTitle": "辛亥革命的爆发与清王朝的覆灭",
+    "periodId": "period-01",
+    "timelineRank": 1730,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "武装起义与保路风潮；萍浏醴起义；同盟会成立后发动的第一次武装起义；黄花岗起义；影响最大的是1911 年4 月27 日举行的广州起义",
+      "keyPoints": [
+        "武装起义与保路风潮",
+        "年5 月，清政府宣布“铁路干线收归国有”，并与四国银行团订立粤汉、川汉铁路借款",
+        "年1 月1 日，中华民国临时政府成立，并任命孙中山为大总统"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.18"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s02.p023",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点26  中华民国的成立——内容4（重点选择）",
+    "shortTitle": "中华民国的成立",
+    "periodId": "period-01",
+    "timelineRank": 1732,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中华民国临时政府；时间；年1 月1 日，孙中山在南京宣誓就职，改国号为中华民国，定1912；年为民国元年，并成立中华民国临时政府",
+      "keyPoints": [
+        "年1 月1 日，孙中山在南京宣誓就职，改国号为中华民国，定1912",
+        "南京临时政府是一个资产阶级共和国性质的革命政权：",
+        "在南京临时政府的《告友邦书》中，南京临时政府企图用承认清政府"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.19"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s02.p024",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点27    辛亥革命的历史意义（重点选择）",
+    "shortTitle": "辛亥革命的历史意义",
+    "periodId": "period-01",
+    "timelineRank": 1734,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "历史意义；推翻了封建势力的政治代表、帝国主义在中国的代理人清王朝的统治，沉重打击了中外反；动势力，使中国反动统治者在政治上乱了阵脚",
+      "keyPoints": [
+        "次比较完全意义上的资产阶级民主革命"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.20"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 北洋军阀统治与旧民主主义革命的失败",
+    "shortTitle": "第三节 北洋军阀统治与旧民主",
+    "periodId": "period-01",
+    "timelineRank": 1744,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 北洋军阀统治与旧民主主义革命的失败的核心史实脉络",
+      "keyPoints": [
+        "考点28    封建军阀专制统治的形成（了解）",
+        "考点29  旧民主主义革命的失败（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s03.p025",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点28    封建军阀专制统治的形成（了解）",
+    "shortTitle": "封建军阀专制统治的形成",
+    "periodId": "period-01",
+    "timelineRank": 1746,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "袁世凯窃夺革；命果实；袁世凯窃夺辛亥革命的果实之后，建立了代表大地主和买办资产阶级利益的北洋军阀反动",
+      "keyPoints": [
+        "因为在封建君主专制之后，袁世凯开启了封建军阀专制）",
+        "成这种局面的深刻原因有："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c03.s03.p026",
+    "bookId": "sg",
+    "parentId": "pol.sg.c03.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点29  旧民主主义革命的失败（重点选择）",
+    "shortTitle": "旧民主主义革命的失败",
+    "periodId": "period-01",
+    "timelineRank": 1748,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "挽救共和的努力及其受挫；发动者；导火索；结果；次革命；孙中山",
+      "keyPoints": [
+        "挽救共和的努力及其受挫",
+        "对孙中山本人的评价以及旧民主主义革命终结的标志",
+        "中国共产党人继承了："
+      ],
+      "traps": [
+        "根本原因: 帝国主义时代，在半殖民地半封建的中国，资本主义的建国方案是行不通的(客观上)"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.21"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 4,
+    "title": "第四章 中国共产党成立和中国革命新局面（新民主主义革命时期）",
+    "shortTitle": "第四章 中国共产党成立和中国",
+    "periodId": "period-02",
+    "timelineRank": 2050,
+    "tags": [
+      "史纲章节",
+      "period-02"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第四章 中国共产党成立和中国革命新局面（新民主主义革命时期）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 新文化运动和五四运动",
+        "第二节 马克思主义广泛传播与中国共产党诞生",
+        "第三节 中国革命的新局面"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 新文化运动和五四运动",
+    "shortTitle": "第一节 新文化运动和五四运动",
+    "periodId": "period-02",
+    "timelineRank": 2060,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 新文化运动和五四运动的核心史实脉络",
+      "keyPoints": [
+        "考点30   新文化运动与思想解放的潮流（重点选择）",
+        "考点31  十月革命对中国先进分子的影响（重点选择）",
+        "考点32   五四运动的发生和发展(((（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s01.p027",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点30   新文化运动与思想解放的潮流（重点选择）",
+    "shortTitle": "新文化运动与思想解放的潮流",
+    "periodId": "period-02",
+    "timelineRank": 2062,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新文化运动的兴起；背景；些先进知识分子在反思中认识到要改造中国，必须进行一场思想启蒙运动，使人们从封",
+      "keyPoints": [
+        "新文化运动的兴起",
+        "些先进知识分子在反思中认识到要改造中国，必须进行一场思想启蒙运动，使人们从封",
+        "年1 月,《新青年》由陈独秀个人主编的刊物改为同人刊物"
+      ],
+      "traps": [
+        "注意：1919 年五四运动以前的新文化运动，是资产阶级民主主义的新文化反对封建主义的旧文化的斗争，"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.23"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s01.p028",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点31  十月革命对中国先进分子的影响（重点选择）",
+    "shortTitle": "十月革命对中国先进分子的影响",
+    "periodId": "period-02",
+    "timelineRank": 2064,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "十月革命是怎样推动中国的先进分子从资产阶级民主主义转向社会主义的：；十月革命对中；国的影响；十月革命发生在其国情与中国相同（封建压迫严重）或近似（经济文化落后）的俄",
+      "keyPoints": [
+        "十月革命是怎样推动中国的先进分子从资产阶级民主主义转向社会主义的：",
+        "在中国大地上率先举起马克思主义旗帜的人：李大钊"
+      ],
+      "traps": [
+        "注意的是，五四运动前，信仰马克思主义的，还只是李大钊这样的个别人物"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.24"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s01.p029",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点32   五四运动的发生和发展(((（重点选择）",
+    "shortTitle": "五四运动的发生和发展",
+    "periodId": "period-02",
+    "timelineRank": 2066,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会历史条件；背景）；新的社会力量的成长、壮大（无产阶级==工人阶级）；新文化运动掀起的思想解放的潮流",
+      "keyPoints": [
+        "口号：“外争主权，内除国贼”、“废除二十一条”、“还我青岛”等口号",
+        "主张：一致主张拒绝在和约上签字，要求惩办北洋军阀政府的三个亲日派官僚曹汝霖、章",
+        "运动由学生转"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s01.p030",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点33   五四运动的历史特点及其意义（重点选择）",
+    "shortTitle": "五四运动的历史特点及其意义",
+    "periodId": "period-02",
+    "timelineRank": 2068,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "历史特点；运动是一场以先进青年知识分子为先锋、广大人民群众参加的彻底反帝反封建的；伟大爱国革命运动",
+      "keyPoints": [
+        "运动是一场以先进青年知识分子为先锋、广大人民群众参加的彻底反帝反封建的",
+        "运动是中国旧民主主义革命走向新民主主义革命的转折点，在近代以来中华民族",
+        "运动以全民族的力量高举起爱国主义的伟大旗帜，孕育了以爱国、进步、民主、"
+      ],
+      "traps": [
+        "拓展：【决定革命性质的不是领导者而是革命任务和对象】"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.25"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 马克思主义广泛传播与中国共产党诞生",
+    "shortTitle": "第二节 马克思主义广泛传播与",
+    "periodId": "period-02",
+    "timelineRank": 2078,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 马克思主义广泛传播与中国共产党诞生的核心史实脉络",
+      "keyPoints": [
+        "考点34   中国早期马克思主义思想运动（重点选择）",
+        "考点35  马克思主义与中国工人运动的结合（重点选择）",
+        "考点36  中国共产党的成立及其意义（选+论）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s02.p031",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点34   中国早期马克思主义思想运动（重点选择）",
+    "shortTitle": "中国早期马克思主义思想运动",
+    "periodId": "period-02",
+    "timelineRank": 2080,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "早期马克思主义者的队伍；早期马克思主义者；的队伍；新文化运动的精神领袖，其代表除李大钊以外，就是陈独秀",
+      "keyPoints": [
+        "早期马克思主义者的队伍",
+        "爱国运动的左翼骨干，其代表为毛泽东、周恩来等",
+        "部分原中国同盟会会员、辛亥革命时期的活动家，如董必武、林祖涵、吴玉章等"
+      ],
+      "traps": [
+        "者），毛泽东等五四运动的左翼骨干则是其主体部分【学会区分】",
+        "注意从中国的实际出发，学习、运用马克思主义，初步形成了马克思主义应当与中"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.26"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s02.p032",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点35  马克思主义与中国工人运动的结合（重点选择）",
+    "shortTitle": "与中国工人运动的结合",
+    "periodId": "period-02",
+    "timelineRank": 2082,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国共产党的早；期组织；年3 月，李大钊在北京大学组织成立马克思学说研究会。这是中国最早学习和研究",
+      "keyPoints": [
+        "年3 月，李大钊在北京大学组织成立马克思学说研究会。这是中国最早学习和研究",
+        "年8 月，共产党的早期组织在上海《新青年》编辑部成立，这是中国第一个共产党"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.27"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s02.p033",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点36  中国共产党的成立及其意义（选+论）",
+    "shortTitle": "中国共产党的成立及其意义",
+    "periodId": "period-02",
+    "timelineRank": 2084,
+    "tags": [
+      "重点论述",
+      "分析题",
+      "党的领导"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "中国共产党诞生的历史必然性【原因—论述题考点】；历史必然性；中国共产党是近现代中国历史发展的必然产物",
+      "keyPoints": [
+        "中国共产党诞生的历史必然性【原因—论述题考点】",
+        "中国共产党第一次全国代表大会——党的名称、纲领（阶级斗争）【选择题考点】",
+        "年7 月23 日，中国共产党第一次全国代表大会在上海举行"
+      ],
+      "traps": [
+        "中国人民和中华民族的前途和命运【注意不是抗日战争意义/新中国成立意义，这是党"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.28"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 中国革命的新局面",
+    "shortTitle": "第三节 中国革命的新局面",
+    "periodId": "period-02",
+    "timelineRank": 2094,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 中国革命的新局面的核心史实脉络",
+      "keyPoints": [
+        "考点37  制定革命纲领，发动工农运动（重点选择）",
+        "考点38    实行国共合作和掀起大革命高潮（重点选择）",
+        "考点39   大革命的失败及其原因（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s03.p034",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点37  制定革命纲领，发动工农运动（重点选择）",
+    "shortTitle": "制定革命纲领，发动工农运动",
+    "periodId": "period-02",
+    "timelineRank": 2096,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "制定反帝反封建的民主革命纲领；中国革命的；首要问题；分清敌友以往的斗争之所以成效甚少，一个重要的原因，就在于不能团结真正的朋友，以攻",
+      "keyPoints": [
+        "制定反帝反封建的民主革命纲领",
+        "发动工农群众开展革命斗争【中国共产党干的】"
+      ],
+      "traps": [
+        "方法，即群众路线的方法。是不是相信群众、依靠群众，是关系革命成败的一个大问题。"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.29"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s03.p035",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点38    实行国共合作和掀起大革命高潮（重点选择）",
+    "shortTitle": "实行国共合作和掀起大革命高潮",
+    "periodId": "period-02",
+    "timelineRank": 2098,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一次国共合作的形成；实行国共合作，建立革命统一战线是中国革命发展的客观需要；形成的条件；国内背景",
+      "keyPoints": [
+        "第一次国共合作的形成",
+        "年7 月，中共二大在上海召开，会议作出了关于建立民主主义的联",
+        "年1 月，孙中山和苏俄代表越飞联名发表《孙文越飞联合宣言》，"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.30"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s03.p036",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点39   大革命的失败及其原因（重点选择）",
+    "shortTitle": "大革命的失败及其原因",
+    "periodId": "period-02",
+    "timelineRank": 2100,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "失败标志；反革命政变和七一五反革命政变成为大革命失败的标志；失败原因；客观；反革命力量的强大，大大超过了革命的力量；资产阶级发生严的动摇、统一战线出现",
+      "keyPoints": [
+        "反革命政变和七一五反革命政变成为大革命失败的标志"
+      ],
+      "traps": [
+        "不善于将马克思列宁主义的基本原理和中国革命的实践相结合根本原因"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.31"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c04.s03.p037",
+    "bookId": "sg",
+    "parentId": "pol.sg.c04.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点40  大革命失败的经验教训和意义（重点选择）",
+    "shortTitle": "大革命失败的经验教训和意义",
+    "periodId": "period-02",
+    "timelineRank": 2102,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "经验教训；中国的民主革命必须建立包括工人、农民、小资产阶级和民族资产阶级在内的广泛的革；命统一战线。在统一战线中必须坚持无产阶级的领导权，对资产阶级实行又联合又斗争",
+      "keyPoints": [
+        "经验教训；中国的民主革命必须建立包括工人、农民、小资产阶级和民族资产阶级在内的广泛的革；命统一战线。"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.32"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 5,
+    "title": "第五章 中国革命的新道路（新民主主义革命时期）",
+    "shortTitle": "第五章 中国革命的新道路",
+    "periodId": "period-02",
+    "timelineRank": 2300,
+    "tags": [
+      "史纲章节",
+      "period-02"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第五章 中国革命的新道路（新民主主义革命时期）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 中国共产党对革命道路的艰苦探索",
+        "第二节 中国革命在曲折中前进"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 中国共产党对革命道路的艰苦探索",
+    "shortTitle": "第一节 中国共产党对革命道路",
+    "periodId": "period-02",
+    "timelineRank": 2310,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 中国共产党对革命道路的艰苦探索的核心史实脉络",
+      "keyPoints": [
+        "考点41   国民党在全国统治的建立（重点选择）",
+        "考点42   土地革命战争的兴起（重点选择）",
+        "考点43  农村包围城市、武装夺取政权的道路（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s01.p038",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点41   国民党在全国统治的建立（重点选择）",
+    "shortTitle": "国民党在全国统治的建立",
+    "periodId": "period-02",
+    "timelineRank": 2312,
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "东北易帜；张学良于1928 年12 月29 日从东北发出通告，宣布“遵守三民主义，服从国民政府，改易旗帜”。标志着",
+      "keyPoints": [
+        "国民党政权的性质",
+        "国民党的阶级代表性发生变化：",
+        "国民党政府的性质："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.33"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s01.p039",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点42   土地革命战争的兴起（重点选择）",
+    "shortTitle": "土地革命战争的兴起",
+    "periodId": "period-02",
+    "timelineRank": 2314,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "会（八七会议）三起义（南昌、秋收、广州三大起义）：；中共中央政治局；临时常委会；时间；年7 月中旬；件大事",
+      "keyPoints": [
+        "会（八七会议）三起义（南昌、秋收、广州三大起义）：",
+        "年7 月中旬",
+        "南昌起义：将党所掌握和影响的部队向南昌集中，准备起义"
+      ],
+      "traps": [
+        "（注意与中: 共中央政治",
+        "会作区分）: 会议彻底清算了大革命后期的陈独秀右倾机会主义错误"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.34"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s01.p040",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点43  农村包围城市、武装夺取政权的道路（重点选择）",
+    "shortTitle": "农村包围城市",
+    "periodId": "period-02",
+    "timelineRank": 2316,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "对中国革命新道路的探索；毛泽东在土地革命战争前期的文章：；《中国的红色政权为什么能够；存在?》；和《井冈山的斗争》",
+      "keyPoints": [
+        "对中国革命新道路的探索",
+        "毛泽东在土地革命战争前期的文章：",
+        "革命新道路理论的提出：道路理论的初步形成——>标志着毛泽东思想的初步形成"
+      ],
+      "traps": [
+        "坚定地依靠贫农、雇农，联合中农，限制富农，保护中小工商业者，消灭地主阶级（注意"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.35"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 中国革命在曲折中前进",
+    "shortTitle": "第二节 中国革命在曲折中前进",
+    "periodId": "period-02",
+    "timelineRank": 2326,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 中国革命在曲折中前进的核心史实脉络",
+      "keyPoints": [
+        "考点44   土地革命战争的发展及其挫折（重点选择）",
+        "考点45   遵义会议与中国革命的历史性转折(((（重点选择）",
+        "考点46   红军长征的胜利（了解）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s02.p041",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点44   土地革命战争的发展及其挫折（重点选择）",
+    "shortTitle": "土地革命战争的发展及其挫折",
+    "periodId": "period-02",
+    "timelineRank": 2328,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "农村革命根据地的建设（政权建设）；代表大会；年11 月，中华苏维埃第一次全国工农兵代表大会在江西省瑞金县叶坪村举行",
+      "keyPoints": [
+        "农村革命根据地的建设（政权建设）",
+        "年11 月，中华苏维埃第一次全国工农兵代表大会在江西省瑞金县叶坪村举行",
+        "土地革命战争的严重挫折"
+      ],
+      "traps": [
+        "混淆民主革命与社会主义革命的界限，将反帝反封建与反资产阶"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.36"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s02.p042",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点45   遵义会议与中国革命的历史性转折(((（重点选择）",
+    "shortTitle": "遵义会议与中国革命的历史性转",
+    "periodId": "period-02",
+    "timelineRank": 2330,
+    "tags": [
+      "重点选择",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "时间；遵义会议的；内容；集中解决了当时具有决定意义的军事问题和组织问题；政治问题：瓦窑堡会议| 《论反对帝国主义的策略》",
+      "keyPoints": [
+        "政治问题：瓦窑堡会议| 《论反对帝国主义的策略》",
+        "思想问题：延安整风运动",
+        "遵义会议是党的历史上一个生死攸关的转折点："
+      ],
+      "traps": [
+        "注意党的三次转折会议：: 八七会议"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.37"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s02.p043",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点46   红军长征的胜利（了解）",
+    "shortTitle": "红军长征的胜利",
+    "periodId": "period-02",
+    "timelineRank": 2332,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "红军长征；胜利的意义；长征一结束，中国革命的新局面就开始了：；红军的长征宣告了国民党反动派消灭中国共产党和红军的图谋彻底失败",
+      "keyPoints": [
+        "长征一结束，中国革命的新局面就开始了："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.38"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c05.s02.p044",
+    "bookId": "sg",
+    "parentId": "pol.sg.c05.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点47   总结历史经验，迎接全民族抗日战争（重点选择）",
+    "shortTitle": "总结历史经验，迎接全民族抗日",
+    "periodId": "period-02",
+    "timelineRank": 2334,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "毛泽东在土地革命战争后期至抗日战争时期的文章：；《论反对日本帝国主义的策略》；阐明党的抗日民族统一战线的新政策，批判党内的关门主义和对于革",
+      "keyPoints": [
+        "毛泽东在土地革命战争后期至抗日战争时期的文章：",
+        "【考的不多】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 6,
+    "title": "第六章 中华民族的抗日战争（新民主主义革命时期）",
+    "shortTitle": "第六章 中华民族的抗日战争",
+    "periodId": "period-02",
+    "timelineRank": 2500,
+    "tags": [
+      "史纲章节",
+      "period-02"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第六章 中华民族的抗日战争（新民主主义革命时期）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 日本发动灭亡中国的侵略战争",
+        "第二节 中国人民奋起抗击日本侵略者",
+        "第三节 抗日战争的正面战场"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.39"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 日本发动灭亡中国的侵略战争",
+    "shortTitle": "第一节 日本发动灭亡中国的侵",
+    "periodId": "period-02",
+    "timelineRank": 2510,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 日本发动灭亡中国的侵略战争的核心史实脉络",
+      "keyPoints": [
+        "考点48   日本灭亡中国的计划及其实施（了解）",
+        "考点49   残暴的殖民统治和中华民族的深重灾难（了解）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s01.p045",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点48   日本灭亡中国的计划及其实施（了解）",
+    "shortTitle": "日本灭亡中国的计划及其实施",
+    "periodId": "period-02",
+    "timelineRank": 2512,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "占东北；年9 月18 日，日本发动九一八事变，武装侵占中国东北；九一八事变，是抗日战争的起点，揭开了世界反法西斯战争的序幕",
+      "keyPoints": [
+        "年9 月18 日，日本发动九一八事变，武装侵占中国东北",
+        "年7 月7 日爆发卢沟桥事变，日本全面侵华战争由此开始",
+        "卢沟桥事变："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s01.p046",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点49   残暴的殖民统治和中华民族的深重灾难（了解）",
+    "shortTitle": "残暴的殖民统治和中华民族的深",
+    "periodId": "period-02",
+    "timelineRank": 2514,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "残暴的殖民统治和中华民族的深重灾难的理论核心与考点分析",
+      "keyPoints": [
+        "残暴的殖民统治和中华民族的深重灾难的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 中国人民奋起抗击日本侵略者",
+    "shortTitle": "第二节 中国人民奋起抗击日本",
+    "periodId": "period-02",
+    "timelineRank": 2524,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 中国人民奋起抗击日本侵略者的核心史实脉络",
+      "keyPoints": [
+        "考点50   中国共产党举起武装抗日的旗帜（重点选择）",
+        "考点51  抗日救亡运动（了解）",
+        "考点52  一二·九运动（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02.p047",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点50   中国共产党举起武装抗日的旗帜（重点选择）",
+    "shortTitle": "中国共产党举起武装抗日的旗帜",
+    "periodId": "period-02",
+    "timelineRank": 2526,
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "年九一八事变是中国抗日战争的起点，中国人民不屈不挠的局部抗战揭开了世界反法；西斯战争的序幕。在中华民族处于生死存亡的危急关头，中国共产党率先举起了武装抗日的",
+      "keyPoints": [
+        "年九一八事变是中国抗日战争的起点，中国人民不屈不挠的局部抗战揭开了世界反法"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02.p048",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点51  抗日救亡运动（了解）",
+    "shortTitle": "抗日救亡运动",
+    "periodId": "period-02",
+    "timelineRank": 2528,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "九一八事变后，抗日救亡运动在全国兴起。中国共产党及其领导的工农红军和广大的工人、农民是抗日救",
+      "keyPoints": [
+        "九一八事变后，抗日救亡运动在全国兴起。中国共产党及其领导的工农红军和广大的工人、农民是抗日救"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.40"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02.p049",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点52  一二·九运动（重点选择）",
+    "shortTitle": "一二·九运动",
+    "periodId": "period-02",
+    "timelineRank": 2530,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "八一宣言；在民族危机空前严重的关头，中国共产党驻共产国际代表团于1935 年8；月1 日发表《为抗日救国告全体同胞书》，即八一宣言，呼吁全国各党",
+      "keyPoints": [
+        "·九运动，它促进了中华民族的觉醒，标志着中国人民抗日救亡运动"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02.p050",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点53  抗日民族统一战线政策的形成（重点选择）",
+    "shortTitle": "抗日民族统一战线政策的形成",
+    "periodId": "period-02",
+    "timelineRank": 2532,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "会议；瓦窑堡会议：；年12 月，中共中央政治局在陕北瓦窑堡召开的政治局会议上，提出了党的抗日民族",
+      "keyPoints": [
+        "瓦窑堡会议：",
+        "年12 月，中共中央政治局在陕北瓦窑堡召开的政治局会议上，提出了党的抗日民族",
+        "阐明建立抗日民族统一战线的可能性"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02.p051",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点54  西安事变（重点选择）",
+    "shortTitle": "西安事变",
+    "periodId": "period-02",
+    "timelineRank": 2534,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "西安事变的和平解决成为时局转换的枢纽，十年内战的局面基本结束，国内和平初步实现",
+      "keyPoints": [
+        "西安事变的和平解决成为时局转换的枢纽，十年内战的局面基本结束，国内和平初步实现"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.41"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s02.p052",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点55  全民族抗战的开始（重点选择）",
+    "shortTitle": "全民族抗战的开始",
+    "periodId": "period-02",
+    "timelineRank": 2536,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "年7 月7 日，卢沟桥事变爆发，中国抗日战争进入全民族抗战的新时期，开辟了世界反法西斯战争的",
+      "keyPoints": [
+        "年7 月7 日，卢沟桥事变爆发，中国抗日战争进入全民族抗战的新时期，开辟了世界反法西斯战争的",
+        "国共第二次合作的形成：",
+        "个宣言+一个谈话"
+      ],
+      "traps": [
+        "注意对比两次国共合作：: 第一次"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.42"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 抗日战争的正面战场",
+    "shortTitle": "第三节 抗日战争的正面战场",
+    "periodId": "period-02",
+    "timelineRank": 2546,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 抗日战争的正面战场的核心史实脉络",
+      "keyPoints": [
+        "考点56  战略防御阶段和战略相持阶段的正面战场（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s03.p053",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点56  战略防御阶段和战略相持阶段的正面战场（重点选择）",
+    "shortTitle": "战略防御阶段和战略相持阶段的",
+    "periodId": "period-02",
+    "timelineRank": 2548,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "战略防御阶段和战略相持阶段的正面战场；战略防御阶段的；正面战场；时间；年卢沟桥事变到1938 年10 月广州、武汉失守，是中国抗日",
+      "keyPoints": [
+        "年卢沟桥事变到1938 年10 月广州、武汉失守，是中国抗日",
+        "年10 月，广州、武汉失守，抗日战争进入相持阶段",
+        "年12 月，日军发动太平洋战争，美、英对日宣战，整个世界"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 抗日战争的中流砥柱",
+    "shortTitle": "第四节 抗日战争的中流砥柱",
+    "periodId": "period-02",
+    "timelineRank": 2558,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 抗日战争的中流砥柱的核心史实脉络",
+      "keyPoints": [
+        "考点57  全面抗战的路线和持久战的战略总方针（重点选择）",
+        "考点58   敌后战场的开辟与游击战争的发展（重点选择）",
+        "考点59  坚持抗战、团结、进步的方针（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p054",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点57  全面抗战的路线和持久战的战略总方针（重点选择）",
+    "shortTitle": "全面抗战的路线和持久战的战略",
+    "periodId": "period-02",
+    "timelineRank": 2560,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "理论上——洛川会议+论持久战；洛川会议；实行全面的全民族抗战（全面抗战/人民战争）的路线，即人民战争路线",
+      "keyPoints": [
+        "理论上——洛川会议+论持久战",
+        "年8 月，中国共产党在陕北洛川召开政治局扩大会议，制定了抗日救国十大纲",
+        "方面，日本是强国，中国是弱国，强国弱国的对比，决定了抗日战争只能是持久战"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.43"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p055",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点58   敌后战场的开辟与游击战争的发展（重点选择）",
+    "shortTitle": "敌后战场的开辟与游击战争的发",
+    "periodId": "period-02",
+    "timelineRank": 2562,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "军事上——敌后战场的开辟与游击战争的发展；敌后战场的；开辟和发展；平型关大捷；平型关大捷是全民族抗战以来中国军队主动寻歼敌人的第一次重",
+      "keyPoints": [
+        "军事上——敌后战场的开辟与游击战争的发展",
+        "年11 月，八路军参加了忻口会战，这一会战，是华北战场上",
+        "在全民族抗战中，游击战被提到了战略的地位，具有全局性的意义："
+      ],
+      "traps": [
+        "游击战还为人民军队进行战略反攻准备了条件（游击战不是进攻战）"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.44"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p056",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点59  坚持抗战、团结、进步的方针（重点选择）",
+    "shortTitle": "坚持抗战",
+    "periodId": "period-02",
+    "timelineRank": 2564,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "基础；国共合作；原则；统一战线中的独立自主原则：；共产党必须保持在思想上、政治上和组织上的独立性；必须坚持对人民军队的绝对领导",
+      "keyPoints": [
+        "统一战线中的独立自主原则：",
+        "坚持抗战、团结、进步，反对妥协、分裂、倒退：",
+        "年1 月，国民党发动第二次反共高潮，制造了皖南事变"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.44"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p057",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点60   抗日民主根据地的建设(((（重点选择）",
+    "shortTitle": "抗日民主根据地的建设",
+    "periodId": "period-02",
+    "timelineRank": 2566,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "政治建设方面；制的民主政权建设：；制是指抗日民主政府在工作人员分配上实行“三三制”原则，即共产党员、党外进",
+      "keyPoints": [
+        "制的民主政权建设：",
+        "制是指抗日民主政府在工作人员分配上实行“三三制”原则，即共产党员、党外进",
+        "制政权是共产党领导的抗日民族统一战线性质的政权"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.45"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p058",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点61   大后方的抗日民主运动和进步文化工作（重点选择）",
+    "shortTitle": "大后方的抗日民主运动和进步文",
+    "periodId": "period-02",
+    "timelineRank": 2568,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "全民族抗战开始后，各界人士要求国民党实行抗战民主；宪政运动；国民参政会中一些党派的代表发起宪政座谈会，批评国民党的一党专政，宪政运动在",
+      "keyPoints": [
+        "年9 月至11 月，中国共产党召开的六届六中全会上，毛泽东明确提出了“马",
+        "毛泽东后来指出：“六中全会是决定中国之命运的。”中共六届六中全会基本纠正了"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p059",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点62   “马克思主义的中国化”命题的提出",
+    "shortTitle": "“马克思主义的中国化”命题的",
+    "periodId": "period-02",
+    "timelineRank": 2570,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“马克思主义的中国；化”命题的提出；年9 月至11 月，在中国共产党召开的六届六中全会上，毛泽东明确提出了“马",
+      "keyPoints": [
+        "年9 月至11 月，在中国共产党召开的六届六中全会上，毛泽东明确提出了“马"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.46"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p060",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 7,
+    "title": "考点63   新民主主义理论的系统阐明（重点选择）",
+    "shortTitle": "新民主主义理论的系统阐明",
+    "periodId": "period-02",
+    "timelineRank": 2572,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "毛泽东撰写了《共产党人>发刊词》《中国革命和中国共产党》《新民主主义论》等一批重要理论著作；毛泽东思想的成熟",
+      "keyPoints": [
+        "毛泽东撰写了《共产党人>发刊词》《中国革命和中国共产党》《新民主主义论》等一批重要理论著作；毛泽东思"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s04.p061",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 8,
+    "title": "考点64  延安整风运动与中共七大（重点选择）",
+    "shortTitle": "延安整风运动与中共七大",
+    "periodId": "period-02",
+    "timelineRank": 2574,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "延安整风运动（1941）——实事求是思想；毛泽东作了《改造我们的学习》的报告，整风运动首先在党的高级干部中进行",
+      "keyPoints": [
+        "延安整风运动（1941）——实事求是思想",
+        "学风是重点）（王明）",
+        "第一个重要的问题："
+      ],
+      "traps": [
+        "遵义会议是开始走向成熟，中共七大是走向了成熟，注意区分"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.47"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s05",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06",
+    "kind": "section",
+    "depth": 2,
+    "order": 5,
+    "title": "第五节 抗日战争的胜利及其意义",
+    "shortTitle": "第五节 抗日战争的胜利及其意",
+    "periodId": "period-02",
+    "timelineRank": 2584,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第五节 抗日战争的胜利及其意义的核心史实脉络",
+      "keyPoints": [
+        "考点65  抗日战争时期的胜利（选）",
+        "考点66   中国人民抗日战争在世界反法西斯战争中的地位（重点选择）",
+        "考点67  抗日战争胜利的原因、意义（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.49"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s05.p062",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s05",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点65  抗日战争时期的胜利（选）",
+    "shortTitle": "抗日战争时期的胜利",
+    "periodId": "period-02",
+    "timelineRank": 2586,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中国人民抗日战争胜利纪念日；根据《波茨坦公告》，被日本占领50 年之久的台湾以及澎湖列岛，重归中国主权管辖。这",
+      "keyPoints": [
+        "文件（台湾是中国的）：《波茨坦公告》、《开罗宣言》、《日本投降书》"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.49"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s05.p063",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s05",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点66   中国人民抗日战争在世界反法西斯战争中的地位（重点选择）",
+    "shortTitle": "中国人民抗日战争在世界反法西",
+    "periodId": "period-02",
+    "timelineRank": 2588,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国的抗日战争是世界反法西斯战争的重要组成部分，中国战场是世界反法西斯战争的东方主战场；世界反法西斯力量对中国的援助。中国人民抗日战争的胜利，是同世界所有爱好和平与正义的国家和人",
+      "keyPoints": [
+        "中国的抗日战争是世界反法西斯战争的重要组成部分，中国战场是世界反法西斯战争的东方主战场；世界反法西斯"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.49"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c06.s05.p064",
+    "bookId": "sg",
+    "parentId": "pol.sg.c06.s05",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点67  抗日战争胜利的原因、意义（重点选择）",
+    "shortTitle": "抗日战争胜利的原因",
+    "periodId": "period-02",
+    "timelineRank": 2590,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "原因；以爱国主义为核心的民族精神是中国人民抗日战争胜利的决定因素；中国共产党的中流砥柱作用是中国人民抗日战争胜利的关键",
+      "keyPoints": [
+        "抗日战争的胜利，是中华民族由近代以来陷入深重危机走向伟大复兴的历史转折点：",
+        "共产党成立：深刻改变了中国人民和中华民族的前途和命运",
+        "长征胜利：实现了中国共产党和中国革命事业从挫折走向胜利的伟大转折"
+      ],
+      "traps": [
+        "区分: 共产党成立：深刻改变了中国人民和中华民族的前途和命运"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.49"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 7,
+    "title": "第七章 为建立新中国而奋斗（新民主主义革命时期）",
+    "shortTitle": "第七章 为建立新中国而奋斗",
+    "periodId": "period-02",
+    "timelineRank": 2750,
+    "tags": [
+      "史纲章节",
+      "period-02"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第七章 为建立新中国而奋斗（新民主主义革命时期）的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 从争取和平民主到击退国民党的军事进攻",
+        "第二节 全面解放战争的发展和第二条战线的形成",
+        "第三节 中国共产党与民主党派的团结合作"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 从争取和平民主到击退国民党的军事进攻",
+    "shortTitle": "第一节 从争取和平民主到击退",
+    "periodId": "period-02",
+    "timelineRank": 2760,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 从争取和平民主到击退国民党的军事进攻的核心史实脉络",
+      "keyPoints": [
+        "考点68   抗战胜利后的国际国内局势（了解）",
+        "考点69  中国共产党争取和平民主的斗争（重点选择）",
+        "考点70  国民党发动全面内战和解放区军民的坚决反击（了解）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s01.p065",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点68   抗战胜利后的国际国内局势（了解）",
+    "shortTitle": "抗战胜利后的国际国内局势",
+    "periodId": "period-02",
+    "timelineRank": 2762,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "战后世界政治形势的一个重大变化，就是原来以维持欧洲大国均势为中心的传统的国际格局被美、苏；两极格局所取代。在此基础上，逐步形成分别以美、苏为首的帝国主义和社会主义两个阵营的对立",
+      "keyPoints": [
+        "战后世界政治形势的一个重大变化，就是原来以维持欧洲大国均势为中心的传统的国际格局被美、苏；两极格局所"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.50"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s01.p066",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点69  中国共产党争取和平民主的斗争（重点选择）",
+    "shortTitle": "中国共产党争取和平民主的斗争",
+    "periodId": "period-02",
+    "timelineRank": 2764,
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "蒋介石集团；的方针；方针；抗战胜利后，蒋介石集团既定方针是以武力消灭共产党及其领导的人民军队和解放",
+      "keyPoints": [
+        "蒋介石在积极准备内战的同时，又表示愿意与中国共产党进行和平谈判，其目的：",
+        "，蒋介石连发三电，邀请毛泽东赴重庆谈判",
+        "，政治协商会议在重庆开幕，出席会议的有国民党、共产党、民主同盟、"
+      ],
+      "traps": [
+        "政协的上述协议及其他协议，还不是新民主主义性质（国民党主持的）的，"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.51"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s01.p067",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点70  国民党发动全面内战和解放区军民的坚决反击（了解）",
+    "shortTitle": "国民党发动全面内战和解放区军",
+    "periodId": "period-02",
+    "timelineRank": 2766,
+    "tags": [
+      "理解了解",
+      "党的领导"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "年6 月26 日，国民党军队以进攻中原解放区为起点，挑起了全面内战（军事上）；时间段；时期；标志性事件",
+      "keyPoints": [
+        "年6 月26 日，国民党军队以进攻中原解放区为起点，挑起了全面内战（军事上）",
+        "毛泽东指出，我们能够打败蒋介石原因：纸老虎+我们能赢"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 全面解放战争的发展和第二条战线的形成",
+    "shortTitle": "第二节 全面解放战争的发展和",
+    "periodId": "period-02",
+    "timelineRank": 2776,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 全面解放战争的发展和第二条战线的形成的核心史实脉络",
+      "keyPoints": [
+        "考点71  全国解放战争的胜利发展（了解）",
+        "考点72  解放区的土地改革与农民的广泛运动（重点选择）",
+        "考点73  第二条战线的形成与发展（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s02.p068",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点71  全国解放战争的胜利发展（了解）",
+    "shortTitle": "全国解放战争的胜利发展",
+    "periodId": "period-02",
+    "timelineRank": 2778,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "路大军相互策应，机动歼敌，迫使国民党军处于被动地位。人民解放战争战略进攻的序幕由此揭开：；刘伯承、邓小平",
+      "keyPoints": [
+        "路大军相互策应，机动歼敌，迫使国民党军处于被动地位。人民解放战争战略进攻的序幕由此揭开："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.52"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s02.p069",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点72  解放区的土地改革与农民的广泛运动（重点选择）",
+    "shortTitle": "解放区的土地改革与农民的广泛",
+    "periodId": "period-02",
+    "timelineRank": 2780,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国共产党在解放战争时期的土地政策：；《五四指示》；《关于土地问题的指示》；其基本内容是：；要坚决地支持和引导广大农民群众，采取各种适当方法，使地主阶级",
+      "keyPoints": [
+        "中国共产党在解放战争时期的土地政策：",
+        "其基本内容是：",
+        "直接明确规定）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.53"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s02.p070",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点73  第二条战线的形成与发展（重点选择）",
+    "shortTitle": "第二条战线的形成与发展",
+    "periodId": "period-02",
+    "timelineRank": 2782,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二条战线；在国民党统治区，以学生运动为先导的人民民主运动也迅速地发展起来，成为配合人民解；放战争的第二条战线",
+      "keyPoints": [
+        "国民党政府由于它的专制独裁统治和官员们的贪污腐败、大发国难财",
+        "执行反人民的内战政策",
+        "对人民征收苛重的捐税"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 中国共产党与民主党派的团结合作",
+    "shortTitle": "第三节 中国共产党与民主党派",
+    "periodId": "period-02",
+    "timelineRank": 2792,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 中国共产党与民主党派的团结合作的核心史实脉络",
+      "keyPoints": [
+        "考点74  中国共产党与民主党派的合作（重点选择）",
+        "考点75   第三条道路的幻灭（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s03.p071",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点74  中国共产党与民主党派的合作（重点选择）",
+    "shortTitle": "中国共产党与民主党派的合作",
+    "periodId": "period-02",
+    "timelineRank": 2794,
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国民主党派的；性质；中国各民主党派形成时的社会基础，主要是民族资产阶级、城市小资产阶级以及同这",
+      "keyPoints": [
+        "中国民主党派的；性质；中国各民主党派形成时的社会基础，主要是民族资产阶级、城市小资产阶级以及同这"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.54"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s03.p072",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点75   第三条道路的幻灭（重点选择）",
+    "shortTitle": "第三条道路的幻灭",
+    "periodId": "period-02",
+    "timelineRank": 2796,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "“中间路线”；的实质；“中间路线”的鼓吹者主张：独立的资本主义道路；在政治上，“必须实现英美式的民主政治”，但不准地主官僚资本家操纵",
+      "keyPoints": [
+        "“中间路线”的鼓吹者主张：独立的资本主义道路",
+        "民族资产阶级具有两面性：革命性和软弱性"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s04",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 建立人民民主专政的新中国",
+    "shortTitle": "第四节 建立人民民主专政的新",
+    "periodId": "period-02",
+    "timelineRank": 2806,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 建立人民民主专政的新中国的核心史实脉络",
+      "keyPoints": [
+        "考点76  南京国民党政权的覆灭（重点选择）",
+        "考点77  中国人民政治协商会议与《共同纲领》【超高频考点】（重点选择）",
+        "考点78    中国革命胜利的原因、意义和基本经验（重点）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s04.p073",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点76  南京国民党政权的覆灭（重点选择）",
+    "shortTitle": "南京国民党政权的覆灭",
+    "periodId": "period-02",
+    "timelineRank": 2808,
+    "tags": [
+      "重点选择",
+      "党的领导"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "大战役；辽沈、淮海、平津三大战役——战略决战；国民党赖以维持其反动统治的主要军事力量基本上被摧毁",
+      "keyPoints": [
+        "年元旦，蒋介石发表“求和”声明，企图借“和平谈判”之机争取喘",
+        "年4 月23 日，人民解放军占领南京，宣告延续了22 年之久的国民党"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s04.p074",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点77  中国人民政治协商会议与《共同纲领》【超高频考点】（重点选择）",
+    "shortTitle": "中国人民政治协商会议与《共同",
+    "periodId": "period-02",
+    "timelineRank": 2810,
+    "tags": [
+      "超高频"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "筹建新中国；中共七届二中全会；时间；年3 月，在中国人民革命即将取得全国胜利的前夕，中国共产党在河北省平山县西柏坡村",
+      "keyPoints": [
+        "中共七届二中全会",
+        "年3 月，在中国人民革命即将取得全国胜利的前夕，中国共产党在河北省平山县西柏坡村",
+        "毛在解放战争时期的文章"
+      ],
+      "traps": [
+        "我们还必须利用一切于国计民生有利而不是有害的城乡资本主义因素，团结民族"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.55"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c07.s04.p075",
+    "bookId": "sg",
+    "parentId": "pol.sg.c07.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点78    中国革命胜利的原因、意义和基本经验（重点）",
+    "shortTitle": "中国革命胜利的原因",
+    "periodId": "period-02",
+    "timelineRank": 2812,
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中国革命胜利；的原因；中国革命的发生，有着深刻的社会根源和雄厚的群众基础；中国革命之所以能够走上胜利发展的道路，从根本上说，是由于有了中国工人阶级的先",
+      "keyPoints": [
+        "条重要的经验就是，必须坚持把马克思列宁主义基本原理同中国具体实际结合起来，",
+        "毛泽东指出：“统一战线，武装斗争，党的建设，是中国共产党在中国革命中战胜敌人的",
+        "个法宝，三个主要的法宝”"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.57"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 8,
+    "title": "第八章 中华人民共和国的成立与中国社会主义建设道路的探索",
+    "shortTitle": "第八章 中华人民共和国的成立",
+    "periodId": "period-03",
+    "timelineRank": 3050,
+    "tags": [
+      "史纲章节",
+      "period-03"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第八章 中华人民共和国的成立与中国社会主义建设道路的探索的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 中华人民共和国的成立与新生人民政权的巩固【1949-1953】",
+        "第二节 党在过渡时期的总路线及其实施【1953-1956】",
+        "第三节 社会主义建设的良好开端（1956-1978）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 中华人民共和国的成立与新生人民政权的巩固【1949-1953】",
+    "shortTitle": "第一节 中华人民共和国的成立",
+    "periodId": "period-03",
+    "timelineRank": 3060,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 中华人民共和国的成立与新生人民政权的巩固【1949-1953】的核心史实脉络",
+      "keyPoints": [
+        "考点79   中华人民共和国的成立及其伟大意义【新中国成立75周年】（重点论述）",
+        "考点80   巩固新政权的伟大斗争（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s01.p076",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点79   中华人民共和国的成立及其伟大意义【新中国成立75周年】（重点论述）",
+    "shortTitle": "中华人民共和国的成立及其伟大",
+    "periodId": "period-03",
+    "timelineRank": 3062,
+    "tags": [
+      "重点论述",
+      "分析题"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "中华人民共和国；的成立及其；伟大意义；彻底结束了旧中国半殖民地半封建社会的历史（国情变了——>新民主主义社会），彻",
+      "keyPoints": [
+        "中华人民共和国；的成立及其；伟大意义；彻底结束了旧中国半殖民地半封建社会的历史（国情变了——>新民主"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.58"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s01.p077",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点80   巩固新政权的伟大斗争（重点选择）",
+    "shortTitle": "巩固新政权的伟大斗争",
+    "periodId": "period-03",
+    "timelineRank": 3064,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新生的共和国面临着两大任务：一是继续完成新民主主义革命的遗留任务，彻底解决中国人民同三大敌人",
+      "keyPoints": [
+        "新生的共和国面临着两大任务：一是继续完成新民主主义革命的遗留任务，彻底解决中国人民同三大敌人",
+        "《中华人民共和国土地改革法》：",
+        "《中华人民共和国婚姻法》："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.59"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 党在过渡时期的总路线及其实施【1953-1956】",
+    "shortTitle": "第二节 党在过渡时期的总路线",
+    "periodId": "period-03",
+    "timelineRank": 3074,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 党在过渡时期的总路线及其实施【1953-1956】的核心史实脉络",
+      "keyPoints": [
+        "考点 81   过渡时期总路线的提出（重点选择）",
+        "考点 82  实行社会主义改造的必要性和条件（重点选择）",
+        "考点83 “一五”计划的制定与实施（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02.p078",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点 81   过渡时期总路线的提出（重点选择）",
+    "shortTitle": "过渡时期总路线的提出",
+    "periodId": "period-03",
+    "timelineRank": 3076,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "前期设想；中华人民共和国成立之初，中共中央领导人对向社会主义过渡的设想大致如下：经过一段；相当长的时间(估计至少要10 年，多则15 年或20 年)，工业发展了，国营经济壮大了，",
+      "keyPoints": [
+        "中华人民共和国成立之初，中共中央领导人对向社会主义过渡的设想大致如下：经过一段",
+        "变化：1952 年9 月24 日，毛泽东在中共中央书记处会议上提出，我们要在“十年到十五",
+        "这种认识上的改变，主要有两方面的原因："
+      ],
+      "traps": [
+        "年基本上完成社会主义，不是十年以后才过渡到社会主义”。刘少奇、周恩来等也都论述"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.60"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02.p079",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 82  实行社会主义改造的必要性和条件（重点选择）",
+    "shortTitle": "实行社会主义改造的必要性和条",
+    "periodId": "period-03",
+    "timelineRank": 3078,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "条件；国民经济恢复任务完成后，之所以要着力进行社会主义改造，是因为具备了以下条件：；社会主义性质的国营经济力量相对来说比较强大，它是实现国家工业化的主要基础。",
+      "keyPoints": [
+        "国民经济恢复任务完成后，之所以要着力进行社会主义改造，是因为具备了以下条件："
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02.p080",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点83 “一五”计划的制定与实施（重点选择）",
+    "shortTitle": "“一五”计划的制定与实施",
+    "periodId": "period-03",
+    "timelineRank": 3080,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "从1953 年开始，中华人民共和国开始实施发展国民经济的第一个五年计划；“一五”计划；的方针；“一五”计划确定的经济建设指导方针，突出了集中主要力量发展重工业，建立国家工",
+      "keyPoints": [
+        "从1953 年开始，中华人民共和国开始实施发展国民经济的第一个五年计划；“一五”计划；的方针；“一五"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02.p081",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 84  农业、手工业合作化运动的发展【高频考点】（重点选择）",
+    "shortTitle": "农业",
+    "periodId": "period-03",
+    "timelineRank": 3082,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "土地改革后农民的1951 年12 月，中共中央印发的《关于农业生产互助合作的决议(草案)》指出，中国农",
+      "keyPoints": [
+        "土地改革后农民的1951 年12 月，中共中央印发的《关于农业生产互助合作的决议(草案)》指出，中国"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.61"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02.p082",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点85  资本主义工商业的改造【高频考点】（重点选择）",
+    "shortTitle": "资本主义工商业的改造",
+    "periodId": "period-03",
+    "timelineRank": 3084,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "实质；对资本主义工商业进行社会主义改造，就是要把民族资本主义工商业改造成为社会；主义性质的企业，并对民族资产阶级实行赎买政策",
+      "keyPoints": [
+        "社会主义萌芽性质）",
+        "利润分配：“四马分肥”的原则，即分为国家所得",
+        "利润分配：定股定息"
+      ],
+      "traps": [
+        "用赎买和国家资本主义的方法，有偿地而不是无偿地，逐步地而不是突然地改变资"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.62"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s02.p083",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 6,
+    "title": "考点 86  社会主义基本制度在中国的全面确立及其意义（重点选择）",
+    "shortTitle": "社会主义基本制度在中国的全面",
+    "periodId": "period-03",
+    "timelineRank": 3086,
+    "tags": [
+      "重点选择",
+      "基本制度"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "社会主义基本制度在中国的全面确立及其意义的理论核心与考点分析",
+      "keyPoints": [
+        "社会主义基本制度在中国的全面确立及其意义的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 社会主义建设的良好开端（1956-1978）",
+    "shortTitle": "第三节 社会主义建设的良好开",
+    "periodId": "period-03",
+    "timelineRank": 3096,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 社会主义建设的良好开端（1956-1978）的核心史实脉络",
+      "keyPoints": [
+        "考点87  全面建设社会主义的开始（重点选择）",
+        "考点88 《论十大关系》的发表（重点选择）",
+        "考点 89  中共八大路线的制定（重点选择）"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s03.p084",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点87  全面建设社会主义的开始（重点选择）",
+    "shortTitle": "全面建设社会主义的开始",
+    "periodId": "period-03",
+    "timelineRank": 3098,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "年，社会主义改造基本完成，这表明我国已经完成了从新民主主义到社会主义的过渡，社会主义基本；制度在中国得到了全面的确立。中国继建立社会主义基本政治制度之后，社会主义的基本经济制度也建立",
+      "keyPoints": [
+        "年，社会主义改造基本完成，这表明我国已经完成了从新民主主义到社会主义的过渡，社会主义基本",
+        "年生产资料所有制改造完成，标志着社会主义基本制度在中国确立，中国开始进入全面建设社会"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.63"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s03.p085",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点88 《论十大关系》的发表（重点选择）",
+    "shortTitle": "《论十大关系》的发表",
+    "periodId": "period-03",
+    "timelineRank": 3100,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "基本方针；定要努力把党内党外、国内国外的一切积极的因素，直接的、间接的积极因素，全部；调动起来，把我国建设成为一个强大的社会主义国家",
+      "keyPoints": [
+        "定要努力把党内党外、国内国外的一切积极的因素，直接的、间接的积极因素，全部"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s03.p086",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点 89  中共八大路线的制定（重点选择）",
+    "shortTitle": "中共八大路线的制定",
+    "periodId": "period-03",
+    "timelineRank": 3102,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "提出；中共八大正确分析了国内形势和主要矛盾的变化，明确提出新形势下党和人民的主要任；务，指出：；社会主义制度在我国已经基本上建立起来，国内主要矛盾已经是人民对于经济文化迅",
+      "keyPoints": [
+        "提出；中共八大正确分析了国内形势和主要矛盾的变化，明确提出新形势下党和人民的主要任；务，指出：；社会"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s03.p087",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点90 《关于正确处理人民内部矛盾的问题》的发表（重点选择）",
+    "shortTitle": "《关于正确处理人民内部矛盾的",
+    "periodId": "period-03",
+    "timelineRank": 3104,
+    "tags": [
+      "重点选择",
+      "主要矛盾"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "主要内容；关于社会主义社会两类不同性质的社会矛盾：；的社会矛盾，把正确处理人民内部矛盾作为国家政治生活的主题",
+      "keyPoints": [
+        "关于社会主义社会两类不同性质的社会矛盾：",
+        "关于社会主义社会的基本矛盾："
+      ],
+      "traps": [
+        "社会主义社会存在着敌我矛盾和人民内部矛盾。必须区分社会主义社会两类不同性质"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.64"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s03.p088",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点 91  整风运动和反右派斗争（了解）",
+    "shortTitle": "整风运动和反右派斗争",
+    "periodId": "period-03",
+    "timelineRank": 3106,
+    "tags": [
+      "理解了解"
+    ],
+    "importance": 2,
+    "detail": {
+      "summary": "内容；年4 月，中共中央下发《关于整风运动的指示》，提出这次整风运动的内容：反对官；僚主义、宗派主义和主观主义",
+      "keyPoints": [
+        "年4 月，中共中央下发《关于整风运动的指示》，提出这次整风运动的内容：反对官",
+        "延安整风运动：反主观主义、宗派主义、党八股"
+      ],
+      "traps": [
+        "区分: 延安整风运动：反主观主义、宗派主义、党八股"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s04",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 社会主义道路的艰辛探索和曲折发展（1956-1978）",
+    "shortTitle": "第四节 社会主义道路的艰辛探",
+    "periodId": "period-03",
+    "timelineRank": 3116,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 社会主义道路的艰辛探索和曲折发展（1956-1978）的核心史实脉络",
+      "keyPoints": [
+        "考点92  “大跃进”及初步纠“左”的努力",
+        "考点93  国民经济调整和“四个现代化”战略目标的制定",
+        "考点94  “文化大革命”内乱及其历史教训"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s04.p089",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点92  “大跃进”及初步纠“左”的努力",
+    "shortTitle": "“大跃进”及初步纠“左”的努",
+    "periodId": "period-03",
+    "timelineRank": 3118,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“大跃进”及初步纠“左”的努力的理论核心与考点分析",
+      "keyPoints": [
+        "“大跃进”及初步纠“左”的努力的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s04.p090",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点93  国民经济调整和“四个现代化”战略目标的制定",
+    "shortTitle": "国民经济调整和“四个现代化”",
+    "periodId": "period-03",
+    "timelineRank": 3120,
+    "tags": [
+      "高频考点",
+      "中国式现代化",
+      "经济体制"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "国民经济调整和“四个现代化”战略目标的制定的理论核心与考点分析",
+      "keyPoints": [
+        "国民经济调整和“四个现代化”战略目标的制定的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s04.p091",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点94  “文化大革命”内乱及其历史教训",
+    "shortTitle": "“文化大革命”内乱及其历史教",
+    "periodId": "period-03",
+    "timelineRank": 3122,
+    "tags": [
+      "高频考点",
+      "革命史"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“文化大革命”内乱及其历史教训的理论核心与考点分析",
+      "keyPoints": [
+        "“文化大革命”内乱及其历史教训的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c08.s04.p092",
+    "bookId": "sg",
+    "parentId": "pol.sg.c08.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点 95  全面建设社会主义的成就（重点选择）",
+    "shortTitle": "全面建设社会主义的成就",
+    "periodId": "period-03",
+    "timelineRank": 3124,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "主要成就；独立的、比较完整的工业体系和国民经济体系的建立；人民生活水平提高；文化教育医疗事业的发展",
+      "keyPoints": [
+        "年10 月，中华人民共和国恢复了在联合国的一切合法权利",
+        "年2 月，美国总统尼克松访华，中美双方在上海发表联合公报"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.65"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 9,
+    "title": "第九章 改革开放与中国特色社会主义的开创和发展",
+    "shortTitle": "第九章 改革开放与中国特色社",
+    "periodId": "period-04",
+    "timelineRank": 4050,
+    "tags": [
+      "史纲章节",
+      "period-04"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "第九章 改革开放与中国特色社会主义的开创和发展的历史方位与关键演进",
+      "keyPoints": [
+        "第一节 历史性的伟大转折和改革开放的起步",
+        "第二节 改革开放和社会主义现代化建设新局面",
+        "第三节 把中国特色社会主义推向21世纪"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 历史性的伟大转折和改革开放的起步",
+    "shortTitle": "第一节 历史性的伟大转折和改",
+    "periodId": "period-04",
+    "timelineRank": 4060,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第一节 历史性的伟大转折和改革开放的起步的核心史实脉络",
+      "keyPoints": [
+        "考点96  关于真理标准问题的讨论（重点选择）",
+        "考点97  中共十一届三中全会的伟大转折（重点选择）",
+        "考点97  农村改革的突破性进展"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s01.p093",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点96  关于真理标准问题的讨论（重点选择）",
+    "shortTitle": "关于真理标准问题的讨论",
+    "periodId": "period-04",
+    "timelineRank": 4062,
+    "tags": [
+      "重点选择",
+      "真理检验"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "评价；真理标准问题的讨论是继五四运动和延安整风运动之后又一场马克思主义思想解放运动，；其实质在于是不是坚持马克思列宁主义、毛泽东思想",
+      "keyPoints": [
+        "评价；真理标准问题的讨论是继五四运动和延安整风运动之后又一场马克思主义思想解放运动，；其实质在于是不"
+      ],
+      "traps": [
+        "其实质在于是不是坚持马克思列宁主义、毛泽东思想"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.66"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s01.p094",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点97  中共十一届三中全会的伟大转折（重点选择）",
+    "shortTitle": "中共十一届三中全会的伟大转折",
+    "periodId": "period-04",
+    "timelineRank": 4064,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "中共中央；工作会议；宣言书：；邓小平在中央工作会议闭幕会上作了题为《解放思想，实事求是，团结一致向前看》",
+      "keyPoints": [
+        "年1 月起把全党的工作重心转移到社会主义现代化建设上来和实行改革开放的战",
+        "实事求是思想路线：",
+        "萌芽（初步形成）：《反对本本主义》【土地革命早期】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s01.p095",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点97  农村改革的突破性进展",
+    "shortTitle": "农村改革的突破性进展",
+    "periodId": "period-04",
+    "timelineRank": 4066,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中共中央；工作会议；宣言书：；邓小平在中央工作会议闭幕会上作了题为《解放思想，实事求是，团结一致向前看》",
+      "keyPoints": [
+        "年1 月起把全党的工作重心转移到社会主义现代化建设上来和实行改革开放的战",
+        "实事求是思想路线：",
+        "萌芽（初步形成）：《反对本本主义》【土地革命早期】"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s01.p096",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点98  坚持四项基本原则的提出",
+    "shortTitle": "坚持四项基本原则的提出",
+    "periodId": "period-04",
+    "timelineRank": 4068,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "坚持四项基本原则的提出的理论核心与考点分析",
+      "keyPoints": [
+        "坚持四项基本原则的提出的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s01.p097",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 5,
+    "title": "考点 99  科学评价毛泽东和毛泽东思想",
+    "shortTitle": "科学评价毛泽东和毛泽东思想",
+    "periodId": "period-04",
+    "timelineRank": 4070,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "科学评价毛泽东和毛泽东思想的理论核心与考点分析",
+      "keyPoints": [
+        "科学评价毛泽东和毛泽东思想的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.67"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s02",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 2,
+    "title": "第二节 改革开放和社会主义现代化建设新局面",
+    "shortTitle": "第二节 改革开放和社会主义现",
+    "periodId": "period-04",
+    "timelineRank": 4080,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第二节 改革开放和社会主义现代化建设新局面的核心史实脉络",
+      "keyPoints": [
+        "考点101  中共十二大制定社会主义现代化建设纲领",
+        "考点 102  改革重点从农村转向城市",
+        "考点103  对外开放新格局的形成"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s02.p098",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点101  中共十二大制定社会主义现代化建设纲领",
+    "shortTitle": "中共十二大制定社会主义现代化",
+    "periodId": "period-04",
+    "timelineRank": 4082,
+    "tags": [
+      "高频考点",
+      "中国式现代化"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中共十二大制定社会主义现代化建设纲领的理论核心与考点分析",
+      "keyPoints": [
+        "中共十二大制定社会主义现代化建设纲领的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s02.p099",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 102  改革重点从农村转向城市",
+    "shortTitle": "改革重点从农村转向城市",
+    "periodId": "period-04",
+    "timelineRank": 4084,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "改革重点从农村转向城市的理论核心与考点分析",
+      "keyPoints": [
+        "改革重点从农村转向城市的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s02.p100",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点103  对外开放新格局的形成",
+    "shortTitle": "对外开放新格局的形成",
+    "periodId": "period-04",
+    "timelineRank": 4086,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "对外开放新格局的形成的理论核心与考点分析",
+      "keyPoints": [
+        "对外开放新格局的形成的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s02.p101",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s02",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点104  邓小平南方谈话（重点选择）",
+    "shortTitle": "邓小平南方谈话",
+    "periodId": "period-04",
+    "timelineRank": 4088,
+    "tags": [
+      "重点选择"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "主要内容；计划和市场都是经济手段；阐明了社会主义本质；提出了“发展才是硬道理”的重要论断；提出判断改革开放和各项工作成败得失的“三个有利于”标准",
+      "keyPoints": [
+        "主要内容；计划和市场都是经济手段；阐明了社会主义本质；提出了“发展才是硬道理”的重要论断；提出判断改"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s03",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 3,
+    "title": "第三节 把中国特色社会主义推向21世纪",
+    "shortTitle": "第三节 把中国特色社会主义推",
+    "periodId": "period-04",
+    "timelineRank": 4098,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第三节 把中国特色社会主义推向21世纪的核心史实脉络",
+      "keyPoints": [
+        "考点105  中共十四大确立社会主义市场经济体制的改革目标",
+        "考点106  中共十五大高举邓小平理论伟大旗帜，提出跨世纪发展战略",
+        "考点107  “三个代表”重要思想的提出"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s03.p102",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点105  中共十四大确立社会主义市场经济体制的改革目标",
+    "shortTitle": "中共十四大确立社会主义市场经",
+    "periodId": "period-04",
+    "timelineRank": 4100,
+    "tags": [
+      "高频考点",
+      "经济体制"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中共十四大确立社会主义市场经济体制的改革目标的理论核心与考点分析",
+      "keyPoints": [
+        "中共十四大确立社会主义市场经济体制的改革目标的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s03.p103",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点106  中共十五大高举邓小平理论伟大旗帜，提出跨世纪发展战略",
+    "shortTitle": "中共十五大高举邓小平理论伟大",
+    "periodId": "period-04",
+    "timelineRank": 4102,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中共十五大高举邓小平理论伟大旗帜，提出跨世纪发展战略的理论核心与考点分析",
+      "keyPoints": [
+        "中共十五大高举邓小平理论伟大旗帜，提出跨世纪发展战略的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s03.p104",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s03",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点107  “三个代表”重要思想的提出",
+    "shortTitle": "“三个代表”重要思想的提出",
+    "periodId": "period-04",
+    "timelineRank": 4104,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "“三个代表”重要思想的提出的理论核心与考点分析",
+      "keyPoints": [
+        "“三个代表”重要思想的提出的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s04",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09",
+    "kind": "section",
+    "depth": 2,
+    "order": 4,
+    "title": "第四节 在新的形势下坚持和发展中国特色社会主义",
+    "shortTitle": "第四节 在新的形势下坚持和发",
+    "periodId": "period-04",
+    "timelineRank": 4114,
+    "tags": [
+      "史纲小节"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "第四节 在新的形势下坚持和发展中国特色社会主义的核心史实脉络",
+      "keyPoints": [
+        "考点108  中共十六大制定全面建设小康社会的奋斗目标",
+        "考点 109  不断推动我国经济社会的科学发展",
+        "考点110  加强党的执政能力建设和先进性建设"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s04.p105",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点108  中共十六大制定全面建设小康社会的奋斗目标",
+    "shortTitle": "中共十六大制定全面建设小康社",
+    "periodId": "period-04",
+    "timelineRank": 4116,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "中共十六大制定全面建设小康社会的奋斗目标的理论核心与考点分析",
+      "keyPoints": [
+        "中共十六大制定全面建设小康社会的奋斗目标的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s04.p106",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点 109  不断推动我国经济社会的科学发展",
+    "shortTitle": "不断推动我国经济社会的科学发",
+    "periodId": "period-04",
+    "timelineRank": 4118,
+    "tags": [
+      "高频考点",
+      "经济体制"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "不断推动我国经济社会的科学发展的理论核心与考点分析",
+      "keyPoints": [
+        "不断推动我国经济社会的科学发展的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s04.p107",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点110  加强党的执政能力建设和先进性建设",
+    "shortTitle": "加强党的执政能力建设和先进性",
+    "periodId": "period-04",
+    "timelineRank": 4120,
+    "tags": [
+      "高频考点",
+      "党的领导"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "加强党的执政能力建设和先进性建设的理论核心与考点分析",
+      "keyPoints": [
+        "加强党的执政能力建设和先进性建设的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c09.s04.p108",
+    "bookId": "sg",
+    "parentId": "pol.sg.c09.s04",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点111  全面建设小康社会新部署和改革开放的深化",
+    "shortTitle": "全面建设小康社会新部署和改革",
+    "periodId": "period-04",
+    "timelineRank": 4122,
+    "tags": [
+      "高频考点"
+    ],
+    "importance": 3,
+    "detail": {
+      "summary": "全面建设小康社会新部署和改革开放的深化的理论核心与考点分析",
+      "keyPoints": [
+        "全面建设小康社会新部署和改革开放的深化的理论核心与考点分析"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲 p.68"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c10",
+    "bookId": "sg",
+    "parentId": "pol.sg",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 10,
+    "title": "第十章 中国特色社会主义进入新时代",
+    "shortTitle": "新时代伟大变革",
+    "periodId": "period-05",
+    "timelineRank": 5050,
+    "tags": [
+      "史纲章节",
+      "period-05",
+      "新时代"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "中共十八大以来中国特色社会主义进入新时代的历史方位、伟大成就与历史性变革",
+      "keyPoints": [
+        "新时代十年的伟大变革",
+        "以中国式现代化全面推进中华民族伟大复兴",
+        "新时代推进全面从严治党与自我革命"
+      ],
+      "traps": [
+        "区分新时代社会主要矛盾的转化并未改变我国仍处于社会主义初级阶段的基本国情"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义/新思想贯通"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c10.s01",
+    "bookId": "sg",
+    "parentId": "pol.sg.c10",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "第一节 开创和发展中国特色社会主义新时代",
+    "shortTitle": "开创发展新时代",
+    "periodId": "period-05",
+    "timelineRank": 5060,
+    "tags": [
+      "史纲小节",
+      "period-05"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "新时代十年的战略部署与历史性伟大变革",
+      "keyPoints": [
+        "十八大以来的历史性成就",
+        "新时代十年的伟大变革",
+        "中国式现代化的推进"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义/新思想贯通"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c10.s01.p109",
+    "bookId": "sg",
+    "parentId": "pol.sg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "考点112 中共十八大以来的历史性成就与历史性变革（超高频）",
+    "shortTitle": "新时代成就与变革",
+    "periodId": "period-05",
+    "timelineRank": 5100,
+    "tags": [
+      "超高频",
+      "新时代成就",
+      "十八大以来"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "中共十八大以来，党和国家事业取得历史性成就、发生历史性变革，推动我国迈上全面建设社会主义现代化国家新征程",
+      "keyPoints": [
+        "解决了许多长期想解决而没有解决的难题，办成了许多过去想办而没有办成的大事",
+        "经济实力、科技实力、综合国力跃上新台阶，进入创新型国家行列",
+        "历史性地解决了绝对贫困问题，如期全面建成小康社会"
+      ],
+      "traps": [
+        "注意区分社会主要矛盾的转化并未改变我国仍处于社会主义初级阶段的基本国情"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义/新思想贯通"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c10.s01.p110",
+    "bookId": "sg",
+    "parentId": "pol.sg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 2,
+    "title": "考点113 新时代十年的伟大变革及其里程碑意义（重点论述）",
+    "shortTitle": "十年伟大变革",
+    "periodId": "period-05",
+    "timelineRank": 5200,
+    "tags": [
+      "重点论述",
+      "伟大变革",
+      "里程碑意义"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "新时代十年的伟大变革，在党史、新中国史、改革开放史、社会主义发展史、中华民族发展史上具有里程碑意义",
+      "keyPoints": [
+        "锻造了走在时代前列的中国共产党，显著增强了党的政治领导力、思想引领力、群众组织力",
+        "中国人民焕发出更为强烈的历史自觉和主动精神",
+        "实现了马克思主义中国化时代化新的飞跃，中国特色社会主义展现出强大生机活力"
+      ],
+      "traps": [
+        "伟大变革不仅具有国内历史意义，还在科学社会主义和世界现代化史上具有深远全球影响"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义/新思想贯通"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c10.s01.p111",
+    "bookId": "sg",
+    "parentId": "pol.sg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 3,
+    "title": "考点114 以中国式现代化全面推进中华民族伟大复兴（超高频）",
+    "shortTitle": "中国式现代化道路",
+    "periodId": "period-05",
+    "timelineRank": 5300,
+    "tags": [
+      "超高频",
+      "中国式现代化",
+      "民族复兴"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "以中国式现代化全面推进中华民族伟大复兴，开创了人类文明新形态，拓展了发展中国家走向现代化的途径",
+      "keyPoints": [
+        "中国式现代化是人口规模巨大的现代化、全体人民共同富裕的现代化",
+        "物质文明和精神文明相协调、人与自然和谐共生的现代化",
+        "走和平发展道路的现代化"
+      ],
+      "traps": [
+        "中国式现代化既有各国现代化的共同特征，更有基于自己国情的中国特色"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义/新思想贯通"
+      ]
+    }
+  },
+  {
+    "id": "pol.sg.c10.s01.p112",
+    "bookId": "sg",
+    "parentId": "pol.sg.c10.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 4,
+    "title": "考点115 新时代推进全面从严治党与自我革命（重点论述）",
+    "shortTitle": "全面从严治党",
+    "periodId": "period-05",
+    "timelineRank": 5400,
+    "tags": [
+      "重点论述",
+      "自我革命",
+      "从严治党"
+    ],
+    "importance": 5,
+    "detail": {
+      "summary": "勇于自我革命是中国共产党区别于其他政党的显著标志，全面从严治党是新时代党的自我革命的伟大实践",
+      "keyPoints": [
+        "找到了自我革命这一跳出治乱兴衰历史周期率的第二个答案",
+        "全面加强党的领导，把党的政治建设摆在首位",
+        "持之以恒正风肃纪，以零容忍态度反腐惩恶"
+      ],
+      "traps": [
+        "区分跳出历史周期率的“第一个答案（毛泽东：民主）”与“第二个答案（自我革命）”"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 史纲讲义/新思想贯通"
+      ]
+    }
+  }
+]

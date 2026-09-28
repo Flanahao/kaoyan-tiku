@@ -1,0 +1,126 @@
+[
+  {
+    "id": "pol.xs",
+    "bookId": "xs",
+    "parentId": null,
+    "kind": "book",
+    "depth": 0,
+    "order": 4,
+    "title": "形势与政策与当代世界经济与政治",
+    "shortTitle": "当代",
+    "tags": [
+      "国际格局",
+      "全球治理",
+      "大国关系"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "当代世界经济、政治演变趋势与中国外交战略方针",
+      "keyPoints": [
+        "多极化趋势",
+        "经济全球化",
+        "人类命运共同体"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 当代讲义"
+      ]
+    }
+  },
+  {
+    "id": "pol.xs.c01",
+    "bookId": "xs",
+    "parentId": "pol.xs",
+    "kind": "chapter",
+    "depth": 1,
+    "order": 1,
+    "title": "经济全球化与世界多极化",
+    "shortTitle": "国际格局演进",
+    "tags": [
+      "百年变局",
+      "多极化",
+      "经济治理"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "冷战后国际战略格局的重大调整与新兴市场国家群体的崛起",
+      "keyPoints": [
+        "多极化不可逆转",
+        "经济全球化曲折发展",
+        "百年未有之大变局"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 当代 p.1"
+      ]
+    }
+  },
+  {
+    "id": "pol.xs.c01.s01",
+    "bookId": "xs",
+    "parentId": "pol.xs.c01",
+    "kind": "section",
+    "depth": 2,
+    "order": 1,
+    "title": "当代国际格局的演进",
+    "shortTitle": "国际秩序与格局",
+    "tags": [
+      "霸权主义",
+      "国际多极化"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "从近代殖民霸权秩序向平等有序的世界多极化演进",
+      "keyPoints": [
+        "殖民体系的瓦解",
+        "冷战及其终结",
+        "真正多边主义"
+      ],
+      "traps": [],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 当代 p.2"
+      ]
+    }
+  },
+  {
+    "id": "pol.xs.c01.s01.p001",
+    "bookId": "xs",
+    "parentId": "pol.xs.c01.s01",
+    "kind": "point",
+    "depth": 3,
+    "order": 1,
+    "title": "百年未有之大变局与国际秩序",
+    "shortTitle": "百年未有之大变局",
+    "layoutAnchorIds": [
+      "pol.sg.c10.s01.p109"
+    ],
+    "tags": [
+      "百年变局",
+      "东升西降",
+      "多边主义"
+    ],
+    "importance": 4,
+    "detail": {
+      "summary": "国际力量对比发生深刻变化，东升西降是大势所趋，推进国际关系民主化",
+      "keyPoints": [
+        "大变局的核心特征",
+        "新兴经济体群体性崛起",
+        "反对霸权主义和强权政治"
+      ],
+      "traps": [
+        "区分百年变局与世纪疫情的交织影响，认清霸权主义仍是世界和平主要威胁"
+      ],
+      "compare": [],
+      "mnemonic": "",
+      "sourceRefs": [
+        "2027徐涛强化班 当代 p.3"
+      ]
+    }
+  }
+]

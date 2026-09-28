@@ -1,0 +1,197 @@
+[
+  {
+    "id": "rel-000001",
+    "source": "pol.my.c03.s01.p017",
+    "target": "pol.sg.c01.s01.p001",
+    "type": "theory_application",
+    "label": "理论应用",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "反侵略战争失败根本原因在社会制度腐败（内因），印证内因为事物变化根据之唯物辩证法原理"
+    }
+  },
+  {
+    "id": "rel-000002",
+    "source": "pol.my.c05.s01.p044",
+    "target": "pol.sg.c02.s01.p012",
+    "type": "historical_context",
+    "label": "历史印证",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "太平天国农民起义印证了阶级斗争是阶级对立社会发展的直接动力"
+    }
+  },
+  {
+    "id": "rel-000003",
+    "source": "pol.mzt.c01.s01.p001",
+    "target": "pol.sg.c04.s01.p027",
+    "type": "evolution",
+    "label": "理论演变",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "马克思主义在中国的早期传播为毛泽东思想的萌芽和第一次历史性飞跃奠定理论基础"
+    }
+  },
+  {
+    "id": "rel-000004",
+    "source": "pol.mzt.c03.s01.p008",
+    "target": "pol.sg.c01.s01.p001",
+    "type": "cause",
+    "label": "因果溯源",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "列强对华武装侵略使中国沦为半殖民地，决定了帝国主义是新民主主义革命的首要对象"
+    }
+  },
+  {
+    "id": "rel-000005",
+    "source": "pol.my.c05.s01.p044",
+    "target": "pol.sg.c04.s01.p027",
+    "type": "theory_application",
+    "label": "群众主体",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "五四运动中中国工人阶级登上历史舞台，展现了人民群众创造历史的唯物史观力量"
+    }
+  },
+  {
+    "id": "rel-000006",
+    "source": "pol.my.c04.s01.p029",
+    "target": "pol.sg.c09.s01.p093",
+    "type": "theory_application",
+    "label": "真理标准",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "1978年关于真理标准问题的讨论，生动践行了实践是检验真理的唯一标准认识论原理"
+    }
+  },
+  {
+    "id": "rel-000007",
+    "source": "pol.mzt.c04.s01.p015",
+    "target": "pol.sg.c08.s01.p076",
+    "type": "historical_context",
+    "label": "制度奠基",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "社会主义改造的顺利完成确立了社会主义基本经济政治制度，为当代中国一切发展奠基"
+    }
+  },
+  {
+    "id": "rel-000008",
+    "source": "pol.mzt.c06.s01.p026",
+    "target": "pol.sg.c09.s01.p093",
+    "type": "evolution",
+    "label": "理论创新",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "邓小平南方谈话推动了社会主义市场经济体制的建立与改革开放新高潮"
+    }
+  },
+  {
+    "id": "rel-000009",
+    "source": "pol.xg.c02.s01.p006",
+    "target": "pol.sg.c10.s01.p109",
+    "type": "evolution",
+    "label": "时代飞跃",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "新时代伟大变革实现了马克思主义中国化时代化新的历史性飞跃"
+    }
+  },
+  {
+    "id": "rel-000010",
+    "source": "pol.xg.c05.s01.p031",
+    "target": "pol.my.c05.s01.p044",
+    "type": "theory_application",
+    "label": "人民至上",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "坚持以人民为中心的发展思想是对唯物史观人民主体地位的创新升华"
+    }
+  },
+  {
+    "id": "rel-000011",
+    "source": "pol.sx.c02.s01.p005",
+    "target": "pol.sg.c04.s01.p027",
+    "type": "historical_context",
+    "label": "理想传承",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "五四青年把个人前途与拯救民族危亡紧密结合，生动诠释了个人理想与社会理想的高度统一"
+    }
+  },
+  {
+    "id": "rel-000012",
+    "source": "pol.sx.c04.s01.p024",
+    "target": "pol.sg.c06.s01.p045",
+    "type": "historical_context",
+    "label": "精神弘扬",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "全民族抗战铸就的伟大抗战精神是中国精神在抗战时期的最高升华"
+    }
+  },
+  {
+    "id": "rel-000013",
+    "source": "pol.xs.c01.s01.p001",
+    "target": "pol.sg.c01.s01.p001",
+    "type": "compare",
+    "label": "秩序演进",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "从近代西方殖民霸权秩序，到当代百年未有之大变局下推动平等有序的世界多极化"
+    }
+  },
+  {
+    "id": "rel-000014",
+    "source": "pol.xg.c03.s01.p014",
+    "target": "pol.sg.c10.s01.p111",
+    "type": "evolution",
+    "label": "现代化推进",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "以中国式现代化全面推进中华民族伟大复兴，开创人类文明新形态"
+    }
+  },
+  {
+    "id": "rel-000015",
+    "source": "pol.sx.c07.s01.p053",
+    "target": "pol.xg.c10.s01.p079",
+    "type": "theory_application",
+    "label": "法治思想",
+    "directed": false,
+    "strength": 1,
+    "visibility": "context",
+    "meta": {
+      "note": "思法法治素养培育与习近平法治思想的科学体系紧密对接，指引全面依法治国实践"
+    }
+  }
+]

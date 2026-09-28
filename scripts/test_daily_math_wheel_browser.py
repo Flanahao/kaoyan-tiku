@@ -297,7 +297,7 @@ async def main():
             )
             assert len(candidates) > 0, "候选池不能为空"
             books = set(c["book"] for c in candidates)
-            forbidden = ["李林880优化版", "李艳芳900", "李范全书", "历年真题", "波哥讲义例题", "852真题"]
+            forbidden = ["李林880优化版", "李艳芳900", "李范全书", "历年真题", "波哥讲义例题", "852真题", "大连理工大学852", "南京大学851", "武汉大学807", "厦门大学847", "华中科技大学824"]
             for fb in forbidden:
                 assert fb not in books, f"候选池禁止出现书籍: {fb}"
 
