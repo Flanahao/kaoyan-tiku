@@ -518,6 +518,7 @@
       el.classList.remove('is-active');
     });
   }
+  window.closeEnglishWordPopover = closeWordPopover;
 
   function showWordPopover(wordSpan, cleanWord) {
     closeWordPopover();
@@ -687,6 +688,11 @@
     } else {
       panel.innerHTML = topTabsHtml + renderVocabModule();
       bindVocabEvents();
+    }
+
+    if (window.EnglishAnnotations &&
+        typeof window.EnglishAnnotations.afterRender === 'function') {
+      window.EnglishAnnotations.afterRender(panel);
     }
   }
 
@@ -960,6 +966,40 @@
     return matches ? matches.length : 0;
   }
 
+  function buildEnglishAnnotationScope(section, kind, localId) {
+    if (!section) return '';
+    if (window.EnglishAnnotations &&
+        typeof window.EnglishAnnotations.makeScopeKey === 'function') {
+      return window.EnglishAnnotations.makeScopeKey(
+        curYear,
+        section.id,
+        kind,
+        localId
+      );
+    }
+    return [
+      'eng',
+      String(curYear),
+      'sec',
+      String(section.id),
+      String(kind),
+      String(localId)
+    ].join(':');
+  }
+
+  function getCurrentSectionAnnotationCount(section) {
+    if (!section ||
+        !window.EnglishAnnotations ||
+        typeof window.EnglishAnnotations.countPrefix !== 'function') {
+      return 0;
+    }
+
+    return window.EnglishAnnotations.countPrefix(
+      'eng:' + String(curYear) +
+      ':sec:' + String(section.id) + ':'
+    );
+  }
+
   function renderSectionToolbarV2(manifest, sections, curSec) {
     var yearOptionsHtml = manifest.map(function (item) {
       return '<option value="' + item.year + '" ' + (item.year === curYear ? 'selected' : '') + '>' +
@@ -973,6 +1013,25 @@
       '</button>';
     }).join('');
 
+    var annotationButtonHtml = '';
+    if (curSec &&
+        window.EnglishAnnotations &&
+        typeof window.EnglishAnnotations.isEnabled === 'function') {
+      var annotationEnabled = window.EnglishAnnotations.isEnabled();
+      var annotationCount = getCurrentSectionAnnotationCount(curSec);
+
+      annotationButtonHtml =
+        '<button class="ez-btn-action ez-btn-precision ' +
+          (annotationEnabled ? 'active' : '') +
+          '" id="ezBtnPrecision" type="button" aria-pressed="' +
+          (annotationEnabled ? 'true' : 'false') + '">' +
+          '🖍️ 精读标注' +
+          (annotationCount
+            ? '<span class="ez-ann-count">' + annotationCount + '</span>'
+            : '') +
+        '</button>';
+    }
+
     return '<div class="ez-toolbar">' +
       '<div class="ez-toolbar-top">' +
         '<div class="ez-selectors-group">' +
@@ -982,6 +1041,7 @@
           '</label>' +
         '</div>' +
         '<div class="ez-toolbar-actions">' +
+          annotationButtonHtml +
           '<button class="ez-btn-action ' + (bilingualMode ? 'active' : '') + '" id="ezBtnBilingual" type="button" aria-pressed="' + (bilingualMode ? 'true' : 'false') + '">' +
             (bilingualMode ? '🙈 隐藏中文译文' : '👁️ 显示中文译文') +
           '</button>' +
@@ -995,9 +1055,9 @@
   function getSectionUiMeta(section) {
     var map = {
       cloze: { eyebrow: 'USE OF ENGLISH', label: '完形填空', hint: '先通读全文建立语境，再逐空作答；选项与题号保持联动。' },
-      reading: { eyebrow: 'READING PART A', label: '阅读理解', hint: '文章与题目保持清晰层级；点击正文单词可查词并加入生词本。' },
+      reading: { eyebrow: 'READING PART A', label: '阅读理解', hint: '先做题，再进入精读；正文可拖选荧光标注、下划线和注释，单击单词仍可查词。' },
       partB: { eyebrow: 'READING PART B', label: '新题型', hint: '先浏览全部候选段落，再为每个空位选择唯一段落。' },
-      translation: { eyebrow: 'TRANSLATION', label: '英译汉', hint: '先独立完成译文，再展开参考译文与解析进行对照。' },
+      translation: { eyebrow: 'TRANSLATION', label: '英译汉', hint: '先独立完成译文，再用正文标注拆句、记录逻辑与熟词僻义，最后对照参考译文。' },
       writingA: { eyebrow: 'WRITING PART A', label: '应用文写作', hint: '审题、列提纲、完成草稿，最后再查看范文和结构解析。' },
       writingB: { eyebrow: 'WRITING PART B', label: '短文写作', hint: '先完成图表或图画描述，再展开论证与个人观点。' }
     };
@@ -1035,14 +1095,17 @@
           '<span>' + paragraphs.length + ' 段</span>' +
         '</div>' +
       '</div>' +
-      '<div class="ez-reading-hint">点击英文单词可查释义、发音，并加入真题生词本</div>' +
+      '<div class="ez-reading-hint"><strong>精读：</strong>左键拖选英文可荧光标注、下划线或添加注释；单击单词仍可查词并加入生词本。</div>' +
       '<div class="ez-passage-body">' +
         paragraphs.map(function (paragraph, index) {
           var label = section.type === 'partB' ? String(paragraph.duanluo || index + 1) : 'P' + (index + 1);
+          var annotationScope = buildEnglishAnnotationScope(section, 'para', index + 1);
           return '<section class="ez-para" data-paragraph-index="' + (index + 1) + '">' +
             '<span class="ez-para-number" aria-hidden="true">' + escapeHtml(label) + '</span>' +
             '<div class="ez-para-copy">' +
-              '<div class="ez-para-en">' + renderClickableWords(paragraph.english) + '</div>' +
+              '<div class="ez-para-en ez-annotation-scope" data-ann-scope="' + escapeHtml(annotationScope) + '">' +
+                renderClickableWords(paragraph.english) +
+              '</div>' +
               (bilingualMode && paragraph.chinese ? '<div class="ez-para-zh">' + escapeHtml(paragraph.chinese) + '</div>' : '') +
             '</div>' +
           '</section>';
@@ -1124,6 +1187,7 @@
     var isActive = activeQuestionId === question.id || (!activeQuestionId && index === 0);
     var draftKey = 'translation_' + question.id;
     var draft = zhentiDrafts[draftKey] || '';
+    var questionAnnotationScope = buildEnglishAnnotationScope(section, 'q', question.id);
     var className = 'ez-question-card';
     if (section.type === 'cloze') className += ' ez-question-card--compact';
     if (isTranslation) className += ' ez-question-card--translation';
@@ -1138,7 +1202,11 @@
         '</div>' +
         renderMasteryV2(question, status) +
       '</div>' +
-      (!isPartB ? '<div class="ez-q-stem">' + renderClickableWords(question.stem) + '</div>' : '') +
+      (!isPartB
+        ? '<div class="ez-q-stem ez-annotation-scope" data-ann-scope="' + escapeHtml(questionAnnotationScope) + '">' +
+            renderClickableWords(question.stem) +
+          '</div>'
+        : '') +
       (isTranslation
         ? '<div class="ez-translation-editor">' +
             '<label for="draft_' + escapeHtml(question.id) + '">我的译文</label>' +
@@ -1273,6 +1341,18 @@
       bilingualBtn.addEventListener('click', function () {
         bilingualMode = !bilingualMode;
         localStorage.setItem(STORAGE_ZHENTI_BILINGUAL_KEY, String(bilingualMode));
+        render();
+      });
+    }
+
+    var precisionBtn = document.getElementById('ezBtnPrecision');
+    if (precisionBtn &&
+        window.EnglishAnnotations &&
+        typeof window.EnglishAnnotations.setEnabled === 'function') {
+      precisionBtn.addEventListener('click', function () {
+        window.EnglishAnnotations.setEnabled(
+          !window.EnglishAnnotations.isEnabled()
+        );
         render();
       });
     }

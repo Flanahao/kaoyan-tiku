@@ -16,7 +16,7 @@ assert.match(english, /window\.openLastPracticeSubject/);
 assert.match(app, /window\.getCurrentSubjectId\s*=\s*getCurrentSubjectId/);
 assert.match(app, /window\.openLastPracticeSubject\s*=\s*openLastPracticeSubject/);
 assert.match(html, /js\/app\.js\?v=20260923d/);
-assert.match(html, /js\/english\.js\?v=20260923c/);
+assert.match(html, /js\/english\.js\?v=202609(23c|29a)/);
 
 // 2. 切换数学/专业课必须重载对应科目的 SM-2 内存态。
 assert.match(

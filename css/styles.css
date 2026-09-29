@@ -8701,3 +8701,279 @@ body {
     min-height: 240px;
   }
 }
+
+/* =======================================================================
+   English Precision Reading Annotations V1
+   ======================================================================= */
+.ez-annotation-scope {
+  position: relative;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ez-annotation-scope::selection,
+.ez-annotation-scope *::selection {
+  color: inherit;
+  background: rgba(147, 197, 253, .48);
+}
+
+mark.ez-ann-mark {
+  display: inline;
+  margin: 0;
+  padding: 0 1px;
+  border: 0;
+  border-radius: 2px;
+  color: inherit;
+  background: transparent;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+mark.ez-ann--yellow { background: rgba(250, 204, 21, .38); }
+mark.ez-ann--green  { background: rgba(74, 222, 128, .30); }
+mark.ez-ann--blue   { background: rgba(96, 165, 250, .28); }
+mark.ez-ann--pink   { background: rgba(244, 114, 182, .28); }
+
+mark.ez-ann-mark.is-underline {
+  text-decoration-line: underline;
+  text-decoration-color: #7c3aed;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+mark.ez-ann-mark.has-note:not(.ez-ann--yellow):not(.ez-ann--green):not(.ez-ann--blue):not(.ez-ann--pink) {
+  border-bottom: 2px dotted #8b5cf6;
+}
+
+.ez-ann-note-pin {
+  width: 18px;
+  height: 18px;
+  margin: 0 3px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border: 1px solid #c4b5fd;
+  border-radius: 50%;
+  color: #6d28d9;
+  background: #f5f3ff;
+  cursor: pointer;
+  appearance: none;
+  line-height: 1;
+}
+
+.ez-ann-note-pin::before {
+  content: "✎";
+  font: 800 10px/1 system-ui, sans-serif;
+}
+
+.ez-ann-note-pin:hover {
+  border-color: #8b5cf6;
+  background: #ede9fe;
+}
+
+.ez-ann-toolbar {
+  position: fixed;
+  z-index: 12050;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 10px;
+  background: rgba(30, 41, 59, .97);
+  box-shadow: 0 12px 34px rgba(15, 23, 42, .24);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ez-ann-toolbar[hidden],
+.ez-ann-note-editor[hidden] {
+  display: none !important;
+}
+
+.ez-ann-color,
+.ez-ann-tool-btn {
+  flex: 0 0 auto;
+  border: 0;
+  cursor: pointer;
+  appearance: none;
+}
+
+.ez-ann-color {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, .24);
+}
+
+.ez-ann-color:hover {
+  transform: translateY(-1px) scale(1.06);
+}
+
+.ez-ann-color.is-yellow { background: #fde68a; }
+.ez-ann-color.is-green  { background: #bbf7d0; }
+.ez-ann-color.is-blue   { background: #bfdbfe; }
+.ez-ann-color.is-pink   { background: #fbcfe8; }
+
+.ez-ann-sep {
+  width: 1px;
+  height: 24px;
+  margin: 0 2px;
+  background: rgba(255, 255, 255, .18);
+}
+
+.ez-ann-tool-btn {
+  min-width: 29px;
+  height: 29px;
+  padding: 0 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  color: #f8fafc;
+  background: transparent;
+  font-size: 14px;
+}
+
+.ez-ann-tool-btn:hover {
+  background: rgba(255, 255, 255, .12);
+}
+
+.ez-ann-tool-btn.is-danger:hover {
+  color: #fecaca;
+  background: rgba(239, 68, 68, .18);
+}
+
+.ez-ann-u {
+  font-weight: 800;
+  text-decoration: underline 2px;
+  text-underline-offset: 2px;
+}
+
+.ez-ann-note-editor {
+  position: fixed;
+  z-index: 12060;
+  width: min(340px, calc(100vw - 24px));
+  padding: 13px;
+  border: 1px solid #d8e0ea;
+  border-radius: 12px;
+  color: #243247;
+  background: rgba(255, 255, 255, .985);
+  box-shadow: 0 16px 44px rgba(15, 23, 42, .18);
+}
+
+.ez-ann-note-head,
+.ez-ann-note-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ez-ann-note-head {
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ez-ann-note-head strong {
+  font-size: 13px;
+  color: #4c1d95;
+}
+
+.ez-ann-note-head button {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  color: #64748b;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.ez-ann-note-input {
+  width: 100%;
+  min-height: 108px;
+  resize: vertical;
+  box-sizing: border-box;
+  padding: 10px 11px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  color: #253249;
+  background: #fff;
+  font: 13px/1.65 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.ez-ann-note-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, .12);
+}
+
+.ez-ann-note-actions {
+  margin-top: 10px;
+}
+
+.ez-ann-note-spacer { flex: 1; }
+
+.ez-ann-note-actions button {
+  min-height: 31px;
+  padding: 0 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ez-ann-note-actions button.is-ghost {
+  border: 1px solid #d8e0ea;
+  color: #526278;
+  background: #fff;
+}
+
+.ez-ann-note-actions button.is-primary {
+  border: 1px solid #7c3aed;
+  color: #fff;
+  background: #7c3aed;
+}
+
+.ez-btn-precision .ez-ann-count {
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  border-radius: 999px;
+  color: #5b21b6;
+  background: #ede9fe;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.ez-btn-precision.active .ez-ann-count {
+  color: #fff;
+  background: rgba(255, 255, 255, .24);
+}
+
+.ez-reading-hint strong {
+  color: #5b21b6;
+}
+
+@media (max-width: 680px) {
+  .ez-ann-toolbar {
+    max-width: calc(100vw - 16px);
+    gap: 4px;
+    padding: 5px 6px;
+  }
+  .ez-ann-color {
+    width: 23px;
+    height: 23px;
+  }
+}
