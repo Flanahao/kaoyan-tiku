@@ -168,6 +168,7 @@
     if (toolbar && toolbar.isConnected) return toolbar;
 
     toolbar = document.createElement('div');
+    toolbar.id = 'ezAnnotationToolbar';
     toolbar.className = 'ez-ann-toolbar';
     toolbar.hidden = true;
     toolbar.setAttribute('role', 'toolbar');

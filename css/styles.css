@@ -8713,31 +8713,58 @@ body {
 
 .ez-annotation-scope::selection,
 .ez-annotation-scope *::selection {
+  background: rgba(96, 165, 250, .34);
   color: inherit;
-  background: rgba(147, 197, 253, .48);
 }
 
+/*
+ * 关键修复：
+ * 标注区域中的单词不能再带左右 padding，
+ * 否则 mark 会看起来像一个个断开的块。
+ */
+.ez-annotation-scope .ez-word {
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/*
+ * mark 自己也不能有 padding / margin / radius。
+ * 这样 word mark + space mark 会拼成真正的一条。
+ */
 mark.ez-ann-mark {
   display: inline;
-  margin: 0;
-  padding: 0 1px;
-  border: 0;
-  border-radius: 2px;
-  color: inherit;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: inherit !important;
   background: transparent;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
 }
 
-mark.ez-ann--yellow { background: rgba(250, 204, 21, .38); }
-mark.ez-ann--green  { background: rgba(74, 222, 128, .30); }
-mark.ez-ann--blue   { background: rgba(96, 165, 250, .28); }
-mark.ez-ann--pink   { background: rgba(244, 114, 182, .28); }
+/* 更鲜明的实体荧光笔配色 */
+mark.ez-ann-mark.ez-ann--yellow {
+  background: #FFD43B !important;
+}
+
+mark.ez-ann-mark.ez-ann--green {
+  background: #69DB7C !important;
+}
+
+mark.ez-ann-mark.ez-ann--blue {
+  background: #74C0FC !important;
+}
+
+mark.ez-ann-mark.ez-ann--pink {
+  background: #F783AC !important;
+}
 
 mark.ez-ann-mark.is-underline {
   text-decoration-line: underline;
-  text-decoration-color: #7c3aed;
-  text-decoration-thickness: 2px;
+  text-decoration-color: #7C3AED;
+  text-decoration-thickness: 2.5px;
   text-underline-offset: 3px;
 }
 
@@ -8815,10 +8842,10 @@ mark.ez-ann-mark.has-note:not(.ez-ann--yellow):not(.ez-ann--green):not(.ez-ann--
   transform: translateY(-1px) scale(1.06);
 }
 
-.ez-ann-color.is-yellow { background: #fde68a; }
-.ez-ann-color.is-green  { background: #bbf7d0; }
-.ez-ann-color.is-blue   { background: #bfdbfe; }
-.ez-ann-color.is-pink   { background: #fbcfe8; }
+.ez-ann-color.is-yellow { background: #FFD43B !important; }
+.ez-ann-color.is-green  { background: #69DB7C !important; }
+.ez-ann-color.is-blue   { background: #74C0FC !important; }
+.ez-ann-color.is-pink   { background: #F783AC !important; }
 
 .ez-ann-sep {
   width: 1px;
@@ -8942,6 +8969,13 @@ mark.ez-ann-mark.has-note:not(.ez-ann--yellow):not(.ez-ann--green):not(.ez-ann--
   background: #7c3aed;
 }
 
+.ez-btn-precision.active {
+  color: #6D28D9 !important;
+  border-color: #C4B5FD !important;
+  background: #F5F3FF !important;
+}
+
+.ez-ann-count,
 .ez-btn-precision .ez-ann-count {
   min-width: 19px;
   height: 19px;
@@ -8975,5 +9009,189 @@ mark.ez-ann-mark.has-note:not(.ez-ann--yellow):not(.ez-ann--green):not(.ez-ann--
   .ez-ann-color {
     width: 23px;
     height: 23px;
+  }
+}
+
+/* ======================================================================
+   Reading Part A — Focus split workspace
+   ====================================================================== */
+
+.ez-reading-focus-shell {
+  display: grid;
+  /* 约 47 / 53，和目标刷题工作台一致 */
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+  height: max(620px, calc(100vh - 230px));
+  max-height: 860px;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #DCE4EE;
+  border-radius: 16px;
+  background: #F8FAFC;
+  box-shadow: 0 12px 34px rgba(25, 48, 78, .08);
+}
+
+.ez-reading-focus-pane {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+/* LEFT: 文章独立滚动 */
+.ez-reading-focus-passage {
+  border-right: 1px solid #DCE4EE;
+  background: #FFF;
+}
+
+.ez-reading-focus-passage .ez-passage-card {
+  min-height: 100%;
+  padding: 24px 28px 48px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #FFF;
+}
+
+.ez-reading-focus-passage .ez-passage-body,
+.ez-reading-focus-passage .ez-reading-hint {
+  max-width: 76ch;
+}
+
+.ez-reading-focus-passage .ez-para-en {
+  font-size: clamp(17px, 1.28vw, 20px);
+  line-height: 2.02;
+}
+
+/* RIGHT: 题目独立滚动 */
+.ez-reading-focus-qa {
+  padding: 22px 24px 42px;
+  background: #F7F9FC;
+}
+
+/* 顶部题号 tabs */
+.ez-reading-q-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -22px -24px 18px;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid #DFE6EF;
+  background: rgba(247, 249, 252, .96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ez-reading-qtab {
+  min-width: 86px;
+  min-height: 38px;
+  padding: 7px 13px;
+  border: 1px solid #D7E0EB;
+  border-radius: 10px;
+  color: #475569;
+  background: #FFF;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .03);
+  transition: all .16s ease;
+}
+
+.ez-reading-qtab:hover {
+  border-color: #A8B7CA;
+  color: #1E293B;
+}
+
+.ez-reading-qtab.is-active {
+  color: #FFF;
+  border-color: #7E22CE;
+  background: linear-gradient(135deg, #86198F, #7E22CE);
+  box-shadow: 0 5px 14px rgba(126, 34, 206, .22);
+}
+
+.ez-reading-qdot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #D5DEEA;
+  vertical-align: 1px;
+}
+
+.ez-reading-qtab.is-active .ez-reading-qdot {
+  background: rgba(255, 255, 255, .9);
+}
+
+.ez-reading-qtab.status-proficient .ez-reading-qdot { background: #22C55E; }
+.ez-reading-qtab.status-familiar .ez-reading-qdot   { background: #14B8A6; }
+.ez-reading-qtab.status-vague .ez-reading-qdot      { background: #F59E0B; }
+.ez-reading-qtab.status-rusty .ez-reading-qdot      { background: #F97316; }
+.ez-reading-qtab.status-wrong .ez-reading-qdot      { background: #EF4444; }
+
+.ez-reading-focus-titlebar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E7EDF4;
+}
+
+.ez-reading-focus-titlebar strong {
+  color: #1E293B;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ez-reading-focus-titlebar small {
+  color: #8492A6;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.ez-reading-question-stage .ez-question-card {
+  margin: 0;
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: #FFF;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, .055);
+}
+
+/* 新模式已经用题号 tab 表达 active，不需要再给 card 一圈很重的蓝框 */
+.ez-reading-question-stage .ez-question-card.is-active {
+  border-color: #D9E2EC;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, .055);
+}
+
+.ez-reading-question-stage .ez-q-stem {
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1120px) {
+  .ez-reading-focus-shell {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .ez-reading-focus-pane {
+    overflow: visible;
+  }
+
+  .ez-reading-focus-passage {
+    border-right: 0;
+    border-bottom: 1px solid #DCE4EE;
+  }
+
+  .ez-reading-q-tabs {
+    position: static;
+    margin-top: 0;
   }
 }

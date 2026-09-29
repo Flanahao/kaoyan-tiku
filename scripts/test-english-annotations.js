@@ -12,8 +12,8 @@ const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'css/styles.css'), 'utf8');
 
 // 1. 文件加载顺序与版本断言
-assert.match(html, /<script src="js\/english-annotations\.js\?v=20260929a"><\/script>\s*<script src="js\/english\.js\?v=20260929a"><\/script>/, 'english-annotations 必须在 english.js 之前加载');
-assert.match(html, /css\/styles\.css\?v=20260929a/, 'styles.css 版本必须更新');
+assert.match(html, /<script src="js\/english-annotations\.js\?v=20260929[ab]"><\/script>\s*<script src="js\/english\.js\?v=20260929[ab]"><\/script>/, 'english-annotations 必须在 english.js 之前加载');
+assert.match(html, /css\/styles\.css\?v=20260929[ab]/, 'styles.css 版本必须更新');
 
 // 2. 存储键契约
 assert.match(annotations, /STORAGE_KEY\s*=\s*['"]user_guest_kaoyan_english_text_annot_v1['"]/, '标注持久化键必须为 user_guest_kaoyan_english_text_annot_v1');
@@ -31,6 +31,9 @@ assert.match(english, /id="ezBtnPrecision"/, 'Toolbar 必须包含精读标注�
 assert.match(english, /ez-para-en\s+ez-annotation-scope/, '正文必须挂载 ez-annotation-scope');
 assert.match(english, /ez-q-stem\s+ez-annotation-scope/, '题干必须挂载 ez-annotation-scope');
 assert.match(english, /window\.EnglishAnnotations\.afterRender\(panel\)/, 'render 之后必须调用 EnglishAnnotations.afterRender');
+assert.match(english, /function renderReadingFocusWorkspaceV2/, '必须包含 renderReadingFocusWorkspaceV2 双栏刷题渲染');
+assert.match(english, /function captureReadingPassageScroll/, '必须包含 captureReadingPassageScroll 滚动位置保存');
+assert.match(english, /function restoreReadingPassageScroll/, '必须包含 restoreReadingPassageScroll 滚动位置恢复');
 
 // 5. CSS 样式契约
 assert.match(css, /\.ez-annotation-scope/, '必须包含 .ez-annotation-scope');
@@ -39,6 +42,10 @@ assert.match(css, /\.ez-ann-toolbar/, '必须包含 .ez-ann-toolbar');
 assert.match(css, /\.ez-ann-note-pin/, '必须包含 .ez-ann-note-pin');
 assert.match(css, /\.ez-ann-note-editor/, '必须包含 .ez-ann-note-editor');
 assert.match(css, /\.ez-btn-precision/, '必须包含 .ez-btn-precision');
+assert.match(css, /\.ez-reading-focus-shell/, '必须包含 .ez-reading-focus-shell');
+assert.match(css, /\.ez-reading-focus-passage/, '必须包含 .ez-reading-focus-passage');
+assert.match(css, /\.ez-reading-focus-qa/, '必须包含 .ez-reading-focus-qa');
+assert.match(css, /\.ez-reading-qtab/, '必须包含 .ez-reading-qtab');
 
 // 6. 纯算法单元验证：re-anchor 重定位机制
 // 测试当文本由于小幅修改而在 offset 偏移时，通过 quote + prefix/suffix 重新锚定

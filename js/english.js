@@ -29,6 +29,23 @@
   var expandedExplanations = {};
   var activeQuestionId = null;
   var editingNotes = {}; // { [qid]: boolean }
+  var readingPassageScrollTop = 0;
+
+  function captureReadingPassageScroll() {
+    var passagePane = panel.querySelector('.ez-reading-focus-passage');
+    if (passagePane) {
+      readingPassageScrollTop = passagePane.scrollTop;
+    }
+  }
+
+  function restoreReadingPassageScroll() {
+    window.requestAnimationFrame(function () {
+      var passagePane = panel.querySelector('.ez-reading-focus-passage');
+      if (passagePane) {
+        passagePane.scrollTop = readingPassageScrollTop;
+      }
+    });
+  }
 
   var zhentiStatuses = loadStorageJson(STORAGE_ZHENTI_STATUS_KEY, {});
   var zhentiUserAnswers = loadStorageJson(STORAGE_ZHENTI_ANSWERS_KEY, {});
@@ -665,6 +682,7 @@
   // 3. 页面主渲染调度入口 (Render Router)
   // =========================================================================
   function render() {
+    captureReadingPassageScroll();
     var zvCount = (zhentiVocabData && zhentiVocabData.items) ? zhentiVocabData.items.length : 0;
     var topTabsHtml =
       '<div class="english-top-tabs">' +
@@ -694,6 +712,8 @@
         typeof window.EnglishAnnotations.afterRender === 'function') {
       window.EnglishAnnotations.afterRender(panel);
     }
+
+    restoreReadingPassageScroll();
   }
 
   // =========================================================================
@@ -1290,6 +1310,63 @@
     '</aside>';
   }
 
+  function renderReadingFocusWorkspaceV2(section, questions) {
+    if (!questions || !questions.length) {
+      return (
+        '<div class="ez-reading-focus-shell">' +
+          '<section class="ez-reading-focus-pane ez-reading-focus-passage">' +
+            renderPassageV2(section) +
+          '</section>' +
+          '<section class="ez-reading-focus-pane ez-reading-focus-qa">' +
+            '<div class="section-empty">当前阅读模块暂无题目。</div>' +
+          '</section>' +
+        '</div>'
+      );
+    }
+
+    var activeIndex = questions.findIndex(function (question) {
+      return question.id === activeQuestionId;
+    });
+
+    if (activeIndex < 0) {
+      activeIndex = 0;
+    }
+
+    var activeQuestion = questions[activeIndex];
+
+    var tabsHtml = questions.map(function (question, index) {
+      var status = zhentiStatuses[question.id] || 'unmarked';
+      var active = question.id === activeQuestion.id;
+
+      return (
+        '<button class="ez-reading-qtab status-' + status + (active ? ' is-active' : '') + '" type="button" data-reading-q-id="' + escapeHtml(question.id) + '">' +
+          '<span class="ez-reading-qdot" aria-hidden="true"></span>' +
+          '第 ' + escapeHtml(question.num || index + 1) + ' 题' +
+        '</button>'
+      );
+    }).join('');
+
+    return (
+      '<div class="ez-reading-focus-shell">' +
+        '<section class="ez-reading-focus-pane ez-reading-focus-passage">' +
+          renderPassageV2(section) +
+        '</section>' +
+        '<section class="ez-reading-focus-pane ez-reading-focus-qa">' +
+          '<div class="ez-reading-q-tabs" aria-label="阅读题号">' +
+            tabsHtml +
+          '</div>' +
+          '<div class="ez-reading-focus-titlebar">' +
+            '<strong>' + curYear + ' · ' + escapeHtml(section.displayTitle) + '</strong>' +
+            '<small>单击单词查词 · 拖选精读</small>' +
+          '</div>' +
+          '<div class="ez-reading-question-stage">' +
+            renderQuestionV2(activeQuestion, activeIndex, section) +
+          '</div>' +
+        '</section>' +
+      '</div>'
+    );
+  }
+
   function renderZhentiModuleV2() {
     var manifest = getManifest();
     var section = getCurrentSection();
@@ -1300,6 +1377,14 @@
     if (!section) return toolbar + '<div class="section-empty">未找到该年份真题内容。</div>';
 
     var questions = section.questions || [];
+
+    /*
+     * Reading Part A 使用沉浸双栏模式：
+     * 左文章，右当前题。
+     */
+    if (section.type === 'reading') {
+      return toolbar + renderReadingFocusWorkspaceV2(section, questions);
+    }
     var typeClass = String(section.type || 'reading').replace(/[^a-z0-9_-]/gi, '');
     var main = '<main class="ez-main-content">' + renderSectionHeroV2(section, questions);
     if (section.type === 'writingA' || section.type === 'writingB') {
@@ -1332,6 +1417,7 @@
           localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
         }
         activeQuestionId = null;
+        readingPassageScrollTop = 0;
         render();
       });
     }
@@ -1848,6 +1934,18 @@
           curSectionId = secId;
           localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
           activeQuestionId = null;
+          readingPassageScrollTop = 0;
+          render();
+        }
+        return;
+      }
+
+      // (1.5) 阅读 Part A 双栏工作区题号 Tab 切换
+      var readingQTab = target.closest ? target.closest('.ez-reading-qtab') : null;
+      if (readingQTab) {
+        var readingQid = readingQTab.dataset.readingQId;
+        if (readingQid) {
+          activeQuestionId = readingQid;
           render();
         }
         return;
