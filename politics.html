@@ -1,98 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>政治知识导图 - 考研题库</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>考研政治知识导图 - 2027徐涛大纲 692考点体系</title>
+  <link rel="icon" href="data:,">
+  
+  <!-- 离线样式库：KaTeX + SimpleMindMap + 认知导图与大纲系统规范 -->
+  <link rel="stylesheet" href="lib/katex/katex.min.css">
+  <link rel="stylesheet" href="lib/simple-mind-map/simpleMindMap.min.css">
+  <link rel="stylesheet" href="css/cognitive_mindmap.css">
+  <link rel="stylesheet" href="css/cognitive_view.css">
   <link rel="stylesheet" href="css/politics.css">
 </head>
 <body class="politics-page">
-  <div class="politics-shell">
-    <main class="politics-canvas-stage">
-      <div id="politicsGraph"></div>
-    </main>
+  <!-- 导图与大纲双视图挂载容器 -->
+  <div id="mindMapContainer"></div>
+  <div id="outlinerContainer"></div>
 
-    <div class="politics-floating-left">
-      <a class="politics-back" href="index.html">← 题库</a>
-      <span class="politics-mode-badge">导图</span>
+  <!-- 顶部悬浮控制栏 -->
+  <header class="politics-top-dock">
+    <div class="dock-left">
+      <a class="nav-back-btn" href="index.html" title="返回题库主站 (Esc)">
+        <span class="icon">←</span>
+        <span>题库</span>
+      </a>
+      <span class="brand-title">政治知识导图</span>
+      <span class="version-badge">2027徐涛 692考点</span>
     </div>
 
-    <div class="politics-floating-right">
-      <button
-        id="btnPoliticsRelations"
-        class="politics-pill is-active"
-        type="button"
-        aria-pressed="true"
-      >
-        关联线：开
+    <!-- 学科切换胶囊组 -->
+    <nav class="subject-tabs-nav" id="politicsSubjectTabs">
+      <button type="button" class="subj-tab-btn active" data-scope="pol_macro" title="全景宏观视角 (包含全部六大学科及历史分期)">全景全量</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_sg" title="中国近现代史纲要 (156考点)">史纲</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_my" title="马克思主义基本原理 (129考点)">马原</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_mzt" title="毛泽东思想和中国特色社会主义理论体系概论 (68考点)">毛中特</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_xg" title="习近平新时代中国特色社会主义思想概论 (240考点)">习概</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_sx" title="思想道德与法治 (95考点)">思法</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_xs" title="形势与政策与当代世界经济与政治 (4考点)">当代</button>
+      <button type="button" class="subj-tab-btn" data-scope="pol_periods" title="五大历史时期时空纵览">历史脉络</button>
+    </nav>
+
+    <!-- 快捷功能药丸组 -->
+    <div class="dock-right">
+      <button type="button" class="dock-pill-btn" id="btnToggleView" title="导图 / 大纲视图切换 (M)">
+        <span>大纲</span>
+        <kbd>M</kbd>
       </button>
-      <button id="btnPoliticsFit" class="politics-pill" type="button">
-        适应内容 F
+      <button type="button" class="dock-pill-btn is-active" id="btnToggleLines" title="切换跨学科拓扑关联线 (L)">
+        <span class="pill-dot"></span>
+        <span>关联线：开</span>
+        <kbd>L</kbd>
       </button>
-      <button id="btnPoliticsReset" class="politics-pill" type="button">
-        复位 0
+      <button type="button" class="dock-pill-btn" id="btnFitView" title="自适应画布与居中 (F)">
+        <span>自适应</span>
+        <kbd>F</kbd>
+      </button>
+      <button type="button" class="dock-pill-btn" id="btnShortcutDrawer" title="快捷键操作指南 (H / ?)">
+        <span>快捷键</span>
+        <kbd>H</kbd>
       </button>
     </div>
+  </header>
 
-    <aside
-      id="politicsInspector"
-      class="politics-inspector"
-      aria-live="polite"
-    ></aside>
-
-    <div class="politics-zoom-panel">
-      <button
-        id="btnPoliticsZoomOut"
-        class="politics-icon-btn"
-        type="button"
-      >
-        −
-      </button>
-
-      <input
-        id="politicsZoomRange"
-        type="range"
-        min="18"
-        max="180"
-        value="72"
-        aria-label="缩放"
-      >
-
-      <button
-        id="btnPoliticsZoomIn"
-        class="politics-icon-btn"
-        type="button"
-      >
-        ＋
-      </button>
-
-      <span id="politicsZoomText">72%</span>
+  <!-- 节点考点深度解析浮层 (PoliticsDetailInspector) -->
+  <aside class="politics-detail-inspector" id="politicsInspector" style="display:none;" aria-live="polite">
+    <div class="inspector-header">
+      <div class="inspector-title-wrap">
+        <span class="inspector-badge" id="inspBadge">考点精解</span>
+        <h3 class="inspector-title" id="inspTitle">马克思主义的内涵及构成</h3>
+      </div>
+      <button type="button" class="inspector-close-btn" id="btnInspClose" title="关闭 (Esc)">✕</button>
     </div>
-
-    <div class="politics-canvas-hint">
-      <strong id="politicsVisibleCount">加载中…</strong>
-      <span>拖动画布 · 滚轮缩放 · 双击或 ± 展开</span>
+    <div class="inspector-body" id="inspBody">
+      <!-- 动态注入 summary, keyPoints, traps, compare, mnemonic, sourceRefs, relations -->
     </div>
+  </aside>
 
-    <div
-      id="politicsErrorBanner"
-      class="politics-error-banner"
-      hidden
-    ></div>
-  </div>
+  <!-- 离线基础库：Marked + KaTeX + DOMPurify + 统一渲染引擎 -->
+  <script src="lib/dompurify/purify.min.js"></script>
+  <script src="lib/marked/marked.umd.min.js"></script>
+  <script src="lib/katex/katex.min.js"></script>
+  <script src="lib/katex/contrib/auto-render.min.js"></script>
+  <script src="js/markdown_latex.js"></script>
 
-  <!--
-    V1.1 不再加载 G6。
-    lib/g6 文件保留，不删除。
-  -->
+  <!-- SimpleMindMap 离线核心与全套思维导图工具集 -->
+  <script src="lib/simple-mind-map/simpleMindMap.umd.min.js"></script>
+  <script src="js/mindmap/mindmap_drag_enhancer.js"></script>
+  <script src="js/mindmap/mindmap_node_renderer.js"></script>
+  <script src="js/mindmap/mindmap_node_editor.js"></script>
+  <script src="js/mindmap/mindmap_outliner.js"></script>
+  <script src="js/mindmap/dual_view_controller.js"></script>
+  <script src="js/mindmap/mindmap_shortcut_drawer.js"></script>
+  <script src="js/mindmap/mindmap_bottom_toolbar.js"></script>
+  <script src="js/mindmap/mindmap_structure_controller.js"></script>
+  <script src="js/mindmap/mindmap_shortcut_manager.js"></script>
 
-  <script src="js/politics/config.js"></script>
-  <script src="js/politics/data-loader.js"></script>
-  <script src="js/politics/data-validator.js"></script>
-  <script src="js/politics/store.js"></script>
-  <script src="js/politics/projection.js"></script>
-  <script src="js/politics/layout.js"></script>
-  <script src="js/politics/graph.js"></script>
-  <script src="js/politics/app.js"></script>
+  <!-- 政治科学知识数据事实层与应用控制器 -->
+  <script src="data/politics/bundle.js"></script>
+  <script src="js/politics/politics_data_adapter.js"></script>
+  <script src="js/politics/politics_mindmap_controller.js"></script>
+  <script src="js/politics/politics_app.js"></script>
 </body>
 </html>

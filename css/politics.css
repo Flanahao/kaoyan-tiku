@@ -1,15 +1,37 @@
-/* Politics V1.1 — minimal infinite-canvas mind-map UI */
+/**
+ * 考研政治认知思维导图 · 样式系统 (Politics MindMap Design System)
+ * 忠实承袭 kaoyan-tiku_hengguo 的现代极简商务高质感美学：
+ * - 纯净微米级点阵底纹画布 (#f8f9fa)
+ * - 顶部居中毛玻璃微型浮动导航坞 (PoliticsTopDock)
+ * - 学科多维切换胶囊组 (SubjectTabsNav)
+ * - 考点深度解析浮层卡片 (PoliticsDetailInspector)
+ * - 完美适配 SimpleMindMap 矢量卡片与平滑贝塞尔拓扑流线
+ */
 
 :root {
-  --pol-bg: #f7f9fc;
-  --pol-surface: rgba(255, 255, 255, .94);
-  --pol-border: #dbe4ef;
-  --pol-text: #172033;
-  --pol-muted: #66758c;
-  --pol-blue: #2563eb;
-  --pol-shadow:
-    0 8px 28px
-    rgba(36, 55, 80, .11);
+  --pol-bg: #f8f9fa;
+  --pol-surface: rgba(255, 255, 255, 0.94);
+  --pol-surface-solid: #ffffff;
+  --pol-border: #dee0e3;
+  --pol-border-light: #eff0f1;
+  --pol-text: #1f2329;
+  --pol-text-secondary: #4e5969;
+  --pol-text-muted: #8f959e;
+  --pol-brand: #3370ff;
+  --pol-brand-light: #e8f3ff;
+  --pol-brand-hover: #295bcc;
+  --pol-shadow-sm: 0 2px 8px rgba(31, 35, 41, 0.05);
+  --pol-shadow-md: 0 6px 20px rgba(31, 35, 41, 0.08);
+  --pol-shadow-lg: 0 12px 36px rgba(31, 35, 41, 0.14);
+
+  /* 学科专属主题色 Token */
+  --subj-sg: #b91c1c;   /* 史纲 · 革命赤红 */
+  --subj-my: #1d4ed8;   /* 马原 · 哲理深蓝 */
+  --subj-mzt: #c2410c;  /* 毛中特 · 探索暖橙 */
+  --subj-xg: #dc2626;   /* 习概 · 时代中国红 */
+  --subj-sx: #4338ca;   /* 思法 · 德法靛青 */
+  --subj-xs: #0f766e;   /* 当代 · 寰宇松石 */
+  --subj-periods: #b45309; /* 历史时期 · 岁月琥珀 */
 }
 
 * {
@@ -21,1187 +43,548 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 body.politics-page {
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 1px 1px,
-      rgba(148, 163, 184, .18) 1px,
-      transparent 1.2px
-    )
-    0 0 / 24px 24px,
-
-    var(--pol-bg);
-
-  color:
-    var(--pol-text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "PingFang SC",
-    "Microsoft YaHei",
-    Arial,
-    sans-serif;
+  background-color: var(--pol-bg);
+  background-image: radial-gradient(#dcdfe6 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--pol-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.politics-shell {
-  position: relative;
-
+/* ─────────────────────────────────────────────────────────────
+   1. 导图与大纲画布挂载容器
+   ───────────────────────────────────────────────────────────── */
+#mindMapContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-}
-
-.politics-canvas-stage,
-#politicsGraph {
-  position: absolute;
-  inset: 0;
-}
-
-#politicsGraph {
-  overflow: hidden;
-  cursor: grab;
-}
-
-#politicsGraph.is-panning {
-  cursor: grabbing;
-}
-
-.politics-svg-canvas {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  touch-action: none;
-  user-select: none;
-
   outline: none;
+  touch-action: none;
+  overscroll-behavior: none;
+  z-index: 1;
 }
 
-/* =========================
-   Floating UI
-   ========================= */
-
-.politics-floating-left,
-.politics-floating-right,
-.politics-zoom-panel,
-.politics-canvas-hint,
-.politics-inspector {
+#outlinerContainer {
   position: absolute;
-  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  outline: none;
+  z-index: 2;
+  overflow-y: auto;
+  display: none;
 }
 
-.politics-floating-left {
-  top: 18px;
-  left: 18px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
+#outlinerContainer.active {
+  display: block;
 }
 
-.politics-floating-right {
-  top: 18px;
-  right: 18px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
+/* 彻底清除 SimpleMindMap foreignObject 内部默认多余 margin/padding */
+#mindMapContainer foreignObject > div:not(.mm-node-card),
+#mindMapContainer foreignObject p {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  line-height: inherit !important;
 }
 
-.politics-pill,
-.politics-icon-btn,
-.politics-back {
-  border:
-    1px solid
-    rgba(
-      203,
-      213,
-      225,
-      .95
-    );
-
-  background:
-    var(--pol-surface);
-
-  color:
-    #334155;
-
-  box-shadow:
-    0 3px 14px
-    rgba(
-      15,
-      23,
-      42,
-      .07
-    );
-
-  backdrop-filter:
-    blur(10px);
-}
-
-.politics-back,
-.politics-pill {
-  min-height: 34px;
-
-  padding:
-    0 13px;
-
-  border-radius:
-    10px;
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  gap: 6px;
-
-  font-size:
-    13px;
-
-  font-weight:
-    650;
-
-  text-decoration:
-    none;
-
-  cursor:
-    pointer;
-}
-
-.politics-pill:hover,
-.politics-back:hover {
-  border-color:
-    #94a3b8;
-
-  background:
-    #fff;
-}
-
-.politics-pill.is-active {
-  background:
-    #2563eb;
-
-  border-color:
-    #2563eb;
-
-  color:
-    #fff;
-}
-
-.politics-mode-badge {
-  min-height: 34px;
-
-  padding:
-    0 13px;
-
-  border-radius:
-    10px;
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  font-size:
-    13px;
-
-  font-weight:
-    750;
-
-  color:
-    #1d4ed8;
-
-  background:
-    #eff6ff;
-
-  border:
-    1px solid
-    #bfdbfe;
-}
-
-/* =========================
-   Zoom
-   ========================= */
-
-.politics-zoom-panel {
-  left: 18px;
-  bottom: 18px;
-
-  height: 42px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  padding:
-    6px 9px;
-
-  border:
-    1px solid
-    rgba(
-      203,
-      213,
-      225,
-      .95
-    );
-
-  border-radius:
-    12px;
-
-  background:
-    var(--pol-surface);
-
-  box-shadow:
-    var(--pol-shadow);
-
-  backdrop-filter:
-    blur(12px);
-}
-
-.politics-icon-btn {
-  width: 28px;
-  height: 28px;
-
-  border-radius:
-    8px;
-
-  cursor:
-    pointer;
-
-  font-size:
-    15px;
-
-  font-weight:
-    800;
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    0;
-
-  line-height:
-    1;
-}
-
-.politics-icon-btn:hover {
-  background:
-    #f8fafc;
-}
-
-#politicsZoomRange {
-  width: 94px;
-
-  accent-color:
-    var(--pol-blue);
-}
-
-#politicsZoomText {
-  min-width: 40px;
-
-  color:
-    #475569;
-
-  font-size:
-    12px;
-
-  font-weight:
-    700;
-
-  text-align:
-    center;
-
-  font-variant-numeric:
-    tabular-nums;
-}
-
-.politics-canvas-hint {
+/* ─────────────────────────────────────────────────────────────
+   2. 顶部悬浮控制栏 (PoliticsTopDock)
+   ───────────────────────────────────────────────────────────── */
+.politics-top-dock {
+  position: fixed;
+  top: 14px;
   left: 50%;
-  bottom: 18px;
-
-  transform:
-    translateX(-50%);
-
-  min-height:
-    38px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    10px;
-
-  padding:
-    0 14px;
-
-  border-radius:
-    11px;
-
-  border:
-    1px solid
-    rgba(
-      219,
-      228,
-      239,
-      .96
-    );
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .92
-    );
-
-  box-shadow:
-    0 3px 16px
-    rgba(
-      15,
-      23,
-      42,
-      .06
-    );
-
-  color:
-    #64748b;
-
-  font-size:
-    12px;
-
-  white-space:
-    nowrap;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 14px;
+  background: var(--pol-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--pol-border);
+  border-radius: 28px;
+  box-shadow: var(--pol-shadow-md);
+  white-space: nowrap;
 }
 
-.politics-canvas-hint strong {
-  color:
-    #334155;
-
-  font-weight:
-    750;
+.dock-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 10px;
+  border-right: 1px solid var(--pol-border);
+  flex-shrink: 0;
 }
 
-.politics-error-banner {
-  position:
-    absolute;
-
-  left:
-    50%;
-
-  top:
-    78px;
-
-  transform:
-    translateX(-50%);
-
-  z-index:
-    60;
-
-  max-width:
-    min(
-      720px,
-      calc(
-        100vw -
-        36px
-      )
-    );
-
-  padding:
-    12px 16px;
-
-  border-radius:
-    10px;
-
-  background:
-    #fff1f2;
-
-  border:
-    1px solid
-    #fecdd3;
-
-  color:
-    #9f1239;
-
-  font-size:
-    13px;
-
-  box-shadow:
-    var(--pol-shadow);
+.nav-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--pol-text-secondary);
+  background: #f2f3f5;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.15s ease;
 }
 
-/* =========================
-   Timeline
-   ========================= */
-
-.politics-timeline-spine {
-  fill: none;
-
-  stroke:
-    #2563eb;
-
-  stroke-width:
-    4;
-
-  stroke-linecap:
-    round;
-
-  opacity:
-    .86;
+.nav-back-btn:hover {
+  background: #e5e6eb;
+  color: var(--pol-brand);
 }
 
-.politics-period-marker rect {
-  fill:
-    rgba(
-      255,
-      255,
-      255,
-      .92
-    );
-
-  stroke:
-    #dbeafe;
-
-  stroke-width:
-    1;
-
-  filter:
-    url(#pol-shadow);
+.brand-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pol-text);
+  letter-spacing: -0.2px;
 }
 
-.politics-period-marker text {
-  fill:
-    #3b5b83;
-
-  font-size:
-    12px;
-
-  font-weight:
-    700;
+.version-badge {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--pol-brand);
+  background: var(--pol-brand-light);
+  padding: 2px 7px;
+  border-radius: 10px;
 }
 
-/* =========================
-   Edges
-   ========================= */
-
-.politics-tree-edge {
-  fill: none;
-
-  stroke-width:
-    2;
-
-  stroke-linecap:
-    round;
-
-  stroke-linejoin:
-    round;
-
-  opacity:
-    .72;
+/* ─────────────────────────────────────────────────────────────
+   3. 学科切换胶囊组 (SubjectTabsNav)
+   ───────────────────────────────────────────────────────────── */
+.subject-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0f2f5;
+  padding: 3px;
+  border-radius: 20px;
 }
 
-.politics-relation-edge {
-  fill:
-    none;
-
-  stroke-width:
-    1.15;
-
-  stroke-linecap:
-    round;
-
-  opacity:
-    .12;
-
-  transition:
-    opacity .15s,
-    stroke-width .15s;
+.subj-tab-btn {
+  border: none;
+  background: transparent;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--pol-text-secondary);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
 }
 
-.politics-relation-edge.is-active,
-.politics-relation-edge.is-hovered {
-  stroke-width:
-    2;
-
-  opacity:
-    .74;
+.subj-tab-btn:hover {
+  color: var(--pol-text);
+  background: rgba(255, 255, 255, 0.6);
 }
 
-.politics-relation-count {
-  pointer-events: none;
-  opacity: .45;
-  transition: opacity .15s, filter .15s;
+.subj-tab-btn.active {
+  background: var(--pol-surface-solid);
+  color: var(--pol-brand);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(31, 35, 41, 0.1);
 }
 
-.politics-relation-count.is-active,
-.politics-relation-count.is-hovered {
-  opacity: 1;
-  filter: drop-shadow(0 2px 5px rgba(37, 99, 235, .25));
+/* ─────────────────────────────────────────────────────────────
+   4. 右侧快捷功能药丸组 (DockRight)
+   ───────────────────────────────────────────────────────────── */
+.dock-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 8px;
+  border-left: 1px solid var(--pol-border);
+  flex-shrink: 0;
 }
 
-.politics-relation-count.is-active circle,
-.politics-relation-count.is-hovered circle {
-  stroke: #2563eb;
-  stroke-width: 1.5;
+.dock-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border: 1px solid var(--pol-border);
+  background: var(--pol-surface-solid);
+  color: var(--pol-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.politics-relation-count circle {
-  fill:
-    #fff;
-
-  stroke:
-    #cbd5e1;
+.dock-pill-btn:hover {
+  background: #f7f8fa;
+  border-color: #c9cdd4;
+  color: var(--pol-text);
 }
 
-.politics-relation-count text {
-  fill:
-    #475569;
-
-  font-size:
-    10px;
-
-  font-weight:
-    800;
+.dock-pill-btn.is-active {
+  background: var(--pol-brand-light);
+  border-color: #badbff;
+  color: var(--pol-brand);
 }
 
-/* =========================
-   Node
-   ========================= */
-
-.politics-node-fo {
-  overflow:
-    visible;
+.dock-pill-btn .pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8f959e;
+  transition: background 0.15s ease;
 }
 
-.politics-node-card {
-  position:
-    relative;
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    8px;
-
-  padding:
-    0 12px;
-
-  border:
-    1px solid
-    #dfe6ef;
-
-  border-radius:
-    7px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .97
-    );
-
-  box-shadow:
-    0 1px 3px
-    rgba(
-      15,
-      23,
-      42,
-      .08
-    );
-
-  color:
-    #273449;
-
-  cursor:
-    pointer;
-
-  overflow:
-    visible;
+.dock-pill-btn.is-active .pill-dot {
+  background: var(--pol-brand);
+  box-shadow: 0 0 6px var(--pol-brand);
 }
 
-.politics-node-card:hover {
-  border-color:
-    color-mix(
-      in srgb,
-      var(--node-color)
-        45%,
-      #dfe6ef
-    );
-
-  box-shadow:
-    0 4px 14px
-    rgba(
-      15,
-      23,
-      42,
-      .10
-    );
+.dock-pill-btn kbd {
+  font-size: 10px;
+  font-family: inherit;
+  padding: 1px 4px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  color: var(--pol-text-muted);
 }
 
-.politics-node-card.is-selected {
-  border-color:
-    var(--node-color);
-
-  box-shadow:
-    0 0 0 2px
-      color-mix(
-        in srgb,
-        var(--node-color)
-          18%,
-        transparent
-      ),
-
-    0 6px 18px
-      rgba(
-        15,
-        23,
-        42,
-        .12
-      );
+/* ─────────────────────────────────────────────────────────────
+   5. 考点深度解析浮层卡片 (PoliticsDetailInspector)
+   ───────────────────────────────────────────────────────────── */
+.politics-detail-inspector {
+  position: fixed;
+  top: 72px;
+  right: 22px;
+  width: 440px;
+  max-width: calc(100vw - 44px);
+  max-height: calc(100vh - 96px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--pol-border);
+  border-radius: 14px;
+  box-shadow: var(--pol-shadow-lg);
+  z-index: 12000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: inspectorSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.politics-node-accent {
-  width:
-    4px;
-
-  height:
-    62%;
-
-  border-radius:
-    99px;
-
-  flex:
-    0 0 auto;
-
-  background:
-    var(--node-color);
-}
-
-.politics-node-title {
-  min-width:
-    0;
-
-  flex:
-    1;
-
-  overflow:
-    hidden;
-
-  text-overflow:
-    ellipsis;
-
-  white-space:
-    nowrap;
-
-  font-size:
-    12px;
-
-  font-weight:
-    560;
-
-  line-height:
-    1.2;
-}
-
-/* Book */
-
-.politics-node-card.kind-book {
-  justify-content:
-    center;
-
-  padding:
-    0 18px;
-
-  border-color:
-    var(--node-color);
-
-  background:
-    var(--node-color);
-
-  color:
-    #fff;
-
-  box-shadow:
-    0 5px 16px
-    color-mix(
-      in srgb,
-      var(--node-color)
-        22%,
-      transparent
-    );
-}
-
-.politics-node-card.kind-book
-.politics-node-accent {
-  display:
-    none;
-}
-
-.politics-node-card.kind-book
-.politics-node-title {
-  flex:
-    0 1 auto;
-
-  font-size:
-    13px;
-
-  font-weight:
-    800;
-
-  text-align:
-    center;
-}
-
-/* Chapter */
-
-.politics-node-card.kind-chapter {
-  border-color:
-    color-mix(
-      in srgb,
-      var(--node-color)
-        26%,
-      #dfe6ef
-    );
-
-  background:
-    #fff;
-}
-
-.politics-node-card.kind-chapter
-.politics-node-title {
-  font-size:
-    12px;
-
-  font-weight:
-    720;
-}
-
-/* Section */
-
-.politics-node-card.kind-section {
-  background:
-    color-mix(
-      in srgb,
-      var(--node-pale)
-        52%,
-      #fff
-    );
-}
-
-.politics-node-card.kind-section
-.politics-node-title {
-  color:
-    var(--node-text);
-
-  font-weight:
-    650;
-}
-
-/* Point */
-
-.politics-node-card.kind-point {
-  border-color:
-    #e5eaf1;
-
-  box-shadow:
-    0 1px 2px
-    rgba(
-      15,
-      23,
-      42,
-      .05
-    );
-}
-
-.politics-node-card.kind-point
-.politics-node-title {
-  font-size:
-    11px;
-
-  font-weight:
-    520;
-}
-
-/* Expand Toggle */
-
-.politics-node-toggle {
-  position:
-    absolute;
-
-  top:
-    50%;
-
-  z-index:
-    3;
-
-  width:
-    18px;
-
-  height:
-    18px;
-
-  transform:
-    translateY(-50%);
-
-  padding:
-    0;
-
-  border-radius:
-    50%;
-
-  border:
-    1px solid
-    color-mix(
-      in srgb,
-      var(--node-color)
-        48%,
-      #cbd5e1
-    );
-
-  background:
-    #fff;
-
-  color:
-    var(--node-color);
-
-  font:
-    800 13px/15px
-    Arial,
-    sans-serif;
-
-  cursor:
-    pointer;
-
-  box-shadow:
-    0 1px 4px
-    rgba(
-      15,
-      23,
-      42,
-      .08
-    );
-}
-
-.politics-node-toggle.on-right {
-  right:
-    -10px;
-}
-
-.politics-node-toggle.on-left {
-  left:
-    -10px;
-}
-
-.kind-book
-.politics-node-toggle {
-  color:
-    #fff;
-
-  background:
-    var(--node-color);
-
-  border-color:
-    #fff;
-}
-
-/* =========================
-   LOD-like far zoom
-   ========================= */
-
-#politicsGraph.is-far-zoom
-.kind-point
-.politics-node-title {
-  opacity:
-    .2;
-}
-
-#politicsGraph.is-far-zoom
-.kind-section
-.politics-node-title {
-  opacity:
-    .72;
-}
-
-/* =========================
-   Inspector
-   ========================= */
-
-.politics-inspector {
-  top:
-    68px;
-
-  right:
-    18px;
-
-  width:
-    310px;
-
-  max-height:
-    calc(
-      100vh -
-      142px
-    );
-
-  padding:
-    16px;
-
-  border:
-    1px solid
-    #dbe4ef;
-
-  border-radius:
-    14px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .96
-    );
-
-  box-shadow:
-    0 14px 38px
-    rgba(
-      15,
-      23,
-      42,
-      .13
-    );
-
-  backdrop-filter:
-    blur(14px);
-
-  opacity:
-    0;
-
-  transform:
-    translateX(16px);
-
-  pointer-events:
-    none;
-
-  transition:
-    opacity .16s,
-    transform .16s;
-
-  overflow:
-    auto;
-}
-
-.politics-inspector.is-open {
-  opacity:
-    1;
-
-  transform:
-    translateX(0);
-
-  pointer-events:
-    auto;
-}
-
-.politics-inspector-head {
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-}
-
-.politics-inspector-book {
-  padding:
-    3px 8px;
-
-  border-radius:
-    999px;
-
-  background:
-    #eff6ff;
-
-  color:
-    #1d4ed8;
-
-  font-size:
-    11px;
-
-  font-weight:
-    800;
-}
-
-#btnInspectorClose {
-  border:
-    0;
-
-  background:
-    transparent;
-
-  color:
-    #64748b;
-
-  font-size:
-    20px;
-
-  cursor:
-    pointer;
-}
-
-.politics-inspector h2 {
-  margin:
-    12px 0 8px;
-
-  font-size:
-    16px;
-
-  line-height:
-    1.45;
-}
-
-.politics-inspector p {
-  margin:
-    0;
-
-  color:
-    #526278;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.7;
-}
-
-.politics-inspector-tags {
-  display:
-    flex;
-
-  flex-wrap:
-    wrap;
-
-  gap:
-    6px;
-
-  margin-top:
-    12px;
-}
-
-.politics-inspector-tags span {
-  padding:
-    3px 7px;
-
-  border-radius:
-    6px;
-
-  background:
-    #f1f5f9;
-
-  color:
-    #64748b;
-
-  font-size:
-    11px;
-}
-
-.politics-inspector-expand {
-  width:
-    100%;
-
-  margin-top:
-    14px;
-
-  height:
-    34px;
-
-  border:
-    0;
-
-  border-radius:
-    8px;
-
-  background:
-    #2563eb;
-
-  color:
-    #fff;
-
-  font-weight:
-    750;
-
-  cursor:
-    pointer;
-}
-
-/* =========================
-   Responsive
-   ========================= */
-
-@media (
-  max-width:
-    800px
-) {
-  .politics-floating-right
-  .politics-pill:not(.is-active) {
-    display:
-      none;
+@keyframes inspectorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
   }
-
-  .politics-canvas-hint {
-    display:
-      none;
-  }
-
-  .politics-inspector {
-    left:
-      12px;
-
-    right:
-      12px;
-
-    top:
-      auto;
-
-    bottom:
-      70px;
-
-    width:
-      auto;
-
-    max-height:
-      42vh;
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
+
+.inspector-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 16px 10px 16px;
+  border-bottom: 1px solid var(--pol-border-light);
+  background: #fafbfc;
+}
+
+.inspector-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 12px;
+}
+
+.inspector-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ff7d00;
+  background: #fff7e8;
+  border: 1px solid #ffe4ba;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.inspector-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pol-text);
+  line-height: 1.45;
+}
+
+.inspector-close-btn {
+  border: none;
+  background: transparent;
+  color: var(--pol-text-muted);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.inspector-close-btn:hover {
+  background: #f2f3f5;
+  color: var(--pol-text);
+}
+
+.inspector-body {
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.inspector-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.inspector-body::-webkit-scrollbar-thumb {
+  background: #c9cdd4;
+  border-radius: 3px;
+}
+
+.insp-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.insp-section-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pol-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.insp-source-tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: #00b42a;
+  background: #e8ffea;
+  border: 1px solid #aff0b5;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.insp-summary-box {
+  background: #f8f9fc;
+  border-left: 3px solid var(--pol-brand);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+  color: var(--pol-text);
+}
+
+.insp-key-list,
+.insp-trap-list,
+.insp-compare-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.insp-traps {
+  background: #fff7e8;
+  border: 1px solid #ffe4ba;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.insp-traps .insp-section-label {
+  color: #d46b08;
+}
+
+.insp-trap-list li {
+  color: #ad4e00;
+}
+
+.insp-compare {
+  background: #f9f0ff;
+  border: 1px solid #efdbff;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.insp-compare .insp-section-label {
+  color: #722ed1;
+}
+
+.insp-mnemonic-pill {
+  font-weight: 600;
+  color: #0958d9;
+  background: #e6f4ff;
+  border: 1px dashed #91caff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.insp-relations .insp-relation-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.insp-rel-card {
+  background: #ffffff;
+  border: 1px solid #dee0e3;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.insp-rel-card:hover {
+  border-color: var(--pol-brand);
+  box-shadow: 0 4px 12px rgba(51, 112, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.insp-rel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.insp-rel-type {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--pol-brand);
+  background: var(--pol-brand-light);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.insp-jump-btn {
+  border: none;
+  background: transparent;
+  color: var(--pol-brand);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.insp-jump-btn:hover {
+  text-decoration: underline;
+}
+
+.insp-rel-note {
+  font-size: 12px;
+  color: var(--pol-text-secondary);
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+
+.insp-rel-target {
+  font-size: 11px;
+  color: var(--pol-text-muted);
+}
+
+.insp-rel-target strong {
+  color: var(--pol-text);
+  font-weight: 500;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   6. 节点卡片强化样式 (搭配 cognitive_mindmap.css)
+   ───────────────────────────────────────────────────────────── */
+.mm-node-card.level-0.is-root {
+  background: #3370ff !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(51, 112, 255, 0.3) !important;
+}
+
+.mm-node-card.role-book,
+.mm-node-card.level-1 {
+  background: #ffffff !important;
+  border: 1.5px solid #badbff !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(31, 35, 41, 0.06) !important;
+}
+
+.mm-node-card.role-chapter {
+  font-weight: 500 !important;
+}
+
+.mm-node-tag.mm-tag-exam {
+  background: #fff0f0 !important;
+  color: #d9001b !important;
+  border: 1px solid #ffccd1 !important;
+}
+
+.mm-node-tag.mm-tag-thm {
+  background: #f0f5ff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #d0e2ff !important;
+}
+
+.mm-node-tag.mm-tag-key {
+  background: #fff7e8 !important;
+  color: #d46b08 !important;
+  border: 1px solid #ffe4ba !important;
+}
+
+.mm-node-tag.mm-tag-knowledge {
+  background: #e6fffb !important;
+  color: #08979c !important;
+  border: 1px solid #87e8de !important;
+}
+
+.mm-node-tag.mm-tag-section {
+  background: #f4f5f7 !important;
+  color: #4e5969 !important;
+  border: 1px solid #e5e6eb !important;
+}
+
+/* 修复长小节标题与操作胶囊按钮拥挤碰撞问题 */
+.mm-node-card.role-section {
+  max-width: 520px !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+.mm-node-card.role-section .mm-node-content {
+  flex: 1 1 auto !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  min-width: 0 !important;
+}
+
+.mm-node-card.role-section .mm-node-tag,
+.mm-node-card.role-section .mm-node-action-pill {
+  flex-shrink: 0 !important;
+}
+
