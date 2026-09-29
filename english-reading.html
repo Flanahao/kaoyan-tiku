@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>英语阅读精读 - 考研题库</title>
+
+  <!-- 独立精读页面自己的样式，避免 8300+ 行主样式互相污染 -->
+  <link rel="stylesheet" href="css/english-reading.css?v=20260929c">
+</head>
+
+<body class="er-page">
+  <div id="englishReadingApp" class="er-app" aria-live="polite">
+
+    <header id="erHeader" class="er-header"></header>
+
+    <main class="er-workspace">
+      <section class="er-pane er-passage-pane" aria-label="阅读原文">
+        <div id="erPassageScroll" class="er-scroll er-passage-scroll">
+          <div id="erPassage"></div>
+        </div>
+      </section>
+
+      <section class="er-pane er-question-pane" aria-label="题目作答">
+        <div id="erQuestionTabs" class="er-question-tabs"></div>
+
+        <div id="erQuestionScroll" class="er-scroll er-question-scroll">
+          <div id="erQuestion"></div>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <div id="erToast" class="er-toast" role="status" aria-live="polite"></div>
+  <div id="erFatal" class="er-fatal" hidden></div>
+
+  <!-- 与主站相同的数据源 / 安全库 -->
+  <script src="lib/dompurify/purify.min.js"></script>
+  <script src="data/english/english-zhenti-manifest.js"></script>
+  <script src="data/english/english-zhenti-data.js"></script>
+
+  <!-- 复用现有精读标注引擎 -->
+  <script src="js/english-annotations.js?v=20260929c"></script>
+
+  <!-- 专门的沉浸式阅读控制器 -->
+  <script src="js/english-reading.js?v=20260929c"></script>
+</body>
+</html>

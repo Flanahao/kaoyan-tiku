@@ -12,8 +12,8 @@ const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'css/styles.css'), 'utf8');
 
 // 1. 文件加载顺序与版本断言
-assert.match(html, /<script src="js\/english-annotations\.js\?v=20260929[ab]"><\/script>\s*<script src="js\/english\.js\?v=20260929[ab]"><\/script>/, 'english-annotations 必须在 english.js 之前加载');
-assert.match(html, /css\/styles\.css\?v=20260929[ab]/, 'styles.css 版本必须更新');
+assert.match(html, /<script src="js\/english-annotations\.js\?v=20260929[abc]"><\/script>\s*<script src="js\/english\.js\?v=20260929[abc]"><\/script>/, 'english-annotations 必须在 english.js 之前加载');
+assert.match(html, /css\/styles\.css\?v=20260929[abc]/, 'styles.css 版本必须更新');
 
 // 2. 存储键契约
 assert.match(annotations, /STORAGE_KEY\s*=\s*['"]user_guest_kaoyan_english_text_annot_v1['"]/, '标注持久化键必须为 user_guest_kaoyan_english_text_annot_v1');

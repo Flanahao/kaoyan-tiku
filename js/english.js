@@ -1310,6 +1310,28 @@
     '</aside>';
   }
 
+  function openImmersiveReading(sectionId, questionId) {
+    var yearData = getCurrentYearData();
+    var section = yearData && Array.isArray(yearData.sections)
+      ? yearData.sections.find(function (item) { return String(item.id) === String(sectionId); })
+      : null;
+
+    if (!section || section.type !== 'reading') {
+      return;
+    }
+
+    curSectionId = section.id;
+    localStorage.setItem(STORAGE_ZHENTI_YEAR_KEY, String(curYear));
+    localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
+
+    var url = 'english-reading.html?year=' + encodeURIComponent(curYear) + '&section=' + encodeURIComponent(curSectionId);
+    if (questionId) {
+      url += '&q=' + encodeURIComponent(questionId);
+    }
+    window.location.href = url;
+  }
+  window.openImmersiveReading = openImmersiveReading;
+
   function renderReadingFocusWorkspaceV2(section, questions) {
     if (!questions || !questions.length) {
       return (
@@ -1357,7 +1379,10 @@
           '</div>' +
           '<div class="ez-reading-focus-titlebar">' +
             '<strong>' + curYear + ' · ' + escapeHtml(section.displayTitle) + '</strong>' +
-            '<small>单击单词查词 · 拖选精读</small>' +
+            '<div style="display:inline-flex;gap:8px;align-items:center;">' +
+              '<small>单击单词查词 · 拖选精读</small>' +
+              '<button class="ez-reading-open-immersive-btn" data-action="openImmersiveReading" data-sec-id="' + escapeHtml(section.id) + '" type="button" style="background:#2f80ed;color:#fff;border:none;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;cursor:pointer;">沉浸精读 ↗</button>' +
+            '</div>' +
           '</div>' +
           '<div class="ez-reading-question-stage">' +
             renderQuestionV2(activeQuestion, activeIndex, section) +
@@ -1931,12 +1956,35 @@
       if (target.classList.contains('ez-pill')) {
         var secId = parseInt(target.dataset.secId, 10);
         if (secId) {
+          var yData = getCurrentYearData();
+          var nextSection = yData && Array.isArray(yData.sections)
+            ? yData.sections.find(function (section) { return section.id === secId; })
+            : null;
+
+          /*
+           * 用户需求：点击 Reading Part A / Text 1~4 药丸直接进入专用沉浸式精读页面
+           */
+          if (nextSection && nextSection.type === 'reading') {
+            openImmersiveReading(secId);
+            return;
+          }
+
+          /*
+           * 其他题型 (完形填空、新题型、翻译、作文) 维持现有 workbench
+           */
           curSectionId = secId;
           localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
           activeQuestionId = null;
           readingPassageScrollTop = 0;
           render();
         }
+        return;
+      }
+
+      // (1.2) 点击“沉浸精读 ↗”按钮直接进入专用沉浸精读页面
+      if (target.dataset.action === 'openImmersiveReading' || target.classList.contains('ez-reading-open-immersive-btn')) {
+        var openSecId = target.dataset.secId || curSectionId;
+        openImmersiveReading(openSecId, activeQuestionId);
         return;
       }
 
@@ -2368,4 +2416,35 @@
     }
   });
 
+  /* =========================================================
+     PATCH 3 — english.js:
+     auto-return to English workbench after immersive reading
+     ========================================================= */
+  (function reopenEnglishAfterImmersiveReading() {
+    var query = new URLSearchParams(window.location.search);
+    var shouldReopen = query.get('openEnglish') === '1' || sessionStorage.getItem('openEnglishAfterReading') === '1';
+    if (!shouldReopen) {
+      return;
+    }
+
+    sessionStorage.removeItem('openEnglishAfterReading');
+
+    function doOpen() {
+      if (typeof window.switchSubject === 'function') {
+        window.switchSubject('english');
+      }
+      open();
+      try {
+        var clean = new URL(window.location.href);
+        clean.searchParams.delete('openEnglish');
+        window.history.replaceState(null, '', clean.pathname + clean.search + clean.hash);
+      } catch (error) {}
+    }
+
+    // Run after initAppSession and openStartupDashboard complete
+    setTimeout(doOpen, 50);
+    setTimeout(doOpen, 200);
+  })();
+
 })();
+
