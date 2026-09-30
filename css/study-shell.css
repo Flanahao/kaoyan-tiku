@@ -78,6 +78,28 @@ html.subject-focus-shell .workbench-body {
   margin: 0 auto;
 }
 
+/* 总进度独享宽布局；章节刷题仍沿用原本的阅读宽度。 */
+@media (min-width: 1121px) {
+  html.subject-focus-shell .app-layout.dashboard-wide .workbench-body {
+    width: min(1680px, calc(100% - 80px));
+    max-width: none;
+    box-sizing: border-box;
+    padding-inline: clamp(18px, 2vw, 32px);
+  }
+
+  html.subject-focus-shell .app-layout.dashboard-wide .main-content,
+  html.subject-focus-shell .app-layout.dashboard-wide .main-area {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  html.subject-focus-shell .app-layout.dashboard-wide .main-area {
+    box-sizing: border-box;
+    align-items: stretch;
+  }
+}
+
 .focus-home-btn,
 .focus-quick-btn,
 .focus-more-btn {

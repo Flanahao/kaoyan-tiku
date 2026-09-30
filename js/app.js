@@ -1780,6 +1780,10 @@
           'english-mode',
           nextView === 'english'
         );
+        layout.classList.toggle(
+          'dashboard-wide',
+          nextView === 'dashboard'
+        );
       }
 
       setPracticeSidebarVisible(

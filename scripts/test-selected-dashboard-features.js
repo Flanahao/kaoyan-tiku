@@ -26,7 +26,7 @@ const english =
   read('js/english.js');
 
 const html =
-  read('index.html');
+  read('study.html');
 
 const css =
   read('css/styles.css');

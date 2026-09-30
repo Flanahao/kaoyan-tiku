@@ -22,7 +22,7 @@ def serve_repo():
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     try:
-        yield f"http://127.0.0.1:{server.server_port}/index.html"
+        yield f"http://127.0.0.1:{server.server_port}/study.html?subject=shu1"
     finally:
         server.shutdown()
         server.server_close()
@@ -66,7 +66,9 @@ async def open_dashboard(browser, url, width, height=1000):
         """() =>
           Array.isArray(window.SUBJECTS) &&
           window.SUBJECTS.length >= 2 &&
-          document.getElementById('btnDashboard')
+          document.getElementById('btnDashboard') &&
+          typeof window.getWorkbenchView === 'function' &&
+          window.getWorkbenchView() === 'practice'
         """
     )
 
@@ -139,9 +141,14 @@ async def test_desktop_geometry(browser, url):
 
     assert await page.locator("#dbQuickGrid .db-side-widget").count() == 2
 
-    # 1440 桌面：快捷区和书籍区都采用 3 列轨道。
-    assert await grid_column_count(page, "#dbQuickGrid") == 3
+    # 1440 桌面：快捷区两列平分，书籍区三列。
+    assert await grid_column_count(page, "#dbQuickGrid") == 2
     assert await grid_column_count(page, "#dbGrid") == 3
+    assert await page.locator(".app-layout").evaluate(
+        "el => el.classList.contains('dashboard-wide')"
+    )
+    main_area = await page.locator("#mainArea").bounding_box()
+    assert main_area and main_area["width"] > 1050, main_area
 
     quick_boxes = await page.locator(
         "#dbQuickGrid .db-side-widget"
@@ -169,12 +176,20 @@ async def test_desktop_geometry(browser, url):
     # 书籍前三张同一行。
     assert max(b["y"] for b in book_boxes) - min(b["y"] for b in book_boxes) <= 2
 
-    # 快捷卡正好对齐书籍三列的前两列。
-    for i in (0, 1):
-        assert abs(quick_boxes[i]["x"] - book_boxes[i]["x"]) <= 3
-        assert abs(quick_boxes[i]["width"] - book_boxes[i]["width"]) <= 3
+    # 两张快捷卡占满整行，与书籍区左右边缘对齐。
+    books_grid = await page.locator("#dbGrid").bounding_box()
+    assert books_grid
+    assert abs(quick_boxes[0]["x"] - books_grid["x"]) <= 3
+    assert abs(quick_boxes[1]["x"] + quick_boxes[1]["width"] -
+               books_grid["x"] - books_grid["width"]) <= 3
 
     await assert_no_horizontal_overflow(page, "1440 desktop")
+    await page.evaluate("document.getElementById('btnDashboard').click()")
+    assert not await page.locator(".app-layout").evaluate(
+        "el => el.classList.contains('dashboard-wide')"
+    )
+    practice_area = await page.locator("#mainArea").bounding_box()
+    assert practice_area and practice_area["width"] <= 1040, practice_area
     assert not errors, "unexpected browser errors:\n" + "\n".join(errors)
     await context.close()
 
@@ -202,10 +217,13 @@ async def test_widget_actions(browser, url):
 
 
 async def test_responsive(browser, url):
-    # 规则：>=1200 三列；621..1199 两列；<=620 单列。
+    # 宽桌面四列、中桌面三列、平板两列、手机单列。
     cases = [
+        (1664, 4),
+        (1536, 4),
+        (1480, 3),
         (1280, 3),
-        (1200, 3),
+        (1120, 2),
         (1024, 2),
         (768, 2),
         (620, 1),
@@ -216,7 +234,8 @@ async def test_responsive(browser, url):
     for width, expected_cols in cases:
         context, page, errors = await open_dashboard(browser, url, width, 900)
 
-        assert await grid_column_count(page, "#dbQuickGrid") == expected_cols, (
+        expected_quick_cols = 1 if width <= 620 else 2
+        assert await grid_column_count(page, "#dbQuickGrid") == expected_quick_cols, (
             width,
             await page.locator("#dbQuickGrid").evaluate(
                 "(el) => getComputedStyle(el).gridTemplateColumns"
@@ -228,6 +247,17 @@ async def test_responsive(browser, url):
                 "(el) => getComputedStyle(el).gridTemplateColumns"
             ),
         )
+
+        if expected_cols == 4:
+            first_four = await page.locator("#dbGrid .db-donut-card").evaluate_all(
+                """els => els.slice(0, 4).map(el => {
+                  const r = el.getBoundingClientRect();
+                  return {y:r.y, width:r.width};
+                })"""
+            )
+            assert len(first_four) == 4
+            assert max(card["y"] for card in first_four) - min(card["y"] for card in first_four) <= 2
+            assert all(card["width"] >= 284 for card in first_four), first_four
 
         hero = await page.locator("#dbHeroCard").bounding_box()
         insights = await page.locator("#studyInsights").bounding_box()

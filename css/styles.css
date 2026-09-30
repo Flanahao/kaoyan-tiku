@@ -5085,7 +5085,7 @@ body {
   }
 }
 
-/* ===== Dashboard layout v2：Hero 满行 + 快捷卡移位 + 书籍三列 ===== */
+/* ===== Dashboard layout：Hero 满行 + 快捷卡移位 + 书籍响应式四列 ===== */
 
 /* db-overview 当前是 align-items:center，所以 Hero 不写宽度会按内容收缩。
    这里只让 Hero 明确铺满，不改变其它现有分析卡/统计卡的宽度语义。 */
@@ -5102,15 +5102,13 @@ body {
   min-width: 0;
 }
 
-/* “今日复习计划 / 错题集中攻克”放到截图标出的上方位置。
-   桌面端采用与书籍卡完全相同的 3 列轨道，只占前两格，
-   不创建第三个空白 DOM 卡片。 */
+/* 两张快捷卡平分可用宽度，避免总进度加宽后右侧留下空轨道。 */
 .db-quick-grid {
   width: 100%;
   min-width: 0;
   align-self: stretch;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
   margin: 0 0 24px;
@@ -5205,11 +5203,11 @@ body {
   background: #DCE6F4 !important;
 }
 
-/* 桌面端一行 3 张进度卡。 */
+/* 宽桌面一行 4 张进度卡，原始 260px 圆环仍能完整显示。 */
 .db-books-section .db-grid {
   width: 100%;
   min-width: 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -5236,9 +5234,14 @@ body {
   margin: 0 auto;
 }
 
-/* 中等桌面/平板：260px donut + 卡片 padding 不适合硬塞三列，改两列。 */
-@media (max-width: 1199px) {
-  .db-quick-grid,
+/* 中等桌面三列，平板两列；缩小窗口或浏览器放大时不挤压圆环。 */
+@media (max-width: 1480px) {
+  .db-books-section .db-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1120px) {
   .db-books-section .db-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
