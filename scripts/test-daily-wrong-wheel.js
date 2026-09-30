@@ -4,7 +4,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const htmlSource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const htmlSource = fs.existsSync(path.join(root, 'study.html'))
+  ? fs.readFileSync(path.join(root, 'study.html'), 'utf8')
+  : fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const wheelSource = fs.readFileSync(path.join(root, 'js/daily-wrong-wheel.js'), 'utf8');
 const appSource = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
 const cssSource = fs.readFileSync(path.join(root, 'css/styles.css'), 'utf8');

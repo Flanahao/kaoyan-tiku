@@ -110,7 +110,7 @@
     return ['eng',year,section.id,section.type].join(':');
   }
   function goBack(){
-    var target=payload&&payload.returnUrl?payload.returnUrl:'index.html?return=english';
+    var target=payload&&payload.returnUrl?payload.returnUrl:'study.html?subject=english';
     location.href=target;
   }
   function toggleBilingual(){

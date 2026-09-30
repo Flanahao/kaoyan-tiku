@@ -38,7 +38,7 @@
       year:year,
       section:section,
       questionIndex:Number(options.questionIndex)||0,
-      returnUrl:'index.html?return=english',
+      returnUrl:'study.html?subject=english',
       createdAt:Date.now()
     };
     sessionStorage.setItem(PAYLOAD_KEY,JSON.stringify(payload));

@@ -1,0 +1,209 @@
+/*
+ * Subject focus shell for the existing study.html.
+ * IMPORTANT: we visually hide the old global sidebar; we DO NOT delete its DOM.
+ * Existing app.js still binds several controls by id, so removing those nodes can break the app.
+ */
+html.subject-focus-shell,
+html.subject-focus-shell body {
+  background: #f3f7fc;
+}
+
+html.subject-focus-shell .sidebar-left,
+html.subject-focus-shell .sidebar-backdrop,
+html.subject-focus-shell #sidebarBackdrop,
+html.subject-focus-shell .mobile-menu-toggle,
+html.subject-focus-shell #btnMobileMenu {
+  display: none !important;
+}
+
+html.subject-focus-shell .app-layout {
+  width: 100% !important;
+  min-height: 100vh;
+}
+
+html.subject-focus-shell .app-workbench {
+  width: 100% !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+html.subject-focus-shell .account-bar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  min-height: 64px;
+  padding: 8px 18px !important;
+  border-bottom: 1px solid rgba(119, 151, 191, .16);
+  background: rgba(255, 255, 255, .90) !important;
+  box-shadow: 0 8px 25px rgba(33, 78, 131, .06);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+html.subject-focus-shell .header-nav-left {
+  gap: 12px;
+  min-width: 0;
+}
+
+html.subject-focus-shell .header-breadcrumbs {
+  min-width: 0;
+}
+
+html.subject-focus-shell .crumb-root {
+  font-weight: 800;
+  color: #17324d;
+}
+
+html.subject-focus-shell .crumb-current {
+  color: #6f8298;
+}
+
+html.subject-focus-shell .header-nav-center {
+  display: none !important;
+}
+
+html.subject-focus-shell .header-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+html.subject-focus-shell #syncStatus {
+  display: none !important;
+}
+
+html.subject-focus-shell .workbench-body {
+  width: min(1600px, 100%);
+  margin: 0 auto;
+}
+
+.focus-home-btn,
+.focus-quick-btn,
+.focus-more-btn {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(98, 132, 180, .16);
+  border-radius: 12px;
+  background: #fff;
+  color: #536b86;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .16s ease;
+  box-shadow: 0 4px 14px rgba(43, 82, 126, .045);
+}
+
+.focus-home-btn {
+  padding: 0 12px;
+  color: #1557a6;
+  border-color: rgba(47, 128, 237, .18);
+  background: #f5f9ff;
+}
+
+.focus-quick-btn,
+.focus-more-btn {
+  padding: 0 11px;
+}
+
+.focus-home-btn:hover,
+.focus-quick-btn:hover,
+.focus-more-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(91, 92, 224, .32);
+  color: #6941d7;
+}
+
+.focus-subject-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 11px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(100deg, #2f80ed, #7c5cff);
+  box-shadow: 0 7px 16px rgba(73, 91, 210, .15);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.focus-subject-chip::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.18);
+}
+
+.focus-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.focus-more-wrap {
+  position: relative;
+}
+
+.focus-more-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 178px;
+  display: none;
+  padding: 7px;
+  border: 1px solid rgba(99, 130, 173, .16);
+  border-radius: 15px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 18px 38px rgba(37, 67, 110, .14);
+}
+
+.focus-more-menu.show {
+  display: grid;
+  gap: 4px;
+}
+
+.focus-more-menu button {
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #4f6883;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.focus-more-menu button:hover {
+  background: #f1f6ff;
+  color: #1557a6;
+}
+
+@media (max-width: 900px) {
+  html.subject-focus-shell .account-bar {
+    padding: 8px 10px !important;
+  }
+  html.subject-focus-shell .header-breadcrumbs {
+    display: none;
+  }
+  .focus-quick-btn[data-focus-action="dashboard"],
+  .focus-quick-btn[data-focus-action="sm2"] {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .focus-home-btn { padding: 0 9px; }
+  .focus-home-btn .focus-home-text { display: none; }
+  .focus-subject-chip { max-width: 104px; overflow: hidden; text-overflow: ellipsis; }
+  .focus-quick-btn { padding: 0 9px; }
+  .focus-quick-btn .focus-btn-label { display: none; }
+}

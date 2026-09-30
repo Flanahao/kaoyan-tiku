@@ -8,7 +8,9 @@ const ROOT = path.resolve(__dirname, '..');
 const app = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');
 const english = fs.readFileSync(path.join(ROOT, 'js/english.js'), 'utf8');
 const annotations = fs.readFileSync(path.join(ROOT, 'js/english-annotations.js'), 'utf8');
-const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const html = fs.existsSync(path.join(ROOT, 'study.html'))
+  ? fs.readFileSync(path.join(ROOT, 'study.html'), 'utf8')
+  : fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'css/styles.css'), 'utf8');
 
 // 1. 文件加载顺序与版本断言

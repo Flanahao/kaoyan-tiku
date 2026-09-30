@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>考研题库 - 全功能专业版</title>
+  <link rel="stylesheet" href="lib/katex/katex.min.css">
+  <link rel="stylesheet" href="css/styles.css?v=20260929c">
+  <link rel="stylesheet" href="css/study-shell.css?v=20260930">
+  <script src="js/study-route-bootstrap.js?v=20260930"></script>
+</head>
+<body>
+
+  <!-- 保护性兼容节点 -->
+  <div id="authGate" style="display: none;" hidden></div>
+
+  <!-- 主应用 Shell（纯本地单机模式直接进入） -->
+  <div id="appShell">
+
+    <!-- 侧边栏遮罩（移动端抽屉展开时） -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <div class="app-layout">
+
+      <!-- 左侧深海军蓝导航栏 -->
+      <aside class="sidebar-left" id="sidebarLeft">
+        <svg class="icon-sprite" id="sidebar-svg-icons" aria-hidden="true" focusable="false">
+          <symbol id="icon-cap" viewBox="0 0 24 24">
+            <path d="M3 9.2 12 5l9 4.2L12 13 3 9.2Z"></path>
+            <path d="M6.5 11.3v4.1c3 2.2 8 2.2 11 0v-4.1"></path>
+            <path d="M21 9.2v5"></path>
+          </symbol>
+          <symbol id="icon-lightbulb" viewBox="0 0 24 24">
+            <path d="M9 18h6M10 21h4"></path>
+            <path d="M8.2 14.5A6.5 6.5 0 1 1 16 14c-.8.6-1.1 1.6-1.1 2.5H9.2c0-.8-.3-1.5-1-2Z"></path>
+          </symbol>
+          <symbol id="icon-books" viewBox="0 0 24 24">
+            <path d="m5 4 3-1 4 15-3 1L5 4Z"></path>
+            <path d="m11 3 3-.4 2 15.5-3 .4L11 3Z"></path>
+            <path d="m16 5 3 .7-2.8 12-3-.7L16 5Z"></path>
+          </symbol>
+          <symbol id="icon-refresh" viewBox="0 0 24 24">
+            <path d="M20 11a8 8 0 0 0-14.8-3L3 11"></path>
+            <path d="M3 5v6h6"></path>
+            <path d="M4 13a8 8 0 0 0 14.8 3L21 13"></path>
+            <path d="M21 19v-6h-6"></path>
+          </symbol>
+          <symbol id="icon-book-open" viewBox="0 0 24 24">
+            <path d="M3.5 5.5A2.5 2.5 0 0 1 6 3h5v17H6a2.5 2.5 0 0 0-2.5 2.5v-17Z"></path>
+            <path d="M20.5 5.5A2.5 2.5 0 0 0 18 3h-5v17h5a2.5 2.5 0 0 1 2.5 2.5v-17Z"></path>
+          </symbol>
+          <symbol id="icon-chart" viewBox="0 0 24 24">
+            <path d="M4 19V5M4 19h17"></path>
+            <path d="m7 15 3-4 3 2 5-6"></path>
+          </symbol>
+          <symbol id="icon-type" viewBox="0 0 24 24">
+            <path d="M5 5h14M12 5v14M8 19h8M7 5l-4 14M17 5l4 14"></path>
+          </symbol>
+          <symbol id="icon-keyboard" viewBox="0 0 24 24">
+            <rect x="3" y="6" width="18" height="12" rx="2"></rect>
+            <path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M6 14h8M16 14h2"></path>
+          </symbol>
+        </svg>
+        <div class="sidebar-ambient" aria-hidden="true">
+          <span class="sidebar-orb sidebar-orb-one"></span>
+          <span class="sidebar-orb sidebar-orb-two"></span>
+          <span class="sidebar-grid"></span>
+        </div>
+        <!-- Logo 品牌区 -->
+        <div class="sidebar-brand">
+          <div class="brand-logo-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><use href="#icon-cap"></use></svg>
+          </div>
+          <div class="brand-info">
+            <span class="brand-title">考研题库</span>
+            <span class="brand-subtitle">Smart Study Hub</span>
+          </div>
+          <button class="sidebar-close-btn" id="btnSidebarClose" type="button" aria-label="关闭导航栏">✕</button>
+        </div>
+
+        <div class="sidebar-scroll-container">
+          <!-- 学习专注提示卡 -->
+          <section class="sidebar-focus-card" aria-label="学习提示">
+            <div class="focus-card-top">
+              <span class="focus-card-kicker">STUDY MODE</span>
+              <span class="focus-card-spark" aria-hidden="true"></span>
+            </div>
+            <strong>稳住节奏，逐题推进</strong>
+            <p>一题一题来，稳定就是超能力。</p>
+            <div class="focus-card-line" aria-hidden="true"><span></span></div>
+            <small>本地数据 · 自动保存</small>
+          </section>
+          <!-- 1. 学习 -->
+          <div class="nav-group">
+            <div class="nav-group-title">学习</div>
+            <button id="btnSolDefault" class="sol-default-btn" type="button">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-lightbulb"></use></svg></span>
+              <span class="nav-text">解析默认：隐藏</span>
+              <span class="sol-key">Shift+Space</span>
+            </button>
+            <a id="btnNavPolitics" class="sol-default-btn" href="politics.html" title="进入考研政治知识图谱" style="text-decoration:none;">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-books"></use></svg></span>
+              <span class="nav-text">政治知识图谱</span>
+              <span class="sol-key">图谱</span>
+            </a>
+          </div>
+
+          <!-- 2. 题库 -->
+          <div class="nav-group">
+            <div class="nav-group-title">题库</div>
+            <button id="btnSwitchSubject" class="sol-default-btn" type="button">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-books"></use></svg></span>
+              <span class="nav-text">切换科目</span>
+              <span class="sol-key">G</span>
+            </button>
+
+            <!-- 状态筛选 -->
+            <div class="filter-toolbar" id="filterToolbar">
+              <div class="filter-head">
+                <span class="filter-label">状态筛选</span>
+                <span class="filter-hint">单选过滤</span>
+              </div>
+              <div class="filter-btn-group">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">
+                  <span class="f-dot dot-all"></span>全部 <span class="filter-count"></span><span class="filter-key">Shift+A</span>
+                </button>
+                <button class="filter-btn" data-filter="proficient" aria-pressed="false">
+                  <span class="f-dot dot-proficient"></span>熟练 <span class="filter-count"></span><span class="filter-key">Shift+Z</span>
+                </button>
+                <button class="filter-btn" data-filter="vague" aria-pressed="false">
+                  <span class="f-dot dot-vague"></span>模糊 <span class="filter-count"></span><span class="filter-key">Shift+X</span>
+                </button>
+                <button class="filter-btn" data-filter="wrong" aria-pressed="false">
+                  <span class="f-dot dot-wrong"></span>不会 <span class="filter-count"></span><span class="filter-key">Shift+C</span>
+                </button>
+                <button class="filter-btn" data-filter="unmarked" aria-pressed="false">
+                  <span class="f-dot dot-notes"></span>带笔记 <span class="filter-count"></span><span class="filter-key">Shift+N</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 复习 -->
+          <div class="nav-group">
+            <div class="nav-group-title">复习</div>
+            <button id="btnSm2PanelSidebar" class="sol-default-btn" type="button">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-refresh"></use></svg></span>
+              <span class="nav-text">间隔复习</span>
+              <span class="sol-key">M</span>
+            </button>
+            <button id="btnWrongBook" class="sol-default-btn" type="button">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-book-open"></use></svg></span>
+              <span class="nav-text">错题本</span>
+              <span class="sol-key">B</span>
+            </button>
+          </div>
+
+          <!-- 4. 统计 -->
+          <div class="nav-group">
+            <div class="nav-group-title">统计</div>
+            <button id="btnDashboard" class="sol-default-btn" type="button">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>
+              <span class="nav-text">全局进度</span>
+              <span class="sol-key">V</span>
+            </button>
+          </div>
+
+          <!-- 5. 工具 -->
+          <div class="nav-group">
+            <div class="nav-group-title">工具</div>
+            <div class="export-section">
+              <div class="export-label">数据备份与导出</div>
+              <div class="export-btn-row">
+                <button id="btnBackupExport" class="export-btn" type="button" title="导出全部学习记录 JSON 备份">导出备份</button>
+                <button id="btnBackupImport" class="export-btn" type="button" title="导入学习记录 JSON 备份">导入备份</button>
+                <input id="inputBackupFile" type="file" accept=".json,application/json" style="display:none">
+              </div>
+              <div class="export-btn-row" style="margin-top:4px">
+                <button id="btnExportVague" class="export-btn btn-export-vague" type="button">导出模糊</button>
+                <button id="btnExportWrong" class="export-btn btn-export-wrong" type="button">导出不会</button>
+              </div>
+            </div>
+            <button id="btnShortcutHelp" class="sol-default-btn" type="button">
+              <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-keyboard"></use></svg></span>
+              <span class="nav-text">快捷键帮助</span>
+              <span class="sol-key">H</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 浅灰蓝现代学习工作台 -->
+      <div class="app-workbench">
+
+        <!-- 顶部白色 Header：面包屑、同步状态、当前账号、登出按钮 -->
+        <header class="account-bar">
+          <div class="header-nav-left">
+            <button id="btnMobileMenu" class="mobile-menu-toggle" type="button" aria-label="展开菜单">☰</button>
+            <div class="header-breadcrumbs">
+              <span class="crumb-root">考研题库</span>
+              <span class="crumb-sep">/</span>
+              <span class="crumb-current" id="headerCurrentSection">刷题工作台</span>
+            </div>
+          </div>
+          <div class="header-nav-center">
+            <button
+              id="dailyGoalButton"
+              class="daily-goal-widget"
+              type="button"
+              aria-label="每日小目标：数学 0/20，专业课 0/20。点击设置"
+              title="点击设置每日小目标"
+            >
+              <span class="daily-goal-title">今日目标</span>
+
+              <span class="daily-goal-item" id="dailyGoalMathItem">
+                <span
+                  class="daily-goal-ring"
+                  id="dailyGoalMathRing"
+                  data-short="数"
+                  aria-hidden="true"
+                >
+                  <span id="dailyGoalMathPct">0%</span>
+                </span>
+                <span class="daily-goal-copy">
+                  <strong>数学</strong>
+                  <span id="dailyGoalMathText">0/20</span>
+                </span>
+              </span>
+
+              <span class="daily-goal-item" id="dailyGoalMajorItem">
+                <span
+                  class="daily-goal-ring"
+                  id="dailyGoalMajorRing"
+                  data-short="专"
+                  aria-hidden="true"
+                >
+                  <span id="dailyGoalMajorPct">0%</span>
+                </span>
+                <span class="daily-goal-copy">
+                  <strong>专业课</strong>
+                  <span id="dailyGoalMajorText">0/20</span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="dailyTopicGoalButton"
+              class="daily-topic-goal"
+              aria-haspopup="dialog"
+              aria-controls="dailyTopicGoalModal"
+              aria-label="今日专题：数学 未设置，专业课 未设置。点击设置"
+              title="点击设置今日专题"
+            >
+              <span class="daily-topic-title">今日专题</span>
+
+              <span class="daily-topic-row" data-topic-group="math">
+                <span class="daily-topic-label">数学</span>
+                <span class="daily-topic-name" id="dailyTopicMathName">未设置</span>
+                <span class="daily-topic-progress" id="dailyTopicMathProgress"></span>
+              </span>
+
+              <span class="daily-topic-row" data-topic-group="major">
+                <span class="daily-topic-label">专业课</span>
+                <span class="daily-topic-name" id="dailyTopicMajorName">未设置</span>
+                <span class="daily-topic-progress" id="dailyTopicMajorProgress"></span>
+              </span>
+            </button>
+
+            <button
+              id="dailyMathWheelButton"
+              class="daily-math-wheel-widget"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dailyMathWheelModal"
+              title="打开今日数学推进转盘"
+            >
+              <span class="daily-math-wheel-icon" aria-hidden="true">🎯</span>
+              <span class="daily-math-wheel-copy">
+                <strong>数学转盘</strong>
+                <span id="dailyMathWheelSummary">未抽取</span>
+              </span>
+            </button>
+
+            <button
+              id="dailyMajorWheelButton"
+              class="daily-math-wheel-widget daily-major-wheel-widget"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dailyMathWheelModal"
+              title="打开今日专业课推进转盘"
+            >
+              <span class="daily-math-wheel-icon" aria-hidden="true">🎯</span>
+              <span class="daily-math-wheel-copy">
+                <strong>专业课转盘</strong>
+                <span id="dailyMajorWheelSummary">未抽取</span>
+              </span>
+            </button>
+
+            <button
+              id="dailyWrongWheelButton"
+              class="daily-math-wheel-widget daily-wrong-wheel-widget"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="dailyWrongWheelModal"
+              title="打开今日错题转盘（数学 + 专业课）"
+            >
+              <span class="daily-math-wheel-icon" aria-hidden="true">🔥</span>
+              <span class="daily-math-wheel-copy">
+                <strong>错题转盘</strong>
+                <span id="dailyWrongWheelSummary">未抽取</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="header-nav-right">
+            <span id="syncStatus" class="local-mode-status">本地模式 · 自动保存</span>
+          </div>
+        </header>
+
+        <!-- 工作台主体区域 -->
+        <div class="workbench-body">
+
+          <!-- 中间主内容区 -->
+          <div class="main-content">
+
+            <!-- 顶部三级联动标题导航栏 -->
+            <div class="chapter-title-bar" id="chapterTitleBar">
+              <button class="db-back-btn wb-back-btn" id="btnBackWrongBook" style="display:none">返回错题本</button>
+              <button class="db-back-btn wb-back-btn" id="btnBackDashboard" style="display:none">返回总览</button>
+              <div class="title-dropdown" id="ddWb">
+                <button class="title-trigger" id="trigWb"><span class="title-trigger-text" id="txtWb"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelWb"></div>
+              </div>
+              <div class="title-dropdown" id="ddSubj">
+                <button class="title-trigger" id="trigSubj"><span class="title-trigger-text" id="txtSubj"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelSubj"></div>
+              </div>
+              <div class="title-dropdown" id="ddChapter">
+                <button class="title-trigger" id="trigChapter"><span class="title-trigger-text" id="txtChapter"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelChapter"></div>
+              </div>
+              <div class="title-dropdown wrongbook-wb-dd" id="ddWbWrongbook" style="display:none">
+                <button class="title-trigger wrongbook-wb-trig" id="trigWbWrongbook"><span class="title-trigger-text" id="txtWbWrongbook"></span><span class="title-arrow">▾</span></button>
+                <div class="title-panel" id="panelWbWrongbook"></div>
+              </div>
+              <span class="panel-title" id="panelTitle" style="display:none"></span>
+            </div>
+
+            <div class="main-area" id="mainArea">
+              <div id="mainAreaContent">
+                <!-- 5 级掌握度操作条 -->
+                <div class="mastery-bar">
+                  <span class="mastery-label">掌握状态</span>
+                  <button id="btnProficient" class="gel-btn btn-status" data-status="proficient"><span class="func-name">熟练</span><span class="key">Z</span></button>
+                  <button id="btnFamiliar" class="gel-btn btn-status" data-status="familiar"><span class="func-name">较熟练</span><span class="key">Z+X</span></button>
+                  <button id="btnVague" class="gel-btn btn-status" data-status="vague"><span class="func-name">模糊</span><span class="key">X</span></button>
+                  <button id="btnRusty" class="gel-btn btn-status" data-status="rusty"><span class="func-name">困难</span><span class="key">X+C</span></button>
+                  <button id="btnWrong" class="gel-btn btn-status" data-status="wrong"><span class="func-name">不会</span><span class="key">C</span></button>
+                  <span class="nav-sep">|</span>
+                  <button id="btnQBad" class="gel-btn btn-qbad-toggle"><span class="func-name">题目图不达标</span><span class="key">R</span></button>
+                  <button id="btnSBad" class="gel-btn btn-sbad-toggle"><span class="func-name">解析图不达标</span><span class="key">T</span></button>
+                </div>
+
+                <div class="sm2-info-bar" id="sm2InfoBar" style="display:none"></div>
+                <div id="reviewControls" style="display:none">
+                  <button id="btnReviewPrev">上一题</button>
+                  <button id="btnReviewSkip">跳过</button>
+                  <button id="btnReviewNext">下一题</button>
+                </div>
+
+                <div class="img-bad-warning" id="qBadWarning">题目图质量不达标</div>
+                <div class="q-label" id="qLabel"></div>
+                <div class="sub-select-bar" id="subSelectBar" style="display:none"></div>
+
+                <!-- 题目图片与标注图层 -->
+                <div class="annot-wrapper" id="qAnnotWrap">
+                  <img id="questionImg" class="question-img" src="" alt="题目">
+                  <div class="annot-overlay" id="qAnnotOverlay"></div>
+                </div>
+
+                <!-- 解析显示开关 -->
+                <div class="toggle-bar">
+                  <button id="btnToggle" class="gel-btn btn-toggle"><span class="func-name">显示解析</span><span class="key">Space</span></button>
+                </div>
+
+                <!-- 解析内容展示区 -->
+                <div class="solution-area" id="solutionArea">
+                  <div class="img-bad-warning solution-warn" id="sBadWarning">解析图质量不达标</div>
+                  <div class="solution-imgs" id="solutionImgs"></div>
+                </div>
+
+                <!-- Markdown + LaTeX 双栏笔记系统 -->
+                <div class="notes-section" id="notesSection">
+                  <div class="notes-header">
+                    <span class="notes-title">笔记</span>
+                    <div class="notes-actions">
+                      <button id="btnNoteEdit">编辑</button>
+                      <button id="btnNoteSave" class="btn-save" style="display:none">保存</button>
+                      <button id="btnNoteCancel" style="display:none">取消</button>
+                      <button id="btnNoteDelete">删除</button>
+                    </div>
+                  </div>
+                  <div class="notes-duo" id="notesDuo" style="display:none">
+                    <textarea class="notes-textarea" id="notesTextarea" placeholder="支持 Markdown 与 LaTeX；独立公式可直接粘贴，也支持 $...$ / $$...$$ / \(...\) / \[...\]。Enter 保存 / Shift+Enter 换行"></textarea>
+                    <div class="notes-render notes-preview" id="notesPreview"></div>
+                  </div>
+                  <div class="notes-render" id="notesRender"></div>
+                </div>
+              </div><!-- #mainAreaContent -->
+
+              <!-- 全局统计仪表盘 (V) -->
+              <div class="dashboard-panel" id="dashboardPanel" style="display:none">
+                <div class="db-overview" id="dbOverview">
+                  <!-- 顶部蓝色渐变 Hero 卡片 -->
+                  <div class="db-hero-card" id="dbHeroCard">
+                    <div class="hero-content">
+                      <h2 class="hero-greeting" id="heroGreeting">早上好，开始今天的刷题吧</h2>
+                      <p class="hero-subtitle" id="heroSubtitle">今日待复习 <strong id="heroDueCount">0</strong> 题，全站完成率 <strong id="heroTotalPct">0%</strong></p>
+                      <div class="hero-actions">
+                        <button class="hero-action-btn primary" id="btnHeroContinue" type="button">继续刷题</button>
+                        <button class="hero-action-btn secondary" id="btnHeroReview" type="button">立即复习</button>
+                      </div>
+                    </div>
+                    <div class="hero-decor-badge">
+                      <div class="hero-ring-val" id="heroRingVal">0%</div>
+                      <div class="hero-ring-label">全站进度</div>
+                    </div>
+                  </div>
+
+                  <!-- 学习分析区（倒计时、全站总进度、近14天趋势） -->
+                  <section class="study-insights" id="studyInsights" aria-label="学习分析">
+                    <article class="si-card si-countdown-card">
+                      <div class="si-countdown-copy">
+                        <h3>考研初试倒计时</h3>
+                        <p class="si-quote" id="siCountdownQuote">稳住节奏，逐题推进；你今天的每一步，都在靠近目标。</p>
+                        <button class="si-link" id="siExamDateBtn" type="button">设置考试日期</button>
+                      </div>
+                      <div class="si-countdown-value" aria-live="polite">
+                        <strong id="siCountdownDays">—</strong>
+                        <span>天</span>
+                      </div>
+                    </article>
+
+                    <article class="si-card si-progress-card">
+                      <div class="si-donut" id="siMasteryDonut" role="img" aria-label="全站学习进度">
+                        <div class="si-donut-hole">
+                          <strong id="siProgressPct">0%</strong>
+                          <span>总进度</span>
+                        </div>
+                      </div>
+                      <div class="si-progress-copy">
+                        <h3>全站学习总进度</h3>
+                        <p class="si-muted">数学、专业课题目和英语词汇统一统计</p>
+                        <div class="si-progress-grid">
+                          <div><span>已标记项目</span><strong id="siDoneText">0 / 0</strong></div>
+                          <div><span>熟练掌握</span><strong class="si-mastered" id="siMasteredText">0 项（0%）</strong></div>
+                          <div><span>模糊需复习</span><strong class="si-vague" id="siVagueText">0 项</strong></div>
+                          <div><span>不会错题</span><strong class="si-wrong" id="siWrongText">0 项</strong></div>
+                        </div>
+                        <div class="si-legend" aria-hidden="true">
+                          <span><i class="si-dot si-dot-mastered"></i>熟练</span>
+                          <span><i class="si-dot si-dot-vague"></i>模糊</span>
+                          <span><i class="si-dot si-dot-wrong"></i>不会</span>
+                          <span><i class="si-dot si-dot-unmarked"></i>未标记</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <section class="si-subject-progress-grid" id="siSubjectProgress" aria-label="分科学习总进度">
+                      <article class="si-card si-subject-progress-card">
+                        <div class="si-donut si-donut-compact" id="siEnglishDonut" role="img" aria-label="英语总进度">
+                          <div class="si-donut-hole">
+                            <strong id="siEnglishPct">0%</strong>
+                            <span>英语</span>
+                          </div>
+                        </div>
+
+                        <div class="si-subject-progress-copy">
+                          <h3>英语总进度</h3>
+                          <p class="si-muted">英语词汇统一统计</p>
+                          <div class="si-subject-done">
+                            <strong id="siEnglishDoneText">0 / 0</strong>
+                            <span>已标记 / 总词数</span>
+                          </div>
+                        </div>
+
+                        <div class="si-subject-status-row">
+                          <span><i class="si-dot si-dot-mastered"></i>熟练 <strong id="siEnglishMasteredText">0</strong></span>
+                          <span><i class="si-dot si-dot-vague"></i>模糊 <strong id="siEnglishVagueText">0</strong></span>
+                          <span><i class="si-dot si-dot-wrong"></i>不会 <strong id="siEnglishWrongText">0</strong></span>
+                          <span><i class="si-dot si-dot-unmarked"></i>未标 <strong id="siEnglishUnmarkedText">0</strong></span>
+                        </div>
+                      </article>
+
+                      <article class="si-card si-subject-progress-card">
+                        <div class="si-donut si-donut-compact" id="siMathDonut" role="img" aria-label="数学总进度">
+                          <div class="si-donut-hole">
+                            <strong id="siMathPct">0%</strong>
+                            <span>数学</span>
+                          </div>
+                        </div>
+
+                        <div class="si-subject-progress-copy">
+                          <h3>数学总进度</h3>
+                          <p class="si-muted">数学全部书籍与章节统一统计</p>
+                          <div class="si-subject-done">
+                            <strong id="siMathDoneText">0 / 0</strong>
+                            <span>已标记 / 总题数</span>
+                          </div>
+                        </div>
+
+                        <div class="si-subject-status-row">
+                          <span><i class="si-dot si-dot-mastered"></i>熟练 <strong id="siMathMasteredText">0</strong></span>
+                          <span><i class="si-dot si-dot-vague"></i>模糊 <strong id="siMathVagueText">0</strong></span>
+                          <span><i class="si-dot si-dot-wrong"></i>不会 <strong id="siMathWrongText">0</strong></span>
+                          <span><i class="si-dot si-dot-unmarked"></i>未标 <strong id="siMathUnmarkedText">0</strong></span>
+                        </div>
+                      </article>
+
+                      <article class="si-card si-subject-progress-card">
+                        <div class="si-donut si-donut-compact" id="siMajorDonut" role="img" aria-label="专业课总进度">
+                          <div class="si-donut-hole">
+                            <strong id="siMajorPct">0%</strong>
+                            <span>专业课</span>
+                          </div>
+                        </div>
+
+                        <div class="si-subject-progress-copy">
+                          <h3>专业课总进度</h3>
+                          <p class="si-muted">专业课全部书籍与章节统一统计</p>
+                          <div class="si-subject-done">
+                            <strong id="siMajorDoneText">0 / 0</strong>
+                            <span>已标记 / 总题数</span>
+                          </div>
+                        </div>
+
+                        <div class="si-subject-status-row">
+                          <span><i class="si-dot si-dot-mastered"></i>熟练 <strong id="siMajorMasteredText">0</strong></span>
+                          <span><i class="si-dot si-dot-vague"></i>模糊 <strong id="siMajorVagueText">0</strong></span>
+                          <span><i class="si-dot si-dot-wrong"></i>不会 <strong id="siMajorWrongText">0</strong></span>
+                          <span><i class="si-dot si-dot-unmarked"></i>未标 <strong id="siMajorUnmarkedText">0</strong></span>
+                        </div>
+                      </article>
+                    </section>
+
+                    <article class="si-card si-trend-card">
+                      <div class="si-card-header">
+                        <div>
+                          <h3>近 14 天推进趋势</h3>
+                          <p class="si-muted">数学、专业课、英语状态标记与 SM-2 评级次数</p>
+                        </div>
+                        <div class="si-chips">
+                          <span id="siTrendTotal">近 14 天累计：0 次</span>
+                          <span id="siTrendAverage">日均：0 次/天</span>
+                        </div>
+                      </div>
+                      <div class="si-chart" id="siTrendChart" role="img" aria-label="近 14 天学习活动柱状图"></div>
+                      <div class="si-chart-axis" id="siTrendAxis" aria-hidden="true"></div>
+                      <p class="si-chart-empty" id="siTrendEmpty" hidden>
+                        开始标记数学、专业课或英语状态后，学习活动会从当天开始累计。
+                      </p>
+                    </article>
+                  </section>
+
+                  <!-- 四个真实统计卡片 -->
+                  <div class="db-stat-grid" id="dbStatGrid">
+                    <div class="db-stat-card card-due">
+                      <div class="stat-card-icon">⏱️</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatDue">0</div>
+                        <div class="stat-card-title">今日待复习</div>
+                      </div>
+                    </div>
+                    <div class="db-stat-card card-done">
+                      <div class="stat-card-icon">✅</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatDone">0</div>
+                        <div class="stat-card-title">已标记项目</div>
+                      </div>
+                    </div>
+                    <div class="db-stat-card card-wrong">
+                      <div class="stat-card-icon">❌</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatWrong">0</div>
+                        <div class="stat-card-title">不会累计</div>
+                      </div>
+                    </div>
+                    <div class="db-stat-card card-streak">
+                      <div class="stat-card-icon">🔥</div>
+                      <div class="stat-card-info">
+                        <div class="stat-card-num" id="dbStatStreak">0 天</div>
+                        <div class="stat-card-title">连续学习天数</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Dashboard 快捷入口：桌面端对齐三列网格的前两列，第三列自然留空 -->
+                  <div class="db-quick-grid" id="dbQuickGrid" aria-label="学习快捷入口">
+                    <div class="db-side-widget">
+                      <h4 class="widget-title">今日复习计划</h4>
+                      <div class="widget-body" id="widgetReviewPlan">暂无今日到期题目</div>
+                      <button class="widget-btn" id="btnWidgetReview" type="button">前往间隔复习</button>
+                    </div>
+
+                    <div class="db-side-widget">
+                      <h4 class="widget-title">错题集中攻克</h4>
+                      <div class="widget-body" id="widgetWrongPlan">错题本已收录待巩固题</div>
+                      <button class="widget-btn" id="btnWidgetWrong" type="button">打开错题本</button>
+                    </div>
+                  </div>
+
+                  <!-- 薄弱章节：数学与专业课分科独立 Top 3 -->
+                  <section
+                    class="db-weak-section"
+                    id="dbWeakSection"
+                    aria-labelledby="dbWeakTitle"
+                  >
+                    <div class="db-block-header">
+                      <div class="db-block-header-left">
+                        <h3
+                          class="db-block-title"
+                          id="dbWeakTitle"
+                        >
+                          薄弱章节
+                        </h3>
+
+                        <span class="db-block-hint">
+                          根据不会、模糊与到期复习情况，按科目独立排序
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="db-weak-subject-block" data-weak-subject="math">
+                      <div class="db-weak-subject-header">
+                        <h4>数学薄弱章节 Top 3</h4>
+                        <span>只统计数学</span>
+                      </div>
+                      <div class="db-weak-grid" id="dbWeakMathGrid"></div>
+                    </div>
+
+                    <div class="db-weak-subject-block" data-weak-subject="major">
+                      <div class="db-weak-subject-header">
+                        <h4>专业课薄弱章节 Top 3</h4>
+                        <span>只统计专业课</span>
+                      </div>
+                      <div class="db-weak-grid" id="dbWeakMajorGrid"></div>
+                    </div>
+                  </section>
+
+                  <!-- 书籍与科目进度：独占整行，桌面端一行三张卡 -->
+                  <div class="db-books-section" id="dbBooksSection">
+                    <div class="db-block-header">
+                      <div class="db-block-header-left">
+                        <h3 class="db-block-title">书籍与科目进度</h3>
+                        <span class="db-block-hint">点击卡片可查看详细章节完成率</span>
+                      </div>
+                      <div class="db-books-legend" aria-label="进度图例">
+                        <span class="db-legend-item"><i class="dot-mastered"></i>熟练</span>
+                        <span class="db-legend-item"><i class="dot-fuzzy"></i>模糊</span>
+                        <span class="db-legend-item"><i class="dot-wrong"></i>不会</span>
+                        <span class="db-legend-item"><i class="dot-unmarked"></i>未标记</span>
+                      </div>
+                    </div>
+                    <div class="db-grid" id="dbGrid"></div>
+                  </div>
+                </div>
+
+                <div class="db-detail" id="dbDetail" style="display:none">
+                  <div class="db-detail-title" id="dbDetailTitle"></div>
+                  <div class="db-subject-grid" id="dbDetailList"></div>
+                </div>
+              </div>
+
+              <!-- 专属错题本面板 (B) -->
+              <div class="wrongbook-panel" id="wrongBookPanel" style="display:none">
+                <div class="wrongbook-top-bar">
+                  <div class="wrongbook-top-bar-copy">🔥 集中攻坚薄弱知识点，靶向消灭不会与模糊题目</div>
+                  <button type="button" id="btnOpenWrongWheelFromBook" class="hero-action-btn primary wrongbook-wheel-button">🔥 开启错题转盘</button>
+                </div>
+                <div class="db-subject-grid" id="wrongBookGrid"></div>
+              </div>
+
+              <!-- SM2 间隔复习调度面板 (M) -->
+              <div class="sm2-panel" id="sm2Panel" style="display:none">
+                <div class="sm2-overview">
+                  <div class="sm2-stats-row">
+                    <div class="sm2-stat-card" id="sm2CardDue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">今日到期</div></div>
+                    <div class="sm2-stat-card" id="sm2CardOverdue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">已逾期</div></div>
+                    <div class="sm2-stat-card" id="sm2CardQueue"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">队列中</div></div>
+                    <div class="sm2-stat-card" id="sm2CardMastered"><div class="sm2-stat-num">0</div><div class="sm2-stat-label">已掌握</div></div>
+                  </div>
+                  <div class="sm2-mode-row">
+                    <span class="sm2-mode-label">刷题模式</span>
+                    <label class="sm2-radio"><input type="radio" name="sm2mode" value="sequential" checked> 顺序</label>
+                    <label class="sm2-radio"><input type="radio" name="sm2mode" value="random"> 随机</label>
+                    <label class="sm2-radio"><input type="radio" name="sm2mode" value="overdue"> 仅逾期</label>
+                  </div>
+                  <button id="btnSm2StartAll" class="gel-btn btn-status proficient">开始全部复习</button>
+                </div>
+                <div class="sm2-chapters" id="sm2Chapters"></div>
+              </div>
+              <section class="english-panel" id="englishPanel" hidden></section>
+            </div>
+
+          </div><!-- .main-content -->
+
+          <!-- 右侧栏：进度统计与题号网格 -->
+          <div class="sidebar-right" id="practiceSidebar" aria-hidden="false">
+            <div class="chapter-selector" id="statsBlock">
+              <div class="chapter-label">进度</div>
+              <div class="stats-panel" id="statsPanel"></div>
+            </div>
+            <div id="reviewQueuePanel" style="display:none">
+              <div class="review-queue-header" id="reviewQueueHeader">本次复习 0 题</div>
+              <div class="review-queue" id="reviewQueue"></div>
+            </div>
+            <div id="qnavContainer" style="background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:12px;padding:12px;border:1px solid #e2e8f0;margin-top:12px">
+              <div class="qnav-label">题号</div>
+              <div class="qnav" id="qnav"></div>
+            </div>
+          </div>
+
+        </div><!-- .workbench-body -->
+
+        <!-- 移动端底部快捷操作栏（<= 768px 显示） -->
+        <nav class="mobile-action-bar" id="mobileActionBar" aria-label="移动端快捷操作栏">
+          <button class="m-action-btn" id="mBtnPrev" type="button" aria-label="上一题">
+            <span class="m-icon">‹</span>
+            <span class="m-text">上一题</span>
+          </button>
+          <button class="m-action-btn m-toggle" id="mBtnToggle" type="button" aria-label="显示解析">
+            <span class="m-icon">💡</span>
+            <span class="m-text">解析</span>
+          </button>
+          <div class="m-status-pills">
+            <button class="m-pill m-wrong" id="mBtnWrong" data-status="wrong" type="button" aria-label="不会">不会</button>
+            <button class="m-pill m-vague" id="mBtnVague" data-status="vague" type="button" aria-label="模糊">模糊</button>
+            <button class="m-pill m-proficient" id="mBtnProficient" data-status="proficient" type="button" aria-label="熟练">熟练</button>
+          </div>
+          <button class="m-action-btn" id="mBtnNext" type="button" aria-label="下一题">
+            <span class="m-icon">›</span>
+            <span class="m-text">下一题</span>
+          </button>
+        </nav>
+
+      </div><!-- .app-workbench -->
+
+    </div><!-- .app-layout -->
+
+  </div><!-- #appShell -->
+
+  <!-- 快捷键帮助 Modal (H) -->
+  <div class="shortcut-overlay" id="shortcutOverlay">
+    <div class="shortcut-modal" id="shortcutModal">
+      <h2>快捷键帮助</h2>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">导航</div>
+        <div class="shortcut-row"><span class="key"><kbd>A</kbd> / <kbd>&larr;</kbd></span><span class="desc">上一题</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>D</kbd> / <kbd>&rarr;</kbd></span><span class="desc">下一题</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>W</kbd> / <kbd>&uarr;</kbd></span><span class="desc">上一行</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>S</kbd> / <kbd>&darr;</kbd></span><span class="desc">下一行</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Q</kbd></span><span class="desc">上一章 / 复习中：上一复习题</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>E</kbd></span><span class="desc">下一章 / 复习中：下一复习题</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>F</kbd></span><span class="desc">进入/退出小题选择模式</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>滚轮左右推</kbd></span><span class="desc">上一题/下一题（同 A/D，常规状态）</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">掌握度（5 级）</div>
+        <div class="shortcut-row"><span class="key"><kbd>Z</kbd></span><span class="desc">熟练（lv5 完美）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Z</kbd>+<kbd>X</kbd></span><span class="desc">较熟练（lv4 正确但犹豫）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>X</kbd></span><span class="desc">模糊（lv3 思路对但卡壳）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>X</kbd>+<kbd>C</kbd></span><span class="desc">困难（lv2 大部分忘记）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>C</kbd></span><span class="desc">不会（lv1 全忘）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Ctrl</kbd>+<kbd>Z</kbd></span><span class="desc">撤销最近一次标记</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">解析</div>
+        <div class="shortcut-row"><span class="key"><kbd>Space</kbd></span><span class="desc">显示/隐藏解析</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>Space</kbd></span><span class="desc">切换默认解析显示状态</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">图片质量</div>
+        <div class="shortcut-row"><span class="key"><kbd>R</kbd></span><span class="desc">标记/取消题目图不达标</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>T</kbd></span><span class="desc">标记/取消解析图不达标</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">筛选（Shift 组合键）</div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>A</kbd></span><span class="desc">全部</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>Z</kbd></span><span class="desc">熟练（lv5+lv4）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>X</kbd></span><span class="desc">模糊（lv3+lv2）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>C</kbd></span><span class="desc">不会（lv1）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>N</kbd></span><span class="desc">带笔记</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">面板 & 复习</div>
+        <div class="shortcut-row"><span class="key"><kbd>V</kbd></span><span class="desc">全局进度</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>B</kbd></span><span class="desc">错题本</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>M</kbd></span><span class="desc">间隔重复复习面板</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>G</kbd></span><span class="desc">切换科目</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Esc</kbd></span><span class="desc">关闭面板 / 退出复习</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">标注（灯箱内）</div>
+        <div class="shortcut-row"><span class="key"><kbd>Alt</kbd></span><span class="desc">进入/退出标注</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>滚轮</kbd></span><span class="desc">缩放图片（光标处）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>右键</kbd> + <kbd>滚轮</kbd></span><span class="desc">调节画笔粗细</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>滚轮左右推</kbd></span><span class="desc">切换工具</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Shift</kbd> + <kbd>拖动</kbd></span><span class="desc">直线锁定水平或竖直</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Space</kbd></span><span class="desc">显示/隐藏标注工具栏</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Tab</kbd></span><span class="desc">切换工具（矩形→直线→高亮→画笔）</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>Esc</kbd></span><span class="desc">退出标注 / 关闭灯箱</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>+</kbd>/<kbd>-</kbd>/<kbd>0</kbd></span><span class="desc">灯箱放大/缩小/复位（查看模式）</span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">其他</div>
+        <div class="shortcut-row"><span class="key"><kbd>N</kbd></span><span class="desc">编辑笔记</span></div>
+        <div class="shortcut-row"><span class="key"><kbd>H</kbd></span><span class="desc">打开/关闭此帮助</span></div>
+      </div>
+      <div class="shortcut-close-hint">按 Esc 或点击背景关闭</div>
+    </div>
+  </div>
+
+  <!-- 科目选择模态 (G) -->
+  <div class="shortcut-overlay" id="subjectOverlay">
+    <div class="shortcut-modal" style="max-width: 420px">
+      <h2>选择科目</h2>
+      <div class="subject-list" id="subjectOptionList"></div>
+      <div class="shortcut-close-hint">点击背景关闭 · Esc 关闭</div>
+    </div>
+  </div>
+
+  <!-- 灯箱与 Snipaste 风格标注工具栏 -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-annotate" id="lightboxAnnotate">标注</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-hint">滚轮缩放 / 拖拽移动 / 双击或点击背景关闭</div>
+    
+    <div class="annot-toolbar" id="annotToolbar" style="display:none">
+      <button class="at-btn" data-action="undo" title="撤销 (Ctrl+Z)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </button>
+      <button class="at-btn" data-action="redo" title="重做 (Ctrl+Y)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </button>
+      <span class="at-sep"></span>
+      <button class="at-btn at-tool active" data-tool="FrameMarker" title="矩形 (R)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="1.5"/></svg>
+      </button>
+      <button class="at-btn at-tool" data-tool="LineMarker" title="直线 (L)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="19" x2="20" y2="5"/></svg>
+      </button>
+      <button class="at-btn at-tool" data-tool="HighlighterMarker" title="高亮 (H)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 19 6l-2-2L3 18z"/><path d="M12 8l2 2"/></svg>
+      </button>
+      <button class="at-btn at-tool" data-tool="FreehandMarker" title="画笔 (B)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+      </button>
+      <span class="at-sep"></span>
+      <button class="at-btn at-color-swatch" id="annotColorSwatch" title="颜色">
+        <span class="at-color-dot" id="annotColorDot"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="at-width-wrap" id="annotWidthWrap" title="粗细（滚轮或拖动调整）">
+        <button class="at-width-step" data-action="width-minus" title="变细">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <input type="range" class="at-width" id="annotWidth" min="1" max="30" value="3">
+        <button class="at-width-step" data-action="width-plus" title="变粗">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
+        </button>
+        <span class="at-width-val" id="annotWidthVal">3</span>
+      </div>
+      <span class="at-sep"></span>
+      <button class="at-btn at-save" data-action="save" title="保存标注 (Ctrl+S)">保存</button>
+      <button class="at-btn at-cancel" data-action="cancel" title="退出标注 (Esc)">退出</button>
+    </div>
+    
+    <div class="annot-palette" id="annotPalette" style="display:none">
+      <div class="annot-palette-swatches" id="annotPaletteSwatches"></div>
+      <div class="annot-palette-custom">
+        <input type="color" id="annotColorCustom" value="#ff0000" title="自定义颜色">
+        <span>自定义</span>
+      </div>
+    </div>
+  </div><!-- #lightbox -->
+
+  <!-- 历史多账号数据迁移选择模态框 -->
+  <div id="migrationPickerModal" class="subject-overlay" style="display:none" hidden>
+    <div class="subject-modal" style="max-width:460px">
+      <h2>发现历史学习数据</h2>
+      <p style="color:var(--text-muted);font-size:13px;margin:8px 0 16px">检测到您在历史版本中留存了本地学习记录。请选择要迁入当前单机模式的记录：</p>
+      <div id="migrationAccountList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;max-height:220px;overflow-y:auto"></div>
+      <div style="display:flex;justify-content:flex-end;gap:10px">
+        <button id="btnSkipMigration" class="hero-action-btn" style="background:#f1f5f9;color:var(--text)" type="button">暂不迁移</button>
+        <button id="btnConfirmMigration" class="hero-action-btn primary" type="button">确认迁移所选项</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学习数据导入预览与确认模态框 -->
+  <div id="backupImportModal" class="subject-overlay" style="display:none" hidden>
+    <div class="subject-modal" style="max-width:500px">
+      <h2>导入学习记录确认</h2>
+      <div id="backupImportSummary" style="background:var(--bg-main);padding:12px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.6;color:var(--text)"></div>
+      <p style="color:var(--text-muted);font-size:12px;margin-bottom:16px"><b>合并模式</b>：仅补充缺失题目的记录，不覆盖已有进度；<br><b>覆盖模式</b>：用备份完全替换当前进度（覆盖前将自动先保存一份当前快照）。</p>
+      <div style="display:flex;justify-content:flex-end;gap:10px">
+        <button id="btnCancelImport" class="hero-action-btn" style="background:#f1f5f9;color:var(--text)" type="button">取消</button>
+        <button id="btnMergeImport" class="hero-action-btn" style="background:var(--proficient);color:#fff" type="button">合并导入</button>
+        <button id="btnOverwriteImport" class="hero-action-btn primary" type="button">覆盖导入</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学习仪表盘 / 每日目标设置模态框 -->
+  <div id="studySettingsModal" class="subject-overlay" style="display:none" hidden>
+    <div
+      class="subject-modal si-settings-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="siSettingsTitle"
+    >
+      <h2 id="siSettingsTitle">学习目标与考试日期</h2>
+
+      <label class="si-date-label" for="siExamDateInput">
+        考研初试日期
+        <input id="siExamDateInput" type="date" inputmode="numeric">
+      </label>
+      <p class="si-settings-help">
+        日期只保存在当前浏览器，不会上传服务器。清空日期可以暂时关闭倒计时。
+      </p>
+
+      <fieldset class="si-goal-fieldset">
+        <legend>每日小目标（题）</legend>
+        <div class="si-goal-grid">
+          <label class="si-goal-label" for="siMathDailyGoalInput">
+            数学
+            <input
+              id="siMathDailyGoalInput"
+              type="number"
+              min="0"
+              max="999"
+              step="1"
+              inputmode="numeric"
+            >
+          </label>
+
+          <label class="si-goal-label" for="siMajorDailyGoalInput">
+            专业课
+            <input
+              id="siMajorDailyGoalInput"
+              type="number"
+              min="0"
+              max="999"
+              step="1"
+              inputmode="numeric"
+            >
+          </label>
+        </div>
+        <p class="si-settings-help">
+          0 表示暂不设置。每日进度按当天首次标记过的不同题目计数；
+          同一题反复修改掌握状态不会重复累计。
+        </p>
+      </fieldset>
+
+      <div class="si-settings-actions">
+        <button id="siSettingsCancel" class="hero-action-btn" type="button">取消</button>
+        <button id="siSettingsSave" class="hero-action-btn primary" type="button">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="dailyGoalToast"
+    class="daily-goal-toast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  ></div>
+
+  <!-- 每日专题小目标设置模态框 -->
+  <div id="dailyTopicGoalModal" class="subject-overlay daily-topic-overlay" style="display:none" hidden>
+    <div
+      class="subject-modal daily-topic-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dailyTopicGoalModalTitle"
+    >
+      <div class="daily-topic-modal-header">
+        <h2 id="dailyTopicGoalModalTitle">每日专题小目标设置</h2>
+        <button id="dailyTopicGoalCloseBtn" class="daily-topic-close-btn" type="button" aria-label="关闭设置">×</button>
+      </div>
+      <p class="si-settings-help">
+        设定每日主攻专题，输入专题名称并绑定目标章节。当天完成对应章节题目将自动累计进度。
+      </p>
+
+      <div class="daily-topic-form">
+        <!-- 数学专题区块 -->
+        <fieldset class="daily-topic-fieldset" data-group="math">
+          <legend>数学专题</legend>
+          <div class="daily-topic-field-row">
+            <label class="daily-topic-field-label" for="dailyTopicMathTitleInput">
+              专题名称
+              <input id="dailyTopicMathTitleInput" type="text" placeholder="例如：极限与连续（自由输入）" maxlength="40">
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMathBookSelect">
+              书籍
+              <select id="dailyTopicMathBookSelect">
+                <option value="">请选择书籍（可选）</option>
+              </select>
+            </label>
+            <label class="daily-topic-field-label" for="dailyTopicMathChapterSelect">
+              章节
+              <select id="dailyTopicMathChapterSelect">
+                <option value="">未绑定章节</option>
+              </select>
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMathTargetInput">
+              今日目标（题）
+              <input id="dailyTopicMathTargetInput" type="number" min="1" max="999" step="1" inputmode="numeric" value="10">
+            </label>
+            <div class="daily-topic-field-actions">
+              <button id="dailyTopicMathClearBtn" class="daily-topic-action-btn subtle" type="button">清除专题</button>
+              <button id="dailyTopicMathStartBtn" class="daily-topic-action-btn breakthrough" type="button" style="display:none">开始突破</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 专业课专题区块 -->
+        <fieldset class="daily-topic-fieldset" data-group="major">
+          <legend>专业课专题</legend>
+          <div class="daily-topic-field-row">
+            <label class="daily-topic-field-label" for="dailyTopicMajorTitleInput">
+              专题名称
+              <input id="dailyTopicMajorTitleInput" type="text" placeholder="例如：进程与线程（自由输入）" maxlength="40">
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMajorBookSelect">
+              书籍
+              <select id="dailyTopicMajorBookSelect">
+                <option value="">请选择书籍（可选）</option>
+              </select>
+            </label>
+            <label class="daily-topic-field-label" for="dailyTopicMajorChapterSelect">
+              章节
+              <select id="dailyTopicMajorChapterSelect">
+                <option value="">未绑定章节</option>
+              </select>
+            </label>
+          </div>
+          <div class="daily-topic-field-grid">
+            <label class="daily-topic-field-label" for="dailyTopicMajorTargetInput">
+              今日目标（题）
+              <input id="dailyTopicMajorTargetInput" type="number" min="1" max="999" step="1" inputmode="numeric" value="10">
+            </label>
+            <div class="daily-topic-field-actions">
+              <button id="dailyTopicMajorClearBtn" class="daily-topic-action-btn subtle" type="button">清除专题</button>
+              <button id="dailyTopicMajorStartBtn" class="daily-topic-action-btn breakthrough" type="button" style="display:none">开始突破</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="si-settings-actions daily-topic-modal-footer">
+        <button id="dailyTopicGoalCancel" class="hero-action-btn" type="button">取消</button>
+        <button id="dailyTopicGoalSave" class="hero-action-btn primary" type="button">保存设置</button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="dailyTopicGoalToast"
+    class="daily-goal-toast daily-topic-celebration"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  ></div>
+
+  <!-- 每日推进转盘 Modal (数学 + 专业课) -->
+  <div
+    id="dailyMathWheelModal"
+    class="subject-overlay daily-math-wheel-overlay"
+    style="display:none"
+    hidden
+  >
+    <div
+      class="subject-modal daily-math-wheel-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dailyMathWheelTitle"
+    >
+      <div class="daily-math-wheel-head">
+        <div>
+          <div class="study-wheel-tabs" role="tablist" aria-label="推进科目切换">
+            <button type="button" id="studyWheelTabMath" class="study-wheel-tab active" data-subject-id="shu1" role="tab" aria-selected="true">📐 数学推进转盘</button>
+            <button type="button" id="studyWheelTabMajor" class="study-wheel-tab" data-subject-id="zhuanye" role="tab" aria-selected="false">📡 专业课推进转盘</button>
+          </div>
+          <h2 id="dailyMathWheelTitle" style="display:none">每日推进转盘系统</h2>
+          <p id="dailyMathWheelDesc">章节去重持续推进，支持每轮认真完成后无限加量。</p>
+        </div>
+
+        <button
+          id="btnCloseDailyMathWheel"
+          class="daily-math-wheel-close"
+          type="button"
+          aria-label="关闭转盘"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="study-wheel-progress-box">
+        <div class="study-wheel-stage-info" id="studyWheelStageInfo"></div>
+        <div class="study-wheel-progress-bar">
+          <div class="study-wheel-progress-fill" id="studyWheelProgressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="study-wheel-next-stage-box" id="studyWheelNextStageBox" style="display:none">
+        <div class="study-wheel-stage-alert">🎉 当前阶段全部推进完成！</div>
+        <button id="btnStudyWheelNextStage" class="hero-action-btn primary" type="button">开启下一阶段</button>
+      </div>
+
+      <div class="daily-math-wheel-layout">
+        <div class="daily-math-wheel-stage">
+          <div class="daily-math-wheel-pointer" aria-hidden="true"></div>
+
+          <div class="daily-math-wheel-canvas-wrap study-wheel-stage">
+            <canvas
+              id="dailyMathWheelCanvas"
+              class="study-wheel-canvas daily-math-wheel-canvas"
+              width="360"
+              height="360"
+              aria-label="章节随机转盘"
+            ></canvas>
+
+            <button
+              id="btnDailyMathWheelSpinCenter"
+              class="daily-math-wheel-center-btn"
+              type="button"
+            >
+              开始
+            </button>
+          </div>
+        </div>
+
+        <div class="daily-math-wheel-side">
+          <div class="daily-math-wheel-legend" id="dailyMathWheelLegend"></div>
+
+          <div
+            id="dailyMathWheelResult"
+            class="daily-math-wheel-result"
+            aria-live="polite"
+          >
+            <div id="studyWheelRoundKicker" class="daily-math-wheel-result-kicker">今日结果</div>
+            <div id="dailyMathWheelResultBook">尚未抽取</div>
+            <strong id="dailyMathWheelResultName">
+              点击开始，让今天的学习推进交给转盘
+            </strong>
+            <div id="dailyMathWheelResultMeta"></div>
+          </div>
+
+          <div class="daily-math-wheel-actions">
+            <button
+              id="btnDailyMathWheelSpin"
+              class="hero-action-btn primary"
+              type="button"
+            >
+              开始旋转
+            </button>
+
+            <button
+              id="btnDailyMathWheelStart"
+              class="hero-action-btn"
+              type="button"
+              disabled
+            >
+              开始学习
+            </button>
+
+            <button
+              id="btnStudyWheelComplete"
+              class="hero-action-btn success-btn"
+              type="button"
+              style="display:none"
+            >
+              完成本轮学习
+            </button>
+
+            <button
+              id="btnStudyWheelAddRound"
+              class="hero-action-btn breakthrough-btn"
+              type="button"
+              style="display:none"
+            >
+              🔥 继续加量
+            </button>
+
+            <button
+              id="btnStudyWheelLaterClose"
+              class="hero-action-btn subtle-btn"
+              type="button"
+              style="display:none"
+            >
+              稍后结束
+            </button>
+
+            <button
+              id="btnStudyWheelUndoRound"
+              class="hero-action-btn undo-btn"
+              type="button"
+              style="display:none"
+            >
+              ↩ 撤销上一轮
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 错题转盘 Modal (数学 + 专业课) -->
+  <div
+    id="dailyWrongWheelModal"
+    class="subject-overlay daily-math-wheel-overlay daily-wrong-wheel-overlay"
+    style="display:none"
+    hidden
+  >
+    <div
+      class="subject-modal daily-math-wheel-modal daily-wrong-wheel-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dailyWrongWheelTitle"
+    >
+      <div class="daily-math-wheel-head">
+        <div>
+          <div class="study-wheel-tabs" role="tablist" aria-label="错题转盘科目切换">
+            <button type="button" id="wrongWheelTabMath" class="study-wheel-tab active" data-subject-id="shu1" role="tab" aria-selected="true">📐 数学错题转盘</button>
+            <button type="button" id="wrongWheelTabMajor" class="study-wheel-tab" data-subject-id="zhuanye" role="tab" aria-selected="false">📡 专业课错题转盘</button>
+          </div>
+          <h2 id="dailyWrongWheelTitle" style="display:none">错题转盘系统</h2>
+          <p id="dailyWrongWheelDesc">靶向抽取有错题的章节，攻坚薄弱知识点，逐个消灭不会题。</p>
+        </div>
+
+        <button
+          id="btnCloseDailyWrongWheel"
+          class="daily-math-wheel-close"
+          type="button"
+          aria-label="关闭错题转盘"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="wrong-wheel-scope-bar">
+        <button type="button" id="btnWrongScopeAll" class="wrong-scope-pill active" data-scope="all">
+          📚 全部候选章节 (<span id="wrongScopeAllCount">0</span>)
+        </button>
+        <button type="button" id="btnWrongScopeMistakes" class="wrong-scope-pill" data-scope="mistakes">
+          🎯 仅有错题章节 (<span id="wrongScopeMistakeCount">0</span>)
+        </button>
+      </div>
+
+      <div class="study-wheel-progress-box">
+        <div class="study-wheel-stage-info" id="wrongWheelStageInfo"></div>
+        <div class="study-wheel-progress-bar">
+          <div class="study-wheel-progress-fill" id="wrongWheelProgressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="study-wheel-next-stage-box" id="wrongWheelNextStageBox" style="display:none">
+        <div class="study-wheel-stage-alert">🎉 当前阶段错题全部攻坚完成！</div>
+        <button id="btnWrongWheelNextStage" class="hero-action-btn primary" type="button">开启下一阶段攻坚</button>
+      </div>
+
+      <div class="daily-math-wheel-layout">
+        <div class="daily-math-wheel-stage">
+          <div class="daily-math-wheel-pointer" aria-hidden="true"></div>
+
+          <div class="daily-math-wheel-canvas-wrap study-wheel-stage">
+            <canvas
+              id="dailyWrongWheelCanvas"
+              class="study-wheel-canvas daily-math-wheel-canvas"
+              width="360"
+              height="360"
+              aria-label="错题随机转盘"
+            ></canvas>
+
+            <button
+              id="btnDailyWrongWheelSpinCenter"
+              class="daily-math-wheel-center-btn"
+              type="button"
+            >
+              开始
+            </button>
+          </div>
+        </div>
+
+        <div class="daily-math-wheel-side">
+          <div class="daily-math-wheel-legend" id="dailyWrongWheelLegend"></div>
+
+          <div
+            id="dailyWrongWheelResult"
+            class="daily-math-wheel-result"
+            aria-live="polite"
+          >
+            <div id="wrongWheelRoundKicker" class="daily-math-wheel-result-kicker">错题攻坚</div>
+            <div id="dailyWrongWheelResultBook">尚未抽取</div>
+            <strong id="dailyWrongWheelResultName">
+              点击开始，让错题攻坚交给转盘
+            </strong>
+            <div id="dailyWrongWheelResultMeta"></div>
+          </div>
+
+          <div class="daily-math-wheel-actions">
+            <button
+              id="btnDailyWrongWheelSpin"
+              class="hero-action-btn primary"
+              type="button"
+            >
+              开始旋转
+            </button>
+
+            <button
+              id="btnDailyWrongWheelStart"
+              class="hero-action-btn"
+              type="button"
+              disabled
+            >
+              🎯 开始消灭错题
+            </button>
+
+            <button
+              id="btnDailyWrongWheelPractice"
+              class="hero-action-btn secondary"
+              type="button"
+              style="display:none"
+            >
+              📝 先去刷题完成这章
+            </button>
+
+            <button
+              id="btnWrongWheelComplete"
+              class="hero-action-btn success-btn"
+              type="button"
+              style="display:none"
+            >
+              ✅ 标记本轮攻克完成
+            </button>
+
+            <button
+              id="btnWrongWheelAddRound"
+              class="hero-action-btn breakthrough-btn"
+              type="button"
+              style="display:none"
+            >
+              🔥 攻坚下一轮
+            </button>
+
+            <button
+              id="btnWrongWheelLaterClose"
+              class="hero-action-btn subtle-btn"
+              type="button"
+              style="display:none"
+            >
+              稍后消灭
+            </button>
+
+            <button
+              id="btnWrongWheelUndoRound"
+              class="hero-action-btn undo-btn"
+              type="button"
+              style="display:none"
+            >
+              ↩ 撤销上一轮
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 本地依赖脚本与核心模块 -->
+  <script src="lib/dompurify/purify.min.js"></script>
+  <script src="lib/marked/marked.umd.min.js"></script>
+  <script src="lib/katex/katex.min.js"></script>
+  <script src="lib/katex/contrib/auto-render.min.js"></script>
+  <script src="lib/markerjs3/markerjs3.umd.js"></script>
+  
+  <script src="english-import-data.js?v=20260909c"></script>
+  <script src="js/lilin880-chapters.js"></script>
+  <script src="js/lilin880-optimized-chapters.js?v=20260909d"></script>
+  <script src="js/lyf900-chapters.js"></script>
+  <script src="js/yeyu-chapters.js?v=20260912g"></script>
+  <script src="js/professional-chapters.js?v=20260910a"></script>
+  <script src="js/math-zhenti-chapters.js?v=20260921a"></script>
+  <script src="data/english/english-zhenti-manifest.js"></script>
+  <script src="data/english/english-zhenti-data.js"></script>
+  <script src="js/solution-manifest.js?v=20260921a"></script>
+  <script src="js/chapters.js?v=20260921a"></script>
+  <script src="js/app.js?v=20260923d"></script>
+  <script src="js/daily-study-wheel.js?v=20260922d"></script>
+  <script src="js/daily-wrong-wheel.js?v=20260923a"></script>
+  <script src="js/english-annotations.js?v=20260929c"></script>
+  <script src="js/english.js?v=20260929c"></script>
+  <script src="js/english-workspace-bridge.js?v=20260930"></script>
+  <script src="js/study-analytics.js?v=20260910c"></script>
+  <script src="js/study-shell.js?v=20260930"></script>
+</body>
+</html>

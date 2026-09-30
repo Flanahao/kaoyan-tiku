@@ -7,6 +7,9 @@ const assert = require('assert');
 const ROOT = path.resolve(__dirname, '..');
 
 function read(relPath) {
+  if (relPath === 'index.html' && fs.existsSync(path.join(ROOT, 'study.html'))) {
+    return fs.readFileSync(path.join(ROOT, 'study.html'), 'utf8');
+  }
   return fs.readFileSync(path.join(ROOT, relPath), 'utf8');
 }
 
