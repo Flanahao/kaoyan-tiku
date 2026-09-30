@@ -1324,6 +1324,11 @@
     localStorage.setItem(STORAGE_ZHENTI_YEAR_KEY, String(curYear));
     localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
 
+    if (window.EnglishWorkspaceBridge) {
+      window.EnglishWorkspaceBridge.open({ sectionId: curSectionId });
+      return;
+    }
+
     var url = 'english-reading.html?year=' + encodeURIComponent(curYear) + '&section=' + encodeURIComponent(curSectionId);
     if (questionId) {
       url += '&q=' + encodeURIComponent(questionId);
@@ -1962,15 +1967,7 @@
             : null;
 
           /*
-           * 用户需求：点击 Reading Part A / Text 1~4 药丸直接进入专用沉浸式精读页面
-           */
-          if (nextSection && nextSection.type === 'reading') {
-            openImmersiveReading(secId);
-            return;
-          }
-
-          /*
-           * 其他题型 (完形填空、新题型、翻译、作文) 维持现有 workbench
+           * V4: 切换模块分段 (完型、阅读、新题型、翻译、作文)，工具栏统一提供“进入沉浸精读”入口
            */
           curSectionId = secId;
           localStorage.setItem(STORAGE_ZHENTI_SEC_KEY, String(curSectionId));
@@ -2422,7 +2419,7 @@
      ========================================================= */
   (function reopenEnglishAfterImmersiveReading() {
     var query = new URLSearchParams(window.location.search);
-    var shouldReopen = query.get('openEnglish') === '1' || sessionStorage.getItem('openEnglishAfterReading') === '1';
+    var shouldReopen = query.get('openEnglish') === '1' || query.get('return') === 'english' || sessionStorage.getItem('openEnglishAfterReading') === '1';
     if (!shouldReopen) {
       return;
     }
@@ -2437,6 +2434,7 @@
       try {
         var clean = new URL(window.location.href);
         clean.searchParams.delete('openEnglish');
+        clean.searchParams.delete('return');
         window.history.replaceState(null, '', clean.pathname + clean.search + clean.hash);
       } catch (error) {}
     }

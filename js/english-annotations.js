@@ -684,18 +684,434 @@
     applyToPanel(panel || boundPanel);
   }
 
+  /* =========================================================================
+     V4 Immersive Workspace Engine (Custom Highlight API + Range Persistence)
+     ========================================================================= */
+  var STORAGE_KEY_V4 = 'user_guest_kaoyan_english_text_annot_v4';
+  var v4Toolbar = null;
+  var v4CurrentSelection = null;
+  var v4Enabled = true;
+  var v4MountedRoot = null;
+  var v4AnnotationScopePrefix = '';
+  var v4ResizeHandler = null;
+
+  function v4Uid() {
+    return 'ann_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+  }
+
+  function v4ReadStore() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY_V4);
+      var parsed = raw ? JSON.parse(raw) : { items: [] };
+      if (!parsed || !Array.isArray(parsed.items)) return { items: [] };
+      return parsed;
+    } catch (e) {
+      return { items: [] };
+    }
+  }
+
+  function v4WriteStore(store) {
+    try {
+      localStorage.setItem(STORAGE_KEY_V4, JSON.stringify(store));
+    } catch (e) {}
+  }
+
+  function v4TextNodes(root) {
+    var out = [];
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue) return NodeFilter.FILTER_REJECT;
+        var p = node.parentElement;
+        if (!p || p.closest('.ew-selection-toolbar,.ew-word-pop')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var n;
+    while ((n = walker.nextNode())) out.push(n);
+    return out;
+  }
+
+  function v4ScopeText(scope) {
+    return scope ? (scope.textContent || '') : '';
+  }
+
+  function v4PointToOffset(scope, node, offset) {
+    var nodes = v4TextNodes(scope), total = 0;
+    for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i] === node) return total + offset;
+      total += nodes[i].nodeValue.length;
+    }
+    return -1;
+  }
+
+  function v4OffsetToPoint(scope, offset) {
+    var nodes = v4TextNodes(scope), remain = Math.max(0, offset);
+    for (var i = 0; i < nodes.length; i++) {
+      var len = nodes[i].nodeValue.length;
+      if (remain <= len) return { node: nodes[i], offset: remain };
+      remain -= len;
+    }
+    if (!nodes.length) return null;
+    return { node: nodes[nodes.length - 1], offset: nodes[nodes.length - 1].nodeValue.length };
+  }
+
+  function v4MakeRange(scope, start, end) {
+    var a = v4OffsetToPoint(scope, start), b = v4OffsetToPoint(scope, end);
+    if (!a || !b || end <= start) return null;
+    var range = document.createRange();
+    try {
+      range.setStart(a.node, a.offset);
+      range.setEnd(b.node, b.offset);
+      return range;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function v4GetScopesInRange(range) {
+    if (!v4MountedRoot) return [];
+    var scopes = Array.prototype.slice.call(v4MountedRoot.querySelectorAll('[data-annotation-scope]'));
+    return scopes.filter(function (scope) {
+      try {
+        return range.intersectsNode(scope);
+      } catch (e) {
+        return false;
+      }
+    });
+  }
+
+  function v4DeriveSegments(range) {
+    var scopes = v4GetScopesInRange(range), segments = [];
+    scopes.forEach(function (scope) {
+      var scopeRange = document.createRange();
+      scopeRange.selectNodeContents(scope);
+
+      var startNode = scope.contains(range.startContainer) ? range.startContainer : scopeRange.startContainer;
+      var startOffset = scope.contains(range.startContainer) ? range.startOffset : scopeRange.startOffset;
+      var endNode = scope.contains(range.endContainer) ? range.endContainer : scopeRange.endContainer;
+      var endOffset = scope.contains(range.endContainer) ? range.endOffset : scopeRange.endOffset;
+
+      var start = v4PointToOffset(scope, startNode, startOffset);
+      var end = v4PointToOffset(scope, endNode, endOffset);
+      if (start < 0 || end < 0) return;
+
+      if (!scope.contains(range.startContainer)) start = 0;
+      if (!scope.contains(range.endContainer)) end = v4ScopeText(scope).length;
+
+      if (end > start) {
+        var full = v4ScopeText(scope);
+        segments.push({
+          scopeId: scope.getAttribute('data-annotation-scope'),
+          start: start,
+          end: end,
+          quote: full.slice(start, end),
+          prefix: full.slice(Math.max(0, start - 24), start),
+          suffix: full.slice(end, Math.min(full.length, end + 24))
+        });
+      }
+    });
+    return segments;
+  }
+
+  function v4ResolveSegment(seg, scope) {
+    var text = v4ScopeText(scope);
+    if (text.slice(seg.start, seg.end) === seg.quote) return { start: seg.start, end: seg.end };
+    if (!seg.quote) return null;
+    var from = Math.max(0, seg.start - 120);
+    var idx = text.indexOf(seg.quote, from);
+    if (idx < 0) idx = text.indexOf(seg.quote);
+    if (idx < 0) return null;
+
+    if (seg.prefix || seg.suffix) {
+      var candidates = [], pos = text.indexOf(seg.quote);
+      while (pos >= 0) {
+        var score = 0;
+        if (seg.prefix && text.slice(Math.max(0, pos - seg.prefix.length), pos) === seg.prefix) score += 2;
+        var tail = pos + seg.quote.length;
+        if (seg.suffix && text.slice(tail, tail + seg.suffix.length) === seg.suffix) score += 2;
+        score -= Math.min(1, Math.abs(pos - seg.start) / 500);
+        candidates.push({ pos: pos, score: score });
+        pos = text.indexOf(seg.quote, pos + 1);
+      }
+      candidates.sort(function (a, b) { return b.score - a.score; });
+      if (candidates.length) idx = candidates[0].pos;
+    }
+    return { start: idx, end: idx + seg.quote.length };
+  }
+
+  function v4AnnotationsForPrefix() {
+    var store = v4ReadStore();
+    return store.items.filter(function (it) { return it.scopePrefix === v4AnnotationScopePrefix; });
+  }
+
+  function v4ClearCssHighlights() {
+    if (!window.CSS || !CSS.highlights) return;
+    ['ew-yellow', 'ew-green', 'ew-cyan', 'ew-pink', 'ew-red', 'ew-underline'].forEach(function (name) {
+      CSS.highlights.delete(name);
+    });
+  }
+
+  function v4UnwrapFallback(root) {
+    if (!root) return;
+    root.querySelectorAll('mark.ew-fallback-mark').forEach(function (mark) {
+      var p = mark.parentNode;
+      while (mark.firstChild) p.insertBefore(mark.firstChild, mark);
+      p.removeChild(mark);
+      p.normalize();
+    });
+  }
+
+  function v4RenderCssHighlights(items) {
+    var buckets = {
+      yellow: [], green: [], cyan: [], pink: [], red: [], underline: []
+    };
+    items.forEach(function (it) {
+      var scope = v4MountedRoot.querySelector('[data-annotation-scope="' + v4CssEscape(it.scopeId) + '"]');
+      if (!scope) return;
+      var resolved = v4ResolveSegment(it, scope);
+      if (!resolved) return;
+      var range = v4MakeRange(scope, resolved.start, resolved.end);
+      if (!range) return;
+      buckets[it.kind === 'underline' ? 'underline' : (it.color || 'yellow')].push(range);
+    });
+    Object.keys(buckets).forEach(function (key) {
+      if (!buckets[key].length) return;
+      try {
+        CSS.highlights.set('ew-' + key, new Highlight(...buckets[key]));
+      } catch (e) {
+        var h = new Highlight();
+        buckets[key].forEach(function (r) { h.add(r); });
+        CSS.highlights.set('ew-' + key, h);
+      }
+    });
+  }
+
+  function v4RenderFallback(items) {
+    items.slice().reverse().forEach(function (it) {
+      var scope = v4MountedRoot.querySelector('[data-annotation-scope="' + v4CssEscape(it.scopeId) + '"]');
+      if (!scope) return;
+      var resolved = v4ResolveSegment(it, scope);
+      var range = resolved && v4MakeRange(scope, resolved.start, resolved.end);
+      if (!range || range.collapsed) return;
+      try {
+        var mark = document.createElement('mark');
+        mark.className = 'ew-fallback-mark ' + (it.kind === 'underline' ? 'underline' : (it.color || 'yellow'));
+        range.surroundContents(mark);
+      } catch (e) {}
+    });
+  }
+
+  function v4CssEscape(value) {
+    if (window.CSS && CSS.escape) return CSS.escape(String(value));
+    return String(value).replace(/["\\]/g, '\\$&');
+  }
+
+  function v4Render() {
+    if (!v4MountedRoot) return;
+    v4ClearCssHighlights();
+    v4UnwrapFallback(v4MountedRoot);
+    var items = v4AnnotationsForPrefix();
+    if (window.CSS && CSS.highlights && window.Highlight) {
+      v4RenderCssHighlights(items);
+    } else {
+      v4RenderFallback(items);
+    }
+    v4RenderNoteIndicators(items);
+  }
+
+  function v4RenderNoteIndicators(items) {
+    v4MountedRoot.querySelectorAll('.ew-source-note[data-ann-id]').forEach(function (el) { el.remove(); });
+    items.filter(function (it) { return it.note; }).forEach(function (it) {
+      var scope = v4MountedRoot.querySelector('[data-annotation-scope="' + v4CssEscape(it.scopeId) + '"]');
+      if (!scope) return;
+      var resolved = v4ResolveSegment(it, scope);
+      var pt = resolved && v4OffsetToPoint(scope, resolved.end);
+      if (!pt || !pt.node.parentElement) return;
+      var badge = document.createElement('button');
+      badge.type = 'button';
+      badge.className = 'ew-source-note';
+      badge.setAttribute('data-ann-id', it.id);
+      badge.textContent = '◆';
+      badge.title = it.note;
+      badge.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        var next = window.prompt('编辑注释：', it.note || '');
+        if (next === null) return;
+        v4UpdateNote(it.id, next);
+      });
+      var parent = pt.node.parentElement;
+      parent.appendChild(badge);
+    });
+  }
+
+  function v4UpdateNote(id, note) {
+    var store = v4ReadStore();
+    var item = store.items.find(function (x) { return x.id === id; });
+    if (!item) return;
+    item.note = String(note || '').trim();
+    item.updatedAt = Date.now();
+    v4WriteStore(store);
+    v4Render();
+  }
+
+  function v4SaveSegments(segments, kind, color, note) {
+    if (!segments.length) return;
+    var store = v4ReadStore(), groupId = v4Uid();
+    segments.forEach(function (seg) {
+      store.items.push({
+        id: v4Uid(),
+        groupId: groupId,
+        scopePrefix: v4AnnotationScopePrefix,
+        scopeId: seg.scopeId,
+        start: seg.start,
+        end: seg.end,
+        quote: seg.quote,
+        prefix: seg.prefix,
+        suffix: seg.suffix,
+        kind: kind,
+        color: color || '',
+        note: note || '',
+        createdAt: Date.now()
+      });
+    });
+    v4WriteStore(store);
+    v4Render();
+  }
+
+  function v4ClearSegments(segments) {
+    if (!segments.length) return;
+    var store = v4ReadStore();
+    store.items = store.items.filter(function (it) {
+      if (it.scopePrefix !== v4AnnotationScopePrefix) return true;
+      var seg = segments.find(function (s) { return s.scopeId === it.scopeId; });
+      if (!seg) return true;
+      return it.end <= seg.start || it.start >= seg.end;
+    });
+    v4WriteStore(store);
+    v4Render();
+  }
+
+  function v4HideToolbar() {
+    if (v4Toolbar) v4Toolbar.hidden = true;
+  }
+
+  function v4PlaceToolbar(range) {
+    if (!v4Toolbar) return;
+    var rect = range.getBoundingClientRect();
+    if (!rect || (!rect.width && !rect.height)) return;
+    v4Toolbar.hidden = false;
+    var w = v4Toolbar.offsetWidth || 260, h = v4Toolbar.offsetHeight || 46;
+    var left = Math.min(window.innerWidth - w - 10, Math.max(10, rect.left + rect.width / 2 - w / 2));
+    var top = Math.max(10, rect.top - h - 10);
+    if (top < 10) top = Math.min(window.innerHeight - h - 10, rect.bottom + 10);
+    v4Toolbar.style.left = left + 'px';
+    v4Toolbar.style.top = top + 'px';
+  }
+
+  function v4CaptureSelection() {
+    if (!v4Enabled || !v4MountedRoot) return;
+    var sel = window.getSelection && window.getSelection();
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) {
+      v4HideToolbar();
+      v4CurrentSelection = null;
+      return;
+    }
+    var range = sel.getRangeAt(0);
+    var common = range.commonAncestorContainer.nodeType === 1 ? range.commonAncestorContainer : range.commonAncestorContainer.parentElement;
+    if (!common || !v4MountedRoot.contains(common)) {
+      v4HideToolbar();
+      v4CurrentSelection = null;
+      return;
+    }
+    var segments = v4DeriveSegments(range);
+    if (!segments.length) {
+      v4HideToolbar();
+      v4CurrentSelection = null;
+      return;
+    }
+    v4CurrentSelection = { segments: segments, range: range.cloneRange() };
+    v4PlaceToolbar(range);
+  }
+
+  function v4OnToolbarClick(e) {
+    var btn = e.target.closest('[data-ann-action]');
+    if (!btn || !v4CurrentSelection) return;
+    e.preventDefault(); e.stopPropagation();
+    var action = btn.getAttribute('data-ann-action');
+    if (action === 'highlight') {
+      v4SaveSegments(v4CurrentSelection.segments, 'highlight', btn.getAttribute('data-ann-color') || 'yellow', '');
+    } else if (action === 'underline') {
+      v4SaveSegments(v4CurrentSelection.segments, 'underline', '', '');
+    } else if (action === 'note') {
+      var note = window.prompt('给这段文字添加注释：', '');
+      if (note !== null) v4SaveSegments(v4CurrentSelection.segments, 'highlight', 'yellow', String(note).trim());
+    } else if (action === 'clear') {
+      v4ClearSegments(v4CurrentSelection.segments);
+    }
+    var sel = window.getSelection && window.getSelection();
+    if (sel) sel.removeAllRanges();
+    v4CurrentSelection = null;
+    v4HideToolbar();
+  }
+
+  function v4Mount(root, options) {
+    v4Unmount();
+    v4MountedRoot = root;
+    v4AnnotationScopePrefix = String((options && options.scopePrefix) || 'english');
+    v4Toolbar = document.getElementById('ewSelectionToolbar');
+    if (v4Toolbar) v4Toolbar.addEventListener('click', v4OnToolbarClick);
+    v4MountedRoot.addEventListener('mouseup', function () { setTimeout(v4CaptureSelection, 0); });
+    v4MountedRoot.addEventListener('keyup', function () { setTimeout(v4CaptureSelection, 0); });
+    v4ResizeHandler = v4HideToolbar;
+    window.addEventListener('resize', v4ResizeHandler);
+    window.addEventListener('scroll', v4ResizeHandler, true);
+    v4Render();
+  }
+
+  function v4Unmount() {
+    if (v4Toolbar) v4Toolbar.removeEventListener('click', v4OnToolbarClick);
+    if (v4ResizeHandler) {
+      window.removeEventListener('resize', v4ResizeHandler);
+      window.removeEventListener('scroll', v4ResizeHandler, true);
+    }
+    v4ClearCssHighlights();
+    if (v4MountedRoot) v4UnwrapFallback(v4MountedRoot);
+    v4MountedRoot = null;
+    v4Toolbar = null;
+    v4CurrentSelection = null;
+  }
+
+  function v4SetEnabled(value) {
+    v4Enabled = !!value;
+    if (!v4Enabled) v4HideToolbar();
+  }
+
+  function v4GetEnabled() {
+    return v4Enabled;
+  }
+
   window.EnglishAnnotations = {
+    // V1-V3 API
     STORAGE_KEY: STORAGE_KEY,
     ENABLED_KEY: ENABLED_KEY,
     makeScopeKey: makeScopeKey,
     bind: bind,
     afterRender: afterRender,
     applyToPanel: applyToPanel,
-    setEnabled: setEnabled,
+    setEnabled: function (val) {
+      setEnabled(val);
+      v4SetEnabled(val);
+    },
     isEnabled: isEnabled,
     getTotalCount: getTotalCount,
     countPrefix: countPrefix,
     getScopeAnnotations: function (scopeKey) { return getScopeAnnotations(scopeKey).slice(); },
+    // V4 Immersive Workspace API
+    mount: v4Mount,
+    unmount: v4Unmount,
+    render: v4Render,
+    getEnabled: v4GetEnabled,
+    storageKey: STORAGE_KEY_V4,
     _debug: {
       getState: function () { return JSON.parse(JSON.stringify(state)); },
       getSelectionParts: getSelectionParts,

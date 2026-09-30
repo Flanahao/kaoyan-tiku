@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>英语沉浸式精读工作台</title>
+  <link rel="stylesheet" href="css/english-workspace.css?v=4">
+</head>
+<body>
+  <div id="ewApp" class="ew-app" hidden>
+    <header class="ew-topbar">
+      <div class="ew-topbar-left">
+        <button id="ewBackBtn" class="ew-btn ew-btn-ghost" type="button" aria-label="返回英语题库">← 返回英语</button>
+        <div>
+          <div class="ew-kicker" id="ewTypeLabel">ENGLISH IMMERSIVE WORKSPACE</div>
+          <h1 id="ewTitle">沉浸式精读</h1>
+        </div>
+      </div>
+      <div class="ew-topbar-center" id="ewSectionMeta"></div>
+      <div class="ew-topbar-actions">
+        <button id="ewBilingualBtn" class="ew-btn ew-btn-ghost" type="button">译文</button>
+        <button id="ewAnnotationToggle" class="ew-btn ew-btn-primary" type="button" aria-pressed="true">标注开启</button>
+      </div>
+    </header>
+
+    <main class="ew-stage">
+      <section class="ew-pane ew-source-pane" aria-label="精读原文">
+        <div class="ew-pane-head">
+          <div>
+            <span class="ew-pane-eyebrow">SOURCE</span>
+            <strong>原文与精读</strong>
+          </div>
+          <span id="ewSourceHint" class="ew-muted">拖选文字进行 Word 风格荧光标注</span>
+        </div>
+        <div id="ewSourceScroll" class="ew-scroll">
+          <div id="ewSource"></div>
+        </div>
+      </section>
+
+      <section class="ew-pane ew-task-pane" aria-label="当前任务">
+        <div class="ew-pane-head ew-task-head">
+          <div>
+            <span class="ew-pane-eyebrow">TASK</span>
+            <strong id="ewTaskHeading">当前题目</strong>
+          </div>
+          <nav id="ewQuestionTabs" class="ew-q-tabs" aria-label="题号导航"></nav>
+        </div>
+        <div id="ewTaskScroll" class="ew-scroll">
+          <div id="ewTask"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="ewEmpty" class="ew-empty" hidden>
+    <div class="ew-empty-card">
+      <h2>没有找到精读数据</h2>
+      <p>请从主站英语真题页面点击“进入沉浸精读”进入。</p>
+      <button id="ewEmptyBack" class="ew-btn ew-btn-primary" type="button">返回题库</button>
+    </div>
+  </div>
+
+  <div id="ewSelectionToolbar" class="ew-selection-toolbar" hidden role="toolbar" aria-label="精读标注工具">
+    <button type="button" class="ew-color-dot yellow" data-ann-action="highlight" data-ann-color="yellow" title="黄色荧光"></button>
+    <button type="button" class="ew-color-dot green" data-ann-action="highlight" data-ann-color="green" title="绿色荧光"></button>
+    <button type="button" class="ew-color-dot cyan" data-ann-action="highlight" data-ann-color="cyan" title="青色荧光"></button>
+    <button type="button" class="ew-color-dot pink" data-ann-action="highlight" data-ann-color="pink" title="粉色荧光"></button>
+    <button type="button" class="ew-color-dot red" data-ann-action="highlight" data-ann-color="red" title="红色荧光"></button>
+    <span class="ew-toolbar-sep"></span>
+    <button type="button" class="ew-tool-btn" data-ann-action="underline" title="下划线">U</button>
+    <button type="button" class="ew-tool-btn" data-ann-action="note" title="添加注释">注</button>
+    <button type="button" class="ew-tool-btn" data-ann-action="clear" title="清除所选范围内标注">清</button>
+  </div>
+
+  <script src="lib/dompurify/purify.min.js"></script>
+  <script src="js/english-annotations.js?v=4"></script>
+  <script src="js/english-workspace.js?v=4"></script>
+</body>
+</html>

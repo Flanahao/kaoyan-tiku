@@ -6161,6 +6161,20 @@ body {
   border-color: #6ee7b7;
 }
 
+#ezOpenWorkspaceBtn {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2);
+}
+
+#ezOpenWorkspaceBtn:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #ffffff;
+}
+
 .ez-btn-back {
   background: #f1f5f9;
   color: #475569;
