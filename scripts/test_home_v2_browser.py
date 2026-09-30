@@ -39,6 +39,7 @@ def main():
         )
         page = context.new_page()
         page.on('console', on_console)
+        page.on('pageerror', lambda err: console_errors.append(f"[pageerror] {err}"))
 
         # Pre-seed localStorage with exam date and some questions so counts & wrong wheel are active
         init_script = """
@@ -178,7 +179,7 @@ def main():
         major_selected = frame.locator('#dailyMathWheelResultName').text_content()
         print(f"  Major Wheel spun! Selected chapter: {major_selected.strip()}")
         frame.locator('#btnCloseDailyMathWheel').click()
-        assert page.locator('#homeWheelHost').is_hidden()
+        page.locator('#homeWheelHost').wait_for(state='hidden', timeout=5000)
 
         print("\n=== Test 8: Wrong Wheel Launch & Screenshot ===")
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
@@ -200,7 +201,7 @@ def main():
         wrong_selected = frame.locator('#dailyWrongWheelResultName').text_content()
         print(f"  Wrong Wheel spun! Selected chapter: {wrong_selected.strip()}")
         frame.locator('#btnCloseDailyWrongWheel').click()
-        assert page.locator('#homeWheelHost').is_hidden()
+        page.locator('#homeWheelHost').wait_for(state='hidden', timeout=5000)
 
         print("\n=== Test 9: Verify 4 Subject Entries Still Work ===")
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')

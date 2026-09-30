@@ -79,6 +79,8 @@ def test_static():
     embed_js_text = (root / 'js' / 'home-wheel-embed.js').read_text(encoding='utf-8')
     assert 'homeWheelHost' in index_text and 'home-wheel-embed.js' in index_text
     assert 'study.html?embeddedWheel=1' in embed_js_text, "home wheels must open inside the homepage overlay"
+    assert 'postMessage' in embed_js_text and 'contentWindow.DailyStudyWheelBridge' not in embed_js_text
+    assert 'study-wheel-embed-bridge.js' in study_text
     assert 'study.html?wheel=' not in home_js_text, "home wheel click must not navigate to study.html"
     assert "politics" not in re.findall(r"renderTotals\('([^']+)'", home_js_text), "politics must not be faked as numeric total"
 

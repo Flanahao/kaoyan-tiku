@@ -182,6 +182,9 @@
 
   window.KysonHomeDashboard = {
     render: function () { render(0); },
-    openWheel: openWheel
+    openWheel: function (kind) {
+      var trigger = document.querySelector('[data-wheel="' + kind + '"]');
+      if (trigger) trigger.click();
+    }
   };
 })();

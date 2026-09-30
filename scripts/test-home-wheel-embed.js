@@ -11,125 +11,155 @@ const css = read('css/home-wheel-embed.css');
 
 assert.match(index, /id="homeWheelHost"/);
 assert.match(index, /js\/home-wheel-embed\.js/);
+assert.match(study, /js\/study-wheel-embed-bridge\.js/);
 assert.match(study, /id="dailyGoalButton"/);
 assert.match(shell, /slot\.appendChild\(goal\)/);
 assert.match(route, /chapter: params\.get\('chapter'\)/);
 assert.match(css, /html\.wheel-embedded \.app-layout/);
 
-const listeners = {};
-const modalMath = { hidden: true, style: { display: 'none' } };
-const modalWrong = { hidden: true, style: { display: 'none' } };
-const elements = {};
-let observer;
-let assigned = '';
-let focusCount = 0;
-let mathSubject = '';
-let wrongSubject = '';
+function run(origin) {
+  const isFile = origin.startsWith('file:');
+  const parentURL = origin + (isFile ? '/index.html' : '/index.html');
+  const parentHandlers = {};
+  const childHandlers = {};
+  const modalMath = { hidden: true, style: { display: 'none' } };
+  const modalWrong = { hidden: true, style: { display: 'none' } };
+  const sentOrigins = [];
+  let observer = null;
+  let assigned = '';
+  let mathSubject = '';
+  let wrongSubject = '';
+  let openerFocused = 0;
 
-const wheel = {
-  openModal(subject) { mathSubject = subject; modalMath.hidden = false; modalMath.style.display = 'flex'; },
-  closeModal() { modalMath.hidden = true; modalMath.style.display = 'none'; if (observer) observer.callback(); }
-};
-const wrong = {
-  open(subject) { wrongSubject = subject; modalWrong.hidden = false; modalWrong.style.display = 'flex'; },
-  close() { modalWrong.hidden = true; modalWrong.style.display = 'none'; if (observer) observer.callback(); }
-};
-const frame = {
-  style: {},
-  contentWindow: {
-    DailyStudyWheel: wheel,
-    DailyWrongWheel: wrong,
-    DailyStudyWheelBridge: { getStoragePrefix: () => 'user_guest_' },
-    document: { getElementById: id => id === 'dailyMathWheelModal' ? modalMath : modalWrong }
-  },
-  addEventListener(type, callback) { listeners[type] = callback; },
-  removeEventListener(type) { delete listeners[type]; },
-  focus() { focusCount++; },
-  set src(value) { this._src = value; listeners.load(); },
-  get src() { return this._src; }
-};
-elements.homeWheelHost = { hidden: true };
-elements.homeWheelFrame = frame;
-elements.homeWheelLoading = { hidden: true, textContent: '' };
-elements.homeWheelClose = { addEventListener(type, callback) { listeners.close = callback; } };
-const document = {
-  getElementById: id => elements[id],
-  addEventListener(type, callback) { listeners[type] = callback; }
-};
-const window = {
-  location: { href: 'http://localhost:8000/index.html', assign(url) { assigned = url; } }
-};
-vm.runInNewContext(read('js/home-wheel-embed.js'), {
-  document, window, URL, console,
-  getComputedStyle: modal => ({ display: modal.style.display }),
-  MutationObserver: class {
-    constructor(callback) { this.callback = callback; observer = this; }
-    observe() {}
-    disconnect() { observer = null; }
-  }
-});
-
-function click(kind) {
-  const trigger = {
-    getAttribute: () => kind,
-    focus() { focusCount++; }
-  };
-  listeners.click({
-    target: { closest: () => trigger },
-    preventDefault() {}
+  const childProxy = new Proxy({
+    postMessage(data, target) {
+      sentOrigins.push(target);
+      childHandlers.message({ data, origin: isFile ? 'null' : origin, source: parentProxy });
+    }
+  }, {
+    get(target, key) {
+      if (key === 'postMessage') return target.postMessage;
+      throw new Error('SecurityError: parent accessed cross-origin iframe property ' + String(key));
+    }
   });
+  const parentProxy = {
+    postMessage(data, target) {
+      sentOrigins.push(target);
+      parentHandlers.message({ data, origin: isFile ? 'null' : origin, source: childProxy });
+    }
+  };
+  const childLocation = { protocol: isFile ? 'file:' : 'http:', origin: isFile ? 'null' : origin, search: '' };
+  const childWindow = {
+    location: childLocation,
+    parent: parentProxy,
+    DailyStudyWheelBridge: { getStoragePrefix: () => 'user_guest_' },
+    DailyStudyWheel: {
+      openModal(subject) { mathSubject = subject; modalMath.hidden = false; modalMath.style.display = 'flex'; },
+      closeModal() { modalMath.hidden = true; modalMath.style.display = 'none'; if (observer) observer.callback(); }
+    },
+    DailyWrongWheel: {
+      open(subject) { wrongSubject = subject; modalWrong.hidden = false; modalWrong.style.display = 'flex'; },
+      close() { modalWrong.hidden = true; modalWrong.style.display = 'none'; if (observer) observer.callback(); }
+    },
+    getComputedStyle(modal) { return { display: modal.style.display }; },
+    addEventListener(type, callback) { childHandlers[type] = callback; }
+  };
+  const childDocument = { getElementById(id) { return id === 'dailyMathWheelModal' ? modalMath : modalWrong; } };
+  const parentLocation = {
+    href: parentURL,
+    protocol: childLocation.protocol,
+    origin: childLocation.origin,
+    assign(url) { assigned = url; }
+  };
+  const parentWindow = {
+    location: parentLocation,
+    addEventListener(type, callback) { parentHandlers[type] = callback; },
+    setTimeout() { return 1; },
+    clearTimeout() {}
+  };
+  const frame = {
+    contentWindow: childProxy,
+    style: {},
+    focus() {},
+    set src(src) {
+      this._src = src;
+      childLocation.search = '?' + src.split('?')[1];
+      vm.runInNewContext(read('js/study-wheel-embed-bridge.js'), {
+        window: childWindow, document: childDocument, location: childLocation,
+        URLSearchParams, MutationObserver: class {
+          constructor(callback) { this.callback = callback; observer = this; }
+          observe() {}
+          disconnect() { observer = null; }
+        }
+      });
+      childHandlers['kaoyan:ready']();
+    },
+    get src() { return this._src; }
+  };
+  const host = { hidden: true };
+  const loading = { hidden: true, textContent: '' };
+  const closeButton = { addEventListener(type, callback) { parentHandlers.close = callback; } };
+  const elements = { homeWheelHost: host, homeWheelFrame: frame, homeWheelLoading: loading, homeWheelClose: closeButton };
+  const document = {
+    getElementById(id) { return elements[id]; },
+    addEventListener(type, callback) { parentHandlers[type] = callback; }
+  };
+  vm.runInNewContext(read('js/home-wheel-embed.js'), {
+    window: parentWindow, document, location: parentLocation, URL, console,
+    setTimeout() {}, clearTimeout() {}
+  });
+
+  function click(kind) {
+    const trigger = { getAttribute: () => kind, focus() { openerFocused++; } };
+    parentHandlers.click({ target: { closest: () => trigger }, preventDefault() {} });
+  }
+
+  click('math');
+  assert.equal(parentLocation.href, parentURL, 'clicking should not navigate');
+  assert.equal(mathSubject, 'shu1');
+  assert.equal(host.hidden, false);
+  assert.equal(loading.hidden, true);
+  assert.equal(frame.style.visibility, 'visible');
+  assert.ok(sentOrigins.every(x => x === (isFile ? '*' : origin)));
+
+  childWindow.DailyStudyWheel.closeModal();
+  assert.equal(host.hidden, true);
+  assert.ok(openerFocused > 0);
+  click('major');
+  assert.equal(mathSubject, 'zhuanye');
+  click('wrong');
+  assert.equal(wrongSubject, 'shu1');
+
+  childWindow.DailyStudyWheelBridge.openChapter('zhuanye', 'chapter-1');
+  let target = new URL(assigned);
+  assert.equal(target.pathname.endsWith('/study.html'), true);
+  assert.equal(target.searchParams.get('subject'), 'zhuanye');
+  assert.equal(target.searchParams.get('chapter'), 'chapter-1');
+  childWindow.DailyStudyWheelBridge.openWrongChapter('shu1', 'chapter-2', 'mistakes');
+  target = new URL(assigned);
+  assert.equal(target.searchParams.get('wheelMode'), 'mistakes');
+
+  parentHandlers.close();
+  assert.equal(host.hidden, true);
 }
 
-click('math');
-assert.equal(window.location.href, 'http://localhost:8000/index.html');
-assert.equal(frame.src, 'study.html?embeddedWheel=1');
-assert.equal(mathSubject, 'shu1');
-assert.equal(elements.homeWheelHost.hidden, false);
-assert.equal(frame.style.visibility, 'visible');
-assert.equal(frame.contentWindow.DailyStudyWheelBridge.getStoragePrefix(), 'user_guest_');
+run('http://localhost:8000');
+run('file:///C:/study/kaoyan-tiku');
 
-wheel.closeModal();
-assert.equal(elements.homeWheelHost.hidden, true);
-assert.ok(focusCount > 0);
-
-click('major');
-assert.equal(mathSubject, 'zhuanye');
-assert.equal(frame.src, 'study.html?embeddedWheel=1');
-click('wrong');
-assert.equal(wrongSubject, 'shu1');
-assert.equal(elements.homeWheelHost.hidden, false);
-
-assert.equal(frame.contentWindow.DailyStudyWheelBridge.openChapter('zhuanye', 'chapter-1'), true);
-let target = new URL(assigned);
-assert.equal(target.pathname, '/study.html');
-assert.equal(target.searchParams.get('subject'), 'zhuanye');
-assert.equal(target.searchParams.get('chapter'), 'chapter-1');
-assert.equal(target.searchParams.get('wheelMode'), null);
-
-assert.equal(frame.contentWindow.DailyStudyWheelBridge.openWrongChapter('shu1', 'chapter-2', 'mistakes'), true);
-target = new URL(assigned);
-assert.equal(target.searchParams.get('wheelMode'), 'mistakes');
-
-listeners.close();
-assert.equal(elements.homeWheelHost.hidden, true);
-
-// Execute the real study-shell.js relocation against a minimal DOM.
 const goal = { id: 'dailyGoalButton' };
 const left = { firstChild: null, insertBefore() {}, appendChild() {} };
 const right = { firstChild: null, insertBefore() {}, appendChild(child) { child.parent = this; } };
 const studyElements = { dailyGoalButton: goal };
-const studyDocument = {
-  readyState: 'complete',
-  body: { classList: { add() {} } },
-  querySelector(selector) { return selector === '.header-nav-left' ? left : selector === '.header-nav-right' ? right : null; },
-  getElementById(id) { return studyElements[id] || null; },
-  createElement() { return { appendChild(child) { child.parent = this; }, addEventListener() {} }; },
-  addEventListener() {}
-};
 vm.runInNewContext(shell, {
-  document: studyDocument,
+  document: {
+    readyState: 'complete', body: { classList: { add() {} } },
+    querySelector(selector) { return selector === '.header-nav-left' ? left : selector === '.header-nav-right' ? right : null; },
+    getElementById(id) { return studyElements[id] || null; },
+    createElement() { return { appendChild(child) { child.parent = this; }, addEventListener() {} }; },
+    addEventListener() {}
+  },
   window: { getCurrentSubjectId: () => 'shu1', addEventListener() {}, setTimeout() {} }
 });
 assert.equal(goal.parent.className, 'focus-goal-slot');
 assert.equal(goal.parent.parent, right);
-console.log('home wheel embedding and chapter handoff: OK');
+console.log('home wheel message bridge (HTTP + file cross-origin) and goal placement: OK');
