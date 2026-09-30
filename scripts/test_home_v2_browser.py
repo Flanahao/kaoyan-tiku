@@ -1,0 +1,254 @@
+import os
+import sys
+import time
+import json
+import threading
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+
+PORT = 8922
+ROOT_DIR = Path(__file__).resolve().parents[1]
+ARTIFACTS_DIR = Path(r"C:\Users\Flanagan\.gemini\antigravity\brain\226047f0-0eea-4308-a980-7cd958a3b0ed")
+ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+
+class QuietHandler(SimpleHTTPRequestHandler):
+    def log_message(self, format, *args):
+        pass
+
+def run_server():
+    os.chdir(ROOT_DIR)
+    server = HTTPServer(('127.0.0.1', PORT), QuietHandler)
+    server.serve_forever()
+
+def main():
+    server_thread = threading.Thread(target=run_server, daemon=True)
+    server_thread.start()
+    time.sleep(1)
+
+    console_errors = []
+    def on_console(msg):
+        if msg.type == 'error':
+            # Ignore harmless resource 404s like missing favicon or image asset if any
+            console_errors.append(msg.text)
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            viewport={'width': 1664, 'height': 920}
+        )
+        page = context.new_page()
+        page.on('console', on_console)
+
+        # Pre-seed localStorage with exam date and some questions so counts & wrong wheel are active
+        init_script = """
+        localStorage.setItem('user_guest_study_dashboard_settings_v1', JSON.stringify({examDate: '2026-12-19'}));
+        localStorage.setItem('user_guest_shu1_status', JSON.stringify({
+            'ex_1-1': 'wrong',
+            'ex_1-2': 'proficient',
+            'ex_1-3': 'vague'
+        }));
+        """
+        page.add_init_script(init_script)
+
+        print("=== Test 1: Desktop Viewport 1664x920 & Hero Fold Visibility ===")
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.wait_for_selector('.kh-dashboard')
+
+        # Check brand and hero
+        brand_text = page.locator('.home-brand-title').text_content()
+        assert 'Kyson的考研' in brand_text, f"Unexpected brand: {brand_text}"
+
+        # Check overview row 1 bounding box: must be within the first screen (920px)
+        overview_box = page.locator('.kh-overview-grid').bounding_box()
+        assert overview_box is not None, "overview_grid must exist"
+        print(f"  .kh-overview-grid top: {overview_box['y']}px, bottom: {overview_box['y'] + overview_box['height']}px")
+        assert overview_box['y'] < 920, f"Overview grid must start within 920px, got {overview_box['y']}"
+        assert (overview_box['y'] + 100) < 920, "First row of overview must be clearly visible on 1664x920"
+
+        # Check countdown card
+        countdown_days = page.locator('#khCountdownDays').text_content().strip()
+        exam_date_text = page.locator('#khExamDate').text_content().strip()
+        print(f"  Countdown days: {countdown_days}, date text: {exam_date_text}")
+        assert countdown_days.isdigit() and int(countdown_days) > 0, f"Invalid countdown: {countdown_days}"
+        assert '2026-12-19' in exam_date_text, f"Expected 2026-12-19 in {exam_date_text}"
+
+        # Check 1 total card + 3 subject progress cards + 3 wheel buttons + 4 bottom modules
+        assert page.locator('.kh-total-card').count() == 1
+        assert page.locator('.kh-subject-progress-card').count() == 3
+        assert page.locator('[data-wheel]').count() == 3
+        assert page.locator('.home-module-card').count() == 4
+
+        # Save 1664x920 screenshot
+        shot_1664 = ARTIFACTS_DIR / "kyson_home_v2_1664x920.png"
+        page.screenshot(path=str(shot_1664), full_page=False)
+        print(f"  Saved 1664x920 screenshot to: {shot_1664}")
+
+        print("\n=== Test 2: Desktop Viewport 1856x830 ===")
+        page.set_viewport_size({'width': 1856, 'height': 830})
+        time.sleep(0.5)
+        shot_1856 = ARTIFACTS_DIR / "kyson_home_v2_1856x830.png"
+        page.screenshot(path=str(shot_1856), full_page=False)
+        print(f"  Saved 1856x830 screenshot to: {shot_1856}")
+
+        print("\n=== Test 3: Responsive Behavior (1280x800 & 768x1024) ===")
+        page.set_viewport_size({'width': 1280, 'height': 800})
+        time.sleep(0.3)
+        no_h_scroll = page.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")
+        assert no_h_scroll, "1280px should have no horizontal overflow"
+
+        page.set_viewport_size({'width': 768, 'height': 1024})
+        time.sleep(0.3)
+        no_h_scroll_768 = page.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")
+        assert no_h_scroll_768, "768px should have no horizontal overflow"
+        print("  Responsive layouts at 1280px and 768px passed without horizontal overflow.")
+
+        # Return to standard 1664 viewport for functional tests
+        page.set_viewport_size({'width': 1664, 'height': 920})
+
+        print("\n=== Test 4: Single Overall Progress (No duplicate cards) ===")
+        all_donuts = page.locator('#khAllDonut').count()
+        old_donuts = page.locator('#homeOverallDonut').count()
+        assert all_donuts == 1, f"Expected exactly 1 #khAllDonut, got {all_donuts}"
+        assert old_donuts == 0, f"Old #homeOverallDonut must not exist in V2, got {old_donuts}"
+        print("  Verified: exactly 1 total progress area, old progress card cleanly replaced.")
+
+        print("\n=== Test 5: Numbers Match StudyAnalytics ===")
+        analytics_data = page.evaluate("window.StudyAnalytics.getSubjectTotals()")
+        rendered_done = page.locator('#khAllDone').text_content().strip()
+        rendered_pct = page.locator('#khAllPct').text_content().strip()
+        expected_all = analytics_data['all']
+        expected_done_str = f"{expected_all['done']:,} / {expected_all['total']:,}"
+        print(f"  StudyAnalytics total: {expected_all['total']}, done: {expected_all['done']}")
+        print(f"  Rendered done: {rendered_done}, rendered pct: {rendered_pct}")
+        assert rendered_done == expected_done_str, f"Mismatch: {rendered_done} vs {expected_done_str}"
+
+        # Politics note check
+        politics_note = page.locator('.kh-politics-note').text_content()
+        assert '知识图谱' in politics_note and '暂不虚构' in politics_note
+
+        print("\n=== Test 6: Math Wheel Launch & Real Wheel Functionality ===")
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('[data-wheel="math"]').click()
+
+        # Should land on study.html and open dailyMathWheelModal
+        page.wait_for_url("**/study.html*", timeout=6000)
+        page.wait_for_selector('#dailyMathWheelModal', state='visible', timeout=8000)
+        assert page.locator('#dailyMathWheelModal').is_visible(), "dailyMathWheelModal must be visible"
+
+        # Check wheel query parameter was cleared from address bar
+        page.wait_for_function("() => !window.location.search.includes('wheel=')", timeout=4000)
+        current_url = page.url
+        assert 'wheel=' not in current_url, f"wheel param should be cleaned from URL: {current_url}"
+
+        # Capture Math Wheel opened screenshot
+        shot_math = ARTIFACTS_DIR / "kyson_wheel_math_opened.png"
+        page.screenshot(path=str(shot_math), full_page=False)
+        print(f"  Saved Math Wheel screenshot to: {shot_math}")
+
+        # Click spin button and verify real wheel spin
+        spin_btn = page.locator('#btnDailyMathWheelSpin')
+        if spin_btn.is_visible():
+            spin_btn.click()
+            time.sleep(4.5) # Wait for animation to finish
+            # Check selected chapter is displayed
+            selected_text = page.locator('#dailyMathWheelResultName').text_content()
+            print(f"  Math Wheel spun! Selected chapter: {selected_text.strip()}")
+            assert page.locator('#btnDailyMathWheelStart').is_visible(), "Start learning button must appear"
+
+            # Click '开始学习' and verify it transitions to chapter study and closes modal
+            page.locator('#btnDailyMathWheelStart').click()
+            time.sleep(1.0)
+            assert not page.locator('#dailyMathWheelModal').is_visible(), "Modal should close upon starting learning"
+            view = page.evaluate("window.getWorkbenchView ? window.getWorkbenchView() : ''")
+            assert view == 'practice', f"Starting learning should be in practice view, got {view}"
+
+        print("\n=== Test 7: Major Wheel Launch & Tab Semantics ===")
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('[data-wheel="major"]').click()
+        page.wait_for_url("**/study.html*", timeout=6000)
+        page.wait_for_selector('#dailyMathWheelModal', state='visible', timeout=8000)
+        assert page.locator('#dailyMathWheelModal').is_visible(), "Modal must be visible for major wheel"
+
+        # Verify major subject semantics in wheel tab
+        major_active = page.evaluate("""
+            (function() {
+                var tab = document.querySelector('.study-wheel-tab[data-subject-id="zhuanye"]');
+                return tab ? tab.classList.contains('active') : false;
+            })()
+        """)
+        print(f"  Major wheel tab active: {major_active}")
+        assert major_active, "Major tab must be active when opening major wheel"
+
+        # Spin major wheel
+        page.locator('#btnDailyMathWheelSpin').click()
+        time.sleep(4.5)
+        major_selected = page.locator('#dailyMathWheelResultName').text_content()
+        print(f"  Major Wheel spun! Selected chapter: {major_selected.strip()}")
+        page.locator('#btnCloseDailyMathWheel').click()
+
+        print("\n=== Test 8: Wrong Wheel Launch & Screenshot ===")
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('[data-wheel="wrong"]').click()
+        page.wait_for_url("**/study.html*", timeout=6000)
+        page.wait_for_selector('#dailyWrongWheelModal', state='visible', timeout=8000)
+        assert page.locator('#dailyWrongWheelModal').is_visible(), "dailyWrongWheelModal must be visible"
+
+        # Capture Wrong Wheel screenshot
+        shot_wrong = ARTIFACTS_DIR / "kyson_wheel_wrong_opened.png"
+        page.screenshot(path=str(shot_wrong), full_page=False)
+        print(f"  Saved Wrong Wheel screenshot to: {shot_wrong}")
+
+        # Test scope button and spin wrong wheel
+        page.locator('#btnWrongScopeAll').click()
+        time.sleep(0.5)
+        page.locator('#btnDailyWrongWheelSpin').click()
+        time.sleep(4.5)
+        wrong_selected = page.locator('#dailyWrongWheelResultName').text_content()
+        print(f"  Wrong Wheel spun! Selected chapter: {wrong_selected.strip()}")
+        page.locator('#btnCloseDailyWrongWheel').click()
+
+        print("\n=== Test 9: Verify 4 Subject Entries Still Work ===")
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+
+        # Math entry
+        page.locator('.home-module-card.math').click()
+        page.wait_for_url("**/study.html?subject=shu1", timeout=5000)
+        page.wait_for_function("() => window.getWorkbenchView && window.getWorkbenchView() === 'practice'", timeout=5000)
+        view = page.evaluate("window.getWorkbenchView ? window.getWorkbenchView() : ''")
+        assert view == 'practice', f"Math entry should land in practice view, got {view}"
+
+        # Major entry
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('.home-module-card.major').click()
+        page.wait_for_url("**/study.html?subject=zhuanye", timeout=5000)
+        page.wait_for_function("() => window.getWorkbenchView && window.getWorkbenchView() === 'practice'", timeout=5000)
+
+        # English entry
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('.home-module-card.english').click()
+        page.wait_for_url("**/study.html?subject=english", timeout=5000)
+
+        # Politics entry
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('.home-module-card.politics').click()
+        page.wait_for_url("**/politics.html", timeout=5000)
+        page.locator('.politics-home-link').click()
+        page.wait_for_url("**/index.html", timeout=5000)
+
+        print("\n=== Test 10: Console Errors Inspection ===")
+        print(f"  Recorded console errors count: {len(console_errors)}")
+        if console_errors:
+            for err in console_errors:
+                print("    - Error:", err)
+        assert len(console_errors) == 0, f"Expected 0 console errors, got {len(console_errors)}"
+
+        browser.close()
+
+    print("\n==================================================")
+    print("ALL 10 BROWSER E2E ACCEPTANCE TESTS PASSED (100%)!")
+    print("Zero console errors confirmed.")
+    print("==================================================")
+
+if __name__ == '__main__':
+    main()

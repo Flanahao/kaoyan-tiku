@@ -33,8 +33,17 @@ html = (ROOT / 'index.html').read_text(encoding='utf-8')
 p = Parser()
 p.feed(html)
 
+dashboard_v2_map = {
+    'homeOverallDonut': 'khAllDonut',
+    'homeOverallPct': 'khAllPct',
+    'homeDoneText': 'khAllDone',
+    'homeMasteredText': 'khAllMastered',
+    'homeVagueText': 'khAllVague',
+    'homeWrongText': 'khAllWrong'
+}
 for required in ['homeOverallDonut', 'homeOverallPct', 'homeDoneText', 'homeMasteredText', 'homeVagueText', 'homeWrongText']:
-    check('homepage id ' + required, required in p.ids)
+    v2_id = dashboard_v2_map.get(required)
+    check('homepage id ' + required, (required in p.ids) or (v2_id in p.ids))
 
 check('home has no old sidebar', 'sidebar-left' not in p.classes)
 

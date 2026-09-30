@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f4f7ff">
   <title>Kyson的考研 Space</title>
   <link rel="stylesheet" href="css/home.css?v=20260929a">
+  <link rel="stylesheet" href="css/home-dashboard-v2.css?v=20260930a">
 </head>
 <body>
   <main class="kyson-home">
@@ -45,47 +46,137 @@
         <p>从首页选择今天要学的科目。数学、专业课、英语与政治各自进入专注模块，首页只负责总览和导航，不再让全局工具栏占据你的学习视野。</p>
       </section>
 
-      <section class="home-progress-wrap" aria-label="全站学习总进度">
-        <article class="home-progress-card">
-          <div class="home-progress-donut" id="homeOverallDonut" role="img" aria-label="全站学习总进度">
-            <div class="home-progress-donut-center">
-              <strong id="homeOverallPct">0%</strong>
-              <span>总进度</span>
+      <!--
+        Kyson Home V2: 今天的学习，一眼看清
+        包含考研倒计时、全站学习总进度、分科小进度卡与三大转盘入口
+      -->
+      <section class="kh-dashboard" id="homeStudyOverview" aria-labelledby="khOverviewTitle">
+        <div class="kh-section-head">
+          <div>
+            <span class="kh-section-kicker">Study Overview</span>
+            <h2 class="kh-section-title" id="khOverviewTitle">今天的学习，一眼看清</h2>
+          </div>
+          <p class="kh-section-subtitle">把原工作台里最有用的倒计时、总进度和分科进度收回首页；详细题库工具仍留在各科专注页面。</p>
+        </div>
+
+        <div class="kh-overview-grid">
+          <article class="kh-card kh-countdown-card">
+            <div>
+              <h3 class="kh-card-label">考研初试倒计时</h3>
+              <p class="kh-card-copy">稳住节奏，逐题推进；你今天的每一步，都在靠近目标。</p>
+              <span class="kh-countdown-date" id="khExamDate">尚未设置考试日期</span>
+            </div>
+            <div class="kh-countdown-box" aria-live="polite">
+              <strong class="kh-countdown-number" id="khCountdownDays">—</strong>
+              <span class="kh-countdown-unit">天</span>
+            </div>
+          </article>
+
+          <article class="kh-card kh-total-card">
+            <div class="kh-donut" id="khAllDonut" role="img" aria-label="全站学习总进度">
+              <div class="kh-donut-center">
+                <strong id="khAllPct">0%</strong>
+                <span>总进度</span>
+              </div>
+            </div>
+            <div class="kh-total-copy">
+              <h3>全站学习总进度</h3>
+              <p>数学、专业课题目和英语词汇统一统计</p>
+              <div class="kh-total-metrics">
+                <div class="kh-metric"><span>已标记项目</span><strong id="khAllDone">0 / 0</strong></div>
+                <div class="kh-metric mastered"><span>熟练掌握</span><strong id="khAllMastered">0 项（0%）</strong></div>
+                <div class="kh-metric vague"><span>模糊需复习</span><strong id="khAllVague">0 项</strong></div>
+                <div class="kh-metric wrong"><span>不会 / 错题</span><strong id="khAllWrong">0 项</strong></div>
+              </div>
+              <div class="kh-legend" aria-hidden="true">
+                <span><i class="kh-dot mastered"></i>熟练</span>
+                <span><i class="kh-dot vague"></i>模糊</span>
+                <span><i class="kh-dot wrong"></i>不会</span>
+                <span><i class="kh-dot unmarked"></i>未标记</span>
+              </div>
+              <div class="kh-politics-note">政治当前以知识图谱为主，暂不虚构量化掌握度，因此不计入这张总进度卡。</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="kh-subject-progress-grid" aria-label="分科学习进度">
+          <a class="kh-card kh-subject-progress-card" href="study.html?subject=english&from=home">
+            <div class="kh-donut" id="khEnglishDonut">
+              <div class="kh-donut-center"><strong id="khEnglishPct">0%</strong><span>英语</span></div>
+            </div>
+            <div class="kh-subject-copy">
+              <h3>英语总进度</h3>
+              <p>英语词汇与精读入口统一回到英语专注空间</p>
+              <div class="kh-subject-done"><span id="khEnglishDone">0 / 0</span><small>已标记 / 总词数</small></div>
+            </div>
+            <div class="kh-status-line">
+              <span><i class="kh-dot mastered"></i>熟练 <strong id="khEnglishMastered">0</strong></span>
+              <span><i class="kh-dot vague"></i>模糊 <strong id="khEnglishVague">0</strong></span>
+              <span><i class="kh-dot wrong"></i>不会 <strong id="khEnglishWrong">0</strong></span>
+              <span><i class="kh-dot unmarked"></i>未标 <strong id="khEnglishUnmarked">0</strong></span>
+            </div>
+          </a>
+
+          <a class="kh-card kh-subject-progress-card" href="study.html?subject=shu1&from=home">
+            <div class="kh-donut" id="khMathDonut">
+              <div class="kh-donut-center"><strong id="khMathPct">0%</strong><span>数学</span></div>
+            </div>
+            <div class="kh-subject-copy">
+              <h3>数学总进度</h3>
+              <p>数学全部书籍、章节与真题统一统计</p>
+              <div class="kh-subject-done"><span id="khMathDone">0 / 0</span><small>已标记 / 总题数</small></div>
+            </div>
+            <div class="kh-status-line">
+              <span><i class="kh-dot mastered"></i>熟练 <strong id="khMathMastered">0</strong></span>
+              <span><i class="kh-dot vague"></i>模糊 <strong id="khMathVague">0</strong></span>
+              <span><i class="kh-dot wrong"></i>不会 <strong id="khMathWrong">0</strong></span>
+              <span><i class="kh-dot unmarked"></i>未标 <strong id="khMathUnmarked">0</strong></span>
+            </div>
+          </a>
+
+          <a class="kh-card kh-subject-progress-card" href="study.html?subject=zhuanye&from=home">
+            <div class="kh-donut" id="khMajorDonut">
+              <div class="kh-donut-center"><strong id="khMajorPct">0%</strong><span>专业课</span></div>
+            </div>
+            <div class="kh-subject-copy">
+              <h3>专业课总进度</h3>
+              <p>专业课全部书籍与章节统一统计</p>
+              <div class="kh-subject-done"><span id="khMajorDone">0 / 0</span><small>已标记 / 总题数</small></div>
+            </div>
+            <div class="kh-status-line">
+              <span><i class="kh-dot mastered"></i>熟练 <strong id="khMajorMastered">0</strong></span>
+              <span><i class="kh-dot vague"></i>模糊 <strong id="khMajorVague">0</strong></span>
+              <span><i class="kh-dot wrong"></i>不会 <strong id="khMajorWrong">0</strong></span>
+              <span><i class="kh-dot unmarked"></i>未标 <strong id="khMajorUnmarked">0</strong></span>
+            </div>
+          </a>
+        </div>
+
+        <section class="kh-wheel-section" aria-labelledby="khWheelTitle">
+          <div class="kh-wheel-head">
+            <div>
+              <h3 id="khWheelTitle">今天学什么？让转盘替你决定</h3>
+              <p>完整复用原来的推进、阶段、加量、撤销与错题攻坚逻辑，不另造简化版。</p>
             </div>
           </div>
-
-          <div class="home-progress-copy">
-            <h2>全站学习总进度</h2>
-            <p>沿用现有学习统计：数学、专业课题目与英语词汇统一汇总。</p>
-
-            <div class="home-progress-stats">
-              <div class="home-progress-stat">
-                <span>已标记项目</span>
-                <strong id="homeDoneText">0 / 0</strong>
-              </div>
-              <div class="home-progress-stat mastered">
-                <span>熟练掌握</span>
-                <strong id="homeMasteredText">0 项</strong>
-              </div>
-              <div class="home-progress-stat vague">
-                <span>模糊需复习</span>
-                <strong id="homeVagueText">0 项</strong>
-              </div>
-              <div class="home-progress-stat wrong">
-                <span>不会 / 错题</span>
-                <strong id="homeWrongText">0 项</strong>
-              </div>
-            </div>
-
-            <div class="home-progress-legend" aria-hidden="true">
-              <span><i style="background:#18a874"></i>熟练</span>
-              <span><i style="background:#d58a18"></i>模糊</span>
-              <span><i style="background:#d74a5d"></i>不会</span>
-              <span><i style="background:#dfe9f5"></i>未标记</span>
-            </div>
-            <div class="home-progress-note">政治目前以知识图谱为主，尚未接入统一掌握度协议，因此暂不虚构进度数据。</div>
+          <div class="kh-wheel-grid">
+            <button class="kh-wheel-card" type="button" data-wheel="math">
+              <span class="kh-wheel-mini" aria-hidden="true"></span>
+              <span class="kh-wheel-copy"><strong>数学推进转盘</strong><span>随机抽取今天要推进的数学章节，继续沿用原有阶段推进逻辑。</span></span>
+              <span class="kh-wheel-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="kh-wheel-card" type="button" data-wheel="major">
+              <span class="kh-wheel-mini" aria-hidden="true"></span>
+              <span class="kh-wheel-copy"><strong>专业课推进转盘</strong><span>从专业课章节里随机选择今天的主攻方向，保持原有去重与加量机制。</span></span>
+              <span class="kh-wheel-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="kh-wheel-card" type="button" data-wheel="wrong">
+              <span class="kh-wheel-mini" aria-hidden="true"></span>
+              <span class="kh-wheel-copy"><strong>错题攻坚转盘</strong><span>聚焦数学与专业课的薄弱章节，直接进入现有错题转盘系统。</span></span>
+              <span class="kh-wheel-arrow" aria-hidden="true">→</span>
+            </button>
           </div>
-        </article>
+        </section>
       </section>
 
       <section class="home-module-section" aria-labelledby="moduleTitle">
@@ -190,5 +281,6 @@
   <script src="js/chapters.js?v=20260921a"></script>
   <script src="js/study-analytics.js?v=20260910c"></script>
   <script src="js/home.js?v=20260929a"></script>
+  <script src="js/home-dashboard-v2.js?v=20260930a"></script>
 </body>
 </html>
