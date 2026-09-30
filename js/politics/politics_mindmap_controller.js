@@ -39,6 +39,9 @@
   var shortcutManager = null;
   var dragEnhancer = null;
   var nodeEditor = null;
+  var currentBaseline = null;
+  var saveTimer = null;
+  var loadingScope = false;
 
   var currentScopeId = 'pol_macro';
   var currentLayerMode = 'subject_macro'; // 'subject_macro' | 'chapter'
@@ -843,7 +846,8 @@
     var scaleToFitW = availW / Math.max(1, wb.width);
     var scaleToFitH = availH / Math.max(1, wb.height);
     var targetScale = Math.min(scaleToFitW, scaleToFitH);
-    targetScale = Math.max(0.10, Math.min(1.0, targetScale));
+    // Fit the actual tree. A fixed lower bound clipped the six-subject overview.
+    targetScale = Math.min(1.0, targetScale);
 
     var worldCenterX = (wb.minX + wb.maxX) / 2;
     var worldCenterY = (wb.minY + wb.maxY) / 2;
@@ -912,23 +916,77 @@
 
   var lastVisitedSubjectId = 'pol_my';
 
+  function persistCurrentMindMapState(immediate) {
+    if (saveTimer) {
+      clearTimeout(saveTimer);
+      saveTimer = null;
+    }
+    if (!immediate) {
+      saveTimer = setTimeout(function () { persistCurrentMindMapState(true); }, 220);
+      return;
+    }
+    if (loadingScope || clusterState.active || !mindMapInstance || !currentBaseline ||
+        !window.PoliticsMindMapState) return;
+    if (outliner && outliner.focusedUid && typeof outliner.commitNode === 'function') {
+      outliner.commitNode(outliner.focusedUid);
+    }
+    var inOutline = dualViewController && dualViewController.getCurrentView() === 'outline';
+    var tree = inOutline && outliner ? outliner.getData() :
+      ((mindMapInstance.renderer && mindMapInstance.renderer.renderTree) || mindMapInstance.getData(false));
+    // A temporary drill-down or relation cluster is not the canonical full tree.
+    if (tree && tree.data && tree.data.uid === currentBaseline.data.uid) {
+      window.PoliticsMindMapState.capture(cloneCleanTree(tree), currentBaseline, currentScopeId);
+      var view = mindMapInstance.view;
+      window.PoliticsMindMapState.saveUI(currentScopeId, {
+        viewMode: inOutline ? 'outline' : 'mindmap',
+        lines: isAssociativeLineVisible,
+        viewport: view ? { x: view.x, y: view.y, scale: view.scale } : null
+      });
+    }
+  }
+
+  function restoreScopeUI(scopeId) {
+    if (!window.PoliticsMindMapState) return;
+    var ui = window.PoliticsMindMapState.getUI(scopeId);
+    if (!ui) return;
+    if (typeof ui.lines === 'boolean') toggleAssociativeLines(ui.lines);
+    if (dualViewController && (ui.viewMode === 'outline' || ui.viewMode === 'mindmap')) {
+      dualViewController.switchView(ui.viewMode);
+    }
+    var vp = ui.viewport;
+    // Wait until setData has finished the new layout and its first fit.
+    setTimeout(function () {
+      if (currentScopeId !== scopeId || !mindMapInstance || !mindMapInstance.view || !vp ||
+          !Number.isFinite(vp.scale) || vp.scale <= 0 || !Number.isFinite(vp.x) || !Number.isFinite(vp.y)) return;
+      mindMapInstance.view.scale = vp.scale;
+      mindMapInstance.view.x = vp.x;
+      mindMapInstance.view.y = vp.y;
+      mindMapInstance.view.transform();
+    }, 180);
+  }
+
   // 学科作用域切换 (Scope Switcher)
   function loadScope(scopeId) {
     if (!window.PoliticsDataAdapter) return;
+    persistCurrentMindMapState(true);
     if (clusterState.active) {
       exitClusterMode({ restoreOnly: true });
     }
 
-    currentScopeId = scopeId || 'pol_macro';
+    var nextScopeId = scopeId || 'pol_macro';
+    var baseline = window.PoliticsDataAdapter.getScopeData(nextScopeId);
+    if (!baseline) return;
+    var scopeData = window.PoliticsMindMapState ?
+      window.PoliticsMindMapState.restore(baseline, nextScopeId) : baseline;
+    currentBaseline = baseline;
+    currentScopeId = nextScopeId;
     currentLayerMode = (currentScopeId === 'pol_macro') ? 'subject_macro' : 'chapter';
 
     if (currentScopeId !== 'pol_macro' && currentScopeId !== 'pol_periods') {
       lastVisitedSubjectId = currentScopeId;
     }
 
-    var scopeData = window.PoliticsDataAdapter.getScopeData(currentScopeId);
-    if (!scopeData) return;
-
+    loadingScope = true;
     if (!mindMapInstance) {
       initMindMap(scopeData);
     } else {
@@ -945,8 +1003,10 @@
     if (dualViewController) {
       dualViewController.syncMindMapToOutliner();
     }
+    loadingScope = false;
 
     updateScopeUI();
+    restoreScopeUI(currentScopeId);
   }
 
   // 切换上一科/下一科 (A / D 键)
@@ -1220,6 +1280,7 @@
         titlePlaceholder: '考研政治大纲笔记'
       });
       window._outlinerInstance = outliner;
+      outliner.on('change', function () { persistCurrentMindMapState(); });
     }
 
     if (window.DualViewController && outliner) {
@@ -1228,6 +1289,7 @@
         mountSwitcher: false
       });
       window._dualViewController = dualViewController;
+      dualViewController.on('view_change', function () { persistCurrentMindMapState(); });
     }
 
     // 确保双向布局下严格遵从 PoliticsDataAdapter 指定的左右方向 (sg, my, mzt 居左；xs, xg, sx 居右)
@@ -1303,6 +1365,8 @@
       }
     });
 
+    mindMapInstance.on('data_change', function () { persistCurrentMindMapState(); });
+
     mindMapInstance.on('node_tree_render_end', function () {
       if (mindMapInstance.associativeLine && typeof mindMapInstance.associativeLine.renderAllLines === 'function') {
         mindMapInstance.associativeLine.renderAllLines();
@@ -1371,6 +1435,10 @@
     }
   });
 
+  if (typeof window !== 'undefined') {
+    window.addEventListener('pagehide', function () { persistCurrentMindMapState(true); });
+  }
+
   return {
     init: function () {
       loadScope('pol_macro');
@@ -1404,6 +1472,6 @@
     getShortcutDrawer: function () { return shortcutDrawer; },
     getShortcutManager: function () { return shortcutManager; },
     getStructureController: function () { return structureController; },
-    persistCurrentMindMapState: function () {}
+    persistCurrentMindMapState: persistCurrentMindMapState
   };
 });

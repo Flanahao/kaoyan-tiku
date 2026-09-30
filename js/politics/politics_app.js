@@ -79,6 +79,7 @@
     if (dvc && typeof dvc.on === 'function') {
       dvc.on('view_change', updateViewToggleButton);
     }
+    updateViewToggleButton();
 
     if (btnView) {
       btnView.addEventListener('click', function () {
@@ -131,18 +132,13 @@
       });
     }
 
-    // 7. 全局键盘 L/F/M 快捷键兜底 (若未处于输入框编辑状态)
+    // 7. F 键自适应；L/M 由通用导图工具集各自处理一次。
     document.addEventListener('keydown', function (e) {
       var activeEl = document.activeElement;
       var isInput = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
       if (isInput) return;
 
-      if (e.key === 'l' || e.key === 'L') {
-        if (window.PoliticsMindMapController) {
-          window.PoliticsMindMapController.toggleAssociativeLines();
-          e.preventDefault();
-        }
-      } else if (e.key === 'f' || e.key === 'F') {
+      if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.altKey && !e.metaKey) {
         if (window.PoliticsMindMapController) {
           window.PoliticsMindMapController.fitCanvasToViewport();
           e.preventDefault();
