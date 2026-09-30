@@ -7,6 +7,7 @@
   <title>Kyson的考研 Space</title>
   <link rel="stylesheet" href="css/home.css?v=20260929a">
   <link rel="stylesheet" href="css/home-dashboard-v2.css?v=20260930a">
+  <link rel="stylesheet" href="css/home-wheel-embed.css?v=20260930b">
 </head>
 <body>
   <main class="kyson-home">
@@ -270,6 +271,12 @@
     </div>
   </main>
 
+  <div id="homeWheelHost" class="kh-wheel-host" hidden>
+    <p id="homeWheelLoading" class="kh-wheel-loading" role="status">正在加载转盘…</p>
+    <button id="homeWheelClose" class="kh-wheel-close" type="button" aria-label="关闭首页转盘">×</button>
+    <iframe id="homeWheelFrame" title="首页学习转盘" src="about:blank"></iframe>
+  </div>
+
   <!-- 首页只加载“统计所需的数据”，不加载 app.js，避免把旧工作台启动到首页。 -->
   <script src="english-import-data.js?v=20260909c"></script>
   <script src="js/lilin880-chapters.js"></script>
@@ -282,5 +289,6 @@
   <script src="js/study-analytics.js?v=20260910c"></script>
   <script src="js/home.js?v=20260929a"></script>
   <script src="js/home-dashboard-v2.js?v=20260930a"></script>
+  <script src="js/home-wheel-embed.js?v=20260930b"></script>
 </body>
 </html>

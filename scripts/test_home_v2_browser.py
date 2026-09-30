@@ -131,15 +131,9 @@ def main():
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
         page.locator('[data-wheel="math"]').click()
 
-        # Should land on study.html and open dailyMathWheelModal
-        page.wait_for_url("**/study.html*", timeout=6000)
-        page.wait_for_selector('#dailyMathWheelModal', state='visible', timeout=8000)
-        assert page.locator('#dailyMathWheelModal').is_visible(), "dailyMathWheelModal must be visible"
-
-        # Check wheel query parameter was cleared from address bar
-        page.wait_for_function("() => !window.location.search.includes('wheel=')", timeout=4000)
-        current_url = page.url
-        assert 'wheel=' not in current_url, f"wheel param should be cleaned from URL: {current_url}"
+        frame = page.frame_locator('#homeWheelFrame')
+        frame.locator('#dailyMathWheelModal').wait_for(state='visible', timeout=15000)
+        assert page.url.endswith('/index.html'), "spinning must stay on the homepage"
 
         # Capture Math Wheel opened screenshot
         shot_math = ARTIFACTS_DIR / "kyson_wheel_math_opened.png"
@@ -147,52 +141,51 @@ def main():
         print(f"  Saved Math Wheel screenshot to: {shot_math}")
 
         # Click spin button and verify real wheel spin
-        spin_btn = page.locator('#btnDailyMathWheelSpin')
+        spin_btn = frame.locator('#btnDailyMathWheelSpin')
         if spin_btn.is_visible():
             spin_btn.click()
             time.sleep(4.5) # Wait for animation to finish
             # Check selected chapter is displayed
-            selected_text = page.locator('#dailyMathWheelResultName').text_content()
+            selected_text = frame.locator('#dailyMathWheelResultName').text_content()
             print(f"  Math Wheel spun! Selected chapter: {selected_text.strip()}")
-            assert page.locator('#btnDailyMathWheelStart').is_visible(), "Start learning button must appear"
+            assert frame.locator('#btnDailyMathWheelStart').is_visible(), "Start learning button must appear"
 
             # Click '开始学习' and verify it transitions to chapter study and closes modal
-            page.locator('#btnDailyMathWheelStart').click()
-            time.sleep(1.0)
-            assert not page.locator('#dailyMathWheelModal').is_visible(), "Modal should close upon starting learning"
+            frame.locator('#btnDailyMathWheelStart').click()
+            page.wait_for_url("**/study.html?subject=shu1&chapter=*", timeout=10000)
+            page.wait_for_function("() => window.getWorkbenchView && window.getWorkbenchView() === 'practice'", timeout=5000)
             view = page.evaluate("window.getWorkbenchView ? window.getWorkbenchView() : ''")
             assert view == 'practice', f"Starting learning should be in practice view, got {view}"
+
 
         print("\n=== Test 7: Major Wheel Launch & Tab Semantics ===")
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
         page.locator('[data-wheel="major"]').click()
-        page.wait_for_url("**/study.html*", timeout=6000)
-        page.wait_for_selector('#dailyMathWheelModal', state='visible', timeout=8000)
-        assert page.locator('#dailyMathWheelModal').is_visible(), "Modal must be visible for major wheel"
+        frame = page.frame_locator('#homeWheelFrame')
+        frame.locator('#dailyMathWheelModal').wait_for(state='visible', timeout=15000)
+        assert page.url.endswith('/index.html')
 
         # Verify major subject semantics in wheel tab
-        major_active = page.evaluate("""
-            (function() {
-                var tab = document.querySelector('.study-wheel-tab[data-subject-id="zhuanye"]');
-                return tab ? tab.classList.contains('active') : false;
-            })()
+        major_active = frame.locator('#dailyMathWheelModal .study-wheel-tab[data-subject-id="zhuanye"]').evaluate("""(tab) =>
+            tab.classList.contains('active')
         """)
         print(f"  Major wheel tab active: {major_active}")
         assert major_active, "Major tab must be active when opening major wheel"
 
         # Spin major wheel
-        page.locator('#btnDailyMathWheelSpin').click()
+        frame.locator('#btnDailyMathWheelSpin').click()
         time.sleep(4.5)
-        major_selected = page.locator('#dailyMathWheelResultName').text_content()
+        major_selected = frame.locator('#dailyMathWheelResultName').text_content()
         print(f"  Major Wheel spun! Selected chapter: {major_selected.strip()}")
-        page.locator('#btnCloseDailyMathWheel').click()
+        frame.locator('#btnCloseDailyMathWheel').click()
+        assert page.locator('#homeWheelHost').is_hidden()
 
         print("\n=== Test 8: Wrong Wheel Launch & Screenshot ===")
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
         page.locator('[data-wheel="wrong"]').click()
-        page.wait_for_url("**/study.html*", timeout=6000)
-        page.wait_for_selector('#dailyWrongWheelModal', state='visible', timeout=8000)
-        assert page.locator('#dailyWrongWheelModal').is_visible(), "dailyWrongWheelModal must be visible"
+        frame = page.frame_locator('#homeWheelFrame')
+        frame.locator('#dailyWrongWheelModal').wait_for(state='visible', timeout=15000)
+        assert page.url.endswith('/index.html')
 
         # Capture Wrong Wheel screenshot
         shot_wrong = ARTIFACTS_DIR / "kyson_wheel_wrong_opened.png"
@@ -200,13 +193,14 @@ def main():
         print(f"  Saved Wrong Wheel screenshot to: {shot_wrong}")
 
         # Test scope button and spin wrong wheel
-        page.locator('#btnWrongScopeAll').click()
+        frame.locator('#btnWrongScopeAll').click()
         time.sleep(0.5)
-        page.locator('#btnDailyWrongWheelSpin').click()
+        frame.locator('#btnDailyWrongWheelSpin').click()
         time.sleep(4.5)
-        wrong_selected = page.locator('#dailyWrongWheelResultName').text_content()
+        wrong_selected = frame.locator('#dailyWrongWheelResultName').text_content()
         print(f"  Wrong Wheel spun! Selected chapter: {wrong_selected.strip()}")
-        page.locator('#btnCloseDailyWrongWheel').click()
+        frame.locator('#btnCloseDailyWrongWheel').click()
+        assert page.locator('#homeWheelHost').is_hidden()
 
         print("\n=== Test 9: Verify 4 Subject Entries Still Work ===")
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
@@ -217,6 +211,7 @@ def main():
         page.wait_for_function("() => window.getWorkbenchView && window.getWorkbenchView() === 'practice'", timeout=5000)
         view = page.evaluate("window.getWorkbenchView ? window.getWorkbenchView() : ''")
         assert view == 'practice', f"Math entry should land in practice view, got {view}"
+        assert page.locator('.header-nav-right #dailyGoalButton').is_visible()
 
         # Major entry
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')

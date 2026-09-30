@@ -76,7 +76,10 @@ def test_static():
     # 4. JS checks
     home_js_text = home_v2_js.read_text(encoding='utf-8')
     assert 'StudyAnalytics.getSubjectTotals' in home_js_text, "home-dashboard-v2.js must reuse StudyAnalytics.getSubjectTotals"
-    assert 'study.html?wheel=' in home_js_text, "home-dashboard-v2.js must launch study.html?wheel="
+    embed_js_text = (root / 'js' / 'home-wheel-embed.js').read_text(encoding='utf-8')
+    assert 'homeWheelHost' in index_text and 'home-wheel-embed.js' in index_text
+    assert 'study.html?embeddedWheel=1' in embed_js_text, "home wheels must open inside the homepage overlay"
+    assert 'study.html?wheel=' not in home_js_text, "home wheel click must not navigate to study.html"
     assert "politics" not in re.findall(r"renderTotals\('([^']+)'", home_js_text), "politics must not be faked as numeric total"
 
     route_js_text = route_js.read_text(encoding='utf-8')

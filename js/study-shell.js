@@ -92,6 +92,15 @@
 
     right.insertBefore(actions, right.firstChild);
 
+    // Reuse the original widget and its analytics listeners; do not clone its IDs.
+    var goal = document.getElementById('dailyGoalButton');
+    if (goal) {
+      var slot = document.createElement('div');
+      slot.className = 'focus-goal-slot';
+      slot.appendChild(goal);
+      right.appendChild(slot);
+    }
+
     actions.addEventListener('click', function (event) {
       var quick = event.target.closest('[data-focus-action]');
       if (quick) {
@@ -166,6 +175,16 @@
       }
       if (typeof window.renderTitle === 'function') {
         window.renderTitle();
+      }
+    }
+
+    if (entry.chapter && (id === 'shu1' || id === 'zhuanye')) {
+      var bridge = window.DailyStudyWheelBridge;
+      var mode = entry.wheelMode;
+      if ((mode === 'mistakes' || mode === 'practice') && bridge && typeof bridge.openWrongChapter === 'function') {
+        bridge.openWrongChapter(id, entry.chapter, mode);
+      } else if (bridge && typeof bridge.openChapter === 'function') {
+        bridge.openChapter(id, entry.chapter);
       }
     }
 

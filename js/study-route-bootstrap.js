@@ -22,6 +22,8 @@
 
   window.__KYSON_STUDY_ENTRY__ = {
     subject: allowedSubjects.indexOf(requestedSubject) !== -1 ? requestedSubject : '',
+    chapter: params.get('chapter') || '',
+    wheelMode: params.get('wheelMode') || '',
     panel: params.get('panel') || '',
     source: params.get('from') || 'home'
   };

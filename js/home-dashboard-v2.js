@@ -159,23 +159,7 @@
     }
   }
 
-  function openWheel(kind) {
-    var safeKind = kind === 'major' || kind === 'wrong' ? kind : 'math';
-    var target = 'study.html?wheel=' + encodeURIComponent(safeKind) + '&from=home';
-    window.location.href = target;
-  }
-
-  function bindWheelLaunchers() {
-    document.addEventListener('click', function (event) {
-      var trigger = event.target.closest('[data-wheel]');
-      if (!trigger) return;
-      event.preventDefault();
-      openWheel(trigger.getAttribute('data-wheel'));
-    });
-  }
-
   function init() {
-    bindWheelLaunchers();
     render(0);
     window.addEventListener('storage', function (event) {
       if (!event.key) return;

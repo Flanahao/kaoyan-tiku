@@ -1,0 +1,15 @@
+.kh-wheel-host[hidden] { display: none !important; }
+.kh-wheel-host { position: fixed; inset: 0; z-index: 10000; background: rgba(22, 35, 56, .5); }
+.kh-wheel-host iframe { width: 100%; height: 100%; border: 0; visibility: hidden; }
+.kh-wheel-loading { position: absolute; z-index: 1; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; padding: 18px 24px; border-radius: 14px; background: white; color: #35516f; font-weight: 700; box-shadow: 0 16px 40px rgba(0,0,0,.18); }
+.kh-wheel-close { position: absolute; z-index: 2; top: 16px; right: 16px; width: 36px; height: 36px; border: 1px solid #d7e3f1; border-radius: 50%; background: #fff; color: #35516f; font-size: 25px; line-height: 1; cursor: pointer; }
+html.wheel-embedded body { background: transparent !important; }
+html.wheel-embedded .app-layout { visibility: hidden !important; }
+html.wheel-embedded .subject-overlay:not(#dailyMathWheelModal):not(#dailyWrongWheelModal) { visibility: hidden !important; }
+html.subject-focus-shell .account-bar { grid-template-columns: max-content minmax(0, 1fr); column-gap: clamp(12px, 3vw, 40px); }
+html.subject-focus-shell .header-nav-right { width: 100%; min-width: 0; justify-self: stretch; }
+.focus-actions { margin-left: clamp(0px, 3vw, 48px); }
+.focus-goal-slot { display: flex; align-items: center; margin-left: auto; padding-left: 12px; }
+.focus-goal-slot .daily-goal-widget { white-space: nowrap; }
+@media (max-width: 900px) { .focus-actions { margin-left: 0; } .focus-goal-slot { padding-left: 6px; } }
+@media (max-width: 620px) { html.subject-focus-shell .account-bar { grid-template-columns: minmax(0, 1fr); row-gap: 6px; } }
