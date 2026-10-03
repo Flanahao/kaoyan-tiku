@@ -37,8 +37,8 @@ def test_static():
 
     # Wheel buttons
     wheel_buttons = soup.select('[data-wheel]')
-    assert len(wheel_buttons) == 3, f"expected 3 wheel buttons, got {len(wheel_buttons)}"
-    assert {x.get('data-wheel') for x in wheel_buttons} == {'math', 'major', 'wrong'}
+    assert len(wheel_buttons) == 4, f"expected 4 wheel buttons, got {len(wheel_buttons)}"
+    assert {x.get('data-wheel') for x in wheel_buttons} == {'math', 'major', 'wrong', 'math-zhenti-wrong'}
 
     required_ids = {
         'khCountdownDays', 'khExamDate', 'khAllDonut', 'khAllPct', 'khAllDone', 'khAllMastered', 'khAllVague', 'khAllWrong',

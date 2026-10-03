@@ -400,8 +400,14 @@
 
 .kh-wheel-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+}
+
+@media (max-width: 1380px) {
+  .kh-wheel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .kh-wheel-card {
@@ -472,6 +478,17 @@
     #2f80ed 50% 66.66%,
     #9a7cff 66.66% 83.33%,
     #e65b66 83.33% 100%
+  );
+}
+
+.kh-wheel-card[data-wheel="math-zhenti-wrong"] .kh-wheel-mini {
+  background: conic-gradient(
+    #db7144 0 16.66%,
+    #4675bd 16.66% 33.33%,
+    #f59e0b 33.33% 50%,
+    #2c65a8 50% 66.66%,
+    #e44747 66.66% 83.33%,
+    #183459 83.33% 100%
   );
 }
 

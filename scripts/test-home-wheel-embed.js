@@ -11,7 +11,10 @@ const css = read('css/home-wheel-embed.css');
 
 assert.match(index, /id="homeWheelHost"/);
 assert.match(index, /js\/home-wheel-embed\.js/);
+assert.match(index, /data-wheel="math-zhenti-wrong"/);
 assert.match(study, /js\/study-wheel-embed-bridge\.js/);
+assert.match(study, /js\/math-zhenti-wrong-wheel\.js/);
+assert.match(study, /css\/math-zhenti-wrong-wheel\.css/);
 assert.match(study, /id="dailyGoalButton"/);
 assert.match(shell, /slot\.appendChild\(goal\)/);
 assert.match(route, /chapter: params\.get\('chapter'\)/);
@@ -24,11 +27,14 @@ function run(origin) {
   const childHandlers = {};
   const modalMath = { hidden: true, style: { display: 'none' } };
   const modalWrong = { hidden: true, style: { display: 'none' } };
+  const modalZhenti = { hidden: true, style: { display: 'none' }, className: 'mzw-overlay' };
   const sentOrigins = [];
   let observer = null;
   let assigned = '';
   let mathSubject = '';
   let wrongSubject = '';
+  let zhentiOpened = 0;
+  let zhentiClosed = 0;
   let openerFocused = 0;
 
   const childProxy = new Proxy({
@@ -61,10 +67,30 @@ function run(origin) {
       open(subject) { wrongSubject = subject; modalWrong.hidden = false; modalWrong.style.display = 'flex'; },
       close() { modalWrong.hidden = true; modalWrong.style.display = 'none'; if (observer) observer.callback(); }
     },
+    MathZhentiWrongWheel: {
+      create(opts) {
+        return {
+          open() { zhentiOpened++; modalZhenti.hidden = false; modalZhenti.style.display = 'grid'; },
+          close() { zhentiClosed++; modalZhenti.hidden = true; modalZhenti.style.display = 'none'; if (observer) observer.callback(); },
+          review() { opts.openWrongChapter('shu1', 's1_zt_2020', 'mistakes'); }
+        };
+      }
+    },
     getComputedStyle(modal) { return { display: modal.style.display }; },
     addEventListener(type, callback) { childHandlers[type] = callback; }
   };
-  const childDocument = { getElementById(id) { return id === 'dailyMathWheelModal' ? modalMath : modalWrong; } };
+  const childDocument = {
+    getElementById(id) {
+      if (id === 'dailyMathWheelModal') return modalMath;
+      if (id === 'dailyWrongWheelModal') return modalWrong;
+      if (id === 'mathZhentiWrongWheelModal') return modalZhenti;
+      return null;
+    },
+    querySelector(sel) {
+      if (sel === '.mzw-overlay') return modalZhenti;
+      return null;
+    }
+  };
   const parentLocation = {
     href: parentURL,
     protocol: childLocation.protocol,
@@ -135,9 +161,21 @@ function run(origin) {
   assert.equal(target.pathname.endsWith('/study.html'), true);
   assert.equal(target.searchParams.get('subject'), 'zhuanye');
   assert.equal(target.searchParams.get('chapter'), 'chapter-1');
-  childWindow.DailyStudyWheelBridge.openWrongChapter('shu1', 'chapter-2', 'mistakes');
+  click('math-zhenti-wrong');
+  assert.equal(zhentiOpened, 1);
+  assert.equal(host.hidden, false);
+  assert.equal(loading.hidden, true);
+  assert.equal(frame.style.visibility, 'visible');
+
+  childWindow.MathZhentiWrongWheelInstance.review();
   target = new URL(assigned);
+  assert.equal(target.searchParams.get('subject'), 'shu1');
+  assert.equal(target.searchParams.get('chapter'), 's1_zt_2020');
   assert.equal(target.searchParams.get('wheelMode'), 'mistakes');
+  assert.equal(target.searchParams.get('from'), 'home');
+
+  childWindow.MathZhentiWrongWheelInstance.close();
+  assert.equal(host.hidden, true);
 
   parentHandlers.close();
   assert.equal(host.hidden, true);

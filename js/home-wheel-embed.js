@@ -96,7 +96,8 @@
     if (!trigger) return;
     event.preventDefault();
     var kind = trigger.getAttribute('data-wheel');
-    open(kind === 'major' || kind === 'wrong' ? kind : 'math', trigger);
+    var allowedKind = (kind === 'major' || kind === 'wrong' || kind === 'math-zhenti-wrong') ? kind : 'math';
+    open(allowedKind, trigger);
   });
 
   closeButton.addEventListener('click', function () {

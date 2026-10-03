@@ -8,7 +8,10 @@ const context = {
   console,
   window: {
     location: { search: '?subject=english&from=home' },
-    localStorage: { setItem(k,v){ saved[k]=v; } }
+    localStorage: { setItem(k,v){ saved[k]=v; } },
+    addEventListener() {},
+    setTimeout() {},
+    clearTimeout() {}
   },
   document: { documentElement: { classList: { add(v){ classes.push(v); } } } }
 };

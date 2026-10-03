@@ -9,6 +9,7 @@
   var ready = false;
   var activeModal = null;
   var observer = null;
+  var zhentiWrongWheelInstance = null;
 
   function send(type, extra) {
     window.parent.postMessage(Object.assign({
@@ -23,14 +24,38 @@
   function closeActive() {
     if (!activeModal) return;
     if (observer) observer.disconnect();
-    if (activeModal === 'dailyWrongWheelModal') window.DailyWrongWheel.close();
-    else window.DailyStudyWheel.closeModal();
+    if (activeModal === 'dailyWrongWheelModal') {
+      window.DailyWrongWheel.close();
+    } else if (activeModal === 'mathZhentiWrongWheelModal') {
+      if (zhentiWrongWheelInstance) zhentiWrongWheelInstance.close();
+    } else {
+      window.DailyStudyWheel.closeModal();
+    }
     activeModal = null;
   }
 
   function open(kind) {
-    if (kind !== 'math' && kind !== 'major' && kind !== 'wrong') return;
+    if (kind !== 'math' && kind !== 'major' && kind !== 'wrong' && kind !== 'math-zhenti-wrong') return;
     closeActive();
+
+    if (kind === 'math-zhenti-wrong') {
+      if (!zhentiWrongWheelInstance) throw new Error('真题错题转盘未初始化');
+      activeModal = 'mathZhentiWrongWheelModal';
+      zhentiWrongWheelInstance.open();
+      var modal = document.getElementById(activeModal) || document.querySelector('.mzw-overlay');
+      if (!isOpen(modal)) throw new Error('转盘弹窗没有打开');
+      observer = new MutationObserver(function () {
+        if (!isOpen(modal)) {
+          activeModal = null;
+          send('closed');
+          observer.disconnect();
+        }
+      });
+      observer.observe(modal, { attributes: true, attributeFilter: ['hidden', 'style', 'class'] });
+      send('opened');
+      return;
+    }
+
     activeModal = kind === 'wrong' ? 'dailyWrongWheelModal' : 'dailyMathWheelModal';
     if (kind === 'wrong') window.DailyWrongWheel.open('shu1');
     else window.DailyStudyWheel.openModal(kind === 'major' ? 'zhuanye' : 'shu1');
@@ -74,6 +99,19 @@
         send('handoff', { subjectId: subjectId, chapterId: chapterId, mode: mode });
         return true;
       };
+
+      if (window.MathZhentiWrongWheel && typeof window.MathZhentiWrongWheel.create === 'function') {
+        var getYearsFn = window.MathZhentiWrongWheel.readYearRowsFromCurrentApp || function () { return []; };
+        zhentiWrongWheelInstance = window.MathZhentiWrongWheel.create({
+          getYears: getYearsFn,
+          openWrongChapter: function (subject, chapterId, mode) {
+            bridge.openWrongChapter(subject, chapterId, mode);
+          },
+          onError: console.error
+        });
+        window.MathZhentiWrongWheelInstance = zhentiWrongWheelInstance;
+      }
+
       ready = true;
       send('ready');
     } catch (error) { send('error', { message: error.message }); }

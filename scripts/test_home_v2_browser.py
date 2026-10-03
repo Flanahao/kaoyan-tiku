@@ -49,6 +49,13 @@ def main():
             'ex_1-2': 'proficient',
             'ex_1-3': 'vague'
         }));
+        localStorage.setItem('user_guest_s1_zt_2020_s1_status', JSON.stringify({
+            '0': 'wrong',
+            '1': 'vague'
+        }));
+        localStorage.setItem('user_guest_s1_zt_2022_s1_status', JSON.stringify({
+            '0': 'wrong'
+        }));
         """
         page.add_init_script(init_script)
 
@@ -74,10 +81,10 @@ def main():
         assert countdown_days.isdigit() and int(countdown_days) > 0, f"Invalid countdown: {countdown_days}"
         assert '2026-12-19' in exam_date_text, f"Expected 2026-12-19 in {exam_date_text}"
 
-        # Check 1 total card + 3 subject progress cards + 3 wheel buttons + 4 bottom modules
+        # Check 1 total card + 3 subject progress cards + 4 wheel buttons + 4 bottom modules
         assert page.locator('.kh-total-card').count() == 1
         assert page.locator('.kh-subject-progress-card').count() == 3
-        assert page.locator('[data-wheel]').count() == 3
+        assert page.locator('[data-wheel]').count() == 4
         assert page.locator('.home-module-card').count() == 4
 
         # Save 1664x920 screenshot
@@ -202,6 +209,50 @@ def main():
         print(f"  Wrong Wheel spun! Selected chapter: {wrong_selected.strip()}")
         frame.locator('#btnCloseDailyWrongWheel').click()
         page.locator('#homeWheelHost').wait_for(state='hidden', timeout=5000)
+
+        print("\n=== Test 8b: Math Zhenti Wrong Wheel Launch & Spin & Review ===")
+        page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
+        page.locator('[data-wheel="math-zhenti-wrong"]').click()
+        frame = page.frame_locator('#homeWheelFrame')
+        frame.locator('.mzw-overlay').wait_for(state='visible', timeout=15000)
+        assert page.url.endswith('/index.html')
+
+        shot_zhenti_wrong = ARTIFACTS_DIR / "kyson_wheel_zhenti_wrong_opened.png"
+        page.screenshot(path=str(shot_zhenti_wrong), full_page=False)
+        print(f"  Saved Math Zhenti Wrong Wheel screenshot to: {shot_zhenti_wrong}")
+
+        # Check candidate count text
+        frame.locator('.mzw-result').wait_for(state='visible')
+        result_text = frame.locator('.mzw-result').text_content()
+        print(f"  Math Zhenti Wrong result text: {result_text}")
+        assert '个年份有错题' in result_text, f"Expected candidate count, got {result_text}"
+
+        # Spin button should be enabled
+        spin_btn = frame.locator('.mzw-spin')
+        assert spin_btn.is_enabled()
+        spin_btn.click()
+
+        # Wait for spin animation (4.55s)
+        time.sleep(4.8)
+        spun_text = frame.locator('.mzw-result').text_content()
+        print(f"  Spun result: {spun_text}")
+        assert '抽中' in spun_text, f"Expected 抽中 in {spun_text}"
+        assert '不会' in spun_text and '模糊' in spun_text
+
+        # Review button should be enabled
+        review_btn = frame.locator('.mzw-review')
+        assert review_btn.is_enabled()
+        review_btn.click()
+
+        # Should navigate to study.html in mistakes mode
+        page.wait_for_url("**/study.html?subject=shu1&chapter=s1_zt_*&from=home&wheelMode=mistakes", timeout=10000)
+        page.wait_for_function("() => window.getWorkbenchView && window.getWorkbenchView() === 'practice'", timeout=5000)
+        view = page.evaluate("window.getWorkbenchView ? window.getWorkbenchView() : ''")
+        assert view == 'practice', f"Review should land in practice view, got {view}"
+
+        shot_review = ARTIFACTS_DIR / "kyson_zhenti_mistakes_review_landed.png"
+        page.screenshot(path=str(shot_review), full_page=False)
+        print(f"  Saved mistakes review landing screenshot to: {shot_review}")
 
         print("\n=== Test 9: Verify 4 Subject Entries Still Work ===")
         page.goto(f'http://127.0.0.1:{PORT}/index.html', wait_until='networkidle')
