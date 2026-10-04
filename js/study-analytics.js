@@ -502,7 +502,8 @@
       all: emptyTotals(),
       math: emptyTotals(),
       major: emptyTotals(),
-      english: emptyTotals()
+      english: emptyTotals(),
+      math_moni: emptyTotals()
     };
 
     var subjects = Array.isArray(window.SUBJECTS)
@@ -571,6 +572,9 @@
         var targets = [buckets.all];
         if (group && buckets[group]) {
           targets.push(buckets[group]);
+        }
+        if (subject.id === 'math_moni' && buckets.math_moni) {
+          targets.push(buckets.math_moni);
         }
 
         targets.forEach(function (target) {
@@ -644,7 +648,8 @@
       all: all,
       english: english,
       math: questionBuckets.math,
-      major: questionBuckets.major
+      major: questionBuckets.major,
+      math_moni: questionBuckets.math_moni
     };
   }
 

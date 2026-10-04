@@ -41,7 +41,8 @@
       all: emptyTotals(),
       math: emptyTotals(),
       major: emptyTotals(),
-      english: emptyTotals()
+      english: emptyTotals(),
+      math_moni: emptyTotals()
     };
 
     try {
@@ -51,6 +52,7 @@
         result.math = cloneTotals(raw.math);
         result.major = cloneTotals(raw.major);
         result.english = cloneTotals(raw.english);
+        result.math_moni = cloneTotals(raw.math_moni);
       }
     } catch (error) {
       console.warn('[home] StudyAnalytics unavailable:', error);
@@ -137,13 +139,14 @@
     renderSubjectCard('math', summary.math);
     renderSubjectCard('major', summary.major);
     renderSubjectCard('english', summary.english);
+    renderSubjectCard('math_moni', summary.math_moni);
   }
 
   function bindKeyboardNavigation() {
     document.addEventListener('keydown', function (event) {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.target && /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
-      var map = { '1': 'math', '2': 'major', '3': 'english', '4': 'politics' };
+      var map = { '1': 'math', '2': 'math_moni', '3': 'major', '4': 'english', '5': 'politics' };
       var key = map[event.key];
       if (!key) return;
       var card = document.querySelector('[data-module="' + key + '"]');

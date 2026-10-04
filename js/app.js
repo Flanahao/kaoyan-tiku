@@ -8,7 +8,7 @@
     let lastPracticeSubjectId = 'shu1';
 
     function isPracticeSubjectId(subjectId) {
-      return subjectId === 'shu1' || subjectId === 'zhuanye';
+      return subjectId === 'shu1' || subjectId === 'zhuanye' || subjectId === 'math_moni';
     }
 
     function getCurrentSubjectId() {

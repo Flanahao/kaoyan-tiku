@@ -455,6 +455,42 @@
       chapters: ENGLISH_ZHENTI_CHAPTERS
     });
 
+    // ===== 科目数据模型：数学模拟卷（张宇八套卷 + 李林六套卷） =====
+    var MATH_MONI_CHAPTERS = (typeof window !== 'undefined' && Array.isArray(window.MATH_MONI_CHAPTERS))
+      ? window.MATH_MONI_CHAPTERS
+      : [];
+    var MATH_MONI_BOOKS = [
+      '张宇八套卷',
+      '李林六套卷'
+    ];
+    var firstMoniCh = MATH_MONI_CHAPTERS.find(function (c) { return c.wb === '张宇八套卷'; }) || MATH_MONI_CHAPTERS[0];
+
+    SUBJECTS.push({
+      id: 'math_moni',
+      name: '数学模拟卷',
+      desc: '考研数学冲刺模拟卷（张宇八套卷 + 李林六套卷）',
+      storageSuffix: 'moni',
+      analyticsGroup: 'math',
+      initChapterId: firstMoniCh ? firstMoniCh.id : '',
+      navCols: 5,
+      partOrder: ['选择题', '填空题', '解答题'],
+      wbOrder: MATH_MONI_BOOKS.map(function (wb) { return { wb: wb, label: wb }; }),
+      subjOrder: ['模拟卷'],
+      classifyLabel: function (label) {
+        var num = parseInt(String(label).replace(/[^\d]/g, ''), 10);
+        if (num >= 1 && num <= 10) return '选择题';
+        if (num >= 11 && num <= 16) return '填空题';
+        return '解答题';
+      },
+      getImgPath: function (ch, label) {
+        var index = ch.labels.indexOf(label);
+        var base = (index >= 0 && ch.fileBases) ? ch.fileBases[index] : null;
+        return '数学模拟卷/' + ch.relPath + '/' + (base || label);
+      },
+      chapters: MATH_MONI_CHAPTERS
+    });
+
     if (typeof window !== 'undefined') {
       window.SUBJECTS = SUBJECTS;
     }
+

@@ -31604,5 +31604,1090 @@ window.SOLUTION_MANIFEST = {
   "专业题库/华中科技大学824/2024年真题/pb_24-28": [
     "_solution.png",
     "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_02": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_05": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_09": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_11": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_16": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_19": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/李林六套卷/第1套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_01": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_03": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_06": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_12": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_14": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_16": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_17": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_18": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第2套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_01": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_03": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_07": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_10": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_13": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_20": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/李林六套卷/第3套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_01": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_03": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_05": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_10": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_13": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第4套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_06": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_09": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_12": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_14": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_16": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_17": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/李林六套卷/第5套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_03": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_04": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_06": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_07": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_09": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_12": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_15": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_16": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_17": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_19": [
+    "_solution.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/李林六套卷/第6套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_04": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_07": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_10": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_20": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第1套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_07": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_10": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_12": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_14": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_16": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_17": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第2套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_05": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_07": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_12": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_16": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_19": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第3套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_02": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_05": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_07": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_08": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_14": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第4套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_02": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_05": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_06": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_08": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_09": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_10": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_13": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_15": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第5套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_03": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_04": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_05": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_06": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_08": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_09": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_10": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_14": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_17": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_18": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_20": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/张宇八套卷/第6套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_02": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_03": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_04": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_06": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_08": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_09": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_11": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_12": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_13": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_18": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_20": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png"
+  ],
+  "数学模拟卷/张宇八套卷/第7套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_01": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_02": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_03": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_04": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_05": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_06": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_07": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_08": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_09": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_10": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_11": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_12": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_13": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_14": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_15": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_16": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_17": [
+    "_solution.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_18": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_19": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_20": [
+    "_solution_1.png",
+    "_solution_2.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_21": [
+    "_solution_1.png",
+    "_solution_2.png",
+    "_solution_3.png",
+    "_solution_4.png",
+    "_solution_5.png",
+    "_solution_6.png",
+    "_solution_7.png",
+    "_solution_8.png"
+  ],
+  "数学模拟卷/张宇八套卷/第8套/pb_22": [
+    "_solution_1.png",
+    "_solution_2.png"
   ]
 };
