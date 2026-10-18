@@ -349,6 +349,12 @@
                 <div class="title-panel" id="panelWbWrongbook"></div>
               </div>
               <span class="panel-title" id="panelTitle" style="display:none"></span>
+              <form class="exam-entry" id="examEntry" hidden aria-label="本套真题成绩">
+                <label>用时 <input id="examHours" type="number" min="0" max="23" step="1" inputmode="numeric" aria-label="用时小时"> h</label>
+                <label><input id="examMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" aria-label="用时分钟"> min</label>
+                <label>分数 <input id="examScore" type="number" min="0" max="150" step="1" inputmode="numeric" aria-label="真题分数"> / 150</label>
+                <button type="submit">保存</button><span id="examEntryStatus" role="status" aria-live="polite"></span>
+              </form>
             </div>
 
             <div class="main-area" id="mainArea">
@@ -380,6 +386,7 @@
                 <!-- 题目图片与标注图层 -->
                 <div class="annot-wrapper" id="qAnnotWrap">
                   <img id="questionImg" class="question-img" src="" alt="题目">
+                  <div id="questionTextCard" class="question-text-card" style="display:none"></div>
                   <div class="annot-overlay" id="qAnnotOverlay"></div>
                 </div>
 
@@ -392,6 +399,7 @@
                 <div class="solution-area" id="solutionArea">
                   <div class="img-bad-warning solution-warn" id="sBadWarning">解析图质量不达标</div>
                   <div class="solution-imgs" id="solutionImgs"></div>
+                  <div id="solutionTextCard" class="solution-text-card" style="display:none"></div>
                 </div>
 
                 <!-- Markdown + LaTeX 双栏笔记系统 -->
@@ -546,6 +554,11 @@
                           <span><i class="si-dot si-dot-unmarked"></i>未标 <strong id="siMajorUnmarkedText">0</strong></span>
                         </div>
                       </article>
+                    </section>
+
+                    <section class="exam-summary" id="examSummary" aria-label="真题平均成绩">
+                      <article><h3>数学真题</h3><p>平均用时 <strong id="examMathTime">—</strong> <small id="examMathTimeCount"></small></p><p>平均分 <strong id="examMathScore">—</strong> <small id="examMathScoreCount"></small></p></article>
+                      <article><h3>专业课真题</h3><p>平均用时 <strong id="examMajorTime">—</strong> <small id="examMajorTimeCount"></small></p><p>平均分 <strong id="examMajorScore">—</strong> <small id="examMajorScoreCount"></small></p></article>
                     </section>
 
                     <article class="si-card si-trend-card">
@@ -1410,9 +1423,12 @@
   <script src="data/english/english-zhenti-manifest.js"></script>
   <script src="data/english/english-zhenti-data.js"></script>
   <script src="js/math-moni-chapters.js"></script>
-  <script src="js/solution-manifest.js?v=20260921a"></script>
+  <script src="js/math-xuantian-chapters.js"></script>
+  <script src="js/solution-manifest.js?v=20261012_recrop"></script>
+  <script src="js/politics-chapters.js"></script>
   <script src="js/chapters.js?v=20260921a"></script>
-  <script src="js/app.js?v=20260930d"></script>
+  <script src="js/exam-results.js?v=20261004a"></script>
+  <script src="js/app.js?v=20261012_recrop"></script>
   <script src="js/daily-study-wheel.js?v=20260922d"></script>
   <script src="js/daily-wrong-wheel.js?v=20260923a"></script>
   <script src="js/math-zhenti-wrong-wheel.js?v=20261003"></script>

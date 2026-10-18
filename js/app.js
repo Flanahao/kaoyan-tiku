@@ -8,7 +8,7 @@
     let lastPracticeSubjectId = 'shu1';
 
     function isPracticeSubjectId(subjectId) {
-      return subjectId === 'shu1' || subjectId === 'zhuanye' || subjectId === 'math_moni';
+      return subjectId === 'shu1' || subjectId === 'zhuanye' || subjectId === 'math_moni' || subjectId === 'math_xuantian' || subjectId === 'politics';
     }
 
     function getCurrentSubjectId() {
@@ -648,7 +648,8 @@
         dailyStudyWheelRoundsV2: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_rounds_v2') || null,
         dailyStudyWheelDaily: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_daily_v1') || null,
         dailyStudyWheelUndo: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_undo_v1') || null,
-        dailyMathWheel: safeStorageGet(userStoragePrefix() + 'daily_math_wheel_v1') || null
+        dailyMathWheel: safeStorageGet(userStoragePrefix() + 'daily_math_wheel_v1') || null,
+        examResults: safeStorageGet(window.ExamResults.key(userStoragePrefix())) || null
       };
 
       for (var i = 0; i < localStorage.length; i++) {
@@ -770,6 +771,15 @@
       if (!_pendingImportObj || !_pendingImportObj.payload) return;
       var p = _pendingImportObj.payload;
 
+      // 先校验备份里的真题统计；损坏字段不应覆盖现有记录。
+      var importedExamResults = null;
+      if (p.examResults) {
+        try {
+          importedExamResults = typeof p.examResults === 'string' ? JSON.parse(p.examResults) : p.examResults;
+          if (!importedExamResults || typeof importedExamResults !== 'object' || Array.isArray(importedExamResults)) importedExamResults = null;
+        } catch (error) { importedExamResults = null; }
+      }
+
       if (mode === 'overwrite') {
         // 覆盖前必须先自动生成一份当前数据备份并可供下载
         await exportFullStudyBackup(true);
@@ -780,6 +790,7 @@
         if (p.sm2) Object.keys(p.sm2).forEach(function (k) { safeStorageSet(k, p.sm2[k]); });
         if (p.qBad) Object.keys(p.qBad).forEach(function (k) { safeStorageSet(k, p.qBad[k]); });
         if (p.sBad) Object.keys(p.sBad).forEach(function (k) { safeStorageSet(k, p.sBad[k]); });
+        if (importedExamResults) safeStorageSet(window.ExamResults.key(userStoragePrefix()), JSON.stringify(importedExamResults));
         if (p.resume) safeStorageSet('user_guest_kaoyan_resume', typeof p.resume === 'string' ? p.resume : JSON.stringify(p.resume));
         if (p.english) safeStorageSet('user_guest_kaoyan_english_vocabulary_v2', typeof p.english === 'string' ? p.english : JSON.stringify(p.english));
         if (p.studyAnalytics) {
@@ -836,6 +847,14 @@
         }
       } else {
         // 合并模式 (merge)：仅填补缺失或合并新词，不覆盖已有进度
+        if (importedExamResults) {
+          var examKey = window.ExamResults.key(userStoragePrefix());
+          var currentExamResults = window.ExamResults.read(localStorage, userStoragePrefix());
+          Object.keys(importedExamResults).forEach(function (id) {
+            if (!Object.prototype.hasOwnProperty.call(currentExamResults, id)) currentExamResults[id] = importedExamResults[id];
+          });
+          safeStorageSet(examKey, JSON.stringify(currentExamResults));
+        }
         if (p.statuses) {
           Object.keys(p.statuses).forEach(function (k) {
             var cur = {};
@@ -1350,7 +1369,39 @@
       // 数学各书有 高数/线代/概率论 三学科，保留学科下拉）
       var ddSubjEl = document.getElementById('ddSubj');
       if (ddSubjEl) ddSubjEl.style.display = getSortedSubjs(wb).length > 1 ? '' : 'none';
+      renderExamEntry();
     }
+
+    function renderExamEntry() {
+      var form = document.getElementById('examEntry');
+      if (!form) return;
+      var chapter = getChapter();
+      var visible = getWorkbenchView() === 'practice' && !reviewSession && window.ExamResults.isPaper(curSubjectId, chapter);
+      form.hidden = !visible;
+      if (!visible) return;
+      var record = window.ExamResults.get(localStorage, userStoragePrefix(), curSubjectId, chapter.id);
+      document.getElementById('examHours').value = record.minutes === null ? '' : Math.floor(record.minutes / 60);
+      document.getElementById('examMinutes').value = record.minutes === null ? '' : record.minutes % 60;
+      document.getElementById('examScore').value = record.score === null ? '' : record.score;
+      document.getElementById('examEntryStatus').textContent = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('examEntry');
+      if (!form) return;
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var status = document.getElementById('examEntryStatus');
+        try {
+          window.ExamResults.save(localStorage, userStoragePrefix(), curSubjectId, getChapter(), {
+            hours: document.getElementById('examHours').value,
+            minutes: document.getElementById('examMinutes').value,
+            score: document.getElementById('examScore').value
+          });
+          status.textContent = '已保存';
+        } catch (error) { status.textContent = error.name === 'QuotaExceededError' ? '存储空间不足' : error.message; }
+      });
+    });
 
     // 面板展开/收起 + 外部点击关闭
     (function () {
@@ -1852,6 +1903,8 @@
         setPanelTitle('');
       }
 
+      renderExamEntry();
+
       return nextView;
     }
 
@@ -2255,6 +2308,7 @@
       showDashboardBackBtn(false);
       document.getElementById('dbOverview').style.display = '';
       document.getElementById('dbDetail').style.display = 'none';
+      renderExamSummary();
 
       // 1. 顶部 Hero 卡片打招呼与时间段判断
       var hour = new Date().getHours();
@@ -2600,6 +2654,17 @@
           typeof window.StudyAnalytics.render === 'function') {
         window.StudyAnalytics.render();
       }
+    }
+
+    function renderExamSummary() {
+      [['shu1', 'Math'], ['zhuanye', 'Major']].forEach(function (pair) {
+        var subject = SUBJECTS.find(function (item) { return item.id === pair[0]; });
+        var stats = window.ExamResults.summary(localStorage, userStoragePrefix(), pair[0], subject ? subject.chapters : []);
+        document.getElementById('exam' + pair[1] + 'Time').textContent = window.ExamResults.formatMinutes(stats.averageMinutes);
+        document.getElementById('exam' + pair[1] + 'Score').textContent = stats.averageScore === null ? '—' : stats.averageScore + ' / 150';
+        document.getElementById('exam' + pair[1] + 'TimeCount').textContent = '（' + stats.timeCount + ' 套）';
+        document.getElementById('exam' + pair[1] + 'ScoreCount').textContent = '（' + stats.scoreCount + ' 套）';
+      });
     }
 
     // 从总进度卡片进入对应书籍时，先切换数据源，再展示该书的章节明细。
@@ -3509,16 +3574,20 @@
         overlay.style.display = 'none';
         wrap.appendChild(img);
         wrap.appendChild(overlay);
+        container.appendChild(wrap);
 
         loadImageWithFallback(img, src, function () {
           if (gen !== _solutionImgGen) return; // 已有更新的题目在加载，丢弃
-          container.appendChild(wrap);
           img.classList.toggle('sbad-border', !!sBad[current]);
           if (hasAnnotation(src)) renderImageAnnotation(src, img, overlay);
         }, function () {
-          if (gen === _solutionImgGen && idx === 0 && container.children.length === 0) {
-            container.appendChild(wrap);
+          if (gen !== _solutionImgGen) return;
+          if (idx === 0 && fileList.length === 1) {
             markImageMissing(img, '解析图片暂缺，请反馈题号');
+          } else {
+            if (wrap.parentNode === container) {
+              container.removeChild(wrap);
+            }
           }
         });
       });
@@ -3579,6 +3648,75 @@
       }
     }
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderPoliticsQuestionCard(q, idx, ch) {
+      const card = document.getElementById('questionTextCard');
+      if (!card || !q) return;
+      const isMulti = q.type === 'multi';
+      const typeBadge = isMulti
+        ? '<span class="q-type-badge multi">多选题</span>'
+        : '<span class="q-type-badge single">单选题</span>';
+      
+      const choices = q.choices || {};
+      let choicesHtml = '';
+      ['A', 'B', 'C', 'D'].forEach(function(key) {
+        if (choices[key] !== undefined && choices[key] !== null && choices[key] !== '') {
+          var choiceContent = typeof renderNotesMarkdown === 'function' ? renderNotesMarkdown(choices[key]) : escapeHtml(choices[key]);
+          choicesHtml += '<div class="q-choice-item" data-choice="' + key + '">' +
+            '<span class="choice-key">' + key + '</span>' +
+            '<div class="choice-text">' + choiceContent + '</div>' +
+            '</div>';
+        }
+      });
+
+      var stemContent = typeof renderNotesMarkdown === 'function' ? renderNotesMarkdown(q.stem || '') : escapeHtml(q.stem || '');
+
+      card.innerHTML = 
+        '<div class="q-header-row">' +
+          typeBadge +
+          '<span class="q-num-badge">第 ' + (idx + 1) + ' 题 / 共 ' + (ch.total || 0) + ' 题</span>' +
+        '</div>' +
+        '<div class="q-stem">' + stemContent + '</div>' +
+        '<div class="q-choices">' + choicesHtml + '</div>';
+
+      card.querySelectorAll('.q-choice-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          if (!isMulti) {
+            card.querySelectorAll('.q-choice-item').forEach(function(el) {
+              if (el !== item) el.classList.remove('is-selected');
+            });
+          }
+          item.classList.toggle('is-selected');
+        });
+      });
+    }
+
+    function renderPoliticsSolutionCard(q) {
+      const card = document.getElementById('solutionTextCard');
+      if (!card || !q) return;
+      const answer = q.answer || '暂缺';
+      var analysisContent = typeof renderNotesMarkdown === 'function' ? renderNotesMarkdown(q.analysis || '暂无解析') : escapeHtml(q.analysis || '暂无解析');
+      
+      card.innerHTML = 
+        '<div class="sol-answer-banner">' +
+          '<span class="sol-answer-label">正确答案</span>' +
+          '<span class="sol-answer-val">' + escapeHtml(answer) + '</span>' +
+        '</div>' +
+        '<div class="sol-analysis-body">' +
+          '<h4 class="sol-analysis-title">📖【解析精讲】</h4>' +
+          '<div class="sol-analysis-content">' + analysisContent + '</div>' +
+        '</div>';
+    }
+
     function switchTo(idx) {
       const ch = getValidPracticeChapter();
       const nextIdx = Number(idx);
@@ -3599,18 +3737,40 @@
 
       const base = getImgPath(nextIdx);
       const qImg = document.getElementById('questionImg');
+      const qCard = document.getElementById('questionTextCard');
+      const sCard = document.getElementById('solutionTextCard');
+      const solImgs = document.getElementById('solutionImgs');
       const isProfessional = Boolean(curSubject && (curSubject.id === 'zhuanye' || curSubject.id === 'professional'));
-      loadImageWithFallback(qImg, getQuestionImagePath(nextIdx, curSubject), function() {
-        renderQuestionAnnotations();
-      }, function() {
-        markImageMissing(qImg, '题目图片暂缺，请反馈题号');
-      });
-      if (isProfessional && ch && (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集')) {
-        document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
-      } else if (ch && ch.wb === '夜雨强化' && (!window.SOLUTION_MANIFEST || !window.SOLUTION_MANIFEST[base])) {
-        document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该强化讲义题目暂无解析图，请参考课程讲解）</div>';
+
+      if (ch && Array.isArray(ch.questions) && ch.questions[nextIdx]) {
+        if (qImg) qImg.style.display = 'none';
+        if (qCard) {
+          qCard.style.display = 'block';
+          renderPoliticsQuestionCard(ch.questions[nextIdx], nextIdx, ch);
+        }
+        if (solImgs) solImgs.style.display = 'none';
+        if (sCard) {
+          sCard.style.display = 'block';
+          renderPoliticsSolutionCard(ch.questions[nextIdx]);
+        }
       } else {
-        setSolutionImages(base);
+        if (qCard) qCard.style.display = 'none';
+        if (qImg) qImg.style.display = '';
+        if (sCard) sCard.style.display = 'none';
+        if (solImgs) solImgs.style.display = '';
+
+        loadImageWithFallback(qImg, getQuestionImagePath(nextIdx, curSubject), function() {
+          renderQuestionAnnotations();
+        }, function() {
+          markImageMissing(qImg, '题目图片暂缺，请反馈题号');
+        });
+        if (isProfessional && ch && (ch.wb === '波哥讲义例题' || ch.wb === '波哥习题集')) {
+          document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该专业课题目暂无解析图）</div>';
+        } else if (ch && ch.wb === '夜雨强化' && (!window.SOLUTION_MANIFEST || !window.SOLUTION_MANIFEST[base])) {
+          document.getElementById('solutionImgs').innerHTML = '<div class="section-empty" style="text-align:center;padding:12px">（该强化讲义题目暂无解析图，请参考课程讲解）</div>';
+        } else {
+          setSolutionImages(base);
+        }
       }
       renderQuestionAnnotations(); // 叠加已保存的图片标注（切题即见）
       updateSolutionUI();
@@ -4257,6 +4417,8 @@
       // 是兄弟节点，不在事件路径上）。捕获阶段在 wrapper 上先于 target 处理，且能拿到
       // 图片 src，保证无论是否命中标注层都能开灯箱。
       document.getElementById('qAnnotWrap').addEventListener('click', function (e) {
+        const textCard = document.getElementById('questionTextCard');
+        if (textCard && textCard.style.display !== 'none') return;
         const img = document.getElementById('questionImg');
         const src = img && img.src;
         if (src && !src.endsWith('/')) openLightbox(src);
@@ -5669,6 +5831,7 @@ ${cardsHTML}
     // 复习时保留章节标题下拉的文本标签（书·模块·章节只读），仅隐藏下拉箭头，避免误切。
     function renderReviewProgress() {
       if (!reviewSession) return;
+      renderExamEntry();
       var total = reviewSession.queue.length;
       var cur = reviewSession.currentIdx + 1;
       var panelTitle = document.getElementById('panelTitle');
@@ -6148,6 +6311,11 @@ ${cardsHTML}
     async function initAppSession() {
       const myToken = ++appBootToken;
       var savedSubject = localStorage.getItem(subjectStorageKey());
+      var urlParams = (typeof window !== 'undefined' && window.location) ? new URLSearchParams(window.location.search) : null;
+      var querySubject = urlParams ? urlParams.get('subject') : null;
+      if (querySubject && SUBJECTS.some(function (s) { return s.id === querySubject; })) {
+        savedSubject = querySubject;
+      }
       var savedPracticeSubject = safeStorageGet(lastPracticeSubjectStorageKey());
       if (isPracticeSubjectId(savedPracticeSubject)) {
         lastPracticeSubjectId = savedPracticeSubject;

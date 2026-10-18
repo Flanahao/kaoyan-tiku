@@ -343,6 +343,7 @@
       '波哥强化习题集',
       '大连理工大学852',
       '南京大学851',
+      '南京大学851模拟卷',
       '武汉大学807',
       '厦门大学847',
       '华中科技大学824'
@@ -488,6 +489,101 @@
         return '数学模拟卷/' + ch.relPath + '/' + (base || label);
       },
       chapters: MATH_MONI_CHAPTERS
+    });
+
+    // ===== 科目数据模型：模拟题选填（选择题 1-10 + 填空题 11-16 专项） =====
+    var MATH_XUANTIAN_CHAPTERS = (typeof window !== 'undefined' && Array.isArray(window.MATH_XUANTIAN_CHAPTERS))
+      ? window.MATH_XUANTIAN_CHAPTERS
+      : [];
+    var xuantianWbSet = [];
+    MATH_XUANTIAN_CHAPTERS.forEach(function (c) {
+      if (c.wb && xuantianWbSet.indexOf(c.wb) === -1) {
+        xuantianWbSet.push(c.wb);
+      }
+    });
+    if (xuantianWbSet.length === 0) xuantianWbSet = ['26李林六套卷'];
+    var firstXuantianCh = MATH_XUANTIAN_CHAPTERS[0];
+
+    SUBJECTS.push({
+      id: 'math_xuantian',
+      name: '模拟题选填',
+      desc: '考研数学模拟题选填专项（选择题 1-10 + 填空题 11-16）',
+      storageSuffix: 'xuantian',
+      analyticsGroup: 'math',
+      initChapterId: firstXuantianCh ? firstXuantianCh.id : '',
+      navCols: 4,
+      partOrder: ['选择题', '填空题'],
+      wbOrder: xuantianWbSet.map(function (wb) { return { wb: wb, label: wb }; }),
+      subjOrder: ['选填专项'],
+      classifyLabel: function (label) {
+        var num = parseInt(String(label).replace(/[^\d]/g, ''), 10);
+        if (num >= 1 && num <= 10) return '选择题';
+        if (num >= 11 && num <= 16) return '填空题';
+        return '选择题';
+      },
+      getImgPath: function (ch, label) {
+        var index = ch.labels.indexOf(label);
+        var base = (index >= 0 && ch.fileBases) ? ch.fileBases[index] : null;
+        return '模拟题选填/' + ch.relPath + '/' + (base || label);
+      },
+      chapters: MATH_XUANTIAN_CHAPTERS
+    });
+
+    // ===== 科目数据模型：考研政治（27肖1000 全量题库） =====
+    var POLITICS_CHAPTERS = [];
+    var politicsData = (typeof window !== 'undefined' && window.POLITICS_XIAO1000_DATA)
+      ? window.POLITICS_XIAO1000_DATA
+      : null;
+    if (politicsData && Array.isArray(politicsData.chapters)) {
+      POLITICS_CHAPTERS = politicsData.chapters.map(function (ch, idx) {
+        var labels = [];
+        var totalQ = ch.questions ? ch.questions.length : (ch.qCount || 0);
+        for (var i = 1; i <= totalQ; i++) {
+          var qObj = ch.questions && ch.questions[i - 1];
+          var prefix = (qObj && qObj.type === 'multi') ? '多' : '单';
+          labels.push(prefix + i);
+        }
+        return {
+          id: 'pol_' + ch.code,
+          code: ch.code,
+          number: idx + 1,
+          name: '27肖1000 - ' + ch.subject + ' - ' + ch.name,
+          short: ch.name,
+          total: totalQ,
+          cols: 5,
+          wb: '27肖1000',
+          subj: ch.subject,
+          category: 'politics',
+          labels: labels,
+          questions: ch.questions || []
+        };
+      });
+    }
+
+    if (typeof window !== 'undefined') {
+      window.POLITICS_CHAPTERS = POLITICS_CHAPTERS;
+    }
+
+    SUBJECTS.push({
+      id: 'politics',
+      name: '考研政治',
+      desc: '27肖1000 智能题库（单选/多选 · 显示解析 · 五级掌握度 · 错题攻坚）',
+      storageSuffix: 'pol',
+      analyticsGroup: 'politics',
+      initChapterId: POLITICS_CHAPTERS.length > 0 ? POLITICS_CHAPTERS[0].id : '',
+      navCols: 5,
+      partOrder: ['单选题', '多选题'],
+      wbOrder: [
+        { wb: '27肖1000', label: '27肖1000' }
+      ],
+      subjOrder: ['马原', '毛中特', '新思想', '史纲', '思修'],
+      classifyLabel: function (label) {
+        return String(label).startsWith('多') ? '多选题' : '单选题';
+      },
+      getImgPath: function () {
+        return '';
+      },
+      chapters: POLITICS_CHAPTERS
     });
 
     if (typeof window !== 'undefined') {

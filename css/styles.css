@@ -862,6 +862,32 @@ body {
       gap: 0;
     }
 
+    .exam-entry[hidden] { display: none !important; }
+    .exam-entry {
+      display: flex;
+      flex: 0 1 auto;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 0 18px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .exam-entry label { display: inline-flex; align-items: center; gap: 4px; }
+    .exam-entry input { width: 62px; padding: 5px 6px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit; }
+    .exam-entry button { padding: 5px 12px; border: 0; border-radius: 6px; background: #2563eb; color: white; cursor: pointer; }
+    #examEntryStatus { min-width: 3em; font-size: 12px; color: #475569; }
+    .exam-summary { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; }
+    .exam-summary article { min-width: 0; padding: 16px 20px; border: 1px solid #dce6f4; border-radius: 14px; background: #fff; }
+    .exam-summary h3 { margin: 0 0 8px; font-size: 17px; }
+    .exam-summary p { margin: 5px 0; color: #475569; }
+    .exam-summary strong { color: #1557a6; }
+    .exam-summary small { color: #64748b; }
+    @media (max-width: 900px) { .exam-entry { flex: 1 1 100%; margin: 8px auto 0; } }
+    @media (max-width: 600px) { .exam-summary { grid-template-columns: 1fr; } }
+
     .title-dropdown {
       position: relative;
       display: inline-flex;
@@ -9211,4 +9237,251 @@ mark.ez-ann-mark.has-note:not(.ez-ann--yellow):not(.ez-ann--green):not(.ez-ann--
     position: static;
     margin-top: 0;
   }
+}
+
+/* =========================================================================
+   考研政治 27肖1000 智能文本卡片样式 (题干 + 选项 + 解析)
+   ========================================================================= */
+.question-text-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+  user-select: text;
+}
+
+body.dark-mode .question-text-card {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(51, 65, 85, 0.9);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  color: #f1f5f9;
+}
+
+.q-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.q-type-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.q-type-badge.single {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.q-type-badge.multi {
+  background: #faf5ff;
+  color: #9333ea;
+  border: 1px solid #e9d5ff;
+}
+
+body.dark-mode .q-type-badge.single {
+  background: rgba(37, 99, 235, 0.2);
+  color: #93c5fd;
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+body.dark-mode .q-type-badge.multi {
+  background: rgba(147, 51, 234, 0.2);
+  color: #d8b4fe;
+  border-color: rgba(147, 51, 234, 0.4);
+}
+
+.q-num-badge {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+body.dark-mode .q-num-badge {
+  color: #94a3b8;
+}
+
+.q-stem {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #1e293b;
+  font-weight: 500;
+  margin-bottom: 22px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+body.dark-mode .q-stem {
+  color: #f8fafc;
+}
+
+.q-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.q-choice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: text;
+}
+
+.q-choice-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.q-choice-item.is-selected {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+body.dark-mode .q-choice-item {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(51, 65, 85, 0.8);
+}
+
+body.dark-mode .q-choice-item:hover {
+  background: rgba(51, 65, 85, 0.5);
+  border-color: #64748b;
+}
+
+body.dark-mode .q-choice-item.is-selected {
+  background: rgba(22, 101, 52, 0.3);
+  border-color: rgba(74, 222, 128, 0.5);
+}
+
+.choice-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.q-choice-item.is-selected .choice-key {
+  background: #22c55e;
+  color: #fff;
+}
+
+body.dark-mode .choice-key {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.choice-text {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #334155;
+  flex: 1;
+}
+
+body.dark-mode .choice-text {
+  color: #e2e8f0;
+}
+
+/* 政治答案与解析卡片 */
+.solution-text-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 16px;
+  padding: 22px 26px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+  margin-top: 14px;
+  user-select: text;
+}
+
+body.dark-mode .solution-text-card {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(51, 65, 85, 0.9);
+  color: #f1f5f9;
+}
+
+.sol-answer-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+  margin-bottom: 18px;
+}
+
+.sol-answer-label {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.sol-answer-val {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.sol-analysis-body {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+body.dark-mode .sol-analysis-body {
+  border-top-color: rgba(51, 65, 85, 0.7);
+}
+
+.sol-analysis-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f766e;
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.dark-mode .sol-analysis-title {
+  color: #2dd4bf;
+}
+
+.sol-analysis-content {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #334155;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+body.dark-mode .sol-analysis-content {
+  color: #cbd5e1;
 }

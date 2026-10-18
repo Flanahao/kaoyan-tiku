@@ -6,7 +6,7 @@
   var requestedSubject = params.get('subject') || '';
   if (!requestedSubject && wheel === 'math') requestedSubject = 'shu1';
   if (!requestedSubject && wheel === 'major') requestedSubject = 'zhuanye';
-  var allowedSubjects = ['shu1', 'zhuanye', 'english', 'math_moni'];
+  var allowedSubjects = ['shu1', 'zhuanye', 'english', 'math_moni', 'math_xuantian', 'politics'];
 
   if (allowedSubjects.indexOf(requestedSubject) !== -1) {
     try {

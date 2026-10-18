@@ -503,7 +503,8 @@
       math: emptyTotals(),
       major: emptyTotals(),
       english: emptyTotals(),
-      math_moni: emptyTotals()
+      math_moni: emptyTotals(),
+      math_xuantian: emptyTotals()
     };
 
     var subjects = Array.isArray(window.SUBJECTS)
@@ -575,6 +576,9 @@
         }
         if (subject.id === 'math_moni' && buckets.math_moni) {
           targets.push(buckets.math_moni);
+        }
+        if (subject.id === 'math_xuantian' && buckets.math_xuantian) {
+          targets.push(buckets.math_xuantian);
         }
 
         targets.forEach(function (target) {
@@ -649,7 +653,8 @@
       english: english,
       math: questionBuckets.math,
       major: questionBuckets.major,
-      math_moni: questionBuckets.math_moni
+      math_moni: questionBuckets.math_moni,
+      math_xuantian: questionBuckets.math_xuantian
     };
   }
 

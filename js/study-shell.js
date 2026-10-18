@@ -25,7 +25,10 @@
     return ({
       shu1: '数学',
       zhuanye: '专业课',
-      english: '英语'
+      english: '英语',
+      math_moni: '数学模拟卷',
+      math_xuantian: '模拟题选填',
+      politics: '考研政治'
     })[id] || '学习模块';
   }
 
