@@ -3702,6 +3702,14 @@
       if (curSubjectId === 'politics' && window.PoliticsGrading) {
         window.PoliticsGrading.mount(card, q);
       }
+
+      // 只为政治肖1000题提供每个选项独立的个人文字备注。
+      // 在既有选项点击监听和 PoliticsGrading.mount 之后挂载。
+      if (curSubjectId === 'politics' && window.PoliticsChoiceNotes) {
+        const optionNotesKey = userStoragePrefix() +
+          'kaoyan_politics_choice_notes_v1_' + ch.id + '_' + idx;
+        window.PoliticsChoiceNotes.mount(card, optionNotesKey);
+      }
     }
 
     function renderPoliticsSolutionCard(q) {

@@ -1,0 +1,141 @@
+/* 肖1000题选项右侧独立文字批注；只在政治文字选择卡片中生效 */
+#questionTextCard .q-choice-item > .choice-text {
+  min-width: 0;
+}
+#questionTextCard .politics-choice-note-zone {
+  flex: 0 1 42%;
+  width: 42%;
+  min-width: 140px;
+  max-width: 460px;
+  align-self: center;
+  margin-left: auto;
+  cursor: default;
+}
+#questionTextCard .politics-choice-note-zone [hidden] {
+  display: none !important;
+}
+#questionTextCard .politics-choice-note-add {
+  display: block;
+  margin-left: auto;
+  padding: 5px 8px;
+  border: 1px dashed #eaa0a0;
+  border-radius: 7px;
+  background: transparent;
+  color: #d24145;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#questionTextCard .politics-choice-note-add:hover {
+  background: #fff2f2;
+  border-color: #f04e55;
+}
+#questionTextCard .politics-choice-note-display {
+  min-width: 0;
+}
+#questionTextCard .politics-choice-note-text {
+  border: 3px solid #ff4b54;
+  border-radius: 2px;
+  padding: 4px 9px;
+  color: #fa3f49;
+  background: rgba(255, 247, 247, 0.73);
+  font-size: clamp(14px, 1.45vw, 20px);
+  line-height: 1.45;
+  font-weight: 600;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+#questionTextCard .politics-choice-note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 3px;
+}
+#questionTextCard .politics-choice-note-actions button,
+#questionTextCard .politics-choice-note-editor-actions button {
+  padding: 3px 5px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  color: #b13c40;
+  cursor: pointer;
+}
+#questionTextCard .politics-choice-note-actions button:hover,
+#questionTextCard .politics-choice-note-editor-actions button:hover {
+  background: #ffe2e3;
+}
+#questionTextCard .politics-choice-note-editor {
+  min-width: 0;
+}
+#questionTextCard .politics-choice-note-input {
+  width: 100%;
+  min-height: 78px;
+  resize: vertical;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 2px solid #ff7880;
+  border-radius: 7px;
+  color: #b51e30;
+  background: #fffdfd;
+  font: inherit;
+  line-height: 1.5;
+  font-size: 14px;
+}
+#questionTextCard .politics-choice-note-editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+#questionTextCard .politics-choice-note-editor-actions .politics-choice-note-save {
+  font-weight: 700;
+  color: #d52736;
+}
+#questionTextCard .politics-choice-note-hint {
+  color: #8a8e9a;
+  font-size: 11px;
+  line-height: 1.35;
+}
+#questionTextCard .politics-choice-note-error {
+  color: #b91c1c;
+  font-size: 12px;
+}
+#questionTextCard .politics-choice-note-error:empty {
+  display: none;
+}
+#questionTextCard .politics-choice-note-zone button:focus-visible,
+#questionTextCard .politics-choice-note-input:focus-visible {
+  outline: 2px solid #ef5561;
+  outline-offset: 2px;
+}
+
+/* 手机 / 窄屏：批注在对应选项内容下方，不互相遮盖。 */
+@media (max-width: 720px) {
+  #questionTextCard .q-choice-item:has(> .politics-choice-note-zone) {
+    flex-wrap: wrap;
+  }
+  #questionTextCard .q-choice-item > .politics-choice-note-zone {
+    flex: 1 1 calc(100% - 42px);
+    width: calc(100% - 42px);
+    min-width: 0;
+    max-width: none;
+    margin: 0 0 0 42px;
+  }
+}
+
+/* 兼容原页面深色模式，不遮蔽批改后的正确/错误边框 */
+body.dark-mode #questionTextCard .politics-choice-note-text {
+  background: rgba(120, 35, 53, .22);
+  color: #ff8c9d;
+  border-color: #ff6675;
+}
+body.dark-mode #questionTextCard .politics-choice-note-add {
+  color: #ff9eaa;
+  border-color: #a95364;
+}
+body.dark-mode #questionTextCard .politics-choice-note-input {
+  background: #241d2e;
+  color: #ffe0e4;
+}
