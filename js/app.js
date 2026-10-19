@@ -3719,6 +3719,15 @@
           '<h4 class="sol-analysis-title">📖【解析精讲】</h4>' +
           '<div class="sol-analysis-content">' + analysisContent + '</div>' +
         '</div>';
+
+      // 仅政治肖1000解析正文启用荧光笔；不碰正确答案栏、批改或五级掌握度。
+      if (curSubjectId === 'politics' && window.PoliticsTextHighlighter) {
+        var textHlKey = userStoragePrefix() +
+          'kaoyan_politics_text_hl_v1_' + currentChapterId + '_' + current;
+        window.PoliticsTextHighlighter.mount(card, textHlKey);
+      } else if (window.PoliticsTextHighlighter) {
+        window.PoliticsTextHighlighter.reset();
+      }
     }
 
     function switchTo(idx) {
@@ -3758,6 +3767,10 @@
           renderPoliticsSolutionCard(ch.questions[nextIdx]);
         }
       } else {
+        // 从政治文字题切到图片题时清除仅属于旧解析的高亮层。
+        if (window.PoliticsTextHighlighter) {
+          window.PoliticsTextHighlighter.reset();
+        }
         if (qCard) qCard.style.display = 'none';
         if (qImg) qImg.style.display = '';
         if (sCard) sCard.style.display = 'none';

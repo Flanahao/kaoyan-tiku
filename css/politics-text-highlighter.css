@@ -1,0 +1,78 @@
+/* 肖1000解析荧光笔：使用原生 CSS 高亮，不往 markdown/KaTeX 生成的节点里包 span。 */
+::highlight(politics-hl-blue)   { background-color: rgba(37, 188, 255, .75); }
+::highlight(politics-hl-yellow) { background-color: rgba(255, 224, 40, .88); }
+::highlight(politics-hl-red)    { background-color: rgba(255, 72, 109, .76); }
+
+#solutionTextCard .sol-analysis-content {
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+#solutionTextCard .politics-hl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  margin: 8px 0 16px;
+  padding: 10px 12px;
+  border: 1px solid #dbe9f2;
+  border-radius: 10px;
+  background: #f4faff;
+  color: #22445a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+#solutionTextCard .politics-hl-help { flex: 1 1 235px; }
+#solutionTextCard .politics-hl-count { color: #607c90; white-space: nowrap; }
+#solutionTextCard .politics-hl-controls button {
+  border: 1px solid #c2d7e7;
+  background: #fff;
+  color: #234a63;
+  font: inherit;
+  padding: 5px 9px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#solutionTextCard .politics-hl-controls button:hover:not(:disabled) { background: #e7f4fc; }
+#solutionTextCard .politics-hl-controls button:disabled { opacity: .46; cursor: default; }
+#solutionTextCard .politics-hl-notice { flex: 1 0 100%; color: #bd453d; }
+#solutionTextCard .politics-hl-notice:empty { display: none; }
+
+.politics-hl-popup[hidden] { display: none !important; }
+.politics-hl-popup {
+  position: fixed;
+  z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: calc(100vw - 16px);
+  padding: 9px 11px;
+  border-radius: 13px;
+  border: 1px solid rgba(27, 70, 100, .12);
+  box-shadow: 0 10px 28px rgba(22, 55, 81, .23);
+  background: #fff;
+  color: #254a62;
+  font-size: 13px;
+  line-height: 1;
+}
+.politics-hl-popup-label { font-weight: 700; white-space: nowrap; }
+.politics-hl-swatch {
+  display: block;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 2px solid rgba(25, 50, 70, .25);
+  border-radius: 7px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.politics-hl-swatch:hover { outline: 2px solid #36576a; outline-offset: 1px; }
+.politics-hl-swatch:focus-visible,
+#solutionTextCard .politics-hl-controls button:focus-visible {
+  outline: 3px solid #286da4;
+  outline-offset: 2px;
+}
+.politics-hl-swatch.is-blue { background: #25bcff; }
+.politics-hl-swatch.is-yellow { background: #ffe028; }
+.politics-hl-swatch.is-red { background: #ff486d; }
