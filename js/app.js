@@ -3698,6 +3698,10 @@
           item.classList.toggle('is-selected');
         });
       });
+
+      if (curSubjectId === 'politics' && window.PoliticsGrading) {
+        window.PoliticsGrading.mount(card, q);
+      }
     }
 
     function renderPoliticsSolutionCard(q) {

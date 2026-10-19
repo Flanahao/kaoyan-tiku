@@ -1,0 +1,42 @@
+/* 27肖1000：独立批改 UI，不修改原掌握度按钮样式 */
+#questionTextCard .politics-grade-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e2e8f0;
+}
+#questionTextCard .politics-grade-submit {
+  border: 1px solid #2563eb;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #fff;
+  padding: 9px 17px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+#questionTextCard .politics-grade-submit:hover { background: #1d4ed8; }
+#questionTextCard .politics-grade-submit:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+#questionTextCard .politics-grade-result {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+#questionTextCard .politics-grade-result[data-status="correct"] { color: #15803d; }
+#questionTextCard .politics-grade-result[data-status="incorrect"] { color: #b91c1c; }
+#questionTextCard .politics-grade-result[data-status="unanswered"],
+#questionTextCard .politics-grade-result[data-status="unavailable"] { color: #92400e; }
+#questionTextCard .q-choice-item.politics-grade-correct-choice {
+  border-color: #22a06b;
+  background: #ecfdf5;
+}
+#questionTextCard .q-choice-item.politics-grade-wrong-choice {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
