@@ -214,7 +214,7 @@
               id="dailyGoalButton"
               class="daily-goal-widget"
               type="button"
-              aria-label="每日小目标：数学 0/20，专业课 0/20。点击设置"
+              aria-label="每日小目标：数学 0/20，专业课 0/20，政治 0/20。点击设置"
               title="点击设置每日小目标"
             >
               <span class="daily-goal-title">今日目标</span>
@@ -246,6 +246,21 @@
                 <span class="daily-goal-copy">
                   <strong>专业课</strong>
                   <span id="dailyGoalMajorText">0/20</span>
+                </span>
+              </span>
+
+              <span class="daily-goal-item" id="dailyGoalPoliticsItem">
+                <span
+                  class="daily-goal-ring"
+                  id="dailyGoalPoliticsRing"
+                  data-short="政"
+                  aria-hidden="true"
+                >
+                  <span id="dailyGoalPoliticsPct">0%</span>
+                </span>
+                <span class="daily-goal-copy">
+                  <strong>政治</strong>
+                  <span id="dailyGoalPoliticsText">0/20</span>
                 </span>
               </span>
             </button>
@@ -970,6 +985,18 @@
             专业课
             <input
               id="siMajorDailyGoalInput"
+              type="number"
+              min="0"
+              max="999"
+              step="1"
+              inputmode="numeric"
+            >
+          </label>
+
+          <label class="si-goal-label" for="siPoliticsDailyGoalInput">
+            政治
+            <input
+              id="siPoliticsDailyGoalInput"
               type="number"
               min="0"
               max="999"

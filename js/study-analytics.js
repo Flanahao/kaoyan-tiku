@@ -8,7 +8,7 @@
   var MAX_EVENTS = 10000;
   var EVENT_RETENTION_DAYS = 365;
   var DEFAULT_EXAM_DATE = '';
-  var DEFAULT_DAILY_GOALS = { math: 20, major: 20 };
+  var DEFAULT_DAILY_GOALS = { math: 20, major: 20, politics: 20 };
   var DEFAULT_DAILY_TOPIC_GOALS = {
     math: { enabled: false, title: '', subjectId: 'shu1', bookId: '', chapterId: '', target: 10 },
     major: { enabled: false, title: '', subjectId: 'zhuanye', bookId: '', chapterId: '', target: 10 }
@@ -154,6 +154,10 @@
         major: normalizeGoal(
           savedGoals.major,
           DEFAULT_DAILY_GOALS.major
+        ),
+        politics: normalizeGoal(
+          savedGoals.politics,
+          DEFAULT_DAILY_GOALS.politics
         )
       },
       dailyTopicGoals: normalizeDailyTopicGoals(savedTopicGoals),
@@ -200,6 +204,10 @@
         major: normalizeGoal(
           goals.major,
           current.dailyGoals.major
+        ),
+        politics: normalizeGoal(
+          goals.politics,
+          current.dailyGoals.politics
         )
       },
       dailyTopicGoals: normalizeDailyTopicGoals(topicGoals),
@@ -289,6 +297,15 @@
     }
 
     if (
+      group === 'politics' ||
+      group === 'political' ||
+      group === '政治' ||
+      group === '考研政治'
+    ) {
+      return 'politics';
+    }
+
+    if (
       group === 'english' ||
       group === 'en' ||
       group === '英语' ||
@@ -334,6 +351,12 @@
       /专业课|专业|408|计算机|数据结构|组成原理|操作系统|计算机网络|电路|电子技术|信号|major|professional/.test(text)
     ) {
       return 'major';
+    }
+
+    if (
+      /政治|肖1000|马原|毛中特|新思想|史纲|思修|politics|political/.test(text)
+    ) {
+      return 'politics';
     }
 
     return '';
@@ -384,6 +407,7 @@
     var seen = {
       math: new Set(),
       major: new Set(),
+      politics: new Set(),
       english: new Set()
     };
 
@@ -423,6 +447,7 @@
     return {
       math: seen.math.size,
       major: seen.major.size,
+      politics: seen.politics.size,
       english: seen.english.size
     };
   }
@@ -464,6 +489,7 @@
       if (
         group !== 'math' &&
         group !== 'major' &&
+        group !== 'politics' &&
         group !== 'english'
       ) {
         return;
@@ -502,6 +528,7 @@
       all: emptyTotals(),
       math: emptyTotals(),
       major: emptyTotals(),
+      politics: emptyTotals(),
       english: emptyTotals(),
       math_moni: emptyTotals(),
       math_xuantian: emptyTotals()
@@ -653,6 +680,7 @@
       english: english,
       math: questionBuckets.math,
       major: questionBuckets.major,
+      politics: questionBuckets.politics,
       math_moni: questionBuckets.math_moni,
       math_xuantian: questionBuckets.math_xuantian
     };
@@ -905,6 +933,7 @@
       if (
         group !== 'math' &&
         group !== 'major' &&
+        group !== 'politics' &&
         group !== 'english'
       ) {
         return;
@@ -989,6 +1018,13 @@
       ring: 'dailyGoalMajorRing',
       pct: 'dailyGoalMajorPct',
       text: 'dailyGoalMajorText'
+    },
+    politics: {
+      label: '政治',
+      item: 'dailyGoalPoliticsItem',
+      ring: 'dailyGoalPoliticsRing',
+      pct: 'dailyGoalPoliticsPct',
+      text: 'dailyGoalPoliticsText'
     }
   };
 
@@ -1004,6 +1040,10 @@
       major: normalizeGoal(
         settings.dailyGoals.major,
         DEFAULT_DAILY_GOALS.major
+      ),
+      politics: normalizeGoal(
+        settings.dailyGoals.politics,
+        DEFAULT_DAILY_GOALS.politics
       )
     };
 
@@ -1069,12 +1109,19 @@
           ? counts.major + '/' + targets.major
           : '未设置';
 
+      var politicsCopy =
+        targets.politics > 0
+          ? counts.politics + '/' + targets.politics
+          : '未设置';
+
       button.setAttribute(
         'aria-label',
         '每日小目标：数学 ' +
           mathCopy +
           '，专业课 ' +
           majorCopy +
+          '，政治 ' +
+          politicsCopy +
           '。点击设置'
       );
 
@@ -1082,7 +1129,9 @@
         '点击设置每日小目标｜数学 ' +
         mathCopy +
         '｜专业课 ' +
-        majorCopy;
+        majorCopy +
+        '｜政治 ' +
+        politicsCopy;
     }
   }
 
@@ -1091,9 +1140,11 @@
     if (!toast) return;
 
     var label =
-      group === 'major'
-        ? '专业课'
-        : '数学';
+      group === 'politics'
+        ? '政治'
+        : group === 'major'
+          ? '专业课'
+          : '数学';
 
     goalToastSequence += 1;
     var sequence = goalToastSequence;
@@ -1144,7 +1195,7 @@
     afterCounts,
     settings
   ) {
-    if (group !== 'math' && group !== 'major') {
+    if (group !== 'math' && group !== 'major' && group !== 'politics') {
       return;
     }
 
@@ -1863,6 +1914,9 @@
     var majorInput =
       document.getElementById('siMajorDailyGoalInput');
 
+    var politicsInput =
+      document.getElementById('siPoliticsDailyGoalInput');
+
     if (
       !modal ||
       !dateInput ||
@@ -1882,6 +1936,11 @@
 
     majorInput.value =
       String(settings.dailyGoals.major);
+
+    if (politicsInput) {
+      politicsInput.value =
+        String(settings.dailyGoals.politics != null ? settings.dailyGoals.politics : DEFAULT_DAILY_GOALS.politics);
+    }
 
     modal.hidden = false;
     modal.style.display = 'flex';
@@ -1917,6 +1976,9 @@
 
     var majorInput =
       document.getElementById('siMajorDailyGoalInput');
+
+    var politicsInput =
+      document.getElementById('siPoliticsDailyGoalInput');
 
     if (
       !dateInput ||
@@ -1956,11 +2018,18 @@
 
     if (majorGoal == null) return;
 
+    var politicsGoal = politicsInput
+      ? readGoalInput(politicsInput, '政治')
+      : currentSettings().dailyGoals.politics;
+
+    if (politicsGoal == null) return;
+
     var saved = saveSettings({
       examDate: examDate,
       dailyGoals: {
         math: mathGoal,
-        major: majorGoal
+        major: majorGoal,
+        politics: politicsGoal
       }
     });
 
