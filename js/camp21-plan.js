@@ -9,6 +9,595 @@
   var STATE_KEY_SUFFIX = 'kaoyan_camp21_state_v1';
   var SETTINGS_KEY_SUFFIX = 'study_dashboard_settings_v1';
 
+  // V3 零删减全量配额数据（6879待绿/核验 + 801历史绿题复检 = 7680可量化题次）
+  var V3_FULL_DATA = {
+  "version": "3.0-all-required",
+  "source": "用户2026-10-30上传PDF题库备份统计 + 原始逐日任务；非题库真实最新状态，须本地按备份校准",
+  "begin": "2026-10-31",
+  "end": "2026-11-20",
+  "fixed_net_focus_goal_minutes": 780,
+  "study_schedule_minutes": 845,
+  "totals": {
+    "math_truth": 226,
+    "xhy": 1166,
+    "880": 996,
+    "36": 419,
+    "30_and_1000basic": 1265,
+    "politics": 1131,
+    "bogo_1_8": 801,
+    "bogo_ch9": 49,
+    "nju851": 193,
+    "hust824": 233,
+    "zhima400": 400
+  },
+  "definition": {
+    "pending_target": "原PDF记录的待绿题目数；此处按未来21日拆配额，不代表已经熟练",
+    "zhima400": "完整400题首次覆盖。原用户允许专题选刷；为了满足此次全覆盖要求按400题全部纳入，若实际题量不同按真实书籍校正",
+    "bogo_ch9": "Ch9讲义10+习题39；强化Ch7的18道不重复加算（已包含在1-8的994题统计）",
+    "offline_electrical_and_nju_final": "源PDF未给出手头讲义/期末题精确题量，必须扫描本地资料建立全量子任务，不得以4晚/6晚代替全量保证",
+    "nju_gap": "源PDF整体193待绿，而显式列出的各年内容合计183，差额10列入D20待对账补遗，不能凭空编造具体题号",
+    "mastery": "必须通过不看答案独立复做才可标绿；首次覆盖数与真实熟练数分开",
+    "counting": "不同材料跨书题目不去重；同一书章节、同一题本身不得重复计数"
+  },
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-10-31",
+      "math_truth_task": "2022数一整卷22题",
+      "math_truth_pending_target": 22,
+      "xhy_chapter_scope": "Ch3积分未标21+红黄35",
+      "xhy_pending_target": 56,
+      "ll880_pending_target": 40,
+      "zy36_pending_target": 25,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 27,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2007/08/09",
+      "major_special_scope": "波哥Ch4傅里叶；1–3章旧错题回炉",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 2,
+      "date": "2026-11-01",
+      "math_truth_task": "2023数一整卷22题",
+      "math_truth_pending_target": 22,
+      "xhy_chapter_scope": "Ch3积分剩26+Ch1极限前35",
+      "xhy_pending_target": 61,
+      "ll880_pending_target": 40,
+      "zy36_pending_target": 25,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 44,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2015+2021剩余",
+      "major_special_scope": "波哥Ch4继续；讲义与基础同步",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 3,
+      "date": "2026-11-02",
+      "math_truth_task": "2009非绿19题",
+      "math_truth_pending_target": 19,
+      "xhy_chapter_scope": "Ch1极限36–95",
+      "xhy_pending_target": 60,
+      "ll880_pending_target": 40,
+      "zy36_pending_target": 25,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 22,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2010/11",
+      "major_special_scope": "波哥Ch4收官；强化1–3章旧错",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 4,
+      "date": "2026-11-03",
+      "math_truth_task": "2010非绿8+2011非绿9题",
+      "math_truth_pending_target": 17,
+      "xhy_chapter_scope": "Ch1极限96–129+Ch2导数1–35",
+      "xhy_pending_target": 69,
+      "ll880_pending_target": 40,
+      "zy36_pending_target": 25,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 24,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2016",
+      "major_special_scope": "波哥Ch5拉氏、基础错题",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 5,
+      "date": "2026-11-04",
+      "math_truth_task": "2012非绿16题",
+      "math_truth_pending_target": 16,
+      "xhy_chapter_scope": "Ch2导数36–101",
+      "xhy_pending_target": 66,
+      "ll880_pending_target": 40,
+      "zy36_pending_target": 25,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 21,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2012/13/14",
+      "major_special_scope": "波哥Ch5收官，强化/基础",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 6,
+      "date": "2026-11-05",
+      "math_truth_task": "2013非绿15题",
+      "math_truth_pending_target": 15,
+      "xhy_chapter_scope": "Ch4微分方程57",
+      "xhy_pending_target": 57,
+      "ll880_pending_target": 40,
+      "zy36_pending_target": 25,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 7,
+      "hust824_pending_target": 12,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2017 + 南大851 2015",
+      "major_special_scope": "波哥Ch5讲义与基础清零",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 7,
+      "date": "2026-11-06",
+      "math_truth_task": "2014非绿14题",
+      "math_truth_pending_target": 14,
+      "xhy_chapter_scope": "Ch5多元微分68",
+      "xhy_pending_target": 68,
+      "ll880_pending_target": 48,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 36,
+      "bogo_ch9_pending_target": 10,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "专业课模拟卷①",
+      "major_special_scope": "电路D1/4：Ch9讲义10；强化Ch7 18计入波哥1–8指标",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 1,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 8,
+      "date": "2026-11-07",
+      "math_truth_task": "2015非绿10+2016非绿14题",
+      "math_truth_pending_target": 24,
+      "xhy_chapter_scope": "Ch6二重积分46+Ch7级数10",
+      "xhy_pending_target": 56,
+      "ll880_pending_target": 48,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 20,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 20,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2018",
+      "major_special_scope": "电路D2/4：Ch9习题前20+手头讲义",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 9,
+      "date": "2026-11-08",
+      "math_truth_task": "2017非绿15题",
+      "math_truth_pending_target": 15,
+      "xhy_chapter_scope": "Ch7无穷级数11–88",
+      "xhy_pending_target": 78,
+      "ll880_pending_target": 48,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 23,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 19,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2016/17/18",
+      "major_special_scope": "电路D3/4：Ch9习题后19+系统函数",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 10,
+      "date": "2026-11-09",
+      "math_truth_task": "2018非绿14题",
+      "math_truth_pending_target": 14,
+      "xhy_chapter_scope": "Ch8空间几何30+Ch9线面积分35",
+      "xhy_pending_target": 65,
+      "ll880_pending_target": 48,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 23,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2019",
+      "major_special_scope": "电路D4/4：手头资料全部完成；未清零继续挂账",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 11,
+      "date": "2026-11-10",
+      "math_truth_task": "2019非绿16题",
+      "math_truth_pending_target": 16,
+      "xhy_chapter_scope": "Ch9线面积分后36+Ch10高数20+线代Ch1前15",
+      "xhy_pending_target": 71,
+      "ll880_pending_target": 48,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 21,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2019/2024",
+      "major_special_scope": "南大期末D1/6：卷积/时域；波哥Ch6",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 12,
+      "date": "2026-11-11",
+      "math_truth_task": "2020非绿21题",
+      "math_truth_pending_target": 21,
+      "xhy_chapter_scope": "线代Ch1后20+Ch2前35",
+      "xhy_pending_target": 55,
+      "ll880_pending_target": 48,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 26,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2020",
+      "major_special_scope": "南大期末D2/6：傅里叶/采样；波哥Ch6",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 13,
+      "date": "2026-11-12",
+      "math_truth_task": "2021非绿11题",
+      "math_truth_pending_target": 11,
+      "xhy_chapter_scope": "线代Ch2后21+Ch3向量44+Ch4前10",
+      "xhy_pending_target": 75,
+      "ll880_pending_target": 56,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 18,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2025/2026",
+      "major_special_scope": "南大期末D3/6：拉氏/s域；波哥Ch6",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 14,
+      "date": "2026-11-13",
+      "math_truth_task": "2009–2011真题复检",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "线代Ch4后11+Ch5相似29+Ch6前35",
+      "xhy_pending_target": 75,
+      "ll880_pending_target": 56,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 38,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "专业课模拟卷②",
+      "major_special_scope": "南大期末D4/6：电路综合；波哥Ch7",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 1,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 15,
+      "date": "2026-11-14",
+      "math_truth_task": "2012–2014真题复检",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "线代Ch6后7+Ch7数一19+概率Ch1 18+Ch2前20",
+      "xhy_pending_target": 64,
+      "ll880_pending_target": 56,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 28,
+      "bogo_ch1to8_pending_target": 40,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2022",
+      "major_special_scope": "南大期末D5/6：Z变换；波哥Ch8",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 16,
+      "date": "2026-11-15",
+      "math_truth_task": "2015–2017真题复检",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "概率Ch2后20+Ch3前35",
+      "xhy_pending_target": 55,
+      "ll880_pending_target": 56,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 28,
+      "bogo_ch1to8_pending_target": 40,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2023",
+      "major_special_scope": "南大期末D6/6：全部题量清零；波哥强化1–3旧错",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 17,
+      "date": "2026-11-16",
+      "math_truth_task": "2018–2020真题复检",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "概率Ch3后10+Ch4数字特征49",
+      "xhy_pending_target": 59,
+      "ll880_pending_target": 56,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 28,
+      "bogo_ch1to8_pending_target": 40,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2024",
+      "major_special_scope": "波哥1–8剩余所有待绿题+芝麻400",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 18,
+      "date": "2026-11-17",
+      "math_truth_task": "2021–2023真题复检",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "概率Ch5 13+Ch6 20+Ch7 21+Ch8 22",
+      "xhy_pending_target": 76,
+      "ll880_pending_target": 56,
+      "zy36_pending_target": 20,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 44,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 40,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851 2020–23全部待绿",
+      "major_special_scope": "波哥1–8剩余所有待绿题+芝麻400",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 19,
+      "date": "2026-11-18",
+      "math_truth_task": "2009–2023全部342题错题抽检",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "高数错题复检",
+      "xhy_pending_target": 0,
+      "ll880_pending_target": 44,
+      "zy36_pending_target": 10,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 40,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "华科824 2015–19错题盲刷",
+      "major_special_scope": "电路专题全量查缺、手头资料复做",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 20,
+      "date": "2026-11-19",
+      "math_truth_task": "2009–2023全部342题终验",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "线代/概率错题复检",
+      "xhy_pending_target": 0,
+      "ll880_pending_target": 44,
+      "zy36_pending_target": 10,
+      "zy30_and_zy1000basic_pending_target": 60,
+      "nju851_pending_target": 10,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 40,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 20,
+      "politics_pending_target": 55,
+      "major_exam_block": "南大851对账补遗+华科2020–24二刷",
+      "major_special_scope": "南大期末题全量查缺、手头资料复做",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 0,
+      "historic_green_recheck_target": 38,
+      "zy30_pending_target": 36,
+      "zy1000basic_pending_target": 24
+    },
+    {
+      "day": 21,
+      "date": "2026-11-20",
+      "math_truth_task": "数学真题全卷结果与错因总验收",
+      "math_truth_pending_target": 0,
+      "xhy_chapter_scope": "全书绿标验收",
+      "xhy_pending_target": 0,
+      "ll880_pending_target": 44,
+      "zy36_pending_target": 9,
+      "zy30_and_zy1000basic_pending_target": 65,
+      "nju851_pending_target": 0,
+      "hust824_pending_target": 0,
+      "bogo_ch1to8_pending_target": 43,
+      "bogo_ch9_pending_target": 0,
+      "zhima400_firstpass_target": 0,
+      "politics_pending_target": 31,
+      "major_exam_block": "专业课模拟卷③+全科验收",
+      "major_special_scope": "波哥1–9全部+芝麻400+各校真题总验收",
+      "english": "作文背默30min + 阅读50min",
+      "politics_audio": "通勤15min + 午饭散步15min（合计30min，不计入净专注）",
+      "mock_exam": 1,
+      "historic_green_recheck_target": 41,
+      "zy30_pending_target": 39,
+      "zy1000basic_pending_target": 26
+    }
+  ],
+  "historic_green_recheck_total": 801,
+  "historic_green_recheck_by_module": {
+    "math_truth": 116,
+    "xhy": 53,
+    "880": 185,
+    "36": 42,
+    "30_and_1000basic": 157,
+    "bogo_1_8": 193,
+    "nju851": 36,
+    "hust824": 2,
+    "politics": 17
+  },
+  "full_inventory_numeric_total": 7680,
+  "definitions_update": "政治带背30分钟=通勤15分钟+午饭散步15分钟，均不计入780分钟净专注。"
+};
+
+  var V3_QUOTA_MODULES = [
+    { key: 'math_truth_pending_target', id: 'math_truth', label: '数一09-23真题(待绿)', total: 226, green: 116, bookTotal: 342, cat: 'math' },
+    { key: 'xhy_pending_target', id: 'xhy', label: '《邂逅遗憾》25章(待绿)', total: 1166, green: 53, bookTotal: 1219, cat: 'math' },
+    { key: 'll880_pending_target', id: 'll880', label: '《李林880》23章(待绿)', total: 996, green: 185, bookTotal: 1181, cat: 'math' },
+    { key: 'zy36_pending_target', id: 'zy36', label: '《强化36讲》36章(待绿)', total: 419, green: 42, bookTotal: 461, cat: 'math' },
+    { key: 'zy30_pending_target', id: 'zy30', label: '《基础30讲》30章(待核验)', total: 759, green: 113, bookTotal: 872, cat: 'math' },
+    { key: 'zy1000basic_pending_target', id: 'zy1000b', label: '《1000题基础篇》31章(待核验)', total: 506, green: 44, bookTotal: 550, cat: 'math' },
+    { key: 'nju851_pending_target', id: 'nju851', label: '南大851真题20套(待绿)', total: 193, green: 36, bookTotal: 229, cat: 'major' },
+    { key: 'hust824_pending_target', id: 'hust824', label: '华科824近10套(待绿)', total: 233, green: 2, bookTotal: 235, cat: 'major' },
+    { key: 'bogo_ch1to8_pending_target', id: 'bogo18', label: '波哥1-8章讲义/习题/强化(待绿)', total: 801, green: 193, bookTotal: 994, cat: 'major' },
+    { key: 'bogo_ch9_pending_target', id: 'bogo9', label: '波哥Ch9电路讲义10+习题39', total: 49, green: 3, bookTotal: 49, cat: 'major' },
+    { key: 'zhima400_firstpass_target', id: 'zhima400', label: '《芝麻400题》全书覆盖', total: 400, green: 0, bookTotal: 400, cat: 'major' },
+    { key: 'politics_pending_target', id: 'politics', label: '《27肖1000》52章(待绿)', total: 1131, green: 17, bookTotal: 1148, cat: 'politics' },
+    { key: 'historic_green_recheck_target', id: 'recheck801', label: '🟢历史已绿题全科复检队列', total: 801, green: 801, bookTotal: 801, cat: 'recheck' }
+  ];
+
   // 13.5h+ 铁血作息时间块（含午饭、午休、晚饭、22:00闭馆通勤）
   var CAMP21_SCHEDULE_SLOTS = [
     { start: '07:20', end: '08:00', dur: '40m', scene: '居家/通勤', title: '起床 + 高蛋白早餐 + 赶赴图书馆（路上耳机听政治带背15m）', target: '绝不赖床，路上完成第1段政治带背输入' },
@@ -1570,14 +2159,16 @@
         },
         {
           id: 'd20_p_pm', cat: 'major', catLabel: '专业课·下午3h整块', time: '14:00–17:00',
-          title: '【华科824二刷清零(下)】2020–2024年5套华科真题 🟡/🔴错题专场重做（🎉华科近10年235题全绿！）',
-          desc: '下午3h整块把华科20–24年5套压轴卷里的错题全部二刷变绿，实现华科近10年真题100%全绿！',
+          title: '【南大851对账补遗10道未标题(21年3题+23年7题) + 华科824(20–24)错题回炉】',
+          desc: '精准补齐南大851在2021年(3道未标⚪)与2023年(7道未标⚪)合计10道差额题（凑齐193道待绿全覆盖），并完成华科824近5年错题二刷！',
           chapters: [
-            { subjectId: 'zhuanye', chapterId: 'hust_824_20', label: '华科20全绿' },
-            { subjectId: 'zhuanye', chapterId: 'hust_824_21', label: '华科21全绿' },
-            { subjectId: 'zhuanye', chapterId: 'hust_824_22', label: '华科22全绿' },
-            { subjectId: 'zhuanye', chapterId: 'hust_824_23', label: '华科23全绿' },
-            { subjectId: 'zhuanye', chapterId: 'hust_824_24', label: '华科24全绿' }
+            { subjectId: 'zhuanye', chapterId: 'nju_851_21', label: '南大21真题(补3道未标)' },
+            { subjectId: 'zhuanye', chapterId: 'nju_851_23', label: '南大23真题(补7道未标)' },
+            { subjectId: 'zhuanye', chapterId: 'hust_824_20', label: '华科20真题' },
+            { subjectId: 'zhuanye', chapterId: 'hust_824_21', label: '华科21真题' },
+            { subjectId: 'zhuanye', chapterId: 'hust_824_22', label: '华科22真题' },
+            { subjectId: 'zhuanye', chapterId: 'hust_824_23', label: '华科23真题' },
+            { subjectId: 'zhuanye', chapterId: 'hust_824_24', label: '华科24真题' }
           ],
           targetCount: 138, mode: 'green'
         },
@@ -1734,6 +2325,13 @@
     return getPrefix() + STATE_KEY_SUFFIX;
   }
 
+  function defaultOfflineMaterials() {
+    return {
+      circuit: { name: '⚡手头电路专题纸质讲义及全部题目', totalInventoried: 0, done: 0, mastered: 0, note: '' },
+      njuFinal: { name: '🎓手头南大历年期末题全部试卷', totalInventoried: 0, done: 0, mastered: 0, note: '' }
+    };
+  }
+
   function loadCampState() {
     try {
       var raw = window.localStorage.getItem(stateStorageKey());
@@ -1741,6 +2339,11 @@
       if (parsed && typeof parsed === 'object') {
         parsed.checked = parsed.checked || {};
         parsed.offline = parsed.offline || {};
+        parsed.v3Actual = parsed.v3Actual || {};
+        parsed.v3Mastered = parsed.v3Mastered || {};
+        parsed.netFocus = parsed.netFocus || {};
+        parsed.dayNotes = parsed.dayNotes || {};
+        parsed.offlineMaterials = parsed.offlineMaterials || defaultOfflineMaterials();
         return parsed;
       }
     } catch (e) {}
@@ -1749,6 +2352,11 @@
       collapsed: false,
       checked: {},
       offline: {},
+      v3Actual: {},
+      v3Mastered: {},
+      netFocus: {},
+      dayNotes: {},
+      offlineMaterials: defaultOfflineMaterials(),
       goalsInitialized: false
     };
   }
@@ -1760,8 +2368,12 @@
   }
 
   // 根据本地日期自动推算今天是特训 Day 几 (2026-10-30 -> Day 0, 2026-10-31 -> Day 1 ... 2026-11-20 -> Day 21)
-  function getTodayCampDay() {
-    var now = new Date();
+  // 凌晨 00:00–02:59 仍归属前一学习日（防止 22:50–00:35 深夜局跨零点刷新后跳到次日）
+  function getTodayCampDay(customNow) {
+    var now = customNow ? new Date(customNow) : new Date();
+    if (now.getHours() < 3) {
+      now.setDate(now.getDate() - 1);
+    }
     var y = now.getFullYear();
     var m = String(now.getMonth() + 1).padStart(2, '0');
     var d = String(now.getDate()).padStart(2, '0');
@@ -1772,6 +2384,52 @@
     if (todayStr < '2026-10-30') return 0;
     if (todayStr > '2026-11-20') return 21;
     return 1;
+  }
+
+  function getV3DayQuota(dayNum) {
+    var n = Math.max(1, Math.min(21, Number(dayNum) || 1));
+    return V3_FULL_DATA.days[n - 1] || V3_FULL_DATA.days[0];
+  }
+
+  function getDayNetFocus(state, dayNum) {
+    var f = (state.netFocus && state.netFocus[String(dayNum)]) || {};
+    var math = Math.max(0, Math.floor(Number(f.math) || 0));
+    var major = Math.max(0, Math.floor(Number(f.major) || 0));
+    var politics = Math.max(0, Math.floor(Number(f.politics) || 0));
+    var english = Math.max(0, Math.floor(Number(f.english) || 0));
+    var sum = math + major + politics + english;
+    return {
+      math: math, major: major, politics: politics, english: english,
+      sum: sum, goal: 780, schedule: 845,
+      pct: Math.min(100, Math.round((sum / 780) * 100)),
+      reached: sum >= 780
+    };
+  }
+
+  function getV3QuotaStatsForDay(state, dayNum) {
+    var q = getV3DayQuota(dayNum);
+    var items = [];
+    var totalTarget = 0, totalActual = 0, totalMastered = 0, totalBacklog = 0;
+    V3_QUOTA_MODULES.forEach(function (mod) {
+      var target = Number(q[mod.key]) || 0;
+      if (dayNum === 0) target = 0;
+      var recKey = 'd' + dayNum + '_' + mod.id;
+      var actual = Math.max(0, Math.floor(Number(state.v3Actual && state.v3Actual[recKey]) || 0));
+      var mastered = Math.min(actual, Math.max(0, Math.floor(Number(state.v3Mastered && state.v3Mastered[recKey]) || 0)));
+      var backlog = Math.max(0, target - actual);
+      totalTarget += target;
+      totalActual += actual;
+      totalMastered += mastered;
+      totalBacklog += backlog;
+      items.push({
+        mod: mod, recKey: recKey, target: target, actual: actual, mastered: mastered, backlog: backlog
+      });
+    });
+    var pct = totalTarget > 0 ? Math.min(100, Math.round((totalActual / totalTarget) * 100)) : 0;
+    return {
+      items: items, totalTarget: totalTarget, totalActual: totalActual,
+      totalMastered: totalMastered, totalBacklog: totalBacklog, pct: pct
+    };
   }
 
   function getActiveDayNumber() {
@@ -2050,13 +2708,31 @@
     if (pctEl) pctEl.textContent = dayProg.pct + '%';
     if (txtEl) txtEl.textContent = dayProg.doneTasks + '/' + dayProg.totalTasks + '项';
 
-    if (!btn._camp21Bound) {
-      btn._camp21Bound = true;
-      btn.addEventListener('click', function (ev) {
+    // 仅在点击「3周特训」子环时打开特训指挥舱，保留原 #dailyGoalButton 其余区域打开原每日目标设置弹窗！
+    if (campItem && !campItem._camp21Bound) {
+      campItem._camp21Bound = true;
+      campItem.addEventListener('click', function (ev) {
         ev.preventDefault();
-        ev.stopImmediatePropagation();
+        ev.stopPropagation();
         openCampModal('today');
-      }, true);
+      });
+    }
+
+    // 同时在 #dailyGoalButton 右侧挂载独立的「🔥 Dxx · 特训指挥舱」按钮，绝不抢占原按钮事件
+    var standaloneBtn = document.getElementById('camp21StandaloneBtn');
+    if (!standaloneBtn && btn.parentNode) {
+      standaloneBtn = document.createElement('button');
+      standaloneBtn.type = 'button';
+      standaloneBtn.id = 'camp21StandaloneBtn';
+      standaloneBtn.className = 'camp21-btn primary';
+      standaloneBtn.style.cssText = 'margin-left:6px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap;';
+      standaloneBtn.addEventListener('click', function () {
+        openCampModal('today');
+      });
+      btn.insertAdjacentElement('afterend', standaloneBtn);
+    }
+    if (standaloneBtn) {
+      standaloneBtn.innerHTML = '🔥 D' + dayObj.day + ' · 特训指挥舱 (' + dayProg.pct + '%)';
     }
   }
 
@@ -2126,6 +2802,57 @@
     );
   }
 
+  // ===== 2.5 构建 V3 13h净专注记录条 & 今日零删减配额核验折叠面板 =====
+  function buildV3FocusAndQuotaStripHtml(dayNum, state) {
+    var nf = getDayNetFocus(state, dayNum);
+    var qs = getV3QuotaStatsForDay(state, dayNum);
+    var activeQuotaItems = qs.items.filter(function (it) { return it.target > 0; });
+
+    var quotaRowsHtml = activeQuotaItems.map(function (it) {
+      var doneCls = it.actual >= it.target ? 'color:#15803d;font-weight:800;' : 'color:#b45309;font-weight:700;';
+      return (
+        '<div class="camp21-v3-qcard">' +
+          '<div style="font-size:11.5px;font-weight:800;color:#0f172a;margin-bottom:4px;">' + escapeHtml(it.mod.label) + '</div>' +
+          '<div style="display:flex;align-items:center;gap:6px;font-size:11px;flex-wrap:wrap;">' +
+            '<span>今日配额: <strong>' + it.target + '</strong>题</span>' +
+            '<label style="display:inline-flex;align-items:center;gap:3px;">实做:' +
+              '<input type="number" min="0" max="2000" class="camp21-v3-num-input" data-action="v3-actual" data-reckey="' + escapeHtml(it.recKey) + '" value="' + it.actual + '">' +
+            '</label>' +
+            '<label style="display:inline-flex;align-items:center;gap:3px;">独立掌握:' +
+              '<input type="number" min="0" max="2000" class="camp21-v3-num-input" data-action="v3-mastered" data-reckey="' + escapeHtml(it.recKey) + '" value="' + it.mastered + '">' +
+            '</label>' +
+            '<span style="' + doneCls + '">' + (it.backlog > 0 ? ('待清零:' + it.backlog) : '✓配额完成') + '</span>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    return (
+      '<div class="camp21-v3-strip">' +
+        '<div class="camp21-v3-focus-row">' +
+          '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">' +
+            '<span style="font-size:12.5px;font-weight:800;color:#0f172a;">⏱️ 今日真实净专注记录（排班 14h05m / 达标线 13h=780m，00:00–02:59归属前一日）：</span>' +
+            '<span style="font-size:12.5px;font-weight:800;color:' + (nf.reached ? '#15803d' : '#ea580c') + ';">' +
+              Math.floor(nf.sum / 60) + 'h' + String(nf.sum % 60).padStart(2, '0') + 'm (' + nf.sum + '/780m · ' + nf.pct + '%) ' + (nf.reached ? '✅13h达标' : '⏳未满13h') +
+            '</span>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">' +
+            '<label style="font-size:11.5px;font-weight:700;color:#334155;">数学(分): <input type="number" min="0" max="1440" class="camp21-v3-num-input" data-action="v3-focus" data-day="' + dayNum + '" data-subj="math" value="' + nf.math + '"></label>' +
+            '<label style="font-size:11.5px;font-weight:700;color:#334155;">专业课(分): <input type="number" min="0" max="1440" class="camp21-v3-num-input" data-action="v3-focus" data-day="' + dayNum + '" data-subj="major" value="' + nf.major + '"></label>' +
+            '<label style="font-size:11.5px;font-weight:700;color:#334155;">政治(分): <input type="number" min="0" max="1440" class="camp21-v3-num-input" data-action="v3-focus" data-day="' + dayNum + '" data-subj="politics" value="' + nf.politics + '"></label>' +
+            '<label style="font-size:11.5px;font-weight:700;color:#334155;">英语(分): <input type="number" min="0" max="1440" class="camp21-v3-num-input" data-action="v3-focus" data-day="' + dayNum + '" data-subj="english" value="' + nf.english + '"></label>' +
+          '</div>' +
+        '</div>' +
+        (dayNum >= 1 ? (
+          '<details class="camp21-v3-quota-details">' +
+            '<summary>📌 展开 V3 零删减今日定额核验台（今日定额合计 <strong>' + qs.totalTarget + '</strong> 题次 · 已实做 <strong>' + qs.totalActual + '</strong> · 独立掌握 <strong>' + qs.totalMastered + '</strong> · 待清零欠账 <strong style="color:#dc2626;">' + qs.totalBacklog + '</strong>）</summary>' +
+            '<div class="camp21-v3-qgrid">' + quotaRowsHtml + '</div>' +
+          '</details>'
+        ) : '') +
+      '</div>'
+    );
+  }
+
   // ===== 3. 渲染工作台顶部「21天魔鬼特训」面板 (#camp21WorkbenchPanel) =====
   function renderWorkbenchPanel() {
     var mainContent = document.querySelector('.main-content');
@@ -2191,8 +2918,9 @@
         '</div>' +
         '<div class="camp21-wb-actions">' +
           '<button type="button" class="camp21-btn primary" data-action="open-modal" data-tab="all">🗓️ 21天全景表</button>' +
-          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="schedule">⏰ 13.5h作息表</button>' +
-          '<button type="button" class="camp21-btn report-btn" data-action="copy-report">📊 复制今日战报</button>' +
+          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="v3ledger">📊 V3零删减总账(7680)</button>' +
+          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="schedule">⏰ 14h排班表</button>' +
+          '<button type="button" class="camp21-btn report-btn" data-action="copy-report">📋 复制今日战报</button>' +
           '<button type="button" class="camp21-btn" data-action="open-settings">⚙️ 目标设置</button>' +
           '<button type="button" class="camp21-btn" data-action="toggle-collapse">' + (state.collapsed ? '展开清单 ▼' : '收起 ▲') + '</button>' +
         '</div>' +
@@ -2200,8 +2928,9 @@
       '<div class="camp21-wb-body">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">' +
           '<span class="camp21-now-slot-pill">' + escapeHtml(slotText) + '</span>' +
-          '<span style="font-size:11.5px;color:#64748b;">💡 提示：刷题标🟢后进度条实时自动增长；纸质任务（⚡电路专题 / 🎓南大期末题 / 英语作文）可直接点「+」或勾选完成。</span>' +
+          '<span style="font-size:11.5px;color:#64748b;">💡 提示：凌晨00:00–02:59仍归属前一日；题库实时🟢参考与V3每日独立实做计数双轨并行，不虚报100%。</span>' +
         '</div>' +
+        buildV3FocusAndQuotaStripHtml(activeDay, state) +
         '<div class="camp21-tasks-grid">' + cardsHtml + '</div>' +
       '</div>';
   }
@@ -2267,10 +2996,11 @@
           '<button type="button" class="camp21-modal-close" data-action="close-modal" aria-label="关闭">×</button>' +
         '</div>' +
         '<div class="camp21-modal-tabs">' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="today">📋 今日特训清单 & 实时进度</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="today">📋 今日特训清单 & 净专注</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="v3ledger">📊 V3零删减全量总账 (7680题次&线下盘点)</button>' +
           '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="all">🗓️ 21天全景作战大表 (含⚡电路&🎓期末题)</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="schedule">⏰ 13.5h+ 铁血作息表 (含午晚餐)</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="open-settings">⚙️ 基础每日目标题量 & 考研日期设置</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="schedule">⏰ 14h05m 排班作息表</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="open-settings">⚙️ 原版每日目标设置</button>' +
         '</div>' +
         '<div class="camp21-modal-body" id="camp21ModalBody"></div>' +
       '</div>';
@@ -2322,7 +3052,109 @@
             '<button type="button" class="camp21-btn report-btn" data-action="copy-report">📊 复制今日战报</button>' +
           '</div>' +
         '</div>' +
+        buildV3FocusAndQuotaStripHtml(activeDay, state) +
         '<div class="camp21-tasks-grid">' + cardsHtml + '</div>';
+      return;
+    }
+
+    if (_activeModalTab === 'v3ledger') {
+      var om = state.offlineMaterials || defaultOfflineMaterials();
+      var cir = om.circuit || { name: '⚡手头电路专题纸质讲义', totalInventoried: 0, done: 0, mastered: 0, note: '' };
+      var njuF = om.njuFinal || { name: '🎓手头南大历年期末题试卷', totalInventoried: 0, done: 0, mastered: 0, note: '' };
+
+      var modRows = V3_QUOTA_MODULES.map(function (mod) {
+        var sumActual = 0, sumMastered = 0;
+        for (var d = 1; d <= 21; d++) {
+          var rk = 'd' + d + '_' + mod.id;
+          sumActual += Math.max(0, Math.floor(Number(state.v3Actual && state.v3Actual[rk]) || 0));
+          sumMastered += Math.max(0, Math.floor(Number(state.v3Mastered && state.v3Mastered[rk]) || 0));
+        }
+        var rem = Math.max(0, mod.total - sumActual);
+        return (
+          '<tr>' +
+            '<td><strong>' + escapeHtml(mod.label) + '</strong></td>' +
+            '<td>' + mod.bookTotal + '</td>' +
+            '<td>' + mod.green + '</td>' +
+            '<td><strong>' + mod.total + '</strong></td>' +
+            '<td style="color:#0369a1;font-weight:700;">' + sumActual + '</td>' +
+            '<td style="color:#15803d;font-weight:700;">' + sumMastered + '</td>' +
+            '<td style="color:' + (rem > 0 ? '#dc2626' : '#15803d') + ';font-weight:800;">' + (rem > 0 ? (rem + ' 题待清零') : '✓ 全量清零') + '</td>' +
+          '</tr>'
+        );
+      }).join('');
+
+      var dailyMatrixRows = V3_FULL_DATA.days.map(function (d) {
+        var qs = getV3QuotaStatsForDay(state, d.day);
+        var nf = getDayNetFocus(state, d.day);
+        return (
+          '<tr class="' + (d.day === activeDay ? 'is-active-day' : '') + '">' +
+            '<td><strong>D' + d.day + ' (' + escapeHtml(d.date.slice(5)) + ')</strong><br>' +
+              '<button type="button" class="camp21-btn" style="margin-top:3px;padding:1px 6px;font-size:10.5px;" data-action="pick-day" data-day="' + d.day + '">跳转填写</button>' +
+            '</td>' +
+            '<td>' + d.math_truth_pending_target + '</td>' +
+            '<td>' + d.xhy_pending_target + '</td>' +
+            '<td>' + d.ll880_pending_target + '</td>' +
+            '<td>' + d.zy36_pending_target + '</td>' +
+            '<td>' + d.zy30_pending_target + ' / ' + d.zy1000basic_pending_target + '</td>' +
+            '<td>' + d.nju851_pending_target + '</td>' +
+            '<td>' + d.hust824_pending_target + '</td>' +
+            '<td>' + d.bogo_ch1to8_pending_target + '</td>' +
+            '<td>' + d.bogo_ch9_pending_target + '</td>' +
+            '<td>' + d.zhima400_firstpass_target + '</td>' +
+            '<td>' + d.politics_pending_target + '</td>' +
+            '<td>' + d.historic_green_recheck_target + '</td>' +
+            '<td><strong>' + qs.totalActual + '/' + qs.totalTarget + '</strong> (欠' + qs.totalBacklog + ')</td>' +
+            '<td>' + nf.sum + 'm</td>' +
+          '</tr>'
+        );
+      }).join('');
+
+      body.innerHTML =
+        '<div style="margin-bottom:14px;padding:12px 16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;font-size:12.5px;color:#7c2d12;line-height:1.6;">' +
+          '<strong>🔥 V3 零删减全量对账说明（本地真实 JSON 审计结果）：</strong><br>' +
+          '1. <strong>6,879 道待绿/待核验 + 801 道历史绿题复检 = 7,680 题次</strong>全部硬性入账，绝不砍题、绝不改为“只刷核心”。《基础30讲》(759待绿) 与《1000题基础篇》(506待绿) 已拆分为双独立队列。<br>' +
+          '2. <strong>南大851 的 10 道差额已查明</strong>：2020–2023年共有 44 道红黄错题 + <strong>2021年 3 道未标⚪题 + 2023年 7 道未标⚪题 = 54 道待绿题</strong>，那 10 道未标题已精准锁定在 Day 20 对账补遗！<br>' +
+          '3. <strong>波哥去重与排除</strong>：强化第7章电路(18题)计入1–8章(801待绿)，不与第9章(讲义10+习题39=49题)重复累加；状态变量(讲义Ch10/习题Ch10/强化Ch8)按要求排除。' +
+        '</div>' +
+        '<h4 style="margin:10px 0 8px;font-size:14px;color:#0f172a;">📂 纸质《电路专题》&《南大期末题》离线题册盘点器（未盘点题量不虚标100%）</h4>' +
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-bottom:16px;">' +
+          '<div class="camp21-v3-qcard">' +
+            '<div style="font-weight:800;font-size:13px;color:#0f172a;margin-bottom:6px;">' + escapeHtml(cir.name) + '</div>' +
+            '<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">' +
+              '<label>盘点总题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="circuit" data-field="totalInventoried" value="' + (Number(cir.totalInventoried) || 0) + '"></label>' +
+              '<label>已做题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="circuit" data-field="done" value="' + (Number(cir.done) || 0) + '"></label>' +
+              '<label>独立掌握: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="circuit" data-field="mastered" value="' + (Number(cir.mastered) || 0) + '"></label>' +
+              '<span style="font-weight:800;color:' + (cir.totalInventoried > 0 && cir.done >= cir.totalInventoried ? '#15803d' : '#dc2626') + ';">' +
+                (cir.totalInventoried > 0 ? ('进度 ' + cir.done + '/' + cir.totalInventoried + ' (待清零 ' + Math.max(0, cir.totalInventoried - cir.done) + ')') : '⚠️ 待盘点纸质总题数（未盘点不标100%）') +
+              '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="camp21-v3-qcard">' +
+            '<div style="font-weight:800;font-size:13px;color:#0f172a;margin-bottom:6px;">' + escapeHtml(njuF.name) + '</div>' +
+            '<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">' +
+              '<label>盘点总题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="njuFinal" data-field="totalInventoried" value="' + (Number(njuF.totalInventoried) || 0) + '"></label>' +
+              '<label>已做题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="njuFinal" data-field="done" value="' + (Number(njuF.done) || 0) + '"></label>' +
+              '<label>独立掌握: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="njuFinal" data-field="mastered" value="' + (Number(njuF.mastered) || 0) + '"></label>' +
+              '<span style="font-weight:800;color:' + (njuF.totalInventoried > 0 && njuF.done >= njuF.totalInventoried ? '#15803d' : '#dc2626') + ';">' +
+                (njuF.totalInventoried > 0 ? ('进度 ' + njuF.done + '/' + njuF.totalInventoried + ' (待清零 ' + Math.max(0, njuF.totalInventoried - njuF.done) + ')') : '⚠️ 待盘点纸质总题数（未盘点不标100%）') +
+              '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<h4 style="margin:10px 0 8px;font-size:14px;color:#0f172a;">📊 13 大量化队列总账（6,879 待绿/核验 + 801 历史绿复检 = 7,680 题次）</h4>' +
+        '<div class="camp21-all-days-table-wrap" style="margin-bottom:18px;">' +
+          '<table class="camp21-all-days-table">' +
+            '<thead><tr><th>必做资料模块</th><th>原库总题</th><th>原已绿(入复检)</th><th>21天必做配额</th><th>累计已实做</th><th>累计独立掌握</th><th>滚动待清零欠账</th></tr></thead>' +
+            '<tbody>' + modRows + '</tbody>' +
+          '</table>' +
+        '</div>' +
+        '<h4 style="margin:10px 0 8px;font-size:14px;color:#0f172a;">🗓️ V3 每日全量数字配额矩阵（Day 1 ~ Day 21）</h4>' +
+        '<div class="camp21-all-days-table-wrap">' +
+          '<table class="camp21-all-days-table">' +
+            '<thead><tr><th>Day</th><th>数一真题</th><th>邂逅</th><th>880</th><th>36讲</th><th>30讲/1000基</th><th>南大851</th><th>华科824</th><th>波哥1-8</th><th>波哥Ch9</th><th>芝麻400</th><th>政治</th><th>绿题复检</th><th>今日实做/配额</th><th>净专注</th></tr></thead>' +
+            '<tbody>' + dailyMatrixRows + '</tbody>' +
+          '</table>' +
+        '</div>';
       return;
     }
 
@@ -2400,9 +3232,13 @@
     var state = loadCampState();
     var dayObj = getDayObj(getActiveDayNumber());
     var dayProg = evaluateDayProgress(dayObj, state);
+    var nf = getDayNetFocus(state, dayObj.day);
+    var qs = getV3QuotaStatsForDay(state, dayObj.day);
     var lines = [
-      '【🔥 21天魔鬼特训 · ' + dayObj.label + ' 每日汇报】',
-      '📊 今日清单完成度：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 (' + dayProg.pct + '%) | 关联章节累计标绿：🟢 ' + dayProg.totalGreen + '/' + dayProg.totalTarget + ' 题'
+      '【🔥 21天魔鬼特训 V3零删减版 · ' + dayObj.label + ' 每日战报】',
+      '⏱️ 今日真实净专注：' + Math.floor(nf.sum / 60) + '小时' + String(nf.sum % 60).padStart(2, '0') + '分 (' + nf.sum + '/780分钟 · ' + (nf.reached ? '✅13h达标' : '⏳未满13h') + ') [数' + nf.math + 'm/专' + nf.major + 'm/政' + nf.politics + 'm/英' + nf.english + 'm]',
+      '📌 V3全量定额核验：今日实做 ' + qs.totalActual + '/' + qs.totalTarget + ' 题次 (' + qs.pct + '%) | 独立掌握 ' + qs.totalMastered + ' 题 | 待清零欠账 ' + qs.totalBacklog + ' 题',
+      '📊 今日清单完成度：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 (' + dayProg.pct + '%) | 关联章节题库实时绿标参考：🟢 ' + dayProg.totalGreen + '/' + dayProg.totalTarget + ' 题'
     ];
     dayObj.tasks.forEach(function (t) {
       var ev = evaluateTaskProgress(t, state);
@@ -2503,6 +3339,33 @@
         }
         saveCampState(state);
         renderAll();
+      } else if (action === 'v3-actual' || action === 'v3-mastered') {
+        var rk = target.getAttribute('data-reckey');
+        var val = Math.max(0, Math.floor(Number(target.value) || 0));
+        if (action === 'v3-actual') {
+          state.v3Actual[rk] = val;
+          if ((state.v3Mastered[rk] || 0) > val) state.v3Mastered[rk] = val;
+        } else {
+          state.v3Mastered[rk] = Math.min(val, Math.max(0, Number(state.v3Actual[rk]) || val));
+          if (!state.v3Actual[rk] && val > 0) state.v3Actual[rk] = val;
+        }
+        saveCampState(state);
+        renderAll();
+      } else if (action === 'v3-focus') {
+        var dStr = String(target.getAttribute('data-day') || getActiveDayNumber());
+        var subj = target.getAttribute('data-subj');
+        state.netFocus[dStr] = state.netFocus[dStr] || {};
+        state.netFocus[dStr][subj] = Math.max(0, Math.min(1440, Math.floor(Number(target.value) || 0)));
+        saveCampState(state);
+        renderAll();
+      } else if (action === 'v3-offline-mat') {
+        var matKey = target.getAttribute('data-mat');
+        var field = target.getAttribute('data-field');
+        state.offlineMaterials = state.offlineMaterials || defaultOfflineMaterials();
+        state.offlineMaterials[matKey] = state.offlineMaterials[matKey] || {};
+        state.offlineMaterials[matKey][field] = Math.max(0, Math.floor(Number(target.value) || 0));
+        saveCampState(state);
+        renderAll();
       }
     });
   }
@@ -2554,6 +3417,8 @@
     render: renderAll,
     openModal: openCampModal,
     getDays: function () { return CAMP21_DAYS; },
+    getV3FullData: function () { return V3_FULL_DATA; },
+    getTodayDay: getTodayCampDay,
     getStateKey: stateStorageKey
   };
 })();
