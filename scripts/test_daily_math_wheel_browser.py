@@ -126,7 +126,7 @@ async def main():
             stored_data = json.loads(raw_stored)
             assert "result" in stored_data and "chapterId" in stored_data["result"], "转盘结果必须包含 chapterId"
             picked_book = stored_data["result"].get("book")
-            assert picked_book in ["李林880", "基础30讲", "强化36讲", "1000题", "夜雨强化"], f"抽中书籍必须在5本内: {picked_book}"
+            assert picked_book in ["李林880", "基础30讲", "强化36讲", "1000题", "邂逅遗憾"], f"抽中书籍必须在5本内: {picked_book}"
             picked_ch_id = stored_data["result"].get("chapterId")
             print(f"   • 动画开始即刻锁定: {picked_book} ({picked_ch_id})")
 

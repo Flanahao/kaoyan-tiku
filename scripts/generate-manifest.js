@@ -33,8 +33,11 @@ runScript('js/lilin880-chapters.js');
 runScript('js/lilin880-optimized-chapters.js');
 runScript('js/lyf900-chapters.js');
 runScript('js/yeyu-chapters.js');
+runScript('js/xiehouyihan-chapters.js');
 runScript('js/professional-chapters.js');
 runScript('js/math-zhenti-chapters.js');
+runScript('js/math-moni-chapters.js');
+runScript('js/math-xuantian-chapters.js');
 runScript('js/chapters.js');
 
 const subjects = sandbox.SUBJECTS;

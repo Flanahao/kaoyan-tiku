@@ -274,6 +274,11 @@
         SHU1_CHAPTERS.push(chapter);
       });
     }
+    if (Array.isArray(window.XIEHOUYIHAN_CHAPTERS)) {
+      window.XIEHOUYIHAN_CHAPTERS.forEach(function (chapter) {
+        SHU1_CHAPTERS.push(chapter);
+      });
+    }
     if (Array.isArray(window.MATH_ZHENTI_CHAPTERS)) {
       window.MATH_ZHENTI_CHAPTERS.forEach(function (chapter) {
         SHU1_CHAPTERS.push(chapter);
@@ -294,6 +299,7 @@
           { wb: '李艳芳900', label: '李艳芳900' },
           { wb: '李范全书', label: '李范全书' },
           { wb: '夜雨强化', label: '夜雨强化' },
+          { wb: '邂逅遗憾', label: '邂逅遗憾' },
           { wb: '历年真题', label: '历年真题' }
         ],
         subjOrder: ['高数', '线代', '概率论', '历年真题'],

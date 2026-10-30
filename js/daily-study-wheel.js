@@ -7,7 +7,7 @@
     '基础30讲',
     '强化36讲',
     '1000题',
-    '夜雨强化'
+    '邂逅遗憾'
   ];
 
   const MAJOR_BOOKS = [
@@ -20,7 +20,7 @@
     '基础30讲': '#10B981',
     '强化36讲': '#8B5CF6',
     '1000题': '#F59E0B',
-    '夜雨强化': '#EF4444',
+    '邂逅遗憾': '#EF4444',
     '波哥讲义例题': '#2563EB',
     '波哥习题集': '#059669'
   };
@@ -366,8 +366,57 @@
     });
   }
 
+  // 书单调整后（例如“夜雨强化”替换为“邂逅遗憾”），今天仍在进行中的旧书轮次需要自动作废，
+  // 否则结果卡片、顶部小部件会一直停在已下架的书上，且必须先完成旧轮才能重新抽取。
+  // 已完成的旧轮次保留为今日记录；永久完成池不做删除，进度统计本身只计算当前书单内的章节。
+  function pruneRetiredBookRounds(subjectId) {
+    const key = getSubjectKey(subjectId);
+    const books = key === 'major' ? MAJOR_BOOKS : MATH_BOOKS;
+    const daily = getDailyState();
+    const rounds = getSubjectRounds(daily, subjectId);
+    if (!rounds || rounds.length === 0) return false;
+
+    const removedRoundNumbers = new Set();
+    const kept = rounds.filter(function (r) {
+      const retired = !!(r && r.status !== 'completed' && r.book && books.indexOf(String(r.book)) === -1);
+      if (retired) removedRoundNumbers.add(r.round);
+      return !retired;
+    });
+
+    if (removedRoundNumbers.size === 0) return false;
+
+    daily[key] = kept;
+    saveDailyState(daily);
+
+    // 解除 undo 记录与被作废轮次的关联，保证下一次抽取能重新挂接
+    const undoState = getUndoState();
+    let undoChanged = false;
+    (undoState[key] || []).forEach(function (u) {
+      if (u && u.generatedRoundNumber != null && removedRoundNumbers.has(u.generatedRoundNumber)) {
+        u.generatedRoundNumber = null;
+        undoChanged = true;
+      }
+    });
+    if (undoChanged) saveUndoState(undoState);
+
+    // 旧版单机数学转盘存储同步清理
+    if (key === 'math') {
+      try {
+        const legacyKey = getStoragePrefix() + 'daily_math_wheel_v1';
+        const legacyRaw = window.localStorage.getItem(legacyKey);
+        const legacy = legacyRaw ? JSON.parse(legacyRaw) : null;
+        if (legacy && legacy.result && legacy.result.book && books.indexOf(String(legacy.result.book)) === -1) {
+          window.localStorage.removeItem(legacyKey);
+        }
+      } catch (e) {}
+    }
+
+    return true;
+  }
+
   // 保证已分配且处于 active 进行中状态的轮次，绝不出现于当前阶段的完成池（自愈旧版遗留的脏完成记录）
   function reconcileActiveRoundsWithHistory(subjectId) {
+    pruneRetiredBookRounds(subjectId);
     const daily = getDailyState();
     const key = getSubjectKey(subjectId);
     const rounds = getSubjectRounds(daily, subjectId);
@@ -1089,6 +1138,8 @@
   }
 
   function renderHeaderWidgets() {
+    pruneRetiredBookRounds('shu1');
+    pruneRetiredBookRounds('zhuanye');
     renderAllWheelHeaderChips();
   }
 

@@ -106,7 +106,7 @@ const ALLOWED_BOOKS = [
   '基础30讲',
   '强化36讲',
   '1000题',
-  '夜雨强化'
+  '邂逅遗憾'
 ];
 
 function extractCandidatesFromSubjects(subjectsList) {
@@ -180,7 +180,7 @@ const realCandidates = extractCandidatesFromSubjects(global.window.SUBJECTS);
         { id: 'ch_30', wb: '基础30讲', total: 10 },
         { id: 'ch_36', wb: '强化36讲', total: 10 },
         { id: 'ch_1000', wb: '1000题', total: 10 },
-        { id: 'ch_yeyu', wb: '夜雨强化', total: 10 }
+        { id: 'ch_yeyu', wb: '邂逅遗憾', total: 10 }
       ]
     }
   ];
@@ -261,7 +261,7 @@ const realCandidates = extractCandidatesFromSubjects(global.window.SUBJECTS);
         { id: 'ch_zero_1', wb: '基础30讲', total: 0 },
         { id: 'ch_zero_2', wb: '1000题', total: -1 },
         { id: 'ch_zero_3', wb: '李林880', labels: [] },
-        { id: 'ch_valid', wb: '夜雨强化', total: 12 }
+        { id: 'ch_valid', wb: '邂逅遗憾', total: 12 }
       ]
     }
   ];
@@ -286,7 +286,7 @@ const realCandidates = extractCandidatesFromSubjects(global.window.SUBJECTS);
   console.log('Case 5: 候选池视觉交错排列顺序校验');
 
   const firstFive = realCandidates.slice(0, 5).map(function (c) { return c.book; });
-  assert.deepEqual(firstFive, ALLOWED_BOOKS, '前 5 项必须按李林880、基础30讲、强化36讲、1000题、夜雨强化轮询排列');
+  assert.deepEqual(firstFive, ALLOWED_BOOKS, '前 5 项必须按李林880、基础30讲、强化36讲、1000题、邂逅遗憾轮询排列');
 
   const secondFive = realCandidates.slice(5, 10).map(function (c) { return c.book; });
   assert.deepEqual(secondFive, ALLOWED_BOOKS, '第二组 5 项同样按相同顺序轮询交错');

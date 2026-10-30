@@ -73,7 +73,7 @@ const DAILY_STUDY_WHEEL_BOOKS = {
     '基础30讲',
     '强化36讲',
     '1000题',
-    '夜雨强化'
+    '邂逅遗憾'
   ],
   zhuanye: [
     '波哥讲义例题',

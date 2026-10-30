@@ -649,7 +649,8 @@
         dailyStudyWheelDaily: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_daily_v1') || null,
         dailyStudyWheelUndo: safeStorageGet(userStoragePrefix() + 'daily_study_wheel_undo_v1') || null,
         dailyMathWheel: safeStorageGet(userStoragePrefix() + 'daily_math_wheel_v1') || null,
-        examResults: safeStorageGet(window.ExamResults.key(userStoragePrefix())) || null
+        examResults: safeStorageGet(window.ExamResults.key(userStoragePrefix())) || null,
+        camp21State: safeStorageGet(userStoragePrefix() + 'kaoyan_camp21_state_v1') || null
       };
 
       for (var i = 0; i < localStorage.length; i++) {
@@ -1059,6 +1060,12 @@
       }
       if (window.DailyMathWheel && typeof window.DailyMathWheel.render === 'function') {
         window.DailyMathWheel.render();
+      }
+      if (p && p.camp21State) {
+        safeStorageSet(userStoragePrefix() + 'kaoyan_camp21_state_v1', typeof p.camp21State === 'string' ? p.camp21State : JSON.stringify(p.camp21State));
+      }
+      if (window.KaoyanCamp21 && typeof window.KaoyanCamp21.render === 'function') {
+        window.KaoyanCamp21.render();
       }
       alert(mode === 'overwrite' ? '已成功覆盖恢复学习记录！' : '已成功合并学习记录！');
     }
@@ -6403,7 +6410,7 @@ ${cardsHTML}
         '基础30讲',
         '强化36讲',
         '1000题',
-        '夜雨强化'
+        '邂逅遗憾'
       ],
       zhuanye: [
         '波哥讲义例题',
