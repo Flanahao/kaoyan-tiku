@@ -636,7 +636,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_03",
-            "label": "邂逅高数第3章·积分(21道未标)"
+            "label": "邂逅高数第3章·积分(21道未标)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 21,
@@ -669,9 +670,17 @@
               130,
               131
             ],
-            "taskType": "clear_unmarked"
+            "taskType": "clear_unmarked",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-10-30",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d0_major1",
@@ -684,7 +693,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_04",
-            "label": "波哥习题集第4章(15道未标)"
+            "label": "波哥习题集第4章(15道未标)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 15,
@@ -711,9 +721,17 @@
               72,
               73
             ],
-            "taskType": "clear_unmarked"
+            "taskType": "clear_unmarked",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-10-30",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d0_night",
@@ -726,7 +744,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch1",
-            "label": "30讲高数第1讲(48道未标)"
+            "label": "30讲高数第1讲(48道未标)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 48,
@@ -786,9 +805,17 @@
               52,
               53
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-10-30",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -810,12 +837,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2022",
-            "label": "22年数一真题(22题)"
+            "label": "22年数一真题(22题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_03",
-            "label": "邂逅高数第3章·积分(错题前15道)"
+            "label": "邂逅高数第3章·积分(错题前15道)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 37,
@@ -849,7 +878,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -872,9 +902,18 @@
               31,
               32
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-10-31",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d1_p_pm",
@@ -887,17 +926,20 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_07",
-            "label": "南大07真题"
+            "label": "南大07真题",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_08",
-            "label": "南大08真题"
+            "label": "南大08真题",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_09",
-            "label": "南大09真题"
+            "label": "南大09真题",
+            "moduleId": "other"
           }
         ],
         "targetCount": 27,
@@ -919,7 +961,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -933,7 +976,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -952,9 +996,17 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-10-31",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d1_m_pm",
@@ -967,7 +1019,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_03",
-            "label": "邂逅高数第3章·积分(错题中25道)"
+            "label": "邂逅高数第3章·积分(错题中25道)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 25,
@@ -1004,9 +1057,17 @@
               78,
               79
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-10-31",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d1_p_ev",
@@ -1019,12 +1080,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_04",
-            "label": "波哥强化第4章(前30道非绿)"
+            "label": "波哥强化第4章(前30道非绿)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_04",
-            "label": "波哥习题集第4章(错题前15道)"
+            "label": "波哥习题集第4章(错题前15道)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 45,
@@ -1066,7 +1129,8 @@
               34,
               35
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -1089,9 +1153,17 @@
               43,
               44
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-10-31",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d1_pol",
@@ -1104,17 +1176,20 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100402",
-            "label": "马原·导论(9题)"
+            "label": "马原·导论(9题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100403",
-            "label": "马原·第1章(题1–46)"
+            "label": "马原·第1章(题1–46)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100406",
-            "label": "马原·第4章政经(错题前10道)"
+            "label": "马原·第4章政经(错题前10道)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 64,
@@ -1136,7 +1211,8 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -1190,7 +1266,8 @@
               44,
               45
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -1208,9 +1285,17 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-10-31",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d1_eng",
@@ -1223,12 +1308,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2024",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-10-31",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d1_eng:essay_recite",
+          "d1_eng:reading_practice"
+        ]
       },
       {
         "id": "d1_night",
@@ -1241,22 +1337,26 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch49",
-            "label": "36讲线代第1讲"
+            "label": "36讲线代第1讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch50",
-            "label": "36讲线代第2讲"
+            "label": "36讲线代第2讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch51",
-            "label": "36讲线代第3讲"
+            "label": "36讲线代第3讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch2",
-            "label": "30讲高数第2讲"
+            "label": "30讲高数第2讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 49,
@@ -1275,7 +1375,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1286,7 +1387,8 @@
               1,
               3
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1307,7 +1409,8 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1341,9 +1444,17 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-10-31",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -1365,12 +1476,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2023",
-            "label": "23年数一真题(22题)"
+            "label": "23年数一真题(22题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_03",
-            "label": "邂逅高数第3章·积分(最后21道错题收官)"
+            "label": "邂逅高数第3章·积分(最后21道错题收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 43,
@@ -1404,7 +1517,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -1433,9 +1547,18 @@
               108,
               114
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-01",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d2_p_pm",
@@ -1448,12 +1571,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_15",
-            "label": "华科15真题(18题)"
+            "label": "华科15真题(18题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_21",
-            "label": "华科21真题(28题)"
+            "label": "华科21真题(28题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 44,
@@ -1483,7 +1608,8 @@
               16,
               17
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -1517,9 +1643,17 @@
               26,
               27
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-01",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d2_m_pm",
@@ -1532,7 +1666,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_01",
-            "label": "邂逅高数第1章(题1–40)"
+            "label": "邂逅高数第1章(题1–40)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 40,
@@ -1584,9 +1719,17 @@
               38,
               39
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-01",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d2_p_ev",
@@ -1599,12 +1742,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_04",
-            "label": "波哥强化第4章(中20道非绿)"
+            "label": "波哥强化第4章(中20道非绿)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_04",
-            "label": "波哥习题集第4章(最后12道错题收官)"
+            "label": "波哥习题集第4章(最后12道错题收官)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 32,
@@ -1636,7 +1781,8 @@
               54,
               55
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -1656,9 +1802,17 @@
               57,
               58
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-01",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d2_pol",
@@ -1671,12 +1825,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100403",
-            "label": "马原·第1章(题47–83收官)"
+            "label": "马原·第1章(题47–83收官)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100404",
-            "label": "马原·第2章(题1–20)"
+            "label": "马原·第2章(题1–20)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 57,
@@ -1727,7 +1883,8 @@
               81,
               82
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -1755,9 +1912,17 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-01",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d2_eng",
@@ -1770,12 +1935,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2024",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-01",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d2_eng:essay_recite",
+          "d2_eng:reading_practice"
+        ]
       },
       {
         "id": "d2_night",
@@ -1788,27 +1964,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch52",
-            "label": "36讲线代第4讲"
+            "label": "36讲线代第4讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch53",
-            "label": "36讲线代第5讲"
+            "label": "36讲线代第5讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch54",
-            "label": "36讲线代第6讲"
+            "label": "36讲线代第6讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch3",
-            "label": "30讲高数第3讲"
+            "label": "30讲高数第3讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch4",
-            "label": "30讲高数第4讲"
+            "label": "30讲高数第4讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 74,
@@ -1829,7 +2010,8 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1847,7 +2029,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1862,7 +2045,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1891,7 +2075,8 @@
               19,
               20
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -1926,9 +2111,17 @@
               25,
               26
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-01",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -1950,12 +2143,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2009",
-            "label": "09年数一真题(23题)"
+            "label": "09年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_01",
-            "label": "邂逅高数第1章(题41–65)"
+            "label": "邂逅高数第1章(题41–65)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 44,
@@ -1986,7 +2181,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -2019,9 +2215,18 @@
               63,
               64
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-02",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d3_p_pm",
@@ -2034,12 +2239,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_10",
-            "label": "南大10真题(11题)"
+            "label": "南大10真题(11题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_11",
-            "label": "南大11真题(11题)"
+            "label": "南大11真题(11题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 22,
@@ -2062,7 +2269,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -2081,9 +2289,17 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-02",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d3_m_pm",
@@ -2096,7 +2312,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_01",
-            "label": "邂逅高数第1章(题66–95)"
+            "label": "邂逅高数第1章(题66–95)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 30,
@@ -2138,9 +2355,17 @@
               93,
               94
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-02",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d3_p_ev",
@@ -2153,12 +2378,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_04",
-            "label": "波哥强化第4章(后12道非绿收官)"
+            "label": "波哥强化第4章(后12道非绿收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_04",
-            "label": "波哥讲义第4章(35题)"
+            "label": "波哥讲义第4章(35题)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 46,
@@ -2182,7 +2409,8 @@
               66,
               67
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -2224,9 +2452,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-02",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d3_pol",
@@ -2239,12 +2475,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100404",
-            "label": "马原·第2章(题21–59收官)"
+            "label": "马原·第2章(题21–59收官)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100405",
-            "label": "马原·第3章(题1–16)"
+            "label": "马原·第3章(题1–16)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 55,
@@ -2297,7 +2535,8 @@
               57,
               58
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -2321,9 +2560,17 @@
               14,
               15
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-02",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d3_eng",
@@ -2336,12 +2583,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2023",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-02",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d3_eng:essay_recite",
+          "d3_eng:reading_practice"
+        ]
       },
       {
         "id": "d3_night",
@@ -2354,27 +2612,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch55",
-            "label": "36讲线代第7讲"
+            "label": "36讲线代第7讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch56",
-            "label": "36讲线代第8讲"
+            "label": "36讲线代第8讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch57",
-            "label": "36讲线代第9讲"
+            "label": "36讲线代第9讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch5",
-            "label": "30讲高数第5讲"
+            "label": "30讲高数第5讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch6",
-            "label": "30讲高数第6讲"
+            "label": "30讲高数第6讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 82,
@@ -2390,7 +2653,8 @@
               2,
               3
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -2408,7 +2672,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -2429,7 +2694,8 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -2461,7 +2727,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -2500,9 +2767,17 @@
               29,
               30
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-02",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -2524,17 +2799,20 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2010",
-            "label": "10年数一真题(23题)"
+            "label": "10年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2011",
-            "label": "11年数一真题(23题)"
+            "label": "11年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_01",
-            "label": "邂逅高数第1章(题96–129收官)"
+            "label": "邂逅高数第1章(题96–129收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 51,
@@ -2554,7 +2832,8 @@
               19,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -2571,7 +2850,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -2613,9 +2893,18 @@
               127,
               128
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-03",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d4_p_pm",
@@ -2628,7 +2917,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_16",
-            "label": "华科16真题(24题)"
+            "label": "华科16真题(24题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 24,
@@ -2664,9 +2954,17 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-03",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d4_m_pm",
@@ -2679,7 +2977,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_02",
-            "label": "邂逅高数第2章(题1–35)"
+            "label": "邂逅高数第2章(题1–35)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 35,
@@ -2726,9 +3025,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-03",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d4_p_ev",
@@ -2741,12 +3048,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_05",
-            "label": "波哥强化第5章(前19题)"
+            "label": "波哥强化第5章(前19题)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_05",
-            "label": "波哥习题集第5章(前30道错题)"
+            "label": "波哥习题集第5章(前30道错题)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 49,
@@ -2777,7 +3086,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -2815,9 +3125,17 @@
               45,
               46
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-03",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d4_pol",
@@ -2830,12 +3148,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100405",
-            "label": "马原·第3章(题17–56收官)"
+            "label": "马原·第3章(题17–56收官)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100406",
-            "label": "马原·第4章政经(20未标+15错题)"
+            "label": "马原·第4章政经(20未标+15错题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 75,
@@ -2889,7 +3209,8 @@
               54,
               55
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -2932,9 +3253,17 @@
               28,
               29
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-03",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d4_eng",
@@ -2947,12 +3276,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2023",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-03",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d4_eng:essay_recite",
+          "d4_eng:reading_practice"
+        ]
       },
       {
         "id": "d4_night",
@@ -2965,27 +3305,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch58",
-            "label": "36讲概率第1讲"
+            "label": "36讲概率第1讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch59",
-            "label": "36讲概率第2讲"
+            "label": "36讲概率第2讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch60",
-            "label": "36讲概率第3讲"
+            "label": "36讲概率第3讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch7",
-            "label": "30讲高数第7讲"
+            "label": "30讲高数第7讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch8",
-            "label": "30讲高数第8讲"
+            "label": "30讲高数第8讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 63,
@@ -3007,7 +3352,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3027,7 +3373,8 @@
               10,
               11
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3041,7 +3388,8 @@
               4,
               5
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3058,7 +3406,8 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3092,9 +3441,17 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-03",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -3116,12 +3473,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2012",
-            "label": "12年数一真题(23题)"
+            "label": "12年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_02",
-            "label": "邂逅高数第2章(题36–65)"
+            "label": "邂逅高数第2章(题36–65)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 46,
@@ -3149,7 +3508,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -3187,9 +3547,18 @@
               63,
               64
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-04",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d5_p_pm",
@@ -3202,17 +3571,20 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_12",
-            "label": "南大12真题(7题)"
+            "label": "南大12真题(7题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_13",
-            "label": "南大13真题(7题)"
+            "label": "南大13真题(7题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_14",
-            "label": "南大14真题(7题)"
+            "label": "南大14真题(7题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 21,
@@ -3231,7 +3603,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -3246,7 +3619,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -3261,9 +3635,17 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-04",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d5_m_pm",
@@ -3276,7 +3658,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_02",
-            "label": "邂逅高数第2章(题66–101收官)"
+            "label": "邂逅高数第2章(题66–101收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 36,
@@ -3324,9 +3707,17 @@
               99,
               100
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-04",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d5_p_ev",
@@ -3339,17 +3730,20 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_05",
-            "label": "波哥强化第5章(后18题收官)"
+            "label": "波哥强化第5章(后18题收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_05",
-            "label": "波哥习题集第5章(后36道错题收官)"
+            "label": "波哥习题集第5章(后36道错题收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_05",
-            "label": "波哥讲义第5章(51题收官)"
+            "label": "波哥讲义第5章(51题收官)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 69,
@@ -3379,7 +3773,8 @@
               35,
               36
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -3423,7 +3818,8 @@
               85,
               86
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -3446,9 +3842,17 @@
               44,
               50
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-04",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d5_pol",
@@ -3461,12 +3865,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100407",
-            "label": "马原·第5章(44题)"
+            "label": "马原·第5章(44题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100408",
-            "label": "马原·第6章(题1–15)"
+            "label": "马原·第6章(题1–15)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 59,
@@ -3524,7 +3930,8 @@
               42,
               43
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -3547,9 +3954,17 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-04",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d5_eng",
@@ -3562,12 +3977,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2022",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-04",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d5_eng:essay_recite",
+          "d5_eng:reading_practice"
+        ]
       },
       {
         "id": "d5_night",
@@ -3580,27 +4006,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch61",
-            "label": "36讲概率第4讲"
+            "label": "36讲概率第4讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch62",
-            "label": "36讲概率第5讲"
+            "label": "36讲概率第5讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch63",
-            "label": "36讲概率第6讲"
+            "label": "36讲概率第6讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch9",
-            "label": "30讲高数第9讲"
+            "label": "30讲高数第9讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch10",
-            "label": "30讲高数第10讲"
+            "label": "30讲高数第10讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 84,
@@ -3616,7 +4047,8 @@
               2,
               3
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3633,7 +4065,8 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3651,7 +4084,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3705,7 +4139,8 @@
               44,
               45
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -3728,9 +4163,17 @@
               20,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-04",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -3752,12 +4195,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2013",
-            "label": "13年数一真题(23题)"
+            "label": "13年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_04",
-            "label": "邂逅高数第4章(前25道非绿)"
+            "label": "邂逅高数第4章(前25道非绿)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 40,
@@ -3784,7 +4229,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -3817,9 +4263,18 @@
               25,
               26
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-05",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d6_p_pm",
@@ -3832,12 +4287,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_17",
-            "label": "华科17真题(12题)"
+            "label": "华科17真题(12题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_15",
-            "label": "南大15真题(7题)"
+            "label": "南大15真题(7题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 19,
@@ -3861,7 +4318,8 @@
               10,
               11
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -3876,9 +4334,17 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-05",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d6_m_pm",
@@ -3891,7 +4357,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_04",
-            "label": "邂逅高数第4章(后32道非绿收官)"
+            "label": "邂逅高数第4章(后32道非绿收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 32,
@@ -3935,9 +4402,17 @@
               57,
               58
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-05",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d6_p_ev",
@@ -3950,7 +4425,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_09",
-            "label": "波哥讲义第9章·电路专题(10题)"
+            "label": "波哥讲义第9章·电路专题(10题)",
+            "moduleId": "bogo9"
           }
         ],
         "targetCount": 10,
@@ -3975,9 +4451,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo9"
           }
-        ]
+        ],
+        "date": "2026-11-05",
+        "kind": "online",
+        "moduleId": "bogo9",
+        "moduleIds": [
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d6_pol",
@@ -3990,27 +4474,32 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100408",
-            "label": "马原·第6章(题16–26收官)"
+            "label": "马原·第6章(题16–26收官)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100409",
-            "label": "马原·第7章(6题)"
+            "label": "马原·第7章(6题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100410",
-            "label": "毛中特·导论"
+            "label": "毛中特·导论",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100411",
-            "label": "毛中特·第1章"
+            "label": "毛中特·第1章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100412",
-            "label": "毛中特·第2章(37题)"
+            "label": "毛中特·第2章(37题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 68,
@@ -4035,7 +4524,8 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4049,7 +4539,8 @@
               4,
               5
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4061,7 +4552,8 @@
               2,
               3
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4079,7 +4571,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4124,9 +4617,17 @@
               35,
               36
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-05",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d6_eng",
@@ -4139,12 +4640,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2022",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-05",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d6_eng:essay_recite",
+          "d6_eng:reading_practice"
+        ]
       },
       {
         "id": "d6_night",
@@ -4157,27 +4669,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch64",
-            "label": "36讲概率第7讲"
+            "label": "36讲概率第7讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch65",
-            "label": "36讲概率第8讲"
+            "label": "36讲概率第8讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch66",
-            "label": "36讲概率第9讲"
+            "label": "36讲概率第9讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch11",
-            "label": "30讲高数第11讲"
+            "label": "30讲高数第11讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch12",
-            "label": "30讲高数第12讲"
+            "label": "30讲高数第12讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 45,
@@ -4192,7 +4709,8 @@
               1,
               2
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -4205,7 +4723,8 @@
               3,
               4
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -4225,7 +4744,8 @@
               10,
               11
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -4250,7 +4770,8 @@
               15,
               16
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -4266,9 +4787,17 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-05",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -4290,12 +4819,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2014",
-            "label": "14年数一真题(23题)"
+            "label": "14年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_05",
-            "label": "邂逅高数第5章(题1–28)"
+            "label": "邂逅高数第5章(题1–28)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 42,
@@ -4321,7 +4852,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -4357,9 +4889,18 @@
               26,
               27
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-06",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d7_p_pm",
@@ -4372,19 +4913,28 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_mn_26_01",
-            "label": "26刺猬哥预测卷(一)"
+            "label": "26刺猬哥预测卷(一)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_zm_26_01",
-            "label": "26芝麻模拟卷(一)"
+            "label": "26芝麻模拟卷(一)",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "专业课模拟卷(一) 3h模考+订正",
         "offlineTarget": 1,
         "special": true,
         "isOptionalOnlineMock": true,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-06",
+        "kind": "mock",
+        "moduleId": "mock",
+        "moduleIds": [
+          "mock"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d7_m_pm",
@@ -4397,7 +4947,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_05",
-            "label": "邂逅高数第5章(题29–68收官)"
+            "label": "邂逅高数第5章(题29–68收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 40,
@@ -4449,9 +5000,17 @@
               66,
               67
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-06",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d7_p_ev",
@@ -4464,7 +5023,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_07",
-            "label": "波哥强化第7章·电路(前10题)"
+            "label": "波哥强化第7章·电路(前10题)",
+            "moduleId": "bogo9"
           }
         ],
         "targetCount": 10,
@@ -4489,9 +5049,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo9"
           }
-        ]
+        ],
+        "date": "2026-11-06",
+        "kind": "online",
+        "moduleId": "bogo9",
+        "moduleIds": [
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d7_pol",
@@ -4504,22 +5072,26 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100413",
-            "label": "毛中特·第3章"
+            "label": "毛中特·第3章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100414",
-            "label": "毛中特·第4章"
+            "label": "毛中特·第4章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100415",
-            "label": "毛中特·第5章"
+            "label": "毛中特·第5章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100416",
-            "label": "毛中特·第6章"
+            "label": "毛中特·第6章",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 55,
@@ -4556,7 +5128,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4581,7 +5154,8 @@
               15,
               16
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4591,7 +5165,8 @@
               0,
               1
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -4612,9 +5187,17 @@
               11,
               12
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-06",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d7_eng",
@@ -4627,12 +5210,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2021",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-06",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d7_eng:essay_recite",
+          "d7_eng:reading_practice"
+        ]
       },
       {
         "id": "d7_night",
@@ -4645,17 +5239,20 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch159",
-            "label": "880高数第2章(前30道错题)"
+            "label": "880高数第2章(前30道错题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch13",
-            "label": "30讲高数第13讲"
+            "label": "30讲高数第13讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch14",
-            "label": "30讲高数第14讲"
+            "label": "30讲高数第14讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 86,
@@ -4697,7 +5294,8 @@
               52,
               53
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -4732,7 +5330,8 @@
               34,
               35
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -4769,9 +5368,17 @@
               27,
               28
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-06",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -4793,17 +5400,20 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2015",
-            "label": "15年数一真题(23题)"
+            "label": "15年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2016",
-            "label": "16年数一真题(23题)"
+            "label": "16年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_06",
-            "label": "邂逅高数第6章(题1–20)"
+            "label": "邂逅高数第6章(题1–20)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 44,
@@ -4825,7 +5435,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -4847,7 +5458,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -4875,9 +5487,18 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-07",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d8_p_pm",
@@ -4890,7 +5511,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_18",
-            "label": "华科18真题(20题)"
+            "label": "华科18真题(20题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 20,
@@ -4922,9 +5544,17 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-07",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d8_m_pm",
@@ -4937,12 +5567,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_06",
-            "label": "邂逅高数第6章(题21–46收官)"
+            "label": "邂逅高数第6章(题21–46收官)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_07",
-            "label": "邂逅高数第7章(题1–10)"
+            "label": "邂逅高数第7章(题1–10)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 36,
@@ -4980,7 +5612,8 @@
               44,
               45
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -4998,9 +5631,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-07",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d8_p_ev",
@@ -5013,7 +5654,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_07",
-            "label": "波哥强化第7章·电路(后8题收官)"
+            "label": "波哥强化第7章·电路(后8题收官)",
+            "moduleId": "bogo9"
           }
         ],
         "targetCount": 8,
@@ -5036,9 +5678,17 @@
               16,
               17
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo9"
           }
-        ]
+        ],
+        "date": "2026-11-07",
+        "kind": "online",
+        "moduleId": "bogo9",
+        "moduleIds": [
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d8_pol",
@@ -5051,37 +5701,44 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100417",
-            "label": "毛中特·第7章"
+            "label": "毛中特·第7章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100418",
-            "label": "毛中特·第8章"
+            "label": "毛中特·第8章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100421",
-            "label": "新思想·导论"
+            "label": "新思想·导论",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100422",
-            "label": "新思想·第1章"
+            "label": "新思想·第1章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100423",
-            "label": "新思想·第2章"
+            "label": "新思想·第2章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100424",
-            "label": "新思想·第3章"
+            "label": "新思想·第3章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100425",
-            "label": "新思想·第4章"
+            "label": "新思想·第4章",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 53,
@@ -5100,7 +5757,8 @@
               3,
               4
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5112,7 +5770,8 @@
               2,
               3
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5131,7 +5790,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5149,7 +5809,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5164,7 +5825,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5180,7 +5842,8 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5196,9 +5859,17 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-07",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d8_eng",
@@ -5211,12 +5882,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2021",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-07",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d8_eng:essay_recite",
+          "d8_eng:reading_practice"
+        ]
       },
       {
         "id": "d8_night",
@@ -5229,22 +5911,26 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch159",
-            "label": "880高数第2章(后24道错题收官)"
+            "label": "880高数第2章(后24道错题收官)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch160",
-            "label": "880高数第3章(前10道错题)"
+            "label": "880高数第3章(前10道错题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch15",
-            "label": "30讲高数第15讲"
+            "label": "30讲高数第15讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch16",
-            "label": "30讲高数第16讲"
+            "label": "30讲高数第16讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 115,
@@ -5280,7 +5966,8 @@
               112,
               113
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -5298,7 +5985,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -5336,7 +6024,8 @@
               38,
               39
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -5395,9 +6084,17 @@
               54,
               55
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-07",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -5419,12 +6116,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2017",
-            "label": "17年数一真题(23题)"
+            "label": "17年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_07",
-            "label": "邂逅高数第7章(题11–45)"
+            "label": "邂逅高数第7章(题11–45)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 50,
@@ -5451,7 +6150,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -5494,9 +6194,18 @@
               43,
               44
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-08",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d9_p_pm",
@@ -5509,17 +6218,20 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_16",
-            "label": "南大16真题(7题)"
+            "label": "南大16真题(7题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_17",
-            "label": "南大17真题(7题)"
+            "label": "南大17真题(7题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_18",
-            "label": "南大18真题(9题)"
+            "label": "南大18真题(9题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 23,
@@ -5538,7 +6250,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -5553,7 +6266,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -5570,9 +6284,17 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-08",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d9_m_pm",
@@ -5585,7 +6307,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_07",
-            "label": "邂逅高数第7章(题46–88收官)"
+            "label": "邂逅高数第7章(题46–88收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 43,
@@ -5640,9 +6363,17 @@
               86,
               87
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-08",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d9_p_ev",
@@ -5655,7 +6386,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_09",
-            "label": "波哥习题集第9章·电路(前20道错题)"
+            "label": "波哥习题集第9章·电路(前20道错题)",
+            "moduleId": "bogo9"
           }
         ],
         "targetCount": 20,
@@ -5690,9 +6422,17 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo9"
           }
-        ]
+        ],
+        "date": "2026-11-08",
+        "kind": "online",
+        "moduleId": "bogo9",
+        "moduleIds": [
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d9_pol",
@@ -5705,17 +6445,20 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100426",
-            "label": "新思想·第5章(17题)"
+            "label": "新思想·第5章(17题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100427",
-            "label": "新思想·第6章(33题)"
+            "label": "新思想·第6章(33题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100428",
-            "label": "新思想·第7章(9题)"
+            "label": "新思想·第7章(9题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 59,
@@ -5746,7 +6489,8 @@
               15,
               16
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5787,7 +6531,8 @@
               31,
               32
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -5804,9 +6549,17 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-08",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d9_eng",
@@ -5819,12 +6572,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2020",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-08",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d9_eng:essay_recite",
+          "d9_eng:reading_practice"
+        ]
       },
       {
         "id": "d9_night",
@@ -5837,17 +6601,20 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch160",
-            "label": "880高数第3章(中30道错题)"
+            "label": "880高数第3章(中30道错题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch17",
-            "label": "30讲高数第17讲"
+            "label": "30讲高数第17讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch18",
-            "label": "30讲高数第18讲(收官)"
+            "label": "30讲高数第18讲(收官)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 82,
@@ -5889,7 +6656,8 @@
               81,
               82
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -5919,7 +6687,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -5957,9 +6726,17 @@
               39,
               40
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-08",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -5981,12 +6758,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2018",
-            "label": "18年数一真题(23题)"
+            "label": "18年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_08",
-            "label": "邂逅第8章·空间几何(30题)"
+            "label": "邂逅第8章·空间几何(30题)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 44,
@@ -6012,7 +6791,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -6050,9 +6830,18 @@
               28,
               29
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-09",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d10_p_pm",
@@ -6065,7 +6854,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_19",
-            "label": "华科19真题(23题)"
+            "label": "华科19真题(23题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 23,
@@ -6100,9 +6890,17 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-09",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d10_m_pm",
@@ -6115,7 +6913,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_09",
-            "label": "邂逅高数第9章(题1–35)"
+            "label": "邂逅高数第9章(题1–35)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 35,
@@ -6162,9 +6961,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-09",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d10_p_ev",
@@ -6177,7 +6984,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_09",
-            "label": "波哥习题集第9章·电路(后17道错题收官)"
+            "label": "波哥习题集第9章·电路(后17道错题收官)",
+            "moduleId": "bogo9"
           }
         ],
         "targetCount": 17,
@@ -6209,9 +7017,17 @@
               37,
               38
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo9"
           }
-        ]
+        ],
+        "date": "2026-11-09",
+        "kind": "online",
+        "moduleId": "bogo9",
+        "moduleIds": [
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d10_pol",
@@ -6224,17 +7040,20 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100429",
-            "label": "新思想·第8章(24题)"
+            "label": "新思想·第8章(24题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100430",
-            "label": "新思想·第9章(10题)"
+            "label": "新思想·第9章(10题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100431",
-            "label": "新思想·第10章(18题)"
+            "label": "新思想·第10章(18题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 52,
@@ -6272,7 +7091,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -6290,7 +7110,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -6316,9 +7137,17 @@
               16,
               17
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-09",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d10_eng",
@@ -6331,12 +7160,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2020",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-09",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d10_eng:essay_recite",
+          "d10_eng:reading_practice"
+        ]
       },
       {
         "id": "d10_night",
@@ -6349,27 +7189,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch160",
-            "label": "880高数第3章(后15道错题+50未标)"
+            "label": "880高数第3章(后15道错题+50未标)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch166",
-            "label": "880高数第9章(前20道错题)"
+            "label": "880高数第9章(前20道错题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch19",
-            "label": "30讲线代第1讲"
+            "label": "30讲线代第1讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch20",
-            "label": "30讲线代第2讲"
+            "label": "30讲线代第2讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch21",
-            "label": "30讲线代第3讲"
+            "label": "30讲线代第3讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 143,
@@ -6446,7 +7291,8 @@
               133,
               134
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -6474,7 +7320,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -6506,7 +7353,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -6522,7 +7370,8 @@
               29,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -6556,9 +7405,17 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-09",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -6580,12 +7437,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2019",
-            "label": "19年数一真题(23题)"
+            "label": "19年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_09",
-            "label": "邂逅高数第9章(题36–71收官)"
+            "label": "邂逅高数第9章(题36–71收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 52,
@@ -6613,7 +7472,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -6657,9 +7517,18 @@
               69,
               70
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-10",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d11_p_pm",
@@ -6672,12 +7541,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_19",
-            "label": "南大19真题(11题)"
+            "label": "南大19真题(11题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_24",
-            "label": "南大24真题(10题)"
+            "label": "南大24真题(10题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 21,
@@ -6700,7 +7571,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -6718,9 +7590,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-10",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d11_m_pm",
@@ -6733,12 +7613,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_10",
-            "label": "邂逅第10章·线面补充(20题)"
+            "label": "邂逅第10章·线面补充(20题)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_11",
-            "label": "邂逅线代第1章(前16道非绿)"
+            "label": "邂逅线代第1章(前16道非绿)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 36,
@@ -6770,7 +7652,8 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -6794,9 +7677,17 @@
               15,
               16
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-10",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d11_p_ev",
@@ -6809,12 +7700,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_06",
-            "label": "波哥强化第6章(前25题)"
+            "label": "波哥强化第6章(前25题)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_06",
-            "label": "波哥讲义第6章(27题收官)"
+            "label": "波哥讲义第6章(27题收官)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 35,
@@ -6854,7 +7747,8 @@
               23,
               24
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -6872,9 +7766,17 @@
               25,
               26
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-10",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d11_pol",
@@ -6887,32 +7789,38 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100432",
-            "label": "新思想·第11章"
+            "label": "新思想·第11章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100433",
-            "label": "新思想·第12章"
+            "label": "新思想·第12章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100439",
-            "label": "新思想·第13章"
+            "label": "新思想·第13章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100435",
-            "label": "新思想·第14章"
+            "label": "新思想·第14章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100436",
-            "label": "新思想·第15章"
+            "label": "新思想·第15章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100437",
-            "label": "新思想·第16章"
+            "label": "新思想·第16章",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 52,
@@ -6938,7 +7846,8 @@
               10,
               11
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -6954,7 +7863,8 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -6972,7 +7882,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -6987,7 +7898,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -7005,7 +7917,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -7018,9 +7931,17 @@
               3,
               4
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-10",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d11_eng",
@@ -7033,12 +7954,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2019",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-10",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d11_eng:essay_recite",
+          "d11_eng:reading_practice"
+        ]
       },
       {
         "id": "d11_night",
@@ -7051,27 +7983,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch166",
-            "label": "880高数第9章(后19道错题+23未标)"
+            "label": "880高数第9章(后19道错题+23未标)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch46",
-            "label": "36讲高数第16讲·级数(13道错题)"
+            "label": "36讲高数第16讲·级数(13道错题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch22",
-            "label": "30讲线代第4讲"
+            "label": "30讲线代第4讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch23",
-            "label": "30讲线代第5讲"
+            "label": "30讲线代第5讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch24",
-            "label": "30讲线代第6讲(收官)"
+            "label": "30讲线代第6讲(收官)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 110,
@@ -7125,7 +8062,8 @@
               66,
               67
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7146,7 +8084,8 @@
               25,
               51
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7179,7 +8118,8 @@
               23,
               24
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7206,7 +8146,8 @@
               32,
               33
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7225,9 +8166,17 @@
               23,
               24
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-10",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -7249,12 +8198,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2020",
-            "label": "20年数一真题(23题)"
+            "label": "20年数一真题(23题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_11",
-            "label": "邂逅线代第1章(后19道非绿收官)"
+            "label": "邂逅线代第1章(后19道非绿收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 40,
@@ -7287,7 +8238,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -7314,9 +8266,18 @@
               34,
               35
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-11",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d12_p_pm",
@@ -7329,7 +8290,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_20",
-            "label": "华科20真题(26题)"
+            "label": "华科20真题(26题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 26,
@@ -7367,9 +8329,17 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-11",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d12_m_pm",
@@ -7382,7 +8352,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_12",
-            "label": "邂逅线代第2章(题1–35)"
+            "label": "邂逅线代第2章(题1–35)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 35,
@@ -7429,9 +8400,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-11",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d12_p_ev",
@@ -7444,7 +8423,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_06",
-            "label": "波哥强化第6章(后30题收官)"
+            "label": "波哥强化第6章(后30题收官)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 30,
@@ -7489,9 +8469,17 @@
               53,
               54
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-11",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d12_pol",
@@ -7504,17 +8492,20 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100438",
-            "label": "新思想·第17章(13题)"
+            "label": "新思想·第17章(13题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100440",
-            "label": "史纲·第1章(22题)"
+            "label": "史纲·第1章(22题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100441",
-            "label": "史纲·第2章(22题)"
+            "label": "史纲·第2章(22题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 57,
@@ -7541,7 +8532,8 @@
               11,
               12
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -7571,7 +8563,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -7601,9 +8594,17 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-11",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d12_eng",
@@ -7616,12 +8617,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2019",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-11",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d12_eng:essay_recite",
+          "d12_eng:reading_practice"
+        ]
       },
       {
         "id": "d12_night",
@@ -7634,37 +8646,44 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch167",
-            "label": "880线代第10章·行列式"
+            "label": "880线代第10章·行列式",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch168",
-            "label": "880线代第11章·矩阵"
+            "label": "880线代第11章·矩阵",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch171",
-            "label": "880线代第14章·相似"
+            "label": "880线代第14章·相似",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch172",
-            "label": "880线代第15章·二次型"
+            "label": "880线代第15章·二次型",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch25",
-            "label": "30讲概率第1讲"
+            "label": "30讲概率第1讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch26",
-            "label": "30讲概率第2讲"
+            "label": "30讲概率第2讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch27",
-            "label": "30讲概率第3讲"
+            "label": "30讲概率第3讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 244,
@@ -7698,7 +8717,8 @@
               32,
               33
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7736,7 +8756,8 @@
               47,
               48
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7794,7 +8815,8 @@
               54,
               55
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7851,7 +8873,8 @@
               53,
               54
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7893,7 +8916,8 @@
               32,
               33
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7930,7 +8954,8 @@
               34,
               35
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -7968,9 +8993,17 @@
               28,
               29
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-11",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -7992,17 +9025,20 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2021",
-            "label": "21年数一真题(22题)"
+            "label": "21年数一真题(22题)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_12",
-            "label": "邂逅线代第2章(题36–56收官)"
+            "label": "邂逅线代第2章(题36–56收官)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_13",
-            "label": "邂逅线代第3章(题1–15)"
+            "label": "邂逅线代第3章(题1–15)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 47,
@@ -8025,7 +9061,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -8054,7 +9091,8 @@
               54,
               55
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -8077,9 +9115,18 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-12",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d13_p_pm",
@@ -8092,12 +9139,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_25",
-            "label": "南大25真题(9题)"
+            "label": "南大25真题(9题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_26",
-            "label": "南大26真题(10题)"
+            "label": "南大26真题(10题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 18,
@@ -8117,7 +9166,8 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -8135,9 +9185,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-12",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d13_m_pm",
@@ -8150,12 +9208,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_13",
-            "label": "邂逅线代第3章(题16–44收官)"
+            "label": "邂逅线代第3章(题16–44收官)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_14",
-            "label": "邂逅线代第4章(题1–10)"
+            "label": "邂逅线代第4章(题1–10)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 39,
@@ -8196,7 +9256,8 @@
               42,
               43
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -8214,9 +9275,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-12",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d13_p_ev",
@@ -8229,7 +9298,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_06",
-            "label": "波哥习题集第6章(前30道错题)"
+            "label": "波哥习题集第6章(前30道错题)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 30,
@@ -8274,9 +9344,17 @@
               37,
               40
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-12",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d13_pol",
@@ -8289,12 +9367,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100442",
-            "label": "史纲·第3章(24题)"
+            "label": "史纲·第3章(24题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100443",
-            "label": "史纲·第4章(41题)"
+            "label": "史纲·第4章(41题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 65,
@@ -8332,7 +9412,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -8381,9 +9462,17 @@
               39,
               40
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-12",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d13_eng",
@@ -8396,12 +9485,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2018",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-12",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d13_eng:essay_recite",
+          "d13_eng:reading_practice"
+        ]
       },
       {
         "id": "d13_night",
@@ -8414,32 +9514,38 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch173",
-            "label": "880概率第16章"
+            "label": "880概率第16章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch174",
-            "label": "880概率第17章"
+            "label": "880概率第17章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch175",
-            "label": "880概率第18章"
+            "label": "880概率第18章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch28",
-            "label": "30讲概率第4讲"
+            "label": "30讲概率第4讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch29",
-            "label": "30讲概率第5讲"
+            "label": "30讲概率第5讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch30",
-            "label": "30讲概率第6讲(全书收官)"
+            "label": "30讲概率第6讲(全书收官)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 136,
@@ -8462,7 +9568,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -8494,7 +9601,8 @@
               31,
               32
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -8537,7 +9645,8 @@
               38,
               39
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -8571,7 +9680,8 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -8590,7 +9700,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -8627,9 +9738,17 @@
               27,
               28
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-12",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -8651,27 +9770,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2009",
-            "label": "09真题(二刷全绿)"
+            "label": "09真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2010",
-            "label": "10真题(二刷全绿)"
+            "label": "10真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2011",
-            "label": "11真题(二刷全绿)"
+            "label": "11真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_14",
-            "label": "邂逅线代第4章(题11–21收官)"
+            "label": "邂逅线代第4章(题11–21收官)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_15",
-            "label": "邂逅线代第5章·相似(29题)"
+            "label": "邂逅线代第5章·相似(29题)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 109,
@@ -8706,7 +9830,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -8737,7 +9862,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -8768,7 +9894,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -8787,7 +9914,8 @@
               19,
               20
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -8824,9 +9952,18 @@
               27,
               28
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-13",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d14_p_pm",
@@ -8839,19 +9976,28 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_mn_26_02",
-            "label": "26刺猬哥预测卷(二)"
+            "label": "26刺猬哥预测卷(二)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_zm_26_02",
-            "label": "26芝麻模拟卷(二)"
+            "label": "26芝麻模拟卷(二)",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "专业课模拟卷(二) 3h模考+订正",
         "offlineTarget": 1,
         "special": true,
         "isOptionalOnlineMock": true,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-13",
+        "kind": "mock",
+        "moduleId": "mock",
+        "moduleIds": [
+          "mock"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d14_m_pm",
@@ -8864,7 +10010,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_16",
-            "label": "邂逅线代第6章(题1–35)"
+            "label": "邂逅线代第6章(题1–35)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 35,
@@ -8911,9 +10058,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-13",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d14_p_ev",
@@ -8926,7 +10081,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_06",
-            "label": "波哥习题集第6章(后27道错题收官)"
+            "label": "波哥习题集第6章(后27道错题收官)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 27,
@@ -8968,9 +10124,17 @@
               72,
               73
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-13",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d14_pol",
@@ -8983,12 +10147,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100444",
-            "label": "史纲·第5章(22题)"
+            "label": "史纲·第5章(22题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100445",
-            "label": "史纲·第6章(42题)"
+            "label": "史纲·第6章(42题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 64,
@@ -9024,7 +10190,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -9074,9 +10241,17 @@
               40,
               41
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-13",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d14_eng",
@@ -9089,12 +10264,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2018",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-13",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d14_eng:essay_recite",
+          "d14_eng:reading_practice"
+        ]
       },
       {
         "id": "d14_night",
@@ -9107,52 +10293,62 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch176",
-            "label": "880概率第19章(错题清零)"
+            "label": "880概率第19章(错题清零)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch67",
-            "label": "1000题基础·高数第1章"
+            "label": "1000题基础·高数第1章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch68",
-            "label": "1000题基础·高数第2章"
+            "label": "1000题基础·高数第2章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch69",
-            "label": "1000题基础·高数第3章"
+            "label": "1000题基础·高数第3章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch70",
-            "label": "1000题基础·高数第4章"
+            "label": "1000题基础·高数第4章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch31",
-            "label": "36讲高数第1讲"
+            "label": "36讲高数第1讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch32",
-            "label": "36讲高数第2讲"
+            "label": "36讲高数第2讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch33",
-            "label": "36讲高数第3讲"
+            "label": "36讲高数第3讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch34",
-            "label": "36讲高数第4讲"
+            "label": "36讲高数第4讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch35",
-            "label": "36讲高数第5讲"
+            "label": "36讲高数第5讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 158,
@@ -9206,7 +10402,8 @@
               48,
               49
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9237,7 +10434,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9257,7 +10455,8 @@
               10,
               11
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9280,7 +10479,8 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9306,7 +10506,8 @@
               16,
               17
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9328,7 +10529,8 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9348,7 +10550,8 @@
               11,
               12
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9361,7 +10564,8 @@
               5,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9377,7 +10581,8 @@
               6,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -9394,9 +10599,17 @@
               7,
               8
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-13",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -9418,27 +10631,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2012",
-            "label": "12真题(二刷全绿)"
+            "label": "12真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2013",
-            "label": "13真题(二刷全绿)"
+            "label": "13真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2014",
-            "label": "14真题(二刷全绿)"
+            "label": "14真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_16",
-            "label": "邂逅线代第6章(题36–42收官)"
+            "label": "邂逅线代第6章(题36–42收官)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_17",
-            "label": "邂逅线代第7章·数一专项(19题)"
+            "label": "邂逅线代第7章·数一专项(19题)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 95,
@@ -9473,7 +10691,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -9504,7 +10723,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -9535,7 +10755,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -9550,7 +10771,8 @@
               40,
               41
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -9577,9 +10799,18 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-14",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d15_p_pm",
@@ -9592,7 +10823,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_22",
-            "label": "华科22真题(28题)"
+            "label": "华科22真题(28题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 28,
@@ -9632,9 +10864,17 @@
               26,
               27
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-14",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d15_m_pm",
@@ -9647,12 +10887,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_18",
-            "label": "邂逅概率第1章(18题)"
+            "label": "邂逅概率第1章(18题)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_19",
-            "label": "邂逅概率第2章(题1–20)"
+            "label": "邂逅概率第2章(题1–20)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 38,
@@ -9682,7 +10924,8 @@
               16,
               17
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -9710,9 +10953,17 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-14",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d15_p_ev",
@@ -9725,12 +10976,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_07",
-            "label": "波哥讲义第7章·DTFT(8题)"
+            "label": "波哥讲义第7章·DTFT(8题)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_07",
-            "label": "波哥习题集第7章·DTFT(35题)"
+            "label": "波哥习题集第7章·DTFT(35题)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 43,
@@ -9753,7 +11006,8 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -9796,9 +11050,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-14",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d15_pol",
@@ -9811,12 +11073,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100446",
-            "label": "史纲·第7章(23题)"
+            "label": "史纲·第7章(23题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100447",
-            "label": "史纲·第8章(36题)"
+            "label": "史纲·第8章(36题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 59,
@@ -9853,7 +11117,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -9897,9 +11162,17 @@
               34,
               35
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-14",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d15_eng",
@@ -9912,12 +11185,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2017",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-14",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d15_eng:essay_recite",
+          "d15_eng:reading_practice"
+        ]
       },
       {
         "id": "d15_night",
@@ -9930,47 +11214,56 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch36",
-            "label": "36讲高数第6讲·中值定理(22题)"
+            "label": "36讲高数第6讲·中值定理(22题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch41",
-            "label": "36讲高数第11讲·积分不等式(19题)"
+            "label": "36讲高数第11讲·积分不等式(19题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch71",
-            "label": "1000题基础·高数第5章"
+            "label": "1000题基础·高数第5章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch72",
-            "label": "1000题基础·高数第6章"
+            "label": "1000题基础·高数第6章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch37",
-            "label": "36讲高数第7讲"
+            "label": "36讲高数第7讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch38",
-            "label": "36讲高数第8讲"
+            "label": "36讲高数第8讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch39",
-            "label": "36讲高数第9讲"
+            "label": "36讲高数第9讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch40",
-            "label": "36讲高数第10讲"
+            "label": "36讲高数第10讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch42",
-            "label": "36讲高数第12讲"
+            "label": "36讲高数第12讲",
+            "moduleId": "other"
           }
         ],
         "targetCount": 138,
@@ -10004,7 +11297,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10031,7 +11325,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10063,7 +11358,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10093,7 +11389,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10106,7 +11403,8 @@
               3,
               4
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10120,7 +11418,8 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10146,7 +11445,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10169,7 +11469,8 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10184,9 +11485,17 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-14",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -10208,22 +11517,26 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2015",
-            "label": "15真题(二刷全绿)"
+            "label": "15真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2016",
-            "label": "16真题(二刷全绿)"
+            "label": "16真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2017",
-            "label": "17真题(二刷全绿)"
+            "label": "17真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_19",
-            "label": "邂逅概率第2章(题21–40收官)"
+            "label": "邂逅概率第2章(题21–40收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 89,
@@ -10258,7 +11571,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -10289,7 +11603,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -10320,7 +11635,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -10348,9 +11664,18 @@
               38,
               39
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-15",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d16_p_pm",
@@ -10363,7 +11688,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_23",
-            "label": "华科23真题(28题)"
+            "label": "华科23真题(28题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 28,
@@ -10403,9 +11729,17 @@
               26,
               27
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-15",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d16_m_pm",
@@ -10418,7 +11752,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_20",
-            "label": "邂逅概率第3章(题1–35)"
+            "label": "邂逅概率第3章(题1–35)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 35,
@@ -10465,9 +11800,17 @@
               33,
               34
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-15",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d16_p_ev",
@@ -10480,12 +11823,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_08",
-            "label": "波哥讲义第8章(3题收官)"
+            "label": "波哥讲义第8章(3题收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_08",
-            "label": "波哥习题集第8章(45题收官)"
+            "label": "波哥习题集第8章(45题收官)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 48,
@@ -10503,7 +11848,8 @@
               1,
               2
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -10556,9 +11902,17 @@
               43,
               44
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-15",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d16_pol",
@@ -10571,27 +11925,32 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100448",
-            "label": "史纲·第9章(12题)"
+            "label": "史纲·第9章(12题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100449",
-            "label": "史纲·第10章(7题)"
+            "label": "史纲·第10章(7题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100450",
-            "label": "思修·绪论(7题)"
+            "label": "思修·绪论(7题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100451",
-            "label": "思修·第1章(16题)"
+            "label": "思修·第1章(16题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100452",
-            "label": "思修·第2章(10题)"
+            "label": "思修·第2章(10题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 52,
@@ -10617,7 +11976,8 @@
               10,
               11
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -10632,7 +11992,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -10647,7 +12008,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -10671,7 +12033,8 @@
               14,
               15
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -10689,9 +12052,17 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-15",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d16_eng",
@@ -10704,12 +12075,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2017",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-15",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d16_eng:essay_recite",
+          "d16_eng:reading_practice"
+        ]
       },
       {
         "id": "d16_night",
@@ -10722,52 +12104,62 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch43",
-            "label": "36讲高数第13讲·多元微分(32题)"
+            "label": "36讲高数第13讲·多元微分(32题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch75",
-            "label": "1000题基础·高数第9章"
+            "label": "1000题基础·高数第9章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch76",
-            "label": "1000题基础·高数第10章"
+            "label": "1000题基础·高数第10章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch44",
-            "label": "36讲高数第14讲"
+            "label": "36讲高数第14讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch45",
-            "label": "36讲高数第15讲"
+            "label": "36讲高数第15讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch47",
-            "label": "36讲高数第17讲"
+            "label": "36讲高数第17讲",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch73",
-            "label": "1000基础·高数第7章"
+            "label": "1000基础·高数第7章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch74",
-            "label": "1000基础·高数第8章"
+            "label": "1000基础·高数第8章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch77",
-            "label": "1000基础·高数第11章"
+            "label": "1000基础·高数第11章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch78",
-            "label": "1000基础·高数第12章"
+            "label": "1000基础·高数第12章",
+            "moduleId": "other"
           }
         ],
         "targetCount": 154,
@@ -10811,7 +12203,8 @@
               30,
               31
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10855,7 +12248,8 @@
               34,
               35
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10882,7 +12276,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10898,7 +12293,8 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10924,7 +12320,8 @@
               16,
               17
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10938,7 +12335,8 @@
               4,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10951,7 +12349,8 @@
               3,
               4
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10971,7 +12370,8 @@
               21,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -10990,7 +12390,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11005,9 +12406,17 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-15",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -11029,27 +12438,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2018",
-            "label": "18真题(二刷全绿)"
+            "label": "18真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2019",
-            "label": "19真题(二刷全绿)"
+            "label": "19真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2020",
-            "label": "20真题(二刷全绿)"
+            "label": "20真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_20",
-            "label": "邂逅概率第3章(题36–45收官)"
+            "label": "邂逅概率第3章(题36–45收官)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_21",
-            "label": "邂逅概率第4章(题1–15)"
+            "label": "邂逅概率第4章(题1–15)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 94,
@@ -11084,7 +12498,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -11115,7 +12530,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -11146,7 +12562,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -11164,7 +12581,8 @@
               43,
               44
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -11187,9 +12605,18 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-16",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d17_p_pm",
@@ -11202,7 +12629,8 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_24",
-            "label": "华科24真题(28题收官)"
+            "label": "华科24真题(28题收官)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 28,
@@ -11242,9 +12670,17 @@
               26,
               27
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-16",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d17_m_pm",
@@ -11257,7 +12693,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_21",
-            "label": "邂逅概率第4章(题16–49收官)"
+            "label": "邂逅概率第4章(题16–49收官)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 34,
@@ -11303,9 +12740,17 @@
               47,
               48
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-16",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d17_p_ev",
@@ -11318,17 +12763,20 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_01",
-            "label": "波哥强化第1章(50题收官)"
+            "label": "波哥强化第1章(50题收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_02",
-            "label": "波哥强化第2章(49题收官)"
+            "label": "波哥强化第2章(49题收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_01",
-            "label": "波哥习题集第1章(88题未标)"
+            "label": "波哥习题集第1章(88题未标)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 134,
@@ -11357,7 +12805,8 @@
               47,
               48
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -11396,7 +12845,8 @@
               47,
               48
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -11492,9 +12942,17 @@
               86,
               87
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-16",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d17_pol",
@@ -11507,17 +12965,20 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100453",
-            "label": "思修·第3章(15题)"
+            "label": "思修·第3章(15题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100454",
-            "label": "思修·第4章(14题)"
+            "label": "思修·第4章(14题)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100455",
-            "label": "思修·第5章(41题)"
+            "label": "思修·第5章(41题)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 70,
@@ -11546,7 +13007,8 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -11568,7 +13030,8 @@
               12,
               13
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -11617,9 +13080,17 @@
               39,
               40
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-16",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d17_eng",
@@ -11632,12 +13103,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2016",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-16",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d17_eng:essay_recite",
+          "d17_eng:reading_practice"
+        ]
       },
       {
         "id": "d17_night",
@@ -11650,47 +13132,56 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch46",
-            "label": "36讲高数第16讲·级数(33道未标收官)"
+            "label": "36讲高数第16讲·级数(33道未标收官)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch48",
-            "label": "36讲高数第18讲·多元积分(29题收官)"
+            "label": "36讲高数第18讲·多元积分(29题收官)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch79",
-            "label": "1000基础·高数第13章"
+            "label": "1000基础·高数第13章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch80",
-            "label": "1000基础·高数第14章"
+            "label": "1000基础·高数第14章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch81",
-            "label": "1000基础·高数第15章"
+            "label": "1000基础·高数第15章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch82",
-            "label": "1000基础·高数第16章"
+            "label": "1000基础·高数第16章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch83",
-            "label": "1000基础·高数第17章"
+            "label": "1000基础·高数第17章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch84",
-            "label": "1000基础·高数第18章"
+            "label": "1000基础·高数第18章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch85",
-            "label": "1000基础·高数零基础"
+            "label": "1000基础·高数零基础",
+            "moduleId": "other"
           }
         ],
         "targetCount": 189,
@@ -11735,7 +13226,8 @@
               55,
               56
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11765,7 +13257,8 @@
               27,
               28
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11797,7 +13290,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11829,7 +13323,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11858,7 +13353,8 @@
               19,
               20
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11885,7 +13381,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11907,7 +13404,8 @@
               12,
               13
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11931,7 +13429,8 @@
               14,
               15
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -11955,9 +13454,17 @@
               14,
               15
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-16",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -11979,27 +13486,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2021",
-            "label": "21真题(二刷全绿)"
+            "label": "21真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2022",
-            "label": "22真题(二刷全绿)"
+            "label": "22真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2023",
-            "label": "23真题(二刷全绿)"
+            "label": "23真题(二刷全绿)",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_22",
-            "label": "邂逅概率第5章·大数定律(13题)"
+            "label": "邂逅概率第5章·大数定律(13题)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_23",
-            "label": "邂逅概率第6章·抽样分布(20题)"
+            "label": "邂逅概率第6章·抽样分布(20题)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 99,
@@ -12033,7 +13545,8 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -12063,7 +13576,8 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -12093,7 +13607,8 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -12114,7 +13629,8 @@
               11,
               12
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -12142,9 +13658,18 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-17",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d18_p_pm",
@@ -12157,22 +13682,26 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_20",
-            "label": "南大20真题(19题全绿)"
+            "label": "南大20真题(19题全绿)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_21",
-            "label": "南大21真题(10道黄/红错题)"
+            "label": "南大21真题(10道黄/红错题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_22",
-            "label": "南大22真题(22题全绿)"
+            "label": "南大22真题(22题全绿)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_23",
-            "label": "南大23真题(11道黄/红错题)"
+            "label": "南大23真题(11道黄/红错题)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 44,
@@ -12194,7 +13723,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -12212,7 +13742,8 @@
               13,
               15
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -12233,7 +13764,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -12252,9 +13784,17 @@
               15,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-17",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d18_m_pm",
@@ -12267,12 +13807,14 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_24",
-            "label": "邂逅概率第7章·参数估计(21题)"
+            "label": "邂逅概率第7章·参数估计(21题)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_25",
-            "label": "邂逅概率第8章·假设检验(22题)"
+            "label": "邂逅概率第8章·假设检验(22题)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 43,
@@ -12305,7 +13847,8 @@
               19,
               20
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -12335,9 +13878,17 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-17",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d18_p_ev",
@@ -12350,12 +13901,14 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_03",
-            "label": "波哥强化第3章(33题收官)"
+            "label": "波哥强化第3章(33题收官)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_02",
-            "label": "波哥习题集第2章(66题未标)"
+            "label": "波哥习题集第2章(66题未标)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 89,
@@ -12392,7 +13945,8 @@
               31,
               32
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -12466,9 +14020,17 @@
               64,
               65
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-17",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d18_pol",
@@ -12481,7 +14043,8 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100456",
-            "label": "思修·第6章法治(63题收官)"
+            "label": "思修·第6章法治(63题收官)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 63,
@@ -12558,9 +14121,17 @@
               61,
               62
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-17",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d18_eng",
@@ -12573,12 +14144,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2016",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-17",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d18_eng:essay_recite",
+          "d18_eng:reading_practice"
+        ]
       },
       {
         "id": "d18_night",
@@ -12591,42 +14173,50 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch169",
-            "label": "880线代第12章·向量(39题)"
+            "label": "880线代第12章·向量(39题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch170",
-            "label": "880线代第13章·方程组(48题)"
+            "label": "880线代第13章·方程组(48题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch104",
-            "label": "1000基础·线代第1章"
+            "label": "1000基础·线代第1章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch105",
-            "label": "1000基础·线代第2章"
+            "label": "1000基础·线代第2章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch106",
-            "label": "1000基础·线代第3章"
+            "label": "1000基础·线代第3章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch107",
-            "label": "1000基础·线代第4章"
+            "label": "1000基础·线代第4章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch108",
-            "label": "1000基础·线代第5章"
+            "label": "1000基础·线代第5章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch109",
-            "label": "1000基础·线代第6章"
+            "label": "1000基础·线代第6章",
+            "moduleId": "other"
           }
         ],
         "targetCount": 186,
@@ -12677,7 +14267,8 @@
               37,
               38
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12733,7 +14324,8 @@
               46,
               47
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12752,7 +14344,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12776,7 +14369,8 @@
               17,
               18
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12799,7 +14393,8 @@
               13,
               14
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12819,7 +14414,8 @@
               15,
               16
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12850,7 +14446,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -12880,9 +14477,17 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-17",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -12904,22 +14509,26 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2009",
-            "label": "09真题验收"
+            "label": "09真题验收",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2012",
-            "label": "12真题验收"
+            "label": "12真题验收",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2014",
-            "label": "14真题验收"
+            "label": "14真题验收",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2016",
-            "label": "16真题验收"
+            "label": "16真题验收",
+            "moduleId": "math_truth"
           }
         ],
         "targetCount": 92,
@@ -12954,7 +14563,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -12985,7 +14595,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -13016,7 +14627,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -13047,9 +14659,17 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           }
-        ]
+        ],
+        "date": "2026-11-18",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d19_p_pm",
@@ -13062,27 +14682,32 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_15",
-            "label": "华科15全绿"
+            "label": "华科15全绿",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_16",
-            "label": "华科16全绿"
+            "label": "华科16全绿",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_17",
-            "label": "华科17全绿"
+            "label": "华科17全绿",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_18",
-            "label": "华科18全绿"
+            "label": "华科18全绿",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_19",
-            "label": "华科19全绿"
+            "label": "华科19全绿",
+            "moduleId": "other"
           }
         ],
         "targetCount": 97,
@@ -13112,7 +14737,8 @@
               16,
               17
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -13144,7 +14770,8 @@
               22,
               23
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -13164,7 +14791,8 @@
               10,
               11
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -13192,7 +14820,8 @@
               18,
               19
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -13223,9 +14852,17 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-18",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d19_m_pm",
@@ -13238,22 +14875,26 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_01",
-            "label": "邂逅第1章(二刷复检)"
+            "label": "邂逅第1章(二刷复检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_02",
-            "label": "邂逅第2章(二刷复检)"
+            "label": "邂逅第2章(二刷复检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_07",
-            "label": "邂逅第7章(二刷复检)"
+            "label": "邂逅第7章(二刷复检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_09",
-            "label": "邂逅第9章(二刷复检)"
+            "label": "邂逅第9章(二刷复检)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 389,
@@ -13394,7 +15035,8 @@
               127,
               128
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -13503,7 +15145,8 @@
               99,
               100
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -13599,7 +15242,8 @@
               86,
               87
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -13678,9 +15322,17 @@
               69,
               70
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-18",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d19_p_ev",
@@ -13693,22 +15345,26 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_01",
-            "label": "波哥讲义第1章"
+            "label": "波哥讲义第1章",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_02",
-            "label": "波哥讲义第2章"
+            "label": "波哥讲义第2章",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_jy_03",
-            "label": "波哥讲义第3章"
+            "label": "波哥讲义第3章",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_03",
-            "label": "波哥习题集第3章(44题未标)"
+            "label": "波哥习题集第3章(44题未标)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 119,
@@ -13748,7 +15404,8 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -13782,7 +15439,8 @@
               24,
               25
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -13813,7 +15471,8 @@
               21,
               22
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -13865,9 +15524,17 @@
               42,
               43
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-18",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d19_pol",
@@ -13880,12 +15547,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100403",
-            "label": "马原·第1章(二刷复检)"
+            "label": "马原·第1章(二刷复检)",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100406",
-            "label": "马原·第4章政经(剩余52道错题清零)"
+            "label": "马原·第4章政经(剩余52道错题清零)",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 135,
@@ -13982,7 +15651,8 @@
               81,
               82
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -14042,9 +15712,17 @@
               91,
               92
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-18",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d19_eng",
@@ -14057,12 +15735,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2015",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-18",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d19_eng:essay_recite",
+          "d19_eng:reading_practice"
+        ]
       },
       {
         "id": "d19_night",
@@ -14075,52 +15764,62 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch177",
-            "label": "880概率第20章(10题)"
+            "label": "880概率第20章(10题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch178",
-            "label": "880概率第21章(25题)"
+            "label": "880概率第21章(25题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch179",
-            "label": "880概率第22章(24题)"
+            "label": "880概率第22章(24题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch180",
-            "label": "880概率第23章(7题)"
+            "label": "880概率第23章(7题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch119",
-            "label": "1000基础·概率第1章"
+            "label": "1000基础·概率第1章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch120",
-            "label": "1000基础·概率第2章"
+            "label": "1000基础·概率第2章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch121",
-            "label": "1000基础·概率第3章"
+            "label": "1000基础·概率第3章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch122",
-            "label": "1000基础·概率第4章"
+            "label": "1000基础·概率第4章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch123",
-            "label": "1000基础·概率第5章"
+            "label": "1000基础·概率第5章",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch124",
-            "label": "1000基础·概率第6章"
+            "label": "1000基础·概率第6章",
+            "moduleId": "other"
           }
         ],
         "targetCount": 151,
@@ -14142,7 +15841,8 @@
               8,
               9
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14175,7 +15875,8 @@
               23,
               24
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14207,7 +15908,8 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14222,7 +15924,8 @@
               5,
               6
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14244,7 +15947,8 @@
               12,
               13
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14256,7 +15960,8 @@
               9,
               10
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14278,7 +15983,8 @@
               12,
               13
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14307,7 +16013,8 @@
               19,
               20
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14323,7 +16030,8 @@
               6,
               7
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -14355,9 +16063,17 @@
               22,
               23
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-18",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -14379,27 +16095,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2017",
-            "label": "17真题全绿"
+            "label": "17真题全绿",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2019",
-            "label": "19真题全绿"
+            "label": "19真题全绿",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2020",
-            "label": "20真题全绿"
+            "label": "20真题全绿",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2022",
-            "label": "22真题全绿"
+            "label": "22真题全绿",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2023",
-            "label": "23真题全绿"
+            "label": "23真题全绿",
+            "moduleId": "math_truth"
           }
         ],
         "targetCount": 113,
@@ -14434,7 +16155,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -14465,7 +16187,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -14496,7 +16219,8 @@
               21,
               22
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -14526,7 +16250,8 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -14556,9 +16281,17 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           }
-        ]
+        ],
+        "date": "2026-11-19",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d20_p_pm",
@@ -14571,37 +16304,44 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_21",
-            "label": "南大21真题(对账补遗3道未标题)"
+            "label": "南大21真题(对账补遗3道未标题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_23",
-            "label": "南大23真题(对账补遗7道未标题)"
+            "label": "南大23真题(对账补遗7道未标题)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_20",
-            "label": "华科20真题"
+            "label": "华科20真题",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_21",
-            "label": "华科21真题"
+            "label": "华科21真题",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_22",
-            "label": "华科22真题"
+            "label": "华科22真题",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_23",
-            "label": "华科23真题"
+            "label": "华科23真题",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_24",
-            "label": "华科24真题"
+            "label": "华科24真题",
+            "moduleId": "other"
           }
         ],
         "targetCount": 148,
@@ -14616,7 +16356,8 @@
               18,
               19
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -14631,7 +16372,8 @@
               20,
               21
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -14665,7 +16407,8 @@
               24,
               25
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -14701,7 +16444,8 @@
               26,
               27
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -14737,7 +16481,8 @@
               26,
               27
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -14773,7 +16518,8 @@
               26,
               27
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -14809,9 +16555,17 @@
               26,
               27
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-19",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d20_m_pm",
@@ -14824,22 +16578,26 @@
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_12",
-            "label": "邂逅线代第2章(二刷复检)"
+            "label": "邂逅线代第2章(二刷复检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_16",
-            "label": "邂逅线代第6章(二刷复检)"
+            "label": "邂逅线代第6章(二刷复检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_20",
-            "label": "邂逅概率第3章(二刷复检)"
+            "label": "邂逅概率第3章(二刷复检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_21",
-            "label": "邂逅概率第4章(二刷复检)"
+            "label": "邂逅概率第4章(二刷复检)",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 192,
@@ -14907,7 +16665,8 @@
               54,
               55
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -14957,7 +16716,8 @@
               40,
               41
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -15010,7 +16770,8 @@
               43,
               44
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -15067,9 +16828,17 @@
               47,
               48
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-19",
+        "kind": "online",
+        "moduleId": "xhy",
+        "moduleIds": [
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d20_p_ev",
@@ -15082,22 +16851,26 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_09",
-            "label": "波哥习题集第9章·电路(二刷复检)"
+            "label": "波哥习题集第9章·电路(二刷复检)",
+            "moduleId": "bogo9"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_qh_07",
-            "label": "波哥强化第7章·电路(二刷复检)"
+            "label": "波哥强化第7章·电路(二刷复检)",
+            "moduleId": "bogo9"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_05",
-            "label": "波哥习题集第5章(二刷复检)"
+            "label": "波哥习题集第5章(二刷复检)",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_06",
-            "label": "波哥习题集第6章(二刷复检)"
+            "label": "波哥习题集第6章(二刷复检)",
+            "moduleId": "bogo18"
           }
         ],
         "targetCount": 95,
@@ -15151,7 +16924,8 @@
               37,
               38
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "bogo9"
           },
           {
             "subjectId": "zhuanye",
@@ -15177,7 +16951,8 @@
               16,
               17
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "bogo9"
           },
           {
             "subjectId": "zhuanye",
@@ -15206,7 +16981,8 @@
               66,
               79
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "bogo18"
           },
           {
             "subjectId": "zhuanye",
@@ -15231,9 +17007,18 @@
               70,
               71
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "bogo18"
           }
-        ]
+        ],
+        "date": "2026-11-19",
+        "kind": "online",
+        "moduleId": "bogo18",
+        "moduleIds": [
+          "bogo18",
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d20_pol",
@@ -15246,12 +17031,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100412",
-            "label": "毛中特·第2章"
+            "label": "毛中特·第2章",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100427",
-            "label": "新思想·第6章"
+            "label": "新思想·第6章",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 70,
@@ -15302,7 +17089,8 @@
               35,
               36
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -15343,9 +17131,17 @@
               31,
               32
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-19",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d20_eng",
@@ -15358,12 +17154,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2015",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-19",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d20_eng:essay_recite",
+          "d20_eng:reading_practice"
+        ]
       },
       {
         "id": "d20_night",
@@ -15376,32 +17183,38 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch162",
-            "label": "880高数第5章·多元微分"
+            "label": "880高数第5章·多元微分",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch165",
-            "label": "880高数第8章·无穷级数"
+            "label": "880高数第8章·无穷级数",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch158",
-            "label": "880高数第1章极限"
+            "label": "880高数第1章极限",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch161",
-            "label": "880高数第4章几何"
+            "label": "880高数第4章几何",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch163",
-            "label": "880高数第6章重积分"
+            "label": "880高数第6章重积分",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch164",
-            "label": "880高数第7章微分方程"
+            "label": "880高数第7章微分方程",
+            "moduleId": "other"
           }
         ],
         "targetCount": 335,
@@ -15481,7 +17294,8 @@
               66,
               67
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -15551,7 +17365,8 @@
               69,
               70
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -15617,7 +17432,8 @@
               56,
               57
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -15635,7 +17451,8 @@
               22,
               24
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -15717,7 +17534,8 @@
               80,
               81
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -15788,9 +17606,17 @@
               64,
               65
             ],
-            "taskType": "clear_non_green"
+            "taskType": "clear_non_green",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-19",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   },
@@ -15812,27 +17638,32 @@
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2022",
-            "label": "22真题终检"
+            "label": "22真题终检",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "s1_zt_2023",
-            "label": "23真题终检"
+            "label": "23真题终检",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gs_03",
-            "label": "邂逅高数第3章(绿标终检)"
+            "label": "邂逅高数第3章(绿标终检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_xd_16",
-            "label": "邂逅线代终检"
+            "label": "邂逅线代终检",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
             "chapterId": "xhy_gl_24",
-            "label": "邂逅概率终检"
+            "label": "邂逅概率终检",
+            "moduleId": "xhy"
           }
         ],
         "targetCount": 157,
@@ -15866,7 +17697,8 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -15896,7 +17728,8 @@
               20,
               21
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "math_truth"
           },
           {
             "subjectId": "shu1",
@@ -15954,7 +17787,8 @@
               97,
               113
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -16004,7 +17838,8 @@
               40,
               41
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
@@ -16033,9 +17868,18 @@
               19,
               20
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           }
-        ]
+        ],
+        "date": "2026-11-20",
+        "kind": "online",
+        "moduleId": "math_truth",
+        "moduleIds": [
+          "math_truth",
+          "xhy"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d21_p_pm",
@@ -16048,19 +17892,28 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_mn_26_03",
-            "label": "26刺猬哥预测卷(三)"
+            "label": "26刺猬哥预测卷(三)",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_zm_26_03",
-            "label": "26芝麻模拟卷(三)"
+            "label": "26芝麻模拟卷(三)",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "专业课模拟卷(三) 3h结营模考+订正",
         "offlineTarget": 1,
         "special": true,
         "isOptionalOnlineMock": true,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-20",
+        "kind": "mock",
+        "moduleId": "mock",
+        "moduleIds": [
+          "mock"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d21_m_pm",
@@ -16073,17 +17926,20 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch57",
-            "label": "36讲线代终检"
+            "label": "36讲线代终检",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch66",
-            "label": "36讲概率终检"
+            "label": "36讲概率终检",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
             "chapterId": "ch159",
-            "label": "880高数第2章(未标与绿标终检)"
+            "label": "880高数第2章(未标与绿标终检)",
+            "moduleId": "other"
           }
         ],
         "targetCount": 87,
@@ -16110,7 +17966,8 @@
               13,
               14
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -16130,7 +17987,8 @@
               10,
               11
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "shu1",
@@ -16198,9 +18056,17 @@
               100,
               101
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-20",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d21_p_ev",
@@ -16213,17 +18079,20 @@
           {
             "subjectId": "zhuanye",
             "chapterId": "nju_851_26",
-            "label": "南大851终检"
+            "label": "南大851终检",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "hust_824_24",
-            "label": "华科824终检"
+            "label": "华科824终检",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
             "chapterId": "bg_xt_09",
-            "label": "波哥电路专题终检"
+            "label": "波哥电路专题终检",
+            "moduleId": "bogo9"
           }
         ],
         "targetCount": 40,
@@ -16248,7 +18117,8 @@
               8,
               9
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -16284,7 +18154,8 @@
               26,
               27
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           },
           {
             "subjectId": "zhuanye",
@@ -16294,9 +18165,18 @@
               10,
               15
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "bogo9"
           }
-        ]
+        ],
+        "date": "2026-11-20",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other",
+          "bogo9"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d21_pol",
@@ -16309,12 +18189,14 @@
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100445",
-            "label": "史纲·第6章全绿"
+            "label": "史纲·第6章全绿",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
             "chapterId": "pol_b25728-c100456",
-            "label": "思修·第6章全绿"
+            "label": "思修·第6章全绿",
+            "moduleId": "politics"
           }
         ],
         "targetCount": 105,
@@ -16370,7 +18252,8 @@
               40,
               41
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "politics"
           },
           {
             "subjectId": "politics",
@@ -16441,9 +18324,17 @@
               61,
               62
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "politics"
           }
-        ]
+        ],
+        "date": "2026-11-20",
+        "kind": "online",
+        "moduleId": "politics",
+        "moduleIds": [
+          "politics"
+        ],
+        "offlineItemIds": null
       },
       {
         "id": "d21_eng",
@@ -16456,12 +18347,23 @@
           {
             "subjectId": "english",
             "chapterId": "en_zhenti_2025",
-            "label": "英语真题阅读/词本"
+            "label": "英语真题阅读/词本",
+            "moduleId": "other"
           }
         ],
         "offlineLabel": "作文默写+阅读2篇",
         "offlineTarget": 2,
-        "scopedItems": []
+        "scopedItems": [],
+        "date": "2026-11-20",
+        "kind": "offline",
+        "moduleId": "english",
+        "moduleIds": [
+          "english"
+        ],
+        "offlineItemIds": [
+          "d21_eng:essay_recite",
+          "d21_eng:reading_practice"
+        ]
       },
       {
         "id": "d21_night",
@@ -16474,7 +18376,8 @@
           {
             "subjectId": "shu1",
             "chapterId": "ch30",
-            "label": "基础30讲全书绿标"
+            "label": "基础30讲全书绿标",
+            "moduleId": "other"
           }
         ],
         "targetCount": 29,
@@ -16517,18 +18420,218 @@
               27,
               28
             ],
-            "taskType": "full_recheck"
+            "taskType": "full_recheck",
+            "moduleId": "other"
           }
-        ]
+        ],
+        "date": "2026-11-20",
+        "kind": "online",
+        "moduleId": "other",
+        "moduleIds": [
+          "other"
+        ],
+        "offlineItemIds": null
       }
     ]
   }
 ];
-
-  // ===== 工具与状态管理引擎 (V3.1 精准题号绑定与四维口径核验引擎) =====
+  // ===== 工具与状态管理引擎 (V4 题号级逐题审计与双轨核验引擎) =====
   var CAMP21_BASELINE_STR = {"ch1": "PPPPPP________________________________________________", "ch2": "__________________________", "ch3": "_____________________", "ch4": "___________________________", "ch5": "________________________", "ch6": "_______________________________", "ch7": "_________", "ch8": "__________________________", "ch9": "______________________________________________", "ch10": "WWWWVVWWWRRPWRPPPFPPVFV", "ch11": "WWWRWWWWWWW______", "ch12": "________", "ch13": "PFFVVVPFFW____________PPP___________", "ch14": "_____________________________", "ch15": "PPWFRWRWFRWRRWPFRFWWWWWPPWWF____________", "ch16": "VWWVWVWWRWRWPFVWVWWWWWWRWPWWWRWRWWRWWPWWP_______________", "ch17": "____________P__________", "ch18": "VVVFWRPFWPVFWWWWVFVPPRWWRWWRWWFWPWFW_____", "ch19": "________________________", "ch20": "PVPFRPPPPPPPPPPFFVPPPPPPPWPVWWPFFPV", "ch21": "__________________________", "ch22": "_________________________", "ch23": "PRWPWPFPVVPWPVPWRWRPWPPPVVPRVFVFWR", "ch24": "PVVFPVPPPPVRPPPPPPF______", "ch25": "__________________________________", "ch26": "FFPVPFWRVPPV________________________", "ch27": "______________________________", "ch28": "__________________________", "ch29": "___________", "ch30": "_____________________________", "ch31": "P____________W_", "ch32": "VFWWWWWWWWWRW", "ch33": "PVWVFRFV", "ch34": "RWRVWVVPW", "ch35": "_________", "ch36": "______________________", "ch37": "_____", "ch38": "FVR_VFVV", "ch39": "P__W_PFW_F____________", "ch40": "_______________", "ch41": "___________________", "ch42": "_______", "ch43": "________________________________", "ch44": "________", "ch45": "__________________P", "ch46": "PPPPPFPPPWWPWWWFWWVWW___RW_________________________V_____", "ch47": "WRWWWFV", "ch48": "___________FPPWFPVVPPVWVWWWWW", "ch49": "_______", "ch50": "WRPW", "ch51": "WPP_PV_WVP___FPFWW__", "ch52": "_________", "ch53": "__________", "ch54": "_______", "ch55": "V___", "ch56": "__________", "ch57": "PVWPVWWW_______", "ch58": "__________", "ch59": "VWWVRRW_____", "ch60": "______", "ch61": "____", "ch62": "_________", "ch63": "__________", "ch64": "___", "ch65": "_____", "ch66": "____________", "ch67": "_______________________", "ch68": "____________", "ch69": "_______________", "ch70": "__________________", "ch71": "________________________", "ch72": "______________________", "ch73": "_____", "ch74": "RRP__P__P_PVFFPPPFVPVVFWP", "ch75": "____________________________________", "ch76": "___________________", "ch77": "___________", "ch78": "_______", "ch79": "________________________", "ch80": "________________________", "ch81": "_____________________", "ch82": "___________________", "ch83": "______________", "ch84": "________________", "ch85": "PPPPPPPPPPPPPPPP", "ch86": "______________________________________", "ch87": "PPFWWWWW___", "ch88": "______________________", "ch89": "________________", "ch90": "_________________________________", "ch91": "_____________________", "ch92": "FPV", "ch93": "RR_RFRPF______F____", "ch94": "____________________________", "ch95": "__________________________", "ch96": "_________", "ch97": "_____", "ch98": "________________________________________", "ch99": "_________________________________________", "ch100": "________________________________________", "ch101": "________________________________________", "ch102": "_______________", "ch103": "_____________________________", "ch104": "___________", "ch105": "PPF________________", "ch106": "_______________", "ch107": "FFPWWWWWWPWRWRFRW", "ch108": "V______________________", "ch109": "______________________", "ch110": "_______", "ch111": "____", "ch112": "W_P_______", "ch113": "________", "ch114": "_______________", "ch115": "___________", "ch116": "_________", "ch117": "_____________________", "ch118": "___________________________", "ch119": "______________", "ch120": "FPFRPPFPW__", "ch121": "______________", "ch122": "_____________________", "ch123": "________", "ch124": "________________________", "ch125": "WRPWWW", "ch126": "WW_W___W_", "ch127": "_______", "ch128": "_______", "ch129": "____________", "ch130": "_____________________", "ch131": "____", "ch132": "____________", "ch133": "______________________________", "ch134": "__________________P______________________", "ch135": "_______________________________________", "ch136": "_______________________________________________________________", "ch137": "_PWR_____R_F____________________VF_________", "ch138": "________________", "ch139": "P___F___________________", "ch140": "____________________", "ch141": "________________________________", "ch142": "______________________________________________________________________", "ch143": "_________________________", "ch144": "__________________________", "ch145": "______________________", "ch146": "_________________________________________", "ch147": "_________________________________________________________", "ch148": "______________________________________", "ch149": "_________________________________________________", "ch150": "_______________________________", "ch151": "VWWVVPWWVPPVVPWP___________", "ch152": "__________________________________", "ch153": "______________________________", "ch154": "____________________________", "ch155": "_____________", "ch156": "_________________", "ch157": "____________________", "ch158": "__________________________________________________________", "ch159": "PPVPPWFWWVPPPFWRWWW_WFFPWFFWRWPFWWWVV_VWWWWVFP_PFV_VVW_WWVPFW______PWW____FP__PPV_WFF_PPWP_WWVFP_VRWFFRRR_RW_W_RRR", "ch160": "PVVPFPWPPWWWWFPWPWR_FFFWWVW___FVVP_W________RRW_PV_W_FRVPRFWFPWWWPPPPWWWWW__V_VWVWRRVPWWRRW_P_WVWW_FR_PWPPWW___________________________", "ch161": "PPVPFPFPRVPPPFWPWVFVP__PR", "ch162": "____________________________________________________________________", "ch163": "WPPPPWWWVWPVWFWPPWWW______________________________________________________________", "ch164": "FVPRVVWVFWVWV_____________________________________________________", "ch165": "FFPWPFFPPFW____________________________________________________________", "ch166": "WVVWWWWPWVRWWWRWWPWWWWWR_____VVPWFRWWWWWVPVWVRRRWP__________________", "ch167": "PFWVRFPFVVFVPVPV__PWPRF_F_R_______", "ch168": "FPPWFPPRWWWPFVFWVVWPVPWWPPPPFVFF__VWWP___________", "ch169": "_______________________________________", "ch170": "________________________________________________", "ch171": "FPPRRWPRRWRRRWW__________PVVFWW_________________________", "ch172": "VPVPW___VPPVPRVW____PWWR_______________________________", "ch173": "PRWPPWPPPFFFPPPPWVWWWWWW", "ch174": "WRWRFRWPWWRVPWVVW_FFPP_FFR_W___V_", "ch175": "PWWWWWVPWWWWWWWWPWWWRWWWPVWWWWVVVWRWPWVW", "ch176": "WFRWWWWWVWWWPWRRWWWRRWWWPWWWWFWVVVFWPRPRVV_____P__", "ch177": "__________", "ch178": "_________________________", "ch179": "________________________", "ch180": "_______", "opt880-ch01": "___________________________________________________________________________", "opt880-ch02": "___________________________________________________________________________________________________________________________", "opt880-ch03": "________________________________________________________________________________________________________________________________________________________________________________", "opt880-ch04": "____________________________", "opt880-ch05": "__________________________________________________________________________", "opt880-ch06": "____________________________________________________________________________________", "opt880-ch07": "_________________________________________________________________________", "opt880-ch08": "________________________________________________________________________________________________", "opt880-ch09": "_____________________________________________________________________________", "opt880-ch10": "_________________________________", "opt880-ch11": "_______________________________________________", "opt880-ch12": "____________________________________________", "opt880-ch13": "____________________________________________________", "opt880-ch14": "__________________________________________________________________________________", "opt880-ch15": "____________________________________________________________________________", "opt880-ch16": "______________________________", "opt880-ch17": "________________________________", "opt880-ch18": "_____________________________________________________", "opt880-ch19": "______________________________________________________________", "opt880-ch20": "_________", "opt880-ch21": "______________________________", "opt880-ch22": "______________________________________________", "opt880-ch23": "______", "ch261": "_______________________________________________________", "ch262": "____________________________________________________________________________________________________", "ch263": "_____________________________________________________________________________________", "ch264": "__________", "ch265": "_________________________________________________________________", "ch266": "____________________________________________________________", "ch267": "____________________________________________________________", "ch268": "_______________________________________________________", "ch269": "_____________________________________________", "ch270": "___________________", "ch271": "_________________________________", "ch272": "____________________________", "ch273": "__________________________________", "ch274": "_______________________________________", "ch275": "_____________________________________", "ch276": "________________________", "ch277": "_________________________________", "ch278": "__________________________________", "ch279": "____________________________________", "ch280": "__________", "ch281": "_______________", "ch282": "___________________", "ch283": "____", "yeyu_gd_01": "______________________________________________________", "yeyu_gd_02": "_______________________________________________", "yeyu_gd_03": "_________________________", "yeyu_gd_04": "____________________________________________________________________________________________________", "yeyu_gd_05": "FFFPVFFPPPFW___________________________________________________", "yeyu_gd_06": "________________PFPPVPVW_P_________________________________", "yeyu_gd_07": "_____________________", "yeyu_gd_08": "___________________", "yeyu_gd_09": "___________", "yeyu_gd_10": "__________________VVFRFWWF", "yeyu_gd_11": "__________", "yeyu_gd_12": "______________________________________________________________", "yeyu_gd_13": "____", "yeyu_gd_14": "____", "yeyu_gd_15": "___", "yeyu_gd_16": "_________", "yeyu_gd_17": "_______", "yeyu_gd_18": "RPWWWPVRPWWPPPPVPPPVWRRWVRWPFWPFW", "yeyu_gd_19": "__________________", "yeyu_gd_20": "_______", "yeyu_gd_21": "__________", "yeyu_gd_22": "__________________________", "yeyu_la_01": "PPPPPPPPPPPPPPPPPPPPWVVWWPPPWWPW", "yeyu_la_02": "_________________________________________", "yeyu_la_03": "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP", "yeyu_la_05": "__________________", "yeyu_la_06": "___________________", "yeyu_la_07": "P___________________________________________________________", "yeyu_la_08": "PFPPPPPPVPVVFWPPWP______________________________", "yeyu_la_09": "___________________________________________________", "yeyu_la_10": "WWWWWW", "yeyu_la_11": "_", "yeyu_pr_01": "________________________________________________", "yeyu_pr_02": "____________________________", "yeyu_pr_03": "_________________________________", "yeyu_pr_04": "_________________________", "yeyu_pr_05": "_______", "yeyu_pr_06": "_____________________", "yeyu_pr_07": "____________________", "yeyu_pr_08": "_____", "xhy_gs_01": "_________________________________________________________________________________________________________________________________", "xhy_gs_02": "_____________________________________________________________________________________________________", "xhy_gs_03": "VPPRPFVVVPFFWWVPPVWPPPPPPPPVRFRVVWFPRWWVFVFVPVFFPWPWFVRRWPFRVWVFPVVFFWVPFPPPFWWWFFPPPWWRWFWRFPRVVFVVWVWWWWWWW____FR_________________", "xhy_gs_04": "W_PFWWRV___________________________________________________", "xhy_gs_05": "____________________________________________________________________", "xhy_gs_06": "______________________________________________", "xhy_gs_07": "________________________________________________________________________________________", "xhy_gs_08": "______________________________", "xhy_gs_09": "_______________________________________________________________________", "xhy_gs_10": "____________________", "xhy_xd_11": "____F_______________________________", "xhy_xd_12": "________________________________________________________", "xhy_xd_13": "____________________________________________", "xhy_xd_14": "_____________________", "xhy_xd_15": "_____________________________", "xhy_xd_16": "__________________________________________", "xhy_xd_17": "___________________", "xhy_gl_18": "__________________", "xhy_gl_19": "________________________________________", "xhy_gl_20": "_____________________________________________", "xhy_gl_21": "_________________________________________________", "xhy_gl_22": "_____________", "xhy_gl_23": "____________________", "xhy_gl_24": "_____________________", "xhy_gl_25": "______________________", "s1_zt_1987": "_____________________", "s1_zt_1988": "______________________", "s1_zt_1989": "_______________________", "s1_zt_1990": "___________________R___", "s1_zt_1991": "______________________", "s1_zt_1992": "______________________", "s1_zt_1993": "_______________________", "s1_zt_1994": "______________________", "s1_zt_1995": "______________________", "s1_zt_1996": "______________________", "s1_zt_1997": "______________________", "s1_zt_1998": "_______________________", "s1_zt_1999": "_____________________", "s1_zt_2000": "_____________________", "s1_zt_2001": "____________________", "s1_zt_2002": "____________________", "s1_zt_2003": "______________________", "s1_zt_2004": "_______________________", "s1_zt_2005": "_______________________", "s1_zt_2006": "_______________________", "s1_zt_2007": "________________________", "s1_zt_2008": "____________________W__", "s1_zt_2009": "PFFRVVWRVWPRWWWWRWWWWWW", "s1_zt_2010": "PWWPPPPPPPPFFPVVFRWVFFW", "s1_zt_2011": "VPVPPWPPRPPPPPPPFVRVFWW", "s1_zt_2012": "FPWPVWWVFFWPRPRRWWVRRWW", "s1_zt_2013": "PVFVWWPWWVPPPPVWVFWWWWV", "s1_zt_2014": "VWPWPWPWVPPPVWPFWWWFWWW", "s1_zt_2015": "PPPPFWPVPPPWWPPVWPRVWWF", "s1_zt_2016": "PPWPVVPWPFPWPWP_R______", "s1_zt_2017": "PPWPWPPWRPPF___________", "s1_zt_2018": "RVFPPPPWPPVFPWVRRWWVWRR", "s1_zt_2019": "PPVWPWPP_FRRPRV________", "s1_zt_2020": "VWWWRRWWPPW____________", "s1_zt_2021": "FWPFPPFPVWPPWVPWPRWWWR", "s1_zt_2022": "______________________", "s1_zt_2023": "______________________", "s1_zt_2024": "______________________", "s1_zt_2025": "______________________", "s1_zt_2026": "______________________", "bg_jy_01": "__________________________", "bg_jy_02": "__________________________", "bg_jy_03": "_______________________", "bg_jy_04": "P__________________________________", "bg_jy_05": "FFPVFFVPPPFPFFFPPPPVPPPPFVVRWPFWVVPFVVFVFFPPWFFPPFV", "bg_jy_06": "VPVVPFWPPPPPVFFVPPPFFFVVP__", "bg_jy_07": "WWWWWWWW", "bg_jy_08": "RRV", "bg_jy_09": "VRWWRRWWWW", "bg_jy_10": "_________", "bg_xt_01": "________________________________________________________________________________________", "bg_xt_02": "__________________________________________________________________", "bg_xt_03": "____________________________________________", "bg_xt_04": "PFPVPFWWPVFPPPWWWPRFWPPFPFPPPPWPVRFFFPPFPPWWVVVPPRVWWWRVRWR_______________", "bg_xt_05": "FFFPFFFRPPWWWWWWWWWRPWPPFPPWVRWVVWWWWFWVVWPVWWWWWWWWPWWWWWWWWWWWFVFVWWRRWRWWWWWFWWWWWWW", "bg_xt_06": "PWRPVWWWRWWWWWPPRPVVFVRWPVWWWPFVWVVWWWPFWWVVFWVPWWWWWWWWPPRVWRWWWRRRRRFPWW", "bg_xt_07": "WVWWWWWWWWWWRWWWWWWWWWWWWWWWWWWWWWW", "bg_xt_08": "RWRWWWWWWWWWWWWWW____________________R_______", "bg_xt_09": "VWVWWRRWWVFRWRWFWVRVRRVRVWWWWRWRRRRRRRW", "bg_xt_10": "WPW____________________________________", "dlut_852_11": "__________", "dlut_852_13": "___________", "dlut_852_14": "_________", "dlut_852_15": "____________", "dlut_852_16": "_________", "dlut_852_17": "________", "dlut_852_18": "________", "dlut_852_19": "________", "dlut_852_20": "________", "dlut_852_22": "__________________________", "dlut_852_24": "___________________", "nju_851_07": "WPR________", "nju_851_08": "FP_PFP_____", "nju_851_09": "___________", "nju_851_10": "___________", "nju_851_11": "___________", "nju_851_12": "_______", "nju_851_13": "_______", "nju_851_14": "_______", "nju_851_15": "_______", "nju_851_16": "_______", "nju_851_17": "_______", "nju_851_18": "_________", "nju_851_19": "___________", "nju_851_20": "PPPPWVWPWRPPFVFRVRV", "nju_851_21": "WPVRPPVVWPWPWWFRF___", "nju_851_22": "PPFPVVFWWWPPWWPFWWWWWW", "nju_851_23": "PVRRWWRWWWFP__PW__W___", "nju_851_24": "__________", "nju_851_25": "_F_______", "nju_851_26": "__________", "whu_807_10": "________", "whu_807_11": "________", "whu_807_12": "________", "whu_807_13": "__________", "whu_807_14": "__________", "whu_807_15": "__________", "whu_807_16": "__________", "whu_807_17": "__________", "whu_807_18": "__________", "whu_807_20": "__________", "whu_807_21": "______________", "whu_807_22": "__________", "whu_807_23": "____________________", "whu_807_24": "___________", "xmu_847_10": "_____", "xmu_847_11": "_________", "xmu_847_12": "_________", "xmu_847_13": "__________", "xmu_847_14": "_________", "xmu_847_15": "__________", "xmu_847_16": "________", "xmu_847_17": "_________", "xmu_847_18": "_________", "xmu_847_19": "_________", "xmu_847_20": "________", "xmu_847_21": "________", "xmu_847_22": "________", "xmu_847_23": "________", "xmu_847_24": "________", "xmu_847_25": "________", "hust_824_06": "______________", "hust_824_07": "____________________", "hust_824_08": "____________________", "hust_824_09": "__________________________________", "hust_824_10": "_________________________________", "hust_824_11": "_______________________________", "hust_824_12": "___________________________", "hust_824_13": "________________________", "hust_824_14": "________________", "hust_824_15": "__________________", "hust_824_16": "________________________", "hust_824_17": "____________", "hust_824_18": "____________________", "hust_824_19": "_______________________", "hust_824_20": "__________________________", "hust_824_21": "RRWWPPWRWWRRRWWWWWRV________", "hust_824_22": "____________________________", "hust_824_23": "____________________________", "hust_824_24": "____________________________", "bg_qh_01": "PPPPPPPWFPPPRWPPWPPPPFFWVPPPPPPFRFPFWVFFPVRPWPVWWP", "bg_qh_02": "PVVVRVFWRRPPPRPVRRPFPPPPPWRWWWPPPWWRWWWPVFWWRRRRR", "bg_qh_03": "PPPPPPWRVWPWPPP__________________", "bg_qh_04": "PPPVPPW___________P_________________________________________________", "bg_qh_05": "_____________________________________", "bg_qh_06": "_______________________________________________________", "bg_qh_07": "__________________", "bg_qh_08": "______________________", "nju_851_mn_26_01": "_________", "nju_851_mn_26_02": "_________", "nju_851_mn_26_03": "_________", "nju_851_mn_26_04": "_________", "nju_851_mn_26_05": "_________", "nju_851_mn_26_06": "_________", "nju_851_zm_26_01": "___________", "nju_851_zm_26_02": "_________", "nju_851_zm_26_03": "__________", "nju_851_zm_26_04": "_________", "nju_851_zm_26_05": "___________", "nju_851_zm_26_06": "_________", "nju_851_zm_25_01": "______", "nju_851_zm_25_02": "_______", "nju_851_zm_25_03": "__________", "nju_851_zm_25_04": "_________", "nju_851_zm_25_05": "_________", "nju_851_zm_25_06": "________", "moni_ll_01": "______________________", "moni_ll_02": "______________________", "moni_ll_03": "______________________", "moni_ll_04": "______________________", "moni_ll_05": "______________________", "moni_ll_06": "______________________", "moni_zy_01": "RWFWPPWRWWPWVWFVRWWWRW", "moni_zy_02": "FPVWWWWVPWPVRWRVPWWVRW", "moni_zy_03": "______________________", "moni_zy_04": "______________________", "moni_zy_05": "______________________", "moni_zy_06": "______________________", "moni_zy_07": "______________________", "moni_zy_08": "______________________", "xuantian_ll26_01": "________________", "xuantian_ll26_02": "VPP_P_____F__P__", "xuantian_ll26_03": "VPW_____________", "xuantian_ll26_04": "________________", "xuantian_ll26_05": "________________", "xuantian_ll26_06": "________________", "pol_b25728-c100402": "F________", "pol_b25728-c100403": "___________________________________________________________________________________", "pol_b25728-c100404": "___________________________________________________________", "pol_b25728-c100405": "________________________________________________________", "pol_b25728-c100406": "WWWWWWFVWWVVVVWFFFWVWRFVWVRWVWWWRFFVWWFWFWWFWWRWFFFVWWWWWWWWWWVWPVFVVWWWWWWVWWWWWWWVVWFWWWWWW____________________", "pol_b25728-c100407": "____________________________________________", "pol_b25728-c100408": "__________________________", "pol_b25728-c100409": "______", "pol_b25728-c100410": "V___", "pol_b25728-c100411": "__________", "pol_b25728-c100412": "_____________________________________", "pol_b25728-c100413": "_______________________", "pol_b25728-c100414": "_________________", "pol_b25728-c100415": "__", "pol_b25728-c100416": "_____________", "pol_b25728-c100417": "_____", "pol_b25728-c100418": "____", "pol_b25728-c100421": "___________", "pol_b25728-c100422": "__________", "pol_b25728-c100423": "_______", "pol_b25728-c100424": "________", "pol_b25728-c100425": "________", "pol_b25728-c100426": "_________________", "pol_b25728-c100427": "_________________________________", "pol_b25728-c100428": "_________", "pol_b25728-c100429": "________________________", "pol_b25728-c100430": "__________", "pol_b25728-c100431": "__________________", "pol_b25728-c100432": "____________", "pol_b25728-c100433": "________", "pol_b25728-c100439": "__________", "pol_b25728-c100435": "_______", "pol_b25728-c100436": "__________", "pol_b25728-c100437": "_____", "pol_b25728-c100438": "_____________", "pol_b25728-c100440": "______________________", "pol_b25728-c100441": "______________________", "pol_b25728-c100442": "________________________", "pol_b25728-c100443": "_________________________________________", "pol_b25728-c100444": "______________________", "pol_b25728-c100445": "__________________________________________", "pol_b25728-c100446": "_______________________", "pol_b25728-c100447": "____________________________________", "pol_b25728-c100448": "____________", "pol_b25728-c100449": "_______", "pol_b25728-c100450": "_______", "pol_b25728-c100451": "________________", "pol_b25728-c100452": "__________", "pol_b25728-c100453": "_______________", "pol_b25728-c100454": "______________", "pol_b25728-c100455": "_________________________________________", "pol_b25728-c100456": "_______________________________________________________________"};
   var CAMP21_CHAPTER_META = {"ch1": {"t": 54, "s": "s1", "n": "基础30讲 - 高数 - 第1讲 函数极限与连续", "w": "基础30讲"}, "ch2": {"t": 26, "s": "s1", "n": "基础30讲 - 高数 - 第2讲 数列极限", "w": "基础30讲"}, "ch3": {"t": 21, "s": "s1", "n": "基础30讲 - 高数 - 第3讲 一元函数微分学的概念", "w": "基础30讲"}, "ch4": {"t": 27, "s": "s1", "n": "基础30讲 - 高数 - 第4讲 一元函数微分学的计算", "w": "基础30讲"}, "ch5": {"t": 24, "s": "s1", "n": "基础30讲 - 高数 - 第5讲 一元函数微分学的应用（一）", "w": "基础30讲"}, "ch6": {"t": 31, "s": "s1", "n": "基础30讲 - 高数 - 第6讲一元函数微分学的应用（二）", "w": "基础30讲"}, "ch7": {"t": 9, "s": "s1", "n": "基础30讲 - 高数 - 第7讲 一元函数微分学的应用（三）", "w": "基础30讲"}, "ch8": {"t": 26, "s": "s1", "n": "基础30讲 - 高数 - 第8讲 一元函数积分学的概念与性质", "w": "基础30讲"}, "ch9": {"t": 46, "s": "s1", "n": "基础30讲 - 高数 - 第9讲 一元函数积分学的计算", "w": "基础30讲"}, "ch10": {"t": 23, "s": "s1", "n": "基础30讲 - 高数 - 第10讲 一元函数积分学的应用（一）", "w": "基础30讲"}, "ch11": {"t": 17, "s": "s1", "n": "基础30讲 - 高数 - 第11讲 一元函数积分学的应用（二）", "w": "基础30讲"}, "ch12": {"t": 8, "s": "s1", "n": "基础30讲 - 高数 - 第12讲 一元函数积分学的应用（三）", "w": "基础30讲"}, "ch13": {"t": 36, "s": "s1", "n": "基础30讲 - 高数 - 第13讲 多元函数微分学", "w": "基础30讲"}, "ch14": {"t": 29, "s": "s1", "n": "基础30讲 - 高数 - 第14讲 二重积分", "w": "基础30讲"}, "ch15": {"t": 40, "s": "s1", "n": "基础30讲 - 高数 - 第15讲 微分方程", "w": "基础30讲"}, "ch16": {"t": 56, "s": "s1", "n": "基础30讲 - 高数 - 第16讲 无穷级数（仅数一、数三）", "w": "基础30讲"}, "ch17": {"t": 23, "s": "s1", "n": "基础30讲 - 高数 - 第17讲 多元函数积分学的预备知识（仅数一）", "w": "基础30讲"}, "ch18": {"t": 41, "s": "s1", "n": "基础30讲 - 高数 - 第18讲 多元函数积分学（仅数一）", "w": "基础30讲"}, "ch19": {"t": 24, "s": "s1", "n": "基础30讲 - 线代 - 第1讲 行列式", "w": "基础30讲"}, "ch20": {"t": 35, "s": "s1", "n": "基础30讲 - 线代 - 第2讲 矩阵", "w": "基础30讲"}, "ch21": {"t": 26, "s": "s1", "n": "基础30讲 - 线代 - 第3讲 向量组", "w": "基础30讲"}, "ch22": {"t": 25, "s": "s1", "n": "基础30讲 - 线代 - 第4讲 线性方程组", "w": "基础30讲"}, "ch23": {"t": 34, "s": "s1", "n": "基础30讲 - 线代 - 第5讲 特征值与特征向量", "w": "基础30讲"}, "ch24": {"t": 25, "s": "s1", "n": "基础30讲 - 线代 - 第6讲 二次型", "w": "基础30讲"}, "ch25": {"t": 34, "s": "s1", "n": "基础30讲 - 概率论 - 第1讲 随机事件与概率", "w": "基础30讲"}, "ch26": {"t": 36, "s": "s1", "n": "基础30讲 - 概率论 - 第2讲 一维随机变量及其分布", "w": "基础30讲"}, "ch27": {"t": 30, "s": "s1", "n": "基础30讲 - 概率论 - 第3讲 多维随机变量及其分布", "w": "基础30讲"}, "ch28": {"t": 26, "s": "s1", "n": "基础30讲 - 概率论 - 第4讲 随机变量的数字特征", "w": "基础30讲"}, "ch29": {"t": 11, "s": "s1", "n": "基础30讲 - 概率论 - 第5讲 大数定律与中心极限定理", "w": "基础30讲"}, "ch30": {"t": 29, "s": "s1", "n": "基础30讲 - 概率论 - 第6讲 数理统计", "w": "基础30讲"}, "ch31": {"t": 15, "s": "s1", "n": "强化36讲 - 高数 - 第1讲 函数极限与连续", "w": "强化36讲"}, "ch32": {"t": 13, "s": "s1", "n": "强化36讲 - 高数 - 第2讲 数列极限", "w": "强化36讲"}, "ch33": {"t": 8, "s": "s1", "n": "强化36讲 - 高数 - 第3讲 一元函数微分学的概念", "w": "强化36讲"}, "ch34": {"t": 9, "s": "s1", "n": "强化36讲 - 高数 - 第4讲 一元函数微分学的计算", "w": "强化36讲"}, "ch35": {"t": 9, "s": "s1", "n": "强化36讲 - 高数 - 第5讲 一元函数微分学的应用（一）—几何应用", "w": "强化36讲"}, "ch36": {"t": 22, "s": "s1", "n": "强化36讲 - 高数 - 第6讲 一元函数微分学的应用（二）—中值定理等", "w": "强化36讲"}, "ch37": {"t": 5, "s": "s1", "n": "强化36讲 - 高数 - 第7讲 一元函数微分学的应用（三）—物理应用与经济应用", "w": "强化36讲"}, "ch38": {"t": 8, "s": "s1", "n": "强化36讲 - 高数 - 第8讲 一元函数积分学的概念与性质", "w": "强化36讲"}, "ch39": {"t": 22, "s": "s1", "n": "强化36讲 - 高数 - 第9讲 一元函数积分学的概念与性质", "w": "强化36讲"}, "ch40": {"t": 15, "s": "s1", "n": "强化36讲 - 高数 - 第10讲 一元函数积分学的应用（一）—几何应用", "w": "强化36讲"}, "ch41": {"t": 19, "s": "s1", "n": "强化36讲 - 高数 - 第11讲 一元函数积分学的应用（二）—积分等式与积分不等式", "w": "强化36讲"}, "ch42": {"t": 7, "s": "s1", "n": "强化36讲 - 高数 - 第12讲 一元函数积分学的应用（三）—物理应用与经济应用", "w": "强化36讲"}, "ch43": {"t": 32, "s": "s1", "n": "强化36讲 - 高数 - 第13讲 多元函数微分学", "w": "强化36讲"}, "ch44": {"t": 8, "s": "s1", "n": "强化36讲 - 高数 - 第14讲 二重积分", "w": "强化36讲"}, "ch45": {"t": 19, "s": "s1", "n": "强化36讲 - 高数 - 第15讲 微分方程", "w": "强化36讲"}, "ch46": {"t": 57, "s": "s1", "n": "强化36讲 - 高数 - 第16讲 无穷级数（仅数一、三）", "w": "强化36讲"}, "ch47": {"t": 7, "s": "s1", "n": "强化36讲 - 高数 - 第17讲 多元函数积分学的预备知识（仅数一）", "w": "强化36讲"}, "ch48": {"t": 29, "s": "s1", "n": "强化36讲 - 高数 - 第18讲 多元函数积分学（仅数一）", "w": "强化36讲"}, "ch49": {"t": 7, "s": "s1", "n": "强化36讲 - 线代 - 第1讲 行列式", "w": "强化36讲"}, "ch50": {"t": 4, "s": "s1", "n": "强化36讲 - 线代 - 第2讲 余子式和代数余子式的计算", "w": "强化36讲"}, "ch51": {"t": 20, "s": "s1", "n": "强化36讲 - 线代 - 第3讲 矩阵运算", "w": "强化36讲"}, "ch52": {"t": 9, "s": "s1", "n": "强化36讲 - 线代 - 第4讲 矩阵的秩", "w": "强化36讲"}, "ch53": {"t": 10, "s": "s1", "n": "强化36讲 - 线代 - 第5讲 线性方程组", "w": "强化36讲"}, "ch54": {"t": 7, "s": "s1", "n": "强化36讲 - 线代 - 第6讲 向量组", "w": "强化36讲"}, "ch55": {"t": 4, "s": "s1", "n": "强化36讲 - 线代 - 第7讲 特征值与特征向量", "w": "强化36讲"}, "ch56": {"t": 10, "s": "s1", "n": "强化36讲 - 线代 - 第8讲 相似理论", "w": "强化36讲"}, "ch57": {"t": 15, "s": "s1", "n": "强化36讲 - 线代 - 第9讲 二次型", "w": "强化36讲"}, "ch58": {"t": 10, "s": "s1", "n": "强化36讲 - 概率论 - 第1讲 随机事件和概率", "w": "强化36讲"}, "ch59": {"t": 12, "s": "s1", "n": "强化36讲 - 概率论 - 第2讲 一维随机变量及其分布", "w": "强化36讲"}, "ch60": {"t": 6, "s": "s1", "n": "强化36讲 - 概率论 - 第3讲 一维随机变量函数的分布", "w": "强化36讲"}, "ch61": {"t": 4, "s": "s1", "n": "强化36讲 - 概率论 - 第4讲 多维随机变量及其分布", "w": "强化36讲"}, "ch62": {"t": 9, "s": "s1", "n": "强化36讲 - 概率论 - 第5讲 多维随机变量函数的分布", "w": "强化36讲"}, "ch63": {"t": 10, "s": "s1", "n": "强化36讲 - 概率论 - 第6讲 数字特征", "w": "强化36讲"}, "ch64": {"t": 3, "s": "s1", "n": "强化36讲 - 概率论 - 第7讲 大数定律与中心极限定理", "w": "强化36讲"}, "ch65": {"t": 5, "s": "s1", "n": "强化36讲 - 概率论 - 第8讲 统计量及其分布", "w": "强化36讲"}, "ch66": {"t": 12, "s": "s1", "n": "强化36讲 - 概率论 - 第9讲 参数估计与假设检验", "w": "强化36讲"}, "ch67": {"t": 23, "s": "s1", "n": "1000题 - 基础篇-高数 - 第1章 函数极限与连续", "w": "1000题"}, "ch68": {"t": 12, "s": "s1", "n": "1000题 - 基础篇-高数 - 第2讲 数列极限", "w": "1000题"}, "ch69": {"t": 15, "s": "s1", "n": "1000题 - 基础篇-高数 - 第3章 一元函数微分学的概念", "w": "1000题"}, "ch70": {"t": 18, "s": "s1", "n": "1000题 - 基础篇-高数 - 第4章 一元函数微分学的计算", "w": "1000题"}, "ch71": {"t": 24, "s": "s1", "n": "1000题 - 基础篇-高数 - 第5章 一元函数微分学的应用（一）—几何应用", "w": "1000题"}, "ch72": {"t": 22, "s": "s1", "n": "1000题 - 基础篇-高数 - 第6章 一元函数微分学的应用（二）—中值定理与不等式", "w": "1000题"}, "ch73": {"t": 5, "s": "s1", "n": "1000题 - 基础篇-高数 - 第7章 一元函数微分学的应用（三）—物理应用", "w": "1000题"}, "ch74": {"t": 25, "s": "s1", "n": "1000题 - 基础篇-高数 - 第8章 一元函数积分学的概念与性质", "w": "1000题"}, "ch75": {"t": 36, "s": "s1", "n": "1000题 - 基础篇-高数 - 第9章 一元函数积分学的计算", "w": "1000题"}, "ch76": {"t": 19, "s": "s1", "n": "1000题 - 基础篇-高数 - 第10章 一元函数积分的应用（一）—几何应用", "w": "1000题"}, "ch77": {"t": 11, "s": "s1", "n": "1000题 - 基础篇-高数 - 第11章 一元函数积分学的应用（二）—积分等式与积分不等式", "w": "1000题"}, "ch78": {"t": 7, "s": "s1", "n": "1000题 - 基础篇-高数 - 第12章 一元函数积分学的应用（三）—物理应用", "w": "1000题"}, "ch79": {"t": 24, "s": "s1", "n": "1000题 - 基础篇-高数 - 第13章 多元函数微分学", "w": "1000题"}, "ch80": {"t": 24, "s": "s1", "n": "1000题 - 基础篇-高数 - 第14章 二重积分", "w": "1000题"}, "ch81": {"t": 21, "s": "s1", "n": "1000题 - 基础篇-高数 - 第15章 微分方程", "w": "1000题"}, "ch82": {"t": 19, "s": "s1", "n": "1000题 - 基础篇-高数 - 第16章 无穷级数", "w": "1000题"}, "ch83": {"t": 14, "s": "s1", "n": "1000题 - 基础篇-高数 - 第17章 多元函数积分学的预备知识", "w": "1000题"}, "ch84": {"t": 16, "s": "s1", "n": "1000题 - 基础篇-高数 - 第18章 多元函数积分学", "w": "1000题"}, "ch85": {"t": 16, "s": "s1", "n": "1000题 - 基础篇-高数 - 零基础", "w": "1000题"}, "ch86": {"t": 38, "s": "s1", "n": "1000题 - 强化篇-高数 - 第1章 函数极限与连续", "w": "1000题"}, "ch87": {"t": 11, "s": "s1", "n": "1000题 - 强化篇-高数 - 第2章 数列极限", "w": "1000题"}, "ch88": {"t": 22, "s": "s1", "n": "1000题 - 强化篇-高数 - 第3章 一元函数微分学的概念", "w": "1000题"}, "ch89": {"t": 16, "s": "s1", "n": "1000题 - 强化篇-高数 - 第4章 一元函数微分学的计算", "w": "1000题"}, "ch90": {"t": 33, "s": "s1", "n": "1000题 - 强化篇-高数 - 第5章 一元函数微分学的应用—几何应用", "w": "1000题"}, "ch91": {"t": 21, "s": "s1", "n": "1000题 - 强化篇-高数 - 第6章 一元函数为分析的应用—中值定理等", "w": "1000题"}, "ch92": {"t": 3, "s": "s1", "n": "1000题 - 强化篇-高数 - 第7章 一元函数微分学的应用—物理应用", "w": "1000题"}, "ch93": {"t": 19, "s": "s1", "n": "1000题 - 强化篇-高数 - 第8章 一元函数积分学的概念与性质", "w": "1000题"}, "ch94": {"t": 28, "s": "s1", "n": "1000题 - 强化篇-高数 - 第9章 一元函数积分学的计算", "w": "1000题"}, "ch95": {"t": 26, "s": "s1", "n": "1000题 - 强化篇-高数 - 第10章 一元函数积分学的应用—几何应用", "w": "1000题"}, "ch96": {"t": 9, "s": "s1", "n": "1000题 - 强化篇-高数 - 第11章 一元函数积分学的应用—积分等式与积分不等式", "w": "1000题"}, "ch97": {"t": 5, "s": "s1", "n": "1000题 - 强化篇-高数 - 第12章 一元函数积分学的应用—物理应用", "w": "1000题"}, "ch98": {"t": 40, "s": "s1", "n": "1000题 - 强化篇-高数 - 第13章 多元函数微分学", "w": "1000题"}, "ch99": {"t": 41, "s": "s1", "n": "1000题 - 强化篇-高数 - 第14章 二重积分", "w": "1000题"}, "ch100": {"t": 40, "s": "s1", "n": "1000题 - 强化篇-高数 - 第15章 微分方程", "w": "1000题"}, "ch101": {"t": 40, "s": "s1", "n": "1000题 - 强化篇-高数 - 第16章 无穷级数", "w": "1000题"}, "ch102": {"t": 15, "s": "s1", "n": "1000题 - 强化篇-高数 - 第17章 多元函数积分学的预备知识", "w": "1000题"}, "ch103": {"t": 29, "s": "s1", "n": "1000题 - 强化篇-高数 - 第18章 多元函数积分学", "w": "1000题"}, "ch104": {"t": 11, "s": "s1", "n": "1000题 - 基础篇-线代 - 第1章 行列式", "w": "1000题"}, "ch105": {"t": 19, "s": "s1", "n": "1000题 - 基础篇-线代 - 第2章 矩阵", "w": "1000题"}, "ch106": {"t": 15, "s": "s1", "n": "1000题 - 基础篇-线代 - 第3章 向量组", "w": "1000题"}, "ch107": {"t": 17, "s": "s1", "n": "1000题 - 基础篇-线代 - 第4章 线性方程组", "w": "1000题"}, "ch108": {"t": 23, "s": "s1", "n": "1000题 - 基础篇-线代 - 第5章 特征值与特征向量", "w": "1000题"}, "ch109": {"t": 22, "s": "s1", "n": "1000题 - 基础篇-线代 - 第6章 二次型", "w": "1000题"}, "ch110": {"t": 7, "s": "s1", "n": "1000题 - 强化篇-线代 - 第1章 行列式", "w": "1000题"}, "ch111": {"t": 4, "s": "s1", "n": "1000题 - 强化篇-线代 - 第2章 余子式和代数余子式的计算", "w": "1000题"}, "ch112": {"t": 10, "s": "s1", "n": "1000题 - 强化篇-线代 - 第3章 矩阵运算", "w": "1000题"}, "ch113": {"t": 8, "s": "s1", "n": "1000题 - 强化篇-线代 - 第4章 矩阵的秩", "w": "1000题"}, "ch114": {"t": 15, "s": "s1", "n": "1000题 - 强化篇-线代 - 第5章 线性方程组", "w": "1000题"}, "ch115": {"t": 11, "s": "s1", "n": "1000题 - 强化篇-线代 - 第6章 向量组", "w": "1000题"}, "ch116": {"t": 9, "s": "s1", "n": "1000题 - 强化篇-线代 - 第7章 特征值与特征向量", "w": "1000题"}, "ch117": {"t": 21, "s": "s1", "n": "1000题 - 强化篇-线代 - 第8章 相似理论", "w": "1000题"}, "ch118": {"t": 27, "s": "s1", "n": "1000题 - 强化篇-线代 - 第9章 二次型", "w": "1000题"}, "ch119": {"t": 14, "s": "s1", "n": "1000题 - 基础篇-概率论 - 第1章 随机事件与概率", "w": "1000题"}, "ch120": {"t": 11, "s": "s1", "n": "1000题 - 基础篇-概率论 - 第2章 一维随机变量及其分布", "w": "1000题"}, "ch121": {"t": 14, "s": "s1", "n": "1000题 - 基础篇-概率论 - 第3章 多维随机变量的数字特征", "w": "1000题"}, "ch122": {"t": 21, "s": "s1", "n": "1000题 - 基础篇-概率论 - 第4章 随机变量的数字特征", "w": "1000题"}, "ch123": {"t": 8, "s": "s1", "n": "1000题 - 基础篇-概率论 - 第5章 大数定律与中心极限定理", "w": "1000题"}, "ch124": {"t": 24, "s": "s1", "n": "1000题 - 基础篇-概率论 - 第6章 数理统计", "w": "1000题"}, "ch125": {"t": 6, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第1章 随机事件和概率", "w": "1000题"}, "ch126": {"t": 9, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第2章 一维随机变量及其分布", "w": "1000题"}, "ch127": {"t": 7, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第3章 一维随机变量函数的分布", "w": "1000题"}, "ch128": {"t": 7, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第4章 多维随机变量及其分布", "w": "1000题"}, "ch129": {"t": 12, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第5章 多维随机变量函数的分布", "w": "1000题"}, "ch130": {"t": 21, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第6章 数字特征", "w": "1000题"}, "ch131": {"t": 4, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第7章 大数定律与中心极限定理", "w": "1000题"}, "ch132": {"t": 12, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第8章 统计量及其分布", "w": "1000题"}, "ch133": {"t": 30, "s": "s1", "n": "1000题 - 强化篇-概率论 - 第9章 参数估计与假设检验", "w": "1000题"}, "ch134": {"t": 41, "s": "s1", "n": "李范全书 - 高数 - 第1章 极限、连续与求极限的方法", "w": "李范全书"}, "ch135": {"t": 39, "s": "s1", "n": "李范全书 - 高数 - 第2章 一元函数的导数与微分概念及其计算", "w": "李范全书"}, "ch136": {"t": 63, "s": "s1", "n": "李范全书 - 高数 - 第3章 一元函数积分概念、计算及应用", "w": "李范全书"}, "ch137": {"t": 43, "s": "s1", "n": "李范全书 - 高数 - 第4章 微分中值定理及其应用", "w": "李范全书"}, "ch138": {"t": 16, "s": "s1", "n": "李范全书 - 高数 - 第5章 一元函数的泰勒公式及其应用", "w": "李范全书"}, "ch139": {"t": 24, "s": "s1", "n": "李范全书 - 高数 - 第6章 常微分方程", "w": "李范全书"}, "ch140": {"t": 20, "s": "s1", "n": "李范全书 - 高数 - 第7章 向量代数和空间解析几何", "w": "李范全书"}, "ch141": {"t": 32, "s": "s1", "n": "李范全书 - 高数 - 第8章 多元函数微分学", "w": "李范全书"}, "ch142": {"t": 70, "s": "s1", "n": "李范全书 - 高数 - 第9章 多元函数积分的概念、计算及其应用", "w": "李范全书"}, "ch143": {"t": 25, "s": "s1", "n": "李范全书 - 高数 - 第10章 多元函数积分学中的基本公式及其应用", "w": "李范全书"}, "ch144": {"t": 26, "s": "s1", "n": "李范全书 - 高数 - 第11章 无穷级数", "w": "李范全书"}, "ch145": {"t": 22, "s": "s1", "n": "李范全书 - 线代 - 第1章 行列式", "w": "李范全书"}, "ch146": {"t": 41, "s": "s1", "n": "李范全书 - 线代 - 第2章 矩阵", "w": "李范全书"}, "ch147": {"t": 57, "s": "s1", "n": "李范全书 - 线代 - 第3章 向量组的线性关系与秩", "w": "李范全书"}, "ch148": {"t": 38, "s": "s1", "n": "李范全书 - 线代 - 第4章 线性方程组", "w": "李范全书"}, "ch149": {"t": 49, "s": "s1", "n": "李范全书 - 线代 - 第5章 特征向量与特征值，相似，对角化", "w": "李范全书"}, "ch150": {"t": 31, "s": "s1", "n": "李范全书 - 线代 - 第6章 二次型", "w": "李范全书"}, "ch151": {"t": 27, "s": "s1", "n": "李范全书 - 概率论 - 第1章 随机事件和概率", "w": "李范全书"}, "ch152": {"t": 34, "s": "s1", "n": "李范全书 - 概率论 - 第2章 随机变量及其分布", "w": "李范全书"}, "ch153": {"t": 30, "s": "s1", "n": "李范全书 - 概率论 - 第3章 多维随机变量及其分布", "w": "李范全书"}, "ch154": {"t": 28, "s": "s1", "n": "李范全书 - 概率论 - 第4章 随机变量的数字特征", "w": "李范全书"}, "ch155": {"t": 13, "s": "s1", "n": "李范全书 - 概率论 - 第5章 大数定律和中心极限定理", "w": "李范全书"}, "ch156": {"t": 17, "s": "s1", "n": "李范全书 - 概率论 - 第6章 数理统计的基本概念", "w": "李范全书"}, "ch157": {"t": 20, "s": "s1", "n": "李范全书 - 概率论 - 第7章 参数估计和假设检验", "w": "李范全书"}, "ch158": {"t": 58, "s": "s1", "n": "李林880 - 高数 - 第1章 函数、极限、连续", "w": "李林880"}, "ch159": {"t": 114, "s": "s1", "n": "李林880 - 高数 - 第2章 一元函数微分学", "w": "李林880"}, "ch160": {"t": 135, "s": "s1", "n": "李林880 - 高数 - 第3章 一元函数积分学", "w": "李林880"}, "ch161": {"t": 25, "s": "s1", "n": "李林880 - 高数 - 第4章 空间解析几何", "w": "李林880"}, "ch162": {"t": 68, "s": "s1", "n": "李林880 - 高数 - 第5章 多元函数微分学", "w": "李林880"}, "ch163": {"t": 82, "s": "s1", "n": "李林880 - 高数 - 第6章 重积分", "w": "李林880"}, "ch164": {"t": 66, "s": "s1", "n": "李林880 - 高数 - 第7章 微分方程", "w": "李林880"}, "ch165": {"t": 71, "s": "s1", "n": "李林880 - 高数 - 第8章 无穷级数", "w": "李林880"}, "ch166": {"t": 68, "s": "s1", "n": "李林880 - 高数 - 第9章 曲线积分与曲面积分", "w": "李林880"}, "ch167": {"t": 34, "s": "s1", "n": "李林880 - 线代 - 第10章 行列式", "w": "李林880"}, "ch168": {"t": 49, "s": "s1", "n": "李林880 - 线代 - 第11章 矩阵", "w": "李林880"}, "ch169": {"t": 39, "s": "s1", "n": "李林880 - 线代 - 第12章 向量", "w": "李林880"}, "ch170": {"t": 48, "s": "s1", "n": "李林880 - 线代 - 第13章 线性方程组", "w": "李林880"}, "ch171": {"t": 56, "s": "s1", "n": "李林880 - 线代 - 第14章 相似矩阵", "w": "李林880"}, "ch172": {"t": 55, "s": "s1", "n": "李林880 - 线代 - 第15章 二次型", "w": "李林880"}, "ch173": {"t": 24, "s": "s1", "n": "李林880 - 概率论 - 第16章 随机事件及其概率", "w": "李林880"}, "ch174": {"t": 33, "s": "s1", "n": "李林880 - 概率论 - 第17章 随机变量及其分布", "w": "李林880"}, "ch175": {"t": 40, "s": "s1", "n": "李林880 - 概率论 - 第18章 多维随机变量及其分布", "w": "李林880"}, "ch176": {"t": 50, "s": "s1", "n": "李林880 - 概率论 - 第19章 随机变量的数字特征", "w": "李林880"}, "ch177": {"t": 10, "s": "s1", "n": "李林880 - 概率论 - 第20章 大数定律与中心极限定理", "w": "李林880"}, "ch178": {"t": 25, "s": "s1", "n": "李林880 - 概率论 - 第21章 数理统计的基本概念", "w": "李林880"}, "ch179": {"t": 24, "s": "s1", "n": "李林880 - 概率论 - 第22章 参数估计", "w": "李林880"}, "ch180": {"t": 7, "s": "s1", "n": "李林880 - 概率论 - 第23章 假设检验", "w": "李林880"}, "opt880-ch01": {"t": 75, "s": "s1", "n": "李林880优化版 - 高数 - 第1章 函数、极限、连续", "w": "李林880优化版"}, "opt880-ch02": {"t": 123, "s": "s1", "n": "李林880优化版 - 高数 - 第2章 一元函数微分学及其应用", "w": "李林880优化版"}, "opt880-ch03": {"t": 176, "s": "s1", "n": "李林880优化版 - 高数 - 第3章 一元函数积分学及其应用", "w": "李林880优化版"}, "opt880-ch04": {"t": 28, "s": "s1", "n": "李林880优化版 - 高数 - 第4章 空间解析几何", "w": "李林880优化版"}, "opt880-ch05": {"t": 74, "s": "s1", "n": "李林880优化版 - 高数 - 第5章 多元函数微分学及其应用", "w": "李林880优化版"}, "opt880-ch06": {"t": 84, "s": "s1", "n": "李林880优化版 - 高数 - 第6章 重积分及其应用", "w": "李林880优化版"}, "opt880-ch07": {"t": 73, "s": "s1", "n": "李林880优化版 - 高数 - 第7章 微分方程及其应用", "w": "李林880优化版"}, "opt880-ch08": {"t": 96, "s": "s1", "n": "李林880优化版 - 高数 - 第8章 无穷级数", "w": "李林880优化版"}, "opt880-ch09": {"t": 77, "s": "s1", "n": "李林880优化版 - 高数 - 第9章 曲线积分与曲面积分", "w": "李林880优化版"}, "opt880-ch10": {"t": 33, "s": "s1", "n": "李林880优化版 - 线代 - 第10章 行列式", "w": "李林880优化版"}, "opt880-ch11": {"t": 47, "s": "s1", "n": "李林880优化版 - 线代 - 第11章 矩阵", "w": "李林880优化版"}, "opt880-ch12": {"t": 44, "s": "s1", "n": "李林880优化版 - 线代 - 第12章 向量", "w": "李林880优化版"}, "opt880-ch13": {"t": 52, "s": "s1", "n": "李林880优化版 - 线代 - 第13章 线性方程组", "w": "李林880优化版"}, "opt880-ch14": {"t": 82, "s": "s1", "n": "李林880优化版 - 线代 - 第14章 相似矩阵", "w": "李林880优化版"}, "opt880-ch15": {"t": 76, "s": "s1", "n": "李林880优化版 - 线代 - 第15章 二次型", "w": "李林880优化版"}, "opt880-ch16": {"t": 30, "s": "s1", "n": "李林880优化版 - 概率论 - 第16章 随机事件及其概率", "w": "李林880优化版"}, "opt880-ch17": {"t": 32, "s": "s1", "n": "李林880优化版 - 概率论 - 第17章 随机变量及其分布", "w": "李林880优化版"}, "opt880-ch18": {"t": 53, "s": "s1", "n": "李林880优化版 - 概率论 - 第18章 多维随机变量及其分布", "w": "李林880优化版"}, "opt880-ch19": {"t": 62, "s": "s1", "n": "李林880优化版 - 概率论 - 第19章 随机变量的数字特征", "w": "李林880优化版"}, "opt880-ch20": {"t": 9, "s": "s1", "n": "李林880优化版 - 概率论 - 第20章 大数定律与中心极限定理", "w": "李林880优化版"}, "opt880-ch21": {"t": 30, "s": "s1", "n": "李林880优化版 - 概率论 - 第21章 数理统计的基本概念", "w": "李林880优化版"}, "opt880-ch22": {"t": 46, "s": "s1", "n": "李林880优化版 - 概率论 - 第22章 参数估计", "w": "李林880优化版"}, "opt880-ch23": {"t": 6, "s": "s1", "n": "李林880优化版 - 概率论 - 第23章 假设检验", "w": "李林880优化版"}, "ch261": {"t": 55, "s": "s1", "n": "李艳芳900 - 高数 - 第1章 函数、极限、连续", "w": "李艳芳900"}, "ch262": {"t": 100, "s": "s1", "n": "李艳芳900 - 高数 - 第2章 一元函数微分学", "w": "李艳芳900"}, "ch263": {"t": 85, "s": "s1", "n": "李艳芳900 - 高数 - 第3章 一元函数积分学", "w": "李艳芳900"}, "ch264": {"t": 10, "s": "s1", "n": "李艳芳900 - 高数 - 第4章 向量代数与空间解析几何", "w": "李艳芳900"}, "ch265": {"t": 65, "s": "s1", "n": "李艳芳900 - 高数 - 第5章 多元函数微分学", "w": "李艳芳900"}, "ch266": {"t": 60, "s": "s1", "n": "李艳芳900 - 高数 - 第6章 重积分及其应用", "w": "李艳芳900"}, "ch267": {"t": 60, "s": "s1", "n": "李艳芳900 - 高数 - 第7章 常微分方程", "w": "李艳芳900"}, "ch268": {"t": 55, "s": "s1", "n": "李艳芳900 - 高数 - 第8章 无穷级数", "w": "李艳芳900"}, "ch269": {"t": 45, "s": "s1", "n": "李艳芳900 - 高数 - 第9章 曲线积分与曲面积分", "w": "李艳芳900"}, "ch270": {"t": 19, "s": "s1", "n": "李艳芳900 - 线代 - 第10章 行列式", "w": "李艳芳900"}, "ch271": {"t": 33, "s": "s1", "n": "李艳芳900 - 线代 - 第11章 矩阵", "w": "李艳芳900"}, "ch272": {"t": 28, "s": "s1", "n": "李艳芳900 - 线代 - 第12章 向量", "w": "李艳芳900"}, "ch273": {"t": 34, "s": "s1", "n": "李艳芳900 - 线代 - 第13章 线性方程组", "w": "李艳芳900"}, "ch274": {"t": 39, "s": "s1", "n": "李艳芳900 - 线代 - 第14章 矩阵的特征值与特征向量", "w": "李艳芳900"}, "ch275": {"t": 37, "s": "s1", "n": "李艳芳900 - 线代 - 第15章 二次型", "w": "李艳芳900"}, "ch276": {"t": 24, "s": "s1", "n": "李艳芳900 - 概率论 - 第16章 随机事件及其概率", "w": "李艳芳900"}, "ch277": {"t": 33, "s": "s1", "n": "李艳芳900 - 概率论 - 第17章 随机变量及其分布", "w": "李艳芳900"}, "ch278": {"t": 34, "s": "s1", "n": "李艳芳900 - 概率论 - 第18章 多维随机变量及其分布", "w": "李艳芳900"}, "ch279": {"t": 36, "s": "s1", "n": "李艳芳900 - 概率论 - 第19章 随机变量的数字特征", "w": "李艳芳900"}, "ch280": {"t": 10, "s": "s1", "n": "李艳芳900 - 概率论 - 第20章 大数定律与中心极限定理", "w": "李艳芳900"}, "ch281": {"t": 15, "s": "s1", "n": "李艳芳900 - 概率论 - 第21章 数理统计的基本概念", "w": "李艳芳900"}, "ch282": {"t": 19, "s": "s1", "n": "李艳芳900 - 概率论 - 第22章 参数估计", "w": "李艳芳900"}, "ch283": {"t": 4, "s": "s1", "n": "李艳芳900 - 概率论 - 第23章 假设检验", "w": "李艳芳900"}, "yeyu_gd_01": {"t": 54, "s": "s1", "n": "夜雨强化 - 高数 - 第1章 极限", "w": "夜雨强化"}, "yeyu_gd_02": {"t": 47, "s": "s1", "n": "夜雨强化 - 高数 - 第2章 导数与高阶导数", "w": "夜雨强化"}, "yeyu_gd_03": {"t": 25, "s": "s1", "n": "夜雨强化 - 高数 - 第3章 极值点与拐点", "w": "夜雨强化"}, "yeyu_gd_04": {"t": 100, "s": "s1", "n": "夜雨强化 - 高数 - 第4章 微分中值定理与不等式证明", "w": "夜雨强化"}, "yeyu_gd_05": {"t": 63, "s": "s1", "n": "夜雨强化 - 高数 - 第5章 不定积分计算方法", "w": "夜雨强化"}, "yeyu_gd_06": {"t": 59, "s": "s1", "n": "夜雨强化 - 高数 - 第6章 定积分与反常积分", "w": "夜雨强化"}, "yeyu_gd_07": {"t": 21, "s": "s1", "n": "夜雨强化 - 高数 - 第7章 定积分的几何与物理应用", "w": "夜雨强化"}, "yeyu_gd_08": {"t": 19, "s": "s1", "n": "夜雨强化 - 高数 - 第8章 多元函数微分学与极值最值", "w": "夜雨强化"}, "yeyu_gd_09": {"t": 11, "s": "s1", "n": "夜雨强化 - 高数 - 第9章 常微分方程与微分方程综合题", "w": "夜雨强化"}, "yeyu_gd_10": {"t": 26, "s": "s1", "n": "夜雨强化 - 高数 - 第10章 二重积分计算与对称性", "w": "夜雨强化"}, "yeyu_gd_11": {"t": 10, "s": "s1", "n": "夜雨强化 - 高数 - 第11章 三重积分计算与柱面球面坐标", "w": "夜雨强化"}, "yeyu_gd_12": {"t": 62, "s": "s1", "n": "夜雨强化 - 高数 - 第12章 常数项级数与幂级数", "w": "夜雨强化"}, "yeyu_gd_13": {"t": 4, "s": "s1", "n": "夜雨强化 - 高数 - 第13章 傅里叶级数", "w": "夜雨强化"}, "yeyu_gd_14": {"t": 4, "s": "s1", "n": "夜雨强化 - 高数 - 第14章 第一类与第二类曲线积分", "w": "夜雨强化"}, "yeyu_gd_15": {"t": 3, "s": "s1", "n": "夜雨强化 - 高数 - 第15章 第一类与第二类曲面积分及高斯斯托克斯公式", "w": "夜雨强化"}, "yeyu_gd_16": {"t": 9, "s": "s1", "n": "夜雨强化 - 高数 - 第16章 微分不等式与积分不等式综合", "w": "夜雨强化"}, "yeyu_gd_17": {"t": 7, "s": "s1", "n": "夜雨强化 - 高数 - 第17章 空间解析几何", "w": "夜雨强化"}, "yeyu_gd_18": {"t": 33, "s": "s1", "n": "夜雨强化 - 高数 - 第18章 极限概念与选择题特训", "w": "夜雨强化"}, "yeyu_gd_19": {"t": 18, "s": "s1", "n": "夜雨强化 - 高数 - 第19章 导数概念与选择题特训", "w": "夜雨强化"}, "yeyu_gd_20": {"t": 7, "s": "s1", "n": "夜雨强化 - 高数 - 第20章 积分概念与选择题特训", "w": "夜雨强化"}, "yeyu_gd_21": {"t": 10, "s": "s1", "n": "夜雨强化 - 高数 - 第21章 多元微分概念与选择题特训", "w": "夜雨强化"}, "yeyu_gd_22": {"t": 26, "s": "s1", "n": "夜雨强化 - 高数 - 第22章 级数概念与选择题特训", "w": "夜雨强化"}, "yeyu_la_01": {"t": 32, "s": "s1", "n": "夜雨强化 - 线代 - 第1章 行列式的计算与性质", "w": "夜雨强化"}, "yeyu_la_02": {"t": 41, "s": "s1", "n": "夜雨强化 - 线代 - 第2章 向量与线性相关性", "w": "夜雨强化"}, "yeyu_la_03": {"t": 42, "s": "s1", "n": "夜雨强化 - 线代 - 第3章 常见矩阵的性质与运算", "w": "夜雨强化"}, "yeyu_la_05": {"t": 18, "s": "s1", "n": "夜雨强化 - 线代 - 第5章 矩阵 An 次方计算", "w": "夜雨强化"}, "yeyu_la_06": {"t": 19, "s": "s1", "n": "夜雨强化 - 线代 - 第6章 矩阵及分块矩阵的秩", "w": "夜雨强化"}, "yeyu_la_07": {"t": 60, "s": "s1", "n": "夜雨强化 - 线代 - 第7章 线性方程组所有考法", "w": "夜雨强化"}, "yeyu_la_08": {"t": 48, "s": "s1", "n": "夜雨强化 - 线代 - 第8章 相似的所有考法", "w": "夜雨强化"}, "yeyu_la_09": {"t": 51, "s": "s1", "n": "夜雨强化 - 线代 - 第9章 二次型的所有考法", "w": "夜雨强化"}, "yeyu_la_10": {"t": 6, "s": "s1", "n": "夜雨强化 - 线代 - 第10章 专题一：AB=BA 专题（矩阵可交换）", "w": "夜雨强化"}, "yeyu_la_11": {"t": 1, "s": "s1", "n": "夜雨强化 - 线代 - 第11章 专题二：AB=0 专题", "w": "夜雨强化"}, "yeyu_pr_01": {"t": 48, "s": "s1", "n": "夜雨强化 - 概率论 - 第1章 随机事件及其概率", "w": "夜雨强化"}, "yeyu_pr_02": {"t": 28, "s": "s1", "n": "夜雨强化 - 概率论 - 第2章 一维随机变量及其分布", "w": "夜雨强化"}, "yeyu_pr_03": {"t": 33, "s": "s1", "n": "夜雨强化 - 概率论 - 第3章 二维随机变量及其分布", "w": "夜雨强化"}, "yeyu_pr_04": {"t": 25, "s": "s1", "n": "夜雨强化 - 概率论 - 第4章 随机变量的数字特征", "w": "夜雨强化"}, "yeyu_pr_05": {"t": 7, "s": "s1", "n": "夜雨强化 - 概率论 - 第5章 大数定律和中心极限定理", "w": "夜雨强化"}, "yeyu_pr_06": {"t": 21, "s": "s1", "n": "夜雨强化 - 概率论 - 第6章 数理统计的基本概念", "w": "夜雨强化"}, "yeyu_pr_07": {"t": 20, "s": "s1", "n": "夜雨强化 - 概率论 - 第7章 参数估计", "w": "夜雨强化"}, "yeyu_pr_08": {"t": 5, "s": "s1", "n": "夜雨强化 - 概率论 - 第8章 假设检验与置信区间", "w": "夜雨强化"}, "xhy_gs_01": {"t": 129, "s": "s1", "n": "邂逅遗憾 - 高数 - 第1章 极限与函数性质", "w": "邂逅遗憾"}, "xhy_gs_02": {"t": 101, "s": "s1", "n": "邂逅遗憾 - 高数 - 第2章 导数", "w": "邂逅遗憾"}, "xhy_gs_03": {"t": 132, "s": "s1", "n": "邂逅遗憾 - 高数 - 第3章 积分", "w": "邂逅遗憾"}, "xhy_gs_04": {"t": 59, "s": "s1", "n": "邂逅遗憾 - 高数 - 第4章 微分方程", "w": "邂逅遗憾"}, "xhy_gs_05": {"t": 68, "s": "s1", "n": "邂逅遗憾 - 高数 - 第5章 多元微分", "w": "邂逅遗憾"}, "xhy_gs_06": {"t": 46, "s": "s1", "n": "邂逅遗憾 - 高数 - 第6章 二重积分", "w": "邂逅遗憾"}, "xhy_gs_07": {"t": 88, "s": "s1", "n": "邂逅遗憾 - 高数 - 第7章 无穷级数", "w": "邂逅遗憾"}, "xhy_gs_08": {"t": 30, "s": "s1", "n": "邂逅遗憾 - 高数 - 第8章 空间几何", "w": "邂逅遗憾"}, "xhy_gs_09": {"t": 71, "s": "s1", "n": "邂逅遗憾 - 高数 - 第9章 三重积分和线面积分", "w": "邂逅遗憾"}, "xhy_gs_10": {"t": 20, "s": "s1", "n": "邂逅遗憾 - 高数 - 第10章 空间几何线面积分补充", "w": "邂逅遗憾"}, "xhy_xd_11": {"t": 36, "s": "s1", "n": "邂逅遗憾 - 线代 - 第1章 行列式", "w": "邂逅遗憾"}, "xhy_xd_12": {"t": 56, "s": "s1", "n": "邂逅遗憾 - 线代 - 第2章 矩阵", "w": "邂逅遗憾"}, "xhy_xd_13": {"t": 44, "s": "s1", "n": "邂逅遗憾 - 线代 - 第3章 向量", "w": "邂逅遗憾"}, "xhy_xd_14": {"t": 21, "s": "s1", "n": "邂逅遗憾 - 线代 - 第4章 方程组", "w": "邂逅遗憾"}, "xhy_xd_15": {"t": 29, "s": "s1", "n": "邂逅遗憾 - 线代 - 第5章 相似", "w": "邂逅遗憾"}, "xhy_xd_16": {"t": 42, "s": "s1", "n": "邂逅遗憾 - 线代 - 第6章 二次型", "w": "邂逅遗憾"}, "xhy_xd_17": {"t": 19, "s": "s1", "n": "邂逅遗憾 - 线代 - 第7章 数一专项", "w": "邂逅遗憾"}, "xhy_gl_18": {"t": 18, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第1章 随机事件及其概率", "w": "邂逅遗憾"}, "xhy_gl_19": {"t": 40, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第2章 一维随机变量", "w": "邂逅遗憾"}, "xhy_gl_20": {"t": 45, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第3章 二维随机变量", "w": "邂逅遗憾"}, "xhy_gl_21": {"t": 49, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第4章 随机变量的数字特征", "w": "邂逅遗憾"}, "xhy_gl_22": {"t": 13, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第5章 大数定律与中心极限定理", "w": "邂逅遗憾"}, "xhy_gl_23": {"t": 20, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第6章 抽样分布", "w": "邂逅遗憾"}, "xhy_gl_24": {"t": 21, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第7章 参数估计", "w": "邂逅遗憾"}, "xhy_gl_25": {"t": 22, "s": "s1", "n": "邂逅遗憾 - 概率论 - 第8章 区间估计与假设检验", "w": "邂逅遗憾"}, "s1_zt_1987": {"t": 21, "s": "s1", "n": "历年真题 - 1987年真题", "w": "历年真题"}, "s1_zt_1988": {"t": 22, "s": "s1", "n": "历年真题 - 1988年真题", "w": "历年真题"}, "s1_zt_1989": {"t": 23, "s": "s1", "n": "历年真题 - 1989年真题", "w": "历年真题"}, "s1_zt_1990": {"t": 23, "s": "s1", "n": "历年真题 - 1990年真题", "w": "历年真题"}, "s1_zt_1991": {"t": 22, "s": "s1", "n": "历年真题 - 1991年真题", "w": "历年真题"}, "s1_zt_1992": {"t": 22, "s": "s1", "n": "历年真题 - 1992年真题", "w": "历年真题"}, "s1_zt_1993": {"t": 23, "s": "s1", "n": "历年真题 - 1993年真题", "w": "历年真题"}, "s1_zt_1994": {"t": 22, "s": "s1", "n": "历年真题 - 1994年真题", "w": "历年真题"}, "s1_zt_1995": {"t": 22, "s": "s1", "n": "历年真题 - 1995年真题", "w": "历年真题"}, "s1_zt_1996": {"t": 22, "s": "s1", "n": "历年真题 - 1996年真题", "w": "历年真题"}, "s1_zt_1997": {"t": 22, "s": "s1", "n": "历年真题 - 1997年真题", "w": "历年真题"}, "s1_zt_1998": {"t": 23, "s": "s1", "n": "历年真题 - 1998年真题", "w": "历年真题"}, "s1_zt_1999": {"t": 21, "s": "s1", "n": "历年真题 - 1999年真题", "w": "历年真题"}, "s1_zt_2000": {"t": 21, "s": "s1", "n": "历年真题 - 2000年真题", "w": "历年真题"}, "s1_zt_2001": {"t": 20, "s": "s1", "n": "历年真题 - 2001年真题", "w": "历年真题"}, "s1_zt_2002": {"t": 20, "s": "s1", "n": "历年真题 - 2002年真题", "w": "历年真题"}, "s1_zt_2003": {"t": 22, "s": "s1", "n": "历年真题 - 2003年真题", "w": "历年真题"}, "s1_zt_2004": {"t": 23, "s": "s1", "n": "历年真题 - 2004年真题", "w": "历年真题"}, "s1_zt_2005": {"t": 23, "s": "s1", "n": "历年真题 - 2005年真题", "w": "历年真题"}, "s1_zt_2006": {"t": 23, "s": "s1", "n": "历年真题 - 2006年真题", "w": "历年真题"}, "s1_zt_2007": {"t": 24, "s": "s1", "n": "历年真题 - 2007年真题", "w": "历年真题"}, "s1_zt_2008": {"t": 23, "s": "s1", "n": "历年真题 - 2008年真题", "w": "历年真题"}, "s1_zt_2009": {"t": 23, "s": "s1", "n": "历年真题 - 2009年真题", "w": "历年真题"}, "s1_zt_2010": {"t": 23, "s": "s1", "n": "历年真题 - 2010年真题", "w": "历年真题"}, "s1_zt_2011": {"t": 23, "s": "s1", "n": "历年真题 - 2011年真题", "w": "历年真题"}, "s1_zt_2012": {"t": 23, "s": "s1", "n": "历年真题 - 2012年真题", "w": "历年真题"}, "s1_zt_2013": {"t": 23, "s": "s1", "n": "历年真题 - 2013年真题", "w": "历年真题"}, "s1_zt_2014": {"t": 23, "s": "s1", "n": "历年真题 - 2014年真题", "w": "历年真题"}, "s1_zt_2015": {"t": 23, "s": "s1", "n": "历年真题 - 2015年真题", "w": "历年真题"}, "s1_zt_2016": {"t": 23, "s": "s1", "n": "历年真题 - 2016年真题", "w": "历年真题"}, "s1_zt_2017": {"t": 23, "s": "s1", "n": "历年真题 - 2017年真题", "w": "历年真题"}, "s1_zt_2018": {"t": 23, "s": "s1", "n": "历年真题 - 2018年真题", "w": "历年真题"}, "s1_zt_2019": {"t": 23, "s": "s1", "n": "历年真题 - 2019年真题", "w": "历年真题"}, "s1_zt_2020": {"t": 23, "s": "s1", "n": "历年真题 - 2020年真题", "w": "历年真题"}, "s1_zt_2021": {"t": 22, "s": "s1", "n": "历年真题 - 2021年真题", "w": "历年真题"}, "s1_zt_2022": {"t": 22, "s": "s1", "n": "历年真题 - 2022年真题", "w": "历年真题"}, "s1_zt_2023": {"t": 22, "s": "s1", "n": "历年真题 - 2023年真题", "w": "历年真题"}, "s1_zt_2024": {"t": 22, "s": "s1", "n": "历年真题 - 2024年真题", "w": "历年真题"}, "s1_zt_2025": {"t": 22, "s": "s1", "n": "历年真题 - 2025年真题", "w": "历年真题"}, "s1_zt_2026": {"t": 22, "s": "s1", "n": "历年真题 - 2026年真题", "w": "历年真题"}, "bg_jy_01": {"t": 26, "s": "zhuanye", "n": "波哥讲义例题 - 第1章 信号与系统绪论", "w": "波哥讲义例题"}, "bg_jy_02": {"t": 26, "s": "zhuanye", "n": "波哥讲义例题 - 第2章 连续系统时域分析", "w": "波哥讲义例题"}, "bg_jy_03": {"t": 23, "s": "zhuanye", "n": "波哥讲义例题 - 第3章 离散系统时域分析", "w": "波哥讲义例题"}, "bg_jy_04": {"t": 35, "s": "zhuanye", "n": "波哥讲义例题 - 第4章 傅里叶变换理论及频域分析", "w": "波哥讲义例题"}, "bg_jy_05": {"t": 51, "s": "zhuanye", "n": "波哥讲义例题 - 第5章 连续时间系统的复频域分析", "w": "波哥讲义例题"}, "bg_jy_06": {"t": 27, "s": "zhuanye", "n": "波哥讲义例题 - 第6章 离散时间系统的z域分析", "w": "波哥讲义例题"}, "bg_jy_07": {"t": 8, "s": "zhuanye", "n": "波哥讲义例题 - 第7章 离散时间傅氏分析", "w": "波哥讲义例题"}, "bg_jy_08": {"t": 3, "s": "zhuanye", "n": "波哥讲义例题 - 第8章 傅氏变换运用", "w": "波哥讲义例题"}, "bg_jy_09": {"t": 10, "s": "zhuanye", "n": "波哥讲义例题 - 第9章 电路专题", "w": "波哥讲义例题"}, "bg_jy_10": {"t": 9, "s": "zhuanye", "n": "波哥讲义例题 - 第10章 状态变量分析", "w": "波哥讲义例题"}, "bg_xt_01": {"t": 88, "s": "zhuanye", "n": "波哥习题集 - 第1章 信号及其基本运算", "w": "波哥习题集"}, "bg_xt_02": {"t": 66, "s": "zhuanye", "n": "波哥习题集 - 第2章 连续信号的时域分析", "w": "波哥习题集"}, "bg_xt_03": {"t": 44, "s": "zhuanye", "n": "波哥习题集 - 第3章 离散系统时域分析", "w": "波哥习题集"}, "bg_xt_04": {"t": 74, "s": "zhuanye", "n": "波哥习题集 - 第4章 傅里叶变换及频域分析", "w": "波哥习题集"}, "bg_xt_05": {"t": 87, "s": "zhuanye", "n": "波哥习题集 - 第5章 拉普拉斯变换", "w": "波哥习题集"}, "bg_xt_06": {"t": 74, "s": "zhuanye", "n": "波哥习题集 - 第6章 z 变换", "w": "波哥习题集"}, "bg_xt_07": {"t": 35, "s": "zhuanye", "n": "波哥习题集 - 第7章 离散时间傅氏变换", "w": "波哥习题集"}, "bg_xt_08": {"t": 45, "s": "zhuanye", "n": "波哥习题集 - 第8章 傅氏变换的应用", "w": "波哥习题集"}, "bg_xt_09": {"t": 39, "s": "zhuanye", "n": "波哥习题集 - 第9章 电路专题", "w": "波哥习题集"}, "bg_xt_10": {"t": 39, "s": "zhuanye", "n": "波哥习题集 - 第10章 状态变量分析", "w": "波哥习题集"}, "dlut_852_11": {"t": 10, "s": "zhuanye", "n": "大连理工大学852 - 2011年真题", "w": "大连理工大学852"}, "dlut_852_13": {"t": 11, "s": "zhuanye", "n": "大连理工大学852 - 2013年真题", "w": "大连理工大学852"}, "dlut_852_14": {"t": 9, "s": "zhuanye", "n": "大连理工大学852 - 2014年真题", "w": "大连理工大学852"}, "dlut_852_15": {"t": 12, "s": "zhuanye", "n": "大连理工大学852 - 2015年真题", "w": "大连理工大学852"}, "dlut_852_16": {"t": 9, "s": "zhuanye", "n": "大连理工大学852 - 2016年真题", "w": "大连理工大学852"}, "dlut_852_17": {"t": 8, "s": "zhuanye", "n": "大连理工大学852 - 2017年真题", "w": "大连理工大学852"}, "dlut_852_18": {"t": 8, "s": "zhuanye", "n": "大连理工大学852 - 2018年真题", "w": "大连理工大学852"}, "dlut_852_19": {"t": 8, "s": "zhuanye", "n": "大连理工大学852 - 2019年真题", "w": "大连理工大学852"}, "dlut_852_20": {"t": 8, "s": "zhuanye", "n": "大连理工大学852 - 2020年真题", "w": "大连理工大学852"}, "dlut_852_22": {"t": 26, "s": "zhuanye", "n": "大连理工大学852 - 2022年真题", "w": "大连理工大学852"}, "dlut_852_24": {"t": 19, "s": "zhuanye", "n": "大连理工大学852 - 2024年真题", "w": "大连理工大学852"}, "nju_851_07": {"t": 11, "s": "zhuanye", "n": "南京大学851 - 2007年真题", "w": "南京大学851"}, "nju_851_08": {"t": 11, "s": "zhuanye", "n": "南京大学851 - 2008年真题", "w": "南京大学851"}, "nju_851_09": {"t": 11, "s": "zhuanye", "n": "南京大学851 - 2009年真题", "w": "南京大学851"}, "nju_851_10": {"t": 11, "s": "zhuanye", "n": "南京大学851 - 2010年真题", "w": "南京大学851"}, "nju_851_11": {"t": 11, "s": "zhuanye", "n": "南京大学851 - 2011年真题", "w": "南京大学851"}, "nju_851_12": {"t": 7, "s": "zhuanye", "n": "南京大学851 - 2012年真题", "w": "南京大学851"}, "nju_851_13": {"t": 7, "s": "zhuanye", "n": "南京大学851 - 2013年真题", "w": "南京大学851"}, "nju_851_14": {"t": 7, "s": "zhuanye", "n": "南京大学851 - 2014年真题", "w": "南京大学851"}, "nju_851_15": {"t": 7, "s": "zhuanye", "n": "南京大学851 - 2015年真题", "w": "南京大学851"}, "nju_851_16": {"t": 7, "s": "zhuanye", "n": "南京大学851 - 2016年真题", "w": "南京大学851"}, "nju_851_17": {"t": 7, "s": "zhuanye", "n": "南京大学851 - 2017年真题", "w": "南京大学851"}, "nju_851_18": {"t": 9, "s": "zhuanye", "n": "南京大学851 - 2018年真题", "w": "南京大学851"}, "nju_851_19": {"t": 11, "s": "zhuanye", "n": "南京大学851 - 2019年真题", "w": "南京大学851"}, "nju_851_20": {"t": 19, "s": "zhuanye", "n": "南京大学851 - 2020年真题", "w": "南京大学851"}, "nju_851_21": {"t": 20, "s": "zhuanye", "n": "南京大学851 - 2021年真题", "w": "南京大学851"}, "nju_851_22": {"t": 22, "s": "zhuanye", "n": "南京大学851 - 2022年真题", "w": "南京大学851"}, "nju_851_23": {"t": 22, "s": "zhuanye", "n": "南京大学851 - 2023年真题", "w": "南京大学851"}, "nju_851_24": {"t": 10, "s": "zhuanye", "n": "南京大学851 - 2024年真题", "w": "南京大学851"}, "nju_851_25": {"t": 9, "s": "zhuanye", "n": "南京大学851 - 2025年真题", "w": "南京大学851"}, "nju_851_26": {"t": 10, "s": "zhuanye", "n": "南京大学851 - 2026年真题", "w": "南京大学851"}, "whu_807_10": {"t": 8, "s": "zhuanye", "n": "武汉大学807 - 2010年真题", "w": "武汉大学807"}, "whu_807_11": {"t": 8, "s": "zhuanye", "n": "武汉大学807 - 2011年真题", "w": "武汉大学807"}, "whu_807_12": {"t": 8, "s": "zhuanye", "n": "武汉大学807 - 2012年真题", "w": "武汉大学807"}, "whu_807_13": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2013年真题", "w": "武汉大学807"}, "whu_807_14": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2014年真题", "w": "武汉大学807"}, "whu_807_15": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2015年真题", "w": "武汉大学807"}, "whu_807_16": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2016年真题", "w": "武汉大学807"}, "whu_807_17": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2017年真题", "w": "武汉大学807"}, "whu_807_18": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2018年真题", "w": "武汉大学807"}, "whu_807_20": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2020年真题", "w": "武汉大学807"}, "whu_807_21": {"t": 14, "s": "zhuanye", "n": "武汉大学807 - 2021年真题", "w": "武汉大学807"}, "whu_807_22": {"t": 10, "s": "zhuanye", "n": "武汉大学807 - 2022年真题", "w": "武汉大学807"}, "whu_807_23": {"t": 20, "s": "zhuanye", "n": "武汉大学807 - 2023年真题", "w": "武汉大学807"}, "whu_807_24": {"t": 11, "s": "zhuanye", "n": "武汉大学807 - 2024年真题", "w": "武汉大学807"}, "xmu_847_10": {"t": 5, "s": "zhuanye", "n": "厦门大学847 - 2010年真题", "w": "厦门大学847"}, "xmu_847_11": {"t": 9, "s": "zhuanye", "n": "厦门大学847 - 2011年真题", "w": "厦门大学847"}, "xmu_847_12": {"t": 9, "s": "zhuanye", "n": "厦门大学847 - 2012年真题", "w": "厦门大学847"}, "xmu_847_13": {"t": 10, "s": "zhuanye", "n": "厦门大学847 - 2013年真题", "w": "厦门大学847"}, "xmu_847_14": {"t": 9, "s": "zhuanye", "n": "厦门大学847 - 2014年真题", "w": "厦门大学847"}, "xmu_847_15": {"t": 10, "s": "zhuanye", "n": "厦门大学847 - 2015年真题", "w": "厦门大学847"}, "xmu_847_16": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2016年真题", "w": "厦门大学847"}, "xmu_847_17": {"t": 9, "s": "zhuanye", "n": "厦门大学847 - 2017年真题", "w": "厦门大学847"}, "xmu_847_18": {"t": 9, "s": "zhuanye", "n": "厦门大学847 - 2018年真题", "w": "厦门大学847"}, "xmu_847_19": {"t": 9, "s": "zhuanye", "n": "厦门大学847 - 2019年真题", "w": "厦门大学847"}, "xmu_847_20": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2020年真题", "w": "厦门大学847"}, "xmu_847_21": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2021年真题", "w": "厦门大学847"}, "xmu_847_22": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2022年真题", "w": "厦门大学847"}, "xmu_847_23": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2023年真题", "w": "厦门大学847"}, "xmu_847_24": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2024年真题", "w": "厦门大学847"}, "xmu_847_25": {"t": 8, "s": "zhuanye", "n": "厦门大学847 - 2025年真题", "w": "厦门大学847"}, "hust_824_06": {"t": 14, "s": "zhuanye", "n": "华中科技大学824 - 2006年真题", "w": "华中科技大学824"}, "hust_824_07": {"t": 20, "s": "zhuanye", "n": "华中科技大学824 - 2007年真题", "w": "华中科技大学824"}, "hust_824_08": {"t": 20, "s": "zhuanye", "n": "华中科技大学824 - 2008年真题", "w": "华中科技大学824"}, "hust_824_09": {"t": 34, "s": "zhuanye", "n": "华中科技大学824 - 2009年真题", "w": "华中科技大学824"}, "hust_824_10": {"t": 33, "s": "zhuanye", "n": "华中科技大学824 - 2010年真题", "w": "华中科技大学824"}, "hust_824_11": {"t": 31, "s": "zhuanye", "n": "华中科技大学824 - 2011年真题", "w": "华中科技大学824"}, "hust_824_12": {"t": 27, "s": "zhuanye", "n": "华中科技大学824 - 2012年真题", "w": "华中科技大学824"}, "hust_824_13": {"t": 24, "s": "zhuanye", "n": "华中科技大学824 - 2013年真题", "w": "华中科技大学824"}, "hust_824_14": {"t": 16, "s": "zhuanye", "n": "华中科技大学824 - 2014年真题", "w": "华中科技大学824"}, "hust_824_15": {"t": 18, "s": "zhuanye", "n": "华中科技大学824 - 2015年真题", "w": "华中科技大学824"}, "hust_824_16": {"t": 24, "s": "zhuanye", "n": "华中科技大学824 - 2016年真题", "w": "华中科技大学824"}, "hust_824_17": {"t": 12, "s": "zhuanye", "n": "华中科技大学824 - 2017年真题", "w": "华中科技大学824"}, "hust_824_18": {"t": 20, "s": "zhuanye", "n": "华中科技大学824 - 2018年真题", "w": "华中科技大学824"}, "hust_824_19": {"t": 23, "s": "zhuanye", "n": "华中科技大学824 - 2019年真题", "w": "华中科技大学824"}, "hust_824_20": {"t": 26, "s": "zhuanye", "n": "华中科技大学824 - 2020年真题", "w": "华中科技大学824"}, "hust_824_21": {"t": 28, "s": "zhuanye", "n": "华中科技大学824 - 2021年真题", "w": "华中科技大学824"}, "hust_824_22": {"t": 28, "s": "zhuanye", "n": "华中科技大学824 - 2022年真题", "w": "华中科技大学824"}, "hust_824_23": {"t": 28, "s": "zhuanye", "n": "华中科技大学824 - 2023年真题", "w": "华中科技大学824"}, "hust_824_24": {"t": 28, "s": "zhuanye", "n": "华中科技大学824 - 2024年真题", "w": "华中科技大学824"}, "bg_qh_01": {"t": 50, "s": "zhuanye", "n": "波哥强化习题集 - 第1章 信号及其基本运算", "w": "波哥强化习题集"}, "bg_qh_02": {"t": 49, "s": "zhuanye", "n": "波哥强化习题集 - 第2章 连续系统的时域分析", "w": "波哥强化习题集"}, "bg_qh_03": {"t": 33, "s": "zhuanye", "n": "波哥强化习题集 - 第3章 离散系统的时域分析", "w": "波哥强化习题集"}, "bg_qh_04": {"t": 68, "s": "zhuanye", "n": "波哥强化习题集 - 第4章 连续时间信号的傅里叶分析", "w": "波哥强化习题集"}, "bg_qh_05": {"t": 37, "s": "zhuanye", "n": "波哥强化习题集 - 第5章 拉普拉斯变换", "w": "波哥强化习题集"}, "bg_qh_06": {"t": 55, "s": "zhuanye", "n": "波哥强化习题集 - 第6章 离散时域复频域分析", "w": "波哥强化习题集"}, "bg_qh_07": {"t": 18, "s": "zhuanye", "n": "波哥强化习题集 - 第7章 电路专题", "w": "波哥强化习题集"}, "bg_qh_08": {"t": 22, "s": "zhuanye", "n": "波哥强化习题集 - 第8章 状态变量分析", "w": "波哥强化习题集"}, "nju_851_mn_26_01": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26刺猬哥终极预测卷（一）", "w": "南京大学851模拟卷"}, "nju_851_mn_26_02": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26刺猬哥终极预测卷（二）", "w": "南京大学851模拟卷"}, "nju_851_mn_26_03": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26刺猬哥终极预测卷（三）", "w": "南京大学851模拟卷"}, "nju_851_mn_26_04": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26刺猬哥终极预测卷（四）", "w": "南京大学851模拟卷"}, "nju_851_mn_26_05": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26刺猬哥终极预测卷（五）", "w": "南京大学851模拟卷"}, "nju_851_mn_26_06": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26刺猬哥终极预测卷（六）", "w": "南京大学851模拟卷"}, "nju_851_zm_26_01": {"t": 11, "s": "zhuanye", "n": "南京大学851模拟卷 - 26芝麻南大851模拟卷（一）", "w": "南京大学851模拟卷"}, "nju_851_zm_26_02": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26芝麻南大851模拟卷（二）", "w": "南京大学851模拟卷"}, "nju_851_zm_26_03": {"t": 10, "s": "zhuanye", "n": "南京大学851模拟卷 - 26芝麻南大851模拟卷（三）", "w": "南京大学851模拟卷"}, "nju_851_zm_26_04": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26芝麻南大851模拟卷（四）", "w": "南京大学851模拟卷"}, "nju_851_zm_26_05": {"t": 11, "s": "zhuanye", "n": "南京大学851模拟卷 - 26芝麻南大851模拟卷（五）", "w": "南京大学851模拟卷"}, "nju_851_zm_26_06": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 26芝麻南大851模拟卷（六）", "w": "南京大学851模拟卷"}, "nju_851_zm_25_01": {"t": 6, "s": "zhuanye", "n": "南京大学851模拟卷 - 25芝麻南大851模拟卷（一）", "w": "南京大学851模拟卷"}, "nju_851_zm_25_02": {"t": 7, "s": "zhuanye", "n": "南京大学851模拟卷 - 25芝麻南大851模拟卷（二）", "w": "南京大学851模拟卷"}, "nju_851_zm_25_03": {"t": 10, "s": "zhuanye", "n": "南京大学851模拟卷 - 25芝麻南大851模拟卷（三）", "w": "南京大学851模拟卷"}, "nju_851_zm_25_04": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 25芝麻南大851模拟卷（四）", "w": "南京大学851模拟卷"}, "nju_851_zm_25_05": {"t": 9, "s": "zhuanye", "n": "南京大学851模拟卷 - 25芝麻南大851模拟卷（五）", "w": "南京大学851模拟卷"}, "nju_851_zm_25_06": {"t": 8, "s": "zhuanye", "n": "南京大学851模拟卷 - 25芝麻南大851模拟卷（六）", "w": "南京大学851模拟卷"}, "moni_ll_01": {"t": 22, "s": "moni", "n": "李林六套卷 - 第1套", "w": "李林六套卷"}, "moni_ll_02": {"t": 22, "s": "moni", "n": "李林六套卷 - 第2套", "w": "李林六套卷"}, "moni_ll_03": {"t": 22, "s": "moni", "n": "李林六套卷 - 第3套", "w": "李林六套卷"}, "moni_ll_04": {"t": 22, "s": "moni", "n": "李林六套卷 - 第4套", "w": "李林六套卷"}, "moni_ll_05": {"t": 22, "s": "moni", "n": "李林六套卷 - 第5套", "w": "李林六套卷"}, "moni_ll_06": {"t": 22, "s": "moni", "n": "李林六套卷 - 第6套", "w": "李林六套卷"}, "moni_zy_01": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第1套", "w": "张宇八套卷"}, "moni_zy_02": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第2套", "w": "张宇八套卷"}, "moni_zy_03": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第3套", "w": "张宇八套卷"}, "moni_zy_04": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第4套", "w": "张宇八套卷"}, "moni_zy_05": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第5套", "w": "张宇八套卷"}, "moni_zy_06": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第6套", "w": "张宇八套卷"}, "moni_zy_07": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第7套", "w": "张宇八套卷"}, "moni_zy_08": {"t": 22, "s": "moni", "n": "张宇八套卷 - 第8套", "w": "张宇八套卷"}, "xuantian_ll26_01": {"t": 16, "s": "xuantian", "n": "26李林六套卷 - 第1套", "w": "26李林六套卷"}, "xuantian_ll26_02": {"t": 16, "s": "xuantian", "n": "26李林六套卷 - 第2套", "w": "26李林六套卷"}, "xuantian_ll26_03": {"t": 16, "s": "xuantian", "n": "26李林六套卷 - 第3套", "w": "26李林六套卷"}, "xuantian_ll26_04": {"t": 16, "s": "xuantian", "n": "26李林六套卷 - 第4套", "w": "26李林六套卷"}, "xuantian_ll26_05": {"t": 16, "s": "xuantian", "n": "26李林六套卷 - 第5套", "w": "26李林六套卷"}, "xuantian_ll26_06": {"t": 16, "s": "xuantian", "n": "26李林六套卷 - 第6套", "w": "26李林六套卷"}, "pol_b25728-c100402": {"t": 9, "s": "pol", "n": "27肖1000 - 马原 - 导论", "w": "27肖1000"}, "pol_b25728-c100403": {"t": 83, "s": "pol", "n": "27肖1000 - 马原 - 第一章世界的物质性及发展规律", "w": "27肖1000"}, "pol_b25728-c100404": {"t": 59, "s": "pol", "n": "27肖1000 - 马原 - 第二章实践与认识及其发展规律", "w": "27肖1000"}, "pol_b25728-c100405": {"t": 56, "s": "pol", "n": "27肖1000 - 马原 - 第三章人类社会及其发展规律", "w": "27肖1000"}, "pol_b25728-c100406": {"t": 113, "s": "pol", "n": "27肖1000 - 马原 - 第四章资本主义的本质及规律", "w": "27肖1000"}, "pol_b25728-c100407": {"t": 44, "s": "pol", "n": "27肖1000 - 马原 - 第五章资本主义的发展及其趋势", "w": "27肖1000"}, "pol_b25728-c100408": {"t": 26, "s": "pol", "n": "27肖1000 - 马原 - 第六章社会主义的发展及其规律", "w": "27肖1000"}, "pol_b25728-c100409": {"t": 6, "s": "pol", "n": "27肖1000 - 马原 - 第七章共产主义崇高理想及其最终实现", "w": "27肖1000"}, "pol_b25728-c100410": {"t": 4, "s": "pol", "n": "27肖1000 - 毛中特 - 导论  马克思主义中国化时代化的历史进程与理论成果", "w": "27肖1000"}, "pol_b25728-c100411": {"t": 10, "s": "pol", "n": "27肖1000 - 毛中特 - 第一章 毛泽东思想及其历史地位", "w": "27肖1000"}, "pol_b25728-c100412": {"t": 37, "s": "pol", "n": "27肖1000 - 毛中特 - 第二章 新民主主义革命理论", "w": "27肖1000"}, "pol_b25728-c100413": {"t": 23, "s": "pol", "n": "27肖1000 - 毛中特 - 第三章 社会主义改造理论", "w": "27肖1000"}, "pol_b25728-c100414": {"t": 17, "s": "pol", "n": "27肖1000 - 毛中特 - 第四章 社会主义建设道路初步探索", "w": "27肖1000"}, "pol_b25728-c100415": {"t": 2, "s": "pol", "n": "27肖1000 - 毛中特 - 第五章 中国特色社会主义理论体系的形成发展", "w": "27肖1000"}, "pol_b25728-c100416": {"t": 13, "s": "pol", "n": "27肖1000 - 毛中特 - 第六章 邓小平理论", "w": "27肖1000"}, "pol_b25728-c100417": {"t": 5, "s": "pol", "n": "27肖1000 - 毛中特 - 第七章 “三个代表”重要思想", "w": "27肖1000"}, "pol_b25728-c100418": {"t": 4, "s": "pol", "n": "27肖1000 - 毛中特 - 第八章 科学发展观", "w": "27肖1000"}, "pol_b25728-c100421": {"t": 11, "s": "pol", "n": "27肖1000 - 新思想 - 导论", "w": "27肖1000"}, "pol_b25728-c100422": {"t": 10, "s": "pol", "n": "27肖1000 - 新思想 - 第一章 新时代坚持和发展中国特色社会主义", "w": "27肖1000"}, "pol_b25728-c100423": {"t": 7, "s": "pol", "n": "27肖1000 - 新思想 - 第二章 以中国式现代化全面推进中华民族伟大复兴", "w": "27肖1000"}, "pol_b25728-c100424": {"t": 8, "s": "pol", "n": "27肖1000 - 新思想 - 第三章 坚持党的全面领导", "w": "27肖1000"}, "pol_b25728-c100425": {"t": 8, "s": "pol", "n": "27肖1000 - 新思想 - 第四章 坚持以人民为中心", "w": "27肖1000"}, "pol_b25728-c100426": {"t": 17, "s": "pol", "n": "27肖1000 - 新思想 - 第五章 全面深化改革开放", "w": "27肖1000"}, "pol_b25728-c100427": {"t": 33, "s": "pol", "n": "27肖1000 - 新思想 - 第六章 推动高质量发展", "w": "27肖1000"}, "pol_b25728-c100428": {"t": 9, "s": "pol", "n": "27肖1000 - 新思想 - 第七章 社会主义现代化建设的教育、科技、人才战略", "w": "27肖1000"}, "pol_b25728-c100429": {"t": 24, "s": "pol", "n": "27肖1000 - 新思想 - 第八章 发展全过程人民民主", "w": "27肖1000"}, "pol_b25728-c100430": {"t": 10, "s": "pol", "n": "27肖1000 - 新思想 - 第九章 全面依法治国(结合第五部分第六章的内容进行复习)", "w": "27肖1000"}, "pol_b25728-c100431": {"t": 18, "s": "pol", "n": "27肖1000 - 新思想 - 第十章 建设社会主义文化强国", "w": "27肖1000"}, "pol_b25728-c100432": {"t": 12, "s": "pol", "n": "27肖1000 - 新思想 - 第十一章 以保障和改善民生为重点加强社会建设", "w": "27肖1000"}, "pol_b25728-c100433": {"t": 8, "s": "pol", "n": "27肖1000 - 新思想 - 第十二章 建设社会主义生态文明", "w": "27肖1000"}, "pol_b25728-c100439": {"t": 10, "s": "pol", "n": "27肖1000 - 新思想 - 第十三章 维护和塑造国家安全", "w": "27肖1000"}, "pol_b25728-c100435": {"t": 7, "s": "pol", "n": "27肖1000 - 新思想 - 第十四章 建设巩固国防和强大人民军队", "w": "27肖1000"}, "pol_b25728-c100436": {"t": 10, "s": "pol", "n": "27肖1000 - 新思想 - 第十五章 坚持“一国两制”和推进祖国完全统一", "w": "27肖1000"}, "pol_b25728-c100437": {"t": 5, "s": "pol", "n": "27肖1000 - 新思想 - 第十六章 中国特色大国外交和推动构建人类命运共同体", "w": "27肖1000"}, "pol_b25728-c100438": {"t": 13, "s": "pol", "n": "27肖1000 - 新思想 - 第十七章 全面从严治党", "w": "27肖1000"}, "pol_b25728-c100440": {"t": 22, "s": "pol", "n": "27肖1000 - 史纲 - 第一章 进入近代后中华民族的磨难与抗争", "w": "27肖1000"}, "pol_b25728-c100441": {"t": 22, "s": "pol", "n": "27肖1000 - 史纲 - 第二章 不同社会力量对国家出路的早期探索", "w": "27肖1000"}, "pol_b25728-c100442": {"t": 24, "s": "pol", "n": "27肖1000 - 史纲 - 第三章 辛亥革命与君主专制制度的终结", "w": "27肖1000"}, "pol_b25728-c100443": {"t": 41, "s": "pol", "n": "27肖1000 - 史纲 - 第四章 中国共产党成立和中国革命新局面", "w": "27肖1000"}, "pol_b25728-c100444": {"t": 22, "s": "pol", "n": "27肖1000 - 史纲 - 第五章 中国革命的新道路", "w": "27肖1000"}, "pol_b25728-c100445": {"t": 42, "s": "pol", "n": "27肖1000 - 史纲 - 第六章 中华民族的抗日战争", "w": "27肖1000"}, "pol_b25728-c100446": {"t": 23, "s": "pol", "n": "27肖1000 - 史纲 - 第七章 为建立新中国而奋斗", "w": "27肖1000"}, "pol_b25728-c100447": {"t": 36, "s": "pol", "n": "27肖1000 - 史纲 - 第八章 中华人民共和国的成立与中国社会主义建设道路的探索", "w": "27肖1000"}, "pol_b25728-c100448": {"t": 12, "s": "pol", "n": "27肖1000 - 史纲 - 第九章 改革开放与中国特色社会主义的开创和发展", "w": "27肖1000"}, "pol_b25728-c100449": {"t": 7, "s": "pol", "n": "27肖1000 - 史纲 - 第十章 中国特色社会主义进入新时代", "w": "27肖1000"}, "pol_b25728-c100450": {"t": 7, "s": "pol", "n": "27肖1000 - 思修 - 绪论 担当复兴大任成就时代新人", "w": "27肖1000"}, "pol_b25728-c100451": {"t": 16, "s": "pol", "n": "27肖1000 - 思修 - 第一章 领悟人生真谛把握人生方向", "w": "27肖1000"}, "pol_b25728-c100452": {"t": 10, "s": "pol", "n": "27肖1000 - 思修 - 第二章 追求远大理想坚定崇高信念", "w": "27肖1000"}, "pol_b25728-c100453": {"t": 15, "s": "pol", "n": "27肖1000 - 思修 - 第三章 继承优良传统弘扬中国精神", "w": "27肖1000"}, "pol_b25728-c100454": {"t": 14, "s": "pol", "n": "27肖1000 - 思修 - 第四章 明确价值要求践行价值准则", "w": "27肖1000"}, "pol_b25728-c100455": {"t": 41, "s": "pol", "n": "27肖1000 - 思修 - 第五章 遵守道德规范锤炼道德品格", "w": "27肖1000"}, "pol_b25728-c100456": {"t": 63, "s": "pol", "n": "27肖1000 - 思修 - 第六章 学习法治思想提升法治素养", "w": "27肖1000"}};
   var BASE_CODE_MAP = { P: 'proficient', F: 'familiar', V: 'vague', R: 'rusty', W: 'wrong', _: 'unmarked' };
+
+  var AuditV4 = (typeof window !== 'undefined' && window.Camp21ProgressAuditV4) ? window.Camp21ProgressAuditV4 : (function () {
+    // Pure fallback if camp21-progress-audit-v4.js is not loaded
+    var STATUS = new Set(["proficient","familiar","vague","rusty","wrong","unmarked"]);
+    function dayString(val) {
+      var d = new Date(val);
+      if (Number.isNaN(d.getTime())) throw Error("Invalid date");
+      if (d.getHours() < 3) d.setDate(d.getDate() - 1);
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    }
+    function questionKey(sid, cid, idx) {
+      if (!sid || !cid || !Number.isInteger(idx) || idx < 0) throw Error("Invalid question identity");
+      return String(sid) + ":" + String(cid) + ":" + idx;
+    }
+    function scopedIds(task) {
+      var found = new Set();
+      (task.scopedItems || []).forEach(function (slice) {
+        if (!slice.subjectId || !slice.chapterId || !Array.isArray(slice.indices)) throw Error("Invalid scopedItems in task " + task.id);
+        slice.indices.forEach(function (idx) {
+          var q = questionKey(slice.subjectId, slice.chapterId, idx);
+          if (found.has(q)) throw Error("Duplicate ID inside task " + task.id + ": " + q);
+          found.add(q);
+        });
+      });
+      return Array.from(found);
+    }
+    function newAudit() {
+      return { version: 4, events: [], offlineEvents: [], mockRecords: {}, manualClaims: {}, legacyMigration: { reviewed: false } };
+    }
+    function safeAudit(source) {
+      var s = source && typeof source === "object" ? source : newAudit();
+      return {
+        version: 4,
+        events: Array.isArray(s.events) ? s.events : [],
+        offlineEvents: Array.isArray(s.offlineEvents) ? s.offlineEvents : [],
+        mockRecords: s.mockRecords || {},
+        manualClaims: s.manualClaims || {},
+        legacyMigration: s.legacyMigration || { reviewed: false }
+      };
+    }
+    function taskById(tasks, id) {
+      return (tasks || []).find(function (t) { return t.id === id; }) || null;
+    }
+    function eventId(opts, ts) {
+      if (opts && opts.id) return String(opts.id);
+      return "camp-v4-" + ts + "-" + Math.random().toString(36).slice(2);
+    }
+    function recordPractice(audit, tasks, payload, opts) {
+      opts = opts || {};
+      var s = safeAudit(audit);
+      if (!payload || !["attempt","review","status"].includes(payload.kind)) throw Error("kind must be attempt, review, or status");
+      var qid = questionKey(payload.subjectId, payload.chapterId, Number(payload.idx));
+      var task = taskById(tasks, opts.taskId);
+      if (!task) throw Error("Unknown taskId. Unassigned events need manual assignment.");
+      if (!scopedIds(task).includes(qid)) throw Error("Question is outside task scopedItems");
+      var ts = Number(opts.timestamp == null ? Date.now() : opts.timestamp);
+      if (!Number.isFinite(ts)) throw Error("Invalid timestamp");
+      var studyDay = dayString(ts);
+      if (!opts.allowBacklog && task.date && studyDay !== task.date) throw Error("Task does not belong to actual study date " + studyDay);
+      if (payload.kind === "review" && !["pass","fail"].includes(payload.outcome)) throw Error("A review requires an explicit pass/fail outcome");
+      var status = String(payload.statusAfter || "unmarked");
+      if (!STATUS.has(status)) throw Error("Unsupported status");
+      var id = eventId(opts, ts);
+      if (s.events.some(function (ev) { return ev.id === id; })) return s;
+      s.events.push({ id: id, ts: ts, studyDay: studyDay, taskId: task.id, qid: qid, kind: payload.kind, outcome: payload.kind === "review" ? payload.outcome : null, statusAfter: status, source: payload.source || "question-ui" });
+      return s;
+    }
+    function lastReview(events, taskId, qid) {
+      return (events || []).filter(function (e) { return e.taskId === taskId && e.qid === qid && e.kind === "review"; }).sort(function (a, b) { return a.ts - b.ts; }).at(-1) || null;
+    }
+    function evaluateOnline(task, audit, readStatus) {
+      var ids = scopedIds(task), s = safeAudit(audit);
+      if (!ids.length) return { type: "online", state: "NEEDS_SCOPE", target: 0, attempted: 0, mastered: 0, coveragePct: null, masteryPct: null, isDone: false };
+      var attempted = 0, mastered = 0, broadGreen = 0;
+      ids.forEach(function (qid) {
+        var status = String(readStatus(qid) || "unmarked");
+        if (status === "proficient" || status === "familiar") broadGreen++;
+        var events = s.events.filter(function (e) { return e.taskId === task.id && e.qid === qid; });
+        if (events.some(function (e) { return e.kind === "attempt" || e.kind === "review"; })) attempted++;
+        var review = lastReview(events, task.id, qid);
+        var downgradedAfterPass = !!(review && events.some(function (e) { return e.ts > review.ts && e.statusAfter !== "proficient"; }));
+        if (review && review.outcome === "pass" && status === "proficient" && !downgradedAfterPass) mastered++;
+      });
+      var n = ids.length;
+      return {
+        type: "online",
+        state: mastered === n ? "MASTERED" : (attempted === n ? "COVERED_NOT_MASTERED" : "IN_PROGRESS"),
+        target: n, attempted: attempted, broadGreen: broadGreen, mastered: mastered,
+        coveragePct: Math.round(attempted / n * 100), masteryPct: Math.round(mastered / n * 100), isDone: mastered === n
+      };
+    }
+    function recordOffline(audit, task, itemId, action, opts) {
+      opts = opts || {};
+      var items = task.offlineItemIds;
+      if (!Array.isArray(items) || !items.length) throw Error("Offline inventory not supplied");
+      if (!items.includes(itemId)) throw Error("Offline item not in task inventory");
+      if (!["attempt","pass","fail"].includes(action)) throw Error("Invalid offline action");
+      var s = safeAudit(audit), ts = Number(opts.timestamp == null ? Date.now() : opts.timestamp);
+      var id = eventId(opts, ts);
+      if (s.offlineEvents.some(function (e) { return e.id === id; })) return s;
+      s.offlineEvents.push({ id: id, taskId: task.id, itemId: itemId, action: action, ts: ts, studyDay: dayString(ts) });
+      return s;
+    }
+    function evaluateOffline(task, audit) {
+      var ids = task.offlineItemIds;
+      if (!Array.isArray(ids) || !ids.length) return { type: "offline", state: "NEEDS_INVENTORY", target: null, attempted: 0, mastered: 0, coveragePct: null, masteryPct: null, isDone: false };
+      var keys = Array.from(new Set(ids)), s = safeAudit(audit);
+      var attempted = 0, mastered = 0;
+      keys.forEach(function (qid) {
+        var events = s.offlineEvents.filter(function (e) { return e.taskId === task.id && e.itemId === qid; }).sort(function (a, b) { return a.ts - b.ts; });
+        if (events.length) attempted++;
+        var lastVerdict = events.filter(function (e) { return e.action === "pass" || e.action === "fail"; }).at(-1);
+        if (lastVerdict && lastVerdict.action === "pass") mastered++;
+      });
+      var n = keys.length;
+      return { type: "offline", state: mastered === n ? "MASTERED" : "IN_PROGRESS", target: n, attempted: attempted, mastered: mastered, coveragePct: Math.round(100 * attempted / n), masteryPct: Math.round(100 * mastered / n), isDone: mastered === n };
+    }
+    function recordMock(audit, taskId, record) {
+      var s = safeAudit(audit);
+      if (!record || !record.paperId) throw Error("A stable paperId is required");
+      var started = Number(record.startedAt), submitted = Number(record.submittedAt);
+      if (!Number.isFinite(started) || !Number.isFinite(submitted) || submitted < started) throw Error("Invalid mock session timestamps");
+      s.mockRecords[taskId] = { paperId: record.paperId, startedAt: started, submittedAt: submitted, gradedAt: record.gradedAt || null, fullPaperSubmitted: record.fullPaperSubmitted === true, durationMinutes: Math.round((submitted - started) / 60000) };
+      return s;
+    }
+    function evaluateMock(task, audit) {
+      var r = safeAudit(audit).mockRecords[task.id];
+      var complete = !!(r && r.fullPaperSubmitted && r.gradedAt && r.durationMinutes >= 180 && r.paperId);
+      return { type: "mock", state: complete ? "SUBMITTED_GRADED" : "NEEDS_MOCK_EVIDENCE", target: 1, attempted: (r && r.fullPaperSubmitted) ? 1 : 0, mastered: complete ? 1 : 0, coveragePct: (r && r.fullPaperSubmitted) ? 100 : 0, masteryPct: complete ? 100 : 0, isDone: complete, mockRecord: r || null };
+    }
+    function evaluateTask(task, audit, readStatus) {
+      if (task.isOptionalOnlineMock || task.kind === "mock") return evaluateMock(task, audit);
+      if (task.kind === "offline") return evaluateOffline(task, audit);
+      if (Array.isArray(task.scopedItems) && task.scopedItems.length) return evaluateOnline(task, audit, readStatus);
+      return { type: "untracked", state: "NEEDS_SCOPE_OR_INVENTORY", target: null, attempted: 0, mastered: 0, coveragePct: null, masteryPct: null, isDone: false };
+    }
+    function evaluateDay(tasks, audit, readStatus) {
+      var results = (tasks || []).map(function (task) { return { taskId: task.id, result: evaluateTask(task, audit, readStatus) }; });
+      var total = results.length;
+      var completed = results.filter(function (x) { return x.result.isDone; }).length;
+      var missing = results.filter(function (x) { return x.result.target == null || x.result.target === 0; }).length;
+      var masteryPct = total ? Math.round(results.reduce(function (sum, x) { return sum + (x.result.masteryPct == null ? 0 : x.result.masteryPct); }, 0) / total) : 0;
+      var onlineTasks = results.filter(function (x) { return x.result.type === "online"; });
+      var onlineTarget = onlineTasks.reduce(function (sum, x) { return sum + (x.result.target || 0); }, 0);
+      var onlineMastered = onlineTasks.reduce(function (sum, x) { return sum + (x.result.mastered || 0); }, 0);
+      var onlineAttempted = onlineTasks.reduce(function (sum, x) { return sum + (x.result.attempted || 0); }, 0);
+      var onlineBroadGreen = onlineTasks.reduce(function (sum, x) { return sum + (x.result.broadGreen || 0); }, 0);
+      var onlineMasteryPct = onlineTarget > 0 ? Math.round((onlineMastered / onlineTarget) * 100) : 0;
+      var taskPct = total > 0 ? Math.round((completed / total) * 100) : 0;
+      return { results: results, totalTasks: total, completedTasks: completed, untrackedTasks: missing, masteryPct: masteryPct, taskPct: taskPct, onlineTarget: onlineTarget, onlineMastered: onlineMastered, onlineAttempted: onlineAttempted, onlineBroadGreen: onlineBroadGreen, onlineMasteryPct: onlineMasteryPct, isDone: total > 0 && completed === total && missing === 0 };
+    }
+    function reconcileQuota(moduleName, dayTasks, audit, readStatus, target, manualClaim) {
+      var relevant = (dayTasks || []).filter(function (t) { return t.moduleId === moduleName || (Array.isArray(t.moduleIds) && t.moduleIds.indexOf(moduleName) !== -1); });
+      var all = new Set(), attempted = new Set(), mastered = new Set();
+      var s = safeAudit(audit);
+      relevant.forEach(function (task) {
+        (task.scopedItems || []).forEach(function (slice) {
+          if (slice.moduleId && slice.moduleId !== moduleName && relevant.length > 1) return;
+          (slice.indices || []).forEach(function (idx) {
+            var qid = questionKey(slice.subjectId, slice.chapterId, idx);
+            all.add(qid);
+            var ev = s.events.filter(function (e) { return e.taskId === task.id && e.qid === qid; });
+            if (ev.some(function (e) { return e.kind === "attempt" || e.kind === "review"; })) attempted.add(qid);
+            var review = lastReview(ev, task.id, qid);
+            var changedDown = !!(review && ev.some(function (e) { return e.ts > review.ts && e.statusAfter !== "proficient"; }));
+            if (review && review.outcome === "pass" && readStatus(qid) === "proficient" && !changedDown) mastered.add(qid);
+          });
+        });
+      });
+      var goal = Math.max(0, Number(target) || 0), mapped = all.size;
+      return {
+        module: moduleName, target: goal, mapped: mapped,
+        coverageVerified: attempted.size, masteryVerified: mastered.size,
+        manualClaim: Math.max(0, Number(manualClaim) || 0),
+        missingScope: Math.max(0, goal - mapped), backlog: Math.max(0, goal - attempted.size),
+        verifiedComplete: goal > 0 && mapped === goal && mastered.size === goal
+      };
+    }
+    return { dayString, questionKey, scopedIds, newAudit, safeAudit, taskById, eventId, recordPractice, lastReview, evaluateOnline, recordOffline, evaluateOffline, recordMock, evaluateMock, evaluateTask, evaluateDay, reconcileQuota };
+  })();
+
+  if (typeof window !== 'undefined' && !window.Camp21ProgressAuditV4) {
+    window.Camp21ProgressAuditV4 = AuditV4;
+  }
+
+  // Flatten all tasks for audit lookups
+  var allCampTasks = [];
+  CAMP21_DAYS.forEach(function (day) {
+    (day.tasks || []).forEach(function (task) {
+      task.date = day.date;
+      allCampTasks.push(task);
+    });
+  });
 
   function getPrefix() {
     try {
@@ -16544,6 +18647,10 @@
     return getPrefix() + STATE_KEY_SUFFIX;
   }
 
+  function auditStorageKey() {
+    return getPrefix() + 'kaoyan_camp21_audit_v4';
+  }
+
   function defaultOfflineMaterials() {
     return {
       circuit: { name: '⚡手头电路专题纸质讲义及全部题目', totalInventoried: 0, done: 0, mastered: 0, note: '' },
@@ -16554,12 +18661,13 @@
   function loadCampState() {
     try {
       var raw = window.localStorage.getItem(stateStorageKey());
+      if (!raw) {
+        raw = window.localStorage.getItem(getPrefix() + 'kaoyan_camp21_state_v3');
+      }
       var parsed = raw ? JSON.parse(raw) : null;
       if (parsed && typeof parsed === 'object') {
         parsed.checked = parsed.checked || {};
         parsed.manualConfirmed = parsed.manualConfirmed || {};
-        parsed.scopedVerified = parsed.scopedVerified || {};
-        parsed.scopedAttempted = parsed.scopedAttempted || {};
         parsed.recheckVerified = parsed.recheckVerified || {};
         parsed.offline = parsed.offline || {};
         parsed.v3Actual = parsed.v3Actual || {};
@@ -16575,8 +18683,6 @@
       collapsed: false,
       checked: {},
       manualConfirmed: {},
-      scopedVerified: {},
-      scopedAttempted: {},
       recheckVerified: {},
       offline: {},
       v3Actual: {},
@@ -16590,11 +18696,35 @@
 
   function saveCampState(state) {
     try {
-      window.localStorage.setItem(stateStorageKey(), JSON.stringify(state));
+      var json = JSON.stringify(state);
+      window.localStorage.setItem(stateStorageKey(), json);
+      window.localStorage.setItem(getPrefix() + 'kaoyan_camp21_state_v3', json);
     } catch (e) {}
   }
 
-  // 凌晨 00:00–02:59 仍归属前一学习日（防止 22:50–00:15 深夜局跨零点刷新后跳到次日）
+  function loadAuditV4() {
+    try {
+      var raw = window.localStorage.getItem(auditStorageKey());
+      if (raw) {
+        return AuditV4.safeAudit(JSON.parse(raw));
+      }
+    } catch (e) {
+      console.error('V4 审计存储解析异常，请勿覆盖', e);
+    }
+    return AuditV4.newAudit();
+  }
+
+  function saveAuditV4(audit) {
+    try {
+      window.localStorage.setItem(auditStorageKey(), JSON.stringify(audit));
+      return true;
+    } catch (e) {
+      console.error('V4 保存失败', e);
+      return false;
+    }
+  }
+
+  // 凌晨 00:00–02:59 归属前一学习日（P0-1 / T11）
   function getTodayCampDay(customNow) {
     var now = customNow ? new Date(customNow) : new Date();
     if (now.getHours() < 3) {
@@ -16610,52 +18740,6 @@
     if (todayStr < '2026-10-30') return 0;
     if (todayStr > '2026-11-20') return 21;
     return 1;
-  }
-
-  function getV3DayQuota(dayNum) {
-    var n = Math.max(1, Math.min(21, Number(dayNum) || 1));
-    return V3_FULL_DATA.days[n - 1] || V3_FULL_DATA.days[0];
-  }
-
-  function getDayNetFocus(state, dayNum) {
-    var f = (state.netFocus && state.netFocus[String(dayNum)]) || {};
-    var math = Math.max(0, Math.floor(Number(f.math) || 0));
-    var major = Math.max(0, Math.floor(Number(f.major) || 0));
-    var politics = Math.max(0, Math.floor(Number(f.politics) || 0));
-    var english = Math.max(0, Math.floor(Number(f.english) || 0));
-    var sum = math + major + politics + english;
-    return {
-      math: math, major: major, politics: politics, english: english,
-      sum: sum, goal: 780, schedule: 845,
-      pct: Math.min(100, Math.round((sum / 780) * 100)),
-      reached: sum >= 780
-    };
-  }
-
-  function getV3QuotaStatsForDay(state, dayNum) {
-    var q = getV3DayQuota(dayNum);
-    var items = [];
-    var totalTarget = 0, totalActual = 0, totalMastered = 0, totalBacklog = 0;
-    V3_QUOTA_MODULES.forEach(function (mod) {
-      var target = Number(q[mod.key]) || 0;
-      if (dayNum === 0) target = 0;
-      var recKey = 'd' + dayNum + '_' + mod.id;
-      var actual = Math.max(0, Math.floor(Number(state.v3Actual && state.v3Actual[recKey]) || 0));
-      var mastered = Math.min(actual, Math.max(0, Math.floor(Number(state.v3Mastered && state.v3Mastered[recKey]) || 0)));
-      var backlog = Math.max(0, target - actual);
-      totalTarget += target;
-      totalActual += actual;
-      totalMastered += mastered;
-      totalBacklog += backlog;
-      items.push({
-        mod: mod, recKey: recKey, target: target, actual: actual, mastered: mastered, backlog: backlog
-      });
-    });
-    var pct = totalTarget > 0 ? Math.min(100, Math.round((totalActual / totalTarget) * 100)) : 0;
-    return {
-      items: items, totalTarget: totalTarget, totalActual: totalActual,
-      totalMastered: totalMastered, totalBacklog: totalBacklog, pct: pct
-    };
   }
 
   function getActiveDayNumber() {
@@ -16702,7 +18786,7 @@
     } catch (e) {}
   }
 
-  // 获取章节元数据（内置 CAMP21_CHAPTER_META 兜底，保证 index.html 与 study.html 100%一致）
+  // 章节元数据字典（内置兜底，保证首页 index 与做题页 study 100% 同步）
   var _chapterMapCache = null;
   function getChapterMeta(subjectId, chapterId) {
     if (CAMP21_CHAPTER_META && CAMP21_CHAPTER_META[chapterId]) {
@@ -16768,19 +18852,11 @@
     var total = meta.total || maxIdx || 0;
     var unmarked = Math.max(0, total - done);
     return {
-      total: total,
-      done: done,
-      green: green,
-      proficient: proficient,
-      familiar: familiar,
-      yellow: yellow,
-      red: red,
-      unmarked: unmarked,
-      name: meta.name
+      total: total, done: done, green: green, proficient: proficient,
+      familiar: familiar, yellow: yellow, red: red, unmarked: unmarked, name: meta.name
     };
   }
 
-  // 将 1-based 题号数组格式化为紧凑区间，例如 [113, 116, 117, 118] -> "#113, #116~#118"
   function formatQuestionRanges(nums) {
     if (!Array.isArray(nums) || nums.length === 0) return '无';
     var sorted = nums.slice().sort(function (a, b) { return a - b; });
@@ -16796,110 +18872,59 @@
       }
     }
     ranges.push(rStart === rEnd ? ('#' + rStart) : ('#' + rStart + '~#' + rEnd));
-    if (ranges.length > 6) {
-      return ranges.slice(0, 5).join(', ') + ' 等(' + sorted.length + '题)';
+    if (ranges.length > 5) {
+      return ranges.slice(0, 4).join(', ') + ' 等(' + sorted.length + '题)';
     }
     return ranges.join(', ');
   }
 
-  // 核心函数：严格基于 task.scopedItems 计算单卡真实进度，彻底根除历史存量冒充今日进度与手动勾选伪造100%
-  function evaluateTaskProgress(task, state) {
-    state = state || loadCampState();
-    var chapters = Array.isArray(task.chapters) ? task.chapters : [];
-    var scopedItems = Array.isArray(task.scopedItems) ? task.scopedItems : [];
+  // 读取单题在题库中当前的 live status
+  function readStatusByQuestionKey(qid) {
+    var cut = qid.lastIndexOf(':');
+    var rest = qid.slice(0, cut);
+    var sep = rest.indexOf(':');
+    var sid = rest.slice(0, sep);
+    var cid = rest.slice(sep + 1);
+    var idx = qid.slice(cut + 1);
+    return getChapterStatusMap(sid, cid)[idx] || 'unmarked';
+  }
 
-    // 1. 计算章节全量存量（仅用于跳转按钮旁展示全章存量参考，绝不混入今日完成率！）
-    var invTotal = 0, invDone = 0, invGreen = 0, invProf = 0, invFam = 0, invYellow = 0, invRed = 0, invUnmarked = 0;
-    chapters.forEach(function (c) {
+  // ===== V4 核心适配器：严格基于 AuditV4 核算单卡真实进度 =====
+  function evaluateScopedV4(task, audit) {
+    audit = audit || loadAuditV4();
+    var core = AuditV4.evaluateTask(task, audit, readStatusByQuestionKey);
+
+    // 统计章节历史存量（仅展示在跳转按钮旁作参考，不混入今日进度分母）
+    var invTotal = 0, invDone = 0, invGreen = 0, invProf = 0, invUnmarked = 0;
+    (task.chapters || []).forEach(function (c) {
       var st = getChapterLiveStats(c.subjectId, c.chapterId);
       invTotal += st.total;
       invDone += st.done;
       invGreen += st.green;
       invProf += st.proficient;
-      invFam += st.familiar;
-      invYellow += st.yellow;
-      invRed += st.red;
       invUnmarked += st.unmarked;
     });
 
-    var offlineTarget = Number(task.offlineTarget) || 0;
-    var offlineDone = Math.min(offlineTarget, Math.max(0, Number(state.offline && state.offline[task.id]) || 0));
-    var mode = task.mode || 'green';
-    var isScopedOnline = scopedItems.length > 0 && !task.isOptionalOnlineMock;
-
-    if (isScopedOnline) {
-      var totalScoped = 0;
-      var attempted = 0;
-      var broadGreen = 0;
-      var strictProficient = 0;
-      var scopedYellow = 0;
-      var scopedRed = 0;
-      var scopedUnmarked = 0;
-      var completedCount = 0;
-      var remainingDetails = [];
-      var hasRecheckSlices = false;
-
-      scopedItems.forEach(function (slice) {
+    var remainingDetails = [];
+    if (core.type === 'online' && Array.isArray(task.scopedItems)) {
+      task.scopedItems.forEach(function (slice) {
         var liveMap = getChapterStatusMap(slice.subjectId, slice.chapterId);
-        var recheckKey = task.id + ':' + slice.chapterId;
-        var recheckSliceVerified = !!(state.recheckVerified && state.recheckVerified[recheckKey]);
-        if (slice.taskType === 'full_recheck') hasRecheckSlices = true;
         var sliceRemNums = [];
-
         (slice.indices || []).forEach(function (idx) {
-          totalScoped += 1;
-          var liveSt = liveMap[String(idx)] || 'unmarked';
-          var baseSt = getBaselineStatus(slice.chapterId, idx);
-          var qKey = slice.subjectId + ':' + slice.chapterId + ':' + idx;
-          var touchedInTask = !!(state.scopedVerified && state.scopedVerified[task.id] && state.scopedVerified[task.id][qKey]) ||
-                              !!(state.scopedAttempted && state.scopedAttempted[qKey]);
-
-          var qAttempted = false;
-          var qBroadGreen = false;
-          var qStrictProf = false;
-          var qDoneForTask = false;
-
-          if (slice.taskType === 'clear_unmarked') {
-            // 仅针对2026-10-30基线未标(unmarked)题集：只有变为非未标才算本次已覆盖
-            qAttempted = (liveSt !== 'unmarked');
-            qBroadGreen = (liveSt === 'proficient' || liveSt === 'familiar');
-            qStrictProf = (liveSt === 'proficient');
-            qDoneForTask = (mode === 'green') ? qBroadGreen : qAttempted;
-          } else if (slice.taskType === 'clear_non_green') {
-            // 针对2026-10-30基线非绿题集（各天完全不重叠切片）
-            qBroadGreen = (liveSt === 'proficient' || liveSt === 'familiar');
-            qStrictProf = (liveSt === 'proficient');
-            qAttempted = qBroadGreen ||
-                         (baseSt === 'unmarked' && liveSt !== 'unmarked') ||
-                         (baseSt !== 'unmarked' && liveSt !== 'unmarked' && liveSt !== baseSt) ||
-                         touchedInTask;
-            qDoneForTask = (mode === 'done') ? qAttempted : qBroadGreen;
-          } else {
-            // full_recheck (二刷/三刷/历史绿题复检)：必须当前仍为绿标 且 在本任务复盘核验过，防止第一轮做完后二刷提前变100%
-            var liveIsGreen = (liveSt === 'proficient' || liveSt === 'familiar');
-            var liveIsProf = (liveSt === 'proficient');
-            var isRechecked = !!(state.scopedVerified && state.scopedVerified[task.id] && state.scopedVerified[task.id][qKey]) || recheckSliceVerified;
-            qBroadGreen = isRechecked && liveIsGreen;
-            qStrictProf = isRechecked && liveIsProf;
-            qAttempted = isRechecked && (liveSt !== 'unmarked');
-            qDoneForTask = qBroadGreen;
-          }
-
-          if (qAttempted) attempted += 1;
-          if (qBroadGreen) broadGreen += 1;
-          if (qStrictProf) strictProficient += 1;
-
-          if (liveSt === 'vague' || liveSt === 'rusty') scopedYellow += 1;
-          else if (liveSt === 'wrong') scopedRed += 1;
-          else if (liveSt === 'unmarked') scopedUnmarked += 1;
-
-          if (qDoneForTask) {
-            completedCount += 1;
-          } else {
+          var qid = AuditV4.questionKey(slice.subjectId, slice.chapterId, idx);
+          var st = liveMap[String(idx)] || 'unmarked';
+          var evs = (audit.events || []).filter(function (e) {
+            return e.taskId === task.id && e.qid === qid;
+          });
+          var review = AuditV4.lastReview(evs, task.id, qid);
+          var downgraded = !!(review && evs.some(function (e) {
+            return e.ts > review.ts && e.statusAfter !== 'proficient';
+          }));
+          var isMastered = review && review.outcome === 'pass' && st === 'proficient' && !downgraded;
+          if (!isMastered) {
             sliceRemNums.push(idx + 1);
           }
         });
-
         if (sliceRemNums.length > 0) {
           remainingDetails.push({
             subjectId: slice.subjectId,
@@ -16907,166 +18932,78 @@
             label: slice.label,
             taskType: slice.taskType,
             count: sliceRemNums.length,
-            rangeText: formatQuestionRanges(sliceRemNums)
+            rangeText: formatQuestionRanges(sliceRemNums),
+            remNums: sliceRemNums
           });
         }
       });
-
-      var targetVal = totalScoped;
-      var currentVal = completedCount;
-      var remainingCount = Math.max(0, targetVal - currentVal);
-      var pct = targetVal > 0 ? Math.min(100, Math.round((currentVal / targetVal) * 100)) : 0;
-      // 严禁手动勾选覆盖线上题库任务状态 (P0-3 / T04)
-      var isDone = (targetVal > 0 && currentVal >= targetVal);
-      var familiarOnly = Math.max(0, broadGreen - strictProficient);
-      var masteryTier = 'in_progress';
-      var statusBadge = '⏳ 待清零 ' + remainingCount + ' 题';
-
-      if (isDone) {
-        if (strictProficient >= targetVal) {
-          masteryTier = 'strict_proficient';
-          statusBadge = '💎 已核验全精通 (' + strictProficient + '/' + targetVal + ')';
-        } else if (broadGreen >= targetVal) {
-          masteryTier = 'broad_green';
-          statusBadge = '🟢 广义绿已达标 · 待严格精通 (精通 ' + strictProficient + '/' + targetVal + ')';
-        } else {
-          masteryTier = 'attempted_done';
-          statusBadge = '📘 已覆盖未标 · 待错题转绿 (🟢 ' + broadGreen + '/' + targetVal + ')';
-        }
-      }
-
-      var remainingSummary = remainingDetails.map(function (r) {
-        return r.label + ' 剩' + r.count + '题[' + r.rangeText + ']';
-      }).join('；');
-
-      return {
-        isScopedOnline: true,
-        hasRecheckSlices: hasRecheckSlices,
-        total: totalScoped,
-        done: attempted,
-        attempted: attempted,
-        green: broadGreen,
-        broadGreen: broadGreen,
-        strictProficient: strictProficient,
-        familiarOnly: familiarOnly,
-        yellow: scopedYellow,
-        red: scopedRed,
-        unmarked: scopedUnmarked,
-        currentVal: currentVal,
-        targetVal: targetVal,
-        remainingCount: remainingCount,
-        remainingDetails: remainingDetails,
-        remainingSummary: remainingSummary,
-        mode: mode,
-        offlineDone: offlineDone,
-        offlineTarget: offlineTarget,
-        pct: pct,
-        isDone: isDone,
-        masteryTier: masteryTier,
-        statusBadge: statusBadge,
-        manualChecked: false,
-        invTotal: invTotal,
-        invGreen: invGreen,
-        invProf: invProf,
-        invUnmarked: invUnmarked
-      };
     }
 
-    // 2. 纯线下任务或周五可选纸质/线上模考任务
-    var manualConfirmed = !!(state.manualConfirmed && state.manualConfirmed[task.id]);
-    var offTarget = offlineTarget > 0 ? offlineTarget : 1;
-    var offCur = offlineTarget > 0 ? offlineDone : (manualConfirmed ? 1 : 0);
-    if (task.isOptionalOnlineMock && invDone > 0 && invTotal > 0) {
-      // 如果用户在题库里做了模拟卷，也支持自动识别
-      var halfSet = Math.max(10, Math.round(invTotal / 2));
-      if (invDone >= halfSet) offCur = offTarget;
+    var remainingSummary = remainingDetails.map(function (r) {
+      return r.label + ' 剩' + r.count + '题[' + r.rangeText + ']';
+    }).join('；');
+
+    var statusBadge = '';
+    if (core.state === 'NEEDS_SCOPE' || core.state === 'NEEDS_INVENTORY') {
+      statusBadge = '⚠️ 待映射/待盘点 (不可自动完成)';
+    } else if (core.state === 'NEEDS_MOCK_EVIDENCE') {
+      statusBadge = '⏳ 待全真3h模考记录 (交卷+批改)';
+    } else if (core.isDone) {
+      statusBadge = '💎 严格熟练全部通过 (' + (core.mastered || core.target || 0) + '/' + (core.target || 0) + ')';
+    } else if (core.state === 'COVERED_NOT_MASTERED') {
+      statusBadge = '📘 本轮已覆盖 · 待严格复检 (' + (core.mastered || 0) + '/' + (core.target || 0) + ')';
+    } else {
+      statusBadge = '⏳ 待清零 ' + (core.target == null ? '?' : Math.max(0, core.target - (core.mastered || 0))) + ' 题';
     }
-    if (manualConfirmed) offCur = offTarget;
-    var offPct = Math.min(100, Math.round((offCur / offTarget) * 100));
-    var offIsDone = offCur >= offTarget;
-    var offRem = Math.max(0, offTarget - offCur);
 
     return {
-      isScopedOnline: false,
-      hasRecheckSlices: false,
-      total: offTarget,
-      done: offCur,
-      attempted: offCur,
-      green: offCur,
-      broadGreen: offCur,
-      strictProficient: offCur,
-      familiarOnly: 0,
-      yellow: 0,
-      red: 0,
-      unmarked: offRem,
-      currentVal: offCur,
-      targetVal: offTarget,
-      remainingCount: offRem,
-      remainingDetails: [],
-      remainingSummary: offIsDone ? '' : ((task.offlineLabel || '线下任务') + ' 待完成 ' + offRem + ' 项'),
-      mode: 'offline',
-      offlineDone: offCur,
-      offlineTarget: offTarget,
-      pct: offPct,
-      isDone: offIsDone,
-      masteryTier: offIsDone ? 'offline_confirmed' : 'offline_pending',
-      statusBadge: offIsDone ? '📝 线下自评已确认' : ('📝 线下待完成 (' + offCur + '/' + offTarget + ')'),
-      manualChecked: manualConfirmed,
+      type: core.type,
+      state: core.state,
+      isScopedOnline: core.type === 'online',
+      targetVal: core.target || 0,
+      currentVal: core.mastered,
+      pct: core.masteryPct || 0,
+      coveragePct: core.coveragePct || 0,
+      strictProficient: core.mastered,
+      broadGreen: core.broadGreen || 0,
+      attempted: core.attempted,
+      remainingCount: core.target == null ? null : Math.max(0, core.target - core.mastered),
+      remainingDetails: remainingDetails,
+      remainingSummary: remainingSummary,
+      isDone: core.isDone,
+      statusBadge: statusBadge,
+      masteryTier: core.isDone ? 'strict_proficient' : (core.state === 'COVERED_NOT_MASTERED' ? 'covered_not_mastered' : 'in_progress'),
       invTotal: invTotal,
       invGreen: invGreen,
       invProf: invProf,
-      invUnmarked: invUnmarked
+      invUnmarked: invUnmarked,
+      mockRecord: core.mockRecord || null
     };
   }
 
-  function evaluateDayProgress(dayObj, state) {
-    state = state || loadCampState();
+  // 每日总进度核算：线上严格熟练率与全天任务达标率双轨并行（P1-6）
+  function evaluateDayProgress(dayObj, state, audit) {
+    audit = audit || loadAuditV4();
     var tasks = (dayObj && dayObj.tasks) || [];
-    var doneTasks = 0;
-    var totalTasks = tasks.length;
-    var scopedCurrentSum = 0;
-    var scopedTargetSum = 0;
-    var scopedAttemptedSum = 0;
-    var scopedBroadGreenSum = 0;
-    var scopedStrictProfSum = 0;
-    var scopedRemainingSum = 0;
-
-    tasks.forEach(function (t) {
-      var ev = evaluateTaskProgress(t, state);
-      if (ev.isDone) doneTasks += 1;
-      if (ev.isScopedOnline) {
-        scopedCurrentSum += ev.currentVal;
-        scopedTargetSum += ev.targetVal;
-        scopedAttemptedSum += ev.attempted;
-        scopedBroadGreenSum += ev.broadGreen;
-        scopedStrictProfSum += ev.strictProficient;
-        scopedRemainingSum += ev.remainingCount;
-      }
-    });
-
-    // 当日总进度严格按当日绑定题量加权计算（若无线上题则按任务项计算），彻底杜绝单卡虚高拉高全天百分比 (P1-5 / T11)
-    var pct = 0;
-    if (scopedTargetSum > 0) {
-      pct = Math.min(100, Math.round((scopedCurrentSum / scopedTargetSum) * 100));
-    } else if (totalTasks > 0) {
-      pct = Math.min(100, Math.round((doneTasks / totalTasks) * 100));
-    }
-
+    var coreDay = AuditV4.evaluateDay(tasks, audit, readStatusByQuestionKey);
     return {
-      doneTasks: doneTasks,
-      totalTasks: totalTasks,
-      pct: pct,
-      totalGreen: scopedBroadGreenSum,
-      totalCurrent: scopedCurrentSum,
-      totalTarget: scopedTargetSum,
-      totalAttempted: scopedAttemptedSum,
-      totalBroadGreen: scopedBroadGreenSum,
-      totalStrictProf: scopedStrictProfSum,
-      totalRemaining: scopedRemainingSum
+      results: coreDay.results,
+      totalTasks: coreDay.totalTasks,
+      doneTasks: coreDay.completedTasks,
+      completedTasks: coreDay.completedTasks,
+      untrackedTasks: coreDay.untrackedTasks,
+      pct: coreDay.onlineMasteryPct, // 顶栏与核心百分比默认展示线上题目严格熟练率
+      masteryPct: coreDay.masteryPct,
+      taskPct: coreDay.taskPct,
+      onlineTarget: coreDay.onlineTarget,
+      onlineMastered: coreDay.onlineMastered,
+      onlineAttempted: coreDay.onlineAttempted,
+      onlineBroadGreen: coreDay.onlineBroadGreen,
+      onlineMasteryPct: coreDay.onlineMasteryPct,
+      isDone: coreDay.isDone
     };
   }
 
-  // 全科四维口径实时统计（已覆盖 vs 🟢广义绿 vs 💎严格精通 vs ⚪未标）(P1-4 / T10)
   function getFourCaliberSubjectStats() {
     var groups = {
       math: { label: '数学', total: 0, done: 0, broadGreen: 0, strictProf: 0, familiar: 0, yellow: 0, red: 0, unmarked: 0 },
@@ -17092,54 +19029,129 @@
     return groups;
   }
 
-  // ===== 实时作息时段检测与章节直达 =====
-  function parseTimeMinutes(hhmm) {
-    var parts = String(hhmm || '00:00').split(':');
-    return (Number(parts[0]) || 0) * 60 + (Number(parts[1]) || 0);
+  function getV3DayQuota(dayNum) {
+    var n = Math.max(1, Math.min(21, Number(dayNum) || 1));
+    return V3_FULL_DATA.days[n - 1] || V3_FULL_DATA.days[0];
   }
 
-  function getCurrentSlotInfo(customNow) {
-    var now = customNow ? new Date(customNow) : new Date();
-    var curMin = now.getHours() * 60 + now.getMinutes();
-    for (var i = 0; i < CAMP21_SCHEDULE_SLOTS.length; i++) {
-      var s = CAMP21_SCHEDULE_SLOTS[i];
-      var st = parseTimeMinutes(s.start);
-      var ed = parseTimeMinutes(s.end);
-      if (ed < st) {
-        if (curMin >= st || curMin < ed) return { index: i, slot: s };
-      } else {
-        if (curMin >= st && curMin < ed) return { index: i, slot: s };
+  function getDayNetFocus(state, dayNum) {
+    var f = (state.netFocus && state.netFocus[String(dayNum)]) || {};
+    var math = Math.max(0, Math.floor(Number(f.math) || 0));
+    var major = Math.max(0, Math.floor(Number(f.major) || 0));
+    var politics = Math.max(0, Math.floor(Number(f.politics) || 0));
+    var english = Math.max(0, Math.floor(Number(f.english) || 0));
+    var sum = math + major + politics + english;
+    return {
+      math: math, major: major, politics: politics, english: english,
+      sum: sum, goal: 780, schedule: 845,
+      pct: Math.min(100, Math.round((sum / 780) * 100)),
+      reached: sum >= 780
+    };
+  }
+
+  // V3 配额对账：严格区分“题库已验证”与“手工申报”（P0-4 / T08）
+  function getV3QuotaStatsForDay(state, audit, dayNum) {
+    state = state || loadCampState();
+    audit = audit || loadAuditV4();
+    var q = getV3DayQuota(dayNum);
+    var dayObj = getDayObj(dayNum);
+    var items = [];
+    var totalTarget = 0, totalVerifiedMastered = 0, totalVerifiedCoverage = 0, totalManualClaim = 0;
+
+    V3_QUOTA_MODULES.forEach(function (mod) {
+      var target = Number(q[mod.key]) || 0;
+      if (dayNum === 0) target = 0;
+      var recKey = 'd' + dayNum + '_' + mod.id;
+      var manualClaim = Math.max(0, Math.floor(Number(state.v3Actual && state.v3Actual[recKey]) || 0));
+      var manualMastered = Math.min(manualClaim, Math.max(0, Math.floor(Number(state.v3Mastered && state.v3Mastered[recKey]) || 0)));
+
+      var reconciled = AuditV4.reconcileQuota(
+        mod.id,
+        dayObj.tasks,
+        audit,
+        readStatusByQuestionKey,
+        target,
+        manualClaim
+      );
+
+      totalTarget += target;
+      totalVerifiedCoverage += reconciled.coverageVerified;
+      totalVerifiedMastered += reconciled.masteryVerified;
+      totalManualClaim += manualClaim;
+
+      items.push({
+        mod: mod,
+        recKey: recKey,
+        target: target,
+        mapped: reconciled.mapped,
+        coverageVerified: reconciled.coverageVerified,
+        masteryVerified: reconciled.masteryVerified,
+        missingScope: reconciled.missingScope,
+        manualClaim: manualClaim,
+        manualMastered: manualMastered,
+        backlog: reconciled.backlog,
+        verifiedComplete: reconciled.verifiedComplete
+      });
+    });
+
+    var verifiedPct = totalTarget > 0 ? Math.min(100, Math.round((totalVerifiedMastered / totalTarget) * 100)) : 0;
+    return {
+      items: items,
+      totalTarget: totalTarget,
+      totalVerifiedCoverage: totalVerifiedCoverage,
+      totalVerifiedMastered: totalVerifiedMastered,
+      totalManualClaim: totalManualClaim,
+      verifiedPct: verifiedPct
+    };
+  }
+
+  // 记录真实逐题练习/复检事件（P0-1 / P0-2 / T03 / T06）
+  function saveRealQuestionPractice(taskId, subjectId, chapterId, idx, kind, outcome, explicitBacklog) {
+    var task = AuditV4.taskById(allCampTasks, taskId);
+    if (!task) return false;
+
+    var currentStatus = getChapterStatusMap(subjectId, chapterId)[String(idx)] || 'unmarked';
+    var nextStatus = currentStatus;
+    if (kind === 'review') {
+      if (outcome === 'pass') {
+        nextStatus = 'proficient';
+      } else if (outcome === 'fail') {
+        nextStatus = 'wrong';
       }
     }
-    return { index: -1, slot: null };
-  }
 
-  function jumpToChapter(subjectId, chapterId) {
-    var modal = document.getElementById('camp21ModalBackdrop');
-    if (modal) modal.hidden = true;
+    var audit = loadAuditV4();
+    var nextAudit = AuditV4.recordPractice(audit, allCampTasks, {
+      kind: kind,
+      outcome: outcome || null,
+      subjectId: subjectId,
+      chapterId: chapterId,
+      idx: Number(idx),
+      statusAfter: nextStatus,
+      source: 'camp-v4-practice'
+    }, {
+      taskId: taskId,
+      timestamp: Date.now(),
+      allowBacklog: explicitBacklog === true || (task.date && AuditV4.dayString(Date.now()) !== task.date)
+    });
 
-    if (typeof window.openWeakChapter === 'function' && subjectId !== 'english') {
-      window.openWeakChapter(subjectId, chapterId);
-      return;
+    // 同步更新题库实时状态表
+    if (nextStatus !== currentStatus) {
+      var meta = getChapterMeta(subjectId, chapterId);
+      var stKey = getPrefix() + chapterId + '_' + meta.suffix + '_status';
+      try {
+        var stObj = JSON.parse(window.localStorage.getItem(stKey) || '{}');
+        stObj[String(idx)] = nextStatus;
+        window.localStorage.setItem(stKey, JSON.stringify(stObj));
+      } catch (e) {}
     }
-    if (subjectId === 'english' && typeof window.switchSubject === 'function') {
-      window.switchSubject('english');
-      if (typeof window.switchChapter === 'function') {
-        window.switchChapter(chapterId);
-      }
-      return;
-    }
-    window.location.href = 'study.html?subject=' + encodeURIComponent(subjectId) + '&chapter=' + encodeURIComponent(chapterId);
+
+    saveAuditV4(nextAudit);
+    renderAll();
+    return true;
   }
 
-  function escapeHtml(str) {
-    return String(str == null ? '' : str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
+  // ===== 提示条 & 弹窗与交互实现 =====
   var _toastTimer = null;
   function showCampToast(msg) {
     var el = document.getElementById('camp21GuardToast');
@@ -17158,7 +19170,7 @@
     }, 4200);
   }
 
-  // ===== 1. 增强顶部 #dailyGoalButton (保留原今日目标点击弹窗，独立挂载特训指挥舱按钮) =====
+  // 双轨顶部圆环与特训按钮（P1-6）
   function enhanceHeaderDailyGoalButton(dayObj, dayProg) {
     var btn = document.getElementById('dailyGoalButton');
     if (!btn) return;
@@ -17187,14 +19199,14 @@
     var ring = document.getElementById('dailyGoalCampRing');
     var pctEl = document.getElementById('dailyGoalCampPct');
     var txtEl = document.getElementById('dailyGoalCampText');
-    var isComplete = dayProg.doneTasks >= dayProg.totalTasks && dayProg.totalTasks > 0;
+    var isComplete = dayProg.isDone;
 
     campItem.classList.toggle('is-complete', isComplete);
-    if (ring) ring.style.setProperty('--goal-progress', dayProg.pct + '%');
-    if (pctEl) pctEl.textContent = dayProg.pct + '%';
+    if (ring) ring.style.setProperty('--goal-progress', dayProg.onlineMasteryPct + '%');
+    if (pctEl) pctEl.textContent = dayProg.onlineMasteryPct + '%';
     if (txtEl) {
-      txtEl.textContent = dayProg.totalTarget > 0
-        ? (dayProg.totalCurrent + '/' + dayProg.totalTarget + '题')
+      txtEl.textContent = dayProg.onlineTarget > 0
+        ? ('💎' + dayProg.onlineMastered + '/' + dayProg.onlineTarget + '题 (' + dayProg.doneTasks + '/' + dayProg.totalTasks + '项)')
         : (dayProg.doneTasks + '/' + dayProg.totalTasks + '项');
     }
 
@@ -17220,141 +19232,165 @@
       btn.insertAdjacentElement('afterend', standaloneBtn);
     }
     if (standaloneBtn) {
-      standaloneBtn.innerHTML = '🔥 D' + dayObj.day + ' · 特训指挥舱 (' + dayProg.pct + '%)';
+      standaloneBtn.innerHTML = '🔥 D' + dayObj.day + ' · 特训指挥舱 (💎' + dayProg.onlineMasteryPct + '% · 任务' + dayProg.doneTasks + '/' + dayProg.totalTasks + ')';
     }
   }
 
-  // ===== 2. 渲染单个任务卡片 HTML (四维口径 + 剩余1-based题号区间 + 全章存量分离) =====
-  function buildTaskCardHtml(task, state) {
-    var ev = evaluateTaskProgress(task, state);
+  function escapeHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function jumpToChapter(subjectId, chapterId) {
+    var modal = document.getElementById('camp21ModalBackdrop');
+    if (modal) modal.hidden = true;
+    if (typeof window.openWeakChapter === 'function' && subjectId !== 'english') {
+      window.openWeakChapter(subjectId, chapterId);
+      return;
+    }
+    if (subjectId === 'english' && typeof window.switchSubject === 'function') {
+      window.switchSubject('english');
+      if (typeof window.switchChapter === 'function') {
+        window.switchChapter(chapterId);
+      }
+      return;
+    }
+    window.location.href = 'study.html?subject=' + encodeURIComponent(subjectId) + '&chapter=' + encodeURIComponent(chapterId);
+  }
+
+  // ===== 渲染单个任务卡片 HTML =====
+  function buildTaskCardHtml(task, state, audit) {
+    var ev = evaluateScopedV4(task, audit);
     var cardCls = 'camp21-task-card' + (ev.isDone ? ' is-done' : '') + (task.special ? ' is-highlight-special' : '') + (' tier-' + ev.masteryTier);
     var chapters = Array.isArray(task.chapters) ? task.chapters : [];
 
     var statsHtml = '';
-    if (ev.isScopedOnline) {
-      var primaryMetricLabel = ev.mode === 'done'
-        ? ('🎯 本卡绑定 ' + ev.targetVal + ' 题 · 本次已覆盖 ' + ev.attempted + '/' + ev.targetVal + ' 题')
-        : ('🎯 本卡绑定 ' + ev.targetVal + ' 题 · 本次🟢广义绿 ' + ev.broadGreen + '/' + ev.targetVal + ' 题');
+    var actionButtonsHtml = '';
 
+    if (ev.type === 'online') {
+      var primaryMetricLabel = '🎯 本卡绑定 ' + ev.targetVal + ' 题 · 💎严格熟练 ' + ev.strictProficient + '/' + ev.targetVal + ' 题 (' + ev.pct + '%)';
       var remHtml = '';
+
       if (ev.remainingDetails.length > 0) {
         var remItems = ev.remainingDetails.map(function (r) {
-          var verifyBtn = r.taskType === 'full_recheck'
-            ? (' <button type="button" class="camp21-recheck-btn" data-action="verify-recheck" data-task="' + escapeHtml(task.id) + '" data-subject="' + escapeHtml(r.subjectId) + '" data-chapter="' + escapeHtml(r.chapterId) + '">🔍 核验本章已全绿</button>')
-            : '';
-          return '<div class="camp21-rem-item">📍 <strong>' + escapeHtml(r.label) + '</strong> 待清零 <strong>' + r.count + '</strong> 题：<code class="camp21-rem-codes">' + escapeHtml(r.rangeText) + '</code>' + verifyBtn + '</div>';
+          return '<div class="camp21-rem-item">📍 <strong>' + escapeHtml(r.label) + '</strong> 待清零 <strong>' + r.count + '</strong> 题：<code class="camp21-rem-codes">' + escapeHtml(r.rangeText) + '</code></div>';
         }).join('');
         remHtml = '<div class="camp21-rem-box">' + remItems + '</div>';
-      } else if (ev.strictProficient < ev.targetVal) {
-        remHtml =
-          '<div class="camp21-rem-box is-familiar-notice">' +
-            '📘 本卡 ' + ev.targetVal + ' 道绑定题已全部覆盖（🟢广义绿 ' + ev.broadGreen + '/' + ev.targetVal + '），其中 <strong>' + (ev.targetVal - ev.strictProficient) + ' 道题尚未达到「💎严格熟练(proficient)」</strong>，二刷盲做通过后可晋升满精通！' +
-          '</div>';
       } else {
-        remHtml =
-          '<div class="camp21-rem-box is-all-proficient">' +
-            '💎 本卡 ' + ev.targetVal + ' 道绑定题已 100% 达到「严格熟练(proficient)」！' +
-          '</div>';
+        remHtml = '<div class="camp21-rem-box is-all-proficient">💎 本卡 ' + ev.targetVal + ' 道绑定题已全部通过本轮严格熟练复检！</div>';
       }
 
       statsHtml =
         '<div class="camp21-task-prog-section">' +
           '<div class="camp21-task-stats-row">' +
-            '<span><strong>' + primaryMetricLabel + '</strong> (' + ev.pct + '%)</span>' +
+            '<span><strong>' + primaryMetricLabel + '</strong></span>' +
             '<span class="camp21-stat-pills">' +
-              '<span class="st-attempted" title="本次任务范围内已做/已覆盖题数">✍️已做 ' + ev.attempted + '/' + ev.targetVal + '</span>' +
-              '<span class="st-green" title="广义绿标 = 熟练(proficient) + 熟悉(familiar)">🟢广义绿 ' + ev.broadGreen + '/' + ev.targetVal + '</span>' +
-              '<span class="st-prof" title="严格熟练 = 仅含熟练(proficient)">💎精通 ' + ev.strictProficient + '/' + ev.targetVal + '</span>' +
-              '<span class="st-yellow" title="当前范围内模糊/生疏题数">🟡' + ev.yellow + '</span>' +
-              '<span class="st-red" title="当前范围内不会/错题数">🔴' + ev.red + '</span>' +
-              '<span class="st-unmarked" title="当前范围内未标题数">⚪' + ev.unmarked + '</span>' +
-              '<span class="st-rem" title="本卡剩余待清零题数">⏳待清零 ' + ev.remainingCount + '</span>' +
+              '<span class="st-attempted" title="本轮已独立作答/覆盖题数">✍️已做 ' + ev.attempted + '/' + ev.targetVal + '</span>' +
+              '<span class="st-green" title="题库广义绿标数 (熟练+熟悉)">🟢广义绿 ' + ev.broadGreen + '/' + ev.targetVal + '</span>' +
+              '<span class="st-prof" title="通过本轮逐题复检严格熟练数">💎严格熟练 ' + ev.strictProficient + '/' + ev.targetVal + '</span>' +
+              '<span class="st-rem" title="待清零题数">⏳待清零 ' + ev.remainingCount + '</span>' +
             '</span>' +
           '</div>' +
           '<div class="camp21-mini-track"><div class="camp21-mini-fill" style="width:' + ev.pct + '%"></div></div>' +
           remHtml +
         '</div>';
-    } else {
+
+      actionButtonsHtml = '<button type="button" class="camp21-recheck-btn primary-action" data-action="open-practice-modal" data-task="' + escapeHtml(task.id) + '">📝 逐题练习/复检核验</button>';
+    } else if (ev.type === 'mock') {
+      var mockStatusText = ev.isDone
+        ? ('💎 3h全真模考已完成并通过审核 (试卷: ' + escapeHtml(ev.mockRecord.paperId) + ' · 时长: ' + ev.mockRecord.durationMinutes + 'm)')
+        : '⏳ 待完成3小时全真模考并录入交卷批改记录 (需完整交卷+批改+>=180m)';
+
       statsHtml =
         '<div class="camp21-task-prog-section">' +
           '<div class="camp21-task-stats-row">' +
-            '<span><strong>📝 线下/自评进度：' + ev.currentVal + '/' + ev.targetVal + '</strong> (' + ev.pct + '%)</span>' +
-            '<span class="camp21-stat-pills">' +
-              '<span class="st-attempted">' + escapeHtml(ev.statusBadge) + '</span>' +
-            '</span>' +
+            '<span><strong>📋 3小时全真模考终验：' + (ev.isDone ? '1/1 已达成' : '0/1 待录入') + '</strong></span>' +
+            '<span class="camp21-stat-pills"><span class="st-attempted">' + escapeHtml(mockStatusText) + '</span></span>' +
           '</div>' +
-          '<div class="camp21-mini-track"><div class="camp21-mini-fill" style="width:' + ev.pct + '%"></div></div>' +
+          '<div class="camp21-mini-track"><div class="camp21-mini-fill" style="width:' + (ev.isDone ? '100%' : '0%') + '"></div></div>' +
         '</div>';
+
+      actionButtonsHtml = '<button type="button" class="camp21-recheck-btn" data-action="open-mock-modal" data-task="' + escapeHtml(task.id) + '">📋 录入/查看3h模考记录</button>';
+    } else {
+      // offline
+      var offText = ev.state === 'NEEDS_INVENTORY'
+        ? '⚠️ 资料题量待盘点录入 (未盘点前不可宣称100%完成)'
+        : (ev.isDone ? '💎 纸质/线下任务已全部盘点做通 (' + ev.currentVal + '/' + ev.targetVal + ')' : ('📝 线下盘点完成度 ' + ev.currentVal + '/' + ev.targetVal));
+
+      statsHtml =
+        '<div class="camp21-task-prog-section">' +
+          '<div class="camp21-task-stats-row">' +
+            '<span><strong>📝 线下资料/任务进度：' + (ev.targetVal == null ? '待盘点' : (ev.currentVal + '/' + ev.targetVal)) + '</strong> (' + (ev.pct == null ? '0%' : (ev.pct + '%')) + ')</span>' +
+            '<span class="camp21-stat-pills"><span class="st-attempted">' + escapeHtml(offText) + '</span></span>' +
+          '</div>' +
+          '<div class="camp21-mini-track"><div class="camp21-mini-fill" style="width:' + (ev.pct || 0) + '%"></div></div>' +
+        '</div>';
+
+      actionButtonsHtml = '<button type="button" class="camp21-recheck-btn" data-action="open-offline-modal" data-task="' + escapeHtml(task.id) + '">📝 线下资料盘点与自评</button>';
     }
 
     var chipsHtml = chapters.map(function (c) {
       var st = getChapterLiveStats(c.subjectId, c.chapterId);
       var subStat = st.total > 0 ? (' [全章存量: 🟢' + st.green + '/' + st.total + ' · 💎' + st.proficient + ' · ⚪' + st.unmarked + ']') : '';
-      return '<button type="button" class="camp21-jump-chip" data-action="jump" data-subject="' + escapeHtml(c.subjectId) + '" data-chapter="' + escapeHtml(c.chapterId) + '" title="点击跳转到该章节题库（括号内为全章历史总存量参考，不计入今日单卡百分比）">' +
+      return '<button type="button" class="camp21-jump-chip" data-action="jump" data-subject="' + escapeHtml(c.subjectId) + '" data-chapter="' + escapeHtml(c.chapterId) + '" title="点击跳转到该章节题库（括号内为全章历史存量参考，不混入今日单卡进度）">' +
         '🚀 ' + escapeHtml(c.label) + escapeHtml(subStat) +
       '</button>';
     }).join('');
 
-    var stepperHtml = '';
-    if (ev.offlineTarget > 0) {
-      stepperHtml =
-        '<div class="camp21-stepper" title="记录纸质/线下任务进度">' +
-          '<span class="camp21-step-val">📝 ' + escapeHtml(task.offlineLabel || '线下进度') + ': ' + ev.offlineDone + '/' + ev.offlineTarget + '</span>' +
-          '<button type="button" class="camp21-step-btn" data-action="step-dec" data-task="' + escapeHtml(task.id) + '">-</button>' +
-          '<button type="button" class="camp21-step-btn" data-action="step-inc" data-task="' + escapeHtml(task.id) + '">+</button>' +
-        '</div>';
-    }
-
-    var checkTitle = ev.isScopedOnline
-      ? (ev.isDone ? '题库已自动核验完成' : '题库自动核验任务：需在题库中完成本卡绑定的 ' + ev.targetVal + ' 道题后自动亮起，不可手动伪造100%')
-      : '点击确认/取消线下任务完成状态';
-
     return (
       '<div class="' + cardCls + '" data-task-id="' + escapeHtml(task.id) + '">' +
         '<div class="camp21-task-top">' +
-          '<label class="camp21-task-check-wrap" title="' + escapeHtml(checkTitle) + '">' +
-            '<input type="checkbox" class="camp21-task-checkbox" data-action="toggle-check" data-task="' + escapeHtml(task.id) + '" ' + (ev.isDone ? 'checked' : '') + '>' +
-            '<div class="camp21-task-title-box">' +
-              '<div class="camp21-task-kicker-row">' +
-                '<span class="camp21-cat-badge cat-' + escapeHtml(task.cat) + '">' + escapeHtml(task.catLabel) + '</span>' +
-                '<span class="camp21-time-tag">⏰ ' + escapeHtml(task.time) + '</span>' +
-                '<span class="camp21-status-tier-badge tier-' + escapeHtml(ev.masteryTier) + '">' + escapeHtml(ev.statusBadge) + '</span>' +
-              '</div>' +
-              '<div class="camp21-task-title">' + escapeHtml(task.title) + '</div>' +
-              '<div class="camp21-task-desc">' + escapeHtml(task.desc) + '</div>' +
+          '<div class="camp21-task-title-box" style="width:100%;">' +
+            '<div class="camp21-task-kicker-row">' +
+              '<span class="camp21-cat-badge cat-' + escapeHtml(task.cat) + '">' + escapeHtml(task.catLabel) + '</span>' +
+              '<span class="camp21-time-tag">⏰ ' + escapeHtml(task.time) + '</span>' +
+              '<span class="camp21-status-tier-badge tier-' + escapeHtml(ev.masteryTier) + '">' + escapeHtml(ev.statusBadge) + '</span>' +
             '</div>' +
-          '</label>' +
+            '<div class="camp21-task-title">' + escapeHtml(task.title) + '</div>' +
+            '<div class="camp21-task-desc">' + escapeHtml(task.desc) + '</div>' +
+          '</div>' +
         '</div>' +
         statsHtml +
         '<div class="camp21-task-footer">' +
           '<div class="camp21-jump-chips">' + chipsHtml + '</div>' +
-          stepperHtml +
+          '<div style="display:flex;gap:6px;align-items:center;">' + actionButtonsHtml + '</div>' +
         '</div>' +
       '</div>'
     );
   }
 
-  // ===== 2.5 构建 V3 13h净专注记录条 & 四维口径条 & 今日零删减配额核验折叠面板 =====
-  function buildV3FocusAndQuotaStripHtml(dayNum, state) {
+  // ===== V3 13h 净专注记录条 & 四维口径条 & 配额对账台 (P0-4) =====
+  function buildV3FocusAndQuotaStripHtml(dayNum, state, audit) {
     var nf = getDayNetFocus(state, dayNum);
-    var qs = getV3QuotaStatsForDay(state, dayNum);
+    var qs = getV3QuotaStatsForDay(state, audit, dayNum);
     var cal = getFourCaliberSubjectStats();
     var activeQuotaItems = qs.items.filter(function (it) { return it.target > 0; });
 
     var quotaRowsHtml = activeQuotaItems.map(function (it) {
-      var doneCls = it.actual >= it.target ? 'color:#15803d;font-weight:800;' : 'color:#b45309;font-weight:700;';
+      var verifiedCls = it.verifiedComplete ? 'color:#15803d;font-weight:800;' : 'color:#b45309;font-weight:700;';
       return (
         '<div class="camp21-v3-qcard">' +
-          '<div style="font-size:11.5px;font-weight:800;color:#0f172a;margin-bottom:4px;">' + escapeHtml(it.mod.label) + '</div>' +
-          '<div style="display:flex;align-items:center;gap:6px;font-size:11px;flex-wrap:wrap;">' +
-            '<span>今日配额: <strong>' + it.target + '</strong>题</span>' +
-            '<label style="display:inline-flex;align-items:center;gap:3px;">实做:' +
-              '<input type="number" min="0" max="2000" class="camp21-v3-num-input" data-action="v3-actual" data-reckey="' + escapeHtml(it.recKey) + '" value="' + it.actual + '">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">' +
+            '<strong style="font-size:12px;color:#0f172a;">' + escapeHtml(it.mod.label) + '</strong>' +
+            '<span style="font-size:11px;font-weight:800;' + verifiedCls + '">' + (it.verifiedComplete ? '💎题库全经验证' : ('待清零:' + it.backlog)) + '</span>' +
+          '</div>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px;background:#f8fafc;padding:6px;border-radius:6px;margin-bottom:6px;">' +
+            '<div>今日配额: <strong>' + it.target + '</strong> 题</div>' +
+            '<div>已映射: <strong>' + it.mapped + '</strong> 题' + (it.missingScope > 0 ? (' <span style="color:#dc2626;">(缺' + it.missingScope + ')</span>') : '') + '</div>' +
+            '<div style="color:#1d4ed8;">验证覆盖: <strong>' + it.coverageVerified + '</strong></div>' +
+            '<div style="color:#15803d;">严格熟练: <strong>' + it.masteryVerified + '</strong></div>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:6px;font-size:11px;border-top:1px dashed #e2e8f0;padding-top:4px;">' +
+            '<span style="color:#64748b;">手工申报:</span>' +
+            '<label style="display:inline-flex;align-items:center;gap:2px;">实做:' +
+              '<input type="number" min="0" max="2000" class="camp21-v3-num-input" data-action="v3-actual" data-reckey="' + escapeHtml(it.recKey) + '" value="' + it.manualClaim + '">' +
             '</label>' +
-            '<label style="display:inline-flex;align-items:center;gap:3px;">独立掌握:' +
-              '<input type="number" min="0" max="2000" class="camp21-v3-num-input" data-action="v3-mastered" data-reckey="' + escapeHtml(it.recKey) + '" value="' + it.mastered + '">' +
+            '<label style="display:inline-flex;align-items:center;gap:2px;">掌握:' +
+              '<input type="number" min="0" max="2000" class="camp21-v3-num-input" data-action="v3-mastered" data-reckey="' + escapeHtml(it.recKey) + '" value="' + it.manualMastered + '">' +
             '</label>' +
-            '<span style="' + doneCls + '">' + (it.backlog > 0 ? ('待清零:' + it.backlog) : '✓配额完成') + '</span>' +
           '</div>' +
         '</div>'
       );
@@ -17373,7 +19409,7 @@
     return (
       '<div class="camp21-v3-strip">' +
         '<div class="camp21-caliber-bar">' +
-          '<span style="font-weight:800;color:#1e293b;">📐 题库四维真实口径对照（严禁将全章旧存量或“熟悉”混同为今日100%严格熟练）：</span>' +
+          '<span style="font-weight:800;color:#1e293b;">📐 题库四维真实存量口径（严禁将历史存量冒充今日任务，本轮需逐题复检确认严格精通）：</span>' +
           caliberHtml +
         '</div>' +
         '<div class="camp21-v3-focus-row">' +
@@ -17392,7 +19428,7 @@
         '</div>' +
         (dayNum >= 1 ? (
           '<details class="camp21-v3-quota-details">' +
-            '<summary>📌 展开 V3 零删减今日定额核验台（今日定额合计 <strong>' + qs.totalTarget + '</strong> 题次 · 已实做 <strong>' + qs.totalActual + '</strong> · 独立掌握 <strong>' + qs.totalMastered + '</strong> · 待清零欠账 <strong style="color:#dc2626;">' + qs.totalBacklog + '</strong>）</summary>' +
+            '<summary>📌 展开 V4 对账台（今日定额 <strong>' + qs.totalTarget + '</strong> 题次 | 题库已验证严格熟练 <strong>' + qs.totalVerifiedMastered + '</strong> 题 | 手工申报实做 <strong>' + qs.totalManualClaim + '</strong> 题 · 严禁手填冒充验证）</summary>' +
             '<div class="camp21-v3-qgrid">' + quotaRowsHtml + '</div>' +
           '</details>'
         ) : '') +
@@ -17400,7 +19436,7 @@
     );
   }
 
-  // ===== 3. 渲染工作台顶部「21天魔鬼特训」面板 (#camp21WorkbenchPanel) =====
+  // ===== 渲染工作台顶部面板 (#camp21WorkbenchPanel) =====
   function renderWorkbenchPanel() {
     var mainContent = document.querySelector('.main-content');
     if (!mainContent) return;
@@ -17415,11 +19451,11 @@
     }
 
     var state = loadCampState();
+    var audit = loadAuditV4();
     var activeDay = getActiveDayNumber();
     var todayDay = getTodayCampDay();
     var dayObj = getDayObj(activeDay);
-    var dayProg = evaluateDayProgress(dayObj, state);
-    var slotInfo = getCurrentSlotInfo();
+    var dayProg = evaluateDayProgress(dayObj, state, audit);
 
     enhanceHeaderDailyGoalButton(dayObj, dayProg);
 
@@ -17432,18 +19468,14 @@
       '</option>';
     }).join('');
 
-    var slotText = slotInfo.slot
-      ? ('⏰ 当前时段 (' + slotInfo.slot.start + '-' + slotInfo.slot.end + ')：' + slotInfo.slot.title.replace(/^🔥/, ''))
-      : '⏰ 自由复盘时段 · 保持专注';
-
     var cardsHtml = dayObj.tasks.map(function (t) {
-      return buildTaskCardHtml(t, state);
+      return buildTaskCardHtml(t, state, audit);
     }).join('');
 
     panel.innerHTML =
       '<div class="camp21-wb-header">' +
         '<div class="camp21-wb-left">' +
-          '<span class="camp21-fire-pill">🔥 21天魔鬼特训</span>' +
+          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 V4</span>' +
           '<div class="camp21-day-nav">' +
             '<button type="button" class="camp21-day-nav-btn" data-action="prev-day" ' + (activeDay <= 0 ? 'disabled' : '') + ' title="前一天">◀</button>' +
             '<select class="camp21-day-select" data-action="select-day" aria-label="选择特训天数">' + optionsHtml + '</select>' +
@@ -17455,34 +19487,28 @@
         '<div class="camp21-wb-progress-wrap">' +
           '<div class="camp21-wb-progress-bar-box">' +
             '<div class="camp21-wb-progress-meta">' +
-              '<span>今日核验完成 <strong>' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项</strong> · 本日绑定题 <strong>' + dayProg.totalCurrent + '/' + dayProg.totalTarget + '</strong> (🟢广义绿 ' + dayProg.totalBroadGreen + ' · 💎精通 ' + dayProg.totalStrictProf + ' · ⏳待清零 ' + dayProg.totalRemaining + ')</span>' +
-              '<strong>' + dayProg.pct + '%</strong>' +
+              '<span><strong>💎 线上严格熟练：' + dayProg.onlineMastered + '/' + dayProg.onlineTarget + ' 题 (' + dayProg.onlineMasteryPct + '%)</strong> · 全部任务达标：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 (' + dayProg.taskPct + '%)' + (dayProg.untrackedTasks > 0 ? (' · <span style="color:#ea580c;">⚠️' + dayProg.untrackedTasks + '项待盘点</span>') : '') + '</span>' +
+              '<strong>' + dayProg.onlineMasteryPct + '%</strong>' +
             '</div>' +
             '<div class="camp21-wb-progress-track">' +
-              '<div class="camp21-wb-progress-fill" style="width:' + dayProg.pct + '%"></div>' +
+              '<div class="camp21-wb-progress-fill" style="width:' + dayProg.onlineMasteryPct + '%"></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
         '<div class="camp21-wb-actions">' +
           '<button type="button" class="camp21-btn primary" data-action="open-modal" data-tab="all">🗓️ 21天全景表</button>' +
-          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="v3ledger">📊 V3零删减总账(7680)</button>' +
-          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="schedule">⏰ 14h排班表</button>' +
+          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="v3ledger">📊 V4对账总账</button>' +
           '<button type="button" class="camp21-btn report-btn" data-action="copy-report">📋 复制今日战报</button>' +
           '<button type="button" class="camp21-btn" data-action="open-settings">⚙️ 目标设置</button>' +
           '<button type="button" class="camp21-btn" data-action="toggle-collapse">' + (state.collapsed ? '展开清单 ▼' : '收起 ▲') + '</button>' +
         '</div>' +
       '</div>' +
       '<div class="camp21-wb-body">' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">' +
-          '<span class="camp21-now-slot-pill">' + escapeHtml(slotText) + '</span>' +
-          '<span style="font-size:11.5px;color:#64748b;">💡 铁律：每张任务卡仅统计该卡绑定的具体题号(scopedItems)，旧存量绝不冒充今日进度，未完成绑定题不可手动勾选伪造100%。</span>' +
-        '</div>' +
-        buildV3FocusAndQuotaStripHtml(activeDay, state) +
+        buildV3FocusAndQuotaStripHtml(activeDay, state, audit) +
         '<div class="camp21-tasks-grid">' + cardsHtml + '</div>' +
       '</div>';
   }
 
-  // ===== 4. 首页 index.html 嵌入总览卡 =====
   function renderHomeOverviewCard() {
     var homeShell = document.querySelector('.home-shell');
     if (!homeShell) return;
@@ -17502,299 +19528,286 @@
     }
 
     var state = loadCampState();
+    var audit = loadAuditV4();
     var activeDay = getActiveDayNumber();
     var dayObj = getDayObj(activeDay);
-    var dayProg = evaluateDayProgress(dayObj, state);
+    var dayProg = evaluateDayProgress(dayObj, state, audit);
 
     card.innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;">' +
         '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
-          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 · ' + escapeHtml(dayObj.label) + '</span>' +
+          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 V4 · ' + escapeHtml(dayObj.label) + '</span>' +
           '<strong style="font-size:14px;color:#0f172a;">' + escapeHtml(dayObj.focus) + '</strong>' +
         '</div>' +
         '<div style="display:flex;align-items:center;gap:8px;">' +
-          '<span style="font-size:13px;font-weight:800;color:#ea580c;">今日进度：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 · 绑定题 ' + dayProg.totalCurrent + '/' + dayProg.totalTarget + ' (' + dayProg.pct + '%)</span>' +
+          '<span style="font-size:13px;font-weight:800;color:#ea580c;">💎 严格熟练：' + dayProg.onlineMastered + '/' + dayProg.onlineTarget + ' (' + dayProg.onlineMasteryPct + '%) · 任务：' + dayProg.doneTasks + '/' + dayProg.totalTasks + '项</span>' +
           '<a href="study.html" class="camp21-btn primary" style="text-decoration:none;">🚀 进入特训工作台</a>' +
         '</div>' +
       '</div>' +
       '<div class="camp21-wb-progress-track" style="height:10px;">' +
-        '<div class="camp21-wb-progress-fill" style="width:' + dayProg.pct + '%"></div>' +
+        '<div class="camp21-wb-progress-fill" style="width:' + dayProg.onlineMasteryPct + '%"></div>' +
       '</div>';
   }
 
-  // ===== 5. 21天魔鬼特训全景指挥舱 Modal (#camp21ModalBackdrop) =====
-  var _activeModalTab = 'today';
-
-  function ensureCampModal() {
-    var backdrop = document.getElementById('camp21ModalBackdrop');
-    if (backdrop) return backdrop;
-
-    backdrop = document.createElement('div');
-    backdrop.id = 'camp21ModalBackdrop';
-    backdrop.className = 'camp21-modal-backdrop';
-    backdrop.hidden = true;
-    backdrop.innerHTML =
-      '<div class="camp21-modal-dialog" role="dialog" aria-modal="true" aria-label="21天魔鬼特训全景指挥舱">' +
-        '<div class="camp21-modal-header">' +
-          '<div class="camp21-modal-title-wrap">' +
-            '<h2>🔥 Kyson 考研冲刺 · 21天魔鬼特训全景指挥舱</h2>' +
-            '<p>上下午双3h考场整块制 · 数学真题&邂逅&36讲&880 · 南大851&华科824&波哥&⚡电路专题&🎓南大期末题 · 肖1000</p>' +
-          '</div>' +
-          '<button type="button" class="camp21-modal-close" data-action="close-modal" aria-label="关闭">×</button>' +
-        '</div>' +
-        '<div class="camp21-modal-tabs">' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="today">📋 今日特训清单 & 净专注</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="v3ledger">📊 V3零删减全量总账 (7680题次&线下盘点)</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="all">🗓️ 21天全景作战大表 (含⚡电路&🎓期末题)</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="schedule">⏰ 14h05m 排班作息表</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="open-settings">⚙️ 原版每日目标设置</button>' +
-        '</div>' +
-        '<div class="camp21-modal-body" id="camp21ModalBody"></div>' +
-      '</div>';
-
-    document.body.appendChild(backdrop);
-    bindPanelEvents(backdrop);
-    backdrop.addEventListener('click', function (e) {
-      if (e.target === backdrop) backdrop.hidden = true;
+  // ===== 逐题复检练习弹窗 (P0-2 / P0-3) =====
+  var _activePracticeModal = null;
+  function closeAllCampSubModals() {
+    ['camp21PracticeModalBackdrop', 'camp21MockModalBackdrop', 'camp21OfflineModalBackdrop'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.remove();
     });
-    return backdrop;
   }
 
-  function openCampModal(tab) {
-    _activeModalTab = tab || 'today';
-    var backdrop = ensureCampModal();
-    backdrop.hidden = false;
-    renderCampModalContent();
-  }
+  function openTaskPracticeModal(taskId, filterChapterId) {
+    closeAllCampSubModals();
+    var task = AuditV4.taskById(allCampTasks, taskId);
+    if (!task) return;
 
-  function renderCampModalContent() {
-    var backdrop = document.getElementById('camp21ModalBackdrop');
-    if (!backdrop || backdrop.hidden) return;
+    var audit = loadAuditV4();
+    var existingModal = document.getElementById('camp21PracticeModalBackdrop');
+    if (existingModal) existingModal.remove();
 
-    var tabBtns = backdrop.querySelectorAll('.camp21-tab-btn[data-tab]');
-    for (var i = 0; i < tabBtns.length; i++) {
-      tabBtns[i].classList.toggle('active', tabBtns[i].getAttribute('data-tab') === _activeModalTab);
+    var backdrop = document.createElement('div');
+    backdrop.id = 'camp21PracticeModalBackdrop';
+    backdrop.className = 'camp21-modal-backdrop';
+    backdrop.style.zIndex = '10050';
+
+    var scopedSlices = task.scopedItems || [];
+    if (filterChapterId) {
+      scopedSlices = scopedSlices.filter(function (s) { return s.chapterId === filterChapterId; });
     }
 
-    var body = document.getElementById('camp21ModalBody');
-    if (!body) return;
+    var questionRows = [];
+    scopedSlices.forEach(function (slice) {
+      var liveMap = getChapterStatusMap(slice.subjectId, slice.chapterId);
+      (slice.indices || []).forEach(function (idx) {
+        var qid = AuditV4.questionKey(slice.subjectId, slice.chapterId, idx);
+        var st = liveMap[String(idx)] || 'unmarked';
+        var evs = (audit.events || []).filter(function (e) { return e.taskId === task.id && e.qid === qid; });
+        var rev = AuditV4.lastReview(evs, task.id, qid);
+        var downgraded = !!(rev && evs.some(function (e) { return e.ts > rev.ts && e.statusAfter !== 'proficient'; }));
+        var isMastered = rev && rev.outcome === 'pass' && st === 'proficient' && !downgraded;
+        var hasAttempt = evs.some(function (e) { return e.kind === 'attempt' || e.kind === 'review'; });
 
-    var state = loadCampState();
-    var activeDay = getActiveDayNumber();
-    var dayObj = getDayObj(activeDay);
-    var dayProg = evaluateDayProgress(dayObj, state);
+        questionRows.push({
+          subjectId: slice.subjectId,
+          chapterId: slice.chapterId,
+          label: slice.label,
+          idx: idx,
+          qid: qid,
+          status: st,
+          isMastered: isMastered,
+          hasAttempt: hasAttempt,
+          lastOutcome: rev ? rev.outcome : null
+        });
+      });
+    });
 
-    if (_activeModalTab === 'today') {
-      var cardsHtml = dayObj.tasks.map(function (t) {
-        return buildTaskCardHtml(t, state);
-      }).join('');
-      body.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">' +
-          '<div>' +
-            '<h3 style="margin:0;font-size:16px;color:#0f172a;">' + escapeHtml(dayObj.label) + ' · ' + escapeHtml(dayObj.week) + '</h3>' +
-            '<p style="margin:4px 0 0;font-size:12.5px;color:#475569;">今日核心目标：' + escapeHtml(dayObj.focus) + '</p>' +
-          '</div>' +
-          '<div style="display:flex;gap:8px;align-items:center;">' +
-            '<span class="camp21-fire-pill">已核验 ' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 · 绑定题 ' + dayProg.totalCurrent + '/' + dayProg.totalTarget + ' (' + dayProg.pct + '%)</span>' +
-            '<button type="button" class="camp21-btn report-btn" data-action="copy-report">📊 复制今日战报</button>' +
-          '</div>' +
-        '</div>' +
-        buildV3FocusAndQuotaStripHtml(activeDay, state) +
-        '<div class="camp21-tasks-grid">' + cardsHtml + '</div>';
-      return;
-    }
+    var rowsHtml = questionRows.map(function (q) {
+      var statusBadge = q.isMastered
+        ? '<span style="color:#15803d;font-weight:800;">💎 严格熟练通过</span>'
+        : (q.lastOutcome === 'fail' ? '<span style="color:#dc2626;font-weight:800;">❌ 复检未通过</span>' : '<span style="color:#b45309;font-weight:700;">⏳ 待复检</span>');
+      var liveBadge = '<span class="camp21-status-chip ' + q.status + '">' + q.status + '</span>';
 
-    if (_activeModalTab === 'v3ledger') {
-      var om = state.offlineMaterials || defaultOfflineMaterials();
-      var cir = om.circuit || { name: '⚡手头电路专题纸质讲义', totalInventoried: 0, done: 0, mastered: 0, note: '' };
-      var njuF = om.njuFinal || { name: '🎓手头南大历年期末题试卷', totalInventoried: 0, done: 0, mastered: 0, note: '' };
-
-      var modRows = V3_QUOTA_MODULES.map(function (mod) {
-        var sumActual = 0, sumMastered = 0;
-        for (var d = 1; d <= 21; d++) {
-          var rk = 'd' + d + '_' + mod.id;
-          sumActual += Math.max(0, Math.floor(Number(state.v3Actual && state.v3Actual[rk]) || 0));
-          sumMastered += Math.max(0, Math.floor(Number(state.v3Mastered && state.v3Mastered[rk]) || 0));
-        }
-        var rem = Math.max(0, mod.total - sumActual);
-        return (
-          '<tr>' +
-            '<td><strong>' + escapeHtml(mod.label) + '</strong></td>' +
-            '<td>' + mod.bookTotal + '</td>' +
-            '<td>' + mod.green + '</td>' +
-            '<td><strong>' + mod.total + '</strong></td>' +
-            '<td style="color:#0369a1;font-weight:700;">' + sumActual + '</td>' +
-            '<td style="color:#15803d;font-weight:700;">' + sumMastered + '</td>' +
-            '<td style="color:' + (rem > 0 ? '#dc2626' : '#15803d') + ';font-weight:800;">' + (rem > 0 ? (rem + ' 题待清零') : '✓ 全量清零') + '</td>' +
-          '</tr>'
-        );
-      }).join('');
-
-      var dailyMatrixRows = V3_FULL_DATA.days.map(function (d) {
-        var qs = getV3QuotaStatsForDay(state, d.day);
-        var nf = getDayNetFocus(state, d.day);
-        return (
-          '<tr class="' + (d.day === activeDay ? 'is-active-day' : '') + '">' +
-            '<td><strong>D' + d.day + ' (' + escapeHtml(d.date.slice(5)) + ')</strong><br>' +
-              '<button type="button" class="camp21-btn" style="margin-top:3px;padding:1px 6px;font-size:10.5px;" data-action="pick-day" data-day="' + d.day + '">跳转填写</button>' +
-            '</td>' +
-            '<td>' + d.math_truth_pending_target + '</td>' +
-            '<td>' + d.xhy_pending_target + '</td>' +
-            '<td>' + d.ll880_pending_target + '</td>' +
-            '<td>' + d.zy36_pending_target + '</td>' +
-            '<td>' + d.zy30_pending_target + ' / ' + d.zy1000basic_pending_target + '</td>' +
-            '<td>' + d.nju851_pending_target + '</td>' +
-            '<td>' + d.hust824_pending_target + '</td>' +
-            '<td>' + d.bogo_ch1to8_pending_target + '</td>' +
-            '<td>' + d.bogo_ch9_pending_target + '</td>' +
-            '<td>' + d.zhima400_firstpass_target + '</td>' +
-            '<td>' + d.politics_pending_target + '</td>' +
-            '<td>' + d.historic_green_recheck_target + '</td>' +
-            '<td><strong>' + qs.totalActual + '/' + qs.totalTarget + '</strong> (欠' + qs.totalBacklog + ')</td>' +
-            '<td>' + nf.sum + 'm</td>' +
-          '</tr>'
-        );
-      }).join('');
-
-      body.innerHTML =
-        '<div style="margin-bottom:14px;padding:12px 16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;font-size:12.5px;color:#7c2d12;line-height:1.6;">' +
-          '<strong>🔥 V3 零删减全量对账说明（本地真实 JSON 审计结果）：</strong><br>' +
-          '1. <strong>6,879 道待绿/待核验 + 801 道历史绿题复检 = 7,680 题次</strong>全部硬性入账，绝不砍题、绝不改为“只刷核心”。《基础30讲》(759待绿) 与《1000题基础篇》(506待绿) 已拆分为双独立队列。<br>' +
-          '2. <strong>南大851 的 10 道差额已查明</strong>：2020–2023年共有 44 道红黄错题 + <strong>2021年 3 道未标⚪题 + 2023年 7 道未标⚪题 = 54 道待绿题</strong>，那 10 道未标题已精准锁定在 Day 20 对账补遗！<br>' +
-          '3. <strong>波哥去重与排除</strong>：强化第7章电路(18题)计入1–8章(801待绿)，不与第9章(讲义10+习题39=49题)重复累加；状态变量(讲义Ch10/习题Ch10/强化Ch8)按要求排除。' +
-        '</div>' +
-        '<h4 style="margin:10px 0 8px;font-size:14px;color:#0f172a;">📂 纸质《电路专题》&《南大期末题》离线题册盘点器（未盘点题量不虚标100%）</h4>' +
-        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-bottom:16px;">' +
-          '<div class="camp21-v3-qcard">' +
-            '<div style="font-weight:800;font-size:13px;color:#0f172a;margin-bottom:6px;">' + escapeHtml(cir.name) + '</div>' +
-            '<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">' +
-              '<label>盘点总题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="circuit" data-field="totalInventoried" value="' + (Number(cir.totalInventoried) || 0) + '"></label>' +
-              '<label>已做题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="circuit" data-field="done" value="' + (Number(cir.done) || 0) + '"></label>' +
-              '<label>独立掌握: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="circuit" data-field="mastered" value="' + (Number(cir.mastered) || 0) + '"></label>' +
-              '<span style="font-weight:800;color:' + (cir.totalInventoried > 0 && cir.done >= cir.totalInventoried ? '#15803d' : '#dc2626') + ';">' +
-                (cir.totalInventoried > 0 ? ('进度 ' + cir.done + '/' + cir.totalInventoried + ' (待清零 ' + Math.max(0, cir.totalInventoried - cir.done) + ')') : '⚠️ 待盘点纸质总题数（未盘点不标100%）') +
-              '</span>' +
-            '</div>' +
-          '</div>' +
-          '<div class="camp21-v3-qcard">' +
-            '<div style="font-weight:800;font-size:13px;color:#0f172a;margin-bottom:6px;">' + escapeHtml(njuF.name) + '</div>' +
-            '<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">' +
-              '<label>盘点总题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="njuFinal" data-field="totalInventoried" value="' + (Number(njuF.totalInventoried) || 0) + '"></label>' +
-              '<label>已做题数: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="njuFinal" data-field="done" value="' + (Number(njuF.done) || 0) + '"></label>' +
-              '<label>独立掌握: <input type="number" min="0" max="5000" class="camp21-v3-num-input" data-action="v3-offline-mat" data-mat="njuFinal" data-field="mastered" value="' + (Number(njuF.mastered) || 0) + '"></label>' +
-              '<span style="font-weight:800;color:' + (njuF.totalInventoried > 0 && njuF.done >= njuF.totalInventoried ? '#15803d' : '#dc2626') + ';">' +
-                (njuF.totalInventoried > 0 ? ('进度 ' + njuF.done + '/' + njuF.totalInventoried + ' (待清零 ' + Math.max(0, njuF.totalInventoried - njuF.done) + ')') : '⚠️ 待盘点纸质总题数（未盘点不标100%）') +
-              '</span>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
-        '<h4 style="margin:10px 0 8px;font-size:14px;color:#0f172a;">📊 13 大量化队列总账（6,879 待绿/核验 + 801 历史绿复检 = 7,680 题次）</h4>' +
-        '<div class="camp21-all-days-table-wrap" style="margin-bottom:18px;">' +
-          '<table class="camp21-all-days-table">' +
-            '<thead><tr><th>必做资料模块</th><th>原库总题</th><th>原已绿(入复检)</th><th>21天必做配额</th><th>累计已实做</th><th>累计独立掌握</th><th>滚动待清零欠账</th></tr></thead>' +
-            '<tbody>' + modRows + '</tbody>' +
-          '</table>' +
-        '</div>' +
-        '<h4 style="margin:10px 0 8px;font-size:14px;color:#0f172a;">🗓️ V3 每日全量数字配额矩阵（Day 1 ~ Day 21）</h4>' +
-        '<div class="camp21-all-days-table-wrap">' +
-          '<table class="camp21-all-days-table">' +
-            '<thead><tr><th>Day</th><th>数一真题</th><th>邂逅</th><th>880</th><th>36讲</th><th>30讲/1000基</th><th>南大851</th><th>华科824</th><th>波哥1-8</th><th>波哥Ch9</th><th>芝麻400</th><th>政治</th><th>绿题复检</th><th>今日实做/配额</th><th>净专注</th></tr></thead>' +
-            '<tbody>' + dailyMatrixRows + '</tbody>' +
-          '</table>' +
-        '</div>';
-      return;
-    }
-
-    if (_activeModalTab === 'schedule') {
-      var slotInfo = getCurrentSlotInfo();
-      var slotsHtml = CAMP21_SCHEDULE_SLOTS.map(function (s, idx) {
-        var isNow = slotInfo.index === idx;
-        return (
-          '<div class="camp21-slot-card' + (isNow ? ' is-now' : '') + '">' +
-            '<div>' +
-              '<div class="camp21-slot-time">' + escapeHtml(s.start + ' – ' + s.end) + '</div>' +
-              '<div style="font-size:11px;color:#64748b;margin-top:3px;">' + escapeHtml(s.dur + ' · ' + s.scene) + (isNow ? ' · 🔥当前时段' : '') + '</div>' +
-            '</div>' +
-            '<div style="flex:1;">' +
-              '<div style="font-size:13px;font-weight:800;color:#0f172a;">' + escapeHtml(s.title) + '</div>' +
-              '<div style="font-size:11.5px;color:#475569;margin-top:3px;">🎯 量化标准：' + escapeHtml(s.target) + '</div>' +
-            '</div>' +
-          '</div>'
-        );
-      }).join('');
-      body.innerHTML =
-        '<div style="margin-bottom:12px;padding:10px 14px;background:#eff6ff;border-radius:10px;font-size:12.5px;color:#1e3a8a;font-weight:600;">' +
-          '💡 上午 08:30–11:30（整3h数学考场块）+ 下午 14:00–17:00（整3h专业课考场块）+ 22:00闭馆通勤 + 22:50–00:15居家深夜收尾 = 每日净专注 13.5h+！' +
-        '</div>' +
-        '<div class="camp21-schedule-list">' + slotsHtml + '</div>';
-      return;
-    }
-
-    // _activeModalTab === 'all' (21天全景表)
-    var rowsHtml = CAMP21_DAYS.map(function (d) {
-      var dp = evaluateDayProgress(d, state);
-      var isAct = d.day === activeDay;
-      var tMap = {};
-      d.tasks.forEach(function (t) { tMap[t.cat] = t; });
-      var mathTasks = d.tasks.filter(function (t) { return t.cat === 'math'; });
-      var majorTasks = d.tasks.filter(function (t) { return t.cat === 'major' || t.cat === 'MajorSpecial'; });
       return (
-        '<tr class="' + (isAct ? 'is-active-day' : '') + '">' +
-          '<td style="white-space:nowrap;">' +
-            '<strong>' + escapeHtml(d.label) + '</strong><br>' +
-            '<span style="font-size:11px;color:#ea580c;font-weight:700;">进度 ' + dp.pct + '% (' + dp.doneTasks + '/' + dp.totalTasks + '项 · ' + dp.totalCurrent + '/' + dp.totalTarget + '题)</span><br>' +
-            '<button type="button" class="camp21-btn" style="margin-top:4px;padding:2px 7px;font-size:11px;" data-action="pick-day" data-day="' + d.day + '">切换至此日</button>' +
+        '<tr style="border-bottom:1px solid #f1f5f9;">' +
+          '<td style="padding:8px 10px;font-weight:700;">' + escapeHtml(q.label) + ' #' + (q.idx + 1) + '</td>' +
+          '<td style="padding:8px 10px;">' + liveBadge + '</td>' +
+          '<td style="padding:8px 10px;">' + statusBadge + '</td>' +
+          '<td style="padding:8px 10px;text-align:right;">' +
+            '<button type="button" class="camp21-btn" style="padding:3px 8px;font-size:11px;margin-right:4px;" data-action="practice-pass" data-task="' + escapeHtml(task.id) + '" data-sub="' + escapeHtml(q.subjectId) + '" data-chap="' + escapeHtml(q.chapterId) + '" data-idx="' + q.idx + '">✅ 独立做对(通过)</button>' +
+            '<button type="button" class="camp21-btn" style="padding:3px 8px;font-size:11px;margin-right:4px;" data-action="practice-fail" data-task="' + escapeHtml(task.id) + '" data-sub="' + escapeHtml(q.subjectId) + '" data-chap="' + escapeHtml(q.chapterId) + '" data-idx="' + q.idx + '">❌ 做错(不通过)</button>' +
+            '<button type="button" class="camp21-btn" style="padding:3px 6px;font-size:11px;" data-action="jump" data-subject="' + escapeHtml(q.subjectId) + '" data-chapter="' + escapeHtml(q.chapterId) + '">🚀 直达</button>' +
           '</td>' +
-          '<td>' + (mathTasks[0] ? escapeHtml(mathTasks[0].title) : '-') + '</td>' +
-          '<td>' + (majorTasks[0] ? escapeHtml(majorTasks[0].title) : '-') + '</td>' +
-          '<td>' + (mathTasks[1] ? escapeHtml(mathTasks[1].title) : '-') + '</td>' +
-          '<td>' + (majorTasks[1] ? ('<strong style="color:#c2410c;">' + escapeHtml(majorTasks[1].title) + '</strong>') : '-') + '</td>' +
-          '<td>' + (tMap.night ? escapeHtml(tMap.night.title) : '-') + '</td>' +
-          '<td>' + (tMap.politics ? escapeHtml(tMap.politics.title) : '-') + '</td>' +
         '</tr>'
       );
     }).join('');
 
-    body.innerHTML =
-      '<div class="camp21-all-days-table-wrap">' +
-        '<table class="camp21-all-days-table">' +
-          '<thead>' +
-            '<tr>' +
-              '<th>天数 / 核验进度</th>' +
-              '<th>上午3h+45m：数学真题 & 邂逅(上)</th>' +
-              '<th>下午3h：专业课真题/模拟卷</th>' +
-              '<th>晚间1h45m：数学邂逅(下)</th>' +
-              '<th>晚间1h15m：波哥 / ⚡电路 / 🎓期末题</th>' +
-              '<th>居家1h25m：36讲 / 880 / 30讲点绿</th>' +
-              '<th>政治肖1000 & 错题</th>' +
-            '</tr>' +
-          '</thead>' +
-          '<tbody>' + rowsHtml + '</tbody>' +
-        '</table>' +
+    backdrop.innerHTML =
+      '<div class="camp21-modal-dialog" style="max-width:760px;max-height:88vh;display:flex;flex-direction:column;" role="dialog">' +
+        '<div class="camp21-modal-header">' +
+          '<div class="camp21-modal-title-wrap">' +
+            '<h3>📝 逐题练习与严格熟练复检 · ' + escapeHtml(task.title) + '</h3>' +
+            '<p style="font-size:12px;color:#64748b;">本轮逐题独立作答通过且当前状态为熟练(proficient)方可计入严格熟练，杜绝一键批量通过。</p>' +
+          '</div>' +
+          '<button type="button" class="camp21-modal-close" data-action="close-practice-modal">×</button>' +
+        '</div>' +
+        '<div style="overflow-y:auto;padding:12px;flex:1;">' +
+          '<table style="width:100%;border-collapse:collapse;font-size:12px;">' +
+            '<thead>' +
+              '<tr style="background:#f8fafc;border-bottom:2px solid #e2e8f0;text-align:left;">' +
+                '<th style="padding:8px 10px;">题号与章节</th>' +
+                '<th style="padding:8px 10px;">当前标记</th>' +
+                '<th style="padding:8px 10px;">复检结果</th>' +
+                '<th style="padding:8px 10px;text-align:right;">核验操作</th>' +
+              '</tr>' +
+            '</thead>' +
+            '<tbody>' + rowsHtml + '</tbody>' +
+          '</table>' +
+        '</div>' +
       '</div>';
+
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener('click', function (e) {
+      if (e.target === backdrop) backdrop.remove();
+    });
   }
 
-  // ===== 6. 一键生成并复制今日战报 =====
+  // 模考录入弹窗（P1-5）
+  function openMockSessionModal(taskId) {
+    closeAllCampSubModals();
+    var task = AuditV4.taskById(allCampTasks, taskId);
+    if (!task) return;
+    var audit = loadAuditV4();
+    var existingModal = document.getElementById('camp21MockModalBackdrop');
+    if (existingModal) existingModal.remove();
+
+    var r = audit.mockRecords[task.id] || {};
+    var duration = r.durationMinutes || 180;
+    var paperId = r.paperId || '2023南大851全真模拟卷';
+    var isSubmitted = r.fullPaperSubmitted === true;
+    var isGraded = !!r.gradedAt;
+
+    var backdrop = document.createElement('div');
+    backdrop.id = 'camp21MockModalBackdrop';
+    backdrop.className = 'camp21-modal-backdrop';
+    backdrop.style.zIndex = '10060';
+
+    backdrop.innerHTML =
+      '<div class="camp21-modal-dialog" style="max-width:520px;" role="dialog">' +
+        '<div class="camp21-modal-header">' +
+          '<div class="camp21-modal-title-wrap">' +
+            '<h3>📋 3小时全真模考录入 · ' + escapeHtml(task.title) + '</h3>' +
+            '<p style="font-size:12px;color:#64748b;">严格3小时模考、完整交卷并完成批改后方可终验，历史章节标记不自动计入模考完成。</p>' +
+          '</div>' +
+          '<button type="button" class="camp21-modal-close" data-action="close-mock-modal">×</button>' +
+        '</div>' +
+        '<form id="camp21MockForm" style="padding:16px;display:flex;flex-direction:column;gap:12px;font-size:13px;">' +
+          '<label><strong>试卷名称/编号：</strong>' +
+            '<input type="text" id="mockPaperId" style="width:100%;padding:6px 8px;border:1px solid #cbd5e1;border-radius:6px;margin-top:4px;" value="' + escapeHtml(paperId) + '" required>' +
+          '</label>' +
+          '<label><strong>模考实际专注时长 (分钟，必须 ≥ 180)：</strong>' +
+            '<input type="number" id="mockDuration" min="1" max="600" style="width:100%;padding:6px 8px;border:1px solid #cbd5e1;border-radius:6px;margin-top:4px;" value="' + duration + '" required>' +
+          '</label>' +
+          '<label style="display:flex;align-items:center;gap:6px;cursor:pointer;">' +
+            '<input type="checkbox" id="mockFullPaper" ' + (isSubmitted ? 'checked' : '') + '> <strong>已完整作答全卷并按时交卷</strong>' +
+          '</label>' +
+          '<label style="display:flex;align-items:center;gap:6px;cursor:pointer;">' +
+            '<input type="checkbox" id="mockGraded" ' + (isGraded ? 'checked' : '') + '> <strong>已完成对答案和逐题批改</strong>' +
+          '</label>' +
+          '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px;">' +
+            '<button type="button" class="camp21-btn" data-action="close-mock-modal">取消</button>' +
+            '<button type="submit" class="camp21-btn primary">💾 录入并核验模考</button>' +
+          '</div>' +
+        '</form>' +
+      '</div>';
+
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener('click', function (e) {
+      if (e.target === backdrop) backdrop.remove();
+    });
+
+    document.getElementById('camp21MockForm').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var pid = document.getElementById('mockPaperId').value.trim();
+      var dur = Number(document.getElementById('mockDuration').value) || 0;
+      var fullSub = document.getElementById('mockFullPaper').checked;
+      var graded = document.getElementById('mockGraded').checked;
+
+      var now = Date.now();
+      var startedAt = now - dur * 60000;
+      var curAudit = loadAuditV4();
+      var nextAudit = AuditV4.recordMock(curAudit, task.id, {
+        paperId: pid,
+        startedAt: startedAt,
+        submittedAt: now,
+        gradedAt: graded ? now : null,
+        fullPaperSubmitted: fullSub
+      });
+      saveAuditV4(nextAudit);
+      backdrop.remove();
+      renderAll();
+      showCampToast(dur >= 180 && fullSub && graded ? '✅ 3小时全真模考终验成功！' : 'ℹ️ 已保存模考记录（需时长≥180m、全卷交卷且批改完成方可终验）。');
+    });
+  }
+
+  // 线下资料盘点弹窗（P1-6）
+  function openOfflineInventoryModal(taskId) {
+    closeAllCampSubModals();
+    var task = AuditV4.taskById(allCampTasks, taskId);
+    if (!task) return;
+    var audit = loadAuditV4();
+    var existingModal = document.getElementById('camp21OfflineModalBackdrop');
+    if (existingModal) existingModal.remove();
+
+    var backdrop = document.createElement('div');
+    backdrop.id = 'camp21OfflineModalBackdrop';
+    backdrop.className = 'camp21-modal-backdrop';
+    backdrop.style.zIndex = '10060';
+
+    var items = task.offlineItemIds || [];
+    var itemsHtml = items.map(function (itId) {
+      var evs = (audit.offlineEvents || []).filter(function (e) { return e.taskId === task.id && e.itemId === itId; });
+      var last = evs.filter(function (e) { return e.action === 'pass' || e.action === 'fail'; }).at(-1);
+      var isPass = last && last.action === 'pass';
+
+      return (
+        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #f1f5f9;">' +
+          '<span>' + escapeHtml(itId) + '</span>' +
+          '<div>' +
+            '<button type="button" class="camp21-btn ' + (isPass ? 'primary' : '') + '" style="padding:2px 8px;font-size:11px;margin-right:4px;" data-action="offline-pass" data-task="' + escapeHtml(task.id) + '" data-item="' + escapeHtml(itId) + '">✅已通</button>' +
+            '<button type="button" class="camp21-btn" style="padding:2px 8px;font-size:11px;" data-action="offline-fail" data-task="' + escapeHtml(task.id) + '" data-item="' + escapeHtml(itId) + '">❌待攻坚</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    backdrop.innerHTML =
+      '<div class="camp21-modal-dialog" style="max-width:540px;" role="dialog">' +
+        '<div class="camp21-modal-header">' +
+          '<div class="camp21-modal-title-wrap">' +
+            '<h3>📝 线下纸质资料盘点 · ' + escapeHtml(task.title) + '</h3>' +
+            '<p style="font-size:12px;color:#64748b;">逐项盘点题号与通过状态，未完成前不计入每日总达标分母。</p>' +
+          '</div>' +
+          '<button type="button" class="camp21-modal-close" data-action="close-offline-modal">×</button>' +
+        '</div>' +
+        '<div style="padding:14px;max-height:60vh;overflow-y:auto;">' +
+          (items.length > 0 ? itemsHtml : '<div style="color:#b45309;padding:12px;">⚠️ 本任务当前尚未盘点具体题量清单，总进度不可自动计为100%。</div>') +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener('click', function (e) {
+      if (e.target === backdrop) backdrop.remove();
+    });
+  }
+
+  // 战报复制（四口径严格一致，P1-6 / T13）
   function copyDailyReport() {
     var state = loadCampState();
+    var audit = loadAuditV4();
     var dayObj = getDayObj(getActiveDayNumber());
-    var dayProg = evaluateDayProgress(dayObj, state);
+    var dayProg = evaluateDayProgress(dayObj, state, audit);
     var nf = getDayNetFocus(state, dayObj.day);
-    var qs = getV3QuotaStatsForDay(state, dayObj.day);
+    var qs = getV3QuotaStatsForDay(state, audit, dayObj.day);
+
     var lines = [
-      '【🔥 21天魔鬼特训 V3.1精准核验版 · ' + dayObj.label + ' 每日战报】',
+      '【🔥 21天魔鬼特训 V4精准对账版 · ' + dayObj.label + ' 每日战报】',
       '⏱️ 今日真实净专注：' + Math.floor(nf.sum / 60) + '小时' + String(nf.sum % 60).padStart(2, '0') + '分 (' + nf.sum + '/780分钟 · ' + (nf.reached ? '✅13h达标' : '⏳未满13h') + ') [数' + nf.math + 'm/专' + nf.major + 'm/政' + nf.politics + 'm/英' + nf.english + 'm]',
-      '📌 V3全量定额核验：今日实做 ' + qs.totalActual + '/' + qs.totalTarget + ' 题次 (' + qs.pct + '%) | 独立掌握 ' + qs.totalMastered + ' 题 | 待清零欠账 ' + qs.totalBacklog + ' 题',
-      '📊 今日绑定任务核验：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 (' + dayProg.pct + '%) | 绑定题完成 ' + dayProg.totalCurrent + '/' + dayProg.totalTarget + ' 题 [🟢广义绿 ' + dayProg.totalBroadGreen + ' · 💎严格精通 ' + dayProg.totalStrictProf + ' · ⏳待清零 ' + dayProg.totalRemaining + ']'
+      '💎 线上题目严格熟练：' + dayProg.onlineMastered + '/' + dayProg.onlineTarget + ' 题 (' + dayProg.onlineMasteryPct + '%) | 本轮已覆盖 ' + dayProg.onlineAttempted + ' 题 | 广义绿 ' + dayProg.onlineBroadGreen + ' 题',
+      '📊 全天全部任务达标：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 (' + dayProg.taskPct + '%)' + (dayProg.untrackedTasks > 0 ? (' [⚠️含 ' + dayProg.untrackedTasks + ' 项待盘点任务]') : ''),
+      '📌 V4全量定额对账：今日配额 ' + qs.totalTarget + ' 题次 | 题库已验证掌握 ' + qs.totalVerifiedMastered + ' 题 | 手工申报实做 ' + qs.totalManualClaim + ' 题'
     ];
+
     dayObj.tasks.forEach(function (t) {
-      var ev = evaluateTaskProgress(t, state);
+      var ev = evaluateScopedV4(t, audit);
       var mark = ev.isDone ? '✅' : '⏳';
-      var statStr = ev.isScopedOnline
-        ? (' [本卡绑定 ' + ev.currentVal + '/' + ev.targetVal + ' (' + ev.pct + '%) | ✍️已做' + ev.attempted + ' 🟢广义绿' + ev.broadGreen + ' 💎精通' + ev.strictProficient + ' ⏳剩' + ev.remainingCount + '题' + (ev.remainingSummary ? (' (' + ev.remainingSummary + ')') : '') + ']')
+      var statStr = ev.type === 'online'
+        ? (' [绑定 ' + ev.targetVal + '题 | 💎严格熟练 ' + ev.strictProficient + '/' + ev.targetVal + ' (' + ev.pct + '%) | ✍️已做' + ev.attempted + ' 🟢广义绿' + ev.broadGreen + ' ⏳待清零' + ev.remainingCount + '题]')
         : (' [' + ev.statusBadge + ']');
       lines.push(mark + ' ' + t.catLabel + '：' + t.title + statStr);
     });
+
     var text = lines.join('\n');
     if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
       navigator.clipboard.writeText(text).then(function () {
@@ -17808,49 +19821,149 @@
     return text;
   }
 
-  function findTaskById(taskId) {
-    for (var i = 0; i < CAMP21_DAYS.length; i++) {
-      var tasks = CAMP21_DAYS[i].tasks || [];
-      for (var j = 0; j < tasks.length; j++) {
-        if (tasks[j].id === taskId) return tasks[j];
-      }
-    }
-    return null;
+  // ===== 全景指挥舱 Modal (#camp21ModalBackdrop) =====
+  var _activeModalTab = 'today';
+  function ensureCampModal() {
+    var backdrop = document.getElementById('camp21ModalBackdrop');
+    if (backdrop) return backdrop;
+    backdrop = document.createElement('div');
+    backdrop.id = 'camp21ModalBackdrop';
+    backdrop.className = 'camp21-modal-backdrop';
+    backdrop.hidden = true;
+    backdrop.innerHTML =
+      '<div class="camp21-modal-dialog" role="dialog" aria-modal="true" aria-label="21天魔鬼特训全景指挥舱">' +
+        '<div class="camp21-modal-header">' +
+          '<div class="camp21-modal-title-wrap">' +
+            '<h2>🔥 Kyson 考研冲刺 · 21天魔鬼特训 V4全景指挥舱</h2>' +
+            '<p>真实逐题练习审计 · 双轨核验 · 绝不跨天串账 · 严禁旧绿标冒充严格熟练</p>' +
+          '</div>' +
+          '<button type="button" class="camp21-modal-close" data-action="close-modal" aria-label="关闭">×</button>' +
+        '</div>' +
+        '<div class="camp21-modal-tabs">' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="today">📋 今日特训清单 & 净专注</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="v3ledger">📊 V4对账总账 (7680题次与逐题核对)</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="all">🗓️ 21天全景作战大表</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="schedule">⏰ 14h05m 排班作息表</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="open-settings">⚙️ 原版每日目标设置</button>' +
+        '</div>' +
+        '<div class="camp21-modal-body" id="camp21ModalBody"></div>' +
+      '</div>';
+    document.body.appendChild(backdrop);
+    bindPanelEvents(backdrop);
+    backdrop.addEventListener('click', function (e) {
+      if (e.target === backdrop) backdrop.hidden = true;
+    });
+    return backdrop;
   }
 
-  function handleVerifyRecheckSlice(taskId, subjectId, chapterId) {
-    var task = findTaskById(taskId);
-    if (!task) return false;
+  function openCampModal(tab) {
+    closeAllCampSubModals();
+    _activeModalTab = tab || 'today';
+    var backdrop = ensureCampModal();
+    backdrop.hidden = false;
+    renderCampModalContent();
+  }
+
+  function renderCampModalContent() {
+    var backdrop = document.getElementById('camp21ModalBackdrop');
+    if (!backdrop || backdrop.hidden) return;
+    var tabBtns = backdrop.querySelectorAll('.camp21-tab-btn[data-tab]');
+    for (var i = 0; i < tabBtns.length; i++) {
+      tabBtns[i].classList.toggle('active', tabBtns[i].getAttribute('data-tab') === _activeModalTab);
+    }
+    var body = document.getElementById('camp21ModalBody');
+    if (!body) return;
+
     var state = loadCampState();
-    var liveMap = getChapterStatusMap(subjectId, chapterId);
-    var slice = null;
-    (task.scopedItems || []).forEach(function (s) {
-      if (s.chapterId === chapterId) slice = s;
-    });
-    if (!slice) return false;
+    var audit = loadAuditV4();
+    var activeDay = getActiveDayNumber();
+    var dayObj = getDayObj(activeDay);
 
-    var nonGreenNums = [];
-    (slice.indices || []).forEach(function (idx) {
-      var st = liveMap[String(idx)] || 'unmarked';
-      if (st !== 'proficient' && st !== 'familiar') {
-        nonGreenNums.push(idx + 1);
-      }
-    });
+    if (_activeModalTab === 'today') {
+      var dayProg = evaluateDayProgress(dayObj, state, audit);
+      var cardsHtml = dayObj.tasks.map(function (t) { return buildTaskCardHtml(t, state, audit); }).join('');
+      body.innerHTML =
+        '<div style="padding:10px 14px;">' +
+          buildV3FocusAndQuotaStripHtml(activeDay, state, audit) +
+          '<div class="camp21-tasks-grid" style="margin-top:12px;">' + cardsHtml + '</div>' +
+        '</div>';
+    } else if (_activeModalTab === 'v3ledger') {
+      var qs = getV3QuotaStatsForDay(state, audit, activeDay);
+      var rowsHtml = qs.items.map(function (it) {
+        return (
+          '<tr style="border-bottom:1px solid #e2e8f0;">' +
+            '<td style="padding:8px 10px;font-weight:700;">' + escapeHtml(it.mod.label) + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;">' + it.target + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;color:#1d4ed8;font-weight:700;">' + it.coverageVerified + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;color:#15803d;font-weight:800;">' + it.masteryVerified + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;">' + (it.missingScope > 0 ? ('<span style="color:#dc2626;">待映射 ' + it.missingScope + '</span>') : '已全映射') + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;">' + it.manualClaim + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;">' + it.manualMastered + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;color:#ea580c;font-weight:700;">' + it.backlog + '</td>' +
+            '<td style="padding:8px 10px;text-align:center;">' + (it.verifiedComplete ? '💎已通过' : '⏳未满') + '</td>' +
+          '</tr>'
+        );
+      }).join('');
 
-    if (nonGreenNums.length > 0) {
-      showCampToast('⚠️ 核验未通过：' + slice.label + ' 仍有 ' + nonGreenNums.length + ' 道题非绿标 (' + formatQuestionRanges(nonGreenNums) + ')，请先在题库中重做标绿！');
-      return false;
+      body.innerHTML =
+        '<div style="padding:12px 14px;">' +
+          '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px;margin-bottom:12px;font-size:12.5px;color:#1e3a8a;">' +
+            '<strong>📊 V4 零删减全量总账对账规则：</strong>每道题必须在当前属于熟练(proficient)且存在本轮复检通过记录方可计入“题库已验证严格熟练”；手工填报单独显示，严禁冒充题库验证。' +
+          '</div>' +
+          '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left;">' +
+            '<thead>' +
+              '<tr style="background:#f1f5f9;border-bottom:2px solid #cbd5e1;">' +
+                '<th style="padding:8px 10px;">模块书目</th>' +
+                '<th style="padding:8px 10px;text-align:center;">今日配额</th>' +
+                '<th style="padding:8px 10px;text-align:center;">验证覆盖</th>' +
+                '<th style="padding:8px 10px;text-align:center;">严格熟练</th>' +
+                '<th style="padding:8px 10px;text-align:center;">题目映射</th>' +
+                '<th style="padding:8px 10px;text-align:center;">申报实做</th>' +
+                '<th style="padding:8px 10px;text-align:center;">申报掌握</th>' +
+                '<th style="padding:8px 10px;text-align:center;">待清零</th>' +
+                '<th style="padding:8px 10px;text-align:center;">结论</th>' +
+              '</tr>' +
+            '</thead>' +
+            '<tbody>' + rowsHtml + '</tbody>' +
+          '</table>' +
+        '</div>';
+    } else if (_activeModalTab === 'all') {
+      var allRows = CAMP21_DAYS.map(function (d) {
+        var dp = evaluateDayProgress(d, state, audit);
+        return (
+          '<tr class="' + (d.day === activeDay ? 'is-active-day' : '') + '">' +
+            '<td><strong>' + escapeHtml(d.label) + '</strong><br><small>' + d.date + '</small></td>' +
+            '<td>' + escapeHtml(d.focus) + '</td>' +
+            '<td>💎严格熟练 ' + dp.onlineMastered + '/' + dp.onlineTarget + ' (' + dp.onlineMasteryPct + '%)<br>任务 ' + dp.doneTasks + '/' + dp.totalTasks + '</td>' +
+            '<td><button type="button" class="camp21-btn" data-action="pick-day" data-day="' + d.day + '">查看D' + d.day + '</button></td>' +
+          '</tr>'
+        );
+      }).join('');
+      body.innerHTML =
+        '<div style="padding:12px 14px;">' +
+          '<table class="camp21-all-days-table">' +
+            '<thead><tr><th>日期</th><th>核心攻坚焦点</th><th>V4真实核验进度</th><th>切换</th></tr></thead>' +
+            '<tbody>' + allRows + '</tbody>' +
+          '</table>' +
+        '</div>';
+    } else if (_activeModalTab === 'schedule') {
+      var curSlot = AuditV4.dayString ? (new Date()).getHours() * 60 + (new Date()).getMinutes() : 0;
+      var slotsHtml = CAMP21_SCHEDULE_SLOTS.map(function (s) {
+        return (
+          '<div class="camp21-slot-card">' +
+            '<div class="camp21-slot-time">' + s.start + ' - ' + s.end + '</div>' +
+            '<div class="camp21-slot-info">' +
+              '<div style="font-weight:700;color:#0f172a;">' + escapeHtml(s.title) + '</div>' +
+              '<div style="font-size:11.5px;color:#64748b;">' + escapeHtml(s.desc) + '</div>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+      body.innerHTML = '<div style="padding:12px 14px;"><div class="camp21-schedule-list">' + slotsHtml + '</div></div>';
     }
-
-    state.recheckVerified = state.recheckVerified || {};
-    state.recheckVerified[taskId + ':' + chapterId] = true;
-    saveCampState(state);
-    renderAll();
-    showCampToast('✅ 已核验通过：' + slice.label + ' 全部题目均在题库中保持绿标状态！');
-    return true;
   }
 
-  // ===== 7. 事件委托与生命周期绑定 =====
+  // ===== 事件委托与生命周期绑定 =====
   function bindPanelEvents(container) {
     if (!container || container._camp21EventsBound) return;
     container._camp21EventsBound = true;
@@ -17902,21 +20015,40 @@
         copyDailyReport();
       } else if (action === 'jump') {
         jumpToChapter(btn.getAttribute('data-subject'), btn.getAttribute('data-chapter'));
-      } else if (action === 'verify-recheck') {
-        e.preventDefault();
-        e.stopPropagation();
-        handleVerifyRecheckSlice(
-          btn.getAttribute('data-task'),
-          btn.getAttribute('data-subject'),
-          btn.getAttribute('data-chapter')
-        );
-      } else if (action === 'step-inc' || action === 'step-dec') {
-        e.preventDefault();
+      } else if (action === 'open-practice-modal') {
+        openTaskPracticeModal(btn.getAttribute('data-task'));
+      } else if (action === 'close-practice-modal') {
+        var pBd = document.getElementById('camp21PracticeModalBackdrop');
+        if (pBd) pBd.remove();
+      } else if (action === 'practice-pass' || action === 'practice-fail') {
         var tId = btn.getAttribute('data-task');
-        var cur = Number(state.offline[tId]) || 0;
-        state.offline[tId] = Math.max(0, cur + (action === 'step-inc' ? 1 : -1));
-        saveCampState(state);
-        renderAll();
+        var sId = btn.getAttribute('data-sub');
+        var cId = btn.getAttribute('data-chap');
+        var idx = Number(btn.getAttribute('data-idx'));
+        var outcome = action === 'practice-pass' ? 'pass' : 'fail';
+        saveRealQuestionPractice(tId, sId, cId, idx, 'review', outcome, true);
+        openTaskPracticeModal(tId); // 刷新弹窗
+      } else if (action === 'open-mock-modal') {
+        openMockSessionModal(btn.getAttribute('data-task'));
+      } else if (action === 'close-mock-modal') {
+        var mBd = document.getElementById('camp21MockModalBackdrop');
+        if (mBd) mBd.remove();
+      } else if (action === 'open-offline-modal') {
+        openOfflineInventoryModal(btn.getAttribute('data-task'));
+      } else if (action === 'close-offline-modal') {
+        var oBd = document.getElementById('camp21OfflineModalBackdrop');
+        if (oBd) oBd.remove();
+      } else if (action === 'offline-pass' || action === 'offline-fail') {
+        var offTId = btn.getAttribute('data-task');
+        var itId = btn.getAttribute('data-item');
+        var offTask = AuditV4.taskById(allCampTasks, offTId);
+        if (offTask) {
+          var curAud = loadAuditV4();
+          var nextAud = AuditV4.recordOffline(curAud, offTask, itId, action === 'offline-pass' ? 'pass' : 'fail');
+          saveAuditV4(nextAud);
+          openOfflineInventoryModal(offTId);
+          renderAll();
+        }
       }
     });
 
@@ -17927,40 +20059,6 @@
       var state = loadCampState();
       if (action === 'select-day') {
         state.selectedDay = Number(target.value) || 0;
-        saveCampState(state);
-        renderAll();
-      } else if (action === 'toggle-check') {
-        var tId = target.getAttribute('data-task');
-        var taskObj = findTaskById(tId);
-        if (!taskObj) return;
-        var ev = evaluateTaskProgress(taskObj, state);
-
-        if (ev.isScopedOnline) {
-          // 线上题库绑定任务严禁手动勾选伪造 100% 完成度 (P0-3 / T04)
-          delete state.checked[tId];
-          delete state.manualConfirmed[tId];
-          saveCampState(state);
-          target.checked = ev.isDone;
-          if (!ev.isDone) {
-            showCampToast('⏳ 题库绑定任务不可手动勾选伪造100%！当前还剩 ' + ev.remainingCount + ' 道绑定题未完成 (' + ev.remainingSummary + ')，请先在题库中完成后自动核验。');
-          }
-          renderAll();
-          return;
-        }
-
-        // 纯线下任务允许手动确认
-        if (target.checked) {
-          state.manualConfirmed[tId] = true;
-          if (taskObj.offlineTarget > 0) {
-            state.offline[tId] = taskObj.offlineTarget;
-          }
-        } else {
-          delete state.manualConfirmed[tId];
-          delete state.checked[tId];
-          if (taskObj.offlineTarget > 0) {
-            state.offline[tId] = 0;
-          }
-        }
         saveCampState(state);
         renderAll();
       } else if (action === 'v3-actual' || action === 'v3-mastered') {
@@ -17982,45 +20080,8 @@
         state.netFocus[dStr][subj] = Math.max(0, Math.min(1440, Math.floor(Number(target.value) || 0)));
         saveCampState(state);
         renderAll();
-      } else if (action === 'v3-offline-mat') {
-        var matKey = target.getAttribute('data-mat');
-        var field = target.getAttribute('data-field');
-        state.offlineMaterials = state.offlineMaterials || defaultOfflineMaterials();
-        state.offlineMaterials[matKey] = state.offlineMaterials[matKey] || {};
-        state.offlineMaterials[matKey][field] = Math.max(0, Math.floor(Number(target.value) || 0));
-        saveCampState(state);
-        renderAll();
       }
     });
-  }
-
-  // 当用户在题库中标记题目状态时，精准记录到对应任务的 scopedVerified / scopedAttempted
-  function recordScopedQuestionActivity(payload) {
-    if (!payload || !payload.chapterId || payload.idx == null) return;
-    var sid = String(payload.subjectId || '');
-    var cid = String(payload.chapterId || '');
-    var idx = Number(payload.idx);
-    if (!Number.isFinite(idx) || idx < 0) return;
-
-    var state = loadCampState();
-    var qKey = sid + ':' + cid + ':' + idx;
-    state.scopedAttempted = state.scopedAttempted || {};
-    state.scopedAttempted[qKey] = payload.status;
-    state.scopedVerified = state.scopedVerified || {};
-
-    var activeDay = getActiveDayNumber();
-    var dayObj = getDayObj(activeDay);
-    if (dayObj && Array.isArray(dayObj.tasks)) {
-      dayObj.tasks.forEach(function (t) {
-        (t.scopedItems || []).forEach(function (slice) {
-          if (slice.chapterId === cid && slice.indices && slice.indices.indexOf(idx) !== -1) {
-            state.scopedVerified[t.id] = state.scopedVerified[t.id] || {};
-            state.scopedVerified[t.id][qKey] = true;
-          }
-        });
-      });
-    }
-    saveCampState(state);
   }
 
   function renderAll() {
@@ -18031,30 +20092,79 @@
     renderCampModalContent();
   }
 
-  function hookStudyAnalytics() {
-    if (window.StudyAnalytics && typeof window.StudyAnalytics.render === 'function' && !window.StudyAnalytics._camp21Hooked) {
-      var origRender = window.StudyAnalytics.render;
-      window.StudyAnalytics.render = function () {
+  // 安全挂钩学习分析日志（P1-7 / T12）
+  function lastAnalyticsEvent() {
+    try {
+      var events = JSON.parse(window.localStorage.getItem(getPrefix() + 'study_events_v1') || '[]');
+      return Array.isArray(events) && events.length ? events[events.length - 1] : null;
+    } catch (_) { return null; }
+  }
+
+  function hookStudyAnalyticsSafely() {
+    var analytics = window.StudyAnalytics;
+    if (!analytics || typeof analytics.recordStatus !== 'function' || analytics._campV4Wrapped) return;
+
+    var original = analytics.recordStatus;
+    analytics.recordStatus = function (payload) {
+      var before = lastAnalyticsEvent();
+      var result = original.apply(this, arguments);
+      var after = lastAnalyticsEvent();
+      var saved = after && (!before || after.id !== before.id);
+      var matches = saved && payload &&
+        String(after.subjectId) === String(payload.subjectId) &&
+        String(after.chapterId) === String(payload.chapterId) &&
+        Number(after.idx) === Number(payload.idx) &&
+        after.status === payload.status;
+
+      if (matches) {
+        // 查找当前题号绑定的学习任务（若有）
+        try {
+          var activeDay = getActiveDayNumber();
+          var dayObj = getDayObj(activeDay);
+          var activeTask = null;
+          (dayObj.tasks || []).forEach(function (t) {
+            (t.scopedItems || []).forEach(function (slice) {
+              if (slice.chapterId === payload.chapterId && slice.indices && slice.indices.indexOf(Number(payload.idx)) !== -1) {
+                activeTask = t;
+              }
+            });
+          });
+          if (activeTask) {
+            var curAudit = loadAuditV4();
+            var nextAudit = AuditV4.recordPractice(curAudit, allCampTasks, {
+              kind: 'status',
+              subjectId: payload.subjectId,
+              chapterId: payload.chapterId,
+              idx: Number(payload.idx),
+              statusAfter: payload.status,
+              source: 'analytics-status-hook'
+            }, {
+              taskId: activeTask.id,
+              timestamp: Date.now(),
+              allowBacklog: true
+            });
+            saveAuditV4(nextAudit);
+          }
+        } catch (e) {}
+        renderAll();
+      }
+      return result;
+    };
+    analytics._campV4Wrapped = true;
+
+    if (typeof analytics.render === 'function' && !analytics._campV4RenderWrapped) {
+      var origRender = analytics.render;
+      analytics.render = function () {
         var res = origRender.apply(this, arguments);
         try { renderAll(); } catch (e) {}
         return res;
       };
-      window.StudyAnalytics._camp21Hooked = true;
-    }
-    if (window.StudyAnalytics && typeof window.StudyAnalytics.recordStatus === 'function' && !window.StudyAnalytics._camp21RecHooked) {
-      var origRec = window.StudyAnalytics.recordStatus;
-      window.StudyAnalytics.recordStatus = function (payload) {
-        try { recordScopedQuestionActivity(payload); } catch (e) {}
-        var res = origRec.apply(this, arguments);
-        try { renderAll(); } catch (e) {}
-        return res;
-      };
-      window.StudyAnalytics._camp21RecHooked = true;
+      analytics._campV4RenderWrapped = true;
     }
   }
 
   function init() {
-    hookStudyAnalytics();
+    hookStudyAnalyticsSafely();
     renderAll();
     window.addEventListener('storage', function () {
       renderAll();
@@ -18075,15 +20185,21 @@
     getV3FullData: function () { return V3_FULL_DATA; },
     getTodayDay: getTodayCampDay,
     getActiveDay: getActiveDayNumber,
-    getCurrentSlotInfo: getCurrentSlotInfo,
-    evaluateTaskProgress: evaluateTaskProgress,
+    evaluateTaskProgress: evaluateScopedV4,
     evaluateDayProgress: evaluateDayProgress,
     getFourCaliberSubjectStats: getFourCaliberSubjectStats,
-    recordScopedQuestionActivity: recordScopedQuestionActivity,
-    verifyRecheckSlice: handleVerifyRecheckSlice,
+    getV3QuotaStatsForDay: getV3QuotaStatsForDay,
+    saveRealQuestionPractice: saveRealQuestionPractice,
+    openTaskPracticeModal: openTaskPracticeModal,
+    openMockSessionModal: openMockSessionModal,
+    openOfflineInventoryModal: openOfflineInventoryModal,
     formatQuestionRanges: formatQuestionRanges,
     getStateKey: stateStorageKey,
+    getAuditKey: auditStorageKey,
     loadState: loadCampState,
-    saveState: saveCampState
+    saveState: saveCampState,
+    loadAudit: loadAuditV4,
+    saveAudit: saveAuditV4,
+    AuditV4: AuditV4
   };
 })();
