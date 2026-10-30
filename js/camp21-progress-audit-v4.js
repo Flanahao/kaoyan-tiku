@@ -56,6 +56,7 @@
       events: [],
       offlineEvents: [],
       mockRecords: {},
+      paperCorrections: {},
       manualClaims: {},
       legacyMigration: { reviewed: false }
     };
@@ -68,6 +69,7 @@
       events: Array.isArray(s.events) ? s.events : [],
       offlineEvents: Array.isArray(s.offlineEvents) ? s.offlineEvents : [],
       mockRecords: s.mockRecords || {},
+      paperCorrections: s.paperCorrections || {},
       manualClaims: s.manualClaims || {},
       legacyMigration: s.legacyMigration || { reviewed: false }
     };
@@ -274,11 +276,52 @@
     };
   }
 
+  function recordPaperCorrection(audit, taskId, paperId, record) {
+    var s = safeAudit(audit);
+    var key = String(taskId) + "_" + String(paperId);
+    var nextMap = Object.assign({}, s.paperCorrections || {});
+    nextMap[key] = Object.assign({}, nextMap[key] || {}, record || {});
+    return Object.assign({}, s, { paperCorrections: nextMap });
+  }
+
+  function evaluateCorrection(task, audit) {
+    var s = safeAudit(audit);
+    var key = String(task.id) + "_" + String(task.paperId);
+    var rec = (s.paperCorrections && s.paperCorrections[key]) || null;
+    var v41 = (typeof window !== "undefined" && window.Camp21ScheduleV41)
+      ? window.Camp21ScheduleV41
+      : (typeof require === "function" ? (function () { try { return require("./camp21-schedule-v41.js"); } catch (e) { return null; } })() : null);
+    var prog = (v41 && typeof v41.paperProgress === "function")
+      ? v41.paperProgress(rec)
+      : {
+          stage: rec && rec.fullPaperSubmitted ? (rec.graded ? (rec.correctionSessionConfirmed ? "CORRECTED_WAITING_RECHECK" : "GRADED_WAITING_CORRECTION") : "SUBMITTED_WAITING_GRADING") : "NOT_SUBMITTED",
+          examDone: !!(rec && rec.fullPaperSubmitted),
+          correctionDone: !!(rec && rec.correctionSessionConfirmed && (!rec.wrongQuestionIds || rec.wrongQuestionIds.length === 0 || (rec.correctedQuestionIds && rec.correctedQuestionIds.length >= rec.wrongQuestionIds.length))),
+          strictlyMastered: !!(rec && rec.allAssignedQuestionsStrictlyMastered),
+          unresolvedWrongIds: (rec && rec.wrongQuestionIds) ? (rec.wrongQuestionIds.filter(function (id) { return !(rec.correctedQuestionIds || []).includes(id); })) : []
+        };
+    var isDone = prog.strictlyMastered;
+    return {
+      type: "correction",
+      state: prog.stage,
+      target: 1,
+      attempted: (prog.examDone && prog.correctionDone) ? 1 : 0,
+      mastered: isDone ? 1 : 0,
+      coveragePct: (prog.examDone && prog.correctionDone) ? 100 : 0,
+      masteryPct: isDone ? 100 : 0,
+      isDone: isDone,
+      unresolvedWrongIds: prog.unresolvedWrongIds || [],
+      record: rec,
+      paperProgress: prog
+    };
+  }
+
   function evaluateTask(task, audit, readStatus) {
     // Precedence matters: mocks can have optional chapter links, but those
     // links MUST NEVER count as an auto-completion signal.
     if (task.isOptionalOnlineMock || task.kind === "mock") return evaluateMock(task, audit);
     if (task.kind === "offline") return evaluateOffline(task, audit);
+    if (task.kind === "correction") return evaluateCorrection(task, audit);
     if (Array.isArray(task.scopedItems) && task.scopedItems.length) {
       return evaluateOnline(task, audit, readStatus);
     }
@@ -383,6 +426,8 @@
     evaluateMock: evaluateMock,
     evaluateTask: evaluateTask,
     evaluateDay: evaluateDay,
-    reconcileQuota: reconcileQuota
+    reconcileQuota: reconcileQuota,
+    recordPaperCorrection: recordPaperCorrection,
+    evaluateCorrection: evaluateCorrection
   };
 });
