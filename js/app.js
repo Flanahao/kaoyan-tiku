@@ -3697,6 +3697,11 @@
 
       card.querySelectorAll('.q-choice-item').forEach(function(item) {
         item.addEventListener('click', function() {
+          // 用户长按划选文字（荧光笔划词）时不触发选项勾选切换
+          var sel = window.getSelection ? window.getSelection() : null;
+          if (sel && !sel.isCollapsed && sel.toString().trim().length > 0) {
+            return;
+          }
           if (!isMulti) {
             card.querySelectorAll('.q-choice-item').forEach(function(el) {
               if (el !== item) el.classList.remove('is-selected');
@@ -3717,6 +3722,13 @@
           'kaoyan_politics_choice_notes_v1_' + ch.id + '_' + idx;
         window.PoliticsChoiceNotes.mount(card, optionNotesKey);
       }
+
+      // 政治肖1000题干与选项启用荧光笔
+      if (curSubjectId === 'politics' && window.PoliticsTextHighlighter) {
+        var textHlKey = userStoragePrefix() +
+          'kaoyan_politics_text_hl_v1_' + ch.id + '_' + idx;
+        window.PoliticsTextHighlighter.mount(card, textHlKey);
+      }
     }
 
     function renderPoliticsSolutionCard(q) {
@@ -3735,7 +3747,7 @@
           '<div class="sol-analysis-content">' + analysisContent + '</div>' +
         '</div>';
 
-      // 仅政治肖1000解析正文启用荧光笔；不碰正确答案栏、批改或五级掌握度。
+      // 政治肖1000题目、选项与解析正文启用荧光笔；不碰正确答案栏、批改或五级掌握度。
       if (curSubjectId === 'politics' && window.PoliticsTextHighlighter) {
         var textHlKey = userStoragePrefix() +
           'kaoyan_politics_text_hl_v1_' + currentChapterId + '_' + current;
