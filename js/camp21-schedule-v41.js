@@ -14,7 +14,7 @@
   var MATH_FULL_MOCK_DAYS = Object.freeze([1, 2]);
   var MAJOR_FULL_MOCK_DAYS = Object.freeze([7, 14, 21]);
   var NET_FOCUS_GOAL = 780;
-  var SCHEDULED_STUDY = 850;
+  var SCHEDULED_STUDY = 845;
 
   function requireDay(day) {
     var n = Number(day);
@@ -59,37 +59,32 @@
     var d = requireDay(day), mathMock = isMathMockDay(d, options);
     var majorMock = isMajorMockDay(d);
     var result = [
-      slot("07:20","08:00","起床、早餐、通勤（不计入净专注）",false,"transit"),
-      slot("08:00","08:30","英语作文背默",true,"english"),
+      slot("07:20","08:00","起床、早餐、赶赴图书馆（途中泛听政治音频带背，不计入净专注）",false,"transit"),
+      slot("08:00","08:30","【英语·早间开机】大小作文功能句与模板段背默",true,"english"),
       slot("08:30","11:30",mathMock
-        ? "数学完整模拟：独立答卷180分钟，不含订正"
-        : "数学真题非绿题/旧题攻坚；余时题库训练",
+        ? "🔥【数学·3h考场整块】全真模考：独立答卷180分钟，不含订正"
+        : "🔥【数学·3h考场整块】09–23真题非绿题/旧题攻坚，严禁翻看答案",
         true,"math-exam"),
       slot("11:30","12:30",mathMock
-        ? "数学订正①：阅卷、错因、独立重算（60分钟）"
-        : "数学真题订正；若已处理完改刷《邂逅遗憾》",
+        ? "【数学·订正】试卷阅卷估分、错因归类与错题独立重算（60分钟）"
+        : "【数学·订正】真题做题订正与深度反思；余时转刷《邂逅遗憾》（60分钟）",
         true,"math-correction"),
-      slot("12:30","13:30","午饭与午休（含可选政治带背，不算净专注）",false,"meal"),
-      slot("13:30","14:00","政治肖1000题①",true,"politics"),
+      slot("12:30","13:30","🍱 午饭 + 💤 强制午休深度趴睡（25–30m充能，不计入净专注）",false,"meal"),
+      slot("13:30","14:00","【政治·上半场】《27肖1000题》刷题25–30题（快速开机拉升专注）",true,"politics"),
       slot("14:00","17:00",majorMock
-        ? "专业课完整模考180分钟，订正另外记录"
-        : "专业课做题+订正弹性180分钟，例：120+60",
+        ? "🔥【专业课·3h考场整块】南大851/华科824全真模考180分钟，订正另外记录"
+        : "🔥【专业课·3h考场整块】南大851/华科824真题做题+订正弹性180分钟",
         true,"major"),
-      slot("17:00","17:50","英语阅读精读",true,"english"),
-      slot("17:50","18:25","晚饭",false,"meal"),
-      slot("18:25","19:05","政治肖1000题②及错题",true,"politics")
+      slot("17:00","17:50","【英语·阅读】真题阅读精读1–2篇与生词语境复盘",true,"english"),
+      slot("17:50","18:30","🍜 晚饭与散步调整（错峰就餐，放松大脑，18:30准时回座）",false,"meal"),
+      slot("18:30","19:00","【政治·下半场】《27肖1000题》刷题25题 + 当日错题复盘标绿",true,"politics"),
+      slot("19:00","20:30","🔥【数学·晚间主攻】《邂逅遗憾》专项技巧攻坚（90分钟吃透核心题型）",true,"xhy"),
+      slot("20:30","21:20","🔥【专业课·波哥攻坚】波哥全套（讲义+强化+习题集+电路专题，50分钟夯实）",true,"major-boge"),
+      slot("21:20","22:20","🔥【专业课·芝麻大题】《芝麻400题》大题推导专场（15–20m/题，精做4–6道大题）",true,"major-zhima"),
+      slot("22:20","22:50","🚲 闭馆离开、通勤回家、洗漱换衣",false,"transit"),
+      slot("22:50","00:15","🔥【数学·深夜筑基】《张宇30讲》核心定理与例题清透（85分钟彻底脱载880/36讲）",true,"math-30"),
+      slot("00:15","00:30","战报打卡与安稳就寝准备（00:30前准时入睡，睡足7h05m深度充能）",false,"sleep")
     ];
-    if (mathMock) {
-      result.push(slot("19:05","19:35","数学订正②（30分钟）",true,"math-correction"));
-      result.push(slot("19:35","20:45","《邂逅遗憾》推进（70分钟）",true,"xhy"));
-    } else {
-      result.push(slot("19:05","20:45","《邂逅遗憾》推进（100分钟）",true,"xhy"));
-    }
-    result.push(
-      slot("20:45","22:00","波哥/电路/南大期末/芝麻400全量攻坚",true,"major-special"),
-      slot("22:00","22:50","闭馆、回家、洗漱",false,"transit"),
-      slot("22:50","00:35","880/36讲/30讲/1000基础及复检",true,"math-books")
-    );
     var study = result.reduce(function(sum, item){
       return sum + (item.study ? item.minutes : 0);
     },0);
@@ -110,7 +105,7 @@
       day:d, kind:kind, paperId:String(paperId),
       requiresGrading:true,
       requiresQuestionEvidence:true,
-      scheduledCorrectionMinutes:kind==="math" && isMathMockDay(d) ? 90 : null,
+      scheduledCorrectionMinutes:kind==="math" && isMathMockDay(d) ? 60 : null,
       autoComplete:false
     };
   }
@@ -188,25 +183,41 @@
     if (id==="d"+d+"_m_am") {
       type=mock?"math-full-mock":"math-targeted";
       time="08:30–11:30";
-      note=mock?"只做题，订正任务独立计算":"旧题与非绿题优先；订正放11:30–12:30";
+      note=mock?"纯做题180m，订正任务独立计算":"09–23真题旧题与非绿题攻坚；订正放11:30–12:30";
+    } else if (id==="d"+d+"_math_correction") {
+      type="math-correction";
+      time="11:30–12:30";
+      note="真题/模考深度订正与错因复盘，余时转刷邂逅遗憾";
     } else if (id==="d"+d+"_m_pm") {
-      type="math-evening";
-      time=mock?"19:35–20:45":"19:05–20:45";
-      note=mock?"模考日数学19:05–19:35先订正":"旧题日完整100分钟主攻";
+      type="math-xhy";
+      time="19:00–20:30";
+      note="晚间90分钟专注攻坚《邂逅遗憾》专项技巧";
     } else if (id==="d"+d+"_p_pm") {
       type=majorMock?"major-full-mock":"major-flex";
       time="14:00–17:00";
       note=majorMock
-        ? "完整180分钟交卷；订正独立列入待处理"
-        : "180分钟内做题+订正弹性分配；不宣称严格全真模考";
-    } else if (id==="d"+d+"_p_ev") {
-      type="major-special";time="20:45–22:00";
+        ? "南大851/华科824完整180分钟交卷；订正独立列入待处理"
+        : "南大851/华科824做题+订正弹性180分钟";
+    } else if (id==="d"+d+"_p_ev" || id==="d"+d+"_p_bg") {
+      type="major-boge";
+      time="20:30–21:20";
+      note="波哥全套讲义/习题/强化及电路专题攻坚（50m）";
+    } else if (id==="d"+d+"_p_zm") {
+      type="major-zhima";
+      time="21:20–22:20";
+      note="《芝麻400题》综合大题推导专场（15–20m/题，精做4–6道大题）";
     } else if (id==="d"+d+"_night") {
-      type="math-night";time="22:50–00:35";
+      type="math-30";
+      time="22:50–00:15";
+      note="《张宇30讲》深夜基础筑基与清透（彻底脱载880/36讲）";
     } else if (id==="d"+d+"_pol") {
-      type="politics";time="13:30–14:00 & 18:25–19:05";
+      type="politics";
+      time="13:30–14:00 & 18:30–19:00";
+      note="午间25–30题快速开机 + 晚间25题与错题复盘标绿";
     } else if (id==="d"+d+"_eng") {
-      type="english";time="08:00–08:30 & 17:00–17:50";
+      type="english";
+      time="08:00–08:30 & 17:00–17:50";
+      note="早间作文功能句背默30m + 傍晚真题精读50m";
     }
     return {taskId:id, day:d, type:type,time:time,note:note};
   }
@@ -243,7 +254,7 @@
         catLabel:"数学·完整3h模考（不含订正）",
         scopedItems:examScopes,
         targetCount:size(examScopes),
-        scheduleNotes:"订正①11:30–12:30；订正②19:05–19:35"
+        scheduleNotes:"订正11:30–12:30（余时转刷邂逅遗憾）"
       }),
       overflowScopes:overflowScopes,
       overflowCount:size(overflowScopes),
