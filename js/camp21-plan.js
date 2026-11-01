@@ -614,7 +614,7 @@
     { start: '20:30', end: '21:20', dur: '50m', scene: '图书馆', title: '🔥【专业课·波哥攻坚】波哥全套（讲义+强化+习题集+电路专题，50分钟夯实）', target: '掌握波哥信号全套体系与电路专题，绝不放手 (50m)', hot: true },
     { start: '21:20', end: '22:20', dur: '1h00m', scene: '图书馆', title: '🔥【专业课·芝麻大题】《芝麻400题》大题推导专场（15–20m/题，精做4–6道大题）', target: '全真推导考场大题步骤，规范解题格式，每日精做4–6道深度大题 (60m)', hot: true },
     { start: '22:20', end: '22:50', dur: '30m', scene: '闭馆/回家', title: '🚲 闭馆回家 + 到家立刻洗漱换睡衣', target: '绝不躺床刷手机，22:50准时坐到书桌前' },
-    { start: '22:50', end: '00:15', dur: '1h25m', scene: '居家·深夜局', title: '🔥【数学·深夜筑基】《张宇30讲》核心定理与例题清透（彻底脱载880/36讲）', target: '深夜85m集中清透30讲基础筑基与例题吃透', hot: true },
+    { start: '22:50', end: '00:15', dur: '1h25m', scene: '居家·深夜局', title: '🔥【数学·深夜筑基】《张宇30讲》核心定理与例题清透（85分钟基础筑基）', target: '深夜85m集中清透30讲基础筑基与例题吃透', hot: true },
     { start: '00:15', end: '00:30', dur: '15m', scene: '居家·就寝准备', title: '战报核对打卡 + 00:30前安稳入睡，睡足 7h05m 深度睡眠', target: '今日任务闭环，安稳就寝，满血迎接新一天' }
   ];
 
@@ -625,7 +625,7 @@
     "date": "2026-10-30",
     "label": "Day 0 · 今晚预热局",
     "week": "开营预热（今晚 21:15–00:15）",
-    "focus": "熟悉特训指挥舱 + 邂逅高数第3章积分扫尾 + 30讲第1讲点绿",
+    "focus": "熟悉V5.0精简指挥舱 + 邂逅高数第3章积分扫尾 + 30讲第1讲点绿",
     "tasks": [
       {
         "id": "d0_math1",
@@ -825,8 +825,8 @@
     "day": 1,
     "date": "2026-10-31",
     "label": "Day 1 (10.31 周六)",
-    "week": "第一周 · 22/23真题模考 & 36讲线代收官 & 波哥傅氏拉氏",
-    "focus": "22年数一3h模考 + 南大07-09三套连刷 + 邂逅第3章积分错题 + 36讲线代1-3讲",
+    "week": "第一周 · 数学真题起航 & 波哥傅氏拉氏 & 芝麻大题启动 & 30讲筑基",
+    "focus": "22年数一全真模考 & 深度订正 + 南大07-09真题 + 邂逅第3章积分 + 波哥傅氏 & 芝麻大题 + 30讲高数第1讲",
     "tasks": [
       {
         "id": "d1_eng",
@@ -1386,7 +1386,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第1讲·函数极限与连续（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第1讲·函数极限与连续（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 54,
         "mode": "green",
@@ -1476,8 +1476,8 @@
     "day": 2,
     "date": "2026-11-01",
     "label": "Day 2 (11.01 周日)",
-    "week": "第一周 · 22/23真题模考 & 36讲线代收官 & 波哥傅氏拉氏",
-    "focus": "23年数一3h模考 + 华科15&21真题 + 邂逅第3章收官&第1章启动 + 36讲线代4-6讲",
+    "week": "第一周 · 数学真题起航 & 波哥傅氏拉氏 & 芝麻大题启动 & 30讲筑基",
+    "focus": "23年数一全真模考 & 深度订正 + 华科15&21真题 + 邂逅第3章积分 + 波哥傅氏 & 芝麻大题 + 30讲数列极限",
     "tasks": [
       {
         "id": "d2_eng",
@@ -2026,7 +2026,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第2讲·数列极限 + 30讲高数第3讲·一元函数微分学概念（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第2讲·数列极限 + 30讲高数第3讲·一元函数微分学概念（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 47,
         "mode": "green",
@@ -2124,8 +2124,8 @@
     "day": 3,
     "date": "2026-11-02",
     "label": "Day 3 (11.02 周一)",
-    "week": "第一周 · 22/23真题模考 & 36讲线代收官 & 波哥傅氏拉氏",
-    "focus": "09年真题清零 + 南大10-11真题 + 邂逅第1章推进至95题 + 36讲线代全绿收官！",
+    "week": "第一周 · 数学真题起航 & 波哥傅氏拉氏 & 芝麻大题启动 & 30讲筑基",
+    "focus": "09年真题清零 & 深度订正 + 南大10-11真题 + 邂逅第1章极限 + 波哥傅氏收官 & 芝麻大题 + 30讲一元微分计算",
     "tasks": [
       {
         "id": "d3_eng",
@@ -2676,7 +2676,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第4讲·一元函数微分学计算 + 30讲高数第5讲·一元微分应用(一)（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第4讲·一元函数微分学计算 + 30讲高数第5讲·一元微分应用(一)（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 51,
         "mode": "green",
@@ -2778,8 +2778,8 @@
     "day": 4,
     "date": "2026-11-03",
     "label": "Day 4 (11.03 周二)",
-    "week": "第一周 · 22/23真题模考 & 36讲线代收官 & 波哥傅氏拉氏",
-    "focus": "10+11两年数一真题清零 + 华科16真题 + 邂逅第1章收官&第2章启动 + 波哥拉氏启动",
+    "week": "第一周 · 数学真题起航 & 波哥傅氏拉氏 & 芝麻大题启动 & 30讲筑基",
+    "focus": "10+11年真题清零 & 深度订正 + 华科16真题 + 邂逅导数启动 + 波哥拉氏 & 芝麻大题 + 30讲一元微分应用",
     "tasks": [
       {
         "id": "d4_eng",
@@ -3366,7 +3366,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第6讲·一元微分应用(二) + 30讲高数第7讲·一元微分应用(三)（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第6讲·一元微分应用(二) + 30讲高数第7讲·一元微分应用(三)（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 40,
         "mode": "green",
@@ -3457,8 +3457,8 @@
     "day": 5,
     "date": "2026-11-04",
     "label": "Day 5 (11.04 周三)",
-    "week": "第一周 · 22/23真题模考 & 36讲线代收官 & 波哥傅氏拉氏",
-    "focus": "12年数一真题清零 + 南大12-14三套连刷 + 邂逅第2章导数收官 + 波哥拉氏收官",
+    "week": "第一周 · 数学真题起航 & 波哥傅氏拉氏 & 芝麻大题启动 & 30讲筑基",
+    "focus": "12年真题清零 & 深度订正 + 南大12-14真题 + 邂逅导数全绿 + 波哥拉氏收官 & 芝麻大题 + 30讲一元积分",
     "tasks": [
       {
         "id": "d5_eng",
@@ -4073,7 +4073,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第8讲·一元积分学概念性质 + 30讲高数第10讲·一元积分应用(一)（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第8讲·一元积分学概念性质 + 30讲高数第10讲·一元积分应用(一)（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 49,
         "mode": "green",
@@ -4173,8 +4173,8 @@
     "day": 6,
     "date": "2026-11-05",
     "label": "Day 6 (11.05 周四)",
-    "week": "第一周 · ⚡电路专题必搞启动 & 36讲概率收官",
-    "focus": "13年真题清零 + 华科17&南大15真题 + 邂逅第4章微分方程全章 + ⚡电路专题(Day 1/5)",
+    "week": "第一周 · 数学真题清零 & 专业课真题 & 电路专题启动 & 30讲筑基",
+    "focus": "13年真题清零 & 深度订正 + 华科17&南大15真题 + 邂逅第4章微分方程 + ⚡电路专题(1/5) & 芝麻大题 + 30讲积分计算",
     "tasks": [
       {
         "id": "d6_eng",
@@ -4730,7 +4730,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第9讲·一元函数积分学计算（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第9讲·一元函数积分学计算（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 46,
         "mode": "green",
@@ -4812,8 +4812,8 @@
     "day": 7,
     "date": "2026-11-06",
     "label": "Day 7 (11.06 周五)",
-    "week": "第一周收官 · 专业课模拟卷(一) & ⚡电路专题(Day 2/5)",
-    "focus": "14年真题清零 + 🔥专业课模拟卷(一)3h模考 + 邂逅第5章多元微分全章 + ⚡电路专题(2/5)",
+    "week": "第一周收官 · 🔥专业课模拟卷(一)模考 & ⚡电路专题(2/5) & 30讲多元微分",
+    "focus": "14年真题清零 + 🔥专业课模拟卷(一)3h模考 + 邂逅第5章多元微分 + ⚡电路专题(2/5) & 芝麻大题 + 30讲多元微积分",
     "tasks": [
       {
         "id": "d7_eng",
@@ -5315,7 +5315,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第11讲·一元积分应用(二) + 30讲高数第12讲·一元积分应用(三) + 30讲高数第14讲·二重积分（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第11讲·一元积分应用(二) + 30讲高数第12讲·一元积分应用(三) + 30讲高数第14讲·二重积分（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 54,
         "mode": "green",
@@ -5435,8 +5435,8 @@
     "day": 8,
     "date": "2026-11-07",
     "label": "Day 8 (11.07 周六)",
-    "week": "第二周 · ⚡电路专题收官 & 🎓南大期末题登场 & 真题一轮通关",
-    "focus": "15+16两年真题清零 + 华科18真题 + 邂逅第6章二重积分全章 + ⚡电路专题(Day 3/5)",
+    "week": "第二周 · ⚡电路专题攻坚 & 🎓南大期末题 & 真题一轮通关 & 30讲推进",
+    "focus": "15+16两年真题清零 + 华科18真题 + 邂逅第6章二重积分 + ⚡电路专题(3/5) & 芝麻大题 + 30讲多元微分",
     "tasks": [
       {
         "id": "d8_eng",
@@ -6028,7 +6028,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第13讲·多元函数微分学（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第13讲·多元函数微分学（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 36,
         "mode": "green",
@@ -6100,8 +6100,8 @@
     "day": 9,
     "date": "2026-11-08",
     "label": "Day 9 (11.08 周日)",
-    "week": "第二周 · ⚡电路专题收官 & 🎓南大期末题登场 & 真题一轮通关",
-    "focus": "17年真题清零 + 南大16-18三套连刷 + 邂逅第7章无穷级数收官 + ⚡电路专题(Day 4/5)",
+    "week": "第二周 · ⚡电路专题攻坚 & 🎓南大期末题 & 真题一轮通关 & 30讲推进",
+    "focus": "17年真题清零 + 南大16-18真题 + 邂逅第7章级数收官 + ⚡电路专题(4/5) & 芝麻大题 + 30讲常微分方程",
     "tasks": [
       {
         "id": "d9_eng",
@@ -6668,7 +6668,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第15讲·常微分方程（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第15讲·常微分方程（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 40,
         "mode": "green",
@@ -6744,8 +6744,8 @@
     "day": 10,
     "date": "2026-11-09",
     "label": "Day 10 (11.09 周一)",
-    "week": "第二周 · ⚡电路专题100%收官 & 线面积分攻坚",
-    "focus": "18年真题清零 + 华科19真题 + 邂逅第8章空间几何&第9章线面积分 + ⚡电路专题(Day 5/5收官！)",
+    "week": "第二周 · ⚡电路专题收官 & 线面积分攻坚 & 芝麻大题 & 30讲级数",
+    "focus": "18年真题清零 + 华科19真题 + 邂逅空间几何&线面积分 + ⚡电路专题(5/5收官) & 芝麻大题 + 30讲无穷级数",
     "tasks": [
       {
         "id": "d10_eng",
@@ -7259,7 +7259,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第16讲·无穷级数（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第16讲·无穷级数（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 56,
         "mode": "green",
@@ -7351,8 +7351,8 @@
     "day": 11,
     "date": "2026-11-10",
     "label": "Day 11 (11.10 周二)",
-    "week": "第二周 · 🎓南大期末题必搞(Day 1/6) & 邂逅高数全篇收官！",
-    "focus": "19年真题清零 + 南大19&24真题 + 邂逅高数10章全收官 + 🎓南大期末题(1/6)&波哥Z变换",
+    "week": "第二周 · 🎓南大期末题必搞(1/6) & 邂逅高数收官 & 波哥Z变换 & 30讲线代起步",
+    "focus": "19年真题清零 + 南大19&24真题 + 邂逅高数全收官 + 🎓南大期末题(1/6)&波哥Z变换 & 芝麻大题 + 30讲行列式",
     "tasks": [
       {
         "id": "d11_eng",
@@ -7980,7 +7980,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第17讲·多元积分预备知识 + 30讲线代第1讲·行列式（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第17讲·多元积分预备知识 + 30讲线代第1讲·行列式（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 47,
         "mode": "green",
@@ -8078,8 +8078,8 @@
     "day": 12,
     "date": "2026-11-11",
     "label": "Day 12 (11.11 周三)",
-    "week": "第二周 · 🎓南大期末题必搞(Day 2/6) & 20年数一重点攻坚",
-    "focus": "20年数一真题(21道非绿) + 华科20真题 + 邂逅线代第1-2章 + 🎓南大期末题(2/6)",
+    "week": "第二周 · 🎓南大期末题(2/6) & 20年真题重点攻坚 & 30讲推进",
+    "focus": "20年真题攻坚 + 华科20真题 + 邂逅线代矩阵 + 🎓南大期末题(2/6) & 芝麻大题 + 30讲多元积分",
     "tasks": [
       {
         "id": "d12_eng",
@@ -8608,7 +8608,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第18讲·多元函数积分学（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数第18讲·多元函数积分学（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 41,
         "mode": "green",
@@ -8685,8 +8685,8 @@
     "day": 13,
     "date": "2026-11-12",
     "label": "Day 13 (11.12 周四)",
-    "week": "第二周 · 🎉09-23数学真题一轮全通 & 🎓南大期末题(Day 3/6)",
-    "focus": "21年真题清零(09-23一轮通关！) + 南大25&26真题 + 邂逅线代2-3章 + 🎓南大期末题(3/6)",
+    "week": "第二周 · 🎉09-23数学真题一轮全通 & 🎓南大期末题(3/6) & 30讲矩阵运算",
+    "focus": "21年真题清零(09-23一轮通关) + 南大25&26真题 + 邂逅线代向量 + 🎓南大期末题(3/6) & 芝麻大题 + 30讲矩阵",
     "tasks": [
       {
         "id": "d13_eng",
@@ -9258,7 +9258,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第2讲·矩阵运算（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第2讲·矩阵运算（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 35,
         "mode": "green",
@@ -9329,8 +9329,8 @@
     "day": 14,
     "date": "2026-11-13",
     "label": "Day 14 (11.13 周五)",
-    "week": "第二周收官 · 专业课模拟卷(二) & 🎓南大期末题(Day 4/6) & 真题二刷启动",
-    "focus": "09-11数一真题二刷100%全绿 + 🔥专业课模拟卷(二)3h模考 + 邂逅线代4-6章 + 🎓南大期末题(4/6)",
+    "week": "第二周收官 · 🔥专业课模拟卷(二)模考 & 真题二刷启动 & 30讲线性方程组",
+    "focus": "09-11真题二刷全绿 + 🔥专业课模拟卷(二)3h模考 + 邂逅线代二次型 + 🎓南大期末题(4/6) & 芝麻大题 + 30讲方程组",
     "tasks": [
       {
         "id": "d14_eng",
@@ -9937,7 +9937,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第3讲·向量组与线性相关 + 30讲线代第4讲·线性方程组解的结构（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第3讲·向量组与线性相关 + 30讲线代第4讲·线性方程组解的结构（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 51,
         "mode": "green",
@@ -10039,8 +10039,8 @@
     "day": 15,
     "date": "2026-11-14",
     "label": "Day 15 (11.14 周六)",
-    "week": "第三周 · 🎓南大期末题收官 & 邂逅线代概率冲刺 & 华科22-24压轴",
-    "focus": "12-14真题二刷 + 华科22真题 + 邂逅线代收官&概率启动 + 🎓南大期末题(Day 5/6)&波哥第7章",
+    "week": "第三周 · 🎓南大期末题收官 & 华科真题收官 & 📚芝麻大题冲刺 & 30讲概率",
+    "focus": "12-14真题二刷 + 华科22真题 + 邂逅线代收官&概率启动 + 🎓南大期末题(5/6)&波哥第7章 & 芝麻大题 + 30讲特征值",
     "tasks": [
       {
         "id": "d15_eng",
@@ -10705,7 +10705,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第5讲·特征值与特征向量（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第5讲·特征值与特征向量（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 34,
         "mode": "green",
@@ -10775,8 +10775,8 @@
     "day": 16,
     "date": "2026-11-15",
     "label": "Day 16 (11.15 周日)",
-    "week": "第三周 · 🎓南大期末题100%收官 & 🎉波哥4-9章全线收官！",
-    "focus": "15-17真题二刷 + 华科23真题 + 邂逅概率第2-3章 + 🎓南大期末题(Day 6/6收官)&波哥第8章收官",
+    "week": "第三周 · 🎓南大期末题全线收官 & 波哥4-9章收官 & 30讲二次型",
+    "focus": "15-17真题二刷 + 华科23真题 + 邂逅概率第2-3章 + 🎓南大期末题(6/6收官)&波哥第8章 & 芝麻大题 + 30讲概率起步",
     "tasks": [
       {
         "id": "d16_eng",
@@ -11445,7 +11445,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第6讲·二次型与正定性 + 30讲概率第1讲·随机事件与概率（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代第6讲·二次型与正定性 + 30讲概率第1讲·随机事件与概率（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 59,
         "mode": "green",
@@ -11555,8 +11555,8 @@
     "day": 17,
     "date": "2026-11-16",
     "label": "Day 17 (11.16 周一)",
-    "week": "第三周 · 华科近10年真题收官 & 📚芝麻400题专题",
-    "focus": "18-20真题二刷 + 华科24真题(华科收官！) + 邂逅概率第3-4章收官 + 📚芝麻400题(一)",
+    "week": "第三周 · 华科近10年真题收官 & 📚芝麻400大题专题 & 30讲概率分布",
+    "focus": "18-20真题二刷 + 华科24真题(华科收官) + 邂逅概率第3-4章收官 + 📚芝麻400大题专题 & 30讲一维随机变量",
     "tasks": [
       {
         "id": "d17_eng",
@@ -12332,7 +12332,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲概率第2讲·一维随机变量及分布（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲概率第2讲·一维随机变量及分布（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 36,
         "mode": "green",
@@ -12404,8 +12404,8 @@
     "day": 18,
     "date": "2026-11-17",
     "label": "Day 18 (11.17 周二)",
-    "week": "第三周 · 🎉《邂逅遗憾》1219题 & 《肖1000》1148题 & 南大20套 全部大满贯！",
-    "focus": "21-23真题二刷 + 南大20-23错题专场全绿 + 🎉邂逅1219题全书收官 + 🎉肖1000全书刷完！",
+    "week": "第三周 · 🎉《邂逅遗憾》1219题 & 《肖1000》1148题全部大满贯！",
+    "focus": "21-23真题二刷收官 + 南大20-23真题全绿 + 🎉邂逅1219题全书收官 + 🎉肖1000刷完 + 芝麻大题 + 30讲多维变量",
     "tasks": [
       {
         "id": "d18_eng",
@@ -13173,7 +13173,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲概率第3讲·多维随机变量及分布 + 30讲概率第4讲·随机变量的数字特征（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲概率第3讲·多维随机变量及分布 + 30讲概率第4讲·随机变量的数字特征（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 56,
         "mode": "green",
@@ -13281,7 +13281,7 @@
     "date": "2026-11-18",
     "label": "Day 19 (11.18 周三)",
     "week": "第三周 · 全科二刷三刷错题清零大决战 (Day 1/3)",
-    "focus": "09-23数学真题三刷抽检 + 华科15-19错题二刷 + 邂逅高数错题二刷 + 波哥1-3章线上点绿",
+    "focus": "09-23真题三刷抽检 + 华科15-19错题二刷 + 邂逅高数错题二刷 + 波哥1-3章点绿 + 芝麻大题 + 30讲数理统计",
     "tasks": [
       {
         "id": "d19_eng",
@@ -14618,7 +14618,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲概率第5讲·大数定律与中心极限定理 + 30讲概率第6讲·数理统计基础（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲概率第5讲·大数定律与中心极限定理 + 30讲概率第6讲·数理统计基础（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 40,
         "mode": "green",
@@ -14710,7 +14710,7 @@
     "date": "2026-11-19",
     "label": "Day 20 (11.19 周四)",
     "week": "第三周 · 全科二刷三刷错题清零大决战 (Day 2/3)",
-    "focus": "17-23数学真题三刷100%全绿 + 华科20-24错题二刷全绿 + 邂逅线代概率错题二刷 + 电路/期末题终极复盘",
+    "focus": "17-23真题三刷全绿 + 华科20-24错题二刷 + 邂逅线代概率错题二刷 + 电路/期末终极复盘 + 芝麻大题 + 30讲二刷",
     "tasks": [
       {
         "id": "d20_eng",
@@ -15879,7 +15879,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数前10讲核心定理与典型题二刷复查（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲高数前10讲核心定理与典型题二刷复查（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 35,
         "mode": "green",
@@ -15950,8 +15950,8 @@
     "day": 21,
     "date": "2026-11-20",
     "label": "Day 21 (11.20 周五 · 结营大满贯)",
-    "week": "第三周结营 · 🔥专业课模拟卷(三) & 21天特训全科绿标总验收！",
-    "focus": "数学真题&邂逅&36讲&880结营总检 + 🔥专业课模拟卷(三)3h模考 + 肖1000全绿验收 + 后29天模拟卷交接",
+    "week": "第三周结营 · 🔥专业课模拟卷(三) & 21天V5.0精简特训全科绿标总验收！",
+    "focus": "数学三支柱(真题&邂逅&30讲)结营总检 + 🔥专业课模拟卷(三)3h模考 + 肖1000全绿验收 + 芝麻400大题总检",
     "tasks": [
       {
         "id": "d21_eng",
@@ -16462,35 +16462,41 @@
         "cat": "math",
         "catLabel": "数学·晚间90m",
         "time": "19:00–20:30",
-        "title": "《邂逅遗憾》&《36讲》&《李林880》全书终极复盘验收",
-        "desc": "晚间19:00–20:30集中火力推进《邂逅遗憾》专项技巧，吃透典型题型与解题逻辑。",
+        "title": "🎉【《邂逅遗憾》结营终检验收】全书25章核心技巧与错题深度复盘（90分钟全面稳固）",
+        "desc": "晚间19:00–20:30集中对《邂逅遗憾》全书核心题型与技巧做结营复盘验收，彻底夯实数学三支柱！",
         "chapters": [
           {
             "subjectId": "shu1",
-            "chapterId": "ch57",
-            "label": "36讲线代终检",
-            "moduleId": "other"
+            "chapterId": "xhy_gs_01",
+            "label": "邂逅高数第1章极限(结营终检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
-            "chapterId": "ch66",
-            "label": "36讲概率终检",
-            "moduleId": "other"
+            "chapterId": "xhy_gs_03",
+            "label": "邂逅高数第3章积分(结营终检)",
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
-            "chapterId": "ch159",
-            "label": "880高数第2章(未标与绿标终检)",
-            "moduleId": "other"
+            "chapterId": "xhy_xd_02",
+            "label": "邂逅线代第2章矩阵(结营终检)",
+            "moduleId": "xhy"
+          },
+          {
+            "subjectId": "shu1",
+            "chapterId": "xhy_gl_03",
+            "label": "邂逅概率第3章二维变量(结营终检)",
+            "moduleId": "xhy"
           }
         ],
-        "targetCount": 87,
+        "targetCount": 45,
         "mode": "green",
         "scopedItems": [
           {
             "subjectId": "shu1",
-            "chapterId": "ch57",
-            "label": "36讲线代终检",
+            "chapterId": "xhy_gs_01",
+            "label": "邂逅高数第1章极限(结营终检)",
             "indices": [
               0,
               1,
@@ -16501,20 +16507,15 @@
               6,
               7,
               8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14
+              9
             ],
             "taskType": "full_recheck",
-            "moduleId": "other"
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
-            "chapterId": "ch66",
-            "label": "36讲概率终检",
+            "chapterId": "xhy_gs_03",
+            "label": "邂逅高数第3章积分(结营终检)",
             "indices": [
               0,
               1,
@@ -16530,83 +16531,55 @@
               11
             ],
             "taskType": "full_recheck",
-            "moduleId": "other"
+            "moduleId": "xhy"
           },
           {
             "subjectId": "shu1",
-            "chapterId": "ch159",
-            "label": "880高数第2章(未标与绿标终检)",
+            "chapterId": "xhy_xd_02",
+            "label": "邂逅线代第2章矩阵(结营终检)",
             "indices": [
-              19,
-              37,
-              46,
-              50,
-              54,
-              61,
-              62,
-              63,
-              64,
-              65,
-              66,
-              70,
-              71,
-              72,
-              73,
-              76,
-              77,
-              81,
-              85,
-              90,
-              96,
-              105,
-              108,
-              110,
               0,
               1,
+              2,
               3,
               4,
+              5,
               6,
+              7,
+              8,
+              9,
               10,
-              11,
-              12,
-              13,
-              21,
-              22,
-              23,
-              25,
-              26,
-              30,
-              31,
-              44,
-              45,
-              47,
-              48,
-              58,
-              59,
-              67,
-              74,
-              75,
-              78,
-              79,
-              83,
-              84,
-              86,
-              87,
-              89,
-              94,
-              95,
-              100,
-              101
+              11
             ],
             "taskType": "full_recheck",
-            "moduleId": "other"
+            "moduleId": "xhy"
+          },
+          {
+            "subjectId": "shu1",
+            "chapterId": "xhy_gl_03",
+            "label": "邂逅概率第3章二维变量(结营终检)",
+            "indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "taskType": "full_recheck",
+            "moduleId": "xhy"
           }
         ],
         "date": "2026-11-20",
         "kind": "online",
-        "moduleId": "other",
+        "moduleId": "xhy",
         "moduleIds": [
-          "other"
+          "xhy"
         ],
         "offlineItemIds": null,
         "day": 21
@@ -16774,7 +16747,7 @@
         "cat": "night",
         "catLabel": "居家深夜·30讲85m",
         "time": "22:50–00:15",
-        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代与概率核心定理与典型题二刷验收（彻底脱载880/36讲）",
+        "title": "🔥《张宇30讲》深夜基础筑基与刷透：30讲线代与概率核心定理与典型题二刷验收（85分钟基础筑基）",
         "desc": "22:50–00:15 深夜85m集中清透《张宇30讲》，吃透核心定理条件与典型例题，夯实坚不可摧的数学基础盘。",
         "targetCount": 35,
         "mode": "green",
@@ -17917,7 +17890,7 @@
         '</div>' +
         (dayNum >= 1 ? (
           '<details class="camp21-v3-quota-details">' +
-            '<summary>📌 展开 V4 对账台（今日定额 <strong>' + qs.totalTarget + '</strong> 题次 | 题库已验证严格熟练 <strong>' + qs.totalVerifiedMastered + '</strong> 题 | 手工申报实做 <strong>' + qs.totalManualClaim + '</strong> 题 · 严禁手填冒充验证）</summary>' +
+            '<summary>📌 展开 V5.0 对账台（今日定额 <strong>' + qs.totalTarget + '</strong> 题次 | 题库已验证严格熟练 <strong>' + qs.totalVerifiedMastered + '</strong> 题 | 手工申报实做 <strong>' + qs.totalManualClaim + '</strong> 题 · 严禁手填冒充验证）</summary>' +
             '<div class="camp21-v3-qgrid">' + quotaRowsHtml + '</div>' +
           '</details>'
         ) : '') +
@@ -17964,7 +17937,7 @@
     panel.innerHTML =
       '<div class="camp21-wb-header">' +
         '<div class="camp21-wb-left">' +
-          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 V4</span>' +
+          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 V5.0</span>' +
           '<div class="camp21-day-nav">' +
             '<button type="button" class="camp21-day-nav-btn" data-action="prev-day" ' + (activeDay <= 0 ? 'disabled' : '') + ' title="前一天">◀</button>' +
             '<select class="camp21-day-select" data-action="select-day" aria-label="选择特训天数">' + optionsHtml + '</select>' +
@@ -17986,7 +17959,7 @@
         '</div>' +
         '<div class="camp21-wb-actions">' +
           '<button type="button" class="camp21-btn primary" data-action="open-modal" data-tab="all">🗓️ 21天全景表</button>' +
-          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="v3ledger">📊 V4对账总账</button>' +
+          '<button type="button" class="camp21-btn" data-action="open-modal" data-tab="v3ledger">📊 V5.0对账总账</button>' +
           '<button type="button" class="camp21-btn report-btn" data-action="copy-report">📋 复制今日战报</button>' +
           '<button type="button" class="camp21-btn" data-action="open-settings">⚙️ 目标设置</button>' +
           '<button type="button" class="camp21-btn" data-action="toggle-collapse">' + (state.collapsed ? '展开清单 ▼' : '收起 ▲') + '</button>' +
@@ -18025,7 +17998,7 @@
     card.innerHTML =
       '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;">' +
         '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
-          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 V4 · ' + escapeHtml(dayObj.label) + '</span>' +
+          '<span class="camp21-fire-pill">🔥 21天魔鬼特训 V5.0 · ' + escapeHtml(dayObj.label) + '</span>' +
           '<strong style="font-size:14px;color:#0f172a;">' + escapeHtml(dayObj.focus) + '</strong>' +
         '</div>' +
         '<div style="display:flex;align-items:center;gap:8px;">' +
@@ -18408,7 +18381,7 @@
     var qs = getV3QuotaStatsForDay(state, audit, dayObj.day);
 
     var lines = [
-      '【🔥 21天魔鬼特训 V4精准对账版 · ' + dayObj.label + ' 每日战报】',
+      '【🔥 21天精简特训 V5.0 · ' + dayObj.label + ' 每日战报】',
       '⏱️ 今日真实净专注：' + Math.floor(nf.sum / 60) + '小时' + String(nf.sum % 60).padStart(2, '0') + '分 (' + nf.sum + '/780分钟 · ' + (nf.reached ? '✅13h达标' : '⏳未满13h') + ') [数' + nf.math + 'm/专' + nf.major + 'm/政' + nf.politics + 'm/英' + nf.english + 'm]',
       '💎 线上题目严格熟练：' + dayProg.onlineMastered + '/' + dayProg.onlineTarget + ' 题 (' + dayProg.onlineMasteryPct + '%) | 本轮已覆盖 ' + dayProg.onlineAttempted + ' 题 | 广义绿 ' + dayProg.onlineBroadGreen + ' 题',
       '📊 全天全部任务达标：' + dayProg.doneTasks + '/' + dayProg.totalTasks + ' 项 (' + dayProg.taskPct + '%)' + (dayProg.untrackedTasks > 0 ? (' [⚠️含 ' + dayProg.untrackedTasks + ' 项待盘点任务]') : ''),
@@ -18450,16 +18423,16 @@
       '<div class="camp21-modal-dialog" role="dialog" aria-modal="true" aria-label="21天魔鬼特训全景指挥舱">' +
         '<div class="camp21-modal-header">' +
           '<div class="camp21-modal-title-wrap">' +
-            '<h2>🔥 Kyson 考研冲刺 · 21天魔鬼特训 V4全景指挥舱</h2>' +
-            '<p>真实逐题练习审计 · 双轨核验 · 绝不跨天串账 · 严禁旧绿标冒充严格熟练</p>' +
+            '<h2>🔥 Kyson 考研冲刺 · 21天精简特训 V5.0全景指挥舱</h2>' +
+            '<p>数学三支柱(09-23真题+邂逅遗憾+张宇30讲) · 专业课双核突破(波哥+芝麻400大题) · 真实逐题核验</p>' +
           '</div>' +
           '<button type="button" class="camp21-modal-close" data-action="close-modal" aria-label="关闭">×</button>' +
         '</div>' +
         '<div class="camp21-modal-tabs">' +
           '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="today">📋 今日特训清单 & 净专注</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="v3ledger">📊 V4对账总账 (7680题次与逐题核对)</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="v3ledger">📊 V5.0对账总账 (数学三支柱+专业课精练)</button>' +
           '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="all">🗓️ 21天全景作战大表</button>' +
-          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="schedule">⏰ 14h10m 排班作息表</button>' +
+          '<button type="button" class="camp21-tab-btn" data-action="switch-tab" data-tab="schedule">⏰ 14h05m 排班作息表 (845m)</button>' +
           '<button type="button" class="camp21-tab-btn" data-action="open-settings">⚙️ 原版每日目标设置</button>' +
         '</div>' +
         '<div class="camp21-modal-body" id="camp21ModalBody"></div>' +
@@ -18524,7 +18497,7 @@
       body.innerHTML =
         '<div style="padding:12px 14px;">' +
           '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px;margin-bottom:12px;font-size:12.5px;color:#1e3a8a;">' +
-            '<strong>📊 V4 零删减全量总账对账规则：</strong>每道题必须在当前属于熟练(proficient)且存在本轮复检通过记录方可计入“题库已验证严格熟练”；手工填报单独显示，严禁冒充题库验证。' +
+            '<strong>📊 V5.0 精简特训总账对账规则：</strong>聚焦数学三支柱（09-23真题 + 邂逅遗憾 + 张宇30讲）与专业课精选（波哥 + 芝麻400大题）；880与36讲已全面脱载减负；所有线上题目须复检通过方可计入严格熟练。' +
           '</div>' +
           '<table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left;">' +
             '<thead>' +
@@ -18558,7 +18531,7 @@
       body.innerHTML =
         '<div style="padding:12px 14px;">' +
           '<table class="camp21-all-days-table">' +
-            '<thead><tr><th>日期</th><th>核心攻坚焦点</th><th>V4真实核验进度</th><th>切换</th></tr></thead>' +
+            '<thead><tr><th>日期</th><th>核心攻坚焦点</th><th>V5.0真实核验进度</th><th>切换</th></tr></thead>' +
             '<tbody>' + allRows + '</tbody>' +
           '</table>' +
         '</div>';
@@ -18606,15 +18579,15 @@
       }).join('');
 
       var dayNotice = (activeDay === 1 || activeDay === 2)
-        ? '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#92400e;"><strong>📌 D' + activeDay + ' 数学全真模考日：</strong>08:30–11:30独立答卷180分钟（不含订正）；11:30–12:30订正①(60m)；19:05–19:35订正②(30m)。合计90分钟专属订正。</div>'
+        ? '<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#92400e;"><strong>📌 D' + activeDay + ' 数学全真模考日：</strong>08:30–11:30独立答卷180分钟（不含订正）；11:30–12:30试卷深度订正(60m)；19:00–20:30攻坚《邂逅遗憾》(90m)；21:20–22:20《芝麻400题》大题专场(60m)；22:50–00:15《张宇30讲》(85m)。全天排班14h05m(845m)。</div>'
         : ([7, 14, 21].indexOf(activeDay) >= 0
-          ? '<div style="background:#ede9fe;border:1px solid #ddd6fe;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#5b21b6;"><strong>📌 D' + activeDay + ' 专业课全真模考日：</strong>14:00–17:00独立全真模拟180分钟，订正另外列入待处理队列。</div>'
-          : '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#166534;"><strong>📌 D' + activeDay + ' 常规强化日：</strong>专业课14:00–17:00实行做题+订正弹性180分钟；数学上午旧题攻坚，晚间100分钟主攻《邂逅遗憾》。</div>');
+          ? '<div style="background:#ede9fe;border:1px solid #ddd6fe;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#5b21b6;"><strong>📌 D' + activeDay + ' 专业课全真模考日：</strong>14:00–17:00独立全真模拟180分钟，订正另外记录；晚上20:30–21:20波哥攻坚(50m)；21:20–22:20《芝麻400题》大题推导专场(60m)；深夜22:50–00:15《张宇30讲》(85m)。全天排班14h05m(845m)。</div>'
+          : '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#166534;"><strong>📌 D' + activeDay + ' 常规强化日：</strong>数学上午08:30–11:30真题攻坚+11:30–12:30订正(共240m)，晚间19:00–20:30主攻《邂逅遗憾》(90m)，深夜22:50–00:15主攻《张宇30讲》(85m)；专业课下午14:00–17:00真题(180m)，20:30–21:20波哥攻坚(50m)，21:20–22:20《芝麻400题》大题专场(60m)。全天排班14h05m(845m)。</div>');
 
       body.innerHTML =
         '<div style="padding:12px 14px;">' +
           '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
-            '<div style="font-weight:700;font-size:13.5px;color:#1e293b;">📅 D' + activeDay + ' 当日详细排班表 (全天排班 850m / 净专注目标 780m)</div>' +
+            '<div style="font-weight:700;font-size:13.5px;color:#1e293b;">📅 D' + activeDay + ' 当日详细排班表 (全天排班 14h05m=845m / 净专注目标 780m)</div>' +
             '<div style="font-size:12px;color:#64748b;">' + (isTodayActive ? '🟢 正在查看今天' : '👀 正在查看非本日规划') + '</div>' +
           '</div>' +
           dayNotice +
