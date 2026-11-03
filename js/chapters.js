@@ -352,7 +352,8 @@
       '南京大学851模拟卷',
       '武汉大学807',
       '厦门大学847',
-      '华中科技大学824'
+      '华中科技大学824',
+      '宁波大学829'
     ];
     SUBJECTS.splice(1, 1, {
       id: 'zhuanye', name: '专业课', desc: '信号与系统专业课题库（波哥 + 各校真题）', storageSuffix: 'zhuanye',
@@ -566,6 +567,35 @@
       });
     }
 
+    var politicsRealData = (typeof window !== 'undefined' && window.POLITICS_REAL_DATA)
+      ? window.POLITICS_REAL_DATA
+      : null;
+    if (politicsRealData && Array.isArray(politicsRealData.chapters)) {
+      politicsRealData.chapters.forEach(function (ch, idx) {
+        var labels = [];
+        var totalQ = ch.questions ? ch.questions.length : (ch.qCount || 0);
+        for (var i = 1; i <= totalQ; i++) {
+          var qObj = ch.questions && ch.questions[i - 1];
+          var prefix = (qObj && qObj.type === 'multi') ? '多' : '单';
+          labels.push(prefix + i);
+        }
+        POLITICS_CHAPTERS.push({
+          id: 'pol_real_' + ch.year,
+          code: ch.code,
+          number: 1000 + idx + 1,
+          name: '历年真题 - ' + ch.year + '年真题',
+          short: ch.year + '年真题',
+          total: totalQ,
+          cols: 5,
+          wb: '历年真题',
+          subj: '历年真题',
+          category: 'politics',
+          labels: labels,
+          questions: ch.questions || []
+        });
+      });
+    }
+
     if (typeof window !== 'undefined') {
       window.POLITICS_CHAPTERS = POLITICS_CHAPTERS;
     }
@@ -573,16 +603,17 @@
     SUBJECTS.push({
       id: 'politics',
       name: '考研政治',
-      desc: '27肖1000 智能题库（单选/多选 · 显示解析 · 五级掌握度 · 错题攻坚）',
+      desc: '27肖1000 & 历年真题 智能题库（单选/多选 · 独立批改 · 显示解析 · 五级掌握度 · 错题攻坚）',
       storageSuffix: 'pol',
       analyticsGroup: 'politics',
       initChapterId: POLITICS_CHAPTERS.length > 0 ? POLITICS_CHAPTERS[0].id : '',
       navCols: 5,
       partOrder: ['单选题', '多选题'],
       wbOrder: [
-        { wb: '27肖1000', label: '27肖1000' }
+        { wb: '27肖1000', label: '27肖1000' },
+        { wb: '历年真题', label: '历年真题' }
       ],
-      subjOrder: ['马原', '毛中特', '新思想', '史纲', '思修'],
+      subjOrder: ['马原', '毛中特', '新思想', '史纲', '思修', '历年真题'],
       classifyLabel: function (label) {
         return String(label).startsWith('多') ? '多选题' : '单选题';
       },
