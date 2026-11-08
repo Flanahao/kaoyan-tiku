@@ -353,7 +353,8 @@
       '武汉大学807',
       '厦门大学847',
       '华中科技大学824',
-      '宁波大学829'
+      '宁波大学829',
+      '芝麻大题400'
     ];
     SUBJECTS.splice(1, 1, {
       id: 'zhuanye', name: '专业课', desc: '信号与系统专业课题库（波哥 + 各校真题）', storageSuffix: 'zhuanye',
@@ -596,6 +597,37 @@
       });
     }
 
+    // 27模拟卷（徐涛/腿姐/米鹏/新东方/余峰）
+    var politicsMocksData = (typeof window !== 'undefined' && window.POLITICS_MOCKS_DATA)
+      ? window.POLITICS_MOCKS_DATA
+      : null;
+    if (politicsMocksData && Array.isArray(politicsMocksData.chapters)) {
+      politicsMocksData.chapters.forEach(function (ch, idx) {
+        var labels = [];
+        var totalQ = ch.questions ? ch.questions.length : (ch.qCount || 0);
+        for (var i = 1; i <= totalQ; i++) {
+          var qObj = ch.questions && ch.questions[i - 1];
+          var prefix = (qObj && qObj.type === 'multi') ? '多' : '单';
+          labels.push(prefix + i);
+        }
+        var cleanBankCode = (ch.bank_code || ch.code || ('mock_' + idx)).replace(/[^a-zA-Z0-9_]/g, '_');
+        POLITICS_CHAPTERS.push({
+          id: 'pol_mock_' + cleanBankCode,
+          code: ch.code,
+          number: 2000 + idx + 1,
+          name: '27模拟卷 - ' + (ch.series || '名师模拟卷') + ' - ' + ch.name,
+          short: ch.name,
+          total: totalQ,
+          cols: 5,
+          wb: '27模拟卷',
+          subj: ch.series || '名师模拟卷',
+          category: 'politics',
+          labels: labels,
+          questions: ch.questions || []
+        });
+      });
+    }
+
     if (typeof window !== 'undefined') {
       window.POLITICS_CHAPTERS = POLITICS_CHAPTERS;
     }
@@ -603,7 +635,7 @@
     SUBJECTS.push({
       id: 'politics',
       name: '考研政治',
-      desc: '27肖1000 & 历年真题 智能题库（单选/多选 · 独立批改 · 显示解析 · 五级掌握度 · 错题攻坚）',
+      desc: '27肖1000 · 历年真题 · 27名师模拟卷 智能题库（单选/多选 · 独立批改 · 显示解析 · 五级掌握度 · 错题攻坚）',
       storageSuffix: 'pol',
       analyticsGroup: 'politics',
       initChapterId: POLITICS_CHAPTERS.length > 0 ? POLITICS_CHAPTERS[0].id : '',
@@ -611,9 +643,14 @@
       partOrder: ['单选题', '多选题'],
       wbOrder: [
         { wb: '27肖1000', label: '27肖1000' },
-        { wb: '历年真题', label: '历年真题' }
+        { wb: '历年真题', label: '历年真题' },
+        { wb: '27模拟卷', label: '27模拟卷' }
       ],
-      subjOrder: ['马原', '毛中特', '新思想', '史纲', '思修', '历年真题'],
+      subjOrder: [
+        '马原', '毛中特', '新思想', '史纲', '思修',
+        '历年真题',
+        '徐涛十套卷', '腿姐八套卷', '米鹏六套卷', '新东方五套卷', '余峰六套卷'
+      ],
       classifyLabel: function (label) {
         return String(label).startsWith('多') ? '多选题' : '单选题';
       },
